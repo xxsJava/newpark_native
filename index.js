@@ -6,6 +6,6 @@ import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 
-console.log("项目新建")
+console.log("项目开始运行")
 
 AppRegistry.registerComponent(appName, () => App);
