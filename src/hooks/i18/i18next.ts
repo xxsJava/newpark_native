@@ -1,13 +1,14 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 15:24:51
- * @LastEditTime: 2023-10-07 16:05:58
+ * @LastEditTime: 2023-10-07 16:50:32
  * @FilePath: \newpark_native\src\hooks\i18\i18next.ts
  * @Description: desc
  */
 import i18next, { ModuleType } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as RNLocalize from "react-native-localize";
+import Storage from '../../utils/AsyncStorageUtils';
 
 export const lngKey =  '@lng';
 
@@ -16,14 +17,9 @@ const languageDetector = {
   async: true,
   detect: function (callback:any) {
     // 获取上次选择的语言
-    // storage.get(lngKey, 'locale').then(lng => {
-    //   // 如果是跟随本地，则获取系统语言
-    //   if (lng === 'locale') {
-    //     callback(getSystemLanguage());
-    //   } else {
-        callback('zh');
-    //   }
-    // });
+    Storage.get(lngKey).then(lng => {
+        callback(lng);
+    });
   },
 };
 
@@ -66,7 +62,7 @@ export const changeLanguage = async (lng?: 'en' | 'zh') => {
   // 切换语言
   await i18next.changeLanguage(lng);
   // 持久化当前选择
-//   await storage.set(lngKey, lng);
+  Storage.set(lngKey, lng);
 };
 
 export default i18next;
