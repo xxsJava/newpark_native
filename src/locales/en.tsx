@@ -1,0 +1,9 @@
+export default{
+    homeTab:{
+        recommend: 'recommend',
+        newPark: 'New Park',
+        publish: 'publish',
+        socializing: 'social',
+        mine: 'my'
+    }
+}

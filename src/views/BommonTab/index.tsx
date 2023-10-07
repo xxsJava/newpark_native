@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+import Storage from '../../utils/AsyncStorageUtils';
 
 const Tab = createBottomTabNavigator();
-
 
 function HomeScreen() {
   return (
