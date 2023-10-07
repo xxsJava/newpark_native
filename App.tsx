@@ -9,7 +9,7 @@
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import Index from './src/views/main/index'
+import Index from './src/routes/main/index'
 import './src/hooks/i18/i18next'
 
 export default function App(): JSX.Element {
