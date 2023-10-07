@@ -33,10 +33,10 @@ i18next
     // 资源文件
     resources: {
       en: {
-        translation: require('../../locales/languages/en.json'),
+        translation: require('../../locales/en.json'),
       },
       zh: {
-        translation: require('../../locales/languages/zh-CN.json'),
+        translation: require('../../locales/zh-CN.json'),
       },
     },
     react: {
