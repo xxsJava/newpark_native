@@ -1,9 +1,0 @@
-export default {
-    homeTab:{
-        recommend: '推荐',
-        newPark: '新园',
-        publish: '发布',
-        socializing: '社交',
-        mine: '我的'
-    }
-}
