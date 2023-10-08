@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 15:24:51
- * @LastEditTime: 2023-10-07 16:50:32
+ * @LastEditTime: 2023-10-08 09:22:33
  * @FilePath: \newpark_native\src\hooks\i18\i18next.ts
  * @Description: desc
  */
@@ -9,6 +9,7 @@ import i18next, { ModuleType } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as RNLocalize from "react-native-localize";
 import Storage from '../../utils/AsyncStorageUtils';
+
 
 export const lngKey =  '@lng';
 
