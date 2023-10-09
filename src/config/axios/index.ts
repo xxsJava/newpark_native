@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-10-09 11:26:21
+ * @LastEditTime: 2023-10-09 11:54:23
+ * @FilePath: \newpark_native\src\config\axios\index.ts
+ * @Description: desc
+ */
 import { service } from './service'
 
 import { config } from './config'
@@ -6,6 +13,7 @@ const { default_headers } = config
 
 const request = (option: any) => {
   const { url, method, params, data, headersType, responseType } = option
+  
   return service({
     url: url,
     method,
@@ -19,6 +27,7 @@ const request = (option: any) => {
 }
 export default {
   get: <T = any>(option: any) => {
+    console.log('执行get请求')
     return request({ method: 'get', ...option }) as unknown as T
   },
   post: <T = any>(option: any) => {

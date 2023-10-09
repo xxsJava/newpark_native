@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-10-09 11:26:21
+ * @LastEditTime: 2023-10-09 11:50:15
+ * @FilePath: \newpark_native\src\config\axios\service.ts
+ * @Description: desc
+ */
 import axios, {
   AxiosInstance,
   InternalAxiosRequestConfig,
@@ -5,6 +12,8 @@ import axios, {
   AxiosResponse,
   AxiosError
 } from 'axios'
+
+import qs from 'qs'
 
 import { config } from './config'
 
@@ -26,7 +35,7 @@ service.interceptors.request.use(
       (config.headers as AxiosRequestHeaders)['Content-Type'] ===
         'application/x-www-form-urlencoded'
     ) {
-      // config.data = qs.stringify(config.data)
+      config.data = qs.stringify(config.data)
     }
     // ;(config.headers as AxiosRequestHeaders)['Token'] = 'test test'
     // get参数编码
@@ -43,12 +52,11 @@ service.interceptors.request.use(
       config.params = {}
       config.url = url
     }
-    console.log(config)
     return config
   },
   (error: AxiosError) => {
-    console.log("请求拦截器错误")
     // Do something with request error
+    console.log("request err"+error)
     console.log(error) // for debug
     Promise.reject(error)
   }
@@ -57,6 +65,7 @@ service.interceptors.request.use(
 // response 拦截器
 service.interceptors.response.use(
   (response: AxiosResponse<any>) => {
+    console.log('开始执行 response 拦截器')
     if (response.config.responseType === 'blob') {
       // 如果是文件流，直接过
       return response
@@ -67,8 +76,7 @@ service.interceptors.response.use(
     }
   },
   (error: AxiosError) => {
-    console.log('响应拦截器错误')
-    console.log('err' + error) // for debug
+    console.log('response err' + error) // for debug
     console.log(error.message)
     return Promise.reject(error)
   }

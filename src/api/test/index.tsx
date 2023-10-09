@@ -1,13 +1,15 @@
 /*
  * @Author: xxs
- * @Date: 2023-10-07 09:56:26
- * @LastEditTime: 2023-10-07 11:50:26
+ * @Date: 2023-10-09 11:29:00
+ * @LastEditTime: 2023-10-09 11:44:22
  * @FilePath: \newpark_native\src\api\test\index.tsx
  * @Description: desc
  */
 import request from '../../config/axios'
 
-// 测试接口
-export const getTest = (): Promise<IResponse> => {
-  return request.get({ url: 'www.baidu.com' })
+export const test = ():Promise<IResponse> => {
+  console.log('开始调试')
+  return request.get({
+    url: 'findAll'
+  })
 }
