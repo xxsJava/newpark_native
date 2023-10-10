@@ -19,7 +19,7 @@ import { config } from './config'
 
 const { result_code, base_url } = config
 
-export const PATH_URL = base_url.dev
+export const PATH_URL = base_url.base
 
 // 创建axios实例
 const service: AxiosInstance = axios.create({
