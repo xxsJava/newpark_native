@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-05 12:52:53
- * @LastEditTime: 2023-10-08 00:39:18
+ * @LastEditTime: 2023-10-13 09:04:54
  * @FilePath: \newpark_native\src\routes\main\index.tsx
  * @Description: 路由
  */
@@ -37,7 +37,7 @@ function BommonTab(){
           }
         return <Ionicons name={iconName} size={size} color={color} />;
        },
-          tabBarActiveTintColor: 'tomato',
+          tabBarActiveTintColor: '#000',
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
           tabBarStyle:{

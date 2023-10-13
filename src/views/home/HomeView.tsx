@@ -1,36 +1,42 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:40:28
- * @LastEditTime: 2023-10-10 22:03:18
+ * @LastEditTime: 2023-10-13 12:07:57
  * @FilePath: \newpark_native\src\views\home\HomeView.tsx
  * @Description: 推荐
  */
 import React, {Component} from 'react';
 import {Text, StyleSheet, View} from 'react-native';
-import { ActivityIndicator, MD2Colors,PaperProvider } from 'react-native-paper';
+import {ActivityIndicator, MD2Colors} from 'react-native-paper';
+import HomeNav from '../../components/Nav';
+import HomeComponents from '../../components/Home';
 
-const Load = () =>{
-  return <ActivityIndicator animating={true} color={MD2Colors.red800} />;
-}
+const Load = () => {
+  return <ActivityIndicator animating={false} color={MD2Colors.red800} />;
+};
+
 
 export default class HomeView extends Component {
-
   render() {
     return (
-      
-      <PaperProvider><Load /></PaperProvider>
-      // <View style={styles.centerText}>
-      //   <Text> HomeView </Text>
-        
-      // </View>
+      <View>
+        <HomeNav />
+        <HomeComponents/>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   centerText: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  wd:{
+    width: 150,
+    height: 80,
+    backgroundColor: "#24C78C",
+    borderRadius: 7
+  }
 });

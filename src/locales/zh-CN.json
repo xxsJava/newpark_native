@@ -5,5 +5,18 @@
         "publish": "发布",
         "socializing": "社交",
         "mine": "我的"
+    },
+    "home":{
+        "help":"快来帮忙",
+        "help1": "找找好伙计",
+        "order":"快快来买",
+        "order1": "找找好商品"
+    },
+    "sort":{
+        "sortType":"推荐",
+        "sortType1":"日常",
+        "sortType2":"热门",
+        "sortType3":"悬赏",
+        "sorts": "更多排序"
     }
 }

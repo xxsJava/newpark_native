@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 18:27:52
- * @LastEditTime: 2023-10-13 08:53:56
+ * @LastEditTime: 2023-10-13 09:22:57
  * @FilePath: \newpark_native\src\routes\stacker\HomeStacker.tsx
  * @Description: Home路由
  */
@@ -9,27 +9,10 @@ import {StackView, createStackNavigator} from '@react-navigation/stack';
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, Dimensions} from 'react-native';
 import HomeView from '../../views/home/HomeView';
-import {Appbar} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const Stack = createStackNavigator();
 
-const MyComponent = () => (
-  <Appbar.Header>
-    <View style={styles.navWiidtha}>
-      <View style={styles.schoolTypeNava}>
-        <Text style={styles.shoolTextCent}>全国</Text>
-      </View>
-      <View style={styles.schoolTypeNavb}>
-        <Text style={styles.shoolTextCent}>本校</Text>
-      </View>
-    </View>
-
-    <View style={styles.searchNav} />
-
-    <Appbar.Action icon={require('../../assets/images/collect.png')} onPress={()=>{}} />
-  </Appbar.Header>
-);
 
 export default class HomeStacker extends Component {
   render() {
@@ -37,13 +20,6 @@ export default class HomeStacker extends Component {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="HomeStackNav"
-          component={MyComponent}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="HomeStack"
           component={HomeView}
           options={{
             headerShown: false,
