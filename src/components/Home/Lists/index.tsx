@@ -17,6 +17,7 @@ import StylesALL from '../../../styles';
 
 //上拉加载布局
 const renderLoadMoreView = () => {
+  console.log('加载上拉布局');
   return (
     <View style={styles.loadMore}>
       <ActivityIndicator
@@ -32,6 +33,8 @@ const renderLoadMoreView = () => {
 //上拉加载更多数据
 const loadMoreData = () => {
   console.log('上拉加载数据');
+
+  setTimeout(() => {}, 3000);
 };
 
 export const LsitRecommend = () => {
@@ -43,7 +46,7 @@ export const LsitRecommend = () => {
         {title: 'O泡果奶1', desc: '刚刚', key: 'item3'},
         {title: '小学牛2', desc: '13分钟前', key: 'item4'},
       ]}
-      ListFooterComponent={() => renderLoadMoreView()}
+      ListFooterComponent={renderLoadMoreView}
       onEndReached={() => loadMoreData()}
       renderItem={({item, index, separators}) => (
         <TouchableHighlight
@@ -145,6 +148,6 @@ const styles = StyleSheet.create({
   },
   indicator: {
     color: 'red',
-    margin: 10
+    margin: '70%',
   },
 });

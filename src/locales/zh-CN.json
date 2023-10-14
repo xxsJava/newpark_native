@@ -14,7 +14,7 @@
     },
     "sort":{
         "sortType":"推荐",
-        "sortType1":"日常",
+        "sortType1":"关注",
         "sortType2":"热门",
         "sortType3":"悬赏",
         "sorts": "更多排序"

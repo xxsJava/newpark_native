@@ -1,24 +1,14 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2023-10-13 17:48:07
+ * @LastEditTime: 2023-10-13 18:20:29
  * @FilePath: \newpark_native\src\components\Home\index.tsx
  * @Description:
  */
 
 import React from 'react';
 import MenusComponents from './Menu';
-import {
-  View,
-  StyleSheet,
-  Text,
-  FlatList,
-  TouchableHighlight,
-  StyleProp,
-  ViewProps,
-  ViewStyle,
-  SafeAreaView,
-} from 'react-native';
+import {View, StyleSheet, SafeAreaView, StatusBar} from 'react-native';
 import SortTabNav from './SortType';
 import {LsitRecommend} from './Lists';
 
