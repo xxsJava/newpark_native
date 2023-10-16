@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 15:24:51
- * @LastEditTime: 2023-10-08 09:22:33
+ * @LastEditTime: 2023-10-16 16:11:59
  * @FilePath: \newpark_native\src\hooks\i18\i18next.ts
  * @Description: desc
  */
@@ -30,7 +30,7 @@ i18next
   .use(initReactI18next)
   .init({
     fallbackLng: 'zh', // 切换语言失败时的使用的语言
-    debug: true, // 开发环境开启调试
+    debug: false, // 开发环境开启调试
     // 资源文件
     resources: {
       en: {
