@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-14 16:08:59
- * @LastEditTime: 2023-10-16 11:49:40
+ * @LastEditTime: 2023-10-16 11:58:05
  * @FilePath: \newpark_native\src\components\Home\SortType\index.tsx
  * @Description: desc
  */
@@ -9,7 +9,7 @@ import React from 'react';
 import StylesALL from '../../../styles';
 import {StyleSheet, Text, View} from 'react-native';
 import Icons from 'react-native-vector-icons/Ionicons';
-import {useTranslation} from 'react-i18next';
+import {useTranslation,Trans} from 'react-i18next';
 /**
  * 代码描述: home页 排序导航布局
  * 作者: xxs
@@ -23,21 +23,21 @@ const SortTabNav = () => {
         <View style={styles.padd}>
           <Text
             style={[styles.menuFont, StylesALL.FONT_SYS, StylesALL.FONT_SIZE]}>
-            t('sort.sortType')
+            <Trans>sort.sortType</Trans>
           </Text>
         </View>
         <View style={styles.padd}>
-          <Text style={styles.menuFont}>t('sort.sortType1')</Text>
+          <Text style={styles.menuFont}><Trans>sort.sortType1</Trans></Text>
         </View>
         <View style={styles.padd}>
-          <Text style={styles.menuFont}>t('sort.sortType2')</Text>
+          <Text style={styles.menuFont}><Trans>sort.sortType2</Trans></Text>
         </View>
         <View style={styles.padd}>
-          <Text style={styles.menuFont}>t('sort.sortType3')</Text>
+          <Text style={styles.menuFont}><Trans>sort.sortType3</Trans></Text>
         </View>
       </View>
       <View style={styles.menuTabNavRight}>
-        <Text style={[styles.menuFont, styles.mentSort]}>t('sort.sorts')</Text>
+        <Text style={[styles.menuFont, styles.mentSort]}><Trans>sort.sorts</Trans></Text>
         <Text style={styles.icons}>
           <Icons name="chevron-down-outline" color={'#BBBBBB'} />
         </Text>
