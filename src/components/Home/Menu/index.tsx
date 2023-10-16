@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:15:06
- * @LastEditTime: 2023-10-13 16:30:30
+ * @LastEditTime: 2023-10-16 11:46:23
  * @FilePath: \newpark_native\src\components\Home\Menu\index.tsx
  * @Description: 菜单 帮助 和 商品
  */
@@ -14,9 +14,9 @@ const MenusComponents = (params?:any) => {
   return (
     <View style={[styles.pucs]}>
       <View>
-        <Text style={StylesALL.FONT_STY}>{t(params.props.title)}</Text>
+        <Text style={StylesALL.FONT_STY}>t(params.props.title)</Text>
         <Text style={[StylesALL.FONT_STY, styles.fontSty]}>
-          {t(params.props.desc)}
+          t(params.props.desc)
         </Text>
       </View>
       <View style={styles.imgSty}>

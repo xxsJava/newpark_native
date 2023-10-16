@@ -5,5 +5,18 @@
         "publish": "publish",
         "socializing": "social",
         "mine": "my"
+    },
+    "home":{
+        "help": "Come and help",
+        "help1": "Find a good guy",
+        "order": "Come and buy quickly",
+        "order1": "Find good goods"
+    },
+    "sort":{
+        "sortType": "recommended",
+        "sortType1": "Follow",
+        "sortType2": "hot",
+        "sortType3": "bounty",
+        "sorts": "More sorts"
     }
 }
