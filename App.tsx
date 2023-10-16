@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-
+import './src/hooks/i18/i18next'
 import { NavigationContainer } from '@react-navigation/native';
 import Index from './src/routes/main'
 import 'intl-pluralrules'
-import './src/hooks/i18/i18next'
+
 // import {test,login} from './src/api/test'
 
 // const tests =async () => {

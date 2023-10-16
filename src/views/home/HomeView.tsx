@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:40:28
- * @LastEditTime: 2023-10-13 12:07:57
+ * @LastEditTime: 2023-10-16 14:09:47
  * @FilePath: \newpark_native\src\views\home\HomeView.tsx
  * @Description: 推荐
  */
@@ -17,6 +17,7 @@ const Load = () => {
 
 
 export default class HomeView extends Component {
+  
   render() {
     return (
       <View>

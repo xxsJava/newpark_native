@@ -5,11 +5,12 @@ import {useTranslation, Trans} from 'react-i18next';
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:15:06
- * @LastEditTime: 2023-10-16 12:10:16
+ * @LastEditTime: 2023-10-16 14:46:50
  * @FilePath: \newpark_native\src\components\Home\Menu\index.tsx
  * @Description: 菜单 帮助 和 商品
  */
 const MenusComponents = (params?: any) => {
+  
   // const {t} = useTranslation();
   return (
     <View style={[styles.pucs]}>
