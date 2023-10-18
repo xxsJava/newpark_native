@@ -21,9 +21,7 @@ export default class MineStacker extends Component {
               options={
                 {
                   title:'我的',
-                  headerStyle:{
-                    backgroundColor:'tomato'
-                  }
+                  headerShown: false,
                 }
               }
             />
