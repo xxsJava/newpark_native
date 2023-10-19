@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-05 12:52:53
- * @LastEditTime: 2023-10-13 09:04:54
+ * @LastEditTime: 2023-10-19 11:07:32
  * @FilePath: \newpark_native\src\routes\main\index.tsx
  * @Description: 路由
  */
@@ -24,15 +24,15 @@ function BommonTab(){
        tabBarIcon:({focused,size,color})=>{
         let iconName = ''
         
-          if(route.name == 'Home'){
+          if(route.name == '推荐'){
             iconName =focused ? 'storefront' : 'storefront-outline';
-          }else if(route.name == 'NewPark'){
+          }else if(route.name == '圈子'){
             iconName =focused ? 'disc-outline' : 'radio-button-on';
-          }else if(route.name == 'publish'){
+          }else if(route.name == '发布'){
             iconName =focused ? 'add-circle' : 'add-circle-outline';
-          }else if(route.name == 'socializing'){
+          }else if(route.name == '消息'){
             iconName =focused ? 'chatbubbles' : 'chatbubbles-outline';
-          }else if(route.name == 'my'){
+          }else if(route.name == '我的'){
             iconName =focused ? 'person' : 'person-outline';
           }
         return <Ionicons name={iconName} size={size} color={color} />;
@@ -46,11 +46,11 @@ function BommonTab(){
     }
     )}
     >
-        <Tab.Screen name="Home"  component={HomeStacker} />
-        <Tab.Screen name="NewPark" component={NewPatkStacker} />
-        <Tab.Screen name="publish" component={PublishStacker} />
-        <Tab.Screen name="socializing" component={SocializingStacker} />
-        <Tab.Screen name="my" component={MineStacker} />
+        <Tab.Screen  name="推荐" component={HomeStacker} />
+        <Tab.Screen  name="圈子" component={NewPatkStacker} />
+        <Tab.Screen  name="发布" component={PublishStacker} />
+        <Tab.Screen  name="消息" component={SocializingStacker} />
+        <Tab.Screen name="我的" component={MineStacker} />
     </Tab.Navigator>
   );
 }
