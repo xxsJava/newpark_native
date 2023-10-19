@@ -43,6 +43,7 @@ target 'newpark_native' do
     :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
+                    
   )
 
   target 'newpark_nativeTests' do
@@ -60,3 +61,5 @@ target 'newpark_native' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
