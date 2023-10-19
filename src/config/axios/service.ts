@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-09 11:26:21
- * @LastEditTime: 2023-10-09 11:50:15
+ * @LastEditTime: 2023-10-17 09:53:14
  * @FilePath: \newpark_native\src\config\axios\service.ts
  * @Description: desc
  */
@@ -16,6 +16,7 @@ import axios, {
 import qs from 'qs'
 
 import { config } from './config'
+import { UnicodeUtil } from '../../utils/UnicodeUtils'
 
 const { result_code, base_url } = config
 
@@ -70,6 +71,9 @@ service.interceptors.response.use(
       // 如果是文件流，直接过
       return response
     } else if (response.data.code === result_code) {
+      
+      //执行unicode编码避免乱码
+      response.data.msg = UnicodeUtil().uniCodeSpane(response.data.msg)
       return response.data
     } else {
       console.log(response.data.message)
