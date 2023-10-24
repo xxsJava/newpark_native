@@ -1,3 +1,4 @@
+// import {useNavigation} from '@react-navigation/native';
 import React, {Component} from 'react';
 
 import {
@@ -7,16 +8,23 @@ import {
   ImageBackground,
   Dimensions,
   Image,
+  Platform,
+  SafeAreaView,
 } from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Button, TextInput} from 'react-native-paper';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-// import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default class MineVIew extends Component {
-  render() {
-    return (
+const LoginView = () => {
+  const handlePress = () => {
+    console.log('点击登录');
+  };
+
+  return (
+    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+      <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
       <ImageBackground
         style={styles.imgbgc}
         source={require('../../assets/images/loginBG.png')}>
@@ -29,53 +37,45 @@ export default class MineVIew extends Component {
 
         <View style={styles.box}>
           <View>
-            <Text style={styles.text}>请输入手机号</Text>
+            <Text style={styles.text}>欢迎大家加入NewPark大家庭</Text>
           </View>
+
           <View style={styles.num}>
-            {/* <Text style={{color: '#fff', fontSize: 20}}>+86</Text>
-            <Image
-              style={styles.arrows}
-              source={require('../../assets/images/go_left_arrow.png')}
-            /> */}
             <TextInput
+              // label="请输入手机号"
               placeholder="请输入手机号"
               placeholderTextColor="#fff"
               underlineColor="#fff"
               activeUnderlineColor="#fff"
               textColor="#fff"
+              keyboardType="number-pad"
               style={styles.inp}
             />
-            {/* <Image source={require('../../assets/images/newcancel_btn.png')} /> */}
           </View>
-          <View style={styles.pawoed}>
-            <TextInput
-              style={styles.inp}
-              secureTextEntry
-              right={<TextInput.Icon icon="eye" />}
-              placeholder="请输入密码"
-              placeholderTextColor="#fff"
-              underlineColor="#fff"
-              textColor="#fff"
-              activeUnderlineColor="#fff"
-            />
-            {/* <Image
-              style={styles.eyes}
-              source={require('../../assets/images/newcancel_btn.png')}
-            /> */}
-          </View>
+          
+            <View style={styles.pawoed}>
+              <TextInput
+                style={styles.inp}
+                secureTextEntry
+                right={<TextInput.Icon icon="eye" />}
+                placeholder="请输入密码"
+                placeholderTextColor="#fff"
+                underlineColor="#fff"
+                textColor="#fff"
+                activeUnderlineColor="#fff"
+              />
+            </View>
+          
+
           <View style={styles.login}>
-            {/* <View style={styles.loginBox}> */}
-              {/* <Text style={styles.loginText}>登录</Text> */}
-              <Button
-                style={styles.loginBox}
-                // icon="camera"
-                mode="contained"
-                buttonColor='#fff'
-                textColor='#000'
-                onPress={() => console.log('Pressed')}>
-                登录
-              </Button>
-            {/* </View> */}
+            <Button
+              contentStyle={styles.loginBox}
+              mode="contained"
+              buttonColor="#fff"
+              textColor="#000"
+              onPress={handlePress}>
+              登录
+            </Button>
           </View>
           <View style={styles.verify}>
             <Text style={styles.underline}>短信验证</Text>
@@ -94,9 +94,10 @@ export default class MineVIew extends Component {
           </View>
         </View>
       </ImageBackground>
-    );
-  }
-}
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   top: {
@@ -124,10 +125,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   inp: {
-    flexDirection: 'row',
     flex: 1,
     justifyContent: 'space-between',
-
     color: '#fff',
     backgroundColor: '',
   },
@@ -137,23 +136,14 @@ const styles = StyleSheet.create({
     transform: [{rotate: '-90deg'}],
   },
   num: {
-    flexDirection: 'row',
-    alignItems: 'center',
-
     width: '100%',
     height: 50,
-    // borderBottomWidth: 1,
-    // borderBottomColor: 'white',
   },
   pawoed: {
     width: '100%',
     height: 80,
     flexDirection: 'row',
-    // justifyContent: 'space-between',
     alignItems: 'flex-end',
-
-    // borderBottomWidth: 1,
-    // borderBottomColor: 'white',
   },
   eyes: {
     marginBottom: 12,
@@ -161,17 +151,14 @@ const styles = StyleSheet.create({
   login: {
     width: '100%',
     height: 100,
-    // backgroundColor: 'red',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
   loginBox: {
-    width: 270,
-    height: 50,
-    // backgroundColor: '#fff',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingTop: '1%',
+    paddingBottom: '1%',
+    paddingLeft: '30%',
+    paddingRight: '30%',
   },
   loginText: {
     color: '#000',
@@ -192,13 +179,9 @@ const styles = StyleSheet.create({
   line: {
     width: 90,
     borderBottomWidth: 1,
-    // borderTopWidth: 1,
     borderColor: '#fff',
   },
   bottom: {
-    // position: 'absolute',
-    // left: '50%',
-    // transform: [{translateX: -50}],
     marginTop: 50,
     bottom: 10,
     flexDirection: 'row',
@@ -211,3 +194,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default LoginView;

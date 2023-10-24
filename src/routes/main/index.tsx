@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-05 12:52:53
- * @LastEditTime: 2023-10-19 11:07:32
+ * @LastEditTime: 2023-10-24 10:48:31
  * @FilePath: \newpark_native\src\routes\main\index.tsx
  * @Description: 路由
  */
@@ -19,20 +19,23 @@ import MineStacker from '../stacker/MineStacker';
 const Tab = createBottomTabNavigator();
 
 function BommonTab(){
+
+  const {t} = useTranslation();
+
   return (
     <Tab.Navigator screenOptions={({route})=>({
+      
        tabBarIcon:({focused,size,color})=>{
         let iconName = ''
-        
-          if(route.name == '推荐'){
+          if(route.name == 'Home'){
             iconName =focused ? 'storefront' : 'storefront-outline';
-          }else if(route.name == '圈子'){
+          }else if(route.name == 'newPark'){
             iconName =focused ? 'disc-outline' : 'radio-button-on';
-          }else if(route.name == '发布'){
+          }else if(route.name == 'publish'){
             iconName =focused ? 'add-circle' : 'add-circle-outline';
-          }else if(route.name == '消息'){
+          }else if(route.name == 'socializing'){
             iconName =focused ? 'chatbubbles' : 'chatbubbles-outline';
-          }else if(route.name == '我的'){
+          }else if(route.name == 'mine'){
             iconName =focused ? 'person' : 'person-outline';
           }
         return <Ionicons name={iconName} size={size} color={color} />;
@@ -46,19 +49,30 @@ function BommonTab(){
     }
     )}
     >
-        <Tab.Screen  name="推荐" component={HomeStacker} />
-        <Tab.Screen  name="圈子" component={NewPatkStacker} />
-        <Tab.Screen  name="发布" component={PublishStacker} />
-        <Tab.Screen  name="消息" component={SocializingStacker} />
-        <Tab.Screen name="我的" component={MineStacker} />
+        <Tab.Screen  name="Home" component={HomeStacker} options={{
+          tabBarLabel:t('homeTab.recommend')
+        }} />
+        <Tab.Screen  name="newPark" component={NewPatkStacker} options={{
+          tabBarLabel:t('homeTab.newPark')
+        }}/>
+        <Tab.Screen  name="publish" component={PublishStacker} options={{
+          tabBarLabel:t('homeTab.publish')
+        }}/>
+        <Tab.Screen  name="socializing" component={SocializingStacker} options={{
+          tabBarLabel:t('homeTab.socializing')
+        }}/>
+        <Tab.Screen name="mine" component={MineStacker} options={{
+          tabBarLabel:t('homeTab.mine')
+        }}/>
     </Tab.Navigator>
   );
 }
 
-export default class index extends Component {
-  render(){
+ const index = () => {
+
     return (
       BommonTab()
     );
-  }
 }
+
+export default index
