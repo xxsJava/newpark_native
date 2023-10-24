@@ -1,16 +1,43 @@
 /*
  * @Author: xxs
- * @Date: 2023-10-24 09:02:43
- * @LastEditTime: 2023-10-24 09:55:13
+ * @Date: 2023-10-24 16:42:40
+ * @LastEditTime: 2023-10-24 17:27:51
  * @FilePath: \newpark_native\src\config\routs\index.tsx
  * @Description: 路由配置
  */
-import React from 'react';
 
-import { createStackNavigator } from "@react-navigation/stack";
+import { RouteProp } from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+/**
+ * 定义路由
+ */
+export type RootStackParamList = {
+  Root: undefined;
+  Login: undefined;
+  Home: undefined;
+  NewPatk: undefined;
+  Profile: {userId: string};
+};
+
+export type RootScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Root'>;
+};
+
+export type LoginScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
+};
+
+export type HomeScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
+};
+
+export type NewPatkScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'NewPatk'>;
+};
 
 
 
-const AppNavigator = createStackNavigator() 
-
-// export default createAppContainer(AppNavigator);
+type ProfileScreenProps = {
+  route: RouteProp<RootStackParamList, 'Profile'>;
+};

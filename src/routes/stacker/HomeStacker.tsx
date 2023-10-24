@@ -1,17 +1,17 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 18:27:52
- * @LastEditTime: 2023-10-13 09:22:57
+ * @LastEditTime: 2023-10-24 15:54:04
  * @FilePath: \newpark_native\src\routes\stacker\HomeStacker.tsx
  * @Description: Home路由
  */
-import {StackView, createStackNavigator} from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, Dimensions} from 'react-native';
 import HomeView from '../../views/home/HomeView';
-import AntDesign from 'react-native-vector-icons/AntDesign'
 
-const Stack = createStackNavigator();
+
+const Stack = createNativeStackNavigator ();
 
 
 export default class HomeStacker extends Component {

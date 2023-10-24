@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-10-07 10:54:46
+ * @LastEditTime: 2023-10-24 18:03:46
+ * @FilePath: \newpark_native\src\utils\AsyncStorageUtils.tsx
+ * @Description: desc
+ */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 /**
  * 代码描述: AsyncStorage封装
@@ -55,6 +62,20 @@ class Storage {
    */
   static clean = () => {
     return AsyncStorage.clear();
+  };
+
+  /**
+   * 清空缓存
+   * @returns
+   */
+  static isGet = (key:string) => {
+    return AsyncStorage.getItem(key)
+      .catch(e => {
+        console.log(e, 'AsyncStorage封装-isGet异常');
+      })
+      .then(v => {
+        return v != null;
+      });
   };
 }
 

@@ -53,7 +53,7 @@ export default class MineVIew extends Component {
           </View>
           <View style={styles.login}>
             <View style={styles.loginBox}>
-              <Text style={styles.loginText}>登录</Text>
+              <Text style={styles.loginText} onPress={()=>{}}>登录</Text>
             </View>
           </View>
           <View style={styles.verify}>

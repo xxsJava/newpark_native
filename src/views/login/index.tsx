@@ -8,26 +8,31 @@ import {
   ImageBackground,
   Dimensions,
   Image,
-  Platform,
-  SafeAreaView,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Button, TextInput} from 'react-native-paper';
+import {LoginScreenProps} from '../../config/routs';
+import Storage from '../../utils/AsyncStorageUtils';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const LoginView = () => {
+const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
   const handlePress = () => {
+    //模拟登录成功
+    Storage.set('usr-login', 'test');
+
     console.log('点击登录');
+    navigation.navigate('Home');
+
+    console.log('模拟登录成功');
   };
 
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+    <ImageBackground
+      style={styles.imgbgc}
+      source={require('../../assets/images/loginBG.png')}>
       <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
-      <ImageBackground
-        style={styles.imgbgc}
-        source={require('../../assets/images/loginBG.png')}>
         <View style={styles.top}>
           <Image
             style={styles.img}
@@ -52,20 +57,19 @@ const LoginView = () => {
               style={styles.inp}
             />
           </View>
-          
-            <View style={styles.pawoed}>
-              <TextInput
-                style={styles.inp}
-                secureTextEntry
-                right={<TextInput.Icon icon="eye" />}
-                placeholder="请输入密码"
-                placeholderTextColor="#fff"
-                underlineColor="#fff"
-                textColor="#fff"
-                activeUnderlineColor="#fff"
-              />
-            </View>
-          
+
+          <View style={styles.pawoed}>
+            <TextInput
+              style={styles.inp}
+              secureTextEntry
+              right={<TextInput.Icon icon="eye" />}
+              placeholder="请输入密码"
+              placeholderTextColor="#fff"
+              underlineColor="#fff"
+              textColor="#fff"
+              activeUnderlineColor="#fff"
+            />
+          </View>
 
           <View style={styles.login}>
             <Button
@@ -93,9 +97,8 @@ const LoginView = () => {
             />
           </View>
         </View>
-      </ImageBackground>
       </KeyboardAwareScrollView>
-    </SafeAreaView>
+    </ImageBackground>
   );
 };
 

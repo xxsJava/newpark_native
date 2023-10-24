@@ -5,12 +5,12 @@
  * @FilePath: \newpark_native\src\routes\stacker\PublishStacker.tsx
  * @Description: desc
  */
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { Component } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import PublishView from '../../views/publish/PublishView';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 
 export default class PublishStacker extends Component {
