@@ -1,15 +1,14 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 18:28:21
- * @LastEditTime: 2023-10-24 16:19:12
+ * @LastEditTime: 2023-10-25 10:36:50
  * @FilePath: \newpark_native\src\routes\stacker\NewPatkStacker.tsx
- * @Description: desc
+ * @Description: NewPatk路由管理
  */
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { Component } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import NewPatkView from '../../views/newpark/NewPatkView';
-import { useNavigation } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 

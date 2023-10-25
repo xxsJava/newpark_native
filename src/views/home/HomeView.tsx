@@ -1,37 +1,23 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:40:28
- * @LastEditTime: 2023-10-16 16:09:03
+ * @LastEditTime: 2023-10-25 11:51:26
  * @FilePath: \newpark_native\src\views\home\HomeView.tsx
- * @Description: 推荐
+ * @Description: 推荐 Home展示页
  */
 import React, {Component} from 'react';
-import {Text, StyleSheet, View} from 'react-native';
 import HomeNav from '../../components/Nav';
 import HomeComponents from '../../components/Home';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import StylesALL from '../../styles';
 
 export default class HomeView extends Component {
-  
   render() {
     return (
-      <View>
+      <SafeAreaView style={StylesALL.CONTAINER}>
         <HomeNav />
-        <HomeComponents/>
-      </View>
+        <HomeComponents />
+      </SafeAreaView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  centerText: {
-    // flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  wd:{
-    width: 150,
-    height: 80,
-    backgroundColor: "#24C78C",
-    borderRadius: 7
-  }
-});

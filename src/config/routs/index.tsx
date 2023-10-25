@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-24 16:42:40
- * @LastEditTime: 2023-10-24 17:27:51
+ * @LastEditTime: 2023-10-25 10:34:41
  * @FilePath: \newpark_native\src\config\routs\index.tsx
  * @Description: 路由配置
  */
@@ -15,6 +15,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 export type RootStackParamList = {
   Root: undefined;
   Login: undefined;
+  LoginHome: undefined;
   Home: undefined;
   NewPatk: undefined;
   Profile: {userId: string};
@@ -35,8 +36,6 @@ export type HomeScreenProps = {
 export type NewPatkScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'NewPatk'>;
 };
-
-
 
 type ProfileScreenProps = {
   route: RouteProp<RootStackParamList, 'Profile'>;

@@ -1,9 +1,9 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 18:29:15
- * @LastEditTime: 2023-10-24 15:38:42
+ * @LastEditTime: 2023-10-25 10:37:20
  * @FilePath: \newpark_native\src\routes\stacker\SocializingStacker.tsx
- * @Description: desc
+ * @Description: Socializing路由管理
  */
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { Component } from 'react'

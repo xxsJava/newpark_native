@@ -3,7 +3,7 @@
  * @Date: 2023-10-07 18:28:50
  * @LastEditTime: 2023-10-07 23:46:28
  * @FilePath: \newpark_native\src\routes\stacker\PublishStacker.tsx
- * @Description: desc
+ * @Description: Publish路由管理
  */
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { Component } from 'react'

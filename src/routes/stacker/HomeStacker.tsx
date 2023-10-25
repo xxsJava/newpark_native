@@ -1,9 +1,9 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 18:27:52
- * @LastEditTime: 2023-10-24 15:54:04
+ * @LastEditTime: 2023-10-25 10:37:25
  * @FilePath: \newpark_native\src\routes\stacker\HomeStacker.tsx
- * @Description: Home路由
+ * @Description: Home路由管理
  */
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {Component} from 'react';

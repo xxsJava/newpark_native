@@ -1,16 +1,17 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2023-10-16 11:47:20
+ * @LastEditTime: 2023-10-25 17:14:49
  * @FilePath: \newpark_native\src\components\Home\index.tsx
- * @Description:
+ * @Description: Home 页菜单
  */
 
 import React from 'react';
 import MenusComponents from './Menu';
-import {View, StyleSheet, SafeAreaView, StatusBar} from 'react-native';
+import {View, StyleSheet, SafeAreaView, TouchableOpacity} from 'react-native';
 import SortTabNav from './SortType';
 import {LsitRecommend} from './Lists';
+import StylesALL from '../../styles';
 
 //菜单组件数据
 const menusData = [
@@ -27,14 +28,18 @@ const menusData = [
 ];
 
 const HomeComponents = () => (
-  <View>
+  <SafeAreaView style={StylesALL.CONTAINER}>
     <View style={styles.styleAll}>
-      <View style={[styles.wd, styles.back]}>
-        <MenusComponents props={menusData[0]} />
-      </View>
-      <View style={[styles.wd, styles.back1]}>
-        <MenusComponents props={menusData[1]} />
-      </View>
+      <TouchableOpacity style={[styles.wd, styles.back]} onPress={()=>{console.log("点击了快来帮忙")}}>
+        <View>
+          <MenusComponents props={menusData[0]} />
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.wd, styles.back1]} onPress={()=>{console.log("点击了快快来买")}}>
+        <View>
+          <MenusComponents props={menusData[1]} />
+        </View>
+      </TouchableOpacity>
     </View>
 
     <View style={styles.menuTabNav}>
@@ -42,11 +47,9 @@ const HomeComponents = () => (
     </View>
 
     <View style={styles.postsList}>
-      <SafeAreaView>
-        <LsitRecommend />
-      </SafeAreaView>
+      <LsitRecommend />
     </View>
-  </View>
+  </SafeAreaView>
 );
 
 const styles = StyleSheet.create({
@@ -61,11 +64,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: '4%',
     marginRight: '4%',
-    shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 1,
-    shadowRadius: 3,
-    elevation: 15,
+    shadowOpacity: 0,
+    elevation: 0,
   },
   back: {
     backgroundColor: '#24C78C',
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   postsList: {
+    flex: 1,
     width: '96%',
     marginLeft: '2%',
     marginTop: '2%',

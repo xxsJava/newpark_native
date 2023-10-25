@@ -1,5 +1,5 @@
 // import {useNavigation} from '@react-navigation/native';
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 
 import {
   Text,
@@ -18,14 +18,21 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
+  //获取输入框的手机号
+  const [phone, setPhone] = useState('');
+  //获取输入框的密码
+  const [pass, setPass] = useState('');
+
   const handlePress = () => {
     //模拟登录成功
     Storage.set('usr-login', 'test');
 
     console.log('点击登录');
-    navigation.navigate('Home');
+    navigation.navigate('LoginHome');
 
     console.log('模拟登录成功');
+
+    console.log("输入框数据"+phone+"-"+pass)
   };
 
   return (
@@ -54,6 +61,7 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
               activeUnderlineColor="#fff"
               textColor="#fff"
               keyboardType="number-pad"
+              onChangeText={text => setPhone(text)}
               style={styles.inp}
             />
           </View>
@@ -68,6 +76,7 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
               underlineColor="#fff"
               textColor="#fff"
               activeUnderlineColor="#fff"
+              onChangeText={text => setPass(text)}
             />
           </View>
 

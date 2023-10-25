@@ -3,7 +3,7 @@
  * @Date: 2023-10-07 18:28:36
  * @LastEditTime: 2023-10-24 15:37:17
  * @FilePath: \newpark_native\src\routes\stacker\MineStacker.tsx
- * @Description: desc
+ * @Description: Mine路由跳转
  */
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { Component } from 'react'

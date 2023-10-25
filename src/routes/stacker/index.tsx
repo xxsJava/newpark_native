@@ -20,67 +20,74 @@ import LoginView from '../../views/login';
  */
 export const BommonTab = () => {
   const Tab = createBottomTabNavigator();
-  const Stack = createNativeStackNavigator();
-  
 
   const {t} = useTranslation();
   return (
-      <><Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, size, color }) => {
-          let iconName = '';
-          if (route.name == 'Home') {
-            iconName = focused ? 'storefront' : 'storefront-outline';
-          } else if (route.name == 'newPark') {
-            iconName = focused ? 'disc-outline' : 'radio-button-on';
-          } else if (route.name == 'publish') {
-            iconName = focused ? 'add-circle' : 'add-circle-outline';
-          } else if (route.name == 'socializing') {
-            iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
-          } else if (route.name == 'mine') {
-            iconName = focused ? 'person' : 'person-outline';
+    <>
+      <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, size, color}) => {
+            let iconName = '';
+            if (route.name == 'Home') {
+              iconName = focused ? 'storefront' : 'storefront-outline';
+            } else if (route.name == 'newPark') {
+              iconName = focused ? 'disc-outline' : 'radio-button-on';
+            } else if (route.name == 'publish') {
+              iconName = focused ? 'add-circle' : 'add-circle-outline';
+            } else if (route.name == 'socializing') {
+              iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
+            } else if (route.name == 'mine') {
+              iconName = focused ? 'person' : 'person-outline';
+            }
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#F8B032',
+          tabBarInactiveTintColor: 'gray',
+          headerShown: false,
+          tabBarStyle: {
+            height: 60,
+          },
+          tabBarLabelStyle:{
+            fontSize:16,
+            fontWeight:'bold'
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: '#000',
-        tabBarInactiveTintColor: 'gray',
-        headerShown: false,
-        tabBarStyle: {
-          height: 60,
-        },
-      })}>
-      <Tab.Screen
-        name="Home"
-        component={HomeStacker}
-        options={{
-          tabBarLabel: t('homeTab.recommend'),
-        }} />
-      <Tab.Screen
-        name="newPark"
-        component={NewPatkStacker}
-        options={{
-          tabBarLabel: t('homeTab.newPark'),
-        }} />
-      <Tab.Screen
-        name="publish"
-        component={PublishStacker}
-        options={{
-          tabBarLabel: t('homeTab.publish'),
-        }} />
-      <Tab.Screen
-        name="socializing"
-        component={SocializingStacker}
-        options={{
-          tabBarLabel: t('homeTab.socializing'),
-        }} />
-      <Tab.Screen
-        name="mine"
-        component={MineStacker}
-        options={{
-          tabBarLabel: t('homeTab.mine'),
-        }} />
-    </Tab.Navigator></>
+        })}>
+        <Tab.Screen
+          name="Home"
+          component={HomeStacker}
+          options={{
+            tabBarLabel: t('homeTab.recommend'),
+          }}
+        />
+        <Tab.Screen
+          name="newPark"
+          component={NewPatkStacker}
+          options={{
+            tabBarLabel: t('homeTab.newPark'),
+          }}
+        />
+        <Tab.Screen
+          name="publish"
+          component={PublishStacker}
+          options={{
+            tabBarLabel: t('homeTab.publish')
+          }}
+        />
+        <Tab.Screen
+          name="socializing"
+          component={SocializingStacker}
+          options={{
+            tabBarLabel: t('homeTab.socializing'),
+          }}
+        />
+        <Tab.Screen
+          name="mine"
+          component={MineStacker}
+          options={{
+            tabBarLabel: t('homeTab.mine')
+          }}
+        />
+      </Tab.Navigator>
+    </>
   );
 };
-
-
