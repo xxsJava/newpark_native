@@ -7,7 +7,7 @@
  */
 
 import React, {useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {postsList} from '../../../views/home/controller';
 import {renderLoadMoreView} from '../../Load';
 import { postsData } from '../../../views/home/mock';
@@ -30,6 +30,7 @@ export const LsitRecommend = () => {
       renderItem={({item, index, separators}) =>
         postsList(item, index, separators)
       }
+      ItemSeparatorComponent={()=>{return <View style={{height:5}}></View>}}
       keyExtractor={item => item.key}
     />
   );

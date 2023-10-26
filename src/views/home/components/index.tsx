@@ -13,7 +13,7 @@ import React from 'react';
 //普通帖子组件
 export const postsOrdinary = (item: any, index: any, separators: any) => {
   return (
-    <View style={styles.backColor}>
+    <View>
       <Card style={styles.cardSty}>
         <Card.Title
           title={item.title}
@@ -84,7 +84,8 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
 
 const styles = StyleSheet.create({
   backColor: {
-    backgroundColor: '#FFF',
+    // backgroundColor: '#FFF',
+    shadowOpacity: 0
   },
   cardSty: {marginBottom: 10},
   subSty: {
