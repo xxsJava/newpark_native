@@ -14,10 +14,10 @@ import StylesALL from '../../styles';
 export default class HomeView extends Component {
   render() {
     return (
-      <SafeAreaView style={StylesALL.CONTAINER}>
+      <>
         <HomeNav />
         <HomeComponents />
-      </SafeAreaView>
+      </>
     );
   }
 }

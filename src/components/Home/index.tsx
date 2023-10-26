@@ -28,28 +28,34 @@ const menusData = [
 ];
 
 const HomeComponents = () => (
-  <SafeAreaView style={StylesALL.CONTAINER}>
+  <>
     <View style={styles.styleAll}>
-      <TouchableOpacity style={[styles.wd, styles.back]} onPress={()=>{console.log("点击了快来帮忙")}}>
+      <TouchableOpacity
+        style={[styles.wd, styles.back]}
+        onPress={() => {
+          console.log('点击了快来帮忙');
+        }}>
         <View>
           <MenusComponents props={menusData[0]} />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.wd, styles.back1]} onPress={()=>{console.log("点击了快快来买")}}>
+      <TouchableOpacity
+        style={[styles.wd, styles.back1]}
+        onPress={() => {
+          console.log('点击了快快来买');
+        }}>
         <View>
           <MenusComponents props={menusData[1]} />
         </View>
       </TouchableOpacity>
     </View>
-
     <View style={styles.menuTabNav}>
       <SortTabNav />
     </View>
-
     <View style={styles.postsList}>
       <LsitRecommend />
     </View>
-  </SafeAreaView>
+  </>
 );
 
 const styles = StyleSheet.create({
