@@ -6,7 +6,14 @@
  * @Description: desc
  */
 import React, {Component, useEffect, useState} from 'react';
-import {Text, StyleSheet, View, ImageBackground, Image} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import StylesALL from '../../../styles';
 import * as Animatable from 'react-native-animatable';
 import {isLogin} from '../../login/controller';
@@ -30,9 +37,11 @@ export const Splash = () => {
           resizeMode="cover"
           style={styles.img}>
           <View style={styles.nav}>
-            <View style={styles.navTime}>
-              <Text style={styles.navText}>{count}</Text>
-            </View>
+            <TouchableOpacity onPress={()=>{setCount(-1)}}>
+              <View style={styles.navTime}>
+                <Text style={styles.navText}>{count}</Text>
+              </View>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.body}>
