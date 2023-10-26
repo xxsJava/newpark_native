@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2023-10-26 15:59:09
+ * @LastEditTime: 2023-10-26 17:59:40
  * @FilePath: \newpark_native\src\views\system\splash\SplashScreen.tsx
  * @Description: desc
  */
@@ -18,6 +18,7 @@ import {
 import StylesALL from '../../../styles';
 import * as Animatable from 'react-native-animatable';
 import {isLogin} from '../../login/controller';
+import StatusBar from '../../../components/StatusBar';
 
 export const Splash = () => {
   const [count, setCount] = useState(3);
@@ -27,6 +28,7 @@ export const Splash = () => {
       setCount(count - 1);
     }, 1000);
 
+    //删除计时器
     if (count == -1) {
       clearTimeout(timer);
     }
@@ -35,6 +37,7 @@ export const Splash = () => {
 
   return (
     <>
+    <StatusBar/>
       {count >= 0 ? (
         <ImageBackground
           source={require('../../../assets/images/loginBG.png')}
