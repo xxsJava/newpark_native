@@ -14,6 +14,7 @@ import {Button, TextInput} from 'react-native-paper';
 import {LoginScreenProps} from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
+import {Box, NativeBaseProvider, useToast} from 'native-base';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -24,16 +25,24 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
   //获取输入框的密码
   const [pass, setPass] = useState('');
 
+  const toast = useToast();
+
   const handlePress = () => {
     //模拟登录成功
     Storage.set('usr-login', 'test');
 
     console.log('点击登录');
-    navigation.navigate('LoginHome');
 
     console.log('模拟登录成功');
 
     console.log('输入框数据' + phone + '-' + pass);
+
+    toast.show({
+      description: '模拟登录成功',
+      placement: 'bottom',
+    });
+
+    navigation.navigate('LoginHome');
   };
 
   return (

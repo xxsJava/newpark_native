@@ -10,6 +10,7 @@ import { isLogin } from '../../views/login/controller';
 import { Splash } from '../../views/system/splash/SplashScreen';
 import SplashScreen from 'react-native-splash-screen';
 
+
 const index = () => {
 
   useEffect(() => {
