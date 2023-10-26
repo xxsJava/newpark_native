@@ -11,17 +11,17 @@ import React, {useState, useEffect} from 'react';
 import {
   NavigationContainer,
 } from '@react-navigation/native';
-import APP from './src/routes/main';
 
 import 'intl-pluralrules';
 import './src/hooks/i18/i18next';
+import APPNewPark from './src/routes/main';
 
 export default function App(): JSX.Element {
   console.log('开始加载APP');
-  
+
   return (
     <NavigationContainer>
-       <APP/>
+       <APPNewPark/>
     </NavigationContainer>
   );
 }

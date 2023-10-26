@@ -26,8 +26,13 @@ export const Splash = () => {
       setCount(count - 1);
     }, 1000);
 
+    if(count == -1){
+      clearTimeout(timer)
+    }
     return () => clearInterval(timer);
   }, [count]);
+
+ 
 
   return (
     <>

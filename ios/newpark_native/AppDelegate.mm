@@ -13,10 +13,7 @@
   self.initialProps = @{};
 
   // 显示启动屏幕
-  [RNSplashScreen show];
-  // 其他初始化代码...
-  return YES;
-  // return [super application:application didFinishLaunchingWithOptions:launchOptions];
+  return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
