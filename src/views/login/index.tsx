@@ -13,6 +13,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Button, TextInput} from 'react-native-paper';
 import {LoginScreenProps} from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
+import * as Animatable from 'react-native-animatable';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -32,82 +33,84 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
 
     console.log('模拟登录成功');
 
-    console.log("输入框数据"+phone+"-"+pass)
+    console.log('输入框数据' + phone + '-' + pass);
   };
 
   return (
-    <ImageBackground
-      style={styles.imgbgc}
-      source={require('../../assets/images/loginBG.png')}>
-      <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
-        <View style={styles.top}>
-          <Image
-            style={styles.img}
-            source={require('../../assets/images/logo.png')}
-          />
-        </View>
-
-        <View style={styles.box}>
-          <View>
-            <Text style={styles.text}>欢迎大家加入NewPark大家庭</Text>
-          </View>
-
-          <View style={styles.num}>
-            <TextInput
-              // label="请输入手机号"
-              placeholder="请输入手机号"
-              placeholderTextColor="#fff"
-              underlineColor="#fff"
-              activeUnderlineColor="#fff"
-              textColor="#fff"
-              keyboardType="number-pad"
-              onChangeText={text => setPhone(text)}
-              style={styles.inp}
-            />
-          </View>
-
-          <View style={styles.pawoed}>
-            <TextInput
-              style={styles.inp}
-              secureTextEntry
-              right={<TextInput.Icon icon="eye" />}
-              placeholder="请输入密码"
-              placeholderTextColor="#fff"
-              underlineColor="#fff"
-              textColor="#fff"
-              activeUnderlineColor="#fff"
-              onChangeText={text => setPass(text)}
-            />
-          </View>
-
-          <View style={styles.login}>
-            <Button
-              contentStyle={styles.loginBox}
-              mode="contained"
-              buttonColor="#fff"
-              textColor="#000"
-              onPress={handlePress}>
-              登录
-            </Button>
-          </View>
-          <View style={styles.verify}>
-            <Text style={styles.underline}>短信验证</Text>
-
-            <Text style={styles.underline}>忘记密码</Text>
-          </View>
-          <View style={styles.bottom}>
-            <View style={styles.line} />
-            <Text>第三方登录</Text>
-            <View style={styles.line} />
-          </View>
-          <View style={styles.wx}>
+    <Animatable.View animation="fadeIn">
+      <ImageBackground
+        style={styles.imgbgc}
+        source={require('../../assets/images/loginBG.png')}>
+        <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
+          <View style={styles.top}>
             <Image
-              source={require('../../assets/images/2.0x/weixin_icon.png')}
+              style={styles.img}
+              source={require('../../assets/images/logo.png')}
             />
           </View>
-        </View>
-      </KeyboardAwareScrollView>
-    </ImageBackground>
+
+          <View style={styles.box}>
+            <View>
+              <Text style={styles.text}>欢迎大家加入NewPark大家庭</Text>
+            </View>
+
+            <View style={styles.num}>
+              <TextInput
+                // label="请输入手机号"
+                placeholder="请输入手机号"
+                placeholderTextColor="#fff"
+                underlineColor="#fff"
+                activeUnderlineColor="#fff"
+                textColor="#fff"
+                keyboardType="number-pad"
+                onChangeText={text => setPhone(text)}
+                style={styles.inp}
+              />
+            </View>
+
+            <View style={styles.pawoed}>
+              <TextInput
+                style={styles.inp}
+                secureTextEntry
+                right={<TextInput.Icon icon="eye" />}
+                placeholder="请输入密码"
+                placeholderTextColor="#fff"
+                underlineColor="#fff"
+                textColor="#fff"
+                activeUnderlineColor="#fff"
+                onChangeText={text => setPass(text)}
+              />
+            </View>
+
+            <View style={styles.login}>
+              <Button
+                contentStyle={styles.loginBox}
+                mode="contained"
+                buttonColor="#fff"
+                textColor="#000"
+                onPress={handlePress}>
+                登录
+              </Button>
+            </View>
+            <View style={styles.verify}>
+              <Text style={styles.underline}>短信验证</Text>
+
+              <Text style={styles.underline}>忘记密码</Text>
+            </View>
+            <View style={styles.bottom}>
+              <View style={styles.line} />
+              <Text>第三方登录</Text>
+              <View style={styles.line} />
+            </View>
+            <View style={styles.wx}>
+              <Image
+                source={require('../../assets/images/2.0x/weixin_icon.png')}
+              />
+            </View>
+          </View>
+        </KeyboardAwareScrollView>
+      </ImageBackground>
+    </Animatable.View>
   );
 };
 
