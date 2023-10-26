@@ -13,6 +13,7 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import StylesALL from '../../../styles';
 import * as Animatable from 'react-native-animatable';
@@ -26,13 +27,11 @@ export const Splash = () => {
       setCount(count - 1);
     }, 1000);
 
-    if(count == -1){
-      clearTimeout(timer)
+    if (count == -1) {
+      clearTimeout(timer);
     }
     return () => clearInterval(timer);
   }, [count]);
-
- 
 
   return (
     <>
@@ -41,44 +40,57 @@ export const Splash = () => {
           source={require('../../../assets/images/loginBG.png')}
           resizeMode="cover"
           style={styles.img}>
-          <View style={styles.nav}>
-            <TouchableOpacity onPress={()=>{setCount(-1)}}>
-              <View style={styles.navTime}>
-                <Text style={styles.navText}>{count}</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          <SafeAreaView style={{flex:1}}>
+            <View style={styles.nav}>
+              <TouchableOpacity
+                onPress={() => {
+                  setCount(-1);
+                }}>
+                <View style={styles.navTime}>
+                  <Text style={styles.navText}>{count}</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
 
-          <View style={styles.body}>
-            <Animatable.View animation="tada">
-              <Image
-                style={styles.tinyLogo}
-                source={require('../../../assets/images/logo.png')}
-              />
-            </Animatable.View>
-          </View>
+            <View style={styles.body}>
+              <Animatable.View animation="tada">
+                <Image
+                  style={styles.tinyLogo}
+                  source={require('../../../assets/images/logo.png')}
+                />
+              </Animatable.View>
+            </View>
 
-          <View style={styles.bodyText}>
-            <Animatable.View animation="bounceInLeft">
-              <Text
-                style={[styles.bodyTexta, styles.navText, StylesALL.FONT_SIZE]}>
-                走进校园 发现美好
+            <View style={styles.bodyText}>
+              <Animatable.View animation="bounceInLeft">
+                <Text
+                  style={[
+                    styles.bodyTexta,
+                    styles.navText,
+                    StylesALL.FONT_SIZE,
+                  ]}>
+                  走进校园 发现美好
+                </Text>
+              </Animatable.View>
+
+              <Animatable.View animation="bounceInRight">
+                <Text
+                  style={[
+                    styles.bodyTextb,
+                    styles.navText,
+                    StylesALL.FONT_SIZE,
+                  ]}>
+                  打开NewPark 发现新世界
+                </Text>
+              </Animatable.View>
+            </View>
+
+            <View style={styles.footer}>
+              <Text style={styles.footerText}>
+                © 2023 山东新园建业科技发展有限公司
               </Text>
-            </Animatable.View>
-
-            <Animatable.View animation="bounceInRight">
-              <Text
-                style={[styles.bodyTextb, styles.navText, StylesALL.FONT_SIZE]}>
-                打开NewPark 发现新世界
-              </Text>
-            </Animatable.View>
-          </View>
-
-          <View style={styles.footer}>
-            <Text style={styles.footerText}>
-              © 2023 山东新园建业科技发展有限公司
-            </Text>
-          </View>
+            </View>
+          </SafeAreaView>
         </ImageBackground>
       ) : (
         isLogin()
@@ -107,6 +119,8 @@ const styles = StyleSheet.create({
   navText: {
     textAlign: 'center',
     color: '#fff',
+    paddingTop: '5%',
+    paddingBottom: '5%'
   },
   body: {
     paddingLeft: '30%',
