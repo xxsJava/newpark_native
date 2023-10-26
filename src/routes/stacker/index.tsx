@@ -11,6 +11,7 @@ import {Text, StyleSheet, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginView from '../../views/login';
+import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 /*
  * @Author: xxs
  * @Date: 2023-10-24 16:56:09
@@ -44,9 +45,6 @@ export const BommonTab = () => {
           tabBarActiveTintColor: '#F8B032',
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
-          tabBarStyle: {
-            height: 60,
-          },
           tabBarLabelStyle:{
             fontSize:16,
             fontWeight:'bold'
