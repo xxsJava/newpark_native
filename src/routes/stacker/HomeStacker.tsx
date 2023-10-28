@@ -1,13 +1,13 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 18:27:52
- * @LastEditTime: 2023-10-25 10:37:25
+ * @LastEditTime: 2023-10-27 09:11:24
  * @FilePath: \newpark_native\src\routes\stacker\HomeStacker.tsx
  * @Description: Home路由管理
  */
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions} from 'react-native';
 import HomeView from '../../views/home/HomeView';
 
 

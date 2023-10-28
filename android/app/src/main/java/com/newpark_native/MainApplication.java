@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-10-04 23:22:00
+ * @LastEditTime: 2023-10-28 21:21:57
+ * @FilePath: \newpark_native\android\app\src\main\java\com\newpark_native\MainApplication.java
+ * @Description: desc
+ */
 package com.newpark_native;
 
 import android.app.Application;
@@ -24,7 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
+          // packages.add(new LottiePackage());
           return packages;
         }
 

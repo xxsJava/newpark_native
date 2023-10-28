@@ -1,26 +1,20 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-05 12:52:53
- * @LastEditTime: 2023-10-26 15:42:56
+ * @LastEditTime: 2023-10-27 09:17:00
  * @FilePath: \newpark_native\src\routes\main\index.tsx
- * @Description: 路由
+ * @Description: 启动屏幕
  */
-import React, { useEffect, useState } from 'react';
-import { isLogin } from '../../views/login/controller';
-import { Splash } from '../../views/system/splash/SplashScreen';
+import {useEffect} from 'react';
+import {Splash} from '../../views/system/splash/SplashScreen';
 import SplashScreen from 'react-native-splash-screen';
 
-
 const index = () => {
-
   useEffect(() => {
-    SplashScreen.hide()
-    // 模拟加载过程
+    //隐藏初始屏幕
+    SplashScreen.hide();
   }, []);
-  //登录状态
-  // return isLogin();
   return Splash();
-  
 };
 
 export default index;

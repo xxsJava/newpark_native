@@ -1,12 +1,12 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-04 23:22:00
- * @LastEditTime: 2023-10-26 18:33:56
+ * @LastEditTime: 2023-10-28 22:00:45
  * @FilePath: \newpark_native\App.tsx
  * @Description: desc
  */
 
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 

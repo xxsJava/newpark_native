@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-24 16:42:40
- * @LastEditTime: 2023-10-25 10:34:41
+ * @LastEditTime: 2023-10-27 14:29:05
  * @FilePath: \newpark_native\src\config\routs\index.tsx
  * @Description: 路由配置
  */
@@ -18,6 +18,8 @@ export type RootStackParamList = {
   LoginHome: undefined;
   Home: undefined;
   NewPatk: undefined;
+  Verification: undefined;
+  Registered: undefined;
   Profile: {userId: string};
 };
 
@@ -36,6 +38,15 @@ export type HomeScreenProps = {
 export type NewPatkScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'NewPatk'>;
 };
+
+export type VerificationScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Verification'>;
+};
+
+export type RegisteredScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Registered'>;
+};
+
 
 type ProfileScreenProps = {
   route: RouteProp<RootStackParamList, 'Profile'>;

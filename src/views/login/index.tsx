@@ -8,6 +8,7 @@ import {
   ImageBackground,
   Dimensions,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Button, TextInput} from 'react-native-paper';
@@ -17,7 +18,6 @@ import * as Animatable from 'react-native-animatable';
 import {Box, NativeBaseProvider, useToast} from 'native-base';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
   //获取输入框的手机号
@@ -65,7 +65,6 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
 
             <View style={styles.num}>
               <TextInput
-                // label="请输入手机号"
                 placeholder="请输入手机号"
                 placeholderTextColor="#fff"
                 underlineColor="#fff"
@@ -102,9 +101,13 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
               </Button>
             </View>
             <View style={styles.verify}>
-              <Text style={styles.underline}>短信验证</Text>
-
-              <Text style={styles.underline}>忘记密码</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Verification')}>
+                <Text style={styles.underline}>短信验证</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => console.log('忘记密码')}>
+                <Text style={styles.underline}>忘记密码</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.bottom}>
               <View style={styles.line} />
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
   },
   imgbgc: {
     width: windowWidth,
-    height: windowHeight,
+    height: '100%',
   },
   img: {
     position: 'absolute',
@@ -142,6 +145,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#fff',
     fontSize: 27,
+    marginBottom: 30,
   },
   box: {
     width: windowWidth,
