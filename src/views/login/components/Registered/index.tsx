@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-27 14:27:03
- * @LastEditTime: 2023-10-28 22:14:14
+ * @LastEditTime: 2023-10-29 00:04:25
  * @FilePath: \newpark_native\src\views\login\components\Registered\index.tsx
  * @Description: 注册信息
  */
@@ -52,9 +52,10 @@ const Registered: React.FC<RegisteredScreenProps> = ({navigation}) => {
 
           <View style={styles.test}>
             <LottieView
-              source={require('../../../../assets/json/test.json')}
+              source={require('../../../../assets/json/gg.json')}
               autoPlay 
               loop
+              style={{ height: '100%',width:'100%' }}
             />
           </View>
         </View>
@@ -69,13 +70,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   camera: {
-    // backgroundColor: '#666',
     paddingTop: '5%',
   },
   cameraImg: {
     width: 120,
     height: 120,
-    backgroundColor: '#E4E4E4',
     borderRadius: 60,
   },
   img: {
@@ -93,8 +92,11 @@ const styles = StyleSheet.create({
     marginTop: '10%',
   },
   test: {
-    height: 200,
+    height: '100%',
+    width: '100%',
     borderWidth: 1,
+    position: 'absolute',
+    zIndex: -1
   },
 });
 export default Registered;

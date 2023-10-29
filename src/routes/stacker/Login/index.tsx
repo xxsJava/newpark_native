@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-27 09:11:12
- * @LastEditTime: 2023-10-27 14:36:28
+ * @LastEditTime: 2023-10-28 23:59:18
  * @FilePath: \newpark_native\src\routes\stacker\Login\index.tsx
  * @Description: 登录路由管理
  */
@@ -12,6 +12,8 @@ import {BommonTab} from '..';
 import Verification from '../../../views/login/components/Verification';
 import Registered from '../../../views/login/components/Registered';
 import {StyleSheet} from 'react-native';
+import StylesALL from '../../../styles';
+import { background } from 'native-base/lib/typescript/theme/styled-system';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +42,7 @@ export default class LoginStacker extends Component {
             title: '短信验证',
             headerTitleAlign: 'center',
             headerTitleStyle: styles.navText,
+            headerStyle:StylesALL.BGCOLOR
           }}
         />
         <Stack.Screen
@@ -48,7 +51,8 @@ export default class LoginStacker extends Component {
           options={{
             title: '注册信息填写',
             headerTitleAlign: 'center',
-            headerTitleStyle: styles.navText
+            headerTitleStyle: styles.navText,
+            headerStyle:StylesALL.BGCOLOR
           }}
         />
       </Stack.Navigator>
@@ -60,5 +64,6 @@ const styles = StyleSheet.create({
   navText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color:"#fff"
   },
 });
