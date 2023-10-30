@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:42:15
- * @LastEditTime: 2023-10-30 09:16:08
+ * @LastEditTime: 2023-10-30 11:58:17
  * @FilePath: \newpark_native\src\views\newpark\NewPatkView.tsx
  * @Description: desc
  */
@@ -10,12 +10,20 @@ import {Text, StyleSheet, View, Button} from 'react-native';
 import {
   NewPatkScreenProps,
 } from '../../config/routs';
+import { router } from '../../config/routs/lib/routs';
+import { useNavigation } from '@react-navigation/native';
+
+
 
 
 const NewPatkView: React.FC<NewPatkScreenProps> = ({navigation}) => {
+  
+  const navigators = useNavigation()
+
   const handlePress = () => {
     
-    navigation.navigate('LoginStacker');
+    navigation.navigate('Login');
+    // navigators.navigate()
   };
   
   return (
@@ -35,3 +43,5 @@ const styles = StyleSheet.create({
 });
 
 export default NewPatkView;
+
+

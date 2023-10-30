@@ -7,7 +7,7 @@ import LoginStacker from '../../../routes/stacker/Login';
 /*
  * @Author: xxs
  * @Date: 2023-10-24 17:48:22
- * @LastEditTime: 2023-10-27 09:14:38
+ * @LastEditTime: 2023-10-30 11:55:58
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
  * @Description: 登录控制器
  */
@@ -27,7 +27,15 @@ loginVal();
 export const isLogin = () => {
   console.log('查看登录状态' + isFlag);
   return isFlag ? (
-    BommonTab()
+    <Stack.Navigator initialRouteName="RootMain">
+      <Stack.Screen
+        name="RootMain"
+        component={BommonTab}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
   ) : (
     <Stack.Navigator initialRouteName="Login">
       <Stack.Screen

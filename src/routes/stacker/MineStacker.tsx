@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 18:28:36
- * @LastEditTime: 2023-10-24 15:37:17
+ * @LastEditTime: 2023-10-30 11:59:12
  * @FilePath: \newpark_native\src\routes\stacker\MineStacker.tsx
  * @Description: Mine路由跳转
  */
@@ -17,7 +17,7 @@ export default class MineStacker extends Component {
   render() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name='Mine' component={MineVIew}
+            <Stack.Screen name='MineStacker' component={MineVIew}
               options={
                 {
                   title:'我的',

@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 18:28:21
- * @LastEditTime: 2023-10-25 10:36:50
+ * @LastEditTime: 2023-10-30 11:59:16
  * @FilePath: \newpark_native\src\routes\stacker\NewPatkStacker.tsx
  * @Description: NewPatk路由管理
  */
@@ -18,7 +18,7 @@ export default class NewPatkStacker extends Component {
   render() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name='NewPatk' component={NewPatkView}
+            <Stack.Screen name='NewPatkStacker' component={NewPatkView}
               options={
                 {
                   title:'新园',
