@@ -1,17 +1,17 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-10-26 09:38:45
+ * @LastEditTime: 2023-10-30 09:07:32
+ * @FilePath: \newpark_native\src\routes\stacker\index.tsx
+ * @Description: desc
+ */
 import {useTranslation} from 'react-i18next';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import HomeStacker from '../stacker/HomeStacker';
-import NewPatkStacker from '../stacker/NewPatkStacker';
-import PublishStacker from '../stacker/PublishStacker';
-import SocializingStacker from '../stacker/SocializingStacker';
-import MineStacker from '../stacker/MineStacker';
-import {NavigationContainer} from '@react-navigation/native';
-import React, {Component, useEffect} from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+
+import React, { useEffect, useState} from 'react';
+
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LoginView from '../../views/login';
-import {SafeAreaInsetsContext} from 'react-native-safe-area-context';
+
 import routsConfig from '../../config/routs-config';
 /*
  * @Author: xxs
@@ -26,10 +26,14 @@ export const BommonTab = () => {
 
   const {t} = useTranslation();
 
+  const [route, setRoute]: any = useState([]);
   //路由数据
   const routsData = Object.entries(routsConfig);
 
-  useEffect(() => {});
+  useEffect(() => {
+    
+  }, []);
+
 
   return (
     <>
@@ -70,6 +74,7 @@ export const BommonTab = () => {
             });
           }
         })}
+
       </Tab.Navigator>
     </>
   );

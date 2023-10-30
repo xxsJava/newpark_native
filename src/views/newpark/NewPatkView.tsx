@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:42:15
- * @LastEditTime: 2023-10-25 10:12:47
+ * @LastEditTime: 2023-10-30 09:16:08
  * @FilePath: \newpark_native\src\views\newpark\NewPatkView.tsx
  * @Description: desc
  */
@@ -15,7 +15,7 @@ import {
 const NewPatkView: React.FC<NewPatkScreenProps> = ({navigation}) => {
   const handlePress = () => {
     
-    navigation.navigate('Login');
+    navigation.navigate('LoginStacker');
   };
   
   return (

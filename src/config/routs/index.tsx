@@ -18,6 +18,7 @@ export type RootStackParamList = {
   LoginHome: undefined;
   Home: undefined;
   NewPatk: undefined;
+  LoginStacker: undefined;
   Verification: undefined;
   Registered: undefined;
   Profile: {userId: string};
