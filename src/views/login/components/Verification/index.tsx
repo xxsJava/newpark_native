@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-27 09:19:31
- * @LastEditTime: 2023-10-27 14:32:19
+ * @LastEditTime: 2023-10-31 11:26:27
  * @FilePath: \newpark_native\src\views\login\components\Verification\index.tsx
  * @Description: desc
  */
@@ -15,12 +15,17 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {Button} from 'native-base';
+import {Button, useToast} from 'native-base';
+import Storage from '../../../../utils/AsyncStorageUtils';
+import {smsLoginApi} from '../../../../api/sys/lgoin';
+import {SmsLoginType} from '../../../../api/sys/lgoin/types';
 
 const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
-  
   //输入框状态
   const [textString, setTextString] = useState('');
+
+  //获取到本地手机号
+  const [localPhone, setLocalPhone] = useState('');
 
   //按钮状态 start
   const [count, setCount] = useState(60);
@@ -35,19 +40,30 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
   //send 发送状态
   const [send, setSend] = useState(true);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCount(count - 1);
-    }, 1000);
+  const toast = useToast();
 
-    //删除计时器
-    if (count == 0) {
-      clearTimeout(timer);
-      msgHide(false);
-      setSend(false);
-    }
-    return () => clearInterval(timer);
-  }, [count]);
+  const smsLogin: SmsLoginType = {
+    phone: '',
+    code: '',
+  };
+
+  // useEffect(() => {
+  //   getLoaclPhone();
+  //   const timer = setInterval(() => {
+  //     setCount(count - 1);
+  //   }, 1000);
+
+  //   //删除计时器
+  //   if (count == 0) {
+  //     clearTimeout(timer);
+  //     msgHide(false);
+  //     setSend(false);
+  //   }
+  //   return () => clearInterval(timer);
+  // }, [count]);
+  useEffect(() => {
+    getLoaclPhone();
+  });
 
   //验证码显示
   const inputs = () => {
@@ -68,17 +84,55 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
   };
 
   //4位验证码时按钮可点击
-  const inpTextChang = (text: string) => {
+  const inpTextChang = async (text: string) => {
     setTextString(text);
     setDisabled(text.length != 4);
 
-    
     //有4位时验证码自动提交
-    if(text.length == 4){
-        setLoad(true)
-        console.log("验证码提交-"+text)
-        navigation.navigate('Registered')
+    if (text.length == 4) {
+      setLoad(true);
+      console.log('验证码提交-' + text);
+
+      smsLogin.code = text;
+
+      verIfcode();
     }
+  };
+
+  //获取手机号
+  const getLoaclPhone = async () => {
+    const localPhoneStro = await Storage.get('usr-phone');
+
+    smsLogin.phone = localPhoneStro + '';
+
+    console.log('获取本地手机号');
+
+    setLocalPhone(localPhoneStro + '');
+  };
+
+  //验证码验证
+  const verIfcode = async () => {
+    const smsLoginAPI = await smsLoginApi(smsLogin);
+    console.log(smsLoginAPI);
+    if (smsLoginAPI.code == 1112) {
+      setLoad(false);
+      setDisabled(true);
+      toast.show({
+        description: smsLoginAPI.msg,
+        placement: 'top',
+      });
+      return;
+    }
+
+    if(smsLoginAPI.data != null){
+      toast.show({
+        description: '登录成功,开始寻找小妹',
+        placement: 'top',
+      });
+      navigation.navigate('LoginHome');
+      return
+    }
+    navigation.navigate('Registered');
   };
 
   //按钮下一步
@@ -92,7 +146,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         <View style={styles.bodyText}>
           <Text style={styles.bodyTexta}>输入验证码</Text>
           <Text style={styles.bodyTextb}>
-            已向您的手机175******4042 发送验证码
+            已向您的手机 {localPhone} 发送验证码
           </Text>
         </View>
       </View>
@@ -110,7 +164,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         />
 
         <View>
-          <TouchableOpacity disabled={send} onPress={()=> {}}>
+          <TouchableOpacity disabled={send} onPress={() => {}}>
             <Text style={styles.verifTextTime}>
               重新发送 {msgShow && <>({count})</>}
             </Text>

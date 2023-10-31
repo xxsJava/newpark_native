@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-10-07 09:15:49
+ * @LastEditTime: 2023-10-30 16:20:47
+ * @FilePath: \newpark_native\src\types\global.d.ts
+ * @Description: desc
+ */
 import type { CSSProperties } from 'vue'
 declare global {
   declare interface Fn<T = any> {
@@ -33,7 +40,7 @@ declare global {
   }
 
   declare interface IResponse<T = any> {
-    code: string
+    code: string | number
     data: T extends any ? T : T & any
     msg: string
   }

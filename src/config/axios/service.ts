@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-09 11:26:21
- * @LastEditTime: 2023-10-17 09:53:14
+ * @LastEditTime: 2023-10-30 16:14:55
  * @FilePath: \newpark_native\src\config\axios\service.ts
  * @Description: desc
  */
@@ -70,7 +70,7 @@ service.interceptors.response.use(
     if (response.config.responseType === 'blob') {
       // 如果是文件流，直接过
       return response
-    } else if (response.data.code === result_code) {
+    } else if (response.data.code === result_code || response.data.code>=1000 ) {
       
       //执行unicode编码避免乱码
       response.data.msg = UnicodeUtil().uniCodeSpane(response.data.msg)

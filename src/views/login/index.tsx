@@ -1,5 +1,5 @@
 // import {useNavigation} from '@react-navigation/native';
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
 
 import {
   Text,
@@ -15,7 +15,9 @@ import {Button, TextInput} from 'react-native-paper';
 import {LoginScreenProps} from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
-import {Box, NativeBaseProvider, useToast} from 'native-base';
+import {useToast} from 'native-base';
+import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
+import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -25,25 +27,88 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
   //获取输入框的密码
   const [pass, setPass] = useState('');
 
+  const [securePass,setSecurePass] = useState(true)
+
   const toast = useToast();
 
-  const handlePress = () => {
-    //模拟登录成功
-    Storage.set('usr-login', 'test');
+  const usrData: UserLoginType = {
+    uPhone: phone,
+    uEmail: '',
+    password: pass,
+  };
 
-    console.log('点击登录');
+  const smsLogin: SmsLoginType = {
+    phone: phone,
+    code: 'phone',
+  };
 
-    console.log('模拟登录成功');
+  const onLogin = async () => {
+    console.log('登录点击');
 
     console.log('输入框数据' + phone + '-' + pass);
 
-    toast.show({
-      description: '模拟登录成功',
-      placement: 'bottom',
-    });
+    if (phone.length != 11) {
+      toast.show({
+        description: '手机号有误',
+        placement: 'bottom',
+      });
+      return;
+    }
 
-    navigation.navigate('LoginHome');
+    const loginAPI = await loginApi(usrData);
+
+    console.log(loginAPI);
+
+    //用户不存在自动注册
+    if (loginAPI.code === 1114) {
+      toast.show({
+        description: '验证码已发送,请注意查收',
+        placement: 'bottom',
+      });
+      navigation.navigate('Verification');
+    } else if (loginAPI.code === 200) {
+      //用户token存本地
+      Storage.set('usr-token', loginAPI.data);
+      navigation.navigate('LoginHome');
+      toast.show({
+        description: '登录成功,可享受功能',
+        placement: 'top',
+      });
+    } else if (loginAPI.code === 1110) {
+      toast.show({
+        description: '账号有误',
+        placement: 'top',
+      });
+    }
   };
+
+  const smsVerIf = async () => {
+    if (phone.length != 11) {
+      toast.show({
+        description: '请输入手机号',
+        placement: 'top',
+      });
+      return;
+    }
+
+    const smsLoginAPI = await smsLoginApi(smsLogin);
+    console.log(smsLoginAPI);
+    toast.show({
+      description: smsLoginAPI.msg,
+      placement: 'top',
+    });
+    //发送验证码
+    navigation.navigate('Verification');
+  };
+
+  const changePhoneText = (text: string) => {
+    setPhone(text);
+    //确保存入手机号进行下步验证码发送
+    if (text.length == 11) {
+      Storage.set('usr-phone', text);
+    }
+  };
+
 
   return (
     <Animatable.View animation="fadeIn">
@@ -70,8 +135,9 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
                 underlineColor="#fff"
                 activeUnderlineColor="#fff"
                 textColor="#fff"
+                maxLength={11}
                 keyboardType="number-pad"
-                onChangeText={text => setPhone(text)}
+                onChangeText={changePhoneText}
                 style={styles.inp}
               />
             </View>
@@ -79,12 +145,13 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
             <View style={styles.pawoed}>
               <TextInput
                 style={styles.inp}
-                secureTextEntry
-                right={<TextInput.Icon icon="eye" />}
+                secureTextEntry={securePass}
+                right={<TextInput.Icon icon="eye" onLongPress={()=>setSecurePass(false)} onPressOut={()=>setSecurePass(true)} />}
                 placeholder="请输入密码"
                 placeholderTextColor="#fff"
                 underlineColor="#fff"
                 textColor="#fff"
+                maxLength={16}
                 activeUnderlineColor="#fff"
                 onChangeText={text => setPass(text)}
               />
@@ -96,13 +163,12 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
                 mode="contained"
                 buttonColor="#fff"
                 textColor="#000"
-                onPress={handlePress}>
+                onPress={onLogin}>
                 登录
               </Button>
             </View>
             <View style={styles.verify}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Verification')}>
+              <TouchableOpacity onPress={smsVerIf}>
                 <Text style={styles.underline}>短信验证</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => console.log('忘记密码')}>

@@ -3,11 +3,12 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Storage from '../../../utils/AsyncStorageUtils';
 import LoginStacker from '../../../routes/stacker/Login';
+import { useNavigation } from '@react-navigation/native';
 
 /*
  * @Author: xxs
  * @Date: 2023-10-24 17:48:22
- * @LastEditTime: 2023-10-30 11:55:58
+ * @LastEditTime: 2023-10-30 15:23:44
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
  * @Description: 登录控制器
  */
@@ -48,3 +49,5 @@ export const isLogin = () => {
     </Stack.Navigator>
   );
 };
+
+

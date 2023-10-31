@@ -1,14 +1,14 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2023-10-30 09:44:51
+ * @LastEditTime: 2023-10-30 14:39:00
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
 import {useTranslation} from 'react-i18next';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -26,9 +26,6 @@ export const BommonTab = () => {
 
   const {t} = useTranslation();
 
-  //路由数据
-  const routsData = Object.entries(routsConfig);
-
   useEffect(() => {}, []);
 
   return (
@@ -43,7 +40,7 @@ export const BommonTab = () => {
             fontWeight: 'bold',
           },
         })}>
-        {routsData.map(([key, value]) => {
+        {Object.entries(routsConfig).map(([key, value]) => {
           if (key === 'Routes') {
             const subArray = Object.entries(value);
             return subArray.map(([routeKey, routeValue]) => {

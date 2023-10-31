@@ -1,24 +1,33 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-29 20:43:34
- * @LastEditTime: 2023-10-30 11:12:24
+ * @LastEditTime: 2023-10-30 15:03:41
  * @FilePath: \newpark_native\src\config\routs-config\index.tsx
  * @Description: 路由表
  *  component 组件
- *
+ *  label 标签
+ *  SelectedIcon 选中图标
+ *  UnSelectedIcon 未选中图标
  */
 
+import {BommonTab} from '../../routes/stacker';
 import HomeStacker from '../../routes/stacker/HomeStacker';
+import LoginStacker from '../../routes/stacker/Login';
 import MineStacker from '../../routes/stacker/MineStacker';
 import NewPatkStacker from '../../routes/stacker/NewPatkStacker';
 import PublishStacker from '../../routes/stacker/PublishStacker';
 import SocializingStacker from '../../routes/stacker/SocializingStacker';
 import LoginView from '../../views/login';
-import { LoginInterceptor } from '../routs/lib/filter/TestFilter';
+import Registered from '../../views/login/components/Registered';
+import Verification from '../../views/login/components/Verification';
+import {LoginInterceptor} from '../routs/lib/filter/TestFilter';
 
 export default {
+  //主路由
   ROOT: {
+    
   },
+  //底部路由
   Routes: {
     //推荐
     Home: {
@@ -57,14 +66,67 @@ export default {
     },
   },
   //子导航
-  Stacker: {},
+  // StackerRoute: {
+  //   //推荐
+  //   HomeStacker: {
+  //     component: HomeStacker,
+  //     options: {},
+  //   },
+  //   //新园
+  //   NewPatkStacker: {
+  //     component: NewPatkStacker,
+  //     options: {},
+  //   },
+  //   //发布
+  //   PublishStacker: {
+  //     component: PublishStacker,
+  //     options: {},
+  //   },
+  //   //消息
+  //   SocializingStacker: {
+  //     component: SocializingStacker,
+  //     options: {},
+  //   },
+  //   //我的
+  //   MineStacker: {
+  //     component: MineStacker,
+  //     options: {
+        
+  //     },
+  //   },
+  //   //登录
+  //   LoginStacker: {
+  //     component: LoginView,
+  //     options: {
+  //       headerShown: false,
+  //     },
+  //     child: {
+  //       LoginHome: {
+  //         component: BommonTab,
+  //         options: {
+  //           headerShown: false,
+  //         },
+  //       },
+  //       Verification: {
+  //         component: Verification,
+  //         options: {},
+  //       },
+  //       Registered: {
+  //         component: Registered,
+  //         options: {},
+  //       },
+  //     },
+  //   },
+  // },
+  //默认路由
   InitRoute: 'Home',
-  Record:{
-    interceptors:[
-			{
-				clazz: LoginInterceptor
-			}
-		],
-    component: LoginView
-  }
+  //拦截器
+  Record: {
+    interceptors: [
+      {
+        clazz: LoginInterceptor,
+      },
+    ],
+    component: LoginView,
+  },
 };
