@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2023-10-30 14:39:00
+ * @LastEditTime: 2023-10-31 16:39:30
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
@@ -20,13 +20,14 @@ import routsConfig from '../../config/routs-config';
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: 底部标签
  */
-
 export const BommonTab = () => {
   const Tab = createBottomTabNavigator();
 
   const {t} = useTranslation();
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [
+    console.log('底部路由加载')
+  ]);
 
   return (
     <>
@@ -45,7 +46,6 @@ export const BommonTab = () => {
             const subArray = Object.entries(value);
             return subArray.map(([routeKey, routeValue]) => {
               // 路由遍历
-              console.log('tab路由加载');
               return (
                 <Tab.Screen
                   name={routeKey}
