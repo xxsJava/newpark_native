@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:21:25
- * @LastEditTime: 2023-10-31 14:32:02
+ * @LastEditTime: 2023-10-31 14:44:33
  * @FilePath: \newpark_native\src\config\routs\NavigationContainer.tsx
  * @Description: 全局跳转
  */

@@ -1,11 +1,10 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-04 23:22:00
- * @LastEditTime: 2023-10-31 14:23:24
+ * @LastEditTime: 2023-10-31 14:45:07
  * @FilePath: \newpark_native\App.tsx
- * @Description: desc
+ * @Description: 第二入口文件
  */
-
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
