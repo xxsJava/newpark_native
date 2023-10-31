@@ -5,29 +5,30 @@
  * @FilePath: \newpark_native\src\routes\stacker\MineStacker.tsx
  * @Description: Mine路由跳转
  */
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import MineVIew from '../../views/mine/MineVIew';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, {Component} from 'react';
+import StackerRouterConfig from '../../config/routs-config/StackerRouter-config';
 
 const Stack = createNativeStackNavigator();
-
 
 export default class MineStacker extends Component {
   render() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name='MineStacker' component={MineVIew}
-              options={
-                {
-                  title:'我的',
-                  headerShown: false,
-                }
-              }
-            />
-        </Stack.Navigator>
-    )
+      <Stack.Navigator>
+        {Object.entries(StackerRouterConfig.MineStackerRout).map(
+          ([key, value]) => {
+            return (
+              <Stack.Screen
+                name={key}
+                key={key}
+                component={value.component}
+                options={value.options}
+              />
+            );
+          },
+        )}
+      </Stack.Navigator>
+    );
   }
 }
 
-const styles = StyleSheet.create({})
