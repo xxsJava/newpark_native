@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-29 20:43:34
- * @LastEditTime: 2023-10-30 15:03:41
+ * @LastEditTime: 2023-10-31 14:55:18
  * @FilePath: \newpark_native\src\config\routs-config\index.tsx
  * @Description: 路由表
  *  component 组件
@@ -65,59 +65,6 @@ export default {
       UnSelectedIcon: 'person-outline',
     },
   },
-  //子导航
-  // StackerRoute: {
-  //   //推荐
-  //   HomeStacker: {
-  //     component: HomeStacker,
-  //     options: {},
-  //   },
-  //   //新园
-  //   NewPatkStacker: {
-  //     component: NewPatkStacker,
-  //     options: {},
-  //   },
-  //   //发布
-  //   PublishStacker: {
-  //     component: PublishStacker,
-  //     options: {},
-  //   },
-  //   //消息
-  //   SocializingStacker: {
-  //     component: SocializingStacker,
-  //     options: {},
-  //   },
-  //   //我的
-  //   MineStacker: {
-  //     component: MineStacker,
-  //     options: {
-        
-  //     },
-  //   },
-  //   //登录
-  //   LoginStacker: {
-  //     component: LoginView,
-  //     options: {
-  //       headerShown: false,
-  //     },
-  //     child: {
-  //       LoginHome: {
-  //         component: BommonTab,
-  //         options: {
-  //           headerShown: false,
-  //         },
-  //       },
-  //       Verification: {
-  //         component: Verification,
-  //         options: {},
-  //       },
-  //       Registered: {
-  //         component: Registered,
-  //         options: {},
-  //       },
-  //     },
-  //   },
-  // },
   //默认路由
   InitRoute: 'Home',
   //拦截器
