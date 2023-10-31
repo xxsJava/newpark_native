@@ -18,5 +18,32 @@
         "sortType2": "hot",
         "sortType3": "bounty",
         "sorts": "More sorts"
+    },
+    "mineNav":{
+        "navTab1":"People to follow",
+        "navTab2":"Fans",
+        "navTab3":"fruit milk",
+        "navTab4":"Circle of attention",
+        "navTab5":"Post"
+    },
+    "minOrder":{
+        "orderName":"My Order",
+        "orderMore":"All orders",
+        "orderOption1":"Pending payment",
+        "orderOption2":"Goods to be received",
+        "orderOption3":"To be evaluated",
+        "orderOption4":"After sales"
+    },
+    "minService":{
+        "serviceName":"My Services",
+        "serviceMore":"more",
+        "serviceOption1":"My wallet",
+        "serviceOption2":"My Order",
+        "serviceOption3":"My Collections",
+        "serviceOption4":"Member Services",
+        "serviceOption5":"Address Management",
+        "serviceOption6":"My Post",
+        "serviceOption7":"Feedback",
+        "serviceOption8":"Contact customer service"
     }
 }

@@ -25,5 +25,32 @@
     "login":{
         "phoneInput":"请输入手机号",
         "passInput":"请输入密码"
+    },
+    "mineNav":{
+        "navTab1":"关注的人",
+        "navTab2":"粉丝",
+        "navTab3":"o泡果奶",
+        "navTab4":"关注的圈",
+        "navTab5":"发帖"
+    },
+    "minOrder":{
+        "orderName":"我的订单",
+        "orderMore":"全部订单",
+        "orderOption1":"待付款",
+        "orderOption2":"待收货",
+        "orderOption3":"待评价",
+        "orderOption4":"售后"
+    },
+    "minService":{
+        "serviceName":"我的服务",
+        "serviceMore":"更多",
+        "serviceOption1":"我的钱包",
+        "serviceOption2":"我的订单",
+        "serviceOption3":"我的收藏",
+        "serviceOption4":"会员服务",
+        "serviceOption5":"地址管理",
+        "serviceOption6":"我的帖子",
+        "serviceOption7":"意见反馈",
+        "serviceOption8":"联系客服"
     }
 }
