@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-18 10:06:43
- * @LastEditTime: 2023-10-30 18:30:06
+ * @LastEditTime: 2023-11-01 14:24:05
  * @FilePath: \newpark_native\src\api\sys\lgoin\types.tsx
  * @Description: 登录entity
  */

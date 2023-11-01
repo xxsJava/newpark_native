@@ -1,9 +1,17 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-10-31 14:48:55
+ * @LastEditTime: 2023-10-31 18:02:47
+ * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
+ * @Description: desc
+ */
 import {StyleSheet} from 'react-native';
 import {BommonTab} from '../../../routes/stacker';
 import StylesALL from '../../../styles';
 import LoginView from '../../../views/login';
 import Registered from '../../../views/login/components/Registered';
 import Verification from '../../../views/login/components/Verification';
+<<<<<<< HEAD
 import HomeView from '../../../views/home/HomeView';
 import NewPatkView from '../../../views/newpark/NewPatkView';
 import PublishView from '../../../views/publish/PublishView';
@@ -22,6 +30,9 @@ import WalletView from '../../../views/mine/components/service/WalletView';
 import CollectionView from '../../../views/mine/components/service/CollectionView';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
 import SearchView from '../../../routes/stacker/SearchView'
+=======
+import ForgetPass from '../../../views/login/components/ForgetPass';
+>>>>>>> 730c22b2e88dadf99ce1f4112a858aa907cffc30
 
 /*
  * @Author: xxs
@@ -60,6 +71,7 @@ export default {
       headerTitleStyle: StylesALL.navText,
       headerStyle: StylesALL.BGCOLOR,
     },
+<<<<<<< HEAD
   },
   PaymentRoute: {
     component: PaymentView,
@@ -139,4 +151,12 @@ export default {
       
     }
   }
+=======
+    ForgetPass:{
+      component: ForgetPass,
+      options: {
+        title: '忘记密码',
+      }
+    }
+>>>>>>> 730c22b2e88dadf99ce1f4112a858aa907cffc30
 };

@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-30 15:18:58
- * @LastEditTime: 2023-10-30 18:31:12
+ * @LastEditTime: 2023-11-01 14:48:43
  * @FilePath: \newpark_native\src\api\sys\lgoin\index.tsx
  * @Description: desc
  */
@@ -19,6 +19,18 @@ export const loginApi = (data: UserLoginType): Promise<IResponse> => {
     data,
   });
 };
+
+/**
+ * token登录api
+ * @param token 
+ * @returns 
+ */
+export const loginTokenApi = (token:string) : Promise<IResponse> => {
+  return request.post({
+    url: '/usr/loginToken',
+    token: token
+  });
+}
 
 /**
  * 登出api

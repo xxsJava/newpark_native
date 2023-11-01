@@ -6,7 +6,7 @@
  * @Description: 启动屏幕
  */
 import {useEffect} from 'react';
-import {Splash} from '../../views/system/splash/SplashScreen';
+import {Splash} from '../../views/system/Splash/SplashScreen';
 import SplashScreen from 'react-native-splash-screen';
 
 const index = () => {

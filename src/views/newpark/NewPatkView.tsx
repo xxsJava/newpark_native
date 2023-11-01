@@ -1,15 +1,13 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:42:15
- * @LastEditTime: 2023-10-31 14:33:20
+ * @LastEditTime: 2023-10-31 17:33:50
  * @FilePath: \newpark_native\src\views\newpark\NewPatkView.tsx
  * @Description: desc
  */
 import React from 'react';
 import {Text, StyleSheet, View, Button} from 'react-native';
 import {NewPatkScreenProps} from '../../config/routs';
-import {router} from '../../config/routs/lib/routs';
-import {useNavigation} from '@react-navigation/native';
 import {loginOutApi} from '../../api/sys/lgoin';
 import {useToast} from 'native-base';
 import Storage from '../../utils/AsyncStorageUtils';
@@ -19,7 +17,7 @@ const NewPatkView: React.FC<NewPatkScreenProps> = ({navigation}) => {
   const toast = useToast();
 
   const handlePress = () => {
-    navigate('LoginStacker');
+    navigate('ForgetPass');
   };
 
   const loginOut = async () => {

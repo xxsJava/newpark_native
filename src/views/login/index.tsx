@@ -18,18 +18,20 @@ import * as Animatable from 'react-native-animatable';
 import {useToast} from 'native-base';
 import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
 import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
+import {forgetPass} from './controller';
+import { navigate } from '../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 
 const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
+  const toast = useToast();
   //获取输入框的手机号
   const [phone, setPhone] = useState('');
+
   //获取输入框的密码
   const [pass, setPass] = useState('');
 
-  const [securePass,setSecurePass] = useState(true)
-
-  const toast = useToast();
+  const [securePass, setSecurePass] = useState(true);
 
   const usrData: UserLoginType = {
     uPhone: phone,
@@ -90,7 +92,7 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
       });
       return;
     }
-
+    Storage.set('usr-phone', phone);
     const smsLoginAPI = await smsLoginApi(smsLogin);
     console.log(smsLoginAPI);
     toast.show({
@@ -98,9 +100,10 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
       placement: 'top',
     });
     //发送验证码
-    navigation.navigate('Verification');
+    navigate('Verification');
   };
 
+  //输入验证码
   const changePhoneText = (text: string) => {
     setPhone(text);
     //确保存入手机号进行下步验证码发送
@@ -108,7 +111,6 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
       Storage.set('usr-phone', text);
     }
   };
-
 
   return (
     <Animatable.View animation="fadeIn">
@@ -146,7 +148,13 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
               <TextInput
                 style={styles.inp}
                 secureTextEntry={securePass}
-                right={<TextInput.Icon icon="eye" onLongPress={()=>setSecurePass(false)} onPressOut={()=>setSecurePass(true)} />}
+                right={
+                  <TextInput.Icon
+                    icon="eye"
+                    onLongPress={() => setSecurePass(false)}
+                    onPressOut={() => setSecurePass(true)}
+                  />
+                }
                 placeholder="请输入密码"
                 placeholderTextColor="#fff"
                 underlineColor="#fff"
@@ -171,7 +179,7 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
               <TouchableOpacity onPress={smsVerIf}>
                 <Text style={styles.underline}>短信验证</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => console.log('忘记密码')}>
+              <TouchableOpacity onPress={forgetPass}>
                 <Text style={styles.underline}>忘记密码</Text>
               </TouchableOpacity>
             </View>
