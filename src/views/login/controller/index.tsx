@@ -3,17 +3,13 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Storage from '../../../utils/AsyncStorageUtils';
 import LoginStacker from '../../../routes/stacker/Login';
-<<<<<<< HEAD
 import { useNavigation } from '@react-navigation/native';
 import { navigate } from '../../../config/routs/NavigationContainer';
-=======
-import {navigate} from '../../../config/routs/NavigationContainer';
 import {useCounter} from '../../../hooks/state';
 import {useToast} from 'native-base';
 import {loginTokenApi, smsLoginApi} from '../../../api/sys/lgoin';
 import {SmsLoginType} from '../../../api/sys/lgoin/types';
 import  DateTimeUtils  from '../../../utils/DateTimeUtils';
->>>>>>> 730c22b2e88dadf99ce1f4112a858aa907cffc30
 
 /*
  * @Author: xxs
@@ -29,12 +25,6 @@ const Stack = createNativeStackNavigator();
 let isLoginFlag = false;
 //验证登录直接放行
 const loginVal = async () => {
-<<<<<<< HEAD
-  // const login = await Storage.isGet('usr-login');
-  // isFlag = login;
-  // return login;
-  navigate('LoginHome')
-=======
   
   const tokenStr = await Storage.get('usr-token');
   console.log('获取到用户token', tokenStr);
@@ -54,16 +44,11 @@ const loginVal = async () => {
     return;
   }
   isLoginFlag = false;
->>>>>>> 730c22b2e88dadf99ce1f4112a858aa907cffc30
 };
 
 loginVal();
 
-<<<<<<< HEAD
-export const isLogin = () => {
-  console.log('查看登录状态' + isFlag);
-  return true ? (
-=======
+
 const Islogin = () => {
   console.log('获取到当前时间戳', DateTimeUtils.timestamps())
   console.log("转时间戳",DateTimeUtils.formattedDateStr('2023-11-01 00:00:00'))
@@ -71,7 +56,6 @@ const Islogin = () => {
   console.log('查看登录状态------>', isLoginFlag);
   
   return isLoginFlag ? (
->>>>>>> 730c22b2e88dadf99ce1f4112a858aa907cffc30
     <Stack.Navigator initialRouteName="RootMain">
       <Stack.Screen
         name="RootMain"
