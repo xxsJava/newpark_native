@@ -13,7 +13,7 @@ export default {
     options: {
       title: '消息',
       headerStyle: {
-        backgroundColor: 'tomato',
+        backgroundColor: '#FFFFFF',
       },
     },
   },

@@ -7,5 +7,5 @@ export default {
       title: '我的',
       headerShown: false,
     },
-  },
+  }
 };

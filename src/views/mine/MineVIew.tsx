@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import {useTranslation, Trans} from 'react-i18next';
 import LinearGradinet from 'react-native-linear-gradient';
+import {navigate} from '../../config/routs/NavigationContainer';
 
 import {
   Text,
@@ -21,29 +22,60 @@ import {
   Image,
   TextInput,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const orderData = [
+  {
+    index: 1,
+    route: 'PaymentRoute',
+    text: 'minOrder.orderOption1',
+    icon: require('../../assets/images/alimom/dpay.png'),
+  },
+  {
+    index: 2,
+    route: 'ReceiptRoute',
+    text: 'minOrder.orderOption2',
+    icon: require('../../assets/images/alimom/dsh.png'),
+  },
+  {
+    index: 3,
+    route: 'EvaluateRoute',
+    text: 'minOrder.orderOption3',
+    icon: require('../../assets/images/alimom/dk.png'),
+  },
+  {
+    index: 4,
+    route: 'AfterSalesRoute',
+    text: 'minOrder.orderOption4',
+    icon: require('../../assets/images/alimom/sh.png'),
+  },
+];
 const serviceData1 = [
   {
     index: 1,
+    route: 'WalletRoute',
     text: 'minService.serviceOption1',
     icon: require('../../assets/images/alimom/pay.png'),
   },
   {
     index: 2,
+    route: 'MyOrderRoute',
     text: 'minService.serviceOption2',
     icon: require('../../assets/images/alimom/order.png'),
   },
   {
     index: 3,
+    route: 'CollectionRoute',
     text: 'minService.serviceOption3',
     icon: require('../../assets/images/alimom/sc.png'),
   },
   {
     index: 4,
+    route: 'MemberServicesRoute',
     text: 'minService.serviceOption4',
     icon: require('../../assets/images/alimom/jf.png'),
   },
@@ -51,21 +83,25 @@ const serviceData1 = [
 const serviceData2 = [
   {
     index: 1,
+    route: 'AddressManagementRoute',
     text: 'minService.serviceOption5',
     icon: require('../../assets/images/alimom/shdz.png'),
   },
   {
     index: 2,
+    route: 'MyPostRoute',
     text: 'minService.serviceOption6',
     icon: require('../../assets/images/alimom/posts.png'),
   },
   {
     index: 3,
+    route: 'FeedbackRoute',
     text: 'minService.serviceOption7',
     icon: require('../../assets/images/alimom/fk.png'),
   },
   {
     index: 4,
+    route: 'CustomerServiceRoute',
     text: 'minService.serviceOption8',
     icon: require('../../assets/images/alimom/kf.png'),
   },
@@ -117,7 +153,10 @@ export default class MineVIew extends Component {
                     <Trans>mineNav.navTab3</Trans>
                     {/* <Icon name="gem" /> */}
                   </Text>
-                  <Image style={styles.avatarnImage} source={require('../../assets/images/alimom/V1.png')}></Image>
+                  <Image
+                    style={styles.avatarnImage}
+                    source={require('../../assets/images/alimom/V1.png')}
+                  />
                 </View>
                 <View style={styles.uidFrame}>
                   <View style={styles.uidBg}>
@@ -151,30 +190,18 @@ export default class MineVIew extends Component {
               </View>
             </View>
             <View style={styles.orderList}>
-              <View style={styles.orderItem}>
-                <Image style={styles.itemImage} source={require('../../assets/images/alimom/dpay.png')}></Image>
-                <Text style={styles.itemText}>
-                  <Trans>minOrder.orderOption1</Trans>
-                </Text>
-              </View>
-              <View style={styles.orderItem}>
-              <Image style={styles.itemImage} source={require('../../assets/images/alimom/dsh.png')}></Image>
-                <Text style={styles.itemText}>
-                  <Trans>minOrder.orderOption2</Trans>
-                </Text>
-              </View>
-              <View style={styles.orderItem}>
-              <Image style={styles.itemImage} source={require('../../assets/images/alimom/dk.png')}></Image>
-                <Text style={styles.itemText}>
-                  <Trans>minOrder.orderOption3</Trans>
-                </Text>
-              </View>
-              <View style={styles.orderItem}>
-              <Image style={styles.itemImage} source={require('../../assets/images/alimom/sh.png')}></Image>
-                <Text style={styles.itemText}>
-                  <Trans>minOrder.orderOption4</Trans>
-                </Text>
-              </View>
+              {orderData.map(item => {
+                return (
+                  <View style={styles.orderItem} key={item.index}>
+                    <TouchableOpacity onPress={() => navigate(item.route)} style={styles.orderRoute}>
+                      <Image style={styles.itemImage} source={item.icon} />
+                      <Text style={styles.itemText}>
+                        <Trans>{item.text}</Trans>
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                );
+              })}
             </View>
           </View>
           <View style={styles.serviceCard}>
@@ -195,10 +222,12 @@ export default class MineVIew extends Component {
               {serviceData1.map(item => {
                 return (
                   <View style={styles.orderItem} key={item.index}>
-                    <Image style={styles.itemImages} source={item.icon}></Image>
-                    <Text style={styles.serviceText}>
-                      <Trans>{item.text}</Trans>
-                    </Text>
+                    <TouchableOpacity onPress={() => navigate(item.route)} style={styles.orderRoute}>
+                      <Image style={styles.itemImages} source={item.icon} />
+                      <Text style={styles.serviceText}>
+                        <Trans>{item.text}</Trans>
+                      </Text>
+                    </TouchableOpacity>
                   </View>
                 );
               })}
@@ -207,10 +236,12 @@ export default class MineVIew extends Component {
               {serviceData2.map(item => {
                 return (
                   <View style={styles.orderItem} key={item.index}>
-                    <Image style={styles.itemImages} source={item.icon}></Image>
-                    <Text style={styles.serviceText}>
-                      <Trans>{item.text}</Trans>
-                    </Text>
+                    <TouchableOpacity onPress={() => navigate(item.route)} style={styles.orderRoute}>
+                      <Image style={styles.itemImages} source={item.icon} />
+                      <Text style={styles.serviceText}>
+                        <Trans>{item.text}</Trans>
+                      </Text>
+                    </TouchableOpacity>
                   </View>
                 );
               })}
@@ -255,15 +286,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     ...Platform.select({
       ios: {
-        shadowColor: '#999',  //设置阴影色
-        shadowOffset:{width:0,height:0},  //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
+        shadowColor: '#999', //设置阴影色
+        shadowOffset: {width: 0, height: 0}, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
         shadowOpacity: 1,
-        shadowRadius: 2.5,  //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
+        shadowRadius: 2.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
       android: {
         elevation: 7,
       },
-    })
+    }),
   },
   boxItem: {
     flex: 1,
@@ -284,15 +315,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     ...Platform.select({
       ios: {
-        shadowColor: '#999',  //设置阴影色
-        shadowOffset:{width:0,height:0},  //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
+        shadowColor: '#999', //设置阴影色
+        shadowOffset: {width: 0, height: 0}, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
         shadowOpacity: 1,
-        shadowRadius: 3.5,  //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
+        shadowRadius: 3.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
       android: {
         elevation: 9,
       },
-    })
+    }),
   },
   boxAvatarParent: {
     width: 100,
@@ -307,14 +338,14 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 15,
   },
-  avatarView:{
+  avatarView: {
     paddingTop: 16,
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  avatarnImage:{
-    width:15,
-    height:15,
+  avatarnImage: {
+    width: 15,
+    height: 15,
   },
   uidFrame: {
     width: 130,
@@ -356,13 +387,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  itemImage:{
-    width:40,
-    height:35
+  itemImage: {
+    width: 40,
+    height: 35,
   },
-  itemImages:{
-    width:38,
-    height:38
+  itemImages: {
+    width: 38,
+    height: 38,
   },
   titleFlex: {
     paddingHorizontal: 15,
@@ -379,20 +410,23 @@ const styles = StyleSheet.create({
   orderList: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom:16
+    marginBottom: 16,
   },
   orderItem: {
     flex: 1,
     alignItems: 'center',
   },
+  orderRoute:{
+    alignItems:'center'
+  },
   itemText: {
     paddingTop: 15,
-    color:'#808080',
+    color: '#808080',
     ...Platform.select({
-      ios:{
-        fontSize:15
-      }
-    })
+      ios: {
+        fontSize: 15,
+      },
+    }),
   },
   serviceCard: {
     width: windowWidth - 24,
@@ -402,13 +436,13 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     backgroundColor: '#FFFFFF',
   },
-  serviceText:{
+  serviceText: {
     paddingTop: 8,
-    color:'#808080',
+    color: '#808080',
     ...Platform.select({
-      ios:{
-        fontSize:15
-      }
-    })
-  }
+      ios: {
+        fontSize: 15,
+      },
+    }),
+  },
 });
