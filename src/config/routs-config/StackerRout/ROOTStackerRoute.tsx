@@ -1,14 +1,17 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-10-31 14:48:55
+ * @LastEditTime: 2023-10-31 18:02:47
+ * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
+ * @Description: desc
+ */
 import {StyleSheet} from 'react-native';
 import {BommonTab} from '../../../routes/stacker';
 import StylesALL from '../../../styles';
 import LoginView from '../../../views/login';
 import Registered from '../../../views/login/components/Registered';
 import Verification from '../../../views/login/components/Verification';
-import HomeView from '../../../views/home/HomeView';
-import NewPatkView from '../../../views/newpark/NewPatkView';
-import PublishView from '../../../views/publish/PublishView';
-import SocializingView from '../../../views/socializing/SocializingView';
-import MineVIew from '../../../views/mine/MineVIew';
+import ForgetPass from '../../../views/login/components/ForgetPass';
 
 /*
  * @Author: xxs
@@ -48,4 +51,10 @@ export default {
         headerStyle: StylesALL.BGCOLOR,
       },
     },
+    ForgetPass:{
+      component: ForgetPass,
+      options: {
+        title: '忘记密码',
+      }
+    }
 };

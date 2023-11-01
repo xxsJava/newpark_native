@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-27 09:19:31
- * @LastEditTime: 2023-10-31 11:26:27
+ * @LastEditTime: 2023-11-01 11:13:34
  * @FilePath: \newpark_native\src\views\login\components\Verification\index.tsx
  * @Description: desc
  */
@@ -19,6 +19,7 @@ import {Button, useToast} from 'native-base';
 import Storage from '../../../../utils/AsyncStorageUtils';
 import {smsLoginApi} from '../../../../api/sys/lgoin';
 import {SmsLoginType} from '../../../../api/sys/lgoin/types';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
   //输入框状态
@@ -129,10 +130,10 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         description: '登录成功,开始寻找小妹',
         placement: 'top',
       });
-      navigation.navigate('LoginHome');
+      navigate('LoginHome');
       return
     }
-    navigation.navigate('Registered');
+    navigate('Registered');
   };
 
   //按钮下一步

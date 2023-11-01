@@ -1,11 +1,11 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2023-10-26 17:59:40
- * @FilePath: \newpark_native\src\views\system\splash\SplashScreen.tsx
+ * @LastEditTime: 2023-11-01 11:34:24
+ * @FilePath: \newpark_native\src\views\system\Splash\SplashScreen.tsx
  * @Description: desc
  */
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   StyleSheet,
@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import StylesALL from '../../../styles';
 import * as Animatable from 'react-native-animatable';
-import {isLogin} from '../../login/controller';
+import IsLogin from '../../login/controller';
 import StatusBar from '../../../components/StatusBar';
 
 export const Splash = () => {
@@ -37,13 +37,13 @@ export const Splash = () => {
 
   return (
     <>
-    <StatusBar/>
+      <StatusBar />
       {count >= 0 ? (
         <ImageBackground
           source={require('../../../assets/images/loginBG.png')}
           resizeMode="cover"
           style={styles.img}>
-          <SafeAreaView style={{flex:1}}>
+          <SafeAreaView style={{flex: 1}}>
             <View style={styles.nav}>
               <TouchableOpacity
                 onPress={() => {
@@ -96,7 +96,7 @@ export const Splash = () => {
           </SafeAreaView>
         </ImageBackground>
       ) : (
-        isLogin()
+        <IsLogin />
       )}
     </>
   );
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
     paddingTop: '5%',
-    paddingBottom: '5%'
+    paddingBottom: '5%',
   },
   body: {
     paddingLeft: '30%',
