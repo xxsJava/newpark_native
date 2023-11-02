@@ -19,7 +19,7 @@ import {useToast} from 'native-base';
 import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
 import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
 import {forgetPass} from './controller';
-import { navigate } from '../../config/routs/NavigationContainer';
+import {navigate} from '../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 

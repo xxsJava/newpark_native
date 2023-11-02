@@ -52,5 +52,24 @@
         "serviceOption6":"我的帖子",
         "serviceOption7":"意见反馈",
         "serviceOption8":"联系客服"
+    },
+    "newPatkTab":{
+        "tab1":"社区",
+        "tab2":"组队聊天"
+    },
+    "newPatkOption":{
+        "optionName1":"游戏开黑",
+        "optionName2":"学习交流",
+        "optionName3":"运动",
+        "optionName4":"情感",
+        "optionName5":"吃喝玩乐",
+        "optionName6":"行业交流",
+        "optionName7":"吃瓜小队",
+        "optionName8":"其他"
+    },
+    "newPatkTab2":{
+        "tableTitle":"热门聊天室",
+        "tab1":"推荐",
+        "tab2":"最热"
     }
 }

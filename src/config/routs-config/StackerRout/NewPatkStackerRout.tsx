@@ -12,9 +12,7 @@ export default {
     component: NewPatkView,
     options: {
       title: '新园',
-      headerStyle: {
-        backgroundColor: 'tomato',
-      },
+      headerShown: false,
     },
   },
 };

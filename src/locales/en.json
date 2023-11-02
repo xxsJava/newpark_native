@@ -45,5 +45,24 @@
         "serviceOption6":"My Post",
         "serviceOption7":"Feedback",
         "serviceOption8":"Contact customer service"
+    },
+    "newPatkTab":{
+        "tab1":"community",
+        "tab2":"Team up and chat"
+    },
+    "newPatkOption":{
+        "optionName1":"Game Blackout",
+        "optionName2":"Learning and communication",
+        "optionName3":"motion",
+        "optionName4":"emotion",
+        "optionName5":"entertainment",
+        "optionName6":"Industry communication",
+        "optionName7":"Eating Melon Team",
+        "optionName8":"other"
+    },
+    "newPatkTab2":{
+        "tableTitle":"Popular chat rooms",
+        "tab1":"recommendation",
+        "tab2":"Hottest"
     }
 }

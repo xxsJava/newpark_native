@@ -5,11 +5,12 @@
  * @FilePath: \newpark_native\src\routes\main\index.tsx
  * @Description: 启动屏幕
  */
-import {useEffect} from 'react';
-import {Splash} from '../../views/system/Splash/SplashScreen';
+import React,{useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
+import { Splash } from '../../views/system/splash/SplashScreen';
 
 const index = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     //隐藏初始屏幕
     SplashScreen.hide();
