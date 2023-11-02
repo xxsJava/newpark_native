@@ -1,14 +1,27 @@
-import React from 'react';
-import {Text, StyleSheet, View, Button} from 'react-native';
+/*
+ * @Author: xxs
+ * @Date: 2023-10-31 17:25:19
+ * @LastEditTime: 2023-11-01 23:32:40
+ * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
+ * @Description: desc
+ */
+import React, {Component, useRef, useState} from 'react';
+import {
+  StyleSheet,
+  View,
+} from 'react-native';
+import MyComponent from './listIndex';
 
 const ForgetPass: React.FC = () => {
+  
 
   return (
-    <View>
-      <Text> 忘记密码 </Text>
+    <View style={{flex: 1}}>
+      <MyComponent/>
     </View>
   );
 };
+
 const styles = StyleSheet.create({});
 
 export default ForgetPass;
