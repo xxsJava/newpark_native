@@ -8,75 +8,21 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {Component} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
-import SocializingStackerRout from '../../config/routs-config/StackerRout/SocializingStackerRout';
 import {Text, View} from 'react-native-animatable';
-import {Dimensions, StyleSheet, SafeAreaView,TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import {navigate} from '../../config/routs/NavigationContainer';
+import IndexBar from './IndexBarView';
 
 const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 let tabVal = '1';
-var AlphabetListView = require('react-native-alphabetlistview');
 
-const state = {
-        A: ['some', 'entries', 'are here'],
-        B: ['some', 'entries', 'are here'],
-        C: ['some', 'entries', 'are here'],
-        D: ['some', 'entries', 'are here'],
-        E: ['some', 'entries', 'are here'],
-        F: ['some', 'entries', 'are here'],
-        G: ['some', 'entries', 'are here'],
-        H: ['some', 'entries', 'are here'],
-        I: ['some', 'entries', 'are here'],
-        J: ['some', 'entries', 'are here'],
-        K: ['some', 'entries', 'are here'],
-        L: ['some', 'entries', 'are here'],
-        M: ['some', 'entries', 'are here'],
-        N: ['some', 'entries', 'are here'],
-        O: ['some', 'entries', 'are here'],
-        P: ['some', 'entries', 'are here'],
-        Q: ['some', 'entries', 'are here'],
-        R: ['some', 'entries', 'are here'],
-        S: ['some', 'entries', 'are here'],
-        T: ['some', 'entries', 'are here'],
-        U: ['some', 'entries', 'are here'],
-        V: ['some', 'entries', 'are here'],
-        W: ['some', 'entries', 'are here'],
-        X: ['some', 'entries', 'are here'],
-        Y: ['some', 'entries', 'are here'],
-        Z: ['some', 'entries', 'are here'],
-}
-
-// class SectionHeader extends Component {
-//   render() {
-//     // inline styles used for brevity, use a stylesheet when possible
-//     return (
-//       <View style={styles.viewStyle}>
-//         {/* <Text style={styles.textStyle}>{this.props.title}</Text> */}
-//       </View>
-//     );
-//   }
-// }
-
-// class SectionItem extends Component {
-  
-
-//   render() {
-//     console.log(this.props)
-//     return <Text style={{color: '#f00'}}>1</Text>;
-//   }
-// }
-
-// class Cell extends Component {
-//   render() {
-//     return (
-//       <View style={{height: 30}}>
-//         {/* <Text>{this.props.item}</Text> */}
-//       </View>
-//     );
-//   }
-// }
 
 export default class SocializingStacker extends Component {
   tabClick(porps: string) {
@@ -125,37 +71,16 @@ export default class SocializingStacker extends Component {
           </View>
           <View style={styles.searchGrid}>
             <TouchableOpacity onPress={() => navigate('SearchView')}>
-              <View style={styles.searchBox} >
+              <View style={styles.searchBox}>
                 <Text style={styles.searchText}>搜索</Text>
               </View>
             </TouchableOpacity>
           </View>
         </View>
-        {/* <View>
-          <AlphabetListView
-            data={state}
-            cell={Cell}
-            cellHeight={30}
-            sectionListItem={SectionItem}
-            sectionHeader={SectionHeader}
-            sectionHeaderHeight={22.5}
-          />
-        </View> */}
+        <View style={{flex: 1,backgroundColor:'#F5F5F5'}}>
+          <IndexBar />
+        </View>
       </SafeAreaView>
-      // <Stack.Navigator>
-      //   {Object.entries(SocializingStackerRout).map(
-      //     ([key, value]) => {
-      //       return (
-      //         <Stack.Screen
-      //           name={key}
-      //           key={key}
-      //           component={value.component}
-      //           options={value.options}
-      //         />
-      //       );
-      //     },
-      //   )}
-      // </Stack.Navigator>
     );
   }
 }
@@ -163,7 +88,7 @@ export default class SocializingStacker extends Component {
 const styles = StyleSheet.create({
   safeStyle: {
     width: windowWidth,
-    height: 30,
+    height: windowHeight-40,
     backgroundColor: '#FFFFFF',
   },
   headView: {
@@ -234,13 +159,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000000',
   },
-  viewStyle:{
+  viewStyle: {
     backgroundColor: '#ccc',
   },
-  textStyle:{
+  textStyle: {
     textAlign: 'center',
     color: '#fff',
     fontWeight: '700',
     fontSize: 16,
-  }
+  },
 });
+function tabClick(porps: any, string: any) {
+  throw new Error('Function not implemented.');
+}
+

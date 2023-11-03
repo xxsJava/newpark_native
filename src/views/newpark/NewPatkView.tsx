@@ -29,7 +29,7 @@ import Feather from 'react-native-vector-icons/Feather';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-let tabVal = '2';
+let tabVal = '1';
 
 const listData = [
   {
