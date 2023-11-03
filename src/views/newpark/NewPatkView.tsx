@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:42:15
- * @LastEditTime: 2023-10-31 17:33:50
+ * @LastEditTime: 2023-11-02 19:00:31
  * @FilePath: \newpark_native\src\views\newpark\NewPatkView.tsx
  * @Description: desc
  */
@@ -18,11 +18,6 @@ import {
   Platform,
   TextInput
 } from 'react-native';
-import {NewPatkScreenProps} from '../../config/routs';
-import {loginOutApi} from '../../api/sys/lgoin';
-import {useToast} from 'native-base';
-import Storage from '../../utils/AsyncStorageUtils';
-import {navigate} from '../../config/routs/NavigationContainer';
 import {Trans} from 'react-i18next';
 import LinearGradinet from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
