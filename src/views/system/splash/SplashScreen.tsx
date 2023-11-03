@@ -1,8 +1,8 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2023-11-01 11:34:24
- * @FilePath: \newpark_native\src\views\system\Splash\SplashScreen.tsx
+ * @LastEditTime: 2023-11-02 18:45:55
+ * @FilePath: \newpark_native\src\views\system\splash\SplashScreen.tsx
  * @Description: desc
  */
 import React, {useEffect, useState} from 'react';
@@ -20,7 +20,7 @@ import * as Animatable from 'react-native-animatable';
 import IsLogin from '../../login/controller';
 import StatusBar from '../../../components/StatusBar';
 
-export const Splash = () => {
+const Splash = () => {
   const [count, setCount] = useState(3);
 
   useEffect(() => {
@@ -157,3 +157,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
+
+export default Splash

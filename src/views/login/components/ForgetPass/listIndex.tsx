@@ -64,6 +64,7 @@ const ListIndex: React.FC = () => {
     </View>
   );
 
+  //数据可以可改造
   const data: DataSection[] = [
     {title: 'A', data: ['Apple', 'Apricot', 'Avocado']},
     {title: 'B', data: ['Banana', 'Blackberry', 'Blueberry']},
@@ -76,9 +77,9 @@ const ListIndex: React.FC = () => {
     {title: 'L', data: ['Dpple', 'Dpricot', 'Dvocado']},
     {title: 'M', data: ['Eanana', 'Elackberry', 'Elueberry']},
     {title: 'J', data: ['Fherry', 'Foconut', 'Franberry']},
-    // 更多的数据...
   ];
 
+  //item高度
   const ITEM_HEIGHT = 20;
 
   const handleSectionSelect = (index: number) => {
@@ -86,12 +87,11 @@ const ListIndex: React.FC = () => {
 
     //一个分组的高度
     const itemHeight =
-      (ITEM_HEIGHT + 30) * data[index].data.length * index +
-      5 * index;
+      //30为分组标题高度
+      (ITEM_HEIGHT + 30) * data[index].data.length * index + 5 * index;
 
     //总高度
-    const itemSum =
-      (ITEM_HEIGHT * data[index].data.length + 20) * 11;
+    const itemSum = (ITEM_HEIGHT * data[index].data.length + 20) * 11;
 
     console.log('滚动到的位置----->', itemSum - itemHeight);
 
@@ -112,7 +112,7 @@ const ListIndex: React.FC = () => {
   };
 
   const _ItemLayout = (data: any, index: number) => {
-    //总高度
+    //总高度 这里写固定了 实际需要计算每个分组有多少数据
     const dataHight =
       (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 20) * 11;
 

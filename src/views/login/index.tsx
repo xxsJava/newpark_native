@@ -33,6 +33,8 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
 
   const [securePass, setSecurePass] = useState(true);
 
+  const [load, setLoad] = useState(false);
+
   const usrData: UserLoginType = {
     uPhone: phone,
     uEmail: '',
@@ -45,6 +47,7 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
   };
 
   const onLogin = async () => {
+    setLoad(true);
     console.log('登录点击');
 
     console.log('输入框数据' + phone + '-' + pass);
@@ -54,6 +57,7 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
         description: '手机号有误',
         placement: 'bottom',
       });
+      setLoad(false);
       return;
     }
 
@@ -82,6 +86,7 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
         placement: 'top',
       });
     }
+    setLoad(false);
   };
 
   const smsVerIf = async () => {
@@ -168,6 +173,8 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
             <View style={styles.login}>
               <Button
                 contentStyle={styles.loginBox}
+                loading={load}
+                disabled={load}
                 mode="contained"
                 buttonColor="#fff"
                 textColor="#000"

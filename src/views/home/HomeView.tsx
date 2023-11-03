@@ -12,6 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import StylesALL from '../../styles';
 
 export default class HomeView extends Component {
+  
   render() {
     return (
       <>

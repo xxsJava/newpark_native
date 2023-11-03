@@ -20,7 +20,7 @@ import SocializingStacker from '../../routes/stacker/SocializingStacker';
 import LoginView from '../../views/login';
 import Registered from '../../views/login/components/Registered';
 import Verification from '../../views/login/components/Verification';
-import {LoginInterceptor} from '../routs/lib/filter/TestFilter';
+import {LoginInterceptor} from '../routs/lib/filter/LoginFilter';
 
 export default {
   //主路由
