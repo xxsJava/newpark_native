@@ -22,7 +22,7 @@ console.log('进入登录控制器');
 
 const Stack = createNativeStackNavigator();
 
-let isLoginFlag = false;
+let isLoginFlag = true;
 //验证登录直接放行
 const loginVal = async () => {
   

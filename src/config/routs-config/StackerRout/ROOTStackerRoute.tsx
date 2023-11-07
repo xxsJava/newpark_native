@@ -120,7 +120,9 @@ export default {
   CollectionRoute: {
     component: CollectionView,
     options: {
-      title: '我的订单',
+      title: '我的收藏',
+      // headerLeft:require('../../../assets/images/search_in_circle.png')
+      // headerShown: false,
     },
   },
   AddressManagementRoute: {

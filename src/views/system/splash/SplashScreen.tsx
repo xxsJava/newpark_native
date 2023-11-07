@@ -20,7 +20,7 @@ import * as Animatable from 'react-native-animatable';
 import IsLogin from '../../login/controller';
 import StatusBar from '../../../components/StatusBar';
 
-const Splash = () => {
+const Splashs= () => {
   const [count, setCount] = useState(3);
 
   useEffect(() => {
@@ -158,4 +158,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Splash
+export default Splashs

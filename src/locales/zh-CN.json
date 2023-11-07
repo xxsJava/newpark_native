@@ -53,6 +53,11 @@
         "serviceOption7":"意见反馈",
         "serviceOption8":"联系客服"
     },
+    "minCommunity":{
+        "communityName":"我的社区",
+        "communityMore":"查看全部"
+
+    },
     "newPatkTab":{
         "tab1":"社区",
         "tab2":"组队聊天"
