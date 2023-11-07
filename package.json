@@ -18,6 +18,7 @@
     "@react-navigation/native-stack": "^6.9.16",
     "axios": "^1.5.1",
     "babel-preset-react-native": "2.1.0",
+    "gm-crypto": "^0.1.12",
     "i18next": "^23.5.1",
     "intl-pluralrules": "^2.0.1",
     "lottie-react-native": "^6.3.1",
