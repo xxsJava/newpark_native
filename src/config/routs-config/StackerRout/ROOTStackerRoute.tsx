@@ -114,7 +114,8 @@ export default {
   WalletRoute: {
     component: WalletView,
     options: {
-      title: '我的订单',
+      title: '我的钱包',
+      headerShown: false,
     },
   },
   CollectionRoute: {
