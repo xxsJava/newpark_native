@@ -1,14 +1,16 @@
-import {BommonTab} from '../../../routes/stacker';
+/*
+ * @Author: xxs
+ * @Date: 2023-11-07 10:30:52
+ * @LastEditTime: 2023-11-07 14:15:42
+ * @FilePath: \newpark_native\src\views\login\controller\index.tsx
+ * @Description: desc
+ */
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Storage from '../../../utils/AsyncStorageUtils';
 import LoginStacker from '../../../routes/stacker/Login';
-import { useNavigation } from '@react-navigation/native';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import {useCounter} from '../../../hooks/state';
-import {useToast} from 'native-base';
-import {loginTokenApi, smsLoginApi} from '../../../api/sys/lgoin';
-import {SmsLoginType} from '../../../api/sys/lgoin/types';
+import {loginTokenApi} from '../../../api/sys/lgoin';
 import  DateTimeUtils  from '../../../utils/DateTimeUtils';
 
 /*
@@ -30,6 +32,7 @@ const loginVal = async () => {
   console.log('获取到用户token', tokenStr);
 
   if (tokenStr == null || tokenStr == undefined) {
+    isLoginFlag = false;
     return;
   }
 

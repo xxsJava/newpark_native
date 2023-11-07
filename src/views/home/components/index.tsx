@@ -1,12 +1,11 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2023-10-31 13:59:16
+ * @LastEditTime: 2023-11-07 14:25:58
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
 import {Avatar, Button, Card, IconButton, Text} from 'react-native-paper';
-import StylesALL from '../../../styles';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
@@ -50,7 +49,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           <Text style={styles.context}>世界有万般兵刃！！！</Text>
           <Text style={styles.context}>唯有情伤人最深！！！</Text>
         </Card.Content>
-        <Card.Cover source={require('../../../assets/images/alimom/R-C.jpg')} />
+        <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} />
         <Card.Content style={styles.backColor}>
           <Text style={styles.context}>#情感#个人#官方#颜值#语录</Text>
         </Card.Content>
@@ -85,10 +84,9 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
 
 const styles = StyleSheet.create({
   backColor: {
-    // backgroundColor: '#FFF',
     shadowOpacity: 0,
   },
-  cardSty: {marginBottom: 10},
+  cardSty: {marginBottom: 10, backgroundColor: '#FFF'},
   subSty: {
     fontSize: 10,
     color: '#999',
@@ -106,7 +104,12 @@ const styles = StyleSheet.create({
   buttonDz: {borderWidth: 0},
   context: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#000',
+    // fontWeight: 'bold',
+    color: '#6A1B9A',
   },
+  contentImg:{
+    paddingLeft: '3%',
+    paddingRight: '3%',
+    backgroundColor: '#fff'
+  }
 });

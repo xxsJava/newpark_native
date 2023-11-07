@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:43:58
- * @LastEditTime: 2023-11-06 18:25:05
+ * @LastEditTime: 2023-11-07 12:00:00
  * @FilePath: \newpark_native\src\views\publish\PublishView.tsx
  * @Description: 发布帖子页面
  */
@@ -15,8 +15,8 @@ import {
   useDisclose,
   useToast,
 } from 'native-base';
-import React, {Component} from 'react';
-import {Text, StyleSheet, View, Button} from 'react-native';
+import React, {Component, useState} from 'react';
+import {Text, StyleSheet, View, Button, Animated, TouchableOpacity} from 'react-native';
 import {loginOutApi} from '../../api/sys/lgoin';
 import Storage from '../../utils/AsyncStorageUtils';
 import {navigate} from '../../config/routs/NavigationContainer';
@@ -68,6 +68,7 @@ export default class PublishView extends Component {
     );
   }
 }
+
 
 const Example = () => {
   const {isOpen, onToggle} = useDisclose();

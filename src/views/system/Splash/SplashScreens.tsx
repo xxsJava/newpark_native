@@ -1,8 +1,8 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2023-11-02 18:45:55
- * @FilePath: \newpark_native\src\views\system\splash\SplashScreen.tsx
+ * @LastEditTime: 2023-11-07 10:53:05
+ * @FilePath: \newpark_native\src\views\system\Splash\SplashScreens.tsx
  * @Description: desc
  */
 import React, {useEffect, useState} from 'react';

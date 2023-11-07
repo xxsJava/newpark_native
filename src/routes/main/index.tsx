@@ -7,7 +7,7 @@
  */
 import React, { useEffect } from "react";
 import SplashScreen from 'react-native-splash-screen';
-import Splashs from "../../views/system/splash/SplashScreen";
+import Splashs from "../../views/system/Splash/SplashScreens";
 
 const index = () => {
   useEffect(() => {
