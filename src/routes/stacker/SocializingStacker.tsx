@@ -77,7 +77,7 @@ export default class SocializingStacker extends Component {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{flex: 1,backgroundColor:'#F5F5F5'}}>
+        <View style={{flex: 1,backgroundColor:'#F5F5F5',paddingBottom:20}}>
           <IndexBar />
         </View>
       </SafeAreaView>

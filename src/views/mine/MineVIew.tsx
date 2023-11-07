@@ -23,6 +23,7 @@ import {
   TextInput,
   SafeAreaView,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
@@ -106,147 +107,242 @@ const serviceData2 = [
     icon: require('../../assets/images/alimom/kf.png'),
   },
 ];
+const communitData=[{
+  index:1,
+  bg:require('../../assets/images/csBj.jpg'),
+  tx:require('../../assets/images/mcTx.jpg'),
+  title:'跑腿那些事',
+  personnel:'1.2w',
+  follow:'2.2w'
+},{
+  index:2,
+  bg:require('../../assets/images/yhBj.jpg'),
+  tx:require('../../assets/images/nvshengTx1.jpg'),
+  title:'学院表白墙',
+  personnel:'0.2w',
+  follow:'1.4w'
+},{
+  index:3,
+  bg:require('../../assets/images/csBg2.jpg'),
+  tx:require('../../assets/images/nanshengTx1.jpg'),
+  title:'旅游美拍',
+  personnel:'1.6w',
+  follow:'2.4w'
+},{
+  index:4,
+  bg:require('../../assets/images/fjBg2.jpg'),
+  tx:require('../../assets/images/katongTx1.jpg'),
+  title:'周边美食有哪些',
+  personnel:'3000',
+  follow:'4005'
+},{
+  index:5,
+  bg:require('../../assets/images/fjBg1.jpg'),
+  tx:require('../../assets/images/nvshengTx2.jpg'),
+  title:'英语每日打卡',
+  personnel:'500',
+  follow:'1000'
+}]
 
 export default class MineVIew extends Component {
   render() {
     return (
       <SafeAreaView style={styles.safeStyle}>
         <View style={styles.parentLevel}>
-          <View>
-            <View style={styles.bgBox}>
-              <Icon name="cog" size={30} color="white" style={styles.boxIcon} />
-              <View style={styles.boxnNav}>
-                <View style={styles.boxItem}>
-                  <Text>0</Text>
-                  <Text style={styles.navTabColor}>
-                    <Trans>mineNav.navTab1</Trans>
-                  </Text>
+          <ScrollView style={styles.scrollStyle} alwaysBounceVertical={true}>
+            <View>
+              <View style={styles.bgBox}>
+                <Icon
+                  name="cog"
+                  size={30}
+                  color="white"
+                  style={styles.boxIcon}
+                />
+                <View style={styles.boxnNav}>
+                  <View style={styles.boxItem}>
+                    <Text>0</Text>
+                    <Text style={styles.navTabColor}>
+                      <Trans>mineNav.navTab1</Trans>
+                    </Text>
+                  </View>
+                  <View style={styles.boxItem}>
+                    <Text>0</Text>
+                    <Text style={styles.navTabColor}>
+                      <Trans>mineNav.navTab2</Trans>
+                    </Text>
+                  </View>
+                  <View style={styles.boxItem}>
+                    <Text style={styles.navTab3}>
+                      <Trans>mineNav.navTab3</Trans>
+                    </Text>
+                  </View>
+                  <View style={styles.boxItem}>
+                    <Text>0</Text>
+                    <Text style={styles.navTabColor}>
+                      <Trans>mineNav.navTab4</Trans>
+                    </Text>
+                  </View>
+                  <View style={styles.boxItem}>
+                    <Text>0</Text>
+                    <Text style={styles.navTabColor}>
+                      <Trans>mineNav.navTab5</Trans>
+                    </Text>
+                  </View>
                 </View>
-                <View style={styles.boxItem}>
-                  <Text>0</Text>
-                  <Text style={styles.navTabColor}>
-                    <Trans>mineNav.navTab2</Trans>
-                  </Text>
-                </View>
-                <View style={styles.boxItem}>
-                  <Text style={styles.navTab3}>
-                    <Trans>mineNav.navTab3</Trans>
-                  </Text>
-                </View>
-                <View style={styles.boxItem}>
-                  <Text>0</Text>
-                  <Text style={styles.navTabColor}>
-                    <Trans>mineNav.navTab4</Trans>
-                  </Text>
-                </View>
-                <View style={styles.boxItem}>
-                  <Text>0</Text>
-                  <Text style={styles.navTabColor}>
-                    <Trans>mineNav.navTab5</Trans>
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.boxAvatarParent}>
-                <View style={styles.boxAvatar} />
-                <View style={styles.avatarView}>
-                  <Text style={styles.avatarnText}>
-                    <Trans>mineNav.navTab3</Trans>
-                    {/* <Icon name="gem" /> */}
-                  </Text>
-                  <Image
-                    style={styles.avatarnImage}
-                    source={require('../../assets/images/alimom/V1.png')}
-                  />
-                </View>
-                <View style={styles.uidFrame}>
-                  <View style={styles.uidBg}>
-                    <LinearGradinet
-                      colors={[
-                        'rgba(247, 27, 147,0.90)',
-                        'rgba(247, 27, 147,0.20)',
-                      ]}
-                      start={{x: 0, y: 0}}
-                      end={{x: 1, y: 0}}
-                      style={styles.uidBgJb}>
-                      <Text style={styles.uidText}>UID:099624</Text>
-                    </LinearGradinet>
+                <View style={styles.boxAvatarParent}>
+                  <View style={styles.boxAvatar} />
+                  <View style={styles.avatarView}>
+                    <Text style={styles.avatarnText}>
+                      <Trans>mineNav.navTab3</Trans>
+                      {/* <Icon name="gem" /> */}
+                    </Text>
+                    <Image
+                      style={styles.avatarnImage}
+                      source={require('../../assets/images/alimom/V1.png')}
+                    />
+                  </View>
+                  <View style={styles.uidFrame}>
+                    <View style={styles.uidBg}>
+                      <LinearGradinet
+                        colors={[
+                          'rgba(247, 27, 147,0.90)',
+                          'rgba(247, 27, 147,0.20)',
+                        ]}
+                        start={{x: 0, y: 0}}
+                        end={{x: 1, y: 0}}
+                        style={styles.uidBgJb}>
+                        <Text style={styles.uidText}>UID:099624</Text>
+                      </LinearGradinet>
+                    </View>
                   </View>
                 </View>
               </View>
             </View>
-          </View>
-          <View style={styles.orderCard}>
-            <View style={styles.orderTop}>
-              <View style={styles.titleFlex}>
-                <Text style={styles.titleText1}>
-                  <Trans>minOrder.orderName</Trans>
-                </Text>
+            <View style={styles.communityCard}>
+              <View style={styles.orderTop}>
+                <View style={styles.titleFlex}>
+                  <Text style={styles.titleText1}>
+                    <Trans>minCommunity.communityName</Trans>
+                  </Text>
+                </View>
+                <View style={styles.titleFlex}>
+                  <Text style={styles.titleText2}>
+                    <Trans>minCommunity.communityMore</Trans>
+                    <Feather name="chevron-right" size={18} color="#dbdbdb" />
+                  </Text>
+                </View>
               </View>
-              <View style={styles.titleFlex}>
-                <Text style={styles.titleText2}>
-                  <Trans>minOrder.orderMore</Trans>
-                  <Feather name="chevron-right" size={18} color="#dbdbdb" />
-                </Text>
+              <View style={styles.communitList}>
+                <ScrollView horizontal={true} style={styles.communitScroll}>
+                  {communitData.map(item =>{
+                    return(
+                      <View style={styles.communitItem} key={item.index}>
+                        <View style={styles.communitItemTop}>
+                          <Image
+                            style={styles.communitImage}
+                            blurRadius={7}
+                            source={item.bg}
+                          />
+                        </View>
+                        <View style={styles.communitItemBottom}>
+                          <View style={styles.communitItemTitle}>
+                            <Text style={styles.communitTitleText}>{item.title}</Text>
+                          </View>
+                          <View style={styles.communitItemTextView}>
+                            <Text style={styles.communitText}>{item.personnel}成员</Text>
+                            <Text>·</Text>
+                            <Text style={styles.communitText}>{item.follow}关注</Text>
+                          </View>
+                        </View>
+                        <View style={styles.communitAvatar}>
+                          <Image style={styles.communitAvatarImage} source={item.tx}></Image>
+                        </View>
+                      </View>
+                    )
+                  })}
+                </ScrollView>
+              </View>
+              <View />
+            </View>
+            <View style={styles.orderCard}>
+              <View style={styles.orderTop}>
+                <View style={styles.titleFlex}>
+                  <Text style={styles.titleText1}>
+                    <Trans>minOrder.orderName</Trans>
+                  </Text>
+                </View>
+                <View style={styles.titleFlex}>
+                  <Text style={styles.titleText2}>
+                    <Trans>minOrder.orderMore</Trans>
+                    <Feather name="chevron-right" size={18} color="#dbdbdb" />
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.orderList}>
+                {orderData.map(item => {
+                  return (
+                    <View style={styles.orderItem} key={item.index}>
+                      <TouchableOpacity
+                        onPress={() => navigate(item.route)}
+                        style={styles.orderRoute}>
+                        <Image style={styles.itemImage} source={item.icon} />
+                        <Text style={styles.itemText}>
+                          <Trans>{item.text}</Trans>
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })}
               </View>
             </View>
-            <View style={styles.orderList}>
-              {orderData.map(item => {
-                return (
-                  <View style={styles.orderItem} key={item.index}>
-                    <TouchableOpacity onPress={() => navigate(item.route)} style={styles.orderRoute}>
-                      <Image style={styles.itemImage} source={item.icon} />
-                      <Text style={styles.itemText}>
-                        <Trans>{item.text}</Trans>
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-          <View style={styles.serviceCard}>
-            <View style={styles.orderTop}>
-              <View style={styles.titleFlex}>
-                <Text style={styles.titleText1}>
-                  <Trans>minService.serviceName</Trans>
-                </Text>
+            <View style={styles.serviceCard}>
+              <View style={styles.orderTop}>
+                <View style={styles.titleFlex}>
+                  <Text style={styles.titleText1}>
+                    <Trans>minService.serviceName</Trans>
+                  </Text>
+                </View>
+                <View style={styles.titleFlex}>
+                  <Text style={styles.titleText2}>
+                    <Trans>minService.serviceMore</Trans>
+                    <Feather name="chevron-right" size={18} color="#dbdbdb" />
+                  </Text>
+                </View>
               </View>
-              <View style={styles.titleFlex}>
-                <Text style={styles.titleText2}>
-                  <Trans>minService.serviceMore</Trans>
-                  <Feather name="chevron-right" size={18} color="#dbdbdb" />
-                </Text>
+              <View style={styles.orderList}>
+                {serviceData1.map(item => {
+                  return (
+                    <View style={styles.orderItem} key={item.index}>
+                      <TouchableOpacity
+                        onPress={() => navigate(item.route)}
+                        style={styles.orderRoute}>
+                        <Image style={styles.itemImages} source={item.icon} />
+                        <Text style={styles.serviceText}>
+                          <Trans>{item.text}</Trans>
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })}
+              </View>
+              <View style={styles.orderList}>
+                {serviceData2.map(item => {
+                  return (
+                    <View style={styles.orderItem} key={item.index}>
+                      <TouchableOpacity
+                        onPress={() => navigate(item.route)}
+                        style={styles.orderRoute}>
+                        <Image style={styles.itemImages} source={item.icon} />
+                        <Text style={styles.serviceText}>
+                          <Trans>{item.text}</Trans>
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })}
               </View>
             </View>
-            <View style={styles.orderList}>
-              {serviceData1.map(item => {
-                return (
-                  <View style={styles.orderItem} key={item.index}>
-                    <TouchableOpacity onPress={() => navigate(item.route)} style={styles.orderRoute}>
-                      <Image style={styles.itemImages} source={item.icon} />
-                      <Text style={styles.serviceText}>
-                        <Trans>{item.text}</Trans>
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                );
-              })}
-            </View>
-            <View style={styles.orderList}>
-              {serviceData2.map(item => {
-                return (
-                  <View style={styles.orderItem} key={item.index}>
-                    <TouchableOpacity onPress={() => navigate(item.route)} style={styles.orderRoute}>
-                      <Image style={styles.itemImages} source={item.icon} />
-                      <Text style={styles.serviceText}>
-                        <Trans>{item.text}</Trans>
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
+          </ScrollView>
         </View>
       </SafeAreaView>
     );
@@ -255,12 +351,23 @@ export default class MineVIew extends Component {
 
 const styles = StyleSheet.create({
   safeStyle: {
-    height: 50,
+    height: windowHeight,
     backgroundColor: '#F8B032',
+    ...Platform.select({
+      ios: {
+        height: 180,
+      },
+    }),
   },
   parentLevel: {
     width: windowWidth,
-    height: windowHeight,
+    height: windowHeight - 30,
+  },
+  scrollStyle: {
+    width: windowWidth,
+    height: windowHeight - 180,
+    backgroundColor: '#f2f2f2',
+    flex: 1,
   },
   bgBox: {
     width: windowWidth,
@@ -376,7 +483,7 @@ const styles = StyleSheet.create({
   orderCard: {
     width: windowWidth - 24,
     height: 140,
-    marginTop: 65,
+    marginTop: 25,
     marginHorizontal: 12,
     borderRadius: 14,
     backgroundColor: '#FFFFFF',
@@ -416,8 +523,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  orderRoute:{
-    alignItems:'center'
+  orderRoute: {
+    alignItems: 'center',
   },
   itemText: {
     paddingTop: 15,
@@ -433,6 +540,7 @@ const styles = StyleSheet.create({
     height: 225,
     marginTop: 25,
     marginHorizontal: 12,
+    marginBottom:40,
     borderRadius: 14,
     backgroundColor: '#FFFFFF',
   },
@@ -445,4 +553,95 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  communityCard: {
+    width: windowWidth - 24,
+    height: 200,
+    marginTop: 65,
+    marginHorizontal: 12,
+    borderRadius: 14,
+    backgroundColor: '#FFF',
+  },
+  communitList: {
+    width: windowWidth - 24,
+    height:150, 
+    paddingHorizontal: 10,
+  },
+  communitScroll:{
+    flex:1
+  },
+  communitItem: {
+    width: 130,
+    height: 130,
+    borderRadius: 12,
+    backgroundColor: '#FFF',
+    position:'relative',
+    marginHorizontal:5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#DDD', //设置阴影色
+        shadowOffset: {width: 0, height: 3}, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
+        shadowOpacity: 1,
+        shadowRadius: 4, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
+      },
+      android: {
+        elevation: 7,
+      },
+    }),
+  },
+  communitItemTop: {
+    width: 130,
+    height: 65,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor:'#000'
+  },
+  communitItemBottom: {
+    width: 130,
+    height: 65,
+    paddingHorizontal:12,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+  },
+  communitImage: {
+    width: 130,
+    height: 65,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+  },
+  communitItemTitle: {
+    height:30,
+    marginTop:5
+  },
+  communitTitleText:{
+    fontSize:14,
+    color:'#000',
+    fontWeight:'600',
+    lineHeight:45
+  },
+  communitItemTextView: {
+    marginTop:7,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  communitText:{
+    fontSize:10,
+    color:'#000'
+  },
+  communitAvatar:{
+    width:46,
+    height:46,
+    borderRadius:23,
+    position:'absolute',
+    borderColor:'#FFF',
+    borderWidth:0.7,
+    top:32,
+    left:16
+  },
+  communitAvatarImage:{
+    width:45,
+    height:45,
+    borderRadius:22.5,
+  }
 });
