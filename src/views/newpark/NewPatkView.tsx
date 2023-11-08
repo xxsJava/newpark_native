@@ -5,7 +5,7 @@
  * @FilePath: \newpark_native\src\views\newpark\NewPatkView.tsx
  * @Description: desc
  */
-import React, {Component} from 'react';
+import React, {Component,useState} from 'react';
 import {
   Dimensions,
   Text,
@@ -125,6 +125,7 @@ const glideData=[{
 //   );
 // };
 
+
 export default class NewPatkView extends Component {
   tabClick(porps: string) {
     tabVal = porps;
@@ -132,6 +133,11 @@ export default class NewPatkView extends Component {
   }
 
   render() {
+    // const [tabVal, setTab] = useState('1');
+    // const handleTabPress = (tab: string) => {
+    //   console.log('Tab状态' + tab);
+    //   setTab(tab);
+    // };
     return (
       <SafeAreaView style={styles.safeStyle}>
         <View style={styles.headView}>

@@ -135,7 +135,7 @@ export default {
   FeedbackRoute: {
     component: FeedbackView,
     options: {
-      title: '我的订单',
+      title: '意见反馈',
     },
   },
   SearchView: {
