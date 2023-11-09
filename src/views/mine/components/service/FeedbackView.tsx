@@ -16,7 +16,7 @@ const Photo = () => {
             selectionLimit: 0,// 1为一张，0不限制数量
             includeBase64: true
         }, res => {
-            return setImgs(res.assets);
+            console.log('上传图片')
         })
     }
     return (
@@ -25,33 +25,12 @@ const Photo = () => {
             <TouchableHighlight style={styles.photoView} underlayColor="#ddd" onPress={() => addPhoto()}>
                 <Image style={styles.photoImage} source={require('../../../../assets/images/chat_page_photo.png')}></Image>
             </TouchableHighlight>
-            {
-                imgs.map((item, index) => {
-                    return (
-                        <View key={index}>
-                            <Image style={{ width: 50, height: 50 }} source={{ uri: item.uri }}></Image>
-                        </View>
-                    )
-                })
-            }
         </View>
     );
 }
 
 export default class FeedbackView extends Component {
     render () {
-
-        // const [imgs, setImgs] = useState<any[]>([]);
-        // const addPhoto = () => {
-        // launchImageLibrary({
-        //     mediaType: "photo", // 'photo' or 'video' or 'mixed'
-        //     selectionLimit: 0,// 1为一张，0不限制数量
-        //     includeBase64: true
-        // }, res => {
-        //     console.log(res)
-        // })
-        // }
-
         return (
             <View style={styles.parentLevel}>
                 <View style={styles.titleView}>
