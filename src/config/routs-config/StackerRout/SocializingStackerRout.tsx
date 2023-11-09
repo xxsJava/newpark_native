@@ -12,6 +12,7 @@ export default {
     component: SocializingView,
     options: {
       title: '消息',
+      headerShown: false,
       headerStyle: {
         backgroundColor: '#FFFFFF',
       },
