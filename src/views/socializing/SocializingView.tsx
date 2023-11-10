@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import {navigate} from '../../config/routs/NavigationContainer';
 import MessageModule from './components/MessageModule'
+import ContactsModul from './components/ContactsModul'
 
 const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;
@@ -79,7 +80,7 @@ const SocializingView = () => {
           <MessageModule></MessageModule>
         </View>
         <View style={tabVal === 'tab2'?styles.tabContent:styles.tabContentShow}>
-          <Text>222</Text>
+          <ContactsModul></ContactsModul>
         </View>
       </SafeAreaView>
   )

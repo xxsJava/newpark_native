@@ -140,7 +140,9 @@ export default {
   },
   SearchView: {
     component: SearchView,
-    options: {},
+    options: {
+      headerShown: false,
+    },
   },
   ForgetPass: {
     component: ForgetPass,
