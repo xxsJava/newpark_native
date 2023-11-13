@@ -14,8 +14,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  TextInput
 } from 'react-native';
 import {Appbar, Icon} from 'react-native-paper';
+
 const HomeNav = () => {
   const [activeTab, setActiveTab] = useState(true);
 
@@ -32,6 +34,8 @@ const HomeNav = () => {
     }
     setActiveTab(tab);
   };
+
+  const [inputValue,onChangeText] = React.useState('请输入需要搜索的/帖子/UID/群聊/商品');
 
   return (
     <Appbar.Header>
@@ -59,9 +63,15 @@ const HomeNav = () => {
       </View>
 
       <View style={styles.searchNav}>
-        <Text style={styles.searchText}>
-          请输入需要搜索的/帖子/UID/群聊/商品
-        </Text>
+        <Image
+          style={styles.searchNavImg}
+          source={require('../../assets/images/search.png')}
+        />
+        <TextInput
+          style={styles.searchNavInput}
+          onChangeText={text => onChangeText(text)}
+          value={inputValue}
+        />
       </View>
 
       <TouchableOpacity
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   navWiidtha: {
-    width: Dimensions.get('window').width * 0.2,
+    width: Dimensions.get('window').width * 0.17,
   },
   schoolTypeNava: {
     width: 35,
@@ -110,14 +120,29 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
   searchNav: {
-    width: Dimensions.get('window').width * 0.65,
-    height: 35,
+    width: Dimensions.get('window').width * 0.7,
+    height: 40,
+    // backgroundColor: '#F5F5F5',
+    borderRadius: 20,
+    position: 'relative',
+    zIndex: -10,
+  },
+  searchNavImg:{
+    top: 11,
+    left: 15,
+    position: 'absolute',
+    zIndex: 10,
+  },
+  searchNavInput:{
+    width: Dimensions.get('window').width * 0.7,
+    height: 40,
+    borderWidth: 0,
+    color: '#888',
     backgroundColor: '#F5F5F5',
     borderRadius: 20,
-  },
-  searchText: {
-    lineHeight: 35,
-    paddingLeft: 20,
+    textAlign: 'center',
+    fontSize:12,
+    paddingVertical:0
   },
   chekedScoll: {
     backgroundColor: '#FABA3C',
@@ -126,7 +151,7 @@ const styles = StyleSheet.create({
   tinyLogo: {
     width: 28,
     height: 28,
-    marginLeft: 15,
+    marginLeft: 12,
   },
 });
 

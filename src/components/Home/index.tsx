@@ -12,6 +12,8 @@ import {View, StyleSheet, SafeAreaView, TouchableOpacity} from 'react-native';
 import SortTabNav from './SortType';
 import {LsitRecommend} from './Lists';
 import StylesALL from '../../styles';
+import ColumnType from './ColumnType'
+
 
 //菜单组件数据
 const menusData = [
@@ -29,29 +31,7 @@ const menusData = [
 
 const HomeComponents = () => (
   <>
-    <View style={styles.styleAll}>
-      <TouchableOpacity
-        style={[styles.wd, styles.back]}
-        onPress={() => {
-          console.log('点击了快来帮忙');
-        }}>
-        <View>
-          <MenusComponents props={menusData[0]} />
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.wd, styles.back1]}
-        onPress={() => {
-          console.log('点击了快快来买');
-        }}>
-        <View>
-          <MenusComponents props={menusData[1]} />
-        </View>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.menuTabNav}>
-      <SortTabNav />
-    </View>
+    <ColumnType></ColumnType>
     <View style={styles.postsList}>
       <LsitRecommend />
     </View>
@@ -91,9 +71,9 @@ const styles = StyleSheet.create({
   },
   postsList: {
     flex: 1,
-    width: '96%',
-    marginLeft: '2%',
-    marginTop: '2%',
+    width: '98%',
+    marginLeft: '1%',
+    marginTop: '1%',
     borderRadius: 5,
   },
 });

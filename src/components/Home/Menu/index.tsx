@@ -14,10 +14,10 @@ const MenusComponents = (params?: any) => {
   return (
     <View style={[styles.pucs]}>
       <View>
-        <Text style={StylesALL.FONT_STY}>
+        <Text style={styles.titleStyle}>
           <Trans>{params.props.title}</Trans>
         </Text>
-        <Text style={[StylesALL.FONT_STY, styles.fontSty]}>
+        <Text style={styles.textStyle}>
           <Trans>{params.props.desc}</Trans>
         </Text>
       </View>
@@ -40,20 +40,32 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginTop: 20,
     marginLeft: 10,
+    paddingHorizontal:5
   },
   fontSty: {
     fontSize: 10,
   },
   imgSty: {
-    width: 41,
+    width: 51,
     height: 51,
     position: 'absolute',
-    right: 10,
+    top:11,
+    right: 15,
   },
   imageSize: {
-    width: 41,
-    height: 41,
+    width: 51,
+    height: 51,
   },
+  titleStyle:{
+    fontSize:20,
+    color:'#FFF',
+    marginTop:5
+  },
+  textStyle:{
+    fontSize:12,
+    color:'#FFF',
+    marginTop:5
+  }
 });
 
 export default MenusComponents;
