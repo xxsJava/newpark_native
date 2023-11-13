@@ -85,6 +85,7 @@ const typeData=[{
 
 const ForgetPass: React.FC = () => {
   let [service, setService] = React.useState('');
+  const [inputValue, onChangeText] = React.useState('搜索您感兴趣的/社区/帖子/UID');
   return (
     <SafeAreaView style={styles.safeStyle}>
       <View style={styles.searchBar}>
@@ -101,7 +102,8 @@ const ForgetPass: React.FC = () => {
             />
             <TextInput
               style={styles.inputStyle}
-              value={'搜索您感兴趣的/社区/帖子/UID'}
+              onChangeText={text => onChangeText(text)}
+              value={inputValue}
             />
           </View>
         </View>

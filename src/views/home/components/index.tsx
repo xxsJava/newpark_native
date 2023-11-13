@@ -5,12 +5,15 @@
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
+import React, { useState } from 'react';
 import {Avatar, Button, Card, IconButton, Text} from 'react-native-paper';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import {StyleSheet, TouchableOpacity, View,Image,TextInput,Platform,} from 'react-native';
 
 //普通帖子组件
 export const postsOrdinary = (item: any, index: any, separators: any) => {
+
+  // const [inputValue, onChangeText] = useState('喜欢就告诉她');
+
   return (
     <View>
       <Card style={styles.cardSty}>
@@ -18,12 +21,16 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           title={item.title}
           subtitle={item.desc}
           left={props => (
-            <Avatar.Image
+            <View style={styles.titleLeft}>
+              <Avatar.Image
               {...props}
               style={styles.avaSty}
-              size={36}
+              size={44}
               source={require('../../../assets/images/3.0x/defaultheader.png')}
-            />
+              />
+              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
+            </View>
+      
           )}
           right={props => (
             <IconButton
@@ -41,20 +48,60 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           }}
           style={styles.backColor}
         />
-        {/* <TouchableHighlight
-          onPress={() => console.log('点击了')}
-          onShowUnderlay={separators.highlight}
-          onHideUnderlay={separators.unhighlight}> */}
         <Card.Content style={styles.backColor}>
-          <Text style={styles.context}>世界有万般兵刃！！！</Text>
-          <Text style={styles.context}>唯有情伤人最深！！！</Text>
+          <Text style={styles.context}>{item.text}</Text>
         </Card.Content>
         <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} />
         <Card.Content style={styles.backColor}>
-          <Text style={styles.context}>#情感#个人#官方#颜值#语录</Text>
+          {/* <Text style={styles.context}>#情感#个人#官方#颜值#语录</Text> */}
+          <View style={styles.labelList}>
+            <View style={styles.labelStyle}>
+              <View style={styles.labelIcon}>
+                <Text style={styles.labelIconText}>#</Text>
+              </View>
+              <Text style={styles.labelText}>仙境</Text>
+            </View>
+          </View>
         </Card.Content>
+        <View style={styles.interactionStyle}>
+          <View style={styles.interactionLeft}>
+          <TouchableOpacity
+              onPress={() => {
+                console.log('转发');
+              }}>
+              <Button
+                icon={require('../../../assets/images/share-icon.png')}
+                style={styles.buttonDz}>
+                    200
+              </Button>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.interactionRight}>
+            <TouchableOpacity
+              onPress={() => {
+                console.log('点赞');
+              }}>
+              <Button
+                icon={require('../../../assets/images/3.0x/like.png')}
+                style={styles.buttonDz}>
+                    2.0w
+              </Button>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                console.log('评论');
+              }}>
+              <Button
+                icon={require('../../../assets/images/3.0x/tabs_3_on.png')}
+                // style={StylesALL.BGCOLOR}
+              >
+                3.0w
+              </Button>
+            </TouchableOpacity>
+          </View>
+        </View>
         {/* </TouchableHighlight> */}
-        <Card.Actions>
+        {/* <Card.Actions>
           <TouchableOpacity
             onPress={() => {
               console.log('点赞');
@@ -76,7 +123,35 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
               2000
             </Button>
           </TouchableOpacity>
-        </Card.Actions>
+        </Card.Actions> */}
+        <View style={styles.commentAreaView}>
+          <Text style={styles.commentAreaTitle}>精选评论</Text>
+          <View style={styles.commentArea}>
+            <View style={styles.commentAreaItem}>
+              <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
+              <View style={styles.commentAreaName}>
+                <Text style={styles.commentAreaNameLeft}>小学牛：</Text>
+                <Text style={styles.commentAreaNameRight}>打卡留影</Text>
+              </View>
+              <TouchableOpacity
+                style={styles.commentAreaIcon}
+                onPress={() => {
+                  console.log('评论');
+                }}>
+                <Button
+                  icon={require('../../../assets/images/3.0x/like.png')}
+                  // style={StylesALL.BGCOLOR}
+                >
+                  4000
+                </Button>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        <View style={styles.leaveWordView}>
+          <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
+          <TextInput value={'喜欢就告诉她'} style={styles.leaveWordInput}></TextInput>
+        </View>
       </Card>
     </View>
   );
@@ -86,14 +161,33 @@ const styles = StyleSheet.create({
   backColor: {
     shadowOpacity: 0,
   },
-  cardSty: {marginBottom: 10, backgroundColor: '#FFF'},
+  cardSty: {
+    marginBottom: -3, 
+    backgroundColor: '#FFF',
+    paddingTop:8,
+    borderRadius:0
+  },
+  cardRadius:{
+    borderRadius:8
+  },
   subSty: {
     fontSize: 10,
     color: '#999',
   },
+  titleLeft:{
+    position:'relative',
+    left:-8,
+  },
   avaSty: {
-    position: 'absolute',
     bottom: 12,
+  },
+  avatarIcon:{
+    width:20,
+    height:20,
+    position:'absolute',
+    top:14,
+    left:24,
+    zIndex:10
   },
   rightSty: {position: 'relative', bottom: 15, right: 10},
   titleSty: {
@@ -103,13 +197,125 @@ const styles = StyleSheet.create({
   },
   buttonDz: {borderWidth: 0},
   context: {
-    fontSize: 16,
+    fontSize: 15,
     // fontWeight: 'bold',
-    color: '#6A1B9A',
+    // color: '#6A1B9A',
+    color:'#000'
   },
   contentImg:{
     paddingLeft: '3%',
     paddingRight: '3%',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    borderRadius:0,
+    marginTop:5,
+    marginBottom:10
+  },
+  labelList:{
+    flexDirection:'row',
+    justifyContent:'flex-start'
+  },
+  labelStyle:{
+    width:'auto',
+    height:24,
+    paddingHorizontal:10,
+    backgroundColor:'#efebfa',
+    borderRadius:12,
+    marginRight:3,
+    flexDirection:'row',
+    justifyContent:'flex-start'
+  },
+  labelIcon:{
+    width:18,
+    height:17,
+    backgroundColor:'#7c52d0',
+    borderRadius:9,
+    marginTop:3.5,
+    marginRight:5
+  },
+  labelIconText:{
+    width:18,
+    height:17,
+    fontSize:15,
+    color:'#FFF',
+    textAlign:'center',
+    lineHeight:17,
+  },
+  labelText:{
+    lineHeight:24
+  },
+  interactionStyle:{
+    width:'100%',
+    flexDirection:'row',
+    justifyContent:'space-between'
+  },
+  interactionLeft:{
+    flex:1,
+    alignItems:'flex-start'
+  },
+  interactionRight:{
+    flex:1,
+    flexDirection:'row',
+    justifyContent:'flex-end'
+  },
+  commentAreaView:{
+    width:'100%',
+    marginTop:5,
+    marginBottom:10,
+    paddingHorizontal:10
+  },
+  commentAreaTitle:{
+    fontSize:16,
+    marginBottom:10,
+    color:'#d9d9d9'
+  },
+  commentArea:{
+    paddingHorizontal:10
+  },
+  commentAreaItem:{
+    flexDirection:'row',
+    justifyContent:'flex-start'
+  },
+  commentAreaName:{
+    width:'70%',
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    paddingLeft:10
+  },
+  commentAreaIcon:{
+    width:'30%'
+  },
+  commentAreaNameLeft:{
+    fontSize:15,
+    fontWeight:'600',
+    color:'#000',
+    lineHeight:32
+  },
+  commentAreaNameRight:{
+    fontSize:14,
+    color:'#000',
+    lineHeight:32
+  },
+  leaveWordView:{
+    width:'100%',
+    height:40,
+    paddingHorizontal:20,
+    marginBottom:10,
+    flexDirection:'row',
+    justifyContent:'flex-start'
+  },
+  leaveWordInput:{
+    width:'80%',
+    height:34,
+    borderRadius:20,
+    borderWidth:0,
+    marginLeft:20,
+    paddingHorizontal:20,
+    color:'#999a9a',
+    backgroundColor:'#f4f8f7',
+    ...Platform.select({
+      android:{
+        paddingVertical:0
+      }
+    })
   }
 });
