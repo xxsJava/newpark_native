@@ -17,6 +17,9 @@ export default class WalletView extends Component {
     render () {
         return (
             <SafeAreaView style={styles.topLabel}>
+                <View style={styles.navigationBarView}>
+                    <Text style={styles.navigationBarText}>返回</Text>
+                </View>
                 <View style={styles.walletView}>
                     <View style={styles.titleView}>
                         <Text style={styles.titleStyle}>我的钱包</Text>
@@ -65,9 +68,18 @@ const styles = StyleSheet.create({
     height:40,
     backgroundColor:'#FFF'
   },
+  navigationBarView:{
+    width:windowWidth,
+    height:40
+  },
+  navigationBarText:{
+    fontSize:16,
+    lineHeight:40,
+    paddingLeft:20
+  },
   walletView:{
     width:windowWidth,
-    height:260,
+    height:280,
     backgroundColor:'#FFF'
   },
   titleView:{

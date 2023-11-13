@@ -23,7 +23,7 @@ import MyPostView from '../../../views/mine/components/service/MyPostView';
 import WalletView from '../../../views/mine/components/service/WalletView';
 import CollectionView from '../../../views/mine/components/service/CollectionView';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
-import SearchView from '../../../routes/stacker/SearchView';
+import SearchView from '../../../views/socializing/components/SearchView';
 import ForgetPass from '../../../views/login/components/ForgetPass';
 /*
  * @Author: xxs
@@ -135,12 +135,14 @@ export default {
   FeedbackRoute: {
     component: FeedbackView,
     options: {
-      title: '我的订单',
+      title: '意见反馈',
     },
   },
   SearchView: {
     component: SearchView,
-    options: {},
+    options: {
+      headerShown: false,
+    },
   },
   ForgetPass: {
     component: ForgetPass,
