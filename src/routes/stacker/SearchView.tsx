@@ -1,7 +1,5 @@
-import React, {Component} from 'react';
-import { View,Dimensions, StyleSheet, SafeAreaView } from 'react-native';
-import { Text } from 'react-native-animatable';
-import IndexBar from './IndexBarView'
+import React from 'react';
+import { View } from 'react-native';
 import MyComponent from '../../views/login/components/ForgetPass/listIndex';
 
 const ForgetPass: React.FC = () => {
