@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-05 12:52:53
- * @LastEditTime: 2023-11-02 18:53:36
+ * @LastEditTime: 2023-11-13 15:33:14
  * @FilePath: \newpark_native\src\routes\main\index.tsx
  * @Description: 启动屏幕
  */

@@ -8,7 +8,7 @@
 /**
  * @format
  */
-import './src/config/runConrig'
+import './src/config/run-conrig'
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
