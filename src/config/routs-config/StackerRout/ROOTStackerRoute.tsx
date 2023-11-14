@@ -25,6 +25,7 @@ import CollectionView from '../../../views/mine/components/service/CollectionVie
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
 import SearchView from '../../../views/socializing/components/SearchView';
 import ForgetPass from '../../../views/login/components/ForgetPass';
+import CheckView from '../../../views/socializing/check/index'
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -150,4 +151,11 @@ export default {
       title: '忘记密码',
     },
   },
+  CheckRoute: {
+    component:CheckView,
+    options:{
+      title:'消息聊天',
+      headerShown: false,
+    }
+  }
 };

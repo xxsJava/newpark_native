@@ -8,13 +8,9 @@ import {
   StyleSheet,
   SectionList,
   TouchableOpacity,
-  PanResponder,
   PanResponderInstance,
-  PixelRatio,
 } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import LinearGradinet from 'react-native-linear-gradient';
-import {color} from 'native-base/lib/typescript/theme/styled-system';
+import {navigate} from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -59,7 +55,8 @@ const ListIndex: React.FC = () => {
   );
 
   const renderItem = ({item}: {item: DataItem}) => (
-    <View
+    <TouchableOpacity
+      onPress={() => navigate('CheckRoute')}
       style={[
         styles.listItem,
         {
@@ -76,24 +73,9 @@ const ListIndex: React.FC = () => {
       </View>
       <View style={styles.itemRight}>
         <Text style={styles.itemName}>{item.name}</Text>
-        <View style={styles.itemLabelStyle}>
-          {/* <LinearGradinet
-            colors={
-              item.lableType === 1
-                ? ['rgba(233,231,255,0.9)', 'rgba(233,231,255,0)']
-                : ['rgba(251,199,99,0.9)', 'rgba(251,199,99,0)']
-            }
-            start={{x: 0, y: 0}}
-            end={item.lableType === 1 ? {x: 0, y: 1} : {x: 1, y: 0}}
-            style={styles.itemLabelBg}>
-            {item.icon && (
-              <Feather size={14} name="user" style={styles.labelIcon} />
-            )}
-            <Text style={styles.labelText}>{item.labelText}</Text>
-          </LinearGradinet> */}
-        </View>
+        <View style={styles.itemLabelStyle} />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   const renderSectionHeader = ({section}: {section: DataSection}) => (

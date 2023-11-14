@@ -15,6 +15,7 @@ import {
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradinet from 'react-native-linear-gradient';
 import {color} from 'native-base/lib/typescript/theme/styled-system';
+import {navigate} from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -59,7 +60,8 @@ const ListIndex: React.FC = () => {
   );
 
   const renderItem = ({item}: {item: DataItem}) => (
-    <View
+    <TouchableOpacity
+      onPress={() => navigate('CheckRoute')}
       style={[
         styles.listItem,
         {
@@ -93,7 +95,7 @@ const ListIndex: React.FC = () => {
           </LinearGradinet>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   const renderSectionHeader = ({section}: {section: DataSection}) => (
