@@ -26,6 +26,7 @@ import AddressManagementView from '../../../views/mine/components/service/Addres
 import SearchView from '../../../views/socializing/components/SearchView';
 import ForgetPass from '../../../views/login/components/ForgetPass';
 import CheckView from '../../../views/socializing/check/index'
+import ProductView from '../../../views/home/commodity/index'
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -155,6 +156,13 @@ export default {
     component:CheckView,
     options:{
       title:'消息聊天',
+      headerShown: false,
+    }
+  },
+  ProductRoute:{
+    component:ProductView,
+    options:{
+      title:'快快来买',
       headerShown: false,
     }
   }
