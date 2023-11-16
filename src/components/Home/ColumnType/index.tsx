@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import {Text} from 'react-native-animatable';
 import MenusComponents from '../Menu';
+import {navigate} from '../../../config/routs/NavigationContainer';
 // import { Image } from 'react-native-paper/lib/typescript/components/Avatar/Avatar';
 
 const windowWidth = Dimensions.get('window').width;
@@ -79,7 +80,7 @@ const ColumnType = () => {
         <TouchableOpacity
           style={[styles.wd, styles.back]}
           onPress={() => {
-            console.log('点击了快来帮忙');
+            console.log('点击了快来帮忙 ');
           }}>
           <View>
             <MenusComponents props={menusData[0]} />
@@ -87,9 +88,7 @@ const ColumnType = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.wd, styles.back1]}
-          onPress={() => {
-            console.log('点击了快快来买');
-          }}>
+          onPress={() => navigate('ProductRoute')}>
           <View>
             <MenusComponents props={menusData[1]} />
           </View>
