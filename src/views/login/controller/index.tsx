@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-11-07 10:30:52
- * @LastEditTime: 2023-11-07 14:15:42
+ * @LastEditTime: 2023-11-14 09:31:56
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
  * @Description: desc
  */
@@ -24,7 +24,7 @@ console.log('进入登录控制器');
 
 const Stack = createNativeStackNavigator();
 
-let isLoginFlag = true;
+let isLoginFlag = false;
 //验证登录直接放行
 const loginVal = async () => {
   

@@ -11,6 +11,10 @@ buildscript {
         ndkVersion = "23.1.7779620"
     }
     repositories {
+        maven { url 'https://plugins.gradle.org/m2/' }
+//        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+//        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter'}
         google()
         mavenCentral()
     }

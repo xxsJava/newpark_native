@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-09 11:26:21
- * @LastEditTime: 2023-11-12 20:18:00
+ * @LastEditTime: 2023-11-13 18:37:45
  * @FilePath: \newpark_native\src\config\axios\config.ts
  * @Description: desc
  */
@@ -21,7 +21,7 @@ const config: {
    */
   base_url: {
     // 开发环境接口前缀
-    base: 'http://192.168.168.230:50000/',
+    base: 'http://192.168.2.232:50000/',
 
     // 打包开发环境接口前缀
     dev: 'http://192.168.13.1:60001/',
