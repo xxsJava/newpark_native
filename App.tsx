@@ -15,6 +15,8 @@ import APPNewPark from './src/routes/main';
 import {NativeBaseProvider} from 'native-base';
 import {navigationRefs} from './src/config/routs/NavigationContainer';
 import {CounterProvider} from './src/hooks/state';
+import Registered from './src/views/login/components/Registered';
+import SchoolIndex from './src/views/login/components/SchoolIndex'
 
 export default function App(): JSX.Element {
   console.log('开始加载APP');
@@ -24,6 +26,8 @@ export default function App(): JSX.Element {
       <NativeBaseProvider>
         <CounterProvider>
             <APPNewPark />
+            {/* <Registered/> */}
+            {/* <SchoolIndex></SchoolIndex> */}
         </CounterProvider>
       </NativeBaseProvider>
     </NavigationContainer>

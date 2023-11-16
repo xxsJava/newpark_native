@@ -238,6 +238,7 @@ const styles = StyleSheet.create({
   commodityItem: {
     width: '50%',
     height: 320,
+    marginBottom:15,
     paddingHorizontal: '4%',
   },
   commodityImage: {
@@ -278,7 +279,7 @@ const styles = StyleSheet.create({
     lineHeight: 50,
   },
   publisherView: {
-    marginTop: 10,
+    marginTop: 5,
     paddingHorizontal: 5,
     flexDirection: 'row',
     justifyContent: 'flex-start',

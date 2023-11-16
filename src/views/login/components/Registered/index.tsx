@@ -6,61 +6,179 @@
  * @Description: 注册信息
  */
 
-import {View} from 'react-native-animatable';
 import {RegisteredScreenProps} from '../../../../config/routs';
-import React, {useEffect, useRef} from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  View,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  Dimensions,
+} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Center, Icon, Image, Radio} from 'native-base';
 import LottieView from 'lottie-react-native';
+import {
+  Appbar,
+  IconButton,
+  Avatar,
+  Button,
+  TextInput,
+} from 'react-native-paper';
+import {navigate} from '../../../../config/routs/NavigationContainer'
 
-const Registered: React.FC<RegisteredScreenProps> = ({navigation}) => {
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+const Registered: React.FC<RegisteredScreenProps> = () => {
   const animationRef = useRef<LottieView>(null);
-
+  const [nameVal, nameOnChange] = React.useState('');
+  const [describeVal, describeOnChange] = React.useState('');
+  const [passwordVal, passwordOnChange] = React.useState('');
+  const [confirmPasswordVal, confirmPasswordOnChange] = React.useState('');
+  const [securePass, setSecurePass] = useState(true);
+  const [confirmSecurePass, setConfirmSecurePass] = useState(true);
   useEffect(() => {
     console.log('开始执行动画');
   }, []);
 
   return (
-    <SafeAreaView style={styles.content}>
-      <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
-        <View style={styles.content}>
-          <View style={styles.camera}>
-            <Center>
-              <View style={styles.cameraImg}>
-                <View style={styles.img}>
-                  <Image
-                    size={60}
-                    source={require('../../../../assets/images/3.0x/chat_takephoto.png')}
-                    alt="网络错误"
-                  />
-                </View>
-
-                <View>
-                  <Image
-                    size={120}
-                    borderRadius={60}
-                    source={{
-                      uri: 'https://www.w3schools.com/css/img_lights.jpg',
-                    }}
-                    alt="网络错误"
-                  />
-                </View>
-              </View>
-            </Center>
-          </View>
-
-          <View style={styles.test}>
-            <LottieView
-              source={require('../../../../assets/json/gg.json')}
-              autoPlay 
-              loop
-              style={{ height: '100%',width:'100%' }}
+    <View style={styles.parentView}>
+      <Appbar.Header style={styles.headerStyle}>
+        <Text style={styles.headerText}>填写基本信息</Text>
+      </Appbar.Header>
+      <ScrollView style={styles.scrollStyle}>
+        <View style={styles.avatarView}>
+          <View style={styles.avatarStyle}>
+            <Image
+              style={styles.avatarImage}
+              source={require('../../../../assets/images/3.0x/chat_takephoto.png')}
             />
           </View>
+          <Text style={styles.avatarText}>上传头像</Text>
         </View>
-      </KeyboardAwareScrollView>
-    </SafeAreaView>
+        <View style={[styles.nameView, styles.inputView]}>
+          <Text style={styles.nameText}>昵称</Text>
+          <TextInput
+            placeholder="请填写昵称"
+            value={nameVal}
+            selectionColor="#ffb700"
+            cursorColor="#ffb700"
+            underlineColor="transparent"
+            activeUnderlineColor="transparent"
+            style={styles.inputStyle}
+            onChangeText={text => nameOnChange(text)}
+          />
+        </View>
+        <View style={[styles.describeView, styles.inputView]}>
+          <Text style={styles.nameText}>交友描述</Text>
+          <TextInput
+            placeholder="交友描述，会显示在个人主页"
+            multiline={true}
+            numberOfLines={5}
+            selectionColor="#ffb700"
+            cursorColor="#ffb700"
+            underlineColor="transparent"
+            activeUnderlineColor="transparent"
+            value={describeVal}
+            style={[styles.describeInput, styles.inputStyle]}
+            onChangeText={text => describeOnChange(text)}
+          />
+        </View>
+        <View style={[styles.passwordView, styles.inputView]}>
+          <Text style={styles.nameText}>密码</Text>
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="请输入密码"
+            secureTextEntry={securePass}
+            value={passwordVal}
+            right={
+              <TextInput.Icon
+                icon="eye"
+                onLongPress={() => setSecurePass(false)}
+                onPressOut={() => setSecurePass(true)}
+              />
+            }
+            selectionColor="#ffb700"
+            cursorColor="#ffb700"
+            underlineColor="transparent"
+            activeUnderlineColor="transparent"
+            onChangeText={text => passwordOnChange(text)}
+          />
+        </View>
+        <View style={[styles.passwordView, styles.inputView]}>
+          <Text style={styles.nameText}>确认密码</Text>
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="请再次输入密码"
+            secureTextEntry={confirmSecurePass}
+            value={confirmPasswordVal}
+            right={
+              <TextInput.Icon
+                icon="eye"
+                onLongPress={() => setConfirmSecurePass(false)}
+                onPressOut={() => setConfirmSecurePass(true)}
+              />
+            }
+            selectionColor="#ffb700"
+            cursorColor="#ffb700"
+            underlineColor="transparent"
+            activeUnderlineColor="transparent"
+            onChangeText={text => confirmPasswordOnChange(text)}
+          />
+        </View>
+        <View style={styles.buttonView}>
+          <Button
+            style={styles.buttonStyle}
+            labelStyle={styles.buttonText}
+            buttonColor="#ffb700"
+            textColor="#FFF"
+            onPress={() => navigate('SchoolRoute')}>
+            下一步
+          </Button>
+        </View>
+      </ScrollView>
+    </View>
+    // <SafeAreaView style={styles.content}>
+    //   <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
+    //     <View style={styles.content}>
+    //       <View style={styles.camera}>
+    //         <Center>
+    //           <View style={styles.cameraImg}>
+    //             <View style={styles.img}>
+    //               <Image
+    //                 size={60}
+    //                 source={require('../../../../assets/images/3.0x/chat_takephoto.png')}
+    //                 alt="网络错误"
+    //               />
+    //             </View>
+
+    //             <View>
+    //               <Image
+    //                 size={120}
+    //                 borderRadius={60}
+    //                 source={{
+    //                   uri: 'https://www.w3schools.com/css/img_lights.jpg',
+    //                 }}
+    //                 alt="网络错误"
+    //               />
+    //             </View>
+    //           </View>
+    //         </Center>
+    //       </View>
+
+    //       <View style={styles.test}>
+    //         <LottieView
+    //           source={require('../../../../assets/json/gg.json')}
+    //           autoPlay
+    //           loop
+    //           style={{ height: '100%',width:'100%' }}
+    //         />
+    //       </View>
+    //     </View>
+    //   </KeyboardAwareScrollView>
+    // </SafeAreaView>
   );
 };
 
@@ -96,7 +214,116 @@ const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 1,
     position: 'absolute',
-    zIndex: -1
+    zIndex: -1,
   },
+  parentView: {
+    width: windowWidth,
+    height: windowHeight,
+    backgroundColor: '#FFF',
+  },
+  headerStyle: {
+    height: 45,
+    backgroundColor: '#faba3c',
+  },
+  headerText: {
+    width: '100%',
+    fontSize: 17,
+    color: '#FFF',
+    lineHeight: 45,
+    textAlign: 'center',
+  },
+  scrollStyle: {
+    width: windowWidth,
+    height: windowHeight - 50,
+  },
+  avatarView: {
+    height: 180,
+    alignItems: 'center',
+    paddingTop: 30,
+    ...Platform.select({
+      ios: {
+        paddingTop: 40,
+      },
+    }),
+  },
+  avatarStyle: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    alignItems: 'center',
+    backgroundColor: '#6a1b9a',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#aaa',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 1,
+        shadowRadius: 3.5,
+      },
+      android: {
+        elevation: 11,
+        marginTop: 10,
+      },
+    }),
+  },
+  avatarImage: {
+    width: 60,
+    height: 60,
+    marginTop: 20,
+  },
+  avatarText: {
+    fontSize: 16,
+    color: '#000',
+    marginTop: 5,
+  },
+  inputView: {
+    width: windowWidth - 40,
+    marginHorizontal: 20,
+    marginBottom: 25,
+  },
+  nameView: {
+    height: 80,
+  },
+  nameText: {
+    height: 30,
+    fontSize: 18,
+    color: '#000',
+  },
+  inputStyle: {
+    fontSize: 16,
+    color: '#000',
+    borderBottomWidth: 1,
+    borderColor: '#ffb700',
+    backgroundColor: '#FFF',
+  },
+  describeView: {
+    height: 160,
+    // backgroundColor:'green'
+  },
+  describeInput: {
+    ...Platform.select({
+      ios: {
+        height: 130,
+        textAlignVertical: 'top',
+      },
+    }),
+  },
+  passwordView: {
+    height: 80,
+  },
+  buttonView: {
+    height: 100,
+    marginBottom: 40,
+  },
+  buttonStyle: {
+    width: '70%',
+    height: 45,
+    marginTop: 30,
+    marginHorizontal: '15%',
+    borderRadius: 20,
+  },
+  buttonText:{
+    fontSize:17,
+    lineHeight:24
+  }
 });
 export default Registered;

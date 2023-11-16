@@ -45,7 +45,7 @@ const DetailsView = () => {
           <View style={styles.swiperView}>
             <Swiper
               style={styles.swiperStyle}
-              height={280}
+              height={300}
               loop={true}
               horizontal={true}
               autoplay={true}
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   },
   swiperView: {
     width: windowWidth,
-    height: 280,
+    height: 300,
   },
   swiperStyle: {},
   paginationStyle: {
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   },
   bannerImage: {
     width: windowWidth,
-    height: 280,
+    height: 300,
   },
   dotStyle: {
     width: 12,

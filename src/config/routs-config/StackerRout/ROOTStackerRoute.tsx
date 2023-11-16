@@ -10,6 +10,7 @@ import {BommonTab} from '../../../routes/stacker';
 import StylesALL from '../../../styles';
 import LoginView from '../../../views/login';
 import Registered from '../../../views/login/components/Registered';
+import SchoolIndex from '../../../views/login/components/SchoolIndex/index'
 import Verification from '../../../views/login/components/Verification';
 import PaymentView from '../../../views/mine/components/oder/PaymentView';
 import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
@@ -65,6 +66,13 @@ export default {
       headerTitleStyle: StylesALL.navText,
       headerStyle: StylesALL.BGCOLOR,
     },
+  },
+  SchoolRoute:{
+    component:SchoolIndex,
+    options:{
+      title:'学校索引',
+      headerShown: false,
+    }
   },
   PaymentRoute: {
     component: PaymentView,
