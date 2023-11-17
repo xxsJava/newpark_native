@@ -10,7 +10,8 @@ import {BommonTab} from '../../../routes/stacker';
 import StylesALL from '../../../styles';
 import LoginView from '../../../views/login';
 import Registered from '../../../views/login/components/Registered';
-import SchoolIndex from '../../../views/login/components/SchoolIndex/index'
+import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
+import Gender from '../../../views/login/components/Gender/index';
 import Verification from '../../../views/login/components/Verification';
 import PaymentView from '../../../views/mine/components/oder/PaymentView';
 import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
@@ -71,6 +72,13 @@ export default {
     component:SchoolIndex,
     options:{
       title:'学校索引',
+      headerShown: false,
+    }
+  },
+  GenderRoute:{
+    component:Gender,
+    options:{
+      title:'性别选择',
       headerShown: false,
     }
   },

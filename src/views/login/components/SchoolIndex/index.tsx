@@ -8,6 +8,7 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, Dimensions,Platform, TextInput} from 'react-native';
 import {Appbar,Button} from 'react-native-paper';
 import IndexTable from './IndexTableView'
+import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -20,6 +21,10 @@ const SchoolIndex = () => {
   return (
     <View style={styles.parentView}>
       <Appbar.Header style={styles.headerStyle}>
+      <Appbar.Action
+          icon={require('../../../../assets/images/chevron-left.png')}
+          onPress={() => navigate('Registered')}
+        />
         <Text style={styles.headerText}>学校选择</Text>
       </Appbar.Header>
       <View style={styles.searchViwe}>
@@ -54,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffb700',
   },
   headerText: {
-    width: '100%',
+    width: '80%',
     fontSize: 17,
     color: '#FFF',
     lineHeight: 45,
