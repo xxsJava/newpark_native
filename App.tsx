@@ -18,6 +18,7 @@ import {CounterProvider} from './src/hooks/state';
 import Registered from './src/views/login/components/Registered';
 import SchoolIndex from './src/views/login/components/SchoolIndex'
 import Gender from './src/views/login/components/Gender'
+import InterestsHobbies from './src/views/login/components/InterestsHobbies'
 
 export default function App(): JSX.Element {
   console.log('开始加载APP');
@@ -30,6 +31,7 @@ export default function App(): JSX.Element {
             {/* <Registered/> */}
             {/* <SchoolIndex></SchoolIndex> */}
             {/* <Gender></Gender> */}
+            {/* <InterestsHobbies></InterestsHobbies> */}
         </CounterProvider>
       </NativeBaseProvider>
     </NavigationContainer>

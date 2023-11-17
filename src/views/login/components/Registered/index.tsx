@@ -140,45 +140,6 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
         </View>
       </ScrollView>
     </View>
-    // <SafeAreaView style={styles.content}>
-    //   <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
-    //     <View style={styles.content}>
-    //       <View style={styles.camera}>
-    //         <Center>
-    //           <View style={styles.cameraImg}>
-    //             <View style={styles.img}>
-    //               <Image
-    //                 size={60}
-    //                 source={require('../../../../assets/images/3.0x/chat_takephoto.png')}
-    //                 alt="网络错误"
-    //               />
-    //             </View>
-
-    //             <View>
-    //               <Image
-    //                 size={120}
-    //                 borderRadius={60}
-    //                 source={{
-    //                   uri: 'https://www.w3schools.com/css/img_lights.jpg',
-    //                 }}
-    //                 alt="网络错误"
-    //               />
-    //             </View>
-    //           </View>
-    //         </Center>
-    //       </View>
-
-    //       <View style={styles.test}>
-    //         <LottieView
-    //           source={require('../../../../assets/json/gg.json')}
-    //           autoPlay
-    //           loop
-    //           style={{ height: '100%',width:'100%' }}
-    //         />
-    //       </View>
-    //     </View>
-    //   </KeyboardAwareScrollView>
-    // </SafeAreaView>
   );
 };
 
