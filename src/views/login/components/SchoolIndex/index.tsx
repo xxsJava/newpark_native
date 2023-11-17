@@ -8,13 +8,14 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, Dimensions,Platform, TextInput} from 'react-native';
 import {Appbar,Button} from 'react-native-paper';
 import IndexTable from './IndexTableView'
+import {RegisteredScreenProps} from '../../../../config/routs';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
-const SchoolIndex = () => {
+const SchoolIndex:React.FC<RegisteredScreenProps> = () => {
 
     const [searchVal, searchOnChange] = React.useState('');
 

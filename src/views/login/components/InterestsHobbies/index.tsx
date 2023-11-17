@@ -8,12 +8,13 @@ import { View,Text,StyleSheet,Dimensions,ScrollView,Platform,TouchableOpacity } 
 import { Image } from 'react-native-animatable';
 import {Appbar,Button,Chip} from 'react-native-paper';
 import LabelViwe from './LabelView'
+import {RegisteredScreenProps} from '../../../../config/routs';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const InterestsHobbies = () => {
+const InterestsHobbies:React.FC<RegisteredScreenProps> = () => {
 
     const [labelVal,labelOnPrass] = React.useState(0)
 

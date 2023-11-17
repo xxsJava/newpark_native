@@ -8,13 +8,13 @@ import React, {useState} from 'react';
 import { View,Text,StyleSheet,Dimensions,TouchableOpacity,Platform } from 'react-native';
 import { Image } from 'react-native-animatable';
 import {Appbar,Button} from 'react-native-paper';
-import { Rect } from 'react-native-svg';
+import {RegisteredScreenProps} from '../../../../config/routs';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Gender = () => {
+const Gender: React.FC<RegisteredScreenProps> = () => {
 
     const [confirmVal,confirmOnPress] = React.useState('sex0')
 
