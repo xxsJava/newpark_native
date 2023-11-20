@@ -351,23 +351,29 @@ export default class MineVIew extends Component {
 
 const styles = StyleSheet.create({
   safeStyle: {
+    width: windowWidth,
     height: windowHeight,
     backgroundColor: '#F8B032',
-    ...Platform.select({
-      ios: {
-        height: 180,
-      },
-    }),
+    // ...Platform.select({
+    //   ios: {
+    //     height: 180,
+    //   },
+    // }),
   },
   parentLevel: {
     width: windowWidth,
-    height: windowHeight - 30,
+    ...Platform.select({
+      ios:{
+        height: windowHeight - 120,
+      },
+      android:{
+        height: windowHeight - 45,
+      }
+    })
   },
   scrollStyle: {
-    width: windowWidth,
-    height: windowHeight - 180,
+    flex:1,
     backgroundColor: '#f2f2f2',
-    flex: 1,
   },
   bgBox: {
     width: windowWidth,

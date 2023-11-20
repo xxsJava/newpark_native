@@ -156,7 +156,8 @@ export default {
   AddressManagementRoute: {
     component: AddressManagementView,
     options: {
-      title: '我的订单',
+      title: '我的地址',
+      headerShown: false,
     },
   },
   FeedbackRoute: {
