@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import { View,StyleSheet,Dimensions,Platform,SafeAreaView,TouchableOpacity,Button,TouchableNativeFeedback } from 'react-native';
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
+import { Appbar } from 'react-native-paper';
 // import { Button } from 'react-native-paper';
+import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -16,10 +18,11 @@ let textSelected = '1'
 export default class WalletView extends Component {
     render () {
         return (
-            <SafeAreaView style={styles.topLabel}>
-                <View style={styles.navigationBarView}>
-                    <Text style={styles.navigationBarText}>返回</Text>
-                </View>
+            <View style={styles.parentView}>
+              <Appbar.Header style={styles.headerStyle}>
+                    <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
+                    <Text style={styles.headerText}>我的钱包</Text>
+                </Appbar.Header>
                 <View style={styles.walletView}>
                     <View style={styles.titleView}>
                         <Text style={styles.titleStyle}>我的钱包</Text>
@@ -56,27 +59,30 @@ export default class WalletView extends Component {
                 <View>
                     <Text>暂无收入</Text>
                 </View>
-            </SafeAreaView>
+            </View>
         )
     }
   
 }
 
 const styles = StyleSheet.create({
-  topLabel:{
+  parentView:{
     width:windowWidth,
-    height:40,
+    height:windowHeight,
     backgroundColor:'#FFF'
   },
-  navigationBarView:{
-    width:windowWidth,
-    height:40
+  headerStyle:{
+    width: windowWidth,
+    height: 45,
+    backgroundColor: '#ffb700',
   },
-  navigationBarText:{
-    fontSize:16,
-    lineHeight:40,
-    paddingLeft:20
-  },
+  headerText:{
+    width: '80%',
+    fontSize: 17,
+    color: '#FFF',
+    lineHeight: 45,
+    textAlign: 'center',
+},
   walletView:{
     width:windowWidth,
     height:280,

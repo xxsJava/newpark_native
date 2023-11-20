@@ -150,7 +150,7 @@ export default {
     options: {
       title: '我的收藏',
       // headerLeft:require('../../../assets/images/search_in_circle.png')
-      // headerShown: false,
+      headerShown: false,
     },
   },
   AddressManagementRoute: {
@@ -164,6 +164,7 @@ export default {
     component: FeedbackView,
     options: {
       title: '意见反馈',
+      headerShown: false,
     },
   },
   SearchView: {
