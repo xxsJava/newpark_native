@@ -29,8 +29,9 @@ import AddressManagementView from '../../../views/mine/components/service/Addres
 import SearchView from '../../../views/socializing/components/SearchView';
 import ForgetPass from '../../../views/login/components/ForgetPass';
 import CheckView from '../../../views/socializing/check/index'
-import ProductView from '../../../views/home/commodity/index'
-import DetailsView from '../../../views/home/commodity/DetailsView'
+import ProductView from '../../../views/home/components/commodity/index'
+import HelpCircleView from '../../../views/home/components/helping/index'
+import DetailsView from '../../../views/home/page/DetailsView'
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -190,6 +191,13 @@ export default {
     component:ProductView,
     options:{
       title:'快快来买',
+      headerShown: false,
+    }
+  },
+  HelpCircleRoute:{
+    component:HelpCircleView,
+    options:{
+      title:'快来帮忙',
       headerShown: false,
     }
   },

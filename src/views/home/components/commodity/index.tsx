@@ -17,7 +17,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Appbar, Icon, IconButton, Avatar} from 'react-native-paper';
-import {navigate} from '../../../config/routs/NavigationContainer';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 const typeData = [
@@ -34,65 +34,65 @@ const typeData = [
 const commodityData = [
   {
     index: 1,
-    image: require('../../../assets/images/alimom/R-C.jpg'),
+    image: require('../../../../assets/images/alimom/R-C.jpg'),
     title: '果果 14proma.x128G+16G',
     num: '1000',
     time: '刚刚发布',
-    avatar: require('../../../assets/images/avatar-nv.png'),
+    avatar: require('../../../../assets/images/avatar-nv.png'),
     name: 'o泡果奶',
   },
   {
     index: 2,
-    image: require('../../../assets/images/alimom/R-C.jpg'),
+    image: require('../../../../assets/images/alimom/R-C.jpg'),
     title: '果果 14proma.x128G+16G',
     num: '500',
     time: '13分钟前',
-    avatar: require('../../../assets/images/avatar-nan.png'),
+    avatar: require('../../../../assets/images/avatar-nan.png'),
     name: '爱喝旺仔',
   },
   {
     index: 3,
-    image: require('../../../assets/images/alimom/R-C.jpg'),
+    image: require('../../../../assets/images/alimom/R-C.jpg'),
     title: '果果 14proma.x128G+16G',
     num: '500',
     time: '13分钟前',
-    avatar: require('../../../assets/images/avatar-nan.png'),
+    avatar: require('../../../../assets/images/avatar-nan.png'),
     name: '爱喝旺仔',
   },
   {
     index: 4,
-    image: require('../../../assets/images/alimom/R-C.jpg'),
+    image: require('../../../../assets/images/alimom/R-C.jpg'),
     title: '果果 14proma.x128G+16G',
     num: '500',
     time: '13分钟前',
-    avatar: require('../../../assets/images/avatar-nan.png'),
+    avatar: require('../../../../assets/images/avatar-nan.png'),
     name: '爱喝旺仔',
   },
   {
     index: 5,
-    image: require('../../../assets/images/alimom/R-C.jpg'),
+    image: require('../../../../assets/images/alimom/R-C.jpg'),
     title: '果果 14proma.x128G+16G',
     num: '500',
     time: '13分钟前',
-    avatar: require('../../../assets/images/avatar-nv.png'),
+    avatar: require('../../../../assets/images/avatar-nv.png'),
     name: 'o泡果奶',
   },
   {
     index: 6,
-    image: require('../../../assets/images/alimom/R-C.jpg'),
+    image: require('../../../../assets/images/alimom/R-C.jpg'),
     title: '果果 14proma.x128G+16G',
     num: '500',
     time: '13分钟前',
-    avatar: require('../../../assets/images/avatar-nv.png'),
+    avatar: require('../../../../assets/images/avatar-nv.png'),
     name: 'o泡果奶',
   },
   {
     index: 7,
-    image: require('../../../assets/images/alimom/R-C.jpg'),
+    image: require('../../../../assets/images/alimom/R-C.jpg'),
     title: '果果 14proma.x128G+16G',
     num: '500',
     time: '13分钟前',
-    avatar: require('../../../assets/images/avatar-nv.png'),
+    avatar: require('../../../../assets/images/avatar-nv.png'),
     name: 'o泡果奶',
   },
 ];
@@ -102,7 +102,7 @@ const ProductView = () => {
     <View style={styles.safeAreaStyle}>
       <Appbar.Header style={styles.headerStyle}>
         <Appbar.Action
-          icon={require('../../../assets/images/chevron-left.png')}
+          icon={require('../../../../assets/images/chevron-left.png')}
           onPress={() => navigate('HomeStacker')}
         />
         <Text style={styles.headerText}>交易圈</Text>
@@ -122,12 +122,12 @@ const ProductView = () => {
                 <Icon
                   size={10}
                   color="#888"
-                  source={require('../../../assets/images/triangle-up.png')}
+                  source={require('../../../../assets/images/triangle-up.png')}
                 />
                 <Icon
                   size={10}
                   color="#888"
-                  source={require('../../../assets/images/triangle-down.png')}
+                  source={require('../../../../assets/images/triangle-down.png')}
                 />
               </View>
               {/* <Entypo size={14} color='#000' name='chevron-thin-down' /> */}
@@ -151,7 +151,7 @@ const ProductView = () => {
                       <Icon
                         size={22}
                         color="#fa3d3c"
-                        source={require('../../../assets/images/coins-icon.png')}
+                        source={require('../../../../assets/images/coins-icon.png')}
                       />
                       <Text style={styles.priceNum}>{item.num}</Text>
                     </View>
