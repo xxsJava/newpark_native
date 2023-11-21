@@ -32,6 +32,8 @@ import CheckView from '../../../views/socializing/check/index'
 import ProductView from '../../../views/home/components/commodity/index'
 import HelpCircleView from '../../../views/home/components/helping/index'
 import DetailsView from '../../../views/home/page/DetailsView'
+import ProductChat from '../../../views/home/page/ProductChat'
+import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -205,6 +207,13 @@ export default {
     component:DetailsView,
     options:{
       title:'商品详情',
+      headerShown:false
+    }
+  },
+  ProductChatRoute:{
+    component:ProductChat,
+    options:{
+      title:'接单聊天',
       headerShown:false
     }
   }

@@ -12,6 +12,7 @@ import LinearGradinet from 'react-native-linear-gradient';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { withDecay } from 'react-native-reanimated';
 
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -78,6 +79,13 @@ const listData = [{
 }]
 
 const  HelpCircleView = () => {
+    const onButtonJump = (type:number) => {
+        if(type == 3) {
+            navigate('ProductChatRoute')
+        } else {
+            return;
+        }
+    }
     return(
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
@@ -130,7 +138,7 @@ const  HelpCircleView = () => {
                                         </View>
                                     </View>
                                     <View style={styles.itemContentButton}>
-                                        <Button style={[styles.contentButton,item.type == 1?styles.contentButtonColor1:item.type == 2?styles.contentButtonColor2:styles.contentButtonColor3]} textColor='#FFF' labelStyle={styles.contentButtonText}>{item.buttonText}</Button>
+                                        <Button style={[styles.contentButton,item.type == 1?styles.contentButtonColor1:item.type == 2?styles.contentButtonColor2:styles.contentButtonColor3]} textColor='#FFF' labelStyle={styles.contentButtonText} onPress={() => onButtonJump(item.type)}>{item.buttonText}</Button>
                                     </View>
                                 </View>
                             </LinearGradinet>
