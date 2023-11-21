@@ -138,7 +138,8 @@ export default {
   MyPostRoute: {
     component: MyPostView,
     options: {
-      title: '我的订单',
+      title: '我的帖子',
+      headerShown: false,
     },
   },
   WalletRoute: {
