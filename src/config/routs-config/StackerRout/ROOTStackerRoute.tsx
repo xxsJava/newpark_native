@@ -133,6 +133,7 @@ export default {
     component: MyOrderView,
     options: {
       title: '我的订单',
+      headerShown: false,
     },
   },
   MyPostRoute: {

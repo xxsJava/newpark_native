@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
     },
     typeView:{
         width:'100%',
-        height:40,
+        height:45,
+        paddingTop:3,
         paddingHorizontal:35,
         flexDirection:'row',
         justifyContent:'space-between'
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
         height:40,
         color:'#000',
         fontSize:15,
-        lineHeight:40,
+        lineHeight:45,
         textAlign:'center',
     },
     typeTextSelected:{
