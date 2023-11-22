@@ -33,6 +33,7 @@ import ProductView from '../../../views/home/components/commodity/index'
 import HelpCircleView from '../../../views/home/components/helping/index'
 import DetailsView from '../../../views/home/page/DetailsView'
 import ProductChat from '../../../views/home/page/ProductChat'
+import ViewOrders from '../../../views/home/page/ViewOrders'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -216,6 +217,13 @@ export default {
     component:ProductChat,
     options:{
       title:'接单聊天',
+      headerShown:false
+    }
+  },
+  ViewOrdersRoute:{
+    component:ViewOrders,
+    options:{
+      title:'查看订单',
       headerShown:false
     }
   }

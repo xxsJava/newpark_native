@@ -82,6 +82,8 @@ const  HelpCircleView = () => {
     const onButtonJump = (type:number) => {
         if(type == 3) {
             navigate('ProductChatRoute')
+        } else if(type == 1) {
+            navigate('ViewOrdersRoute')
         } else {
             return;
         }
