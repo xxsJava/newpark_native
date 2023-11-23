@@ -170,7 +170,7 @@ const DetailsView = () => {
               labelStyle={styles.controlButtonText}
               buttonColor="#faba3c"
               textColor="#FFF"
-              onPress={() => console.log('点击立即购买')}>
+              onPress={() => navigate('PurchasePageRoute')}>
               立即购买
             </Button>
           </View>

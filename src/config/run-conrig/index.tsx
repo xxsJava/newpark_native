@@ -6,7 +6,7 @@
  * @Description: 全局自行导入依赖
  */
 import 'react-native-gesture-handler';
-import OpenIMSDKRN, {OpenIMEmitter} from 'open-im-sdk-rn';
+// import OpenIMSDKRN, {OpenIMEmitter} from 'open-im-sdk-rn';
 import ImInitConfig from '../im/Im-init-config';
 
 import {LogBox} from 'react-native';
@@ -16,15 +16,15 @@ LogBox.ignoreLogs([
   'In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.',
 ]);
 
-const Init = async () => {
-  console.log('1、IM初始化');
-  try {
-    const opid = '123456'; //唯一id
-    const result = await OpenIMSDKRN.initSDK(ImInitConfig, opid);
-    console.log('初始化--->',result)
-  } catch (error) {
-    console.error('Error initializing SDK:', error); // Log the error
-  }
-};
+// const Init = async () => {
+//   console.log('1、IM初始化');
+//   try {
+//     const opid = '123456'; //唯一id
+//     const result = await OpenIMSDKRN.initSDK(ImInitConfig, opid);
+//     console.log('初始化--->',result)
+//   } catch (error) {
+//     console.error('Error initializing SDK:', error); // Log the error
+//   }
+// };
 
-Init();
+// Init();
