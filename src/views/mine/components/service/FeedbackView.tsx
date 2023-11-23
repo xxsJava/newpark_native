@@ -1,8 +1,10 @@
 import React, {Component, useState} from 'react';
 import { View,StyleSheet,Dimensions,Platform,Image,Button,TouchableHighlight,TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-animatable';
+import { Appbar } from 'react-native-paper';
 import { Checkbox,Input,TextArea,Divider } from "native-base";
 import {launchImageLibrary} from 'react-native-image-picker';
+import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -33,6 +35,10 @@ export default class FeedbackView extends Component {
     render () {
         return (
             <View style={styles.parentLevel}>
+                <Appbar.Header style={styles.headerStyle}>
+                    <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
+                    <Text style={styles.headerText}>意见反馈</Text>
+                </Appbar.Header>
                 <View style={styles.titleView}>
                     <Text style={styles.titleText}>请选择发生的问题类型</Text>
                 </View>
@@ -133,6 +139,18 @@ const styles = StyleSheet.create({
     parentLevel:{
         width:windowWidth,
         height:windowHeight,
+    },
+    headerStyle:{
+        width: windowWidth,
+        height: 45,
+        backgroundColor: '#ffb700',
+    },
+    headerText:{
+        width: '80%',
+        fontSize: 17,
+        color: '#FFF',
+        lineHeight: 45,
+        textAlign: 'center',
     },
     titleView:{
         width:windowWidth-20,

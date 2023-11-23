@@ -79,9 +79,7 @@ const ColumnType = () => {
       <View style={styles.modalAll}>
         <TouchableOpacity
           style={[styles.wd, styles.back]}
-          onPress={() => {
-            console.log('点击了快来帮忙 ');
-          }}>
+          onPress={() => navigate('HelpCircleRoute')}>
           <View>
             <MenusComponents props={menusData[0]} />
           </View>

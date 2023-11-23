@@ -1,14 +1,223 @@
-import React, {Component} from 'react';
-import { View } from 'react-native';
-import { Text } from 'react-native-animatable';
+import React, {Component, useState} from 'react';
+import { View,Text,StyleSheet,Dimensions,TouchableOpacity,ScrollView,Platform } from 'react-native';
+import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
+import {navigate} from '../../../../config/routs/NavigationContainer'
 
-export default class MyPostView extends Component {
-    render () {
+const listData = [{
+    index:1,
+    title:'我是一个标题',
+    content:'部分内容',
+    name:'咖啡牛',
+    time:'2023年12月11日'
+},{
+    index:2,
+    title:'我是一个标题',
+    content:'部分内容',
+    name:'咖啡牛',
+    time:'2023年12月11日'
+},{
+    index:3,
+    title:'我是一个标题',
+    content:'部分内容',
+    name:'咖啡牛',
+    time:'2023年12月11日'
+},{
+    index:4,
+    title:'我是一个标题',
+    content:'部分内容',
+    name:'咖啡牛',
+    time:'2023年12月11日'
+},{
+    index:5,
+    title:'我是一个标题',
+    content:'部分内容',
+    name:'咖啡牛',
+    time:'2023年12月11日'
+},{
+    index:6,
+    title:'我是一个标题',
+    content:'部分内容',
+    name:'咖啡牛',
+    time:'2023年12月11日'
+},{
+    index:7,
+    title:'我是一个标题',
+    content:'部分内容',
+    name:'咖啡牛',
+    time:'2023年12月11日'
+}]
+
+const windowWidth = Dimensions.get('window').width
+const windowHeight = Dimensions.get('window').height
+
+const MyPostView = ()=> {
+        const [typeVal,onTypePress] = React.useState('type1')
         return (
-            <View>
-                <Text>我的帖子</Text>
+            <View style={styles.parentView}>
+                <Appbar.Header style={styles.headerStyle}>
+                    <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
+                    <Text style={styles.headerText}>我的帖子</Text>
+                </Appbar.Header>
+                <View style={styles.typeView}>
+                    <TouchableOpacity style={typeVal == 'type1'?styles.typeItem:null} onPress={() => onTypePress('type1')}>
+                        <Text style={[styles.typeText,typeVal == 'type1'?styles.typeTextSelected:null]}>已通过</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={typeVal == 'type2'?styles.typeItem:null} onPress={() => onTypePress('type2')}>
+                        <Text style={[styles.typeText,typeVal == 'type2'?styles.typeTextSelected:null]}>待审核</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.scrollView}>
+                    <ScrollView style={styles.scrollStyle}>
+                        <View style={styles.listStyle}>
+                        {listData.map(item => {
+                            return(
+                                <View style={styles.itemStyle} key={item.index}>
+                                    <View style={styles.itemLeft}></View>
+                                    <View style={styles.itemRight}>
+                                        <Text style={styles.itemTitle}>{item.title}</Text>
+                                        <Text style={styles.itemText}>{item.content}</Text>
+                                        <View style={styles.itemBottom}>
+                                            <Text style={styles.itemBottomText}>{item.name}</Text>
+                                            <Text style={styles.itemBottomText}>{item.time}</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            )
+                        })}
+                        </View>
+                    </ScrollView>
+                </View>
             </View>
         )
-    }
   
 }
+export default MyPostView;
+
+const styles = StyleSheet.create({
+    parentView:{
+        width:windowWidth,
+        height:windowHeight,
+        backgroundColor:'#FFF'
+    },
+    headerStyle:{
+        width: windowWidth,
+        height: 45,
+        backgroundColor: '#ffb700',
+    },
+    headerText:{
+        width: '80%',
+        fontSize: 17,
+        color: '#FFF',
+        lineHeight: 45,
+        textAlign: 'center',
+    },
+    typeView:{
+        width:'100%',
+        height:45,
+        paddingTop:3,
+        paddingHorizontal:35,
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    typeItem:{
+        ...Platform.select({
+            ios:{
+                borderColor:'#faba3c',
+                borderBottomWidth:2
+            }
+        })
+    },
+    typeText:{
+        width:48,
+        height:40,
+        color:'#000',
+        fontSize:15,
+        lineHeight:45,
+        textAlign:'center',
+    },
+    typeTextSelected:{
+        color:'#6a1b9a',
+        borderColor:'#faba3c',
+        borderBottomWidth:2
+    },
+    scrollView:{
+        width:windowWidth,
+        height:windowHeight-80,
+    },
+    scrollStyle:{
+        flex:1,
+        paddingTop:10,
+        marginTop:5
+    },
+    listStyle:{
+        width:windowWidth,
+        height:'auto',
+        ...Platform.select({
+            ios:{
+                paddingBottom:80
+            },
+            android:{
+                paddingBottom:30
+            }
+        })
+    },
+    itemStyle:{
+        width:windowWidth-24,
+        height:120,
+        marginHorizontal:12,
+        marginTop:6,
+        borderRadius:12,
+        // borderTopLeftRadius:12,
+        // borderBottomLeftRadius:12,
+        backgroundColor:'#FFF',
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        ...Platform.select({
+            ios:{
+                marginBottom: 6,
+                shadowColor: '#ccc',
+                shadowOffset: {width: 0, height: 3},
+                shadowOpacity: 1,
+                shadowRadius: 3.5,
+            },
+            android:{
+                elevation: 7,
+                marginBottom: 5,
+            }
+        })
+    },
+    itemLeft:{
+        width:'30%',
+        height:'100%',
+        borderRadius:12,
+        backgroundColor:'#6a1b9a'
+    },
+    itemRight:{
+        width:'70%',
+        height:'100%',
+        paddingHorizontal:15,
+    },
+    itemTitle:{
+        height:34,
+        fontSize:18,
+        color:'#000',
+        fontWeight:'600',
+        lineHeight:34
+    },
+    itemText:{
+        height:55,
+        fontSize:15,
+        color:'#555',
+        lineHeight:45
+    },
+    itemBottom:{
+        height:25,
+        flexDirection:'row',
+        justifyContent:'space-between',
+    },
+    itemBottomText:{
+        fontSize:14,
+        color:'#999',
+        lineHeight:30
+    }
+})

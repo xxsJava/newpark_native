@@ -29,8 +29,12 @@ import AddressManagementView from '../../../views/mine/components/service/Addres
 import SearchView from '../../../views/socializing/components/SearchView';
 import ForgetPass from '../../../views/login/components/ForgetPass';
 import CheckView from '../../../views/socializing/check/index'
-import ProductView from '../../../views/home/commodity/index'
-import DetailsView from '../../../views/home/commodity/DetailsView'
+import ProductView from '../../../views/home/components/commodity/index'
+import HelpCircleView from '../../../views/home/components/helping/index'
+import DetailsView from '../../../views/home/page/DetailsView'
+import ProductChat from '../../../views/home/page/ProductChat'
+import ViewOrders from '../../../views/home/page/ViewOrders'
+import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -130,12 +134,14 @@ export default {
     component: MyOrderView,
     options: {
       title: '我的订单',
+      headerShown: false,
     },
   },
   MyPostRoute: {
     component: MyPostView,
     options: {
-      title: '我的订单',
+      title: '我的帖子',
+      headerShown: false,
     },
   },
   WalletRoute: {
@@ -150,19 +156,21 @@ export default {
     options: {
       title: '我的收藏',
       // headerLeft:require('../../../assets/images/search_in_circle.png')
-      // headerShown: false,
+      headerShown: false,
     },
   },
   AddressManagementRoute: {
     component: AddressManagementView,
     options: {
-      title: '我的订单',
+      title: '我的地址',
+      headerShown: false,
     },
   },
   FeedbackRoute: {
     component: FeedbackView,
     options: {
       title: '意见反馈',
+      headerShown: false,
     },
   },
   SearchView: {
@@ -191,10 +199,31 @@ export default {
       headerShown: false,
     }
   },
+  HelpCircleRoute:{
+    component:HelpCircleView,
+    options:{
+      title:'快来帮忙',
+      headerShown: false,
+    }
+  },
   DetailsRoute:{
     component:DetailsView,
     options:{
       title:'商品详情',
+      headerShown:false
+    }
+  },
+  ProductChatRoute:{
+    component:ProductChat,
+    options:{
+      title:'接单聊天',
+      headerShown:false
+    }
+  },
+  ViewOrdersRoute:{
+    component:ViewOrders,
+    options:{
+      title:'查看订单',
       headerShown:false
     }
   }
