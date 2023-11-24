@@ -8,6 +8,7 @@
 import React, { useState } from 'react';
 import {Avatar, Button, Card, IconButton, Text} from 'react-native-paper';
 import {StyleSheet, TouchableOpacity, View,Image,TextInput,Platform,} from 'react-native';
+import {navigate} from '../../../config/routs/NavigationContainer';
 
 //普通帖子组件
 export const postsOrdinary = (item: any, index: any, separators: any) => {
@@ -15,7 +16,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
   // const [inputValue, onChangeText] = useState('喜欢就告诉她');
 
   return (
-    <View>
+    <TouchableOpacity onPress={() => navigate('PostDetailsRoute')}>
       <Card style={styles.cardSty}>
         <Card.Title
           title={item.title}
@@ -153,7 +154,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           <TextInput value={'喜欢就告诉她'} style={styles.leaveWordInput}></TextInput>
         </View>
       </Card>
-    </View>
+    </TouchableOpacity>
   );
 };
 
