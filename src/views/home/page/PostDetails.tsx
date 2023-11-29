@@ -8,7 +8,7 @@ import React from "react";
 import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,ScrollView,TextInput } from "react-native";
 import { Image } from "react-native-animatable";
 import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
-
+import {navigate} from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
@@ -36,104 +36,125 @@ const listData = [{
 
 const PostDetails = () => {
     const [inputVal,onInputPress] = React.useState('')
+    const [collectionSelect,setSelectCollection] =  React.useState('0')
+    const [likeSelect,setSelectLike] = React.useState('0')
+    const [transmitSelect,setSelectTransmit] = React.useState('0')
+    const [likeSelect1,setSelectLike1] = React.useState(0)
+    const onSelectPress= (prop:number) => {
+        if(prop == 1) {
+            collectionSelect == '0' ? setSelectCollection('1'):setSelectCollection('0')
+            console.log('返回值：',collectionSelect)
+        } else if (prop == 2) {
+            likeSelect == '0' ? setSelectLike('1'):setSelectLike('0')
+        } else if(prop == 3) {
+            transmitSelect == '0' ? setSelectTransmit('1'):setSelectTransmit('0')
+        }
+        
+    }
+    const ononSelectLike = (prop:number) => {
+
+    }
     return(
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action
                     icon={require('../../../assets/images/chevron-left.png')}
+                    onPress={() => navigate('HomeStacker')}
                 />
                 <Text style={styles.headerText}>帖子详情</Text>
                 <Appbar.Action
                     icon={require('../../../assets/images/ellipsis_v.png')}
                 />
             </Appbar.Header>
-            <View style={styles.postView}>
-                <View style={styles.postStyle}>
-                    <View style={styles.avatarView}>
-                        <Avatar.Image size={65} source={require('../../../assets/images/avatar-nv.png')}></Avatar.Image>
-                    </View>
-                    <View style={styles.avatarConent}>
-                        <View style={styles.nameView}>
-                            <Text style={styles.nameText}>o泡果奶</Text>
-                            <View style={styles.tabStyle}>
-                                <Icon size={15} color="#FFF" source={require('../../../assets/images/alimom/sex_icon1.png')}></Icon>
-                                <Text style={styles.tabText}>20</Text>
+            <View style={styles.contentView}>
+                <ScrollView style={styles.contentScroll}>
+                    <View style={styles.postView}>
+                        <View style={styles.postStyle}>
+                            <View style={styles.avatarView}>
+                                <Avatar.Image size={65} source={require('../../../assets/images/avatar-nv.png')}></Avatar.Image>
+                            </View>
+                            <View style={styles.avatarConent}>
+                                <View style={styles.nameView}>
+                                    <Text style={styles.nameText}>o泡果奶</Text>
+                                    <View style={styles.tabStyle}>
+                                        <Icon size={15} color="#FFF" source={require('../../../assets/images/alimom/sex_icon1.png')}></Icon>
+                                        <Text style={styles.tabText}>20</Text>
+                                    </View>
+                                </View>
+                                <Text style={styles.timeText}>1小时前</Text>
+                            </View>
+                            <View style={styles.avatarButton}>
+                                <Button style={styles.avatarButtonStyle} labelStyle={styles.avatarButtonText} onPress={() => console.log('点击关注')}>关注</Button>
                             </View>
                         </View>
-                        <Text style={styles.timeText}>1小时前</Text>
-                    </View>
-                    <View style={styles.avatarButton}>
-                        <Button style={styles.avatarButtonStyle} labelStyle={styles.avatarButtonText} onPress={() => console.log('点击关注')}>关注</Button>
-                    </View>
-                </View>
-                <View style={styles.postImage}>
-                    <Text style={styles.postText}>每个不起舞的日子，都是对生命的辜负。</Text>
-                    <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image>
-                </View>
-                <View style={styles.postBottom}>
-                    <Text style={styles.postBottomText}>浏览记录   502</Text>
-                    <View style={styles.heartView}>
-                        <TouchableOpacity style={styles.heartIcon}>
-                            <Icon size={24} color="#EFEBFA" source={require('../../../assets/images/Favorite.png')}></Icon>
-                        </TouchableOpacity>
-                        <Text style={styles.heartText}> 2000</Text>
-                    </View>
-                    <View style={styles.heartView}>
-                        <TouchableOpacity style={styles.heartIcon}>
-                            <Icon size={24} color="#EFEBFA" source={require('../../../assets/images/transmit_icon.png')}></Icon>
-                        </TouchableOpacity>
-                        <Text style={styles.heartText}> 2.0w</Text>
-                    </View>
-                    <View style={styles.heartView}>
-                        <TouchableOpacity style={styles.heartIcon}>
-                            <Icon size={24} color="#EFEBFA" source={require('../../../assets/images/Like-copy.png')}></Icon>
-                        </TouchableOpacity>
-                        <Text style={styles.heartText}> 2.0w</Text>
-                    </View>
-                </View>
-            </View>
-            <View style={styles.postComment}>
-                <View style={styles.scrollView}>
-                    <Text style={styles.commentTitle}>全部评论(2000)</Text>
-                    <ScrollView style={styles.scrollStyle}>
-                        <View style={styles.listStyle}>
-                            {listData.map(item => {
-                                return(
-                                    <View style={styles.itemStyle} key={item.index}>
-                                        <View style={styles.commentAvatarView}>
-                                            <View style={styles.itemAvatar}>
-                                                <Avatar.Image size={56} source={item.image}></Avatar.Image>
-                                            </View>
-                                            <View style={styles.itemNameView}>
-                                                <Text style={styles.itemName}>{item.name}</Text>
-                                                <Text style={styles.itemTime}>{item.time}</Text>
-                                            </View>
-                                            <View style={styles.itemIconView}>
-                                                <TouchableOpacity>
-                                                    <Icon size={22} color="#FABA3C" source={require('../../../assets/images/Like-copy.png')}></Icon>
-                                                </TouchableOpacity>
-                                                <Text style={styles.itemIconText}>  {item.num}</Text>
-                                            </View>
-                                        </View>
-                                        <View style={styles.itemContent}>
-                                            <Text style={styles.itemContentText}>{item.text}</Text>
-                                            <View style={[styles.itemComment,item.itemData.length == 0?{display:'none'}:null]}>
-                                                {item.itemData.map(emeit => {
-                                                    return(
-                                                        <Text style={styles.commentArea} key={emeit.index}>
-                                                            {emeit.name}:
-                                                            <Text style={styles.commentAreaText}>  {emeit.text}</Text>
-                                                        </Text>
-                                                    )
-                                                })}
-                                            </View>
-                                        </View>
-                                    </View>
-                                )
-                            })}
+                        <View style={styles.postImage}>
+                            <Text style={styles.postText}>每个不起舞的日子，都是对生命的辜负。</Text>
+                            <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image>
                         </View>
-                    </ScrollView>
-                </View>
+                        <View style={styles.postBottom}>
+                            <Text style={styles.postBottomText}>浏览记录   502</Text>
+                            <View style={styles.heartView}>
+                                <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(1)}>
+                                    <Icon size={24} color={collectionSelect == '1' ? '#FC073B':'#EFEBFA'} source={require('../../../assets/images/Favorite.png')}></Icon>
+                                </TouchableOpacity>
+                                <Text style={styles.heartText}> 2000</Text>
+                            </View>
+                            <View style={styles.heartView}>
+                                <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(3)}>
+                                    <Icon size={24} color={transmitSelect == '1'?'#6A1B9A':'#EFEBFA'} source={require('../../../assets/images/transmit_icon.png')}></Icon>
+                                </TouchableOpacity>
+                                <Text style={styles.heartText}> 2.0w</Text>
+                            </View>
+                            <View style={styles.heartView}>
+                                <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(2)}>
+                                    <Icon size={24} color={likeSelect == '1' ? '#FABA3C':'#EFEBFA'} source={require('../../../assets/images/Like-copy.png')}></Icon>
+                                </TouchableOpacity>
+                                <Text style={styles.heartText}> 2.0w</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.postComment}>
+                        <View style={styles.scrollView}>
+                            <Text style={styles.commentTitle}>全部评论(2000)</Text>
+                            <View style={styles.listStyle}>
+                                {listData.map(item => {
+                                    return(
+                                        <View style={styles.itemStyle} key={item.index}>
+                                            <View style={styles.commentAvatarView}>
+                                                <View style={styles.itemAvatar}>
+                                                    <Avatar.Image size={56} source={item.image}></Avatar.Image>
+                                                </View>
+                                                <View style={styles.itemNameView}>
+                                                    <Text style={styles.itemName}>{item.name}</Text>
+                                                    <Text style={styles.itemTime}>{item.time}</Text>
+                                                </View>
+                                                <View style={styles.itemIconView}>
+                                                    <TouchableOpacity>
+                                                        <Icon size={22} color={likeSelect1 == 0?'#FABA3C':'#EFEBFA'}  source={require('../../../assets/images/Like-copy.png')}></Icon>
+                                                    </TouchableOpacity>
+                                                    <Text style={styles.itemIconText}>  {item.num}</Text>
+                                                    </View>
+                                                </View>
+                                                <View style={styles.itemContent}>
+                                                    <Text style={styles.itemContentText}>{item.text}</Text>
+                                                    <View style={[styles.itemComment,item.itemData.length == 0?{display:'none'}:null]}>
+                                                        {item.itemData.map(emeit => {
+                                                            return(
+                                                                <Text style={styles.commentArea} key={emeit.index}>
+                                                                    {emeit.name}:
+                                                                    <Text style={styles.commentAreaText}>  {emeit.text}</Text>
+                                                                </Text>
+                                                            )
+                                                        })}
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        )
+                                    })}
+                                </View>
+                        </View>
+                    </View>
+                </ScrollView>
                 <View style={styles.commentBottom}>
                     <TextInput defaultValue={'说两句'} cursorColor='#FABA3C' style={styles.bottomTextInput}></TextInput>
                     <TouchableOpacity style={styles.bottomIconView}>
@@ -162,9 +183,23 @@ const styles = StyleSheet.create({
         color: '#FFF',
         textAlign: 'center',
     },
+    contentView:{
+        width:windowWidth,
+        ...Platform.select({
+            ios:{
+                height:windowHeight-85,
+            },
+            android:{
+                height:windowHeight-40,
+            }
+        })
+    },
+    contentScroll:{
+        flex:1
+    },
     postView:{
         width:windowWidth,
-        height:350,
+        height:'auto',
         borderRadius:20,
         backgroundColor:'#FFF',
     },
@@ -252,7 +287,7 @@ const styles = StyleSheet.create({
     },
     postImage:{
         width:windowWidth,
-        height:220,
+        height:'auto',
         paddingTop:20,
     },
     postText:{
@@ -297,8 +332,9 @@ const styles = StyleSheet.create({
     },
     postComment:{
         width:windowWidth,
-        height:windowHeight-435,
+        height:'auto',
         marginTop:20,
+        paddingBottom:20,
         backgroundColor:'#FFF'
     },
     scrollView:{
@@ -313,9 +349,6 @@ const styles = StyleSheet.create({
         fontWeight:'600',
         lineHeight:40,
         paddingLeft:20,
-    },
-    scrollStyle:{
-        flex:1,
     },
     listStyle:{
         width:windowWidth,
@@ -363,9 +396,10 @@ const styles = StyleSheet.create({
     itemContent:{
         marginLeft:'20%',
         marginRight:15,
-        paddingVertical:10,
+        paddingBottom:10,
         borderBottomWidth:1,
         borderColor:'#aaa',
+        // backgroundColor:'red'
     },
     itemContentText:{
         fontSize:14,
@@ -376,6 +410,7 @@ const styles = StyleSheet.create({
     itemComment:{
         width:'100%',
         height:'auto',
+        marginTop:5,
         paddingVertical:10,
         paddingHorizontal:15,
         borderRadius:8,
@@ -406,7 +441,6 @@ const styles = StyleSheet.create({
             android:{
                 height:70,
                 elevation: 8,
-                marginTop:10,
             }
         }),
     },
