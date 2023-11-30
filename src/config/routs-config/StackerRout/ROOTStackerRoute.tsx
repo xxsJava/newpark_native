@@ -36,6 +36,7 @@ import ProductChat from '../../../views/home/page/ProductChat'
 import ViewOrders from '../../../views/home/page/ViewOrders'
 import PurchasePage from '../../../views/home/page/PurchasePage'
 import PostDetails from '../../../views/home/page/PostDetails'
+import SetUp from '../../../views/mine/components/setup';
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -240,6 +241,13 @@ export default {
     component:PostDetails,
     options:{
       title:'帖子详情',
+      headerShown:false
+    }
+  },
+  SetUpRoute:{
+    component:SetUp,
+    options:{
+      title:'设置',
       headerShown:false
     }
   }

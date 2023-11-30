@@ -152,12 +152,14 @@ export default class MineVIew extends Component {
           <ScrollView style={styles.scrollStyle} alwaysBounceVertical={true}>
             <View>
               <View style={styles.bgBox}>
-                <Icon
-                  name="cog"
-                  size={30}
-                  color="white"
-                  style={styles.boxIcon}
-                />
+                <TouchableOpacity onPress={() => navigate('SetUpRoute')}>
+                  <Icon
+                    name="cog"
+                    size={30}
+                    color="white"
+                    style={styles.boxIcon}
+                  />
+                </TouchableOpacity>
                 <View style={styles.boxnNav}>
                   <View style={styles.boxItem}>
                     <Text>0</Text>
