@@ -6,7 +6,7 @@
 
 import React, { Component } from "react";
 import { View,Text,StyleSheet,Dimensions,ScrollView,TouchableOpacity, } from "react-native";
-import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
+import { Appbar } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 

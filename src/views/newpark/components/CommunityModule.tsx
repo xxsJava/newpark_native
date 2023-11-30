@@ -7,9 +7,11 @@ import {
   Image,
   ScrollView,
   Platform,
+  TouchableOpacity
 } from 'react-native';
 import LinearGradinet from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
+import {navigate} from '../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -46,7 +48,7 @@ const CommunityModule = () => {
           <View style={styles.listStyle}>
             {listData.map(item => {
               return (
-                <View style={styles.itemStyle} key={item.index}>
+                <TouchableOpacity style={styles.itemStyle} key={item.index} activeOpacity={0.8} onPress={() => navigate('CommunityChannelRoute')}>
                   <View style={styles.itemLeft}>
                     <Image
                       style={styles.imgStyle}
@@ -82,7 +84,7 @@ const CommunityModule = () => {
                       style={styles.rightIcon}
                     />
                   </View>
-                </View>
+                </TouchableOpacity>
               );
             })}
           </View>
