@@ -131,7 +131,8 @@ export default {
   MemberServicesRoute: {
     component: MemberServicesView,
     options: {
-      title: '我的订单',
+      title: '会员服务',
+      headerShown: false,
     },
   },
   MyOrderRoute: {

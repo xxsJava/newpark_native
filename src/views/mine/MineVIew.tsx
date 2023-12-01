@@ -238,7 +238,7 @@ export default class MineVIew extends Component {
                 <ScrollView horizontal={true} style={styles.communitScroll}>
                   {communitData.map(item =>{
                     return(
-                      <View style={styles.communitItem} key={item.index}>
+                      <TouchableOpacity style={styles.communitItem} key={item.index} onPress={() => navigate('CommunityChannelRoute')}>
                         <View style={styles.communitItemTop}>
                           <Image
                             style={styles.communitImage}
@@ -259,7 +259,7 @@ export default class MineVIew extends Component {
                         <View style={styles.communitAvatar}>
                           <Image style={styles.communitAvatarImage} source={item.tx}></Image>
                         </View>
-                      </View>
+                      </TouchableOpacity>
                     )
                   })}
                 </ScrollView>
