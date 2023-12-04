@@ -285,7 +285,7 @@ export default class MineVIew extends Component {
                   return (
                     <View style={styles.orderItem} key={item.index}>
                       <TouchableOpacity
-                        onPress={() => navigate(item.route)}
+                        onPress={() => navigate('MyOrderRoute',{type:'type2'})}
                         style={styles.orderRoute}>
                         <Image style={styles.itemImage} source={item.icon} />
                         <Text style={styles.itemText}>

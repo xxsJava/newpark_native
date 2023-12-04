@@ -171,7 +171,7 @@ const Example = () => {
           />
         </View>
         <View style={{position: 'absolute', top: -40,right:40}}>
-          <Text>1</Text>
+          <Text>打卡</Text>
           <IconButton
             mb="4"
             variant="solid"

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View,Text,SafeAreaView,StyleSheet,Dimensions,ImageBackground,Platform,ScrollView,TouchableOpacity,Image } from 'react-native';
-import { Appbar,Avatar,IconButton,Tooltip,Button, Icon } from 'react-native-paper';
+import { Avatar,IconButton } from 'react-native-paper';
 import { Checkbox } from "native-base";
 import LinearGradinet from 'react-native-linear-gradient';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';

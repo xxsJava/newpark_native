@@ -6,6 +6,10 @@ import {navigate} from '../../../../config/routs/NavigationContainer'
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
+// const Quiz = ({ navigation, route }) => {
+//     const { typeParams } = route.params;
+// };
+
 const MyOrderView = () => {
     const [typeVal,onTypePress] = React.useState('type1')
     return (

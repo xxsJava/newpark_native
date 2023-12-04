@@ -38,6 +38,7 @@ import PurchasePage from '../../../views/home/page/PurchasePage'
 import PostDetails from '../../../views/home/page/PostDetails'
 import SetUp from '../../../views/mine/components/setup';
 import CommunityChannel from '../../../views/newpark/page/CommunityChannel'
+import RewardView from '../../../views/publish/reward'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -257,6 +258,13 @@ export default {
     component:CommunityChannel,
     options:{
       title:'社区频道',
+      headerShown:false
+    }
+  },
+  RewardRoute:{
+    component:RewardView,
+    options:{
+      title:'发布悬赏',
       headerShown:false
     }
   }
