@@ -38,7 +38,7 @@ import PurchasePage from '../../../views/home/page/PurchasePage'
 import PostDetails from '../../../views/home/page/PostDetails'
 import SetUp from '../../../views/mine/components/setup';
 import CommunityChannel from '../../../views/newpark/page/CommunityChannel'
-import RewardView from '../../../views/publish/reward'
+import RewardView from '../../../views/publish/page/reward'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs

@@ -9,7 +9,7 @@ import { View,Text,StyleSheet,SafeAreaView,Dimensions,Platform,Image,TextInput }
 import { Appbar,Avatar,IconButton,Button } from 'react-native-paper';
 import LinearGradinet from 'react-native-linear-gradient';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {navigate} from '../../../config/routs/NavigationContainer'
+import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -18,11 +18,11 @@ const RewardView = () => {
     return(
         <SafeAreaView style={styles.parentView}>
             <View style={styles.headView}>
-                <IconButton size={22} iconColor='#fff' icon={require('../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></IconButton>
+                <IconButton size={22} iconColor='#fff' icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></IconButton>
             </View>
             <View style={styles.contentView}>
                 <View style={styles.contenStyle}>
-                    <Avatar.Image size={80} style={styles.avatarStyle} source={require('../../../assets/images/defaultheader.png')}></Avatar.Image>
+                    <Avatar.Image size={80} style={styles.avatarStyle} source={require('../../../../assets/images/defaultheader.png')}></Avatar.Image>
                     <View style={styles.cardView}>
                         <LinearGradinet colors={['rgba(157, 104, 189,1)','rgba(157, 104, 189,0.6)','rgba(252, 251, 251,1)']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.titleStyle}>
                             <Text style={styles.titleText}>
@@ -31,7 +31,7 @@ const RewardView = () => {
                         </LinearGradinet>
                         <View style={styles.inputView}>
                             <View style={styles.inputImageView}>
-                                <Image style={styles.inputImage} source={require('../../../assets/images/alimom/frame1.png')}></Image>
+                                <Image style={styles.inputImage} source={require('../../../../assets/images/alimom/frame1.png')}></Image>
                             </View>
                             <View style={styles.inputContent}>
                                 <Text style={styles.inputText}>标题</Text>
@@ -42,12 +42,12 @@ const RewardView = () => {
                         </View>
                         <View style={styles.bountyView}>
                             <View style={styles.bountyIconView}>
-                                <Image style={styles.bountyIcon} source={require('../../../assets/images/money_icon1.png')}></Image>
+                                <Image style={styles.bountyIcon} source={require('../../../../assets/images/money_icon1.png')}></Image>
                                 <Text style={styles.bountyText}>赏金</Text>
                             </View>
                             <View style={styles.bountyNumView}>
                                 <TextInput selectionColor='#FABA3C' style={styles.bountyInput}></TextInput>
-                                <Image style={styles.bountyNumIcon} source={require('../../../assets/images/moneyBag.png')}></Image>
+                                <Image style={styles.bountyNumIcon} source={require('../../../../assets/images/moneyBag.png')}></Image>
                             </View>
                             <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => console.log('点击发布')}>发布悬赏</Button>
                         </View>
