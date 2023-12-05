@@ -8,6 +8,7 @@ import { node } from "prop-types";
 import React,{ Component, useRef } from "react";
 import { View,Text,StyleSheet,Dimensions,TextInput,Platform,Image,TouchableOpacity } from "react-native";
 import { Appbar,Avatar,IconButton,Button } from 'react-native-paper';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
