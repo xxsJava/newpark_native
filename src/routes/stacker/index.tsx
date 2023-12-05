@@ -180,6 +180,7 @@ export const BommonTab = () => {
                                   bg="teal.400"
                                   colorScheme="teal"
                                   borderRadius="full"
+                                  onPress={() => navigate('PublishProductsRoute')}
                                   icon={
                                     <Icon
                                       // as={MaterialCommunityIcons}

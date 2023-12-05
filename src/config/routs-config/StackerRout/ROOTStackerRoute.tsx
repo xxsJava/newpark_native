@@ -39,6 +39,7 @@ import PostDetails from '../../../views/home/page/PostDetails'
 import SetUp from '../../../views/mine/components/setup';
 import CommunityChannel from '../../../views/newpark/page/CommunityChannel'
 import RewardView from '../../../views/publish/page/reward'
+import PublishProducts from '../../../views/publish/page/commodity'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -265,6 +266,13 @@ export default {
     component:RewardView,
     options:{
       title:'发布悬赏',
+      headerShown:false
+    }
+  },
+  PublishProductsRoute:{
+    component:PublishProducts,
+    options:{
+      title:'发布商品',
       headerShown:false
     }
   }
