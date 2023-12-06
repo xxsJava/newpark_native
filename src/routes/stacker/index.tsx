@@ -131,6 +131,7 @@ export const BommonTab = () => {
                                   bg="yellow.400"
                                   colorScheme="yellow"
                                   borderRadius="full"
+                                  onPress={() => navigate('ReleasePostRoute')}
                                   icon={
                                     <Icon
                                       // as={MaterialCommunityIcons}
