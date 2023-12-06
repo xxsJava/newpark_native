@@ -6,7 +6,7 @@
 
 import { node } from "prop-types";
 import React,{ Component, useRef } from "react";
-import { View,Text,StyleSheet,Dimensions,TextInput,Platform,Image,TouchableOpacity } from "react-native";
+import { View,Text,StyleSheet,Dimensions,TextInput,Platform,Image,TouchableOpacity,TouchableHighlight } from "react-native";
 import { Appbar,Avatar,IconButton,Button } from 'react-native-paper';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {navigate} from '../../../../config/routs/NavigationContainer'
@@ -24,6 +24,62 @@ const modeList = [{
     index:3,
     text:'悬赏代发'
 }]
+
+const Photo = () => {
+    // const [imgs, setImgs] = useState([])
+    const [imgList, setimgList] = React.useState([])
+
+    // const addPhoto = () => {
+    //     launchImageLibrary({
+    //         mediaType: "photo", // 'photo' or 'video' or 'mixed'
+    //         includeBase64: false,
+    //         selectionLimit: 0,// 1为一张，0不限制数量
+    //     }, (res) => {
+    //         setimgList(res);
+    //         console.log('上传图片',res)
+    //     })
+    // }
+    const handleClick= async()=>{
+        launchImageLibrary(
+          {
+            mediaType: 'photo',
+            selectionLimit: 3,
+            includeBase64: false,
+            maxWidth: 1000,
+            maxHeight: 1000,
+          },
+          async res => {
+            // setimgList(res)
+            // console.log('返回数据',res)
+            // console.log('返回数据',res.assets)
+            // console.log('赋值',imgList)
+            // setimgList(res.assets)
+            const curFiles = res.assets;
+            let result
+            for(var i = 0; i < curFiles.length; i++){
+              console.log(curFiles[i]);
+              result=curFiles[i]
+              await setimgList([...imgList,curFiles[i]])
+            }   
+            console.log('imgList',imgList)
+            }
+        )
+    }
+    return (
+        <View style={styles.imageListView}>
+            {imgList.map(item =>{
+                return(
+                    <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}}/>
+                )
+                })
+            }
+            <TouchableHighlight style={[styles.photoView,imgList.length > 3?{display:'none'}:null]} underlayColor="#ddd" onPress={() => handleClick()}>
+                <Image style={styles.photoImage} source={require('../../../../assets/images/takepicforheader.png')}></Image>
+            </TouchableHighlight>
+            {/* <Image style={{width:100,height:100}} source={{uri:'file:///Users/newpark/Library/Developer/CoreSimulator/Devices/12A11679-B024-4E1D-91F8-CE033A5E6E61/data/Containers/Data/Application/1FC816F5-0E54-4D78-81D3-708B2F510A5F/tmp/FEA68057-E426-4FC7-94A1-B4333A508A5A.jpg'}}></Image> */}
+        </View>
+    );
+}
 
 const PublishProducts = () => {
 
@@ -49,7 +105,8 @@ const PublishProducts = () => {
                     <TextInput maxLength={15} selectionColor='#FABA3C' placeholder='请输入商品名称' style={styles.nameInput}></TextInput>
                 </View>
                 <View style={styles.inputView}>
-                    <TextInput selectionColor='#FABA3C' placeholder='请输入商品描述' multiline={true} numberOfLines={14} style={styles.describeInput}></TextInput>
+                    <TextInput maxLength={600} selectionColor='#FABA3C' placeholder='请输入商品描述' multiline={true} numberOfLines={8} style={styles.describeInput}></TextInput>
+                    <Photo></Photo>
                 </View>
                 <View style={styles.priceView}>
                     <Text style={styles.priceText}>定价</Text>
@@ -110,7 +167,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         ...Platform.select({
             ios:{
-                height:400
+                height:300
             },
             android:{
                 textAlignVertical:'top',
@@ -188,5 +245,30 @@ const styles = StyleSheet.create({
         fontSize:17,
         color:'#fff',
         lineHeight:30
-    }
+    },
+    imageListView:{
+        marginVertical:8,
+        marginHorizontal:15,
+        flexDirection:'row',
+        justifyContent:'flex-start'
+    },
+    photoListStyle:{
+        width:95,
+        height:95,
+        borderRadius:8,
+        marginRight:5
+    },
+    photoView:{
+        width:95,
+        height:95,
+        borderWidth:1,
+        borderColor:'#e1e1e1',
+        borderRadius:8,
+        alignItems:'center'
+    },
+    photoImage:{
+        width:25,
+        height:25,
+        marginTop:35
+    },
 })
