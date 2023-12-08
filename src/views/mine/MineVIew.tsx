@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingTop: 15,
     backgroundColor: '#F8B032',
-    zIndex: -99,
+    zIndex: -10,
     position: 'relative',
   },
   boxIcon: {
