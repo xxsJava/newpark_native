@@ -209,6 +209,7 @@ export const BommonTab = () => {
                                   bg="red.500"
                                   colorScheme="red"
                                   borderRadius="full"
+                                  onPress={() => navigate('ClockInViewRoute')}
                                   icon={
                                     <Icon
                                       // as={MaterialIcons}
