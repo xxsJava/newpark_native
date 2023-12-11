@@ -11,6 +11,7 @@ import {navigate} from '../../../../config/routs/NavigationContainer';
 import LinearGradinet from 'react-native-linear-gradient';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { withDecay } from 'react-native-reanimated';
+import ListView from './ListView'
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -104,7 +105,8 @@ const  HelpCircleView = () => {
                     <Entypo style={styles.typeIcon} size={16} name='chevron-thin-right'></Entypo>
                 </View>
             </View>
-            <ScrollView style={styles.scrollStyle}>
+            <ListView></ListView>
+            {/* <ScrollView style={styles.scrollStyle}>
                 <View style={styles.listStyle}>
                 {listData.map(item => {
                     return(
@@ -148,7 +150,7 @@ const  HelpCircleView = () => {
                     )
                 })}
                 </View>
-            </ScrollView>
+            </ScrollView> */}
         </View>
     )
 }
@@ -159,10 +161,10 @@ const styles = StyleSheet.create({
     parentLevel: {
         width: windowWidth,
         height: windowHeight,
-        backgroundColor: '#FFF',
+        backgroundColor: '#EFEBFA',
     },
     headerStyle: {
-        height: 45,
+        height: 55,
         backgroundColor: '#faba3c',
     },
     headerText: {
@@ -172,16 +174,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     typeView:{
-        width:windowWidth-30,
-        height:40,
-        marginHorizontal:15,
+        width:windowWidth,
+        height:45,
+        paddingHorizontal:15,
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        backgroundColor:'#fff'
     },
     typeTitle:{
-        fontSize:16,
+        fontSize:15,
         color:'#555',
-        lineHeight:40
+        lineHeight:45
     },
     typeRight:{
         flexDirection:'row',
@@ -189,11 +192,11 @@ const styles = StyleSheet.create({
     },
     typeText:{
         fontSize:14,
-        color:'#999',
-        lineHeight:40
+        color:'#aaa',
+        lineHeight:45
     },
     typeIcon:{
-        lineHeight:40
+        lineHeight:45
     },
     scrollStyle:{
         width:windowWidth,
