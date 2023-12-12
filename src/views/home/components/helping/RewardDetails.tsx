@@ -92,7 +92,7 @@ const RewardDetails = () => {
                         </View>
                         <Text style={styles.schollText}>湖南长沙理工大学</Text>
                     </View>
-                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => console.log('联系接单人')}>联系接单人</Button>
+                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('TakeOrderPartRoute')}>联系接单人</Button>
                 </ScrollView>
             </View>
         </View>

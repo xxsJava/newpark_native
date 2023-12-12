@@ -43,6 +43,7 @@ import PublishProducts from '../../../views/publish/page/commodity'
 import ReleasePost from '../../../views/publish/page/post'
 import ClockInView from '../../../views/publish/page/clockIn'
 import RewardDetails from '../../../views/home/components/helping/RewardDetails'
+import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -297,6 +298,13 @@ export default {
     component:RewardDetails,
     options:{
       title:'悬赏详情页',
+      headerShown:false
+    }
+  },
+  TakeOrderPartRoute:{
+    component:TakeOrderPart,
+    options:{
+      title:'悬赏进行中-接单人详情页',
       headerShown:false
     }
   }
