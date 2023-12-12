@@ -42,7 +42,7 @@ import RewardView from '../../../views/publish/page/reward'
 import PublishProducts from '../../../views/publish/page/commodity'
 import ReleasePost from '../../../views/publish/page/post'
 import ClockInView from '../../../views/publish/page/clockIn'
-import RewardDetails from '../../../views/home/page/RewardDetails'
+import RewardDetails from '../../../views/home/components/helping/RewardDetails'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs

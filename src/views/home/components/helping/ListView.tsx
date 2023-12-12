@@ -5,9 +5,10 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,ScrollView,Platform } from "react-native";
+import { View,Text,StyleSheet,Dimensions,ScrollView,Platform,TouchableOpacity } from "react-native";
 import { Button,Icon } from 'react-native-paper';
 import { navigate } from "../../../../config/routs/NavigationContainer";
+import { Image } from "react-native-animatable";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -69,6 +70,9 @@ const ListView = () => {
                     })}
                 </View>
             </ScrollView>
+            <TouchableOpacity activeOpacity={0.7}>
+                <Image style={styles.addStyle} source={require('../../../../assets/images/3.0x/add_btn.png')}></Image>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -77,6 +81,7 @@ export default ListView;
 const styles = StyleSheet.create({
     parentLevel:{
         width:windowWidth,
+        position:'relative',
         // backgroundColor:'red',
         ...Platform.select({
             ios:{
@@ -86,6 +91,14 @@ const styles = StyleSheet.create({
                 height:windowHeight-100,
             }
         })
+    },
+    addStyle:{
+        width:60,
+        height:60,
+        bottom:30,
+        right:20,
+        position:'absolute',
+        zIndex:10
     },
     scrollStyle:{
         flex:1

@@ -7,7 +7,8 @@
 import React from "react";
 import { View,Text,StyleSheet,Dimensions,Platform,Image, ScrollView,TouchableOpacity,TextInput } from "react-native";
 import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
-import StepBar from '../components/StepBar'
+import {navigate} from '../../../../config/routs/NavigationContainer'
+import StepBar from '../StepBar'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -16,9 +17,9 @@ const RewardDetails = () => {
     return(
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
-                <Appbar.Action icon={require('../../../assets/images/chevron-left.png')}></Appbar.Action>
+                <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HelpCircleRoute')}></Appbar.Action>
                 <Text style={styles.headerText}>详情</Text>
-                <Appbar.Action icon={require('../../../assets/images/3.0x/ellipsis_v.png')}></Appbar.Action>
+                <Appbar.Action icon={require('../../../../assets/images/3.0x/ellipsis_v.png')}></Appbar.Action>
             </Appbar.Header>
             <View style={styles.scrollView}>
                 <ScrollView style={styles.scrollStyle}>
@@ -26,14 +27,14 @@ const RewardDetails = () => {
                         <View style={styles.informationView}>
                             <View style={styles.avatarView}>
                                 <View style={styles.avatarStyle}></View>
-                                <Image style={styles.vipImage} source={require('../../../assets/images/alimom/V1.png')}></Image>
+                                <Image style={styles.vipImage} source={require('../../../../assets/images/alimom/V1.png')}></Image>
                             </View>
                             <View style={styles.nameView}>
                                 <Text style={styles.nameText}>小学牛</Text>
                                 <Text style={styles.timeText}>刚刚</Text>
                             </View>
                             <View style={styles.statusView}>
-                                <View style={styles.statusStyle}>
+                                <View style={[styles.statusStyle,styles.statusColor1]}>
                                     <Text style={styles.statusText}>未结算</Text>
                                 </View>
                             </View>
@@ -42,7 +43,7 @@ const RewardDetails = () => {
                             <Text style={styles.contcentText1}>去校门口拿个快递在</Text>
                             <View style={styles.moneyView}>
                                 <View style={styles.moneyIcon}>
-                                    <Icon color="#FABA3C" size={32} source={require('../../../assets/images/coins-icon.png')}></Icon>
+                                    <Icon color="#FABA3C" size={32} source={require('../../../../assets/images/coins-icon.png')}></Icon>
                                 </View>
                                 <Text style={styles.sumText}>2.<Text style={{fontSize:13}}>50</Text></Text>
                             </View>
@@ -50,11 +51,11 @@ const RewardDetails = () => {
                         <View style={styles.detailsView}>
                             <View style={styles.detailsTop}>
                                 <View style={styles.addressTitle}>
-                                    <Image style={styles.addressImage}  source={require('../../../assets/images/alimom/fk.png')}></Image>
+                                    <Image style={styles.addressImage}  source={require('../../../../assets/images/alimom/fk.png')}></Image>
                                     <Text style={styles.addressText}>悬赏地址</Text>
                                 </View>
                                 <View style={styles.addressTitle}>
-                                    <Image style={styles.addressImage}  source={require('../../../assets/images/location_icon.png')}></Image>
+                                    <Image style={styles.addressImage}  source={require('../../../../assets/images/location_icon.png')}></Image>
                                     <Text style={styles.addressText}>送达地址</Text>
                                 </View>
                             </View>
@@ -91,7 +92,7 @@ const RewardDetails = () => {
                         </View>
                         <Text style={styles.schollText}>湖南长沙理工大学</Text>
                     </View>
-                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText}>联系接单人</Button>
+                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => console.log('联系接单人')}>联系接单人</Button>
                 </ScrollView>
             </View>
         </View>
@@ -196,7 +197,12 @@ const styles = StyleSheet.create({
         height:40,
         borderTopLeftRadius:20,
         borderBottomLeftRadius:20,
+    },
+    statusColor1:{
         backgroundColor:'#F67C8F'
+    },
+    statusColor2:{
+        backgroundColor:'#76D7AD'
     },
     statusText:{
         fontSize:17,
