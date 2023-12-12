@@ -7,6 +7,8 @@
 import React from "react";
 import { View,Text,StyleSheet,Dimensions,ScrollView,Platform } from "react-native";
 import { Button,Icon } from 'react-native-paper';
+import { navigate } from "../../../../config/routs/NavigationContainer";
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -60,7 +62,7 @@ const ListView = () => {
                                         </View>
                                         <Text style={styles.moneySum}>{item.sum.split('.')[0]}.<Text style={{fontSize:14}}>{item.sum.split('.')[1]}</Text></Text>
                                     </View>
-                                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText}>查看详情</Button>
+                                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('RewardDetailsRoute')}>查看详情</Button>
                                 </View>
                             </View>
                         )

@@ -42,6 +42,7 @@ import RewardView from '../../../views/publish/page/reward'
 import PublishProducts from '../../../views/publish/page/commodity'
 import ReleasePost from '../../../views/publish/page/post'
 import ClockInView from '../../../views/publish/page/clockIn'
+import RewardDetails from '../../../views/home/page/RewardDetails'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -289,6 +290,13 @@ export default {
     component:ClockInView,
     options:{
       title:'打卡',
+      headerShown:false
+    }
+  },
+  RewardDetailsRoute:{
+    component:RewardDetails,
+    options:{
+      title:'悬赏详情页',
       headerShown:false
     }
   }

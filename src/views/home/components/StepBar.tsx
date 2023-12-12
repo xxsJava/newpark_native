@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     stepBarText:{
         width:50,
-        fontSize:16,
+        fontSize:15,
         color:'#000',
         lineHeight:20,
         position:'absolute',
