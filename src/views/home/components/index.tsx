@@ -16,7 +16,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
   // const [inputValue, onChangeText] = useState('喜欢就告诉她');
 
   return (
-    <TouchableOpacity onPress={() => navigate('PostDetailsRoute')}>
+    <TouchableOpacity activeOpacity={0.9}  onPress={() => navigate('PostDetailsRoute')}>
       <Card style={styles.cardSty}>
         <Card.Title
           title={item.title}

@@ -6,7 +6,7 @@
 
 import React from "react";
 import { View,Text,StyleSheet,Dimensions,Image,TouchableOpacity,ScrollView,Platform } from "react-native";
-import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
+import {Appbar, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;

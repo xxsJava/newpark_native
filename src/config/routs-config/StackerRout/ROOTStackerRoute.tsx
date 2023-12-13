@@ -44,6 +44,7 @@ import ReleasePost from '../../../views/publish/page/post'
 import ClockInView from '../../../views/publish/page/clockIn'
 import RewardDetails from '../../../views/home/components/helping/RewardDetails'
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart'
+import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -305,6 +306,13 @@ export default {
     component:TakeOrderPart,
     options:{
       title:'悬赏进行中-接单人详情页',
+      headerShown:false
+    }
+  },
+  CreateCommunityRoute:{
+    component:CreateCommunity,
+    options:{
+      title:'创建社区',
       headerShown:false
     }
   }

@@ -8,7 +8,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {Component,useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
-import {Text, View} from 'react-native-animatable';
+import {Image, Text, View} from 'react-native-animatable';
 import {
   Dimensions,
   StyleSheet,
@@ -23,13 +23,36 @@ const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+const moreList = [{
+  index:1,
+  image:require('../../assets/images/alimom/add-user.png'),
+  text:'添加牛友',
+  path:null
+},{
+  index:2,
+  image:require('../../assets/images/alimom/basketball-icon.png'),
+  text:'加入社区',
+  path:null
+},{
+  index:3,
+  image:require('../../assets/images/alimom/add-icon.png'),
+  text:'创建社区',
+  path:'CreateCommunityRoute'
+}]
+
 const SocializingView = () => {
 
   const [tabVal, setTab] = useState('tab1');
-    const handleTabPress = (tab: string) => {
-      console.log('Tab状态' + tab);
-      setTab(tab);
-    };
+  const [more,setMore] = useState(false)
+
+  const handleTabPress = (tab: string) => {
+    console.log('Tab状态' + tab);
+    setTab(tab);
+  };
+
+  const handleMorePress = (more:boolean) => {
+    more ? setMore(false) : setMore(true)
+  }
 
   return(
     <SafeAreaView style={styles.safeStyle}>
@@ -64,7 +87,9 @@ const SocializingView = () => {
               </View>
             </View>
             <View style={styles.tabMore}>
-              <Feather name="plus" size={38} color="#000000" />
+              <TouchableOpacity onPress={() => handleMorePress(more)}>
+                <Feather name="plus" size={32} color="#000000" />
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.searchGrid}>
@@ -82,6 +107,20 @@ const SocializingView = () => {
         <View style={tabVal === 'tab2'?styles.tabContent:styles.tabContentShow}>
           <ContactsModul></ContactsModul>
         </View>
+        <View style={[styles.moreModule,more?null:{display:'none'}]}>
+          {moreList.map(item => {
+            return(
+              <View style={styles.itemMore} key={item.index}>
+                <View style={styles.itemImageView}>
+                  <Image style={styles.itemImage} source={item.image}></Image>
+                </View>
+                <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
+                  <Text style={styles.itemText}>{item.text}</Text>
+                </TouchableOpacity>
+              </View>
+            )
+          })}
+        </View>
       </SafeAreaView>
   )
 }
@@ -93,7 +132,7 @@ const styles = StyleSheet.create({
   tabContent:{
     flex: 1,
     backgroundColor:'#F5F5F5',
-    paddingBottom:20
+    paddingBottom:20,
   },
   tabContentShow:{
     display:'none'
@@ -101,6 +140,7 @@ const styles = StyleSheet.create({
   safeStyle: {
     width: windowWidth,
     height: windowHeight-40,
+    position:'relative',
     backgroundColor: '#FFFFFF',
   },
   headView: {
@@ -130,8 +170,45 @@ const styles = StyleSheet.create({
   tabMore: {
     flex: 1,
     marginTop: 16,
-    paddingRight: 25,
+    paddingRight: 10,
     alignItems: 'flex-end',
+  },
+  moreModule:{
+    top:45,
+    right:18,
+    width:140,
+    height:130,
+    paddingVertical:5,
+    position:'absolute',
+    backgroundColor:'#414040',
+    zIndex:99
+  },
+  itemMore:{
+    height:30,
+    marginBottom:8,
+    flexDirection:'row',
+    justifyContent:'space-between'
+  },
+  itemImageView:{
+    width:'40%',
+    alignItems:'center',
+    paddingTop:8,
+  },
+  itemImage:{
+    width:22,
+    height:22
+  },
+  itemTextView:{
+    width:'60%',
+    borderColor:'#fff',
+    borderBottomWidth:1
+  },
+  itemText:{
+    fontSize:14,
+    color:'#fff',
+    lineHeight:30,
+    textAlign:'center'
+
   },
   tabBg1: {
     width: 18,
