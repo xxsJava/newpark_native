@@ -121,6 +121,7 @@ const SocializingView = () => {
             )
           })}
         </View>
+        <TouchableOpacity style={[styles.maskLayer,more?null:{display:'none'}]} onPress={() => handleMorePress(more)}></TouchableOpacity>
       </SafeAreaView>
   )
 }
@@ -269,6 +270,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
   },
+  maskLayer:{
+    width:windowWidth,
+    height:windowHeight,
+    top:0,
+    position:'absolute',
+    zIndex:80,
+    // backgroundColor:'red'
+  }
 });
 function tabClick(porps: any, string: any) {
   throw new Error('Function not implemented.');
