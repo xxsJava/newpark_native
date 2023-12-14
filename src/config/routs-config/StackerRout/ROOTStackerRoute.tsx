@@ -45,6 +45,7 @@ import ClockInView from '../../../views/publish/page/clockIn'
 import RewardDetails from '../../../views/home/components/helping/RewardDetails'
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart'
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity'
+import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -292,6 +293,13 @@ export default {
     component:ClockInView,
     options:{
       title:'打卡',
+      headerShown:false
+    }
+  },
+  CheckRecordRoute:{
+    component:CheckRecord,
+    options:{
+      title:'打卡记录',
       headerShown:false
     }
   },
