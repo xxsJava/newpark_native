@@ -1,19 +1,87 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2023-11-14 09:55:29
+ * @LastEditTime: 2023-12-08 17:43:20
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
-import React, {Component, useRef, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Button, StyleSheet, Text, View} from 'react-native';
+import Alipay from '@uiw/react-native-alipay';
+import notifee, { AndroidImportance, AndroidStyle, AuthorizationStatus } from '@notifee/react-native';
+
+Alipay.setAlipaySandbox(true);
+
+async function aliPay() {
+  // 支付宝端支付
+  // payInfo 是后台拼接好的支付参数
+  // return_url=
+  /**
+   * 9000	订单支付成功
+   * 8000	正在处理中，支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
+   * 4000	订单支付失败
+   * 5000	重复请求
+   * 6001	用户中途取消
+   * 6002	网络连接出错
+   * 6004	支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
+   */
+  const payInfo =
+    'alipay_sdk=alipay-sdk-java-4.38.149.ALL&app_id=9021000122673887&biz_content=%7B%22out_trade_no%22%3A%22202312061538511732303576384540672%22%2C%22total_amount%22%3A0.01%2C%22subject%22%3A%22%E8%8F%A0%E8%90%9D%E6%89%8B%E6%9C%BA%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&sign=SVjU6punRMSnDRdc2TSvXZJvspvmIFV45X87iDraWcWPLUXWRSi7hQknRu%2FB6LP3hcs%2B1ItLOcTmqGgG1Go6S4Nk1XbwdXM%2BE9trI5AiSPLRV3poLEKyJB3j%2BIy7AlGGN%2BpoTOq%2Fa1k4kxIfZnP%2BIU7tURBc3n9UqVTtym7F%2BO2ox7OLmsrmWjThBupz8aFpXAtD3Dm3emx0CDvmFiWTfdSEFTfpUiWlWfWPAeeY6fb7oZTB2zy4%2BLeTaMsiOB27rM2iba%2F%2FxHtomUhgWSl0ndZvwSBksTdw07HfY1lbZOxvO3K9Vn5%2FmmjSjdZw3WuaK%2FPZwezgXbouvxVptm9AKA%3D%3D&sign_type=RSA2&timestamp=2023-12-06+15%3A38%3A51&version=1.0';
+  const resule = await Alipay.alipay(payInfo);
+  console.log('alipay:resule-->>>', resule);
+}
+
+async function checkNotificationPermission(channelId?: undefined | string) {
+  const settings = await notifee.getNotificationSettings();
+
+  if (settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) {
+    console.log('通知权限已授权');
+  } else if (settings.authorizationStatus == AuthorizationStatus.DENIED) {
+    console.log('通知权限未授权');
+    const openMsg = await notifee.openNotificationSettings(channelId);
+    console.log('通知权限已授权------>',openMsg);
+  }
+}
+
+async function onDisplayNotification() {
+
+  
+
+  // Request permissions (required for iOS)
+  
+  console.log('执行通知')
+
+  checkNotificationPermission("default")
+  // Create a channel (required for Android)
+  const channelId = await notifee.createChannel({
+    id: 'default',
+    name: 'Default Channel',
+    importance: AndroidImportance.HIGH,
+    sound: 'msg',
+  });
+
+  notifee.displayNotification({
+    title: 'NewPark',
+    body: '我是一条消息',
+    android: {
+      sound: 'msg',
+      smallIcon: 'ic_launcher',
+      largeIcon: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/2023/12/01/logo.png',
+      channelId,
+      style: { type: AndroidStyle.BIGPICTURE, picture: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638355971556795.jpg' },
+      importance: AndroidImportance.HIGH,
+    },
+  });
+
+}
 
 const ForgetPass: React.FC = () => {
-
   return (
     <View style={{flex: 1}}>
-       {/* <MyComponent/> */}
-       {/* <Button type="primary">主要按钮</Button> */}
+      {/* <MyComponent/> */}
+      <Button title="支付宝支付" onPress={aliPay} />
+      <Button title="微信支付" color="#24C78C" />
+      <Button title="通知" onPress={onDisplayNotification} />
     </View>
   );
 };

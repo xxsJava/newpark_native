@@ -1,14 +1,13 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-28 21:58:06
- * @LastEditTime: 2023-11-20 17:47:42
+ * @LastEditTime: 2023-12-15 09:59:53
  * @FilePath: \newpark_native\src\config\run-conrig\index.tsx
  * @Description: 全局自行导入依赖
  */
 import 'react-native-gesture-handler';
 // import OpenIMSDKRN, {OpenIMEmitter} from 'open-im-sdk-rn';
-import ImInitConfig from '../im/Im-init-config';
-
+// import ImInitConfig from '../im/Im-init-config';
 import {LogBox} from 'react-native';
 LogBox.ignoreAllLogs(true); //关闭全部黄色警告
 LogBox.ignoreLogs([

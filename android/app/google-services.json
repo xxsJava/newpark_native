@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1070229677597",
+    "project_id": "newpark-f87e0",
+    "storage_bucket": "newpark-f87e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070229677597:android:7c91d41d42fdc95d7c88f4",
+        "android_client_info": {
+          "package_name": "com.newpark_native"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfptmajUS_dUgKHTdcSJBVMkgfE4H1_lA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

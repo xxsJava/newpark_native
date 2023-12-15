@@ -1,12 +1,9 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-04 23:22:00
- * @LastEditTime: 2023-10-31 16:40:15
+ * @LastEditTime: 2023-12-13 15:20:03
  * @FilePath: \newpark_native\index.js
  * @Description: desc
- */
-/**
- * @format
  */
 import './src/config/run-conrig'
 import {AppRegistry} from 'react-native';
