@@ -15,6 +15,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import routsConfig from '../../config/routs-config';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Icon, IconButton, Stagger, useDisclose} from 'native-base';
+import {navigate} from '../../config/routs/NavigationContainer'
 /*
  * @Author: xxs
  * @Date: 2023-10-24 16:56:09
@@ -96,16 +97,18 @@ export const BommonTab = () => {
                               <View
                                 style={{
                                   position: 'absolute',
-                                  bottom: 0,
-                                  left: 40,
+                                  bottom: -10,
+                                  left: 45,
                                 }}>
-                                <Text>4</Text>
+                                <Text style={{position:'relative',left:45,top:20,color:'#000'}}>发布悬赏</Text>
                                 <IconButton
                                   mb="4"
+                                  size={36}
                                   variant="solid"
                                   bg="indigo.500"
                                   colorScheme="indigo"
                                   borderRadius="full"
+                                  onPress={() => navigate('RewardRoute')}
                                   icon={
                                     <Icon
                                       // as={MaterialIcons}
@@ -119,13 +122,37 @@ export const BommonTab = () => {
                                   }
                                 />
                               </View>
-                              <View style={{position: 'absolute', bottom: 30,left:0}}>
-                                <Text>3</Text>
+                              <View style={{position: 'absolute', bottom: 30,left:25}}>
+                                <Text style={{position:'relative',left:45,top:20,color:'#000'}}>发布帖子</Text>
                                 <IconButton
                                   mb="4"
+                                  size={36}
                                   variant="solid"
                                   bg="yellow.400"
                                   colorScheme="yellow"
+                                  borderRadius="full"
+                                  onPress={() => navigate('ReleasePostRoute')}
+                                  icon={
+                                    <Icon
+                                      // as={MaterialCommunityIcons}
+                                      _dark={{
+                                        color: 'warmGray.50',
+                                      }}
+                                      size="6"
+                                      name="microphone"
+                                      color="warmGray.50"
+                                    />
+                                  }
+                                />
+                              </View>
+                              <View style={{position: 'absolute', bottom: 45,left:-18}}>
+                                <Text style={{position:'relative',left:5,color:'#000'}}>公告</Text>
+                                <IconButton
+                                  mb="4"
+                                  size={36}
+                                  variant="solid"
+                                  bg="pink.400"
+                                  colorScheme="pink"
                                   borderRadius="full"
                                   icon={
                                     <Icon
@@ -144,15 +171,17 @@ export const BommonTab = () => {
                                 style={{
                                   position: 'absolute',
                                   bottom: 30,
-                                  right: 0,
+                                  right: 5,
                                 }}>
-                                <Text>2</Text>
+                                <Text style={{position:'relative',right:60,top:20,color:'#000'}}>发布商品</Text>
                                 <IconButton
                                   mb="4"
+                                  size={36}
                                   variant="solid"
                                   bg="teal.400"
                                   colorScheme="teal"
                                   borderRadius="full"
+                                  onPress={() => navigate('PublishProductsRoute')}
                                   icon={
                                     <Icon
                                       // as={MaterialCommunityIcons}
@@ -169,16 +198,18 @@ export const BommonTab = () => {
                               <View
                                 style={{
                                   position: 'absolute',
-                                  top: -80,
-                                  right: 40,
+                                  bottom:-10,
+                                  right: 45,
                                 }}>
-                                <Text>1</Text>
+                                <Text style={{position:'relative',right:30,top:20,color:'#000'}}>打卡</Text>
                                 <IconButton
                                   mb="4"
+                                  size={36}
                                   variant="solid"
                                   bg="red.500"
                                   colorScheme="red"
                                   borderRadius="full"
+                                  onPress={() => navigate('ClockInViewRoute')}
                                   icon={
                                     <Icon
                                       // as={MaterialIcons}

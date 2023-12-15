@@ -6,7 +6,7 @@
 
 import React, { Component } from "react";
 import { View,Text,StyleSheet, Dimensions,Image,TouchableOpacity,ScrollView,Platform } from "react-native";
-import { Appbar,Avatar,IconButton,Tooltip,Button, Icon } from 'react-native-paper';
+import { Appbar, Icon } from 'react-native-paper';
 import {navigate} from '../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width
@@ -69,11 +69,13 @@ const listData = [{
 const functionListData = [{
     index:1,
     image:require('../../../assets/images/alimom/dk.png'),
-    text:'打卡'
+    text:'打卡',
+    path:'ClockInViewRoute'
 },{
     index:2,
     image:require('../../../assets/images/alimom/jl.png'),
-    text:'打卡记录'
+    text:'打卡记录',
+    path:'CheckRecordRoute'
 }]
 export default class CommunityChannel extends Component {
     render() {
@@ -145,7 +147,7 @@ export default class CommunityChannel extends Component {
                                 <View style={styles.funcitonList}>
                                     {functionListData.map(item => {
                                         return (
-                                            <TouchableOpacity key={item.index} style={styles.functionItem} activeOpacity={0.9}>
+                                            <TouchableOpacity key={item.index} style={styles.functionItem} activeOpacity={0.9} onPress={() => navigate(item.path)}>
                                                 <Image source={item.image} style={styles.functionImage}></Image>
                                                 <Text style={styles.functionText}>{item.text}</Text>
                                             </TouchableOpacity>

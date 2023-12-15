@@ -383,7 +383,7 @@ PODS:
     - glog
   - react-native-blur (4.3.2):
     - React-Core
-  - react-native-image-picker (7.0.2):
+  - react-native-image-picker (7.0.3):
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
@@ -499,49 +499,24 @@ PODS:
     - React-jsi (= 0.72.6)
     - React-logger (= 0.72.6)
     - React-perflogger (= 0.72.6)
-  - RNCAsyncStorage (1.19.5):
+  - RNCAsyncStorage (1.21.0):
     - React-Core
   - RNCMaskedView (0.1.11):
     - React
-  - RNGestureHandler (2.13.4):
+  - RNGestureHandler (2.14.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - RNLocalize (3.0.3):
+  - RNLocalize (3.0.4):
     - React-Core
-  - RNReanimated (3.5.4):
-    - DoubleConversion
-    - FBLazyVector
-    - glog
-    - hermes-engine
-    - RCT-Folly
-    - RCTRequired
-    - RCTTypeSafety
-    - React-callinvoker
+  - RNReanimated (3.6.1):
+    - RCT-Folly (= 2021.07.22.00)
     - React-Core
-    - React-Core/DevSupport
-    - React-Core/RCTWebSocket
-    - React-CoreModules
-    - React-cxxreact
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-RCTActionSheet
-    - React-RCTAnimation
-    - React-RCTAppDelegate
-    - React-RCTBlob
-    - React-RCTImage
-    - React-RCTLinking
-    - React-RCTNetwork
-    - React-RCTSettings
-    - React-RCTText
     - ReactCommon/turbomodule/core
-    - Yoga
   - RNScreens (3.27.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - RNSVG (12.1.1):
-    - React
+  - RNSVG (14.0.0):
+    - React-Core
   - RNVectorIcons (10.0.2):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -794,7 +769,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 194e32c6aab382d88713ad3dd0025c5f5c4ee072
   React-logger: cebf22b6cf43434e471dc561e5911b40ac01d289
   react-native-blur: cfdad7b3c01d725ab62a8a729f42ea463998afa2
-  react-native-image-picker: 2e2e82aba9b6a91a7c78f7d9afde341a2659c7b8
+  react-native-image-picker: 2381c008bbb09e72395a2d043c147b11bd1523d9
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   React-NativeModulesApple: 02e35e9a51e10c6422f04f5e4076a7c02243fff2
@@ -814,13 +789,13 @@ SPEC CHECKSUMS:
   React-runtimescheduler: f23e337008403341177fc52ee4ca94e442c17ede
   React-utils: fa59c9a3375fb6f4aeb66714fd3f7f76b43a9f16
   ReactCommon: dd03c17275c200496f346af93a7b94c53f3093a4
-  RNCAsyncStorage: f2974eca860c16a3e56eea5771fda8d12e2d2057
+  RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
-  RNGestureHandler: 6e46dde1f87e5f018a54fe5d40cd0e0b942b49ee
-  RNLocalize: 7ce27517894956a226aa6d614786802d253a0a0a
-  RNReanimated: ab2e96c6d5591c3dfbb38a464f54c8d17fb34a87
+  RNGestureHandler: 32a01c29ecc9bb0b5bf7bc0a33547f61b4dc2741
+  RNLocalize: 1ce4263770515f53d3de442ce7657b3661b16a37
+  RNReanimated: fdbaa9c964bbab7fac50c90862b6cc5f041679b9
   RNScreens: 3c2d122f5e08c192e254c510b212306da97d2581
-  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
+  RNSVG: 255767813dac22db1ec2062c8b7e7b856d4e5ae6
   RNVectorIcons: 23b6e11af4aaf104d169b1b0afa7e5cf96c676ce
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603

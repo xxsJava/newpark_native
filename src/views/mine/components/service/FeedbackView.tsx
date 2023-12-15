@@ -5,28 +5,63 @@ import { Appbar } from 'react-native-paper';
 import { Checkbox,Input,TextArea,Divider } from "native-base";
 import {launchImageLibrary} from 'react-native-image-picker';
 import {navigate} from '../../../../config/routs/NavigationContainer'
+import { any } from 'prop-types';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Photo = () => {
-    const [imgs, setImgs] = useState([])
 
-    const addPhoto = () => {
-        launchImageLibrary({
-            mediaType: "photo", // 'photo' or 'video' or 'mixed'
-            selectionLimit: 0,// 1为一张，0不限制数量
-            includeBase64: true
-        }, res => {
-            console.log('上传图片')
-        })
+const Photo = () => {
+    // const [imgs, setImgs] = useState([])
+    const [imgList, setimgList] = useState([])
+
+    // const addPhoto = () => {
+    //     launchImageLibrary({
+    //         mediaType: "photo", // 'photo' or 'video' or 'mixed'
+    //         includeBase64: false,
+    //         selectionLimit: 0,// 1为一张，0不限制数量
+    //     }, (res) => {
+    //         setimgList(res);
+    //         console.log('上传图片',res)
+    //     })
+    // }
+    const handleClick= async()=>{
+        launchImageLibrary(
+          {
+            mediaType: 'photo',
+            selectionLimit: 3,
+            includeBase64: false,
+            maxWidth: 1000,
+            maxHeight: 1000,
+          },
+          async res => {
+            // setimgList(res)
+            // console.log('返回数据',res)
+            // console.log('返回数据',res.assets)
+            // console.log('赋值',imgList)
+            // setimgList(res.assets)
+            const curFiles = res.assets;
+            let result
+            for(var i = 0; i < curFiles.length; i++){
+              console.log(curFiles[i]);
+              result=curFiles[i]
+              await setimgList([...imgList,curFiles[i]])
+            }   
+            }
+        )
     }
     return (
-        <View>
-            {/* <Button title="启动图库选择图像" onPress={() => addPhoto()}></Button> */}
-            <TouchableHighlight style={styles.photoView} underlayColor="#ddd" onPress={() => addPhoto()}>
+        <View style={styles.imageListView}>
+            {imgList.map(item =>{
+                return(
+                    <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}}/>
+                )
+                })
+            }
+            <TouchableHighlight style={styles.photoView} underlayColor="#ddd" onPress={() => handleClick()}>
                 <Image style={styles.photoImage} source={require('../../../../assets/images/chat_page_photo.png')}></Image>
             </TouchableHighlight>
+            {/* <Image style={{width:100,height:100}} source={{uri:'file:///Users/newpark/Library/Developer/CoreSimulator/Devices/12A11679-B024-4E1D-91F8-CE033A5E6E61/data/Containers/Data/Application/1FC816F5-0E54-4D78-81D3-708B2F510A5F/tmp/FEA68057-E426-4FC7-94A1-B4333A508A5A.jpg'}}></Image> */}
         </View>
     );
 }
@@ -197,6 +232,16 @@ const styles = StyleSheet.create({
     },
     buttonView:{
 
+    },
+    imageListView:{
+        flexDirection:'row',
+        justifyContent:'flex-start'
+    },
+    photoListStyle:{
+        width:95,
+        height:95,
+        borderRadius:8,
+        marginRight:5
     },
     photoView:{
         width:95,

@@ -38,6 +38,14 @@ import PurchasePage from '../../../views/home/page/PurchasePage'
 import PostDetails from '../../../views/home/page/PostDetails'
 import SetUp from '../../../views/mine/components/setup';
 import CommunityChannel from '../../../views/newpark/page/CommunityChannel'
+import RewardView from '../../../views/publish/page/reward'
+import PublishProducts from '../../../views/publish/page/commodity'
+import ReleasePost from '../../../views/publish/page/post'
+import ClockInView from '../../../views/publish/page/clockIn'
+import RewardDetails from '../../../views/home/components/helping/RewardDetails'
+import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart'
+import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity'
+import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -131,7 +139,8 @@ export default {
   MemberServicesRoute: {
     component: MemberServicesView,
     options: {
-      title: '我的订单',
+      title: '会员服务',
+      headerShown: false,
     },
   },
   MyOrderRoute: {
@@ -256,6 +265,62 @@ export default {
     component:CommunityChannel,
     options:{
       title:'社区频道',
+      headerShown:false
+    }
+  },
+  RewardRoute:{
+    component:RewardView,
+    options:{
+      title:'发布悬赏',
+      headerShown:false
+    }
+  },
+  PublishProductsRoute:{
+    component:PublishProducts,
+    options:{
+      title:'发布商品',
+      headerShown:false
+    }
+  },
+  ReleasePostRoute:{
+    component:ReleasePost,
+    options:{
+      title:'发布帖子',
+      headerShown:false
+    }
+  },
+  ClockInViewRoute:{
+    component:ClockInView,
+    options:{
+      title:'打卡',
+      headerShown:false
+    }
+  },
+  CheckRecordRoute:{
+    component:CheckRecord,
+    options:{
+      title:'打卡记录',
+      headerShown:false
+    }
+  },
+  RewardDetailsRoute:{
+    component:RewardDetails,
+    options:{
+      title:'悬赏详情页',
+      headerShown:false
+    }
+  },
+  TakeOrderPartRoute:{
+    component:TakeOrderPart,
+    options:{
+      title:'悬赏进行中-接单人详情页',
+      headerShown:false
+    }
+  },
+  CreateCommunityRoute:{
+    component:CreateCommunity,
+    options:{
+      title:'创建社区',
       headerShown:false
     }
   }
