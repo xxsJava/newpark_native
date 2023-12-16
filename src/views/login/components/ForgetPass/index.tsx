@@ -1,14 +1,15 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2023-12-08 17:43:20
+ * @LastEditTime: 2023-12-16 17:32:39
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
-import notifee, { AndroidImportance, AndroidStyle, AuthorizationStatus } from '@notifee/react-native';
+import notifee, { AndroidImportance, AndroidStyle, AuthorizationStatus, EventType, RepeatFrequency, TimestampTrigger, TriggerType } from '@notifee/react-native';
+import { getNotification } from '../../../../api/NotificationApi';
 
 Alipay.setAlipaySandbox(true);
 
@@ -43,10 +44,8 @@ async function checkNotificationPermission(channelId?: undefined | string) {
   }
 }
 
+//本地通知
 async function onDisplayNotification() {
-
-  
-
   // Request permissions (required for iOS)
   
   console.log('执行通知')
@@ -54,8 +53,8 @@ async function onDisplayNotification() {
   checkNotificationPermission("default")
   // Create a channel (required for Android)
   const channelId = await notifee.createChannel({
-    id: 'default',
-    name: 'Default Channel',
+    id: 'default1',
+    name: 'Default1',
     importance: AndroidImportance.HIGH,
     sound: 'msg',
   });
@@ -75,13 +74,73 @@ async function onDisplayNotification() {
 
 }
 
+// 远程通知
+async function onNotificationRemote(){
+
+  console.log('获取通知')
+
+  const notifStr = await getNotification('token_pr_newpark_ae9784cad54a970f');
+
+  console.log(notifStr)
+
+  const channelId = await notifee.createChannel({
+    id: 'default2',
+    name: 'Default2',
+    importance: AndroidImportance.HIGH,
+    sound: 'msg',
+  });
+
+  notifee.displayNotification({
+    title: notifStr.data.title,
+    body: notifStr.data.body,
+    android: {
+      sound: 'msg',
+      smallIcon: 'ic_launcher',
+      largeIcon: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/2023/12/01/logo.png',
+      channelId,
+      style: { 
+        type: AndroidStyle.BIGPICTURE, picture: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638355971556795.jpg' 
+      },
+      importance: AndroidImportance.HIGH,
+    },
+  });
+}
+
+//定时通知
+async function onCreateTriggerNotification() {
+  const date = new Date(Date.now());
+  date.setHours(11);
+  date.setMinutes(10);
+
+  const trigger: TimestampTrigger = {
+    type: TriggerType.TIMESTAMP,
+    timestamp: date.getTime(),
+    repeatFrequency: RepeatFrequency.WEEKLY,
+  };
+
+  await notifee.createTriggerNotification(
+    {
+      id: '123',
+      title: 'Meeting with Jane',
+      body: 'Today at 11:20am',
+      android: {
+        channelId: 'your-channel-id',
+      },
+    },
+    trigger,
+  );
+}
+
 const ForgetPass: React.FC = () => {
+
   return (
     <View style={{flex: 1}}>
       {/* <MyComponent/> */}
       <Button title="支付宝支付" onPress={aliPay} />
       <Button title="微信支付" color="#24C78C" />
       <Button title="通知" onPress={onDisplayNotification} />
+      <Button title="远程通知" onPress={onNotificationRemote} />
+      <Button title="定时通知" onPress={onCreateTriggerNotification} />
     </View>
   );
 };
