@@ -583,14 +583,26 @@ const ListIndex: React.FC = () => {
     // 更多的数据...
   ];
 
-  const ITEM_HEIGHT = 100;
+  const ITEM_HEIGHT = 110;
 
   const handleSectionSelect = (index: number) => {
     setSelectedSectionIndex(index);
+    let itemHeight = 0;
+    if(index < 3) {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) - 14
+    } else if(index < 5) {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 2 * index
+    } else if(index < 10) {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 6 * index
+    } else if(index < 20) {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 8 * index
+    } else {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 9 * index
+    }
 
     //一个分组的高度
-    const itemHeight =
-      (ITEM_HEIGHT + 30) * data[index].data.length * index + 4 * index;
+    // const itemHeight =
+    //   (ITEM_HEIGHT + 30) * data[index].data.length * index + 4 * index;
     //总高度
     const itemSum = (ITEM_HEIGHT * data[index].data.length + 30) * 26;
 
