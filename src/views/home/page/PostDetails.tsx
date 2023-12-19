@@ -9,30 +9,32 @@ import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,ScrollView,Te
 import { Image } from "react-native-animatable";
 import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../../config/routs/NavigationContainer';
+import {useTranslation, Trans} from 'react-i18next';
+import {commentData} from '../mock/index'
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
-const listData = [{
-    index:1,
-    name:'佩奇',
-    time:'刚刚',
-    num:'2.0w',
-    image:require('../../../assets/images/avatar-nan.png'),
-    text:'抬头和你分享一个月亮就很美好',
-    itemData:[]
-},{
-    index:2,
-    name:'佩奇',
-    time:'刚刚',
-    num:'2.0w',
-    image:require('../../../assets/images/avatar-nan.png'),
-    text:'抬头和你分享一个月亮就很美好',
-    itemData:[{
-        index:1,
-        name:'咕子',
-        text:6
-    }]
-}]
+// const listData = [{
+//     index:1,
+//     name:'佩奇',
+//     time:'刚刚',
+//     num:'2.0w',
+//     image:require('../../../assets/images/avatar-nan.png'),
+//     text:'抬头和你分享一个月亮就很美好',
+//     itemData:[]
+// },{
+//     index:2,
+//     name:'佩奇',
+//     time:'刚刚',
+//     num:'2.0w',
+//     image:require('../../../assets/images/avatar-nan.png'),
+//     text:'抬头和你分享一个月亮就很美好',
+//     itemData:[{
+//         index:1,
+//         name:'咕子',
+//         text:6
+//     }]
+// }]
 
 const PostDetails = () => {
     const [inputVal,onInputPress] = React.useState('')
@@ -54,6 +56,22 @@ const PostDetails = () => {
     const ononSelectLike = (prop:number) => {
 
     }
+    const myHeaders = new Headers();
+    myHeaders.append("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+    // const requestOptions = {
+    //     method: 'GET',
+    //     headers: myHeaders,
+    //     redirect: 'follow'
+    // };
+
+    fetch("http://192.168.2.96:50000/posts/postsOneApi", {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    })
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
     return(
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
@@ -61,7 +79,9 @@ const PostDetails = () => {
                     icon={require('../../../assets/images/chevron-left.png')}
                     onPress={() => navigate('HomeStacker')}
                 />
-                <Text style={styles.headerText}>帖子详情</Text>
+                <Text style={styles.headerText}>
+                    <Trans>navigationBar.title18</Trans>
+                </Text>
                 <Appbar.Action
                     icon={require('../../../assets/images/ellipsis_v.png')}
                 />
@@ -117,7 +137,7 @@ const PostDetails = () => {
                         <View style={styles.scrollView}>
                             <Text style={styles.commentTitle}>全部评论(2000)</Text>
                             <View style={styles.listStyle}>
-                                {listData.map(item => {
+                                {commentData.map(item => {
                                     return(
                                         <View style={styles.itemStyle} key={item.index}>
                                             <View style={styles.commentAvatarView}>

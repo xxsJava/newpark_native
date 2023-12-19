@@ -8,6 +8,7 @@ import React from "react";
 import { View,Text,StyleSheet,Dimensions,Platform,Image, ScrollView,TouchableOpacity,TextInput } from "react-native";
 import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../../../config/routs/NavigationContainer'
+import {useTranslation, Trans} from 'react-i18next';
 import StepBar from '../StepBar'
 
 const windowWidth = Dimensions.get('window').width;
@@ -18,7 +19,9 @@ const RewardDetails = () => {
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HelpCircleRoute')}></Appbar.Action>
-                <Text style={styles.headerText}>详情</Text>
+                <Text style={styles.headerText}>
+                    <Trans>navigationBar.title25</Trans>
+                </Text>
                 <Appbar.Action icon={require('../../../../assets/images/3.0x/ellipsis_v.png')}></Appbar.Action>
             </Appbar.Header>
             <View style={styles.scrollView}>

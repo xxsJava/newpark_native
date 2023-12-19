@@ -1,5 +1,5 @@
 /**
- * 代码描述: 发布商品页面  发布
+ * 代码描述: 发布帖子页面  发布
  * 作者:cxr
  * 修改时间:2023/12/06 9:44:11
  */
@@ -9,6 +9,7 @@ import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,TextInput } f
 import { Image } from "react-native-animatable";
 import { Appbar,Avatar,IconButton,Button } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
@@ -19,7 +20,9 @@ const ReleasePost = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></Appbar.Action>
-                <Text style={styles.headerText}>发布帖子</Text>
+                <Text style={styles.headerText}>
+                    <Trans>navigationBar.title23</Trans>
+                </Text>
             </Appbar.Header>
             <View style={styles.syncView}>
                 <Image style={styles.syncImage} source={require('../../../../assets/images/3.0x/circle_icon.png')}></Image>

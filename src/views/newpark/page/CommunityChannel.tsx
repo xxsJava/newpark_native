@@ -7,6 +7,7 @@
 import React, { Component } from "react";
 import { View,Text,StyleSheet, Dimensions,Image,TouchableOpacity,ScrollView,Platform } from "react-native";
 import { Appbar, Icon } from 'react-native-paper';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width
@@ -83,7 +84,9 @@ export default class CommunityChannel extends Component {
             <View style={styles.parentView}>
                 <Appbar.Header>
                     <Appbar.Action icon={require('../../../assets/images/chevron-left.png')} onPress={() => navigate('NewPatkStacker')} />
-                    <Text style={styles.derTexthea}>社区频道</Text>
+                    <Text style={styles.derTexthea}>
+                        <Trans>navigationBar.title21</Trans>
+                    </Text>
                     <TouchableOpacity>
                         <Image style={styles.headerImage} source={require('../../../assets/images/search_in_circle.png')}></Image>
                     </TouchableOpacity>

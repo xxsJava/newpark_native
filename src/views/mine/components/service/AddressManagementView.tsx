@@ -6,6 +6,7 @@
 import React, {Component} from 'react';
 import { View,Text,StyleSheet,Dimensions,ScrollView,Platform } from 'react-native';
 import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width
@@ -59,7 +60,9 @@ export default class AddressManagementView extends Component {
             <View style={styles.parentView}>
                 <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>地址管理</Text>
+                    <Text style={styles.headerText}>
+                        <Trans>navigationBar.title11</Trans>
+                    </Text>
                 </Appbar.Header>
                 <ScrollView style={styles.scrollStyle}>
                     <View style={styles.listStyle}>

@@ -10,6 +10,7 @@ import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../../../config/routs/NavigationContainer';
 import LinearGradinet from 'react-native-linear-gradient';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {useTranslation, Trans} from 'react-i18next';
 import { withDecay } from 'react-native-reanimated';
 import ListView from './ListView'
 
@@ -96,7 +97,9 @@ const  HelpCircleView = () => {
                     icon={require('../../../../assets/images/chevron-left.png')}
                     onPress={() => navigate('HomeStacker')}
                 />
-                <Text style={styles.headerText}>帮忙圈</Text>
+                <Text style={styles.headerText}>
+                    <Trans>navigationBar.title16</Trans>
+                </Text>
             </Appbar.Header>
             <View style={styles.typeView}>
                 <Text style={styles.typeTitle}>排序方式</Text>

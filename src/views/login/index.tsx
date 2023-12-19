@@ -17,6 +17,7 @@ import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
 import {useToast} from 'native-base';
 import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
+import {useTranslation, Trans} from 'react-i18next';
 import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
 import {forgetPass} from './controller';
 import {navigate} from '../../config/routs/NavigationContainer';
@@ -179,20 +180,26 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
                 buttonColor="#fff"
                 textColor="#000"
                 onPress={onLogin}>
-                登录
+                <Trans>loginText.text1</Trans>
               </Button>
             </View>
             <View style={styles.verify}>
               <TouchableOpacity onPress={smsVerIf}>
-                <Text style={styles.underline}>短信验证</Text>
+                <Text style={styles.underline}>
+                  <Trans>loginText.text2</Trans>
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={forgetPass}>
-                <Text style={styles.underline}>忘记密码</Text>
+                <Text style={styles.underline}>
+                  <Trans>loginText.text3</Trans>
+                </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.bottom}>
               <View style={styles.line} />
-              <Text>第三方登录</Text>
+              <Text>
+                <Trans>loginText.text4</Trans>
+              </Text>
               <View style={styles.line} />
             </View>
             <View style={styles.wx}>

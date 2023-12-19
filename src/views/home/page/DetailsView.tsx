@@ -19,6 +19,7 @@ import {
 import Swiper from 'react-native-swiper';
 import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../../config/routs/NavigationContainer';
+import {useTranslation, Trans} from 'react-i18next';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 const windowWidth = Dimensions.get('window').width;
@@ -38,7 +39,9 @@ const DetailsView = () => {
           icon={require('../../../assets/images/chevron-left.png')}
           onPress={() => navigate('ProductRoute')}
         />
-        <Text style={styles.headerText}>商品详情</Text>
+        <Text style={styles.headerText}>
+          <Trans>navigationBar.title14</Trans>
+        </Text>
       </Appbar.Header>
       <View style={styles.scrollView}>
         <ScrollView style={styles.scrollStyle} alwaysBounceVertical={true}>

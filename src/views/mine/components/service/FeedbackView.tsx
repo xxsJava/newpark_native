@@ -4,6 +4,7 @@ import { Text } from 'react-native-animatable';
 import { Appbar } from 'react-native-paper';
 import { Checkbox,Input,TextArea,Divider } from "native-base";
 import {launchImageLibrary} from 'react-native-image-picker';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 import { any } from 'prop-types';
 
@@ -72,7 +73,9 @@ export default class FeedbackView extends Component {
             <View style={styles.parentLevel}>
                 <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>意见反馈</Text>
+                    <Text style={styles.headerText}>
+                        <Trans>navigationBar.title12</Trans>
+                    </Text>
                 </Appbar.Header>
                 <View style={styles.titleView}>
                     <Text style={styles.titleText}>请选择发生的问题类型</Text>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { View,Text,StyleSheet,Dimensions,TouchableOpacity,ScrollView,Platform } from 'react-native';
 import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width
@@ -16,7 +17,9 @@ const MyOrderView = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>我的订单</Text>
+                    <Text style={styles.headerText}>
+                        <Trans>navigationBar.title6</Trans>
+                    </Text>
                 </Appbar.Header>
                 <View style={styles.typeView}>
                     <TouchableOpacity style={typeVal == 'type1'?styles.typeItem:null} onPress={() => onTypePress('type1')}>
