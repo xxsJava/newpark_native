@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import { View,Text,StyleSheet,Dimensions,TouchableOpacity,ScrollView,Platform } from 'react-native';
 import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
 import {useTranslation, Trans} from 'react-i18next';
@@ -7,12 +7,18 @@ import {navigate} from '../../../../config/routs/NavigationContainer'
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
-// const Quiz = ({ navigation, route }) => {
+// const Quiz = ({ navigation, route }:any) => {
 //     const { typeParams } = route.params;
 // };
 
-const MyOrderView = () => {
+const MyOrderView = ({route}:any) => {
     const [typeVal,onTypePress] = React.useState('type1')
+    // const {route}:any = this.props
+    const { type } = route.params
+    useEffect(() => {
+        // 触发事件
+        onTypePress(type)
+    }, []);
     return (
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
@@ -36,6 +42,8 @@ const MyOrderView = () => {
     )
   
 }
+
+
 
 export default MyOrderView;
 

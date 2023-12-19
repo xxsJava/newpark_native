@@ -189,6 +189,7 @@ export default {
   SearchView: {
     component: SearchView,
     options: {
+      title: '全局搜索',
       headerShown: false,
     },
   },

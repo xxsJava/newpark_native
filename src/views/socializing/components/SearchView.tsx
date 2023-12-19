@@ -83,6 +83,11 @@ const typeData=[{
   text:'UID'
 }]
 
+const ONE = () => {
+  const { navigation } = this.props;
+  navigation.goBack();
+}
+
 const ForgetPass: React.FC = () => {
   let [service, setService] = React.useState('');
   const [inputValue, onChangeText] = React.useState('搜索您感兴趣的/社区/帖子/UID');
