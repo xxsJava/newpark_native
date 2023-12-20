@@ -1,24 +1,38 @@
-import React, {Component} from 'react';
+/*
+ * @Author: xxs
+ * @Date: 2023-12-20 17:44:35
+ * @LastEditTime: 2023-12-20 17:45:11
+ * @FilePath: \newpark_native\src\views\mine\components\service\MyOrderView.tsx
+ * @Description: desc
+ */
+import React, {Component, useEffect} from 'react';
 import { View,Text,StyleSheet,Dimensions,TouchableOpacity,ScrollView,Platform } from 'react-native';
 import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
-// const Quiz = ({ navigation, route }) => {
+// const Quiz = ({ navigation, route }:any) => {
 //     const { typeParams } = route.params;
 // };
 
-const MyOrderView = () => {
-    
-    
+const MyOrderView = ({route}:any) => {
     const [typeVal,onTypePress] = React.useState('type1')
+    // const {route}:any = this.props
+    const { type } = route.params
+    useEffect(() => {
+        // 触发事件
+        onTypePress(type)
+    }, []);
     return (
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>我的订单</Text>
+                    <Text style={styles.headerText}>
+                        <Trans>navigationBar.title6</Trans>
+                    </Text>
                 </Appbar.Header>
                 <View style={styles.typeView}>
                     <TouchableOpacity style={typeVal == 'type1'?styles.typeItem:null} onPress={() => onTypePress('type1')}>
@@ -34,6 +48,8 @@ const MyOrderView = () => {
         </View>
     )
 }
+
+
 
 export default MyOrderView;
 

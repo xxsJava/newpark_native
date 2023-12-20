@@ -14,7 +14,7 @@ import {Text} from 'react-native-animatable';
 import {Select, Icon} from 'native-base';
 import Entypo from 'react-native-vector-icons/Entypo';
 import LinearGradinet from 'react-native-linear-gradient';
-import {navigate} from '../../../config/routs/NavigationContainer';
+// import {navigate} from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -83,14 +83,15 @@ const typeData=[{
   text:'UID'
 }]
 
-const ForgetPass: React.FC = () => {
+const ForgetPass = ({ navigation }:any) => {
   let [service, setService] = React.useState('');
   const [inputValue, onChangeText] = React.useState('搜索您感兴趣的/社区/帖子/UID');
+
   return (
     <SafeAreaView style={styles.safeStyle}>
       <View style={styles.searchBar}>
         <View style={styles.searchBarLeft}>
-          <TouchableOpacity onPress={() => navigate('SocializingStacker')}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={require('../../../assets/images/go_left_arrow.png')} />
           </TouchableOpacity>
         </View>
@@ -198,7 +199,7 @@ const ForgetPass: React.FC = () => {
           <ScrollView style={styles.scrollStyle} alwaysBounceVertical={true}>
             {listData.map(item => {
               return (
-                <View style={styles.itemView}>
+                <View style={styles.itemView} key={item.index}>
                   <View style={styles.itemHeard}>
                     <Text style={styles.itemHeardLeft}>相关社区</Text>
                     <Text style={styles.itemHeardRight}>

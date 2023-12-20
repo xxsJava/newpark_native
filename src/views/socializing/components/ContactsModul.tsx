@@ -589,6 +589,7 @@ const ListIndex: React.FC = () => {
   //这里是滚动到指定位置
   const handleSectionSelect = (index: number) => {
     setSelectedSectionIndex(index);
+    
 
     //一个分组的高度
     // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + (索引下标+偏移值)

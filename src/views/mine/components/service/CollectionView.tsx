@@ -4,6 +4,7 @@ import {Text} from 'react-native-animatable';
 import {Radio, Box} from 'native-base';
 import {Appbar, RadioButton} from 'react-native-paper';
 import LinearGradinet from 'react-native-linear-gradient';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
@@ -42,7 +43,9 @@ const CollectionView = () => {
           icon={require('../../../../assets/images/chevron-left.png')}
           onPress={() => navigate('MineStacker')}
         />
-        <Text style={styles.headerText}>我的收藏</Text>
+        <Text style={styles.headerText}>
+          <Trans>navigationBar.title10</Trans>
+        </Text>
       </Appbar.Header>
       <RadioButton.Group onValueChange={newValue => setRadioValue(newValue)} value={radioValue}>
             <View style={styles.radioGroup}>

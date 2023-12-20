@@ -8,6 +8,7 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, Dimensions,Platform, TextInput} from 'react-native';
 import {Appbar,Button} from 'react-native-paper';
 import IndexTable from './IndexTableView'
+import {useTranslation, Trans} from 'react-i18next';
 import {RegisteredScreenProps} from '../../../../config/routs';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
@@ -26,7 +27,9 @@ const SchoolIndex:React.FC<RegisteredScreenProps> = () => {
           icon={require('../../../../assets/images/chevron-left.png')}
           onPress={() => navigate('Registered')}
         />
-        <Text style={styles.headerText}>学校选择</Text>
+        <Text style={styles.headerText}>
+          <Trans>navigationBar.title3</Trans>
+        </Text>
       </Appbar.Header>
       <View style={styles.searchViwe}>
         <TextInput

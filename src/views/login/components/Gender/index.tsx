@@ -8,6 +8,7 @@ import React, {useState} from 'react';
 import { View,Text,StyleSheet,Dimensions,TouchableOpacity,Platform } from 'react-native';
 import { Image } from 'react-native-animatable';
 import {Appbar,Button} from 'react-native-paper';
+import {useTranslation, Trans} from 'react-i18next';
 import {RegisteredScreenProps} from '../../../../config/routs';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
@@ -22,7 +23,9 @@ const Gender: React.FC<RegisteredScreenProps> = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('Registered')}/>
-                <Text style={styles.headerText}>性别</Text>
+                <Text style={styles.headerText}>
+                    <Trans>navigationBar.title4</Trans>
+                </Text>
             </Appbar.Header>
             <View style={styles.sexView}>
                 <TouchableOpacity activeOpacity={0.8} style={[styles.sexItem,styles.sexBottom]} onPress={() => confirmOnPress('sex0')}>

@@ -18,24 +18,28 @@ const orderData = [
     {
       index: 1,
       route: 'PaymentRoute',
+      type:'type1',
       text: 'minOrder.orderOption1',
       icon: require('../../../../assets/images/alimom/dpay.png'),
     },
     {
       index: 2,
       route: 'ReceiptRoute',
+      type:'type2',
       text: 'minOrder.orderOption2',
       icon: require('../../../../assets/images/alimom/dsh.png'),
     },
     {
       index: 3,
       route: 'EvaluateRoute',
+      type:'type3',
       text: 'minOrder.orderOption3',
       icon: require('../../../../assets/images/alimom/dk.png'),
     },
     {
       index: 4,
       route: 'AfterSalesRoute',
+      type:'',
       text: 'minOrder.orderOption4',
       icon: require('../../../../assets/images/alimom/sh.png'),
     },
@@ -197,7 +201,7 @@ const HomePageView = () => {
                   return (
                     <View style={styles.orderItem} key={item.index}>
                       <TouchableOpacity
-                        onPress={() => navigate('MyOrderRoute',{type:'type2'})}
+                        onPress={() => navigate('MyOrderRoute',{type:item.type})}
                         style={styles.orderRoute}>
                         <Image style={styles.itemImage} source={item.icon} />
                         <Text style={styles.itemText}>
@@ -227,14 +231,23 @@ const HomePageView = () => {
                 {serviceData1.map(item => {
                   return (
                     <View style={styles.orderItem} key={item.index}>
+                      {item.index == 2?
                       <TouchableOpacity
-                        onPress={() => navigate(item.route)}
+                        onPress={() => navigate(item.route,{type:'type1'})}
                         style={styles.orderRoute}>
                         <Image style={styles.itemImages} source={item.icon} />
                         <Text style={styles.serviceText}>
                           <Trans>{item.text}</Trans>
                         </Text>
-                      </TouchableOpacity>
+                      </TouchableOpacity>:
+                      <TouchableOpacity
+                      onPress={() => navigate(item.route)}
+                      style={styles.orderRoute}>
+                      <Image style={styles.itemImages} source={item.icon} />
+                      <Text style={styles.serviceText}>
+                        <Trans>{item.text}</Trans>
+                      </Text>
+                    </TouchableOpacity>}
                     </View>
                   );
                 })}
