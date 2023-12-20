@@ -11,6 +11,8 @@ const windowHeight = Dimensions.get('window').height
 // };
 
 const MyOrderView = () => {
+    
+    
     const [typeVal,onTypePress] = React.useState('type1')
     return (
         <View style={styles.parentView}>
@@ -31,7 +33,6 @@ const MyOrderView = () => {
                 </View>
         </View>
     )
-  
 }
 
 export default MyOrderView;

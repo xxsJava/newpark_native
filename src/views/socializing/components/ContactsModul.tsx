@@ -36,7 +36,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
             key={index}
             onPress={() => onSectionSelect(index)}
             style={styles.itemBar}>
-            <Text style={{color: '#008fe4'}}>{section.title}</Text>
+            <Text style={{color: '#008fe4',fontSize: 10}}>{section.title}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -583,16 +583,20 @@ const ListIndex: React.FC = () => {
     // 更多的数据...
   ];
 
-  const ITEM_HEIGHT = 100;
+  //item 90
+  const ITEM_HEIGHT = 90;
 
+  //这里是滚动到指定位置
   const handleSectionSelect = (index: number) => {
     setSelectedSectionIndex(index);
 
     //一个分组的高度
+    // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + (索引下标+偏移值)
     const itemHeight =
-      (ITEM_HEIGHT + 30) * data[index].data.length * index + 4 * index;
+      (ITEM_HEIGHT  * data[index].data.length +40) * index + (index*10);
     //总高度
-    const itemSum = (ITEM_HEIGHT * data[index].data.length + 30) * 26;
+    // (item * 每个分组子元素的数量 + 标题 + 间隙 ) * 分组数量
+    const itemSum = (ITEM_HEIGHT * data[index].data.length + 40)* data.length;
 
     console.log('滚动到的位置----->', itemSum - itemHeight);
     toast.show({
@@ -605,18 +609,19 @@ const ListIndex: React.FC = () => {
         animated: true,
         sectionIndex: index,
         itemIndex: 0,
-        //偏移高度 偏移160
+        //偏移高度
         viewOffset: itemSum - itemHeight,
       });
     }
   };
 
+  //这里是渲染的总高度
   const _ItemLayout = (data: any, index: number) => {
-    //总高度 (item * item^n  + 标题 + 间隙) = 分组的高度
+    //总高度 (item * item^n  + 标题 + 间隙) * 子元素的数量 = 分组的高度
     const dataHight =
-      (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 30) * 26;
+      (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40)* data.length;
 
-    console.log(dataHight);
+    // console.log(dataHight);
     return {
       index,
       length: ITEM_HEIGHT,
