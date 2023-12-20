@@ -12,7 +12,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import 'intl-pluralrules';
 import './src/hooks/i18/i18next';
 import APPNewPark from './src/routes/main';
-import {NativeBaseProvider} from 'native-base';
 import {navigationRefs} from './src/config/routs/NavigationContainer';
 import {CounterProvider} from './src/hooks/state';
 import Registered from './src/views/login/components/Registered';
@@ -25,15 +24,13 @@ export default function App(): JSX.Element {
 
   return (
     <NavigationContainer ref={navigationRefs}>
-      <NativeBaseProvider>
-        <CounterProvider>
-            <APPNewPark />
-            {/* <Registered/> */}
-            {/* <SchoolIndex></SchoolIndex> */}
-            {/* <Gender></Gender> */}
-            {/* <InterestsHobbies></InterestsHobbies> */}
-        </CounterProvider>
-      </NativeBaseProvider>
+      <CounterProvider>
+        <APPNewPark />
+          {/* <Registered/> */}
+          {/* <SchoolIndex></SchoolIndex> */}
+          {/* <Gender></Gender> */}
+          {/* <InterestsHobbies></InterestsHobbies> */}
+      </CounterProvider>
     </NavigationContainer>
   );
 }

@@ -1,8 +1,9 @@
 import React, {Component, useState} from 'react';
-import { View,StyleSheet,Dimensions,Platform,Image,Button,TouchableHighlight,TouchableOpacity } from 'react-native';
+import { View,StyleSheet,Dimensions,Platform,TextInput,Image,TouchableHighlight,TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-animatable';
 import { Appbar } from 'react-native-paper';
-import { Checkbox,Input,TextArea,Divider } from "native-base";
+// import { Input,TextArea,Divider } from "native-base";
+import {CheckIcon, Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator, CheckboxLabel, VStack } from '@gluestack-ui/themed';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
@@ -67,6 +68,22 @@ const Photo = () => {
     );
 }
 
+const CheckView = () => {
+    const [values, setValues] = useState(["Illustration"])
+    return(
+        <CheckboxGroup style={styles.groupStyle} value={values} onChange={(keys:any) => {setValues(keys)}}>
+            <VStack space="3xl">
+                <Checkbox isInvalid={false} isDisabled={false} style={styles.checkStyle} value='zh'>
+                    <CheckboxIndicator style={styles.checkIcon}>
+                        <CheckboxIcon as={CheckIcon} />
+                    </CheckboxIndicator>
+                    <CheckboxLabel>账号</CheckboxLabel>
+                </Checkbox>
+            </VStack>
+        </CheckboxGroup>
+    )
+}
+
 export default class FeedbackView extends Component {
     render () {
         return (
@@ -81,69 +98,20 @@ export default class FeedbackView extends Component {
                     <Text style={styles.titleText}>请选择发生的问题类型</Text>
                 </View>
                 <View style={styles.multipleChoiceView}>
-                    <Checkbox value="danger" colorScheme="yellow" defaultIsChecked>服务</Checkbox>
+                    <CheckView></CheckView>
+                    {/* <Checkbox value="danger" colorScheme="yellow" defaultIsChecked>服务</Checkbox>
                     <Checkbox value="danger" colorScheme="yellow">账号</Checkbox>
                     <Checkbox value="danger" colorScheme="yellow">系统</Checkbox>
-                    <Checkbox value="danger" colorScheme="yellow">其他</Checkbox>
+                    <Checkbox value="danger" colorScheme="yellow">其他</Checkbox> */}
                 </View>
                 <View style={styles.contentView}>
                     <View>
-                        <Input mx="3" placeholder="请输入标题" w={windowWidth-45}
-                             _light={{
-                                placeholderTextColor: "#9599a6",
-                                bg: "white",
-                                borderColor:"white",
-                                fontSize:18,
-                                fontWeight:"600",
-                                _hover: {
-                                  bg: "white",
-                                },
-                                _focus: {
-                                  bg: "white:white",
-                                  borderColor:"white"
-                                }
-                              }} _dark={{
-                                bg: "white",
-                                _hover: {
-                                  bg: "white"
-                                },
-                                _focus: {
-                                  bg: "white:white"
-                                }
-                              }}
-                        ></Input>
+                        <TextInput selectionColor='#FFB300' placeholder='请输入标题' maxLength={26} style={styles.titleInput}></TextInput>
                     </View>
-                    <View style={{paddingHorizontal:12}}>
-                        <Divider my="2" _light={{
-                            bg: "#f2f2f2"
-                        }} _dark={{
-                            bg: "#f2f2f2"
-                        }} />
+                    <View style={styles.lineStyle}>
                     </View>
                     <View style={styles.textAreaView}>
-                        <TextArea h={40} placeholder="请描述一下你遇到的场景及问题" w="100%" maxW={windowWidth-45} autoCompleteType={undefined}
-                            _light={{
-                                placeholderTextColor: "#9599a6",
-                                bg: "white",
-                                borderColor:"white",
-                                fontSize:14,
-                                _hover: {
-                                  bg: "white",
-                                },
-                                _focus: {
-                                  bg: "white:white",
-                                  borderColor:"white"
-                                }
-                              }} _dark={{
-                                bg: "white",
-                                _hover: {
-                                  bg: "white"
-                                },
-                                _focus: {
-                                  bg: "white:white"
-                                }
-                              }}
-                        />
+                        <TextInput autoCorrect={false} selectionColor='#FFB300' placeholder='请描述一下你遇到的场景及问题' maxLength={260} multiline={true} numberOfLines={8} style={styles.textAreaStyle}></TextInput>
                     </View>
                 </View>
                 <View style={styles.titleView}>
@@ -207,8 +175,19 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFF',
         marginHorizontal:10,
         paddingTop:13,
+    },
+    groupStyle:{
         flexDirection:'row',
         justifyContent:'space-around'
+    },
+    checkStyle:{
+        width:50,
+        height:30,
+        backgroundColor:'pink'
+    },
+    checkIcon:{
+        width:20,
+        height:20
     },
     contentView:{
         width:windowWidth-20,
@@ -221,9 +200,32 @@ const styles = StyleSheet.create({
         // paddingHorizontal:10
 
     },
+    lineStyle:{
+        height:2,
+        marginHorizontal:15,
+        borderBottomWidth:1,
+        borderColor:'#bbb'
+    },
+    titleInput:{
+        fontSize:16,
+        paddingHorizontal:20,
+        // backgroundColor:'gold'
+    },
     textAreaView:{
-        paddingHorizontal:12,
+        paddingHorizontal:15,
         paddingTop:10,
+    },
+    textAreaStyle:{
+        textAlignVertical: 'top',
+        // backgroundColor:'plum',
+        ...Platform.select({
+            ios:{
+                height:180,
+            },
+            android:{
+
+            }
+        })
     },
     pictureView:{
         width:windowWidth-20,
