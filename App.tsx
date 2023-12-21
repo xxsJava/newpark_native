@@ -14,23 +14,27 @@ import './src/hooks/i18/i18next';
 import APPNewPark from './src/routes/main';
 import {navigationRefs} from './src/config/routs/NavigationContainer';
 import {CounterProvider} from './src/hooks/state';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 import Registered from './src/views/login/components/Registered';
 import SchoolIndex from './src/views/login/components/SchoolIndex'
 import Gender from './src/views/login/components/Gender'
 import InterestsHobbies from './src/views/login/components/InterestsHobbies'
+import { config } from './src/config/axios/config';
 
 export default function App(): JSX.Element {
   console.log('开始加载APP');
 
   return (
     <NavigationContainer ref={navigationRefs}>
-      <CounterProvider>
-        <APPNewPark />
-          {/* <Registered/> */}
-          {/* <SchoolIndex></SchoolIndex> */}
-          {/* <Gender></Gender> */}
-          {/* <InterestsHobbies></InterestsHobbies> */}
-      </CounterProvider>
+      <GluestackUIProvider config={config}>
+        <CounterProvider>
+          <APPNewPark />
+            {/* <Registered/> */}
+            {/* <SchoolIndex></SchoolIndex> */}
+            {/* <Gender></Gender> */}
+            {/* <InterestsHobbies></InterestsHobbies> */}
+        </CounterProvider>
+      </GluestackUIProvider>
     </NavigationContainer>
   );
 }

@@ -11,7 +11,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import {Text} from 'react-native-animatable';
-import {Select, Icon} from 'native-base';
 import Entypo from 'react-native-vector-icons/Entypo';
 import LinearGradinet from 'react-native-linear-gradient';
 // import {navigate} from '../../../config/routs/NavigationContainer';

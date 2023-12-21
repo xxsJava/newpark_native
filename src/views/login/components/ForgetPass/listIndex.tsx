@@ -1,4 +1,5 @@
-import {useToast} from 'native-base';
+// import {useToast} from 'native-base';
+import { useToast, Toast, ToastTitle } from '@gluestack-ui/themed';
 import React, {useState, useRef} from 'react';
 import {
   View,
@@ -96,8 +97,12 @@ const ListIndex: React.FC = () => {
     console.log('滚动到的位置----->', itemSum - itemHeight);
 
     toast.show({
-      description: data[index].title,
       placement: 'bottom',
+      render: () => {
+        return (
+          <Text>{data[index].title}</Text>
+        )
+      },
     });
 
     if (sectionListRef.current) {

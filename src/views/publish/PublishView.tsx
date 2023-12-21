@@ -5,16 +5,18 @@
  * @FilePath: \newpark_native\src\views\publish\PublishView.tsx
  * @Description: 发布帖子页面
  */
-import {
-  Box,
-  Center,
-  HStack,
-  Icon,
-  IconButton,
-  Stagger,
-  useDisclose,
-  useToast,
-} from 'native-base';
+// import {
+//   Box,
+//   Center,
+//   HStack,
+//   Icon,
+//   IconButton,
+//   Stagger,
+//   useDisclose,
+//   useToast,
+// } from 'native-base';
+import { IconButton } from 'react-native-paper';
+import { Center,HStack,Icon } from '@gluestack-ui/themed';
 import React, {Component, useState} from 'react';
 import {Text, StyleSheet, View, Button, Animated, TouchableOpacity} from 'react-native';
 import {loginOutApi} from '../../api/sys/lgoin';
@@ -71,11 +73,11 @@ export default class PublishView extends Component {
 
 
 const Example = () => {
-  const {isOpen, onToggle} = useDisclose();
+  // const {isOpen, onToggle} = useDisclose();
   return (
     <Center>
       {/* <Box alignItems="center" minH="220"> */}
-      <Stagger
+      {/* <Stagger
         visible={isOpen}
         initial={{
           opacity: 0,
@@ -193,7 +195,7 @@ const Example = () => {
         </View>
       </Stagger>
       {/* </Box> */}
-      <HStack alignItems="center">
+      {/* <HStack alignItems="center">
         <IconButton
           variant="solid"
           borderRadius="full"
@@ -212,7 +214,7 @@ const Example = () => {
             />
           }
         />
-      </HStack>
+      </HStack> */}
     </Center>
   );
 };

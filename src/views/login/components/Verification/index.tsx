@@ -15,7 +15,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {Button, useToast} from 'native-base';
+// import {Button, useToast} from 'native-base';
+import { useToast, Button } from '@gluestack-ui/themed';
 import Storage from '../../../../utils/AsyncStorageUtils';
 import {smsLoginApi} from '../../../../api/sys/lgoin';
 import {SmsLoginType} from '../../../../api/sys/lgoin/types';
@@ -119,16 +120,25 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
       setLoad(false);
       setDisabled(true);
       toast.show({
-        description: smsLoginAPI.msg,
+        // description: smsLoginAPI.msg,
         placement: 'top',
+        render: () => {
+          return (
+            <Text>{smsLoginAPI.msg}</Text>
+          )
+        },
       });
       return;
     }
 
     if(smsLoginAPI.data != null){
       toast.show({
-        description: '登录成功,开始寻找小妹',
         placement: 'top',
+        render: () => {
+          return (
+            <Text>登录成功,开始寻找好友</Text>
+          )
+        },
       });
       navigate('LoginHome');
       return
@@ -175,8 +185,6 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         <View>
           <Button
             disabled={disabled}
-            isLoading={isLoad}
-            isLoadingText="验证中"
             onPress={next}
             style={[styles.buttR, disabled && styles.buttW]}>
             <Text>下一步</Text>

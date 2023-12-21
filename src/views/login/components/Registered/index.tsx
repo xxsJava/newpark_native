@@ -14,10 +14,10 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  Image,
   Dimensions,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Center, Icon, Image, Radio} from 'native-base';
 import LottieView from 'lottie-react-native';
 import {
   Appbar,

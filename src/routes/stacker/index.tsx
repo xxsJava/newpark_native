@@ -14,7 +14,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import routsConfig from '../../config/routs-config';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Icon, IconButton, Stagger, useDisclose} from 'native-base';
+// import { Stagger, useDisclose} from 'native-base';
+import { Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../config/routs/NavigationContainer'
 /*
  * @Author: xxs
@@ -28,7 +29,7 @@ export const BommonTab = () => {
 
   const {t} = useTranslation();
 
-  const {isOpen, onToggle} = useDisclose();
+  // const {isOpen, onToggle} = useDisclose();
 
   useEffect(() => {}, [console.log('底部路由加载')]);
 
@@ -43,7 +44,10 @@ export const BommonTab = () => {
             fontSize: 14,
           },
         })}>
-        {Object.entries(routsConfig).map(([key, value]) => {
+          <View>
+            <Text>禁用</Text>
+          </View>
+        {/* {Object.entries(routsConfig).map(([key, value]) => {
           if (key === 'Routes') {
             const subArray = Object.entries(value);
             return subArray.map(([routeKey, routeValue]) => {
@@ -109,17 +113,6 @@ export const BommonTab = () => {
                                   colorScheme="indigo"
                                   borderRadius="full"
                                   onPress={() => navigate('RewardRoute')}
-                                  icon={
-                                    <Icon
-                                      // as={MaterialIcons}
-                                      size="6"
-                                      name="location-pin"
-                                      _dark={{
-                                        color: 'warmGray.50',
-                                      }}
-                                      color="warmGray.50"
-                                    />
-                                  }
                                 />
                               </View>
                               <View style={{position: 'absolute', bottom: 30,left:25}}>
@@ -132,17 +125,6 @@ export const BommonTab = () => {
                                   colorScheme="yellow"
                                   borderRadius="full"
                                   onPress={() => navigate('ReleasePostRoute')}
-                                  icon={
-                                    <Icon
-                                      // as={MaterialCommunityIcons}
-                                      _dark={{
-                                        color: 'warmGray.50',
-                                      }}
-                                      size="6"
-                                      name="microphone"
-                                      color="warmGray.50"
-                                    />
-                                  }
                                 />
                               </View>
                               <View style={{position: 'absolute', bottom: 45,left:-18}}>
@@ -154,17 +136,6 @@ export const BommonTab = () => {
                                   bg="pink.400"
                                   colorScheme="pink"
                                   borderRadius="full"
-                                  icon={
-                                    <Icon
-                                      // as={MaterialCommunityIcons}
-                                      _dark={{
-                                        color: 'warmGray.50',
-                                      }}
-                                      size="6"
-                                      name="microphone"
-                                      color="warmGray.50"
-                                    />
-                                  }
                                 />
                               </View>
                               <View
@@ -182,17 +153,6 @@ export const BommonTab = () => {
                                   colorScheme="teal"
                                   borderRadius="full"
                                   onPress={() => navigate('PublishProductsRoute')}
-                                  icon={
-                                    <Icon
-                                      // as={MaterialCommunityIcons}
-                                      _dark={{
-                                        color: 'warmGray.50',
-                                      }}
-                                      size="6"
-                                      name="video"
-                                      color="warmGray.50"
-                                    />
-                                  }
                                 />
                               </View>
                               <View
@@ -210,17 +170,6 @@ export const BommonTab = () => {
                                   colorScheme="red"
                                   borderRadius="full"
                                   onPress={() => navigate('ClockInViewRoute')}
-                                  icon={
-                                    <Icon
-                                      // as={MaterialIcons}
-                                      size="6"
-                                      name="photo-library"
-                                      _dark={{
-                                        color: 'warmGray.50',
-                                      }}
-                                      color="warmGray.50"
-                                    />
-                                  }
                                 />
                               </View>
                             </Stagger>
@@ -242,7 +191,7 @@ export const BommonTab = () => {
               );
             });
           }
-        })}
+        })} */}
       </Tab.Navigator>
     </>
   );

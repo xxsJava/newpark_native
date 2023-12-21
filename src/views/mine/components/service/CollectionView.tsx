@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Dimensions, Platform} from 'react-native';
 import {Text} from 'react-native-animatable';
-import {Radio, Box} from 'native-base';
 import {Appbar, RadioButton} from 'react-native-paper';
 import LinearGradinet from 'react-native-linear-gradient';
 import {useTranslation, Trans} from 'react-i18next';

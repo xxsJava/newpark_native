@@ -1,4 +1,5 @@
-import {useToast} from 'native-base';
+// import {useToast} from 'native-base';
+import { useToast } from '@gluestack-ui/themed';
 import React, {useState, useRef, Component} from 'react';
 import {
   View,
@@ -14,7 +15,6 @@ import {
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradinet from 'react-native-linear-gradient';
-import {color} from 'native-base/lib/typescript/theme/styled-system';
 import {navigate} from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
@@ -626,8 +626,12 @@ const ListIndex: React.FC = () => {
     const itemSum = (ITEM_HEIGHT * data[index].data.length + 30) * 26;
     console.log('滚动到的位置----->', itemSum - itemHeight);
     toast.show({
-      description: data[index].title,
       placement: 'bottom',
+      render: () => {
+        return (
+          <Text>{data[index].title}</Text>
+        )
+      },
     });
 
     if (sectionListRef.current) {
