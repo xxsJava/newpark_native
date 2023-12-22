@@ -117,6 +117,12 @@ const SocializingView = () => {
                 <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
                   <Text style={styles.itemText}>{item.text}</Text>
                 </TouchableOpacity>
+                {/* <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
+                  <Text style={styles.itemText}>{item.text}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
+                  <Text style={styles.itemText}>{item.text}</Text>
+                </TouchableOpacity> */}
               </View>
             )
           })}

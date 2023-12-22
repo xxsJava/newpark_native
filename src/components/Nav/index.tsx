@@ -155,4 +155,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeNav;
+export default HomeNav

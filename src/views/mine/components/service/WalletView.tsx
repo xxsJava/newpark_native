@@ -12,7 +12,7 @@ const windowHeight = Dimensions.get('window').height;
 const buttonClick = () =>{
     console.log('我被点击了!')
 }
-
+let BALANCE:number = 0.00;
 let textSelected = '1'
 
 export default class WalletView extends Component {
@@ -31,7 +31,7 @@ export default class WalletView extends Component {
                         <LinearGradinet colors={['rgba(249,187,81,1)','rgba(254,241,217,0.90)']}start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.walletBg}>
                             <View style={styles.cardContent}>
                                 <Text style={styles.cardText1}>余额</Text>
-                                <Text style={styles.cardText2}>¥0.0</Text>
+                                <Text style={styles.cardText2}>¥{BALANCE}</Text>
                             </View>
                             <View style={styles.cardButtonView}>
                                 <View style={styles.cardButtonIos}>

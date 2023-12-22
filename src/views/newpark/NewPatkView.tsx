@@ -7,11 +7,15 @@
  */
 import React, {Component} from 'react';
 import {
+  View,
   Dimensions,
   StyleSheet,
   SafeAreaView,
+  Platform,
+  StatusBar
 } from 'react-native';
 import TabNav from './components';
+import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -19,11 +23,20 @@ const windowHeight = Dimensions.get('window').height;
 
 export default class NewPatkView extends Component {
   render() {
-    return (
-      <SafeAreaView style={styles.safeStyle}>
-        <TabNav></TabNav>
-      </SafeAreaView>
-    );
+    if(Platform.OS == 'ios') {
+      return (
+        <SafeAreaView style={styles.safeStyle}>
+          <TabNav></TabNav>
+        </SafeAreaView>
+      );
+    }
+    if(Platform.OS == 'android') {
+      return (
+        <View style = {styles.AndroidSafeArea}>
+            <TabNav></TabNav>
+        </View>
+      )
+    }
   }
 }
 
@@ -31,7 +44,12 @@ const styles = StyleSheet.create({
   safeStyle: {
     width: windowWidth,
     height: windowHeight,
-    backgroundColor: '#FFFFFF',
-  }
+    backgroundColor: '#FFFFFF'
+  },
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+  },
 
 });

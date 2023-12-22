@@ -102,6 +102,7 @@ const Splashs= () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   img: {
     flex: 1,

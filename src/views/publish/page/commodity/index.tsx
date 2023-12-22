@@ -80,7 +80,6 @@ const Photo = () => {
         </View>
     );
 }
-
 const PublishProducts = () => {
 
     const [modeVal,modeSelect] = React.useState(1)

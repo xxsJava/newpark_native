@@ -46,6 +46,12 @@ import RewardDetails from '../../../views/home/components/helping/RewardDetails'
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart'
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity'
 import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
+import Empty from '../../../components/Error/empty'
+import SystemError from '../../../components/Error/SystemError'
+import Comment from '../../../components/Error/Comment'
+import Collect from '../../../components/Error/Collect'
+import NoNews from '../../../components/Error/NoNews'
+import NoParents from '../../../components/Error/NoParents'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -321,6 +327,48 @@ export default {
     component:CreateCommunity,
     options:{
       title:'创建社区',
+      headerShown:false
+    }
+  },
+  Empty:{
+    component:Empty,
+    options:{
+      title:'空空如也',
+      headerShown:false
+    }
+  },
+  SystemError:{
+    component:SystemError,
+    options:{
+      title:'系统错误',
+      headerShown:false
+    }
+  },
+  Comment:{
+    component:Comment,
+    options:{
+      title:'评论看法',
+      headerShown:false
+    }
+  },
+  Collect:{
+    component:Collect,
+    options:{
+      title:'收藏',
+      headerShown:false
+    }
+  },
+  NoNews:{
+    component:NoNews,
+    options:{
+      title:'没有消息',
+      headerShown:false
+    }
+  },
+  NoParents:{
+    component:NoParents,
+    options:{
+      title:'没有伙伴',
       headerShown:false
     }
   }
