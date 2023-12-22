@@ -1,4 +1,5 @@
-import {useToast} from 'native-base';
+// import {useToast} from 'native-base';
+import { useToast } from '@gluestack-ui/themed';
 import React, {useState, useRef, Component} from 'react';
 import {
   View,
@@ -14,7 +15,6 @@ import {
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradinet from 'react-native-linear-gradient';
-import {color} from 'native-base/lib/typescript/theme/styled-system';
 import {navigate} from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
@@ -99,8 +99,8 @@ const ListIndex: React.FC = () => {
   );
 
   const renderSectionHeader = ({section}: {section: DataSection}) => (
-    <View style={{backgroundColor: '#f4f4f4', padding: 4, height: 30}}>
-      <Text style={{fontWeight: 'bold'}}>{section.title}</Text>
+    <View style={{backgroundColor: '#f4f4f4', height: 30}}>
+      <Text style={{fontWeight: 'bold',lineHeight:30,paddingLeft:10}}>{section.title}</Text>
     </View>
   );
 
@@ -603,21 +603,35 @@ const ListIndex: React.FC = () => {
     // 更多的数据...
   ];
 
-  const ITEM_HEIGHT = 100;
+  const ITEM_HEIGHT = 110;
 
   const handleSectionSelect = (index: number) => {
     setSelectedSectionIndex(index);
-
+    let itemHeight = 0;
+    if(index < 3) {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) - 14
+    } else if(index < 5) {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 2 * index
+    } else if(index < 10) {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 6 * index
+    } else if(index < 20) {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 8 * index
+    } else {
+      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 9 * index
+    }
     //一个分组的高度
-    const itemHeight =
-      (ITEM_HEIGHT + 30) * data[index].data.length * index + 4 * index;
+    // const itemHeight =
+    // (30 + ITEM_HEIGHT * data[index].data.length * index) + 6 * index;
     //总高度
     const itemSum = (ITEM_HEIGHT * data[index].data.length + 30) * 26;
-
     console.log('滚动到的位置----->', itemSum - itemHeight);
     toast.show({
-      description: data[index].title,
       placement: 'bottom',
+      render: () => {
+        return (
+          <Text>{data[index].title}</Text>
+        )
+      },
     });
 
     if (sectionListRef.current) {
@@ -637,7 +651,7 @@ const ListIndex: React.FC = () => {
     const dataHight =
       (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 30) * 26;
 
-    console.log(dataHight);
+    // console.log(dataHight);
     return {
       index,
       length: ITEM_HEIGHT,
@@ -647,8 +661,11 @@ const ListIndex: React.FC = () => {
   return (
     
     <View style={{flex: 1, marginTop: 10}}>
+<<<<<<< HEAD
        
       <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
+=======
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
       <SectionList
         ref={sectionListRef}
         sections={data}

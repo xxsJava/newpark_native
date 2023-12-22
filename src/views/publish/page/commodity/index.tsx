@@ -9,6 +9,7 @@ import React,{ Component, useRef } from "react";
 import { View,Text,StyleSheet,Dimensions,TextInput,Platform,Image,TouchableOpacity,TouchableHighlight } from "react-native";
 import { Appbar,Avatar,IconButton,Button } from 'react-native-paper';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width;
@@ -97,7 +98,9 @@ const PublishProducts = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></Appbar.Action>
-                <Text style={styles.headerText}>发布商品</Text>
+                <Text style={styles.headerText}>
+                <Trans>navigationBar.title15</Trans>
+                </Text>
             </Appbar.Header>
             <View style={styles.contentView}>
                 <View style={styles.inputView}>

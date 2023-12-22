@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import { useToast } from 'native-base';
 import React, { useState, useRef, Component } from 'react';
+=======
+// import {useToast} from 'native-base';
+import { useToast } from '@gluestack-ui/themed';
+import React, {useState, useRef, Component} from 'react';
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 import {
   Button,
   View,
@@ -42,7 +48,11 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
             key={index}
             onPress={() => onSectionSelect(index)}
             style={styles.itemBar}>
+<<<<<<< HEAD
             <Text style={{ color: '#008fe4' }}>{section.title}</Text>
+=======
+            <Text style={{color: '#008fe4',fontSize: 10}}>{section.title}</Text>
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
           </TouchableOpacity>
         ))}
       </View>
@@ -590,6 +600,7 @@ const ListIndex: React.FC = () => {
     // 更多的数据...
   ];
 
+<<<<<<< HEAD
   // item 90
   const ITEM_HEIGHT = 90;
   // 获取一共有多少子元素
@@ -610,24 +621,45 @@ const ListIndex: React.FC = () => {
     return pre;
   }
   // 这里是滚动到指定位置
+=======
+  //item 90
+  const ITEM_HEIGHT = 90;
+
+  //这里是滚动到指定位置
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
   const handleSectionSelect = (index: number) => {
     console.log(index);
     console.log(data[index].title + ':' + data[index].data.length);
 
     setSelectedSectionIndex(index);
+    
 
     //一个分组的高度
+<<<<<<< HEAD
     // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + （索引下标*偏移值）
     const itemHeight =
       ITEM_HEIGHT * pre(index - 1) + 40 * index + (index * -8);
+=======
+    // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + (索引下标+偏移值)
+    const itemHeight =
+      (ITEM_HEIGHT  * data[index].data.length +40) * index + (index*10);
+    //总高度
+    // (item * 每个分组子元素的数量 + 标题 + 间隙 ) * 分组数量
+    const itemSum = (ITEM_HEIGHT * data[index].data.length + 40)* data.length;
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 
     //总高度
     const itemSum = ITEM_HEIGHT * sum() + 40 * data.length;
 
     // console.log('滚动到的位置----->', itemSum - itemHeight);
     toast.show({
-      description: data[index].title,
       placement: 'bottom',
+      render: () => {
+        return (
+          <Text>{data[index].title}</Text>
+        )
+      },
+
     });
 
     if (sectionListRef.current) {
@@ -636,16 +668,28 @@ const ListIndex: React.FC = () => {
         sectionIndex: index,
         itemIndex: 0,
         //偏移高度
+<<<<<<< HEAD
         // 具体滚动
+=======
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
         viewOffset: itemSum - itemHeight,
       });
     }
   };
+<<<<<<< HEAD
   // 这里是渲染的总高度
   const _ItemLayout = (data: any, index: number) => {
     //总高度 (item * item^n  + 标题 + 间隙) * 子元素的数量 = 分组的高度
     const dataHight =
       (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40) * data.length;
+=======
+
+  //这里是渲染的总高度
+  const _ItemLayout = (data: any, index: number) => {
+    //总高度 (item * item^n  + 标题 + 间隙) * 子元素的数量 = 分组的高度
+    const dataHight =
+      (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40)* data.length;
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 
     // console.log(dataHight);
     return {

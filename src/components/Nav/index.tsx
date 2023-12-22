@@ -17,6 +17,7 @@ import {
   TextInput
 } from 'react-native';
 import {Appbar, Icon} from 'react-native-paper';
+import {navigate} from '../../config/routs/NavigationContainer';
 
 const HomeNav = () => {
   const [activeTab, setActiveTab] = useState(true);
@@ -67,11 +68,14 @@ const HomeNav = () => {
           style={styles.searchNavImg}
           source={require('../../assets/images/search.png')}
         />
-        <TextInput
+        {/* <TextInput
           style={styles.searchNavInput}
           onChangeText={text => onChangeText(text)}
           value={inputValue}
-        />
+        /> */}
+        <TouchableOpacity activeOpacity={0.6} style={styles.searchNavInput} onPress={() => navigate('SearchView')}>
+          <Text style={styles.searchNavInputText}>请输入需要搜索的/帖子/UID/群聊/商品</Text>
+        </TouchableOpacity>
       </View>
 
       <TouchableOpacity
@@ -136,13 +140,16 @@ const styles = StyleSheet.create({
   searchNavInput:{
     width: Dimensions.get('window').width * 0.7,
     height: 40,
-    borderWidth: 0,
-    color: '#888',
+    // borderWidth: 0,
     backgroundColor: '#F5F5F5',
     borderRadius: 20,
-    textAlign: 'center',
+    paddingVertical:0,
+  },
+  searchNavInputText:{
     fontSize:12,
-    paddingVertical:0
+    color: '#888',
+    lineHeight:40,
+    textAlign: 'center',
   },
   chekedScoll: {
     backgroundColor: '#FABA3C',

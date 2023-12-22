@@ -20,6 +20,7 @@
         "sortType1":"关注",
         "sortType2":"热门",
         "sortType3":"悬赏",
+        "sortType4":"最新",
         "sorts": "更多排序"
     },
     "login":{
@@ -76,5 +77,35 @@
         "tableTitle":"热门聊天室",
         "tab1":"推荐",
         "tab2":"最热"
+    },
+    "loginText":{
+        "text1":"登录",
+        "text2":"短信验证",
+        "text3":"忘记密码",
+        "text4":"第三方登录"
+    },
+    "navigationBar":{
+        "title1":"短信验证",
+        "title2":"注册",
+        "title3":"学校选择",
+        "title4":"性别",
+        "title5":"兴趣爱好",
+        "title6":"我的订单",
+        "title7":"会员服务",
+        "title8":"我的帖子",
+        "title9":"我的钱包",
+        "title10":"我的收藏",
+        "title11":"地址管理",
+        "title12":"意见反馈",
+        "title13":"售后",
+        "title14":"商品详情",
+        "title15":"发布商品",
+        "title16":"帮忙圈",
+        "title18":"帖子详情",
+        "title19":"设置",
+        "title21":"社区频道",
+        "title23":"发布帖子",
+        "title24":"打卡记录",
+        "title25":"详情"
     }
 }

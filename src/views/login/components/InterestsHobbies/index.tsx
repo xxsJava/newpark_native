@@ -8,6 +8,7 @@ import { View,Text,StyleSheet,Dimensions,ScrollView,Platform,TouchableOpacity } 
 import { Image } from 'react-native-animatable';
 import {Appbar,Button,Chip} from 'react-native-paper';
 import LabelViwe from './LabelView'
+import {useTranslation, Trans} from 'react-i18next';
 import {RegisteredScreenProps} from '../../../../config/routs';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
@@ -22,7 +23,9 @@ const InterestsHobbies:React.FC<RegisteredScreenProps> = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('Registered')}/>
-                <Text style={styles.headerText}>兴趣爱好</Text>
+                <Text style={styles.headerText}>
+                    <Trans>navigationBar.title5</Trans>
+                </Text>
             </Appbar.Header>
             <LabelViwe></LabelViwe>
             <View style={styles.bottomView}>

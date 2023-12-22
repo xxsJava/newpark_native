@@ -17,6 +17,7 @@
         "sortType1": "Follow",
         "sortType2": "hot",
         "sortType3": "bounty",
+        "sortType4":"newest",
         "sorts": "More sorts"
     },
     "mineNav":{
@@ -64,5 +65,35 @@
         "tableTitle":"Popular chat rooms",
         "tab1":"recommendation",
         "tab2":"Hottest"
+    },
+    "loginText":{
+        "text1":"log in",
+        "text2":"SMS verification",
+        "text3":"forget the password",
+        "text4":"Third party login"
+    },
+    "navigationBar":{
+        "title1":"SMS verification",
+        "title2":"login",
+        "title3":"School choice",
+        "title4":"gender",
+        "title5":"hobbies and interests",
+        "title6":"my order",
+        "title7":"membership service",
+        "title8":"My post",
+        "title9":"my wallet",
+        "title10":"My collection",
+        "title11":"address book",
+        "title12":"advice feedback",
+        "title13":"after sale",
+        "title14":"commodity details",
+        "title15":"release commodities",
+        "title16":"Help circle",
+        "title18":"Post details",
+        "title19":"set",
+        "title21":"Community channel",
+        "title23":"Post Message",
+        "title24":"punching card record",
+        "title25":"particulars"
     }
 }

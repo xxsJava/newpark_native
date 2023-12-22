@@ -10,10 +10,16 @@ import {Avatar, Button, Card, IconButton, Text} from 'react-native-paper';
 import {StyleSheet, TouchableOpacity, View,Image,TextInput,Platform,} from 'react-native';
 import {navigate} from '../../../config/routs/NavigationContainer';
 
+// const [upvoteVal,onUpvoteSet] = React.useState(false)
+
 //普通帖子组件
 export const postsOrdinary = (item: any, index: any, separators: any) => {
-
+  let upvoteVal = false;
   // const [inputValue, onChangeText] = useState('喜欢就告诉她');
+  // const onUpvote = (porp:boolean) => {
+  //   onUpvoteSet(!porp)
+    
+  // }
 
   return (
     <TouchableOpacity activeOpacity={0.9}  onPress={() => navigate('PostDetailsRoute')}>
@@ -78,16 +84,14 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
             </TouchableOpacity>
           </View>
           <View style={styles.interactionRight}>
-            <TouchableOpacity
+            <Button
+              icon={require('../../../assets/images/3.0x/like.png')}
+              style={styles.buttonDz}
               onPress={() => {
                 console.log('点赞');
               }}>
-              <Button
-                icon={require('../../../assets/images/3.0x/like.png')}
-                style={styles.buttonDz}>
-                    2.0w
-              </Button>
-            </TouchableOpacity>
+                2.0w
+            </Button>
             <TouchableOpacity
               onPress={() => {
                 console.log('评论');

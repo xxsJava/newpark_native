@@ -3,6 +3,7 @@ import { View,StyleSheet,Dimensions,Platform,SafeAreaView,TouchableOpacity,Butto
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
 import { Appbar } from 'react-native-paper';
+import {useTranslation, Trans} from 'react-i18next';
 // import { Button } from 'react-native-paper';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
@@ -21,7 +22,9 @@ export default class WalletView extends Component {
             <View style={styles.parentView}>
               <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>我的钱包</Text>
+                    <Text style={styles.headerText}>
+                      <Trans>navigationBar.title9</Trans>
+                    </Text>
                 </Appbar.Header>
                 <View style={styles.walletView}>
                     <View style={styles.titleView}>

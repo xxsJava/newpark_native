@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View,Text,SafeAreaView,StyleSheet,Dimensions,ImageBackground,Platform,ScrollView,TouchableOpacity,Image } from 'react-native';
 import { Avatar,IconButton } from 'react-native-paper';
-import { Checkbox } from "native-base";
+// import { Checkbox } from "native-base";
 import LinearGradinet from 'react-native-linear-gradient';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import {navigate} from '../../../../config/routs/NavigationContainer';
@@ -28,9 +28,9 @@ export default class MemberServicesView extends Component {
                                 <TouchableOpacity style={styles.buttonStyle}>
                                     <Text style={styles.buttonText}>开通</Text>
                                 </TouchableOpacity>
-                                <View style={styles.chekboxView}>
+                                {/* <View style={styles.chekboxView}>
                                     <Checkbox value='true' shadow={2}>同意协议《用户协议》</Checkbox>
-                                </View>
+                                </View> */}
                             </View>
                         </View>
                         <LinearGradinet colors={['rgba(99, 28, 136,1)','rgba(250, 185, 60,0.9)']} start={{x: 0, y: 0}} end={{x: 0, y: 1}} style={styles.personalDataView}>

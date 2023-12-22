@@ -8,6 +8,7 @@ import React, { Component } from "react";
 import { View,Text,StyleSheet,Dimensions,ScrollView,TouchableOpacity, } from "react-native";
 import { Appbar } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width
@@ -42,7 +43,9 @@ export default class SetUp extends Component {
             <View style={styles.parentView}>
                 <Appbar.Header>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')} />
-                    <Text style={styles.derTexthea}>设置</Text>
+                    <Text style={styles.derTexthea}>
+                        <Trans>navigationBar.title19</Trans>
+                    </Text>
                 </Appbar.Header>
                     <View style={styles.contentStyle}>
                         <ScrollView style={styles.scorllStyle}>

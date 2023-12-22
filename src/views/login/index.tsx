@@ -15,15 +15,17 @@ import {Button, TextInput} from 'react-native-paper';
 import {LoginScreenProps} from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
-import {useToast} from 'native-base';
+// import {useToast} from 'native-base';
+import { useToast, Toast, ToastTitle } from '@gluestack-ui/themed';
 import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
+import {useTranslation, Trans} from 'react-i18next';
 import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
 import {forgetPass} from './controller';
 import {navigate} from '../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 
-const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
+const LoginView: React.FC<LoginScreenProps> = () => {
   const toast = useToast();
   //获取输入框的手机号
   const [phone, setPhone] = useState('');
@@ -54,8 +56,12 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
 
     if (phone.length != 11) {
       toast.show({
-        description: '手机号有误',
         placement: 'bottom',
+        render: () => {
+          return (
+            <Text>手机号有误</Text>
+          )
+        },
       });
       setLoad(false);
       return;
@@ -68,22 +74,34 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
     //用户不存在自动注册
     if (loginAPI.code === 1114) {
       toast.show({
-        description: '验证码已发送,请注意查收',
         placement: 'bottom',
+        render: () => {
+          return (
+            <Text>验证码发送，请注意查收</Text>
+          )
+        },
       });
-      navigation.navigate('Verification');
+      navigate('Verification');
     } else if (loginAPI.code === 200) {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data);
-      navigation.navigate('LoginHome');
+      navigate('LoginHome');
       toast.show({
-        description: '登录成功,可享受功能',
         placement: 'top',
+        render: () => {
+          return (
+            <Text>登录成功，可享受功能</Text>
+          )
+        },
       });
     } else if (loginAPI.code === 1110) {
       toast.show({
-        description: '账号有误',
         placement: 'top',
+        render: () => {
+          return (
+            <Text>账号有误</Text>
+          )
+        },
       });
     }
     setLoad(false);
@@ -92,8 +110,12 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
   const smsVerIf = async () => {
     if (phone.length != 11) {
       toast.show({
-        description: '请输入手机号',
         placement: 'top',
+        render: () => {
+          return (
+            <Text>请输入手机号</Text>
+          )
+        },
       });
       return;
     }
@@ -101,8 +123,12 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
     const smsLoginAPI = await smsLoginApi(smsLogin);
     console.log(smsLoginAPI);
     toast.show({
-      description: smsLoginAPI.msg,
       placement: 'top',
+      render: () => {
+        return (
+          <Text>{smsLoginAPI.msg}</Text>
+        )
+      },
     });
     //发送验证码
     navigate('Verification');
@@ -179,20 +205,26 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
                 buttonColor="#fff"
                 textColor="#000"
                 onPress={onLogin}>
-                登录
+                <Trans>loginText.text1</Trans>
               </Button>
             </View>
             <View style={styles.verify}>
               <TouchableOpacity onPress={smsVerIf}>
-                <Text style={styles.underline}>短信验证</Text>
+                <Text style={styles.underline}>
+                  <Trans>loginText.text2</Trans>
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={forgetPass}>
-                <Text style={styles.underline}>忘记密码</Text>
+                <Text style={styles.underline}>
+                  <Trans>loginText.text3</Trans>
+                </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.bottom}>
               <View style={styles.line} />
-              <Text>第三方登录</Text>
+              <Text>
+                <Trans>loginText.text4</Trans>
+              </Text>
               <View style={styles.line} />
             </View>
             <View style={styles.wx}>

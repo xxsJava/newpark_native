@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import {Text} from 'react-native-animatable';
 import MenusComponents from '../Menu';
+import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../config/routs/NavigationContainer';
 // import { Image } from 'react-native-paper/lib/typescript/components/Avatar/Avatar';
 
@@ -24,17 +25,17 @@ const windowHeight = Dimensions.get('window').height;
 const navigateData = [
   {
     index: 1,
-    text: '推荐',
+    text: 'sort.sortType',
     icon: require('../../../assets/images/Like-copy.png'),
   },
   {
     index: 2,
-    text: '关注',
+    text: 'sort.sortType1',
     icon: require('../../../assets/images/Favorite.png'),
   },
   {
     index: 3,
-    text: '最新',
+    text: 'sort.sortType4',
     icon: require('../../../assets/images/Refresh.png'),
   },
 ];
@@ -70,7 +71,9 @@ const ColumnType = () => {
                 ]}
                 onPress={() => onSelected(item.index)}>
                 <Image style={styles.navigationItemImage} source={item.icon} />
-                <Text style={styles.navigationItemText}>{item.text}</Text>
+                <Text style={styles.navigationItemText}>
+                  <Trans>{item.text}</Trans>
+                </Text>
               </TouchableOpacity>
             </View>
           );
