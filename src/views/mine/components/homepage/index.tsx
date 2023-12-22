@@ -139,12 +139,12 @@ const HomePageView = () => {
             <View style={styles.communityCard}>
               <View style={styles.orderTop}>
                 <View style={styles.titleFlex}>
-                  <Text style={styles.titleText1}>
+                  <Text allowFontScaling={false} style={styles.titleText1}>
                     <Trans>minCommunity.communityName</Trans>
                   </Text>
                 </View>
                 <View style={styles.titleFlex}>
-                  <Text style={styles.titleText2}>
+                  <Text allowFontScaling={false} style={styles.titleText2}>
                     <Trans>minCommunity.communityMore</Trans>
                     <Feather name="chevron-right" size={18} color="#dbdbdb" />
                   </Text>
@@ -164,12 +164,12 @@ const HomePageView = () => {
                         </View>
                         <View style={styles.communitItemBottom}>
                           <View style={styles.communitItemTitle}>
-                            <Text style={styles.communitTitleText}>{item.title}</Text>
+                            <Text allowFontScaling={false} style={styles.communitTitleText}>{item.title}</Text>
                           </View>
                           <View style={styles.communitItemTextView}>
-                            <Text style={styles.communitText}>{item.personnel}成员</Text>
-                            <Text>·</Text>
-                            <Text style={styles.communitText}>{item.follow}关注</Text>
+                            <Text allowFontScaling={false} style={styles.communitText}>{item.personnel}成员</Text>
+                            <Text allowFontScaling={false}>·</Text>
+                            <Text allowFontScaling={false} style={styles.communitText}>{item.follow}关注</Text>
                           </View>
                         </View>
                         <View style={styles.communitAvatar}>
@@ -185,12 +185,12 @@ const HomePageView = () => {
             <View style={styles.orderCard}>
               <View style={styles.orderTop}>
                 <View style={styles.titleFlex}>
-                  <Text style={styles.titleText1}>
+                  <Text allowFontScaling={false} style={styles.titleText1}>
                     <Trans>minOrder.orderName</Trans>
                   </Text>
                 </View>
                 <View style={styles.titleFlex}>
-                  <Text style={styles.titleText2}>
+                  <Text allowFontScaling={false} style={styles.titleText2}>
                     <Trans>minOrder.orderMore</Trans>
                     <Feather name="chevron-right" size={18} color="#dbdbdb" />
                   </Text>
@@ -204,7 +204,7 @@ const HomePageView = () => {
                         onPress={() => navigate('MyOrderRoute',{type:item.type})}
                         style={styles.orderRoute}>
                         <Image style={styles.itemImage} source={item.icon} />
-                        <Text style={styles.itemText}>
+                        <Text allowFontScaling={false} style={styles.itemText}>
                           <Trans>{item.text}</Trans>
                         </Text>
                       </TouchableOpacity>
@@ -216,12 +216,12 @@ const HomePageView = () => {
             <View style={styles.serviceCard}>
               <View style={styles.orderTop}>
                 <View style={styles.titleFlex}>
-                  <Text style={styles.titleText1}>
+                  <Text allowFontScaling={false} style={styles.titleText1}>
                     <Trans>minService.serviceName</Trans>
                   </Text>
                 </View>
                 <View style={styles.titleFlex}>
-                  <Text style={styles.titleText2}>
+                  <Text allowFontScaling={false} style={styles.titleText2}>
                     <Trans>minService.serviceMore</Trans>
                     <Feather name="chevron-right" size={18} color="#dbdbdb" />
                   </Text>
@@ -236,7 +236,7 @@ const HomePageView = () => {
                         onPress={() => navigate(item.route,{type:'type1'})}
                         style={styles.orderRoute}>
                         <Image style={styles.itemImages} source={item.icon} />
-                        <Text style={styles.serviceText}>
+                        <Text allowFontScaling={false} style={styles.serviceText}>
                           <Trans>{item.text}</Trans>
                         </Text>
                       </TouchableOpacity>:
@@ -244,7 +244,7 @@ const HomePageView = () => {
                       onPress={() => navigate(item.route)}
                       style={styles.orderRoute}>
                       <Image style={styles.itemImages} source={item.icon} />
-                      <Text style={styles.serviceText}>
+                      <Text allowFontScaling={false} style={styles.serviceText}>
                         <Trans>{item.text}</Trans>
                       </Text>
                     </TouchableOpacity>}
@@ -260,7 +260,7 @@ const HomePageView = () => {
                         onPress={() => navigate(item.route)}
                         style={styles.orderRoute}>
                         <Image style={styles.itemImages} source={item.icon} />
-                        <Text style={styles.serviceText}>
+                        <Text allowFontScaling={false} style={styles.serviceText}>
                           <Trans>{item.text}</Trans>
                         </Text>
                       </TouchableOpacity>

@@ -43,7 +43,7 @@ export default class SetUp extends Component {
             <View style={styles.parentView}>
                 <Appbar.Header>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')} />
-                    <Text style={styles.derTexthea}>
+                    <Text allowFontScaling={false} style={styles.derTexthea}>
                         <Trans>navigationBar.title19</Trans>
                     </Text>
                 </Appbar.Header>
@@ -53,9 +53,9 @@ export default class SetUp extends Component {
                                 {listData.map(item => {
                                     return (
                                         <TouchableOpacity style={styles.itemStyle} key={item.index} activeOpacity={0.9}>
-                                            <Text style={[styles.itemText,item.index == 7?{color:'red'}:null]}>{item.text}</Text>
+                                            <Text allowFontScaling={false} style={[styles.itemText,item.index == 7?{color:'red'}:null]}>{item.text}</Text>
                                             <View style={styles.itemIconView}>
-                                                <Text style={[styles.itemIconText,item.index == 3?null:{display:'none'}]}>703.10k</Text>
+                                                <Text allowFontScaling={false} style={[styles.itemIconText,item.index == 3?null:{display:'none'}]}>703.10k</Text>
                                                 <Entypo style={styles.itemIcon} color='#000' size={16} name="chevron-thin-right"></Entypo>
                                             </View>
                                         </TouchableOpacity>

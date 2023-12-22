@@ -56,7 +56,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           style={styles.backColor}
         />
         <Card.Content style={styles.backColor}>
-          <Text style={styles.context}>{item.text}</Text>
+          <Text allowFontScaling={false} style={styles.context}>{item.text}</Text>
         </Card.Content>
         <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} />
         <Card.Content style={styles.backColor}>
@@ -64,9 +64,9 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           <View style={styles.labelList}>
             <View style={styles.labelStyle}>
               <View style={styles.labelIcon}>
-                <Text style={styles.labelIconText}>#</Text>
+                <Text allowFontScaling={false} style={styles.labelIconText}>#</Text>
               </View>
-              <Text style={styles.labelText}>仙境</Text>
+              <Text allowFontScaling={false} style={styles.labelText}>仙境</Text>
             </View>
           </View>
         </Card.Content>
@@ -130,13 +130,13 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           </TouchableOpacity>
         </Card.Actions> */}
         <View style={styles.commentAreaView}>
-          <Text style={styles.commentAreaTitle}>精选评论</Text>
+          <Text allowFontScaling={false} style={styles.commentAreaTitle}>精选评论</Text>
           <View style={styles.commentArea}>
             <View style={styles.commentAreaItem}>
               <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
               <View style={styles.commentAreaName}>
-                <Text style={styles.commentAreaNameLeft}>小学牛：</Text>
-                <Text style={styles.commentAreaNameRight}>打卡留影</Text>
+                <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>小学牛：</Text>
+                <Text allowFontScaling={false} style={styles.commentAreaNameRight}>打卡留影</Text>
               </View>
               <TouchableOpacity
                 style={styles.commentAreaIcon}

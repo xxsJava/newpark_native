@@ -29,33 +29,33 @@ const TakeOrderPart = () => {
                            <Avatar.Image size={60} source={require('../../../../assets/images/avatar-nan.png')}></Avatar.Image>
                         </View>
                         <View style={styles.avatarTextView}>
-                            <Text style={styles.avatarName}>我是老六</Text>
-                            <Text style={styles.avatarSchool}>烟台大学</Text>
+                            <Text allowFontScaling={false} style={styles.avatarName}>我是老六</Text>
+                            <Text allowFontScaling={false} style={styles.avatarSchool}>烟台大学</Text>
                         </View>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.itemLabel}>悬赏金额:</Text>
-                        <Text style={[styles.itemContent,styles.itemColor]}>20.0</Text>
+                        <Text allowFontScaling={false} style={styles.itemLabel}>悬赏金额:</Text>
+                        <Text allowFontScaling={false} style={[styles.itemContent,styles.itemColor]}>20.0</Text>
                         <Image style={styles.itemIcon} source={require('../../../../assets/images/yuan_icon.png')}></Image>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.itemLabel}>联系电话:</Text>
-                        <Text style={styles.itemContent}>12345678901</Text>
+                        <Text allowFontScaling={false} style={styles.itemLabel}>联系电话:</Text>
+                        <Text allowFontScaling={false} style={styles.itemContent}>12345678901</Text>
                         <TouchableOpacity activeOpacity={0.5}>
                             <Image style={styles.itemIcon} source={require('../../../../assets/images/phone_icon.png')}></Image>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.remarksView}>
-                        <Text style={[styles.itemLabel,{height:40}]}>备注:</Text>
-                        <Text style={styles.remarksText}>帮我买本书</Text>
+                        <Text allowFontScaling={false} style={[styles.itemLabel,{height:40}]}>备注:</Text>
+                        <Text allowFontScaling={false} style={styles.remarksText}>帮我买本书</Text>
                     </View>
                     <View style={styles.releaseAvatarView}>
                         <View style={styles.avatarView}>
                            <Avatar.Image size={60} source={require('../../../../assets/images/avatar-nv.png')}></Avatar.Image>
                         </View>
                         <View style={styles.avatarTextView}>
-                            <Text style={styles.avatarName}>联系发布人</Text>
-                            <Text style={styles.avatarSchool}>张三</Text>
+                            <Text allowFontScaling={false} style={styles.avatarName}>联系发布人</Text>
+                            <Text allowFontScaling={false} style={styles.avatarSchool}>张三</Text>
                         </View>
                         <TouchableOpacity activeOpacity={0.5}>
                             <Image style={[styles.itemIcon,{marginTop:30}]} source={require('../../../../assets/images/phone_icon.png')}></Image>

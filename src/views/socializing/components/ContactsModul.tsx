@@ -43,7 +43,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
             key={index}
             onPress={() => onSectionSelect(index)}
             style={styles.itemBar}>
-            <Text style={{ color: '#008fe4' }}>{section.title}</Text>
+            <Text allowFontScaling={false} style={{ color: '#008fe4' }}>{section.title}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -79,7 +79,7 @@ const ListIndex: React.FC = () => {
         <View style={styles.avatarStyle} />
       </View>
       <View style={styles.itemRight}>
-        <Text style={styles.itemName}>{item.name}</Text>
+        <Text allowFontScaling={false} style={styles.itemName}>{item.name}</Text>
         <View style={styles.itemLabelStyle} />
       </View>
     </TouchableOpacity>
@@ -87,7 +87,7 @@ const ListIndex: React.FC = () => {
 
   const renderSectionHeader = ({ section }: { section: DataSection }) => (
     <View style={{ backgroundColor: '#f4f4f4', padding: 4, height: 32 }}>
-      <Text style={{ fontWeight: 'bold' }}>{section.title}</Text>
+      <Text allowFontScaling={false} style={{ fontWeight: 'bold' }}>{section.title}</Text>
     </View>
   );
 
@@ -631,7 +631,7 @@ const ListIndex: React.FC = () => {
       placement: 'bottom',
       render: () => {
         return (
-          <Text>{data[index].title}</Text>
+          <Text allowFontScaling={false}>{data[index].title}</Text>
         )
       },
 

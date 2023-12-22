@@ -73,12 +73,12 @@ export default class FeedbackView extends Component {
             <View style={styles.parentLevel}>
                 <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>
+                    <Text allowFontScaling={false} style={styles.headerText}>
                         <Trans>navigationBar.title12</Trans>
                     </Text>
                 </Appbar.Header>
                 <View style={styles.titleView}>
-                    <Text style={styles.titleText}>请选择发生的问题类型</Text>
+                    <Text allowFontScaling={false} style={styles.titleText}>请选择发生的问题类型</Text>
                 </View>
                 <View style={styles.multipleChoiceView}>
                     <CheckView></CheckView>
@@ -98,7 +98,7 @@ export default class FeedbackView extends Component {
                     </View>
                 </View>
                 <View style={styles.titleView}>
-                    <Text style={styles.titleText}>图片(提供问题截图方便我们快速定位)</Text>
+                    <Text allowFontScaling={false} style={styles.titleText}>图片(提供问题截图方便我们快速定位)</Text>
                 </View>
                 <View style={styles.pictureView}>
                     <Photo></Photo>
@@ -115,7 +115,7 @@ export default class FeedbackView extends Component {
                 </View>
                 <View style={styles.buttonView}>
                     <TouchableOpacity style={styles.buttonIos}>
-                        <Text style={styles.buttonText}>提交</Text>
+                        <Text allowFontScaling={false} style={styles.buttonText}>提交</Text>
                     </TouchableOpacity>
                 </View>
             </View>

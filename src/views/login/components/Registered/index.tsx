@@ -46,7 +46,7 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
   return (
     <View style={styles.parentView}>
       <Appbar.Header style={styles.headerStyle}>
-        <Text style={styles.headerText}>填写基本信息</Text>
+        <Text allowFontScaling={false} style={styles.headerText}>填写基本信息</Text>
       </Appbar.Header>
       <ScrollView style={styles.scrollStyle}>
         <View style={styles.avatarView}>
@@ -56,10 +56,10 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
               source={require('../../../../assets/images/3.0x/chat_takephoto.png')}
             />
           </View>
-          <Text style={styles.avatarText}>上传头像</Text>
+          <Text allowFontScaling={false} style={styles.avatarText}>上传头像</Text>
         </View>
         <View style={[styles.nameView, styles.inputView]}>
-          <Text style={styles.nameText}>昵称</Text>
+          <Text allowFontScaling={false} style={styles.nameText}>昵称</Text>
           <TextInput
             placeholder="请填写昵称"
             value={nameVal}
@@ -72,7 +72,7 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
           />
         </View>
         <View style={[styles.describeView, styles.inputView]}>
-          <Text style={styles.nameText}>交友描述</Text>
+          <Text allowFontScaling={false} style={styles.nameText}>交友描述</Text>
           <TextInput
             placeholder="交友描述，会显示在个人主页"
             multiline={true}
@@ -87,7 +87,7 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
           />
         </View>
         <View style={[styles.passwordView, styles.inputView]}>
-          <Text style={styles.nameText}>密码</Text>
+          <Text allowFontScaling={false} style={styles.nameText}>密码</Text>
           <TextInput
             style={styles.inputStyle}
             placeholder="请输入密码"
@@ -108,7 +108,7 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
           />
         </View>
         <View style={[styles.passwordView, styles.inputView]}>
-          <Text style={styles.nameText}>确认密码</Text>
+          <Text allowFontScaling={false} style={styles.nameText}>确认密码</Text>
           <TextInput
             style={styles.inputStyle}
             placeholder="请再次输入密码"

@@ -35,7 +35,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
             key={index}
             onPress={() => onSectionSelect(index)}
             style={{padding: 5}}>
-            <Text>{section.title}</Text>
+            <Text allowFontScaling={false}>{section.title}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -55,13 +55,13 @@ const ListIndex: React.FC = () => {
 
   const renderItem = ({item}: {item: DataItem}) => (
     <View style={{padding: 10}}>
-      <Text>{item}</Text>
+      <Text allowFontScaling={false}>{item}</Text>
     </View>
   );
 
   const renderSectionHeader = ({section}: {section: DataSection}) => (
     <View style={{backgroundColor: '#f4f4f4', padding: 10}}>
-      <Text style={{fontWeight: 'bold'}}>{section.title}</Text>
+      <Text allowFontScaling={false} style={{fontWeight: 'bold'}}>{section.title}</Text>
     </View>
   );
 

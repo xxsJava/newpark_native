@@ -25,7 +25,7 @@ const RewardView = () => {
                     <Avatar.Image size={80} style={styles.avatarStyle} source={require('../../../../assets/images/defaultheader.png')}></Avatar.Image>
                     <View style={styles.cardView}>
                         <LinearGradinet colors={['rgba(157, 104, 189,1)','rgba(157, 104, 189,0.6)','rgba(252, 251, 251,1)']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.titleStyle}>
-                            <Text style={styles.titleText}>
+                            <Text allowFontScaling={false} style={styles.titleText}>
                                 发布悬赏 <Entypo size={20} color='#F8B032' name='triangle-right'></Entypo>
                             </Text>
                         </LinearGradinet>
@@ -34,16 +34,16 @@ const RewardView = () => {
                                 <Image style={styles.inputImage} source={require('../../../../assets/images/alimom/frame1.png')}></Image>
                             </View>
                             <View style={styles.inputContent}>
-                                <Text style={styles.inputText}>标题</Text>
+                                <Text allowFontScaling={false} style={styles.inputText}>标题</Text>
                                 <TextInput selectionColor='#FABA3C' placeholder='请输入' style={styles.inputTitle}></TextInput>
-                                <Text style={styles.inputText}>描述</Text>
+                                <Text allowFontScaling={false} style={styles.inputText}>描述</Text>
                                 <TextInput selectionColor='#FABA3C' placeholder='请输入' multiline={true} numberOfLines={4} style={styles.inputDescribe}></TextInput>
                             </View>
                         </View>
                         <View style={styles.bountyView}>
                             <View style={styles.bountyIconView}>
                                 <Image style={styles.bountyIcon} source={require('../../../../assets/images/money_icon1.png')}></Image>
-                                <Text style={styles.bountyText}>赏金</Text>
+                                <Text allowFontScaling={false} style={styles.bountyText}>赏金</Text>
                             </View>
                             <View style={styles.bountyNumView}>
                                 <TextInput selectionColor='#FABA3C' style={styles.bountyInput}></TextInput>

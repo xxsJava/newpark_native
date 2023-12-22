@@ -14,10 +14,10 @@ const MenusComponents = (params?: any) => {
   return (
     <View style={[styles.pucs]}>
       <View>
-        <Text style={styles.titleStyle}>
+        <Text allowFontScaling={false} style={styles.titleStyle}>
           <Trans>{params.props.title}</Trans>
         </Text>
-        <Text style={styles.textStyle}>
+        <Text allowFontScaling={false} style={styles.textStyle}>
           <Trans>{params.props.desc}</Trans>
         </Text>
       </View>

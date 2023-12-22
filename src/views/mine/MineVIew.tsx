@@ -50,31 +50,31 @@ export default class MineVIew extends Component {
                 </TouchableOpacity>
                 <View style={styles.boxnNav}>
                   <View style={styles.boxItem}>
-                    <Text>0</Text>
-                    <Text style={styles.navTabColor}>
+                    <Text allowFontScaling={false}>0</Text>
+                    <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab1</Trans>
                     </Text>
                   </View>
                   <View style={styles.boxItem}>
-                    <Text>0</Text>
-                    <Text style={styles.navTabColor}>
+                    <Text allowFontScaling={false}>0</Text>
+                    <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab2</Trans>
                     </Text>
                   </View>
                   <View style={styles.boxItem}>
-                    <Text style={styles.navTab3}>
+                    <Text allowFontScaling={false} style={styles.navTab3}>
                       <Trans>mineNav.navTab3</Trans>
                     </Text>
                   </View>
                   <View style={styles.boxItem}>
-                    <Text>0</Text>
-                    <Text style={styles.navTabColor}>
+                    <Text allowFontScaling={false}>0</Text>
+                    <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab4</Trans>
                     </Text>
                   </View>
                   <View style={styles.boxItem}>
-                    <Text>0</Text>
-                    <Text style={styles.navTabColor}>
+                    <Text allowFontScaling={false}>0</Text>
+                    <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab5</Trans>
                     </Text>
                   </View>
@@ -82,7 +82,7 @@ export default class MineVIew extends Component {
                 <View style={styles.boxAvatarParent}>
                   <View style={styles.boxAvatar} />
                   <View style={styles.avatarView}>
-                    <Text style={styles.avatarnText}>
+                    <Text allowFontScaling={false} style={styles.avatarnText}>
                       <Trans>mineNav.navTab3</Trans>
                       {/* <Icon name="gem" /> */}
                     </Text>
@@ -101,7 +101,7 @@ export default class MineVIew extends Component {
                         start={{x: 0, y: 0}}
                         end={{x: 1, y: 0}}
                         style={styles.uidBgJb}>
-                        <Text style={styles.uidText}>UID:099624</Text>
+                        <Text allowFontScaling={false} style={styles.uidText}>UID:099624</Text>
                       </LinearGradinet>
                     </View>
                   </View>

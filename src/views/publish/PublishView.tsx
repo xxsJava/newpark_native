@@ -115,6 +115,32 @@ const Example = () => {
       useNativeDriver: true,
     }).start();
   };
+
+  const scaleText = animatedValue1.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.5, 2]
+  })
+  const spinText = animatedValue2.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 3]
+  })
+  const spinText1 = animatedValue3.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1.5, 4]
+  })
+  const spinText2 = animatedValue4.interpolate({
+    inputRange: [0, 1],
+    outputRange: [2, 5]
+  })
+  const spinText3 = animatedValue5.interpolate({
+    inputRange: [0, 1],
+    outputRange: [2.5, 6]
+  })
+  const introButton = animatedValue3.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-100, 400]
+  })
+
   return (
     <Center>
       {/* <Text>禁用</Text> */}
@@ -122,22 +148,22 @@ const Example = () => {
         {/* <Animatable.View animation={fadeIn}>
           <Text>发布帖子</Text>
         </Animatable.View> */}
-        <Animated.View style={{opacity: fadeAnim}}>
+        <Animated.View style={{transform: [{scale: scaleText}]}}>
           <Text>发布帖子</Text>
         </Animated.View>
-        <Animated.View style={{opacity: fadeAnim}}>
+        <Animated.View style={{transform: [{scale: spinText}]}}>
           <Text>打卡记录</Text>
         </Animated.View>
-        <Animated.View style={{opacity: fadeAnim}}>
+        <Animated.View style={{transform: [{scale: spinText1}]}}>
           <Text>公告</Text>
         </Animated.View>
-        <Animated.View style={{opacity: fadeAnim}}>
+        <Animated.View style={{transform: [{scale: spinText2}]}}>
           <Text>发布商品</Text>
         </Animated.View>
-        <Animated.View style={{opacity: fadeAnim}}>
+        <Animated.View style={{transform: [{scale: spinText3}]}}>
           <Text>发布商品</Text>
         </Animated.View>
-        <Button title="点击出现"></Button>
+        <Button title="点击出现" onPress={animate.bind(this)}></Button>
         <Button title="点击消失" onPress={() => fadeOut()}></Button>
       {/* <Stagger
         visible={isOpen}

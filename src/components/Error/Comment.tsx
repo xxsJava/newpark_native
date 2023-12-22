@@ -38,10 +38,10 @@ const DisplayAnImage = () => {
                     padding: 10
                 }}
             >
-                <Text style={{ margin: "auto", width: 80, fontSize: 18, color: '#DAD8E0' }}>暂未评论</Text>
+                <Text allowFontScaling={false} style={{ margin: "auto", width: 80, fontSize: 18, color: '#DAD8E0' }}>暂未评论</Text>
             </View>
             <View>
-                <Text style={{ width: 80, fontSize: 13, color: '#CDCFDC' }}>请勿恶语伤人</Text>
+                <Text allowFontScaling={false} style={{ width: 80, fontSize: 13, color: '#CDCFDC' }}>请勿恶语伤人</Text>
             </View>
             <TouchableOpacity
                 style={styles.button}
@@ -49,10 +49,10 @@ const DisplayAnImage = () => {
                     () => { console.log('发表评论'); }
                 }
             >
-                <Text style={{color:'white'}}>发表评论</Text>
+                <Text allowFontScaling={false} style={{color:'white'}}>发表评论</Text>
             </TouchableOpacity>
             <View style={{ position: 'absolute', bottom: 15 }}>
-                <Text style={{ width: 160, fontSize: 13, color: '#CDCFDC' }}>山东新园建业科技有限公司</Text>
+                <Text allowFontScaling={false} style={{ width: 160, fontSize: 13, color: '#CDCFDC' }}>山东新园建业科技有限公司</Text>
             </View>
         </View>
     );

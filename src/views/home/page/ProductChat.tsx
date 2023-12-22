@@ -37,8 +37,8 @@ function MessageList(props: { items: any; receiver: any; }) {
                 <View key={index} style={receiver == item.name ? styles.chatReceiver : styles.chatMessage}>
                     <Avatar.Image style={[styles.avatarImage1,receiver == item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
                     <View style={[styles.textStyle,receiver == item.name ? styles.textReceiver : null]}>
-                        <Text style={[styles.chatNameReceiver,receiver == item.name ? {display:'none'}:null]}>{item.name}</Text>
-                        <Text style={[styles.messageText,receiver == item.name?styles.messageReceiver:null,item.message ? null : {display:'none'}]}>{item.message}</Text>
+                        <Text allowFontScaling={false} style={[styles.chatNameReceiver,receiver == item.name ? {display:'none'}:null]}>{item.name}</Text>
+                        <Text allowFontScaling={false} style={[styles.messageText,receiver == item.name?styles.messageReceiver:null,item.message ? null : {display:'none'}]}>{item.message}</Text>
                         <Image style={[styles.messageImage,item.messageImage ? null : {display:'none'}]} source={item.messageImage} />
                     </View>
                     <Avatar.Image style={[styles.avatarImage2,receiver != item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
@@ -61,15 +61,15 @@ const ModuleView = () => {
                     </View>
                     <View style={styles.itemName}>
                         <View style={styles.itemNameTop}>
-                            <Text style={styles.itemNameText}>o泡果奶</Text>
-                            <Text style={styles.itemNameTime}>刚刚</Text>
+                            <Text allowFontScaling={false} style={styles.itemNameText}>o泡果奶</Text>
+                            <Text allowFontScaling={false} style={styles.itemNameTime}>刚刚</Text>
                         </View>
-                        <Text style={styles.itemNameBottm}>来自:个人</Text>
+                        <Text allowFontScaling={false} style={styles.itemNameBottm}>来自:个人</Text>
                     </View>
                     <View style={styles.itemMoney}>
                         <TouchableOpacity style={styles.itemMoneyButton}>
                             <Image style={styles.itemNameImage} source={require('../../../assets/images/money_bag.png')}></Image>
-                            <Text style={styles.itemMoneyText}>20.0</Text>
+                            <Text allowFontScaling={false} style={styles.itemMoneyText}>20.0</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -77,11 +77,11 @@ const ModuleView = () => {
                     <View style={styles.itemContent}>
                         <View style={styles.contentLine}>
                             <View style={[styles.signIcon,styles.signIconColor1]}></View>
-                            <Text style={styles.contentLineText1} numberOfLines={1} ellipsizeMode='tail'>帮忙打印文件</Text>
+                            <Text allowFontScaling={false} style={styles.contentLineText1} numberOfLines={1} ellipsizeMode='tail'>帮忙打印文件</Text>
                         </View>
                         <View style={styles.contentLine}>
                             <View style={[styles.signIcon,styles.signIconColor2]}></View>
-                            <Text style={styles.contentLineText2} numberOfLines={1} ellipsizeMode='tail'>需要一位同学来10号实验室</Text>
+                            <Text allowFontScaling={false} style={styles.contentLineText2} numberOfLines={1} ellipsizeMode='tail'>需要一位同学来10号实验室</Text>
                         </View>
                     </View>
                     <View style={styles.itemContentButton}>
@@ -128,7 +128,7 @@ const ProductChat = () => {
                         <Avatar.Image size={34} source={require('../../../assets/images/avatar-nv.png')}></Avatar.Image>
                         <View style={styles.stateStyle}></View>
                     </View>
-                    <Text style={styles.avatarText}>O泡果奶</Text>
+                    <Text allowFontScaling={false} style={styles.avatarText}>O泡果奶</Text>
                 </View>
                 <Appbar.Action icon="dots-vertical" onPress={() => {}} />
             </Appbar.Header>

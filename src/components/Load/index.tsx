@@ -9,7 +9,7 @@ export const renderLoadMoreView = (isLoad: boolean) => {
   return (
     <View style={styles.loadMore}>
       <ActivityIndicator size={'large'} color={'red'} animating={isLoad} />
-      <Text>正在加载更多</Text>
+      <Text allowFontScaling={false}>正在加载更多</Text>
     </View>
   );
 };

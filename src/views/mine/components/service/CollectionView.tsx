@@ -42,7 +42,7 @@ const CollectionView = () => {
           icon={require('../../../../assets/images/chevron-left.png')}
           onPress={() => navigate('MineStacker')}
         />
-        <Text style={styles.headerText}>
+        <Text allowFontScaling={false} style={styles.headerText}>
           <Trans>navigationBar.title10</Trans>
         </Text>
       </Appbar.Header>
@@ -50,19 +50,19 @@ const CollectionView = () => {
             <View style={styles.radioGroup}>
                 <View style={styles.radioView1}>
                     <RadioButton color='#ffb700' uncheckedColor='#999' value="radio1" />
-                    <Text style={styles.radioText}>全部</Text>
+                    <Text allowFontScaling={false} style={styles.radioText}>全部</Text>
                 </View>
                 <View style={styles.radioView1}>
                     <RadioButton color='#ffb700' uncheckedColor='#999' value="radio2" />
-                    <Text style={styles.radioText}>消息</Text>
+                    <Text allowFontScaling={false} style={styles.radioText}>消息</Text>
                 </View>
                 <View style={styles.radioView1}>
                     <RadioButton color='#ffb700' uncheckedColor='#999' value="radio3" />
-                    <Text style={styles.radioText}>商品</Text>
+                    <Text allowFontScaling={false} style={styles.radioText}>商品</Text>
                 </View>
                 <View style={styles.radioView1}>
                     <RadioButton color='#ffb700' uncheckedColor='#999' value="radio4" />
-                    <Text style={styles.radioText}>帖子</Text>
+                    <Text allowFontScaling={false} style={styles.radioText}>帖子</Text>
                 </View>
             </View>
       </RadioButton.Group>
@@ -101,19 +101,19 @@ const CollectionView = () => {
                   <View style={styles.itemLeft} />
                   <View style={styles.itemRight}>
                     <View style={styles.itemTitle}>
-                      <Text style={styles.itemTitleText}>{item.title}</Text>
+                      <Text allowFontScaling={false} style={styles.itemTitleText}>{item.title}</Text>
                     </View>
                     <View style={styles.itemTextView}>
-                      <Text style={styles.itemText}>收藏时间：</Text>
-                      <Text style={styles.timeText}>{item.time}</Text>
+                      <Text allowFontScaling={false} style={styles.itemText}>收藏时间：</Text>
+                      <Text allowFontScaling={false} style={styles.timeText}>{item.time}</Text>
                     </View>
                     <View style={styles.itemTextView}>
-                      <Text style={styles.itemText}>来自：</Text>
-                      <Text style={styles.itemText}>{item.from}</Text>
+                      <Text allowFontScaling={false} style={styles.itemText}>来自：</Text>
+                      <Text allowFontScaling={false} style={styles.itemText}>{item.from}</Text>
                     </View>
                     <View style={styles.itemTextView}>
-                      <Text style={styles.itemText}>类型：</Text>
-                      <Text style={styles.itemText}>{item.type}</Text>
+                      <Text allowFontScaling={false} style={styles.itemText}>类型：</Text>
+                      <Text allowFontScaling={false} style={styles.itemText}>{item.type}</Text>
                     </View>
                   </View>
                 </LinearGradinet>

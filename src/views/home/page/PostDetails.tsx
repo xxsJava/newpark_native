@@ -79,7 +79,7 @@ const PostDetails = () => {
                     icon={require('../../../assets/images/chevron-left.png')}
                     onPress={() => navigate('HomeStacker')}
                 />
-                <Text style={styles.headerText}>
+                <Text allowFontScaling={false} style={styles.headerText}>
                     <Trans>navigationBar.title18</Trans>
                 </Text>
                 <Appbar.Action
@@ -95,47 +95,47 @@ const PostDetails = () => {
                             </View>
                             <View style={styles.avatarConent}>
                                 <View style={styles.nameView}>
-                                    <Text style={styles.nameText}>o泡果奶</Text>
+                                    <Text allowFontScaling={false} style={styles.nameText}>o泡果奶</Text>
                                     <View style={styles.tabStyle}>
                                         <Icon size={15} color="#FFF" source={require('../../../assets/images/alimom/sex_icon1.png')}></Icon>
-                                        <Text style={styles.tabText}>20</Text>
+                                        <Text allowFontScaling={false} style={styles.tabText}>20</Text>
                                     </View>
                                 </View>
-                                <Text style={styles.timeText}>1小时前</Text>
+                                <Text allowFontScaling={false} style={styles.timeText}>1小时前</Text>
                             </View>
                             <View style={styles.avatarButton}>
                                 <Button style={styles.avatarButtonStyle} labelStyle={styles.avatarButtonText} onPress={() => console.log('点击关注')}>关注</Button>
                             </View>
                         </View>
                         <View style={styles.postImage}>
-                            <Text style={styles.postText}>每个不起舞的日子，都是对生命的辜负。</Text>
+                            <Text allowFontScaling={false} style={styles.postText}>每个不起舞的日子，都是对生命的辜负。</Text>
                             <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image>
                         </View>
                         <View style={styles.postBottom}>
-                            <Text style={styles.postBottomText}>浏览记录   502</Text>
+                            <Text allowFontScaling={false} style={styles.postBottomText}>浏览记录   502</Text>
                             <View style={styles.heartView}>
                                 <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(1)}>
                                     <Icon size={24} color={collectionSelect == '1' ? '#FC073B':'#EFEBFA'} source={require('../../../assets/images/Favorite.png')}></Icon>
                                 </TouchableOpacity>
-                                <Text style={styles.heartText}> 2000</Text>
+                                <Text allowFontScaling={false} style={styles.heartText}> 2000</Text>
                             </View>
                             <View style={styles.heartView}>
                                 <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(3)}>
                                     <Icon size={24} color={transmitSelect == '1'?'#6A1B9A':'#EFEBFA'} source={require('../../../assets/images/transmit_icon.png')}></Icon>
                                 </TouchableOpacity>
-                                <Text style={styles.heartText}> 2.0w</Text>
+                                <Text allowFontScaling={false} style={styles.heartText}> 2.0w</Text>
                             </View>
                             <View style={styles.heartView}>
                                 <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(2)}>
                                     <Icon size={24} color={likeSelect == '1' ? '#FABA3C':'#EFEBFA'} source={require('../../../assets/images/Like-copy.png')}></Icon>
                                 </TouchableOpacity>
-                                <Text style={styles.heartText}> 2.0w</Text>
+                                <Text allowFontScaling={false} style={styles.heartText}> 2.0w</Text>
                             </View>
                         </View>
                     </View>
                     <View style={styles.postComment}>
                         <View style={styles.scrollView}>
-                            <Text style={styles.commentTitle}>全部评论(2000)</Text>
+                            <Text allowFontScaling={false} style={styles.commentTitle}>全部评论(2000)</Text>
                             <View style={styles.listStyle}>
                                 {commentData.map(item => {
                                     return(
@@ -145,24 +145,24 @@ const PostDetails = () => {
                                                     <Avatar.Image size={56} source={item.image}></Avatar.Image>
                                                 </View>
                                                 <View style={styles.itemNameView}>
-                                                    <Text style={styles.itemName}>{item.name}</Text>
-                                                    <Text style={styles.itemTime}>{item.time}</Text>
+                                                    <Text allowFontScaling={false} style={styles.itemName}>{item.name}</Text>
+                                                    <Text allowFontScaling={false} style={styles.itemTime}>{item.time}</Text>
                                                 </View>
                                                 <View style={styles.itemIconView}>
                                                     <TouchableOpacity>
                                                         <Icon size={22} color={likeSelect1 == 0?'#FABA3C':'#EFEBFA'}  source={require('../../../assets/images/Like-copy.png')}></Icon>
                                                     </TouchableOpacity>
-                                                    <Text style={styles.itemIconText}>  {item.num}</Text>
+                                                    <Text allowFontScaling={false} style={styles.itemIconText}>  {item.num}</Text>
                                                     </View>
                                                 </View>
                                                 <View style={styles.itemContent}>
-                                                    <Text style={styles.itemContentText}>{item.text}</Text>
+                                                    <Text allowFontScaling={false} style={styles.itemContentText}>{item.text}</Text>
                                                     <View style={[styles.itemComment,item.itemData.length == 0?{display:'none'}:null]}>
                                                         {item.itemData.map(emeit => {
                                                             return(
-                                                                <Text style={styles.commentArea} key={emeit.index}>
+                                                                <Text allowFontScaling={false} style={styles.commentArea} key={emeit.index}>
                                                                     {emeit.name}:
-                                                                    <Text style={styles.commentAreaText}>  {emeit.text}</Text>
+                                                                    <Text allowFontScaling={false} style={styles.commentAreaText}>  {emeit.text}</Text>
                                                                 </Text>
                                                             )
                                                         })}

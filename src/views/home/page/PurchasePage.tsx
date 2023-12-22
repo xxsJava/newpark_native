@@ -24,20 +24,20 @@ const PurchasePage = () => {
             </Appbar.Header>
             <View style={styles.imageStyle}></View>
             <View style={styles.detailsStyle}>
-                <Text style={styles.titleStyle}>填写订单</Text>
+                <Text allowFontScaling={false} style={styles.titleStyle}>填写订单</Text>
                 <View style={styles.scrollView}>
                     <ScrollView style={styles.scrollStyle}>
                         <View style={styles.personalData}>
-                            <Text style={styles.addressLabel}>收货地址</Text>
+                            <Text allowFontScaling={false} style={styles.addressLabel}>收货地址</Text>
                             <View style={styles.addressView}>
                                 <View style={styles.addressContent}>
-                                    <Text style={styles.addressTitle}>省市县街道</Text>
-                                    <Text style={styles.addressText}>详细地址。。。</Text>
+                                    <Text allowFontScaling={false} style={styles.addressTitle}>省市县街道</Text>
+                                    <Text allowFontScaling={false} style={styles.addressText}>详细地址。。。</Text>
                                     <View style={styles.addressStyle}>
-                                        <Text style={styles.addressName}>张三</Text>
-                                        <Text style={styles.addressPhone}>123****6789</Text>
-                                        <Text style={[styles.addressTab,styles.tabColor1]}>默认</Text>
-                                        <Text style={[styles.addressTab,styles.tabColor2]}>家</Text>
+                                        <Text allowFontScaling={false} style={styles.addressName}>张三</Text>
+                                        <Text allowFontScaling={false} style={styles.addressPhone}>123****6789</Text>
+                                        <Text allowFontScaling={false} style={[styles.addressTab,styles.tabColor1]}>默认</Text>
+                                        <Text allowFontScaling={false} style={[styles.addressTab,styles.tabColor2]}>家</Text>
                                     </View>
                                 </View>
                                 <View style={styles.addressIcon}>
@@ -46,28 +46,28 @@ const PurchasePage = () => {
                             </View>
                         </View>
                         <View style={styles.commodityInformation}>
-                            <Text style={styles.commodityTitle}>商品信息</Text>
+                            <Text allowFontScaling={false} style={styles.commodityTitle}>商品信息</Text>
                             <View style={styles.commodityContent}>
                                 <Image style={styles.commodityImage} source={require('../../../assets/images/alimom/R-C.jpg')}></Image>
                                 <View style={styles.commodityTextView}>
-                                    <Text style={styles.commodityName}>商品名称</Text>
-                                    <Text style={styles.commodityDescribe}>商品描述。。。。</Text>
-                                    <Text style={styles.describeStyle}>描述..</Text>
+                                    <Text allowFontScaling={false} style={styles.commodityName}>商品名称</Text>
+                                    <Text allowFontScaling={false} style={styles.commodityDescribe}>商品描述。。。。</Text>
+                                    <Text allowFontScaling={false} style={styles.describeStyle}>描述..</Text>
                                 </View>
-                                <Text style={styles.commodityNum}>数量:1</Text>
+                                <Text allowFontScaling={false} style={styles.commodityNum}>数量:1</Text>
                             </View>
                         </View>
                         <View style={styles.paymentView}>
-                            <Text style={styles.parenTitle}>支付方式</Text>
+                            <Text allowFontScaling={false} style={styles.parenTitle}>支付方式</Text>
                             <View style={styles.paymentContent}>
                                 <TouchableOpacity style={[styles.paymentItem,{borderColor:'#999',borderBottomWidth:1}]} onPress={() => onSelectedPress('selected1')} activeOpacity={1}>
                                     <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/wxzf_icon.png')}></Image>
-                                    <Text style={styles.paymentText}>微信支付</Text>
+                                    <Text allowFontScaling={false} style={styles.paymentText}>微信支付</Text>
                                     <Image style={[styles.paymentIcon,selectedVal == 'selected1'?null:{display:'none'}]} source={require('../../../assets/images/alimom/correct_icon.png')}></Image>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.paymentItem} onPress={() => onSelectedPress('selected2')} activeOpacity={1}>
                                     <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/zfb_icon.png')}></Image>
-                                    <Text style={styles.paymentText}>支付宝支付</Text>
+                                    <Text allowFontScaling={false} style={styles.paymentText}>支付宝支付</Text>
                                     <Image style={[styles.paymentIcon,selectedVal == 'selected2'?null:{display:'none'}]} source={require('../../../assets/images/alimom/correct_icon.png')}></Image>
                                 </TouchableOpacity>
                             </View>
@@ -79,7 +79,7 @@ const PurchasePage = () => {
                 <View style={styles.bottomIcon}>
                     <Icon size={36} color="#FABA3C" source={require('../../../assets/images/coins-icon.png')}></Icon>
                 </View>
-                <Text style={styles.bottomNum}>880.<Text style={{fontSize:14}}>00</Text></Text>
+                <Text allowFontScaling={false} style={styles.bottomNum}>880.<Text allowFontScaling={false} style={{fontSize:14}}>00</Text></Text>
                 <Button style={styles.bottomButton} labelStyle={styles.bottomButtonText} onPress={() => console.log('提交订单')}>提交订单</Button>
             </View>
         </View>

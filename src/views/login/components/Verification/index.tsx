@@ -73,6 +73,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
     for (let i = 0; i < 4; i++) {
       inputs.push(
         <Text
+        allowFontScaling={false}
           key={i}
           style={[
             styles.text,
@@ -124,7 +125,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         placement: 'top',
         render: () => {
           return (
-            <Text>{smsLoginAPI.msg}</Text>
+            <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>
           )
         },
       });
@@ -136,7 +137,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         placement: 'top',
         render: () => {
           return (
-            <Text>登录成功,开始寻找好友</Text>
+            <Text allowFontScaling={false}>登录成功,开始寻找好友</Text>
           )
         },
       });
@@ -155,8 +156,8 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
     <SafeAreaView style={styles.contion}>
       <View style={styles.body}>
         <View style={styles.bodyText}>
-          <Text style={styles.bodyTexta}>输入验证码</Text>
-          <Text style={styles.bodyTextb}>
+          <Text allowFontScaling={false} style={styles.bodyTexta}>输入验证码</Text>
+          <Text allowFontScaling={false} style={styles.bodyTextb}>
             已向您的手机 {localPhone} 发送验证码
           </Text>
         </View>
@@ -176,7 +177,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
 
         <View>
           <TouchableOpacity disabled={send} onPress={() => {}}>
-            <Text style={styles.verifTextTime}>
+            <Text allowFontScaling={false} style={styles.verifTextTime}>
               重新发送 {msgShow && <>({count})</>}
             </Text>
           </TouchableOpacity>

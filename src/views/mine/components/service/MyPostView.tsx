@@ -57,16 +57,16 @@ const MyPostView = ()=> {
             <View style={styles.parentView}>
                 <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>
+                    <Text allowFontScaling={false} style={styles.headerText}>
                         <Trans>navigationBar.title8</Trans>
                     </Text>
                 </Appbar.Header>
                 <View style={styles.typeView}>
                     <TouchableOpacity style={typeVal == 'type1'?styles.typeItem:null} onPress={() => onTypePress('type1')}>
-                        <Text style={[styles.typeText,typeVal == 'type1'?styles.typeTextSelected:null]}>已通过</Text>
+                        <Text allowFontScaling={false} style={[styles.typeText,typeVal == 'type1'?styles.typeTextSelected:null]}>已通过</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={typeVal == 'type2'?styles.typeItem:null} onPress={() => onTypePress('type2')}>
-                        <Text style={[styles.typeText,typeVal == 'type2'?styles.typeTextSelected:null]}>待审核</Text>
+                        <Text allowFontScaling={false} style={[styles.typeText,typeVal == 'type2'?styles.typeTextSelected:null]}>待审核</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.scrollView}>
@@ -77,11 +77,11 @@ const MyPostView = ()=> {
                                 <View style={styles.itemStyle} key={item.index}>
                                     <View style={styles.itemLeft}></View>
                                     <View style={styles.itemRight}>
-                                        <Text style={styles.itemTitle}>{item.title}</Text>
-                                        <Text style={styles.itemText}>{item.content}</Text>
+                                        <Text allowFontScaling={false} style={styles.itemTitle}>{item.title}</Text>
+                                        <Text allowFontScaling={false} style={styles.itemText}>{item.content}</Text>
                                         <View style={styles.itemBottom}>
-                                            <Text style={styles.itemBottomText}>{item.name}</Text>
-                                            <Text style={styles.itemBottomText}>{item.time}</Text>
+                                            <Text allowFontScaling={false} style={styles.itemBottomText}>{item.name}</Text>
+                                            <Text allowFontScaling={false} style={styles.itemBottomText}>{item.time}</Text>
                                         </View>
                                     </View>
                                 </View>

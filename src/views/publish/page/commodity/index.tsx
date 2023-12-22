@@ -98,7 +98,7 @@ const PublishProducts = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></Appbar.Action>
-                <Text style={styles.headerText}>
+                <Text allowFontScaling={false} style={styles.headerText}>
                 <Trans>navigationBar.title15</Trans>
                 </Text>
             </Appbar.Header>
@@ -111,12 +111,12 @@ const PublishProducts = () => {
                     <Photo></Photo>
                 </View>
                 <View style={styles.priceView}>
-                    <Text style={styles.priceText}>定价</Text>
+                    <Text allowFontScaling={false} style={styles.priceText}>定价</Text>
                     <TextInput value={moneyVal} selectionColor='#FABA3C' keyboardType='numeric' style={styles.priceInput} onChangeText={chkPrice}></TextInput>
                     <Image style={styles.priceIcon} source={require('../../../../assets/images/money_icon1.png')}></Image>
                 </View>
                 <View style={styles.optionView}>
-                    <Text style={styles.optionTitle}>送货方式</Text>
+                    <Text allowFontScaling={false} style={styles.optionTitle}>送货方式</Text>
                     {modeList.map(item => {
                         return(
                             <TouchableOpacity style={styles.itemStyle} key={item.index} onPress={() => modeSelect(item.index)}>

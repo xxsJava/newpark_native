@@ -20,13 +20,13 @@ export default class MemberServicesView extends Component {
                     <View style={styles.contentView}>
                         <View style={styles.placeholderView}></View>
                         <View style={styles.protocolView}>
-                            <Text style={styles.protocoText}>会员权益</Text>
+                            <Text allowFontScaling={false} style={styles.protocoText}>会员权益</Text>
                             <View style={styles.protocoCard}>
                                 <ScrollView style={styles.scrollStyle}></ScrollView>
                             </View>
                             <View style={styles.buttonView}>
                                 <TouchableOpacity style={styles.buttonStyle}>
-                                    <Text style={styles.buttonText}>开通</Text>
+                                    <Text allowFontScaling={false} style={styles.buttonText}>开通</Text>
                                 </TouchableOpacity>
                                 {/* <View style={styles.chekboxView}>
                                     <Checkbox value='true' shadow={2}>同意协议《用户协议》</Checkbox>
@@ -38,12 +38,12 @@ export default class MemberServicesView extends Component {
                                 <Avatar.Image size={68} source={require('../../../../assets/images/defaultheader.png')}></Avatar.Image>
                             </View>
                             <View style={styles.dataView}>
-                                <Text style={styles.dataName}>昵称：O泡果奶</Text>
-                                <Text style={styles.dataText}>UID:123456789011111</Text>
+                                <Text allowFontScaling={false} style={styles.dataName}>昵称：O泡果奶</Text>
+                                <Text allowFontScaling={false} style={styles.dataText}>UID:123456789011111</Text>
                             </View>
                             <View style={styles.gradeView}>
                                 <AnimatedCircularProgress fill={78} size={66} width={3.5} rotation={180} tintColor='#FA59DF' backgroundColor='rgba(136, 136, 136,0.2)' ></AnimatedCircularProgress>
-                                <Text style={styles.progressValue}>1421/10000</Text>
+                                <Text allowFontScaling={false} style={styles.progressValue}>1421/10000</Text>
                                 <View style={styles.gradeBg}>
                                     <Image style={styles.gradeImage} source={require('../../../../assets/images/alimom/V1.png')}></Image>
                                 </View>

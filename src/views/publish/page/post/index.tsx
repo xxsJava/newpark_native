@@ -20,17 +20,17 @@ const ReleasePost = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></Appbar.Action>
-                <Text style={styles.headerText}>
+                <Text allowFontScaling={false} style={styles.headerText}>
                     <Trans>navigationBar.title23</Trans>
                 </Text>
             </Appbar.Header>
             <View style={styles.syncView}>
                 <Image style={styles.syncImage} source={require('../../../../assets/images/3.0x/circle_icon.png')}></Image>
-                <Text style={styles.syncText}>同步到牛圈</Text>
+                <Text allowFontScaling={false} style={styles.syncText}>同步到牛圈</Text>
                 <View style={styles.syncIconView}>
                     <Image style={styles.syncIcon1} source={require('../../../../assets/images/alimom/loading1.png')}></Image>
-                    <Text style={styles.syncIconText}>python</Text>
-                    <Text style={styles.syncIcon2}>
+                    <Text allowFontScaling={false} style={styles.syncIconText}>python</Text>
+                    <Text allowFontScaling={false} style={styles.syncIcon2}>
                         <Entypo size={15} name="chevron-thin-right"></Entypo>
                     </Text>
                 </View>
@@ -40,7 +40,7 @@ const ReleasePost = () => {
                 <View style={styles.bottomView}>
                     <View style={styles.tagView}>
                         <TouchableOpacity>
-                            <Text style={styles.tagStyle}>#添加话题</Text>
+                            <Text allowFontScaling={false} style={styles.tagStyle}>#添加话题</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.controlStrip}>

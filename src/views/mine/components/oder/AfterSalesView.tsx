@@ -6,7 +6,7 @@ export default class AfterSalesView extends Component {
     render () {
         return (
             <View>
-                <Text>售后</Text>
+                <Text allowFontScaling={false}>售后</Text>
             </View>
         )
     }

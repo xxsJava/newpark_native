@@ -31,6 +31,7 @@ const SortTabNav = () => {
         <View style={styles.padd}>
           <TouchableOpacity onPress={() => handleTabPress('sort1')}>
             <Text
+              allowFontScaling={false}
               style={[
                 styles.menuFont,
                 activeTab === 'sort1' && StylesALL.FONT_SYS,
@@ -42,6 +43,7 @@ const SortTabNav = () => {
         <View style={styles.padd}>
           <TouchableOpacity onPress={() => handleTabPress('sort2')}>
             <Text
+              allowFontScaling={false}
               style={[
                 styles.menuFont,
                 activeTab === 'sort2' && StylesALL.FONT_SYS,
@@ -53,6 +55,7 @@ const SortTabNav = () => {
         <View style={styles.padd}>
           <TouchableOpacity onPress={() => handleTabPress('sort3')}>
             <Text
+              allowFontScaling={false}
               style={[
                 styles.menuFont,
                 activeTab === 'sort3' && StylesALL.FONT_SYS,
@@ -64,6 +67,7 @@ const SortTabNav = () => {
         <View style={styles.padd}>
           <TouchableOpacity onPress={() => handleTabPress('sort4')}>
             <Text
+              allowFontScaling={false}
               style={[
                 styles.menuFont,
                 activeTab === 'sort4' && StylesALL.FONT_SYS,
@@ -75,10 +79,10 @@ const SortTabNav = () => {
       </View>
 
       <View style={styles.menuTabNavRight}>
-        <Text style={[styles.menuFont, styles.mentSort]}>
+        <Text allowFontScaling={false} style={[styles.menuFont, styles.mentSort]}>
           <Trans>sort.sorts</Trans>
         </Text>
-        <Text style={styles.icons}>
+        <Text allowFontScaling={false} style={styles.icons}>
           <Icons name="chevron-down-outline" color={'#BBBBBB'} />
         </Text>
       </View>

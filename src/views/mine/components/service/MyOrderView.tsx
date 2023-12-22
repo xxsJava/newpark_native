@@ -30,19 +30,19 @@ const MyOrderView = ({route}:any) => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>
+                    <Text allowFontScaling={false} style={styles.headerText}>
                         <Trans>navigationBar.title6</Trans>
                     </Text>
                 </Appbar.Header>
                 <View style={styles.typeView}>
                     <TouchableOpacity style={typeVal == 'type1'?styles.typeItem:null} onPress={() => onTypePress('type1')}>
-                        <Text style={[styles.typeText,typeVal == 'type1'?styles.typeTextSelected:null]}>待付款</Text>
+                        <Text allowFontScaling={false} style={[styles.typeText,typeVal == 'type1'?styles.typeTextSelected:null]}>待付款</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={typeVal == 'type2'?styles.typeItem:null} onPress={() => onTypePress('type2')}>
-                        <Text style={[styles.typeText,typeVal == 'type2'?styles.typeTextSelected:null]}>待收货</Text>
+                        <Text allowFontScaling={false} style={[styles.typeText,typeVal == 'type2'?styles.typeTextSelected:null]}>待收货</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={typeVal == 'type3'?styles.typeItem:null} onPress={() => onTypePress('type3')}>
-                        <Text style={[styles.typeText,typeVal == 'type3'?styles.typeTextSelected:null]}>待评价</Text>
+                        <Text allowFontScaling={false} style={[styles.typeText,typeVal == 'type3'?styles.typeTextSelected:null]}>待评价</Text>
                     </TouchableOpacity>
                 </View>
         </View>

@@ -57,12 +57,12 @@ const CommunityModule = () => {
                   </View>
                   <View style={styles.itemMiddle}>
                     <View style={styles.middleStyle}>
-                      <Text style={styles.middleStart}>{item.title}</Text>
+                      <Text allowFontScaling={false} style={styles.middleStart}>{item.title}</Text>
                       <Image
                         style={styles.middleImage}
                         source={require('../../../assets/images/2.0x/hotfuckicon.png')}
                       />
-                      <Text style={styles.middleEnd}>热度{item.sum}</Text>
+                      <Text allowFontScaling={false} style={styles.middleEnd}>热度{item.sum}</Text>
                     </View>
                     <View style={styles.middleBottom}>
                       <LinearGradinet
@@ -73,7 +73,7 @@ const CommunityModule = () => {
                         start={{x: 0, y: 0}}
                         end={{x: 0, y: 1}}
                         style={styles.bottomBg}>
-                        <Text style={styles.bottomText}>{item.slogan}</Text>
+                        <Text allowFontScaling={false} style={styles.bottomText}>{item.slogan}</Text>
                       </LinearGradinet>
                     </View>
                   </View>

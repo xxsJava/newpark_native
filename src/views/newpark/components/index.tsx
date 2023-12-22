@@ -31,6 +31,7 @@ const TabNav = () => {
                 <View style={tabVal === 'tab1'? styles.tabBg : null} />
                 <TouchableOpacity onPress={() => handleTabPress('tab1')}>
                   <Text
+                   allowFontScaling={false}
                     style={
                     tabVal === 'tab1'
                       ? styles.selectedText
@@ -45,6 +46,7 @@ const TabNav = () => {
                 <View style={tabVal === 'tab2'? styles.tabBg1 : null}></View>
                 <TouchableOpacity onPress={() => handleTabPress('tab2')}>
                   <Text
+                    allowFontScaling={false}
                     style={
                     tabVal === 'tab2'
                       ? styles.selectedText

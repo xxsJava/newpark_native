@@ -17,18 +17,18 @@ const StepBar = () => {
                     <View style={[styles.stepBarIcon,stepVal >= 1?styles.stepBarColor1:null]}></View>
                     <View style={[styles.stepBarLine,stepVal >= 2?styles.stepBarColor2:null]}></View>
                 </View>
-                <Text style={styles.stepBarText}>发布</Text>
+                <Text allowFontScaling={false} style={styles.stepBarText}>发布</Text>
             </View>
             <View style={styles.stepBarItem}>
                 <View style={styles.stepBarStyle}>
                     <View style={[styles.stepBarIcon,stepVal >= 2?styles.stepBarColor1:null]}></View>
                     <View style={[styles.stepBarLine,stepVal >= 3?styles.stepBarColor2:null]}></View>
                 </View>
-                <Text style={[styles.stepBarText,{left:-16}]}>进行中</Text>
+                <Text allowFontScaling={false} style={[styles.stepBarText,{left:-16}]}>进行中</Text>
             </View>
             <View style={styles.stepBarItem}>
                 <View style={[styles.stepBarIcon,stepVal >= 3?styles.stepBarColor1:null]}></View>
-                <Text style={styles.stepBarText}>完成</Text>
+                <Text allowFontScaling={false} style={styles.stepBarText}>完成</Text>
             </View>
         </View>
     )
