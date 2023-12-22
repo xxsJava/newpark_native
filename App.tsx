@@ -14,7 +14,7 @@ import APPNewPark from './src/routes/main';
 import {navigationRefs} from './src/config/routs/NavigationContainer';
 import {CounterProvider} from './src/hooks/state';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from './src/config/axios/config';
+import { config } from "@gluestack-ui/config"
 
 export default function App(): JSX.Element {
   console.log('开始加载APP');

@@ -10,7 +10,7 @@
  *  UnSelectedIcon 未选中图标
  */
 
-import {BommonTab} from '../../routes/stacker';
+// import {BommonTab} from '../../routes/stacker';
 import HomeStacker from '../../routes/stacker/HomeStacker';
 import LoginStacker from '../../routes/stacker/Login';
 import MineStacker from '../../routes/stacker/MineStacker';

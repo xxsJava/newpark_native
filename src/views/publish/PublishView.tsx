@@ -15,10 +15,11 @@
 //   useDisclose,
 //   useToast,
 // } from 'native-base';
+import * as Animatable from 'react-native-animatable';
 import { IconButton } from 'react-native-paper';
-import { Center,HStack,Icon } from '@gluestack-ui/themed';
+import { Center,Box } from '@gluestack-ui/themed';
 import React, {Component, useState} from 'react';
-import {Text, StyleSheet, View, Button, Animated, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, View, Button, Animated, TouchableOpacity, Easing} from 'react-native';
 import {loginOutApi} from '../../api/sys/lgoin';
 import Storage from '../../utils/AsyncStorageUtils';
 import {navigate} from '../../config/routs/NavigationContainer';
@@ -62,6 +63,7 @@ export default class PublishView extends Component {
 
     return (
       <View style={styles.centerText}>
+        {/* <Text>禁用</Text> */}
         {/* <Text> PublishView </Text>
         <Button title="登出调试" onPress={loginOut} /> */}
         <Example />
@@ -71,12 +73,72 @@ export default class PublishView extends Component {
   }
 }
 
-
 const Example = () => {
   // const {isOpen, onToggle} = useDisclose();
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  let animatedValue1 = React.useRef(new Animated.Value(0)).current;
+  let animatedValue2 = React.useRef(new Animated.Value(0)).current;
+  let animatedValue3 = React.useRef(new Animated.Value(0)).current;
+  let animatedValue4 = React.useRef(new Animated.Value(0)).current;
+  let animatedValue5 = React.useRef(new Animated.Value(0)).current;
+
+  const animate = () =>  {
+    animatedValue1.setValue(0)
+    animatedValue2.setValue(0)
+    animatedValue3.setValue(0)
+    const createAnimation = function (value:any, duration: number, easing: any, delay = 0) {
+        return Animated.timing(
+            value,
+            {
+              toValue: 1,
+              duration,
+              easing,
+              delay,
+              useNativeDriver: false
+            }
+        )
+    }
+    Animated.parallel([
+        createAnimation(animatedValue1, 2000, Easing.ease),
+        createAnimation(animatedValue2, 1000, Easing.ease, 1000),
+        createAnimation(animatedValue3, 1000, Easing.ease, 2000),
+        createAnimation(animatedValue4, 1000, Easing.ease, 3000),
+        createAnimation(animatedValue5, 1000, Easing.ease, 4000)
+    ]).start()
+}
+
+  const fadeOut = () => {
+    // Will change fadeAnim value to 0 in 3 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start();
+  };
   return (
     <Center>
-      {/* <Box alignItems="center" minH="220"> */}
+      {/* <Text>禁用</Text> */}
+      <Box alignItems="center" h={220}>
+        {/* <Animatable.View animation={fadeIn}>
+          <Text>发布帖子</Text>
+        </Animatable.View> */}
+        <Animated.View style={{opacity: fadeAnim}}>
+          <Text>发布帖子</Text>
+        </Animated.View>
+        <Animated.View style={{opacity: fadeAnim}}>
+          <Text>打卡记录</Text>
+        </Animated.View>
+        <Animated.View style={{opacity: fadeAnim}}>
+          <Text>公告</Text>
+        </Animated.View>
+        <Animated.View style={{opacity: fadeAnim}}>
+          <Text>发布商品</Text>
+        </Animated.View>
+        <Animated.View style={{opacity: fadeAnim}}>
+          <Text>发布商品</Text>
+        </Animated.View>
+        <Button title="点击出现"></Button>
+        <Button title="点击消失" onPress={() => fadeOut()}></Button>
       {/* <Stagger
         visible={isOpen}
         initial={{
@@ -193,8 +255,8 @@ const Example = () => {
             }
           />
         </View>
-      </Stagger>
-      {/* </Box> */}
+      </Stagger> */}
+      </Box>
       {/* <HStack alignItems="center">
         <IconButton
           variant="solid"

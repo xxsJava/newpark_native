@@ -661,6 +661,7 @@ const ListIndex: React.FC = () => {
   return (
     
     <View style={{flex: 1, marginTop: 10}}>
+      <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
      <SectionList
         ref={sectionListRef}
         sections={data}

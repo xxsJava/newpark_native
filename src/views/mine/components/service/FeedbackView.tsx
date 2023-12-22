@@ -3,7 +3,6 @@ import { View,StyleSheet,Dimensions,Platform,TextInput,Image,TouchableHighlight,
 import { Text } from 'react-native-animatable';
 import { Appbar } from 'react-native-paper';
 // import { Input,TextArea,Divider } from "native-base";
-import {CheckIcon, Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator, CheckboxLabel, VStack } from '@gluestack-ui/themed';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
@@ -66,22 +65,6 @@ const Photo = () => {
             {/* <Image style={{width:100,height:100}} source={{uri:'file:///Users/newpark/Library/Developer/CoreSimulator/Devices/12A11679-B024-4E1D-91F8-CE033A5E6E61/data/Containers/Data/Application/1FC816F5-0E54-4D78-81D3-708B2F510A5F/tmp/FEA68057-E426-4FC7-94A1-B4333A508A5A.jpg'}}></Image> */}
         </View>
     );
-}
-
-const CheckView = () => {
-    const [values, setValues] = useState(["Illustration"])
-    return(
-        <CheckboxGroup style={styles.groupStyle} value={values} onChange={(keys:any) => {setValues(keys)}}>
-            <VStack space="3xl">
-                <Checkbox isInvalid={false} isDisabled={false} style={styles.checkStyle} value='zh'>
-                    <CheckboxIndicator style={styles.checkIcon}>
-                        <CheckboxIcon as={CheckIcon} />
-                    </CheckboxIndicator>
-                    <CheckboxLabel>账号</CheckboxLabel>
-                </Checkbox>
-            </VStack>
-        </CheckboxGroup>
-    )
 }
 
 export default class FeedbackView extends Component {

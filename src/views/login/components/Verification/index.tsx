@@ -16,7 +16,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 // import {Button, useToast} from 'native-base';
-import { useToast, Button } from '@gluestack-ui/themed';
+import { useToast, Button, ButtonSpinner, ButtonText } from '@gluestack-ui/themed';
 import Storage from '../../../../utils/AsyncStorageUtils';
 import {smsLoginApi} from '../../../../api/sys/lgoin';
 import {SmsLoginType} from '../../../../api/sys/lgoin/types';
@@ -187,7 +187,8 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
             disabled={disabled}
             onPress={next}
             style={[styles.buttR, disabled && styles.buttW]}>
-            <Text>下一步</Text>
+              <ButtonSpinner as={isLoad} mr="$1" />
+            <ButtonText>下一步</ButtonText>
           </Button>
         </View>
         <View />
