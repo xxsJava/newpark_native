@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-04 23:22:00
- * @LastEditTime: 2023-11-01 22:28:01
+ * @LastEditTime: 2023-12-22 10:20:48
  * @FilePath: \newpark_native\App.tsx
  * @Description: 第二入口文件
  */
@@ -15,10 +15,6 @@ import APPNewPark from './src/routes/main';
 import {navigationRefs} from './src/config/routs/NavigationContainer';
 import {CounterProvider} from './src/hooks/state';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
-import Registered from './src/views/login/components/Registered';
-import SchoolIndex from './src/views/login/components/SchoolIndex'
-import Gender from './src/views/login/components/Gender'
-import InterestsHobbies from './src/views/login/components/InterestsHobbies'
 import { config } from './src/config/axios/config';
 
 export default function App(): JSX.Element {

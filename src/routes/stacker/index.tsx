@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2023-11-06 18:47:39
+ * @LastEditTime: 2023-12-22 10:44:55
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
@@ -31,7 +31,9 @@ export const BommonTab = () => {
 
   // const {isOpen, onToggle} = useDisclose();
 
-  useEffect(() => {}, [console.log('底部路由加载')]);
+  const test = () => {
+     
+  }
 
   return (
     <>
@@ -44,10 +46,7 @@ export const BommonTab = () => {
             fontSize: 14,
           },
         })}>
-          <View>
-            <Text>禁用</Text>
-          </View>
-        {/* {Object.entries(routsConfig).map(([key, value]) => {
+        {Object.entries(routsConfig).map(([key, value]) => {
           if (key === 'Routes') {
             const subArray = Object.entries(value);
             return subArray.map(([routeKey, routeValue]) => {
@@ -63,125 +62,6 @@ export const BommonTab = () => {
                       let iconName = focused
                         ? routeValue.SelectedIcon
                         : routeValue.UnSelectedIcon;
-                      if (routeKey === 'Publish') {
-                        return (
-                          <>
-                            <Stagger
-                              visible={isOpen}
-                              initial={{
-                                opacity: 0,
-                                scale: 0,
-                                translateY: 34,
-                              }}
-                              animate={{
-                                translateY: 0,
-                                scale: 1,
-                                opacity: 1,
-                                transition: {
-                                  type: 'spring',
-                                  mass: 0.8,
-                                  stagger: {
-                                    offset: 30,
-                                    reverse: true,
-                                  },
-                                },
-                              }}
-                              exit={{
-                                translateY: 34,
-                                scale: 0.5,
-                                opacity: 0,
-                                transition: {
-                                  duration: 100,
-                                  stagger: {
-                                    offset: 30,
-                                    reverse: true,
-                                  },
-                                },
-                              }}>
-                              <View
-                                style={{
-                                  position: 'absolute',
-                                  bottom: -10,
-                                  left: 45,
-                                }}>
-                                <Text style={{position:'relative',left:45,top:20,color:'#000'}}>发布悬赏</Text>
-                                <IconButton
-                                  mb="4"
-                                  size={36}
-                                  variant="solid"
-                                  bg="indigo.500"
-                                  colorScheme="indigo"
-                                  borderRadius="full"
-                                  onPress={() => navigate('RewardRoute')}
-                                />
-                              </View>
-                              <View style={{position: 'absolute', bottom: 30,left:25}}>
-                                <Text style={{position:'relative',left:45,top:20,color:'#000'}}>发布帖子</Text>
-                                <IconButton
-                                  mb="4"
-                                  size={36}
-                                  variant="solid"
-                                  bg="yellow.400"
-                                  colorScheme="yellow"
-                                  borderRadius="full"
-                                  onPress={() => navigate('ReleasePostRoute')}
-                                />
-                              </View>
-                              <View style={{position: 'absolute', bottom: 45,left:-18}}>
-                                <Text style={{position:'relative',left:5,color:'#000'}}>公告</Text>
-                                <IconButton
-                                  mb="4"
-                                  size={36}
-                                  variant="solid"
-                                  bg="pink.400"
-                                  colorScheme="pink"
-                                  borderRadius="full"
-                                />
-                              </View>
-                              <View
-                                style={{
-                                  position: 'absolute',
-                                  bottom: 30,
-                                  right: 5,
-                                }}>
-                                <Text style={{position:'relative',right:60,top:20,color:'#000'}}>发布商品</Text>
-                                <IconButton
-                                  mb="4"
-                                  size={36}
-                                  variant="solid"
-                                  bg="teal.400"
-                                  colorScheme="teal"
-                                  borderRadius="full"
-                                  onPress={() => navigate('PublishProductsRoute')}
-                                />
-                              </View>
-                              <View
-                                style={{
-                                  position: 'absolute',
-                                  bottom:-10,
-                                  right: 45,
-                                }}>
-                                <Text style={{position:'relative',right:30,top:20,color:'#000'}}>打卡</Text>
-                                <IconButton
-                                  mb="4"
-                                  size={36}
-                                  variant="solid"
-                                  bg="red.500"
-                                  colorScheme="red"
-                                  borderRadius="full"
-                                  onPress={() => navigate('ClockInViewRoute')}
-                                />
-                              </View>
-                            </Stagger>
-                            <TouchableOpacity style={{position:'absolute',bottom:0}} onPress={onToggle}>
-                            <Image
-                                style={styles.publishImg}
-                                source={require('../../assets/images/3.0x/add_btn.png')}
-                              />
-                              </TouchableOpacity>
-                          </>
-                        );
-                      }
                       return (
                         <Ionicons name={iconName} size={size} color={color} />
                       );
@@ -191,12 +71,12 @@ export const BommonTab = () => {
               );
             });
           }
-        })} */}
+        })}
       </Tab.Navigator>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  publishImg: {width: 64, height: 64,},
+  // publishImg: {width: 64, height: 64,},
 });

@@ -25,7 +25,7 @@ import {navigate} from '../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 
-const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
+const LoginView: React.FC<LoginScreenProps> = () => {
   const toast = useToast();
   //获取输入框的手机号
   const [phone, setPhone] = useState('');
@@ -81,11 +81,11 @@ const LoginView: React.FC<LoginScreenProps> = ({navigation}) => {
           )
         },
       });
-      navigation.navigate('Verification');
+      navigate('Verification');
     } else if (loginAPI.code === 200) {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data);
-      navigation.navigate('LoginHome');
+      navigate('LoginHome');
       toast.show({
         placement: 'top',
         render: () => {
