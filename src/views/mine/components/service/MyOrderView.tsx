@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Platform } from 'react-native';
-import { Appbar, Avatar, IconButton, Tooltip, Button } from 'react-native-paper';
-import { navigate } from '../../../../config/routs/NavigationContainer'
-=======
 /*
  * @Author: xxs
  * @Date: 2023-12-20 17:44:35
- * @LastEditTime: 2023-12-20 17:45:11
+ * @LastEditTime: 2023-12-22 17:40:42
  * @FilePath: \newpark_native\src\views\mine\components\service\MyOrderView.tsx
  * @Description: desc
  */
@@ -16,7 +10,6 @@ import { View,Text,StyleSheet,Dimensions,TouchableOpacity,ScrollView,Platform } 
 import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
 import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
->>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
@@ -25,30 +18,6 @@ const windowHeight = Dimensions.get('window').height
 //     const { typeParams } = route.params;
 // };
 
-<<<<<<< HEAD
-const MyOrderView = () => {
-    const [typeVal, onTypePress] = React.useState('type1')
-    return (
-        <View style={styles.parentView}>
-            <Appbar.Header style={styles.headerStyle}>
-                <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')} />
-                <Text style={styles.headerText}>我的订单</Text>
-            </Appbar.Header>
-            <View style={styles.typeView}>
-                <TouchableOpacity style={typeVal == 'type1' ? styles.typeItem : null} onPress={() => onTypePress('type1')}>
-                    <Text style={[styles.typeText, typeVal == 'type1' ? styles.typeTextSelected : null]}>待付款</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={typeVal == 'type2' ? styles.typeItem : null} onPress={() => onTypePress('type2')}>
-                    <Text style={[styles.typeText, typeVal == 'type2' ? styles.typeTextSelected : null]}>待收货</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={typeVal == 'type3' ? styles.typeItem : null} onPress={() => onTypePress('type3')}>
-                    <Text style={[styles.typeText, typeVal == 'type3' ? styles.typeTextSelected : null]}>待评价</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
-    )
-
-=======
 const MyOrderView = ({route}:any) => {
     const [typeVal,onTypePress] = React.useState('type1')
     // const {route}:any = this.props
@@ -78,7 +47,6 @@ const MyOrderView = ({route}:any) => {
                 </View>
         </View>
     )
->>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 }
 
 
