@@ -6,10 +6,11 @@
  * @Description: desc
  */
 import React, { useEffect } from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View,Pressable} from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
 import notifee, { AndroidImportance, AndroidStyle, AuthorizationStatus, EventType, RepeatFrequency, TimestampTrigger, TriggerType } from '@notifee/react-native';
 import { getNotification } from '../../../../api/NotificationApi';
+
 
 Alipay.setAlipaySandbox(true);
 
@@ -61,7 +62,7 @@ async function onDisplayNotification() {
 
   notifee.displayNotification({
     title: 'NewPark',
-    body: '我是一条消息',
+    body: '我是一条消息，点我一下下',
     android: {
       sound: 'msg',
       smallIcon: 'ic_launcher',
@@ -71,7 +72,6 @@ async function onDisplayNotification() {
       importance: AndroidImportance.HIGH,
     },
   });
-
 }
 
 // 远程通知
@@ -130,9 +130,12 @@ async function onCreateTriggerNotification() {
     trigger,
   );
 }
+ const onPressFunction = (str:string)=>{
+  console.log(str)
+ }
+
 
 const ForgetPass: React.FC = () => {
-
   return (
     <View style={{flex: 1}}>
       {/* <MyComponent/> */}
@@ -141,6 +144,11 @@ const ForgetPass: React.FC = () => {
       <Button title="通知" onPress={onDisplayNotification} />
       <Button title="远程通知" onPress={onNotificationRemote} />
       <Button title="定时通知" onPress={onCreateTriggerNotification} />
+      <Button title="测试"  onPress={
+        () => {
+          onPressFunction('1')
+        }
+      } />
     </View>
   );
 };

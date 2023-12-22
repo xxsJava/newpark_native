@@ -645,6 +645,7 @@ const ListIndex: React.FC = () => {
     }
   };
 
+ 
   const _ItemLayout = (data: any, index: number) => {
     //总高度 (item * item^n  + 标题 + 间隙) = 分组的高度
     const dataHight =
@@ -658,7 +659,13 @@ const ListIndex: React.FC = () => {
     };
   };
   return (
+    
     <View style={{flex: 1, marginTop: 10}}>
+<<<<<<< HEAD
+       
+      <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
+=======
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
       <SectionList
         ref={sectionListRef}
         sections={data}
@@ -672,6 +679,7 @@ const ListIndex: React.FC = () => {
         stickySectionHeadersEnabled={true}
       />
     </View>
+    
   );
 };
 

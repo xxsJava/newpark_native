@@ -8,6 +8,7 @@
 import React, { useEffect } from "react";
 import SplashScreen from 'react-native-splash-screen';
 import Splashs from "../../views/system/Splash/SplashScreens";
+import App from "../../../App";
 
 const index = () => {
   useEffect(() => {
@@ -15,7 +16,10 @@ const index = () => {
     SplashScreen.hide();
   }, []);
 
+ 
+
   return <Splashs />;
 };
+
 
 export default index;

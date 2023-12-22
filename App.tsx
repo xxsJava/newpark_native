@@ -6,9 +6,8 @@
  * @Description: 第二入口文件
  */
 import React from 'react';
-
+import { View,Text } from  'react-native'
 import {NavigationContainer} from '@react-navigation/native';
-
 import 'intl-pluralrules';
 import './src/hooks/i18/i18next';
 import APPNewPark from './src/routes/main';

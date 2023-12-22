@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+import { useToast } from 'native-base';
+import React, { useState, useRef, Component } from 'react';
+=======
 // import {useToast} from 'native-base';
 import { useToast } from '@gluestack-ui/themed';
 import React, {useState, useRef, Component} from 'react';
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 import {
+  Button,
   View,
   Text,
   Platform,
@@ -11,11 +17,16 @@ import {
   TouchableOpacity,
   PanResponderInstance,
 } from 'react-native';
-import {navigate} from '../../../config/routs/NavigationContainer';
+import {
+  NavigationContainer,
+  useNavigation
+} from '@react-navigation/native'
+import { navigate } from '../../../config/routs/NavigationContainer';
+
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
-type DataSection = {title: string; data: DataItem[]};
+type DataSection = { title: string; data: DataItem[] };
 type AlphabetIndexProps = {
   sections: DataSection[];
   onSectionSelect: (index: number) => void;
@@ -37,7 +48,11 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
             key={index}
             onPress={() => onSectionSelect(index)}
             style={styles.itemBar}>
+<<<<<<< HEAD
+            <Text style={{ color: '#008fe4' }}>{section.title}</Text>
+=======
             <Text style={{color: '#008fe4',fontSize: 10}}>{section.title}</Text>
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
           </TouchableOpacity>
         ))}
       </View>
@@ -55,7 +70,7 @@ const ListIndex: React.FC = () => {
     null,
   );
 
-  const renderItem = ({item}: {item: DataItem}) => (
+  const renderItem = ({ item }: { item: DataItem }) => (
     <TouchableOpacity
       onPress={() => navigate('CheckRoute')}
       style={[
@@ -65,8 +80,8 @@ const ListIndex: React.FC = () => {
             item.color === 1
               ? '#FABA3C'
               : item.color === 2
-              ? '#6A1B9A'
-              : '#26C78C',
+                ? '#6A1B9A'
+                : '#26C78C',
         },
       ]}>
       <View style={styles.itemLeft}>
@@ -79,9 +94,9 @@ const ListIndex: React.FC = () => {
     </TouchableOpacity>
   );
 
-  const renderSectionHeader = ({section}: {section: DataSection}) => (
-    <View style={{backgroundColor: '#f4f4f4', padding: 4, height: 30}}>
-      <Text style={{fontWeight: 'bold'}}>{section.title}</Text>
+  const renderSectionHeader = ({ section }: { section: DataSection }) => (
+    <View style={{ backgroundColor: '#f4f4f4', padding: 4, height: 32 }}>
+      <Text style={{ fontWeight: 'bold' }}>{section.title}</Text>
     </View>
   );
 
@@ -103,18 +118,19 @@ const ListIndex: React.FC = () => {
           lableType: 1,
           icon: false,
         },
+        {
+          name: '牛友名称',
+          labelText: '牛友',
+          color: 1,
+          lableType: 1,
+          icon: false,
+        }
       ],
     },
     {
       title: 'B',
       data: [
-        {
-          name: '聊天室名称',
-          labelText: '123',
-          color: 2,
-          lableType: 1,
-          icon: true,
-        },
+
         {
           name: '聊天室名称',
           labelText: '123',
@@ -584,23 +600,58 @@ const ListIndex: React.FC = () => {
     // 更多的数据...
   ];
 
+<<<<<<< HEAD
+  // item 90
+  const ITEM_HEIGHT = 90;
+  // 获取一共有多少子元素
+  const sum = () => {
+    let zong = 0;
+    for (var i = 0; i < data.length; i++) {
+      zong += data[i].data.length
+    }
+
+    return zong;
+  }
+  const pre = (num: number) => {
+    let pre = 0;
+    for (let i = 0; i < num + 1; i++) {
+      pre += data[i].data.length
+
+    }
+    return pre;
+  }
+  // 这里是滚动到指定位置
+=======
   //item 90
   const ITEM_HEIGHT = 90;
 
   //这里是滚动到指定位置
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
   const handleSectionSelect = (index: number) => {
+    console.log(index);
+    console.log(data[index].title + ':' + data[index].data.length);
+
     setSelectedSectionIndex(index);
     
 
     //一个分组的高度
+<<<<<<< HEAD
+    // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + （索引下标*偏移值）
+    const itemHeight =
+      ITEM_HEIGHT * pre(index - 1) + 40 * index + (index * -8);
+=======
     // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + (索引下标+偏移值)
     const itemHeight =
       (ITEM_HEIGHT  * data[index].data.length +40) * index + (index*10);
     //总高度
     // (item * 每个分组子元素的数量 + 标题 + 间隙 ) * 分组数量
     const itemSum = (ITEM_HEIGHT * data[index].data.length + 40)* data.length;
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 
-    console.log('滚动到的位置----->', itemSum - itemHeight);
+    //总高度
+    const itemSum = ITEM_HEIGHT * sum() + 40 * data.length;
+
+    // console.log('滚动到的位置----->', itemSum - itemHeight);
     toast.show({
       placement: 'bottom',
       render: () => {
@@ -617,16 +668,28 @@ const ListIndex: React.FC = () => {
         sectionIndex: index,
         itemIndex: 0,
         //偏移高度
+<<<<<<< HEAD
+        // 具体滚动
+=======
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
         viewOffset: itemSum - itemHeight,
       });
     }
   };
+<<<<<<< HEAD
+  // 这里是渲染的总高度
+  const _ItemLayout = (data: any, index: number) => {
+    //总高度 (item * item^n  + 标题 + 间隙) * 子元素的数量 = 分组的高度
+    const dataHight =
+      (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40) * data.length;
+=======
 
   //这里是渲染的总高度
   const _ItemLayout = (data: any, index: number) => {
     //总高度 (item * item^n  + 标题 + 间隙) * 子元素的数量 = 分组的高度
     const dataHight =
       (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40)* data.length;
+>>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 
     // console.log(dataHight);
     return {
@@ -635,8 +698,21 @@ const ListIndex: React.FC = () => {
       offset: dataHight,
     };
   };
+
+  // 这里是获取子元素的数量
+  const num = (str: string) => {
+    // 遍历排好序的数据，获取每一个字母的位置
+    for (var i = 0; i < data.length; i++) {
+      if (str == data[i].title) {
+        console.log(str + ':' + data[i].data.length);
+      }
+    }
+    // console.log(sum() , '一共有这些子元素');
+    console.log(pre(1));//13
+
+  };
   return (
-    <View style={{flex: 1, marginTop: 10}}>
+    <View style={{ flex: 1, marginTop: 10 }}>
       <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
       <SectionList
         ref={sectionListRef}
@@ -667,7 +743,7 @@ const styles = StyleSheet.create({
         top: 0,
       },
       android: {
-        top: -30,
+        top: 10,
       },
     }),
   },
@@ -681,9 +757,13 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  separator: {
+    borderBottomColor: '#bbb',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
   listItem: {
     width: windowWidth,
-    height: 90,
+    height: 80,
     marginBottom: 10,
     borderLeftWidth: 8,
     backgroundColor: '#FFF',
@@ -736,3 +816,4 @@ const styles = StyleSheet.create({
   },
   labelIcon: {},
 });
+
