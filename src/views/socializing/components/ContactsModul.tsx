@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import { useToast } from 'native-base';
-import React, { useState, useRef, Component } from 'react';
-=======
 // import {useToast} from 'native-base';
 import { useToast } from '@gluestack-ui/themed';
 import React, {useState, useRef, Component} from 'react';
->>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
 import {
   Button,
   View,
@@ -48,11 +43,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
             key={index}
             onPress={() => onSectionSelect(index)}
             style={styles.itemBar}>
-<<<<<<< HEAD
             <Text style={{ color: '#008fe4' }}>{section.title}</Text>
-=======
-            <Text style={{color: '#008fe4',fontSize: 10}}>{section.title}</Text>
->>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
           </TouchableOpacity>
         ))}
       </View>

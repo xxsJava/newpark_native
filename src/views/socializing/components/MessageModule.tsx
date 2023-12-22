@@ -661,12 +661,7 @@ const ListIndex: React.FC = () => {
   return (
     
     <View style={{flex: 1, marginTop: 10}}>
-<<<<<<< HEAD
-       
-      <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
-=======
->>>>>>> f820aa7e18c99dbd2d6f2c948c4f68c01c6a39cc
-      <SectionList
+     <SectionList
         ref={sectionListRef}
         sections={data}
         renderItem={renderItem}
