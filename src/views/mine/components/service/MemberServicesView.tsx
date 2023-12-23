@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { View,Text,SafeAreaView,StyleSheet,Dimensions,ImageBackground,Platform,ScrollView,TouchableOpacity,Image } from 'react-native';
 import { Avatar,IconButton } from 'react-native-paper';
 // import { Checkbox } from "native-base";
+import { Center,Box, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, CheckIcon } from '@gluestack-ui/themed';
 import LinearGradinet from 'react-native-linear-gradient';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import {navigate} from '../../../../config/routs/NavigationContainer';
@@ -28,9 +29,14 @@ export default class MemberServicesView extends Component {
                                 <TouchableOpacity style={styles.buttonStyle}>
                                     <Text allowFontScaling={false} style={styles.buttonText}>开通</Text>
                                 </TouchableOpacity>
-                                {/* <View style={styles.chekboxView}>
-                                    <Checkbox value='true' shadow={2}>同意协议《用户协议》</Checkbox>
-                                </View> */}
+                                <View style={styles.chekboxView}>
+                                    <Checkbox value='true' borderColor='#FFB300'>
+                                        <CheckboxIndicator borderColor='#FFB300' mr="$2">
+                                            <CheckboxIcon bgColor='#FFB300' as={CheckIcon} />
+                                        </CheckboxIndicator>
+                                        <CheckboxLabel>同意协议《用户协议》</CheckboxLabel>
+                                    </Checkbox>
+                                </View>
                             </View>
                         </View>
                         <LinearGradinet colors={['rgba(99, 28, 136,1)','rgba(250, 185, 60,0.9)']} start={{x: 0, y: 0}} end={{x: 0, y: 1}} style={styles.personalDataView}>
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
                 height:230
             },
             android:{
-                height:200
+                height:180
             }
         })
     },
@@ -123,7 +129,7 @@ const styles = StyleSheet.create({
                 top:145,
             },
             android:{
-                top:105,
+                top:95,
             }
         })
     },

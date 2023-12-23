@@ -18,7 +18,7 @@
 import * as Animatable from 'react-native-animatable';
 import { IconButton } from 'react-native-paper';
 import { Center,Box } from '@gluestack-ui/themed';
-import React, {Component, useState} from 'react';
+import React, {Component, useRef, useState} from 'react';
 import {Text, StyleSheet, View, Button, Animated, TouchableOpacity, Easing} from 'react-native';
 import {loginOutApi} from '../../api/sys/lgoin';
 import Storage from '../../utils/AsyncStorageUtils';
@@ -75,95 +75,78 @@ export default class PublishView extends Component {
 
 const Example = () => {
   // const {isOpen, onToggle} = useDisclose();
-  const fadeAnim = React.useRef(new Animated.Value(0)).current;
-  let animatedValue1 = React.useRef(new Animated.Value(0)).current;
-  let animatedValue2 = React.useRef(new Animated.Value(0)).current;
-  let animatedValue3 = React.useRef(new Animated.Value(0)).current;
-  let animatedValue4 = React.useRef(new Animated.Value(0)).current;
-  let animatedValue5 = React.useRef(new Animated.Value(0)).current;
+  const animatedValue1 = useRef(new Animated.Value(0)).current;
+  const animatedValue2 = useRef(new Animated.Value(0)).current;
+  const animatedValue3 = useRef(new Animated.Value(0)).current;
 
-  const animate = () =>  {
-    animatedValue1.setValue(0)
-    animatedValue2.setValue(0)
-    animatedValue3.setValue(0)
-    const createAnimation = function (value:any, duration: number, easing: any, delay = 0) {
-        return Animated.timing(
-            value,
-            {
-              toValue: 1,
-              duration,
-              easing,
-              delay,
-              useNativeDriver: false
-            }
-        )
-    }
-    Animated.parallel([
-        createAnimation(animatedValue1, 2000, Easing.ease),
-        createAnimation(animatedValue2, 1000, Easing.ease, 1000),
-        createAnimation(animatedValue3, 1000, Easing.ease, 2000),
-        createAnimation(animatedValue4, 1000, Easing.ease, 3000),
-        createAnimation(animatedValue5, 1000, Easing.ease, 4000)
+  const fadeIn = () => {
+    Animated.sequence([
+      Animated.spring(animatedValue1, {
+        toValue: 1,
+        speed:80,
+        bounciness:60,
+        useNativeDriver: false,
+      }),
+      Animated.spring(animatedValue2, {
+        toValue: 1,
+        speed:80,
+        bounciness:60,
+        useNativeDriver: false,
+      }),
+      Animated.spring(animatedValue3, {
+        toValue: 1,
+        speed:80,
+        bounciness:60,
+        useNativeDriver: false,
+      }),
     ]).start()
-}
+
+    // Animated.parallel([
+    //   Animated.spring(
+    //     animatedValue1,{
+    //       toValue: 1,
+    //       friction: 2, //弹跳系数
+    //       useNativeDriver: false
+    //     }
+    //   )
+    // ])
+  }
 
   const fadeOut = () => {
     // Will change fadeAnim value to 0 in 3 seconds
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 3000,
-      useNativeDriver: true,
-    }).start();
+    Animated.sequence([
+      Animated.timing(animatedValue1, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: false,
+      }),
+      Animated.timing(animatedValue2, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: false,
+      }),
+      Animated.timing(animatedValue3, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: false,
+      }),
+    ]).start()
   };
-
-  const scaleText = animatedValue1.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.5, 2]
-  })
-  const spinText = animatedValue2.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, 3]
-  })
-  const spinText1 = animatedValue3.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1.5, 4]
-  })
-  const spinText2 = animatedValue4.interpolate({
-    inputRange: [0, 1],
-    outputRange: [2, 5]
-  })
-  const spinText3 = animatedValue5.interpolate({
-    inputRange: [0, 1],
-    outputRange: [2.5, 6]
-  })
-  const introButton = animatedValue3.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-100, 400]
-  })
 
   return (
     <Center>
       {/* <Text>禁用</Text> */}
       <Box alignItems="center" h={220}>
-        {/* <Animatable.View animation={fadeIn}>
-          <Text>发布帖子</Text>
-        </Animatable.View> */}
-        <Animated.View style={{transform: [{scale: scaleText}]}}>
+        <Animated.View style={{opacity:animatedValue1,transform:[{scale:animatedValue1}]}}>
           <Text>发布帖子</Text>
         </Animated.View>
-        <Animated.View style={{transform: [{scale: spinText}]}}>
+        <Animated.View style={{opacity:animatedValue2,transform:[{scale:animatedValue2}]}}>
           <Text>打卡记录</Text>
         </Animated.View>
-        <Animated.View style={{transform: [{scale: spinText1}]}}>
+        <Animated.View style={{opacity:animatedValue3,transform:[{scale:animatedValue3}]}}>
           <Text>公告</Text>
         </Animated.View>
-        <Animated.View style={{transform: [{scale: spinText2}]}}>
-          <Text>发布商品</Text>
-        </Animated.View>
-        <Animated.View style={{transform: [{scale: spinText3}]}}>
-          <Text>发布商品</Text>
-        </Animated.View>
-        <Button title="点击出现" onPress={animate.bind(this)}></Button>
+        <Button title="点击出现" onPress={() => fadeIn()}></Button>
         <Button title="点击消失" onPress={() => fadeOut()}></Button>
       {/* <Stagger
         visible={isOpen}
