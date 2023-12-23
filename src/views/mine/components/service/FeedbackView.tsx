@@ -1,8 +1,9 @@
 import React, {Component, useState} from 'react';
 import { View,StyleSheet,Dimensions,Platform,TextInput,Image,TouchableHighlight,TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-animatable';
-import { Appbar } from 'react-native-paper';
+import { Appbar} from 'react-native-paper';
 // import { Input,TextArea,Divider } from "native-base";
+import { Center,Box, CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, CheckIcon } from '@gluestack-ui/themed';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
@@ -10,6 +11,24 @@ import { any } from 'prop-types';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+const groupList = [{
+    index:1,
+    text:'账号',
+    value:'zh'
+},{
+    index:2,
+    text:'系统',
+    value:'xt'
+},{
+    index:3,
+    text:'服务',
+    value:'fw'
+},{
+    index:4,
+    text:'其他',
+    value:'qt'
+}]
 
 
 const Photo = () => {
@@ -65,6 +84,24 @@ const Photo = () => {
             {/* <Image style={{width:100,height:100}} source={{uri:'file:///Users/newpark/Library/Developer/CoreSimulator/Devices/12A11679-B024-4E1D-91F8-CE033A5E6E61/data/Containers/Data/Application/1FC816F5-0E54-4D78-81D3-708B2F510A5F/tmp/FEA68057-E426-4FC7-94A1-B4333A508A5A.jpg'}}></Image> */}
         </View>
     );
+}
+
+const CheckView = () => {
+    const [values, setValues] = useState([])
+    return (
+        <CheckboxGroup style={styles.groupStyle} value={values} onChange={(keys) => {setValues(keys)}}>
+            {groupList.map(item => {
+                return(
+                    <Checkbox key={item.index} borderColor='#FFB300' value={item.value}>
+                        <CheckboxIndicator borderColor='#FFB300' mr="$2">
+                            <CheckboxIcon bgColor='#FFB300' as={CheckIcon} />
+                        </CheckboxIndicator>
+                        <CheckboxLabel>{item.text}</CheckboxLabel>
+                    </Checkbox>
+                )
+            })}
+        </CheckboxGroup>
+    )
 }
 
 export default class FeedbackView extends Component {
@@ -162,6 +199,10 @@ const styles = StyleSheet.create({
     groupStyle:{
         flexDirection:'row',
         justifyContent:'space-around'
+    },
+    checkColor:{
+        borderColor:'#FFB300',
+        // backgroundColor:'#FFB300'
     },
     checkStyle:{
         width:50,
