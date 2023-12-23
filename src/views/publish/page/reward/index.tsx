@@ -35,9 +35,9 @@ const RewardView = () => {
                             </View>
                             <View style={styles.inputContent}>
                                 <Text allowFontScaling={false} style={styles.inputText}>标题</Text>
-                                <TextInput selectionColor='#FABA3C' placeholder='请输入' style={styles.inputTitle}></TextInput>
+                                <TextInput allowFontScaling={false} selectionColor='#FABA3C' placeholder='请输入' style={styles.inputTitle}></TextInput>
                                 <Text allowFontScaling={false} style={styles.inputText}>描述</Text>
-                                <TextInput selectionColor='#FABA3C' placeholder='请输入' multiline={true} numberOfLines={4} style={styles.inputDescribe}></TextInput>
+                                <TextInput allowFontScaling={false} selectionColor='#FABA3C' placeholder='请输入' multiline={true} numberOfLines={4} style={styles.inputDescribe}></TextInput>
                             </View>
                         </View>
                         <View style={styles.bountyView}>
@@ -46,7 +46,7 @@ const RewardView = () => {
                                 <Text allowFontScaling={false} style={styles.bountyText}>赏金</Text>
                             </View>
                             <View style={styles.bountyNumView}>
-                                <TextInput selectionColor='#FABA3C' style={styles.bountyInput}></TextInput>
+                                <TextInput allowFontScaling={false} selectionColor='#FABA3C' style={styles.bountyInput}></TextInput>
                                 <Image style={styles.bountyNumIcon} source={require('../../../../assets/images/moneyBag.png')}></Image>
                             </View>
                             <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => console.log('点击发布')}>发布悬赏</Button>

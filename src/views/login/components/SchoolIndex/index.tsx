@@ -33,6 +33,7 @@ const SchoolIndex:React.FC<RegisteredScreenProps> = () => {
       </Appbar.Header>
       <View style={styles.searchViwe}>
         <TextInput
+          allowFontScaling={false}
           placeholder="搜索\学校名称\学校代码"
           cursorColor='#ffb700'
           textAlign='center'

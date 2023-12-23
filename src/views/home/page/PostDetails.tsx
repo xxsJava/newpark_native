@@ -176,7 +176,7 @@ const PostDetails = () => {
                     </View>
                 </ScrollView>
                 <View style={styles.commentBottom}>
-                    <TextInput defaultValue={'说两句'} cursorColor='#FABA3C' style={styles.bottomTextInput}></TextInput>
+                    <TextInput allowFontScaling={false} defaultValue={'说两句'} cursorColor='#FABA3C' style={styles.bottomTextInput}></TextInput>
                     <TouchableOpacity style={styles.bottomIconView}>
                         <Image style={styles.bottomIcon} source={require('../../../assets/images/3.0x/like.png')}></Image>
                     </TouchableOpacity>

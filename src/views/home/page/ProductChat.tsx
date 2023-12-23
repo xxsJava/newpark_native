@@ -140,7 +140,7 @@ const ProductChat = () => {
                 </ScrollView>
                 <View style={styles.sendColumn}>
                     <View style={styles.inputBox}>
-                        <TextInput style={styles.sendColumnInput}
+                        <TextInput allowFontScaling={false} style={styles.sendColumnInput}
                         onChangeText={text => onChangeText(text)}
                         placeholder={'开始聊天吧'}
                         value={value}

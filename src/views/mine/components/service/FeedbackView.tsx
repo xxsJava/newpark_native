@@ -126,12 +126,12 @@ export default class FeedbackView extends Component {
                 </View>
                 <View style={styles.contentView}>
                     <View>
-                        <TextInput selectionColor='#FFB300' placeholder='请输入标题' maxLength={26} style={styles.titleInput}></TextInput>
+                        <TextInput allowFontScaling={false} selectionColor='#FFB300' placeholder='请输入标题' maxLength={26} style={styles.titleInput}></TextInput>
                     </View>
                     <View style={styles.lineStyle}>
                     </View>
                     <View style={styles.textAreaView}>
-                        <TextInput autoCorrect={false} selectionColor='#FFB300' placeholder='请描述一下你遇到的场景及问题' maxLength={260} multiline={true} numberOfLines={8} style={styles.textAreaStyle}></TextInput>
+                        <TextInput allowFontScaling={false} autoCorrect={false} selectionColor='#FFB300' placeholder='请描述一下你遇到的场景及问题' maxLength={260} multiline={true} numberOfLines={8} style={styles.textAreaStyle}></TextInput>
                     </View>
                 </View>
                 <View style={styles.titleView}>

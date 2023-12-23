@@ -101,6 +101,7 @@ const ForgetPass = ({ navigation }:any) => {
               source={require('../../../assets/images/search.png')}
             />
             <TextInput
+              allowFontScaling={false}
               style={styles.inputStyle}
               onChangeText={text => onChangeText(text)}
               value={inputValue}

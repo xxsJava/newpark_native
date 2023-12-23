@@ -155,7 +155,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         </View>
         <View style={styles.leaveWordView}>
           <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
-          <TextInput value={'喜欢就告诉她'} style={styles.leaveWordInput}></TextInput>
+          <TextInput allowFontScaling={false} value={'喜欢就告诉她'} style={styles.leaveWordInput}></TextInput>
         </View>
       </Card>
     </TouchableOpacity>

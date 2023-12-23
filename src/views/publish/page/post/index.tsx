@@ -36,7 +36,7 @@ const ReleasePost = () => {
                 </View>
             </View>
             <View style={styles.contentView}>
-                <TextInput selectionColor='#FABA3C' placeholder='正文' multiline={true} numberOfLines={24} style={styles.contenInput}></TextInput>
+                <TextInput allowFontScaling={false} selectionColor='#FABA3C' placeholder='正文' multiline={true} numberOfLines={24} style={styles.contenInput}></TextInput>
                 <View style={styles.bottomView}>
                     <View style={styles.tagView}>
                         <TouchableOpacity>

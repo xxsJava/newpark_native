@@ -154,6 +154,7 @@ const CheckView = () => {
                 <View style={styles.sendColumn}>
                     <View style={styles.inputBox}>
                         <TextInput style={styles.sendColumnInput}
+                        allowFontScaling={false}
                         onChangeText={text => onChangeText(text)}
                         placeholder={'开始聊天吧'}
                         value={value}

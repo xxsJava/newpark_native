@@ -60,7 +60,7 @@ const ChatModule = () => {
         <View style={styles.scrollStyle}>
           <View style={styles.topStyle}>
             <Image style={styles.topImg} source={require('../../../assets/images/search.png')}></Image>
-            <TextInput style={styles.inputStyle} value={'搜索您感兴趣的聊天室'}>
+            <TextInput allowFontScaling={false} style={styles.inputStyle} value={'搜索您感兴趣的聊天室'}>
             </TextInput>
           </View>
           <View style={styles.optionStyle}>

@@ -104,15 +104,15 @@ const PublishProducts = () => {
             </Appbar.Header>
             <View style={styles.contentView}>
                 <View style={styles.inputView}>
-                    <TextInput maxLength={15} selectionColor='#FABA3C' placeholder='请输入商品名称' style={styles.nameInput}></TextInput>
+                    <TextInput allowFontScaling={false} maxLength={15} selectionColor='#FABA3C' placeholder='请输入商品名称' style={styles.nameInput}></TextInput>
                 </View>
                 <View style={styles.inputView}>
-                    <TextInput maxLength={600} selectionColor='#FABA3C' placeholder='请输入商品描述' multiline={true} numberOfLines={8} style={styles.describeInput}></TextInput>
+                    <TextInput allowFontScaling={false} maxLength={600} selectionColor='#FABA3C' placeholder='请输入商品描述' multiline={true} numberOfLines={8} style={styles.describeInput}></TextInput>
                     <Photo></Photo>
                 </View>
                 <View style={styles.priceView}>
                     <Text allowFontScaling={false} style={styles.priceText}>定价</Text>
-                    <TextInput value={moneyVal} selectionColor='#FABA3C' keyboardType='numeric' style={styles.priceInput} onChangeText={chkPrice}></TextInput>
+                    <TextInput allowFontScaling={false} value={moneyVal} selectionColor='#FABA3C' keyboardType='numeric' style={styles.priceInput} onChangeText={chkPrice}></TextInput>
                     <Image style={styles.priceIcon} source={require('../../../../assets/images/money_icon1.png')}></Image>
                 </View>
                 <View style={styles.optionView}>

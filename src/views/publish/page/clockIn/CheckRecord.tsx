@@ -51,7 +51,7 @@ const CheckRecord = () => {
                             })}
                         </View>
                         <View style={styles.cardStyle}>
-                            <TextInput selectionColor='#FFB700' placeholder='这一刻我想说' numberOfLines={4} multiline={true} maxLength={160} style={styles.cardInput}></TextInput>
+                            <TextInput  allowFontScaling={false} selectionColor='#FFB700' placeholder='这一刻我想说' numberOfLines={4} multiline={true} maxLength={160} style={styles.cardInput}></TextInput>
                             <View style={styles.imageList}>
                                 <TouchableOpacity style={styles.imageView}>
                                     <Icon size={25} color="#ccc" source={require('../../../../assets/images/alimom/add_icon1.png')}></Icon>

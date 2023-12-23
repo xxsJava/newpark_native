@@ -163,6 +163,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
             <View style={styles.num}>
               <TextInput
+                allowFontScaling={false}
                 placeholder="请输入手机号"
                 placeholderTextColor="#fff"
                 underlineColor="#fff"
@@ -177,6 +178,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
             <View style={styles.pawoed}>
               <TextInput
+                allowFontScaling={false}
                 style={styles.inp}
                 secureTextEntry={securePass}
                 right={

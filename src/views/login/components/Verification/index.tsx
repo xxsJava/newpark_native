@@ -167,6 +167,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         <View style={styles.verifyText}>{inputs()}</View>
 
         <TextInput
+          allowFontScaling={false}
           style={styles.intextInputStyle}
           maxLength={4}
           autoFocus={true}

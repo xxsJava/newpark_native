@@ -61,6 +61,7 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
         <View style={[styles.nameView, styles.inputView]}>
           <Text allowFontScaling={false} style={styles.nameText}>昵称</Text>
           <TextInput
+            allowFontScaling={false}
             placeholder="请填写昵称"
             value={nameVal}
             selectionColor="#ffb700"
@@ -74,6 +75,7 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
         <View style={[styles.describeView, styles.inputView]}>
           <Text allowFontScaling={false} style={styles.nameText}>交友描述</Text>
           <TextInput
+            allowFontScaling={false}
             placeholder="交友描述，会显示在个人主页"
             multiline={true}
             numberOfLines={5}
@@ -89,6 +91,7 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
         <View style={[styles.passwordView, styles.inputView]}>
           <Text allowFontScaling={false} style={styles.nameText}>密码</Text>
           <TextInput
+            allowFontScaling={false}
             style={styles.inputStyle}
             placeholder="请输入密码"
             secureTextEntry={securePass}
@@ -110,6 +113,7 @@ const Registered: React.FC<RegisteredScreenProps> = () => {
         <View style={[styles.passwordView, styles.inputView]}>
           <Text allowFontScaling={false} style={styles.nameText}>确认密码</Text>
           <TextInput
+            allowFontScaling={false}
             style={styles.inputStyle}
             placeholder="请再次输入密码"
             secureTextEntry={confirmSecurePass}

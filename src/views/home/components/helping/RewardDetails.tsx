@@ -72,11 +72,11 @@ const RewardDetails = () => {
                             </View>
                             <View style={styles.remarksView}>
                                 <Text allowFontScaling={false} style={styles.remarksTitle}>备注</Text>
-                                <TextInput style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false}></TextInput>
+                                <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false}></TextInput>
                             </View>
                             <View style={[styles.remarksView,{marginTop:5}]}>
                                 <Text allowFontScaling={false} style={styles.remarksTitle}>完成时限</Text>
-                                <TextInput style={styles.remarksInput} selectionColor='#FABA3C' placeholder='半个小时后' autoCorrect={false}></TextInput>
+                                <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='半个小时后' autoCorrect={false}></TextInput>
                             </View>
                         </View>
                         <View style={styles.takingOrders}>

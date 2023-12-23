@@ -33,7 +33,7 @@ const CreateCommunity = () => {
                     </View>
                     <View style={styles.itemView}>
                         <Text allowFontScaling={false} style={styles.itemName}>社区名称:</Text>
-                        <TextInput textAlign='center' selectionColor='#FABA3C' placeholder='请输入社区名称' maxLength={10} autoCorrect={false} style={styles.itemInput}></TextInput>
+                        <TextInput  allowFontScaling={false} textAlign='center' selectionColor='#FABA3C' placeholder='请输入社区名称' maxLength={10} autoCorrect={false} style={styles.itemInput}></TextInput>
                         <Text allowFontScaling={false} style={styles.itemRightText}>0/10</Text>
                     </View>
                     <View style={styles.itemView}>
