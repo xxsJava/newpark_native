@@ -8,12 +8,14 @@
 
 import React from 'react';
 import MenusComponents from './Menu';
-import {View, StyleSheet, SafeAreaView, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, SafeAreaView, TouchableOpacity,ScrollView,Dimensions} from 'react-native';
 import SortTabNav from './SortType';
 import {LsitRecommend} from './Lists';
 import StylesALL from '../../styles';
 import ColumnType from './ColumnType'
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 //菜单组件数据
 const menusData = [
@@ -30,12 +32,12 @@ const menusData = [
 ];
 
 const HomeComponents = () => (
-  <>
+  <ScrollView style={styles.scrollStyle}>
     <ColumnType></ColumnType>
     <View style={styles.postsList}>
       <LsitRecommend />
     </View>
-  </>
+  </ScrollView>
 );
 
 const styles = StyleSheet.create({
@@ -43,6 +45,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     margin: 5,
+  },
+  scrollStyle:{
+    width:windowWidth,
+    height:windowHeight - 60
   },
   wd: {
     width: '40%',
