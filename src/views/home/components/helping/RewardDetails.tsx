@@ -19,7 +19,7 @@ const RewardDetails = () => {
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HelpCircleRoute')}></Appbar.Action>
-                <Text style={styles.headerText}>
+                <Text allowFontScaling={false} style={styles.headerText}>
                     <Trans>navigationBar.title25</Trans>
                 </Text>
                 <Appbar.Action icon={require('../../../../assets/images/3.0x/ellipsis_v.png')}></Appbar.Action>
@@ -33,67 +33,67 @@ const RewardDetails = () => {
                                 <Image style={styles.vipImage} source={require('../../../../assets/images/alimom/V1.png')}></Image>
                             </View>
                             <View style={styles.nameView}>
-                                <Text style={styles.nameText}>小学牛</Text>
-                                <Text style={styles.timeText}>刚刚</Text>
+                                <Text allowFontScaling={false} style={styles.nameText}>小学牛</Text>
+                                <Text allowFontScaling={false} style={styles.timeText}>刚刚</Text>
                             </View>
                             <View style={styles.statusView}>
                                 <View style={[styles.statusStyle,styles.statusColor1]}>
-                                    <Text style={styles.statusText}>未结算</Text>
+                                    <Text allowFontScaling={false} style={styles.statusText}>未结算</Text>
                                 </View>
                             </View>
                         </View>
                         <View style={styles.contcentTextView}>
-                            <Text style={styles.contcentText1}>去校门口拿个快递在</Text>
+                            <Text allowFontScaling={false} style={styles.contcentText1}>去校门口拿个快递在</Text>
                             <View style={styles.moneyView}>
                                 <View style={styles.moneyIcon}>
                                     <Icon color="#FABA3C" size={32} source={require('../../../../assets/images/coins-icon.png')}></Icon>
                                 </View>
-                                <Text style={styles.sumText}>2.<Text style={{fontSize:13}}>50</Text></Text>
+                                <Text allowFontScaling={false} style={styles.sumText}>2.<Text style={{fontSize:13}}>50</Text></Text>
                             </View>
                         </View>
                         <View style={styles.detailsView}>
                             <View style={styles.detailsTop}>
                                 <View style={styles.addressTitle}>
                                     <Image style={styles.addressImage}  source={require('../../../../assets/images/alimom/fk.png')}></Image>
-                                    <Text style={styles.addressText}>悬赏地址</Text>
+                                    <Text allowFontScaling={false} style={styles.addressText}>悬赏地址</Text>
                                 </View>
                                 <View style={styles.addressTitle}>
                                     <Image style={styles.addressImage}  source={require('../../../../assets/images/location_icon.png')}></Image>
-                                    <Text style={styles.addressText}>送达地址</Text>
+                                    <Text allowFontScaling={false} style={styles.addressText}>送达地址</Text>
                                 </View>
                             </View>
                             <View style={styles.addressView}>
                                 <TouchableOpacity activeOpacity={0.5}>
-                                    <Text style={styles.addressText1}>点击查看悬赏地址</Text>
+                                    <Text allowFontScaling={false} style={styles.addressText1}>点击查看悬赏地址</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity activeOpacity={0.5}>
-                                    <Text style={styles.addressText1}>点击查看送达地址</Text>
+                                    <Text allowFontScaling={false} style={styles.addressText1}>点击查看送达地址</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.remarksView}>
-                                <Text style={styles.remarksTitle}>备注</Text>
-                                <TextInput style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false}></TextInput>
+                                <Text allowFontScaling={false} style={styles.remarksTitle}>备注</Text>
+                                <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false}></TextInput>
                             </View>
                             <View style={[styles.remarksView,{marginTop:5}]}>
-                                <Text style={styles.remarksTitle}>完成时限</Text>
-                                <TextInput style={styles.remarksInput} selectionColor='#FABA3C' placeholder='半个小时后' autoCorrect={false}></TextInput>
+                                <Text allowFontScaling={false} style={styles.remarksTitle}>完成时限</Text>
+                                <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='半个小时后' autoCorrect={false}></TextInput>
                             </View>
                         </View>
                         <View style={styles.takingOrders}>
-                            <Text style={styles.takingOrdersText1}>接单人信息:</Text>
+                            <Text allowFontScaling={false} style={styles.takingOrdersText1}>接单人信息:</Text>
                             <TouchableOpacity activeOpacity={0.5}>
-                                <Text style={styles.takingOrdersText2}>点击查看</Text>
+                                <Text allowFontScaling={false} style={styles.takingOrdersText2}>点击查看</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.lineView}>
                             <View style={styles.lineStyle}></View>
-                            <Text style={styles.lineText}>订单状态</Text>
+                            <Text allowFontScaling={false} style={styles.lineText}>订单状态</Text>
                             <View style={styles.lineStyle}></View>
                         </View>
                         <View style={styles.stepBarView}>
                             <StepBar></StepBar>
                         </View>
-                        <Text style={styles.schollText}>湖南长沙理工大学</Text>
+                        <Text allowFontScaling={false} style={styles.schollText}>湖南长沙理工大学</Text>
                     </View>
                     <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('TakeOrderPartRoute')}>联系接单人</Button>
                 </ScrollView>

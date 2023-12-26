@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { View,Text,SafeAreaView,StyleSheet,Dimensions,ImageBackground,Platform,ScrollView,TouchableOpacity,Image } from 'react-native';
 import { Avatar,IconButton } from 'react-native-paper';
 // import { Checkbox } from "native-base";
+import { Center,Box, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, CheckIcon } from '@gluestack-ui/themed';
 import LinearGradinet from 'react-native-linear-gradient';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import {navigate} from '../../../../config/routs/NavigationContainer';
@@ -20,17 +21,22 @@ export default class MemberServicesView extends Component {
                     <View style={styles.contentView}>
                         <View style={styles.placeholderView}></View>
                         <View style={styles.protocolView}>
-                            <Text style={styles.protocoText}>会员权益</Text>
+                            <Text allowFontScaling={false} style={styles.protocoText}>会员权益</Text>
                             <View style={styles.protocoCard}>
                                 <ScrollView style={styles.scrollStyle}></ScrollView>
                             </View>
                             <View style={styles.buttonView}>
                                 <TouchableOpacity style={styles.buttonStyle}>
-                                    <Text style={styles.buttonText}>开通</Text>
+                                    <Text allowFontScaling={false} style={styles.buttonText}>开通</Text>
                                 </TouchableOpacity>
-                                {/* <View style={styles.chekboxView}>
-                                    <Checkbox value='true' shadow={2}>同意协议《用户协议》</Checkbox>
-                                </View> */}
+                                <View style={styles.chekboxView}>
+                                    <Checkbox value='true' borderColor='#FFB300'>
+                                        <CheckboxIndicator borderColor='#FFB300' mr="$2">
+                                            <CheckboxIcon bgColor='#FFB300' as={CheckIcon} />
+                                        </CheckboxIndicator>
+                                        <CheckboxLabel>同意协议《用户协议》</CheckboxLabel>
+                                    </Checkbox>
+                                </View>
                             </View>
                         </View>
                         <LinearGradinet colors={['rgba(99, 28, 136,1)','rgba(250, 185, 60,0.9)']} start={{x: 0, y: 0}} end={{x: 0, y: 1}} style={styles.personalDataView}>
@@ -38,12 +44,12 @@ export default class MemberServicesView extends Component {
                                 <Avatar.Image size={68} source={require('../../../../assets/images/defaultheader.png')}></Avatar.Image>
                             </View>
                             <View style={styles.dataView}>
-                                <Text style={styles.dataName}>昵称：O泡果奶</Text>
-                                <Text style={styles.dataText}>UID:123456789011111</Text>
+                                <Text allowFontScaling={false} style={styles.dataName}>昵称：O泡果奶</Text>
+                                <Text allowFontScaling={false} style={styles.dataText}>UID:123456789011111</Text>
                             </View>
                             <View style={styles.gradeView}>
                                 <AnimatedCircularProgress fill={78} size={66} width={3.5} rotation={180} tintColor='#FA59DF' backgroundColor='rgba(136, 136, 136,0.2)' ></AnimatedCircularProgress>
-                                <Text style={styles.progressValue}>1421/10000</Text>
+                                <Text allowFontScaling={false} style={styles.progressValue}>1421/10000</Text>
                                 <View style={styles.gradeBg}>
                                     <Image style={styles.gradeImage} source={require('../../../../assets/images/alimom/V1.png')}></Image>
                                 </View>
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
                 height:230
             },
             android:{
-                height:200
+                height:180
             }
         })
     },
@@ -123,7 +129,7 @@ const styles = StyleSheet.create({
                 top:145,
             },
             android:{
-                top:105,
+                top:95,
             }
         })
     },

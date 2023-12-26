@@ -98,25 +98,25 @@ const PublishProducts = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></Appbar.Action>
-                <Text style={styles.headerText}>
+                <Text allowFontScaling={false} style={styles.headerText}>
                 <Trans>navigationBar.title15</Trans>
                 </Text>
             </Appbar.Header>
             <View style={styles.contentView}>
                 <View style={styles.inputView}>
-                    <TextInput maxLength={15} selectionColor='#FABA3C' placeholder='请输入商品名称' style={styles.nameInput}></TextInput>
+                    <TextInput allowFontScaling={false} maxLength={15} selectionColor='#FABA3C' placeholder='请输入商品名称' style={styles.nameInput}></TextInput>
                 </View>
                 <View style={styles.inputView}>
-                    <TextInput maxLength={600} selectionColor='#FABA3C' placeholder='请输入商品描述' multiline={true} numberOfLines={8} style={styles.describeInput}></TextInput>
+                    <TextInput allowFontScaling={false} maxLength={600} selectionColor='#FABA3C' placeholder='请输入商品描述' multiline={true} numberOfLines={8} style={styles.describeInput}></TextInput>
                     <Photo></Photo>
                 </View>
                 <View style={styles.priceView}>
-                    <Text style={styles.priceText}>定价</Text>
-                    <TextInput value={moneyVal} selectionColor='#FABA3C' keyboardType='numeric' style={styles.priceInput} onChangeText={chkPrice}></TextInput>
+                    <Text allowFontScaling={false} style={styles.priceText}>定价</Text>
+                    <TextInput allowFontScaling={false} value={moneyVal} selectionColor='#FABA3C' keyboardType='numeric' style={styles.priceInput} onChangeText={chkPrice}></TextInput>
                     <Image style={styles.priceIcon} source={require('../../../../assets/images/money_icon1.png')}></Image>
                 </View>
                 <View style={styles.optionView}>
-                    <Text style={styles.optionTitle}>送货方式</Text>
+                    <Text allowFontScaling={false} style={styles.optionTitle}>送货方式</Text>
                     {modeList.map(item => {
                         return(
                             <TouchableOpacity style={styles.itemStyle} key={item.index} onPress={() => modeSelect(item.index)}>

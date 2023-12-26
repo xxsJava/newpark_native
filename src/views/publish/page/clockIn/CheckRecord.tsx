@@ -18,13 +18,13 @@ const CheckRecord = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')}></Appbar.Action>
-                <Text style={styles.headerText}>打卡记录</Text>
+                <Text allowFontScaling={false} style={styles.headerText}>打卡记录</Text>
             </Appbar.Header>
             <View style={styles.contentView}>
                 <ScrollView style={styles.scrollStyle}>
                     <View style={styles.yearsTab}>
                         <IconButton size={20} icon={require('../../../../assets/images/chevron-left.png')} onPress={() => console.log('上一月')}></IconButton>
-                        <Text style={styles.yearsText}>2023 - 12</Text>
+                        <Text allowFontScaling={false} style={styles.yearsText}>2023 - 12</Text>
                         <IconButton size={20} icon={require('../../../../assets/images/chevron-right.png')} onPress={() => console.log('下一月')}></IconButton>
                     </View>
                     <View style={styles.calendarView}>
@@ -32,8 +32,8 @@ const CheckRecord = () => {
                             {weekList.map(item => {
                                 return(
                                     <View style={styles.weekTextView} key={item.index}>
-                                        <Text style={styles.weekTextCh}>{item.ch}</Text>
-                                        <Text style={styles.weekTextEn}>{item.en}</Text>
+                                        <Text allowFontScaling={false} style={styles.weekTextCh}>{item.ch}</Text>
+                                        <Text allowFontScaling={false} style={styles.weekTextEn}>{item.en}</Text>
                                     </View>
                                 )
                             })}
@@ -43,7 +43,7 @@ const CheckRecord = () => {
                                 return(
                                     <View style={styles.dataView} key={item.index}>
                                         <View style={[styles.dataTextView,item.checkIn?item.day == 1?styles.dataOn:null:styles.dataNo]}>
-                                            <Text style={[styles.dataText,item.day == 1?styles.dataOnText:item.day == 0 && item.checkIn?styles.dataAgoText:null]}>{item.data}</Text>
+                                            <Text allowFontScaling={false} style={[styles.dataText,item.day == 1?styles.dataOnText:item.day == 0 && item.checkIn?styles.dataAgoText:null]}>{item.data}</Text>
                                         </View>
                                         <View style={[styles.dataIcon,item.day == 1?null:{display:'none'}]}></View>
                                     </View>
@@ -51,7 +51,7 @@ const CheckRecord = () => {
                             })}
                         </View>
                         <View style={styles.cardStyle}>
-                            <TextInput selectionColor='#FFB700' placeholder='这一刻我想说' numberOfLines={4} multiline={true} maxLength={160} style={styles.cardInput}></TextInput>
+                            <TextInput  allowFontScaling={false} selectionColor='#FFB700' placeholder='这一刻我想说' numberOfLines={4} multiline={true} maxLength={160} style={styles.cardInput}></TextInput>
                             <View style={styles.imageList}>
                                 <TouchableOpacity style={styles.imageView}>
                                     <Icon size={25} color="#ccc" source={require('../../../../assets/images/alimom/add_icon1.png')}></Icon>

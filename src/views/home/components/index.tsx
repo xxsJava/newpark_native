@@ -7,8 +7,13 @@
  */
 import React, { useState } from 'react';
 import {Avatar, Button, Card, IconButton, Text} from 'react-native-paper';
-import {StyleSheet, TouchableOpacity, View,Image,TextInput,Platform,} from 'react-native';
+import {StyleSheet, TouchableOpacity, View,Image,TextInput,Platform,Dimensions} from 'react-native';
 import {navigate} from '../../../config/routs/NavigationContainer';
+import {dateToMsgTime} from '../../../components/Rests/TconTime'
+import { WebView } from 'react-native-webview';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 // const [upvoteVal,onUpvoteSet] = React.useState(false)
 
@@ -20,13 +25,13 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
   //   onUpvoteSet(!porp)
     
   // }
-
+  console.log('帖子item',item)
   return (
-    <TouchableOpacity activeOpacity={0.9}  onPress={() => navigate('PostDetailsRoute')}>
+    <TouchableOpacity activeOpacity={0.9} key={item.tid}  onPress={() => navigate('PostDetailsRoute')}>
       <Card style={styles.cardSty}>
         <Card.Title
-          title={item.title}
-          subtitle={item.desc}
+          title={item.ttitle}
+          subtitle={dateToMsgTime(item.tlastTime)}
           left={props => (
             <View style={styles.titleLeft}>
               <Avatar.Image
@@ -56,18 +61,23 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           style={styles.backColor}
         />
         <Card.Content style={styles.backColor}>
-          <Text style={styles.context}>{item.text}</Text>
+          <WebView style={{height:90,width:windowWidth}} source={{html:item.tcontext}}></WebView>
+          {/* <Text allowFontScaling={false} style={styles.context}>{item.text}</Text> */}
         </Card.Content>
         <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} />
         <Card.Content style={styles.backColor}>
           {/* <Text style={styles.context}>#情感#个人#官方#颜值#语录</Text> */}
           <View style={styles.labelList}>
-            <View style={styles.labelStyle}>
-              <View style={styles.labelIcon}>
-                <Text style={styles.labelIconText}>#</Text>
-              </View>
-              <Text style={styles.labelText}>仙境</Text>
-            </View>
+            {item.labs.map((emit:any) => {
+              return(
+                <TouchableOpacity activeOpacity={0.6} style={styles.labelStyle} key={emit.lableId}>
+                  <View style={styles.labelIcon}>
+                    <Text allowFontScaling={false} style={styles.labelIconText}>#</Text>
+                  </View>
+                  <Text allowFontScaling={false} style={styles.labelText}>{emit.lableText}</Text>
+                </TouchableOpacity>
+              )
+            })}
           </View>
         </Card.Content>
         <View style={styles.interactionStyle}>
@@ -79,7 +89,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
               <Button
                 icon={require('../../../assets/images/share-icon.png')}
                 style={styles.buttonDz}>
-                    200
+                    {item.tforwardCount}
               </Button>
             </TouchableOpacity>
           </View>
@@ -90,7 +100,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
               onPress={() => {
                 console.log('点赞');
               }}>
-                2.0w
+                {item.tlikeCount}
             </Button>
             <TouchableOpacity
               onPress={() => {
@@ -100,7 +110,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
                 icon={require('../../../assets/images/3.0x/tabs_3_on.png')}
                 // style={StylesALL.BGCOLOR}
               >
-                3.0w
+                {item.tcomCount}
               </Button>
             </TouchableOpacity>
           </View>
@@ -130,13 +140,13 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           </TouchableOpacity>
         </Card.Actions> */}
         <View style={styles.commentAreaView}>
-          <Text style={styles.commentAreaTitle}>精选评论</Text>
+          <Text allowFontScaling={false} style={styles.commentAreaTitle}>精选评论</Text>
           <View style={styles.commentArea}>
             <View style={styles.commentAreaItem}>
               <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
               <View style={styles.commentAreaName}>
-                <Text style={styles.commentAreaNameLeft}>小学牛：</Text>
-                <Text style={styles.commentAreaNameRight}>打卡留影</Text>
+                <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>小学牛：</Text>
+                <Text allowFontScaling={false} style={styles.commentAreaNameRight}>打卡留影</Text>
               </View>
               <TouchableOpacity
                 style={styles.commentAreaIcon}
@@ -155,7 +165,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         </View>
         <View style={styles.leaveWordView}>
           <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
-          <TextInput value={'喜欢就告诉她'} style={styles.leaveWordInput}></TextInput>
+          <TextInput allowFontScaling={false} value={'喜欢就告诉她'} style={styles.leaveWordInput}></TextInput>
         </View>
       </Card>
     </TouchableOpacity>
@@ -216,6 +226,7 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   labelList:{
+    flexWrap:'wrap',
     flexDirection:'row',
     justifyContent:'flex-start'
   },
@@ -324,3 +335,7 @@ const styles = StyleSheet.create({
     })
   }
 });
+function componentDidMount() {
+  throw new Error('Function not implemented.');
+}
+

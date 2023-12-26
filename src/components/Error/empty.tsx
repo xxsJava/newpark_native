@@ -27,13 +27,13 @@ const DisplayAnImage = () => {
           padding: 10
         }}
       >
-        <Text style={{ margin: "auto", width: 120,fontSize: 18, color:'#DAD8E0' }}>暂时没有数据</Text>
+        <Text allowFontScaling={false} style={{ margin: "auto", width: 120,fontSize: 18, color:'#DAD8E0' }}>暂时没有数据</Text>
       </View>
       <View>
-        <Text style={{ width: 140,fontSize: 13, color:'#CDCFDC' }}>快去寻找所需要的数据</Text>
+        <Text allowFontScaling={false} style={{ width: 140,fontSize: 13, color:'#CDCFDC' }}>快去寻找所需要的数据</Text>
       </View>
       <View style = {{ position: 'absolute', bottom: 15}}>
-        <Text style={{ width: 180,fontSize: 13, color:'#CDCFDC' }}>山东新园建业科技有限公司</Text>
+        <Text allowFontScaling={false} style={{ width: 180,fontSize: 13, color:'#CDCFDC' }}>山东新园建业科技有限公司</Text>
       </View>
     </View>
   );

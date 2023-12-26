@@ -18,13 +18,13 @@ const PersonalDataView = () => {
         <View style={styles.parentView}>
             <View style={styles.tabView}>
                 <TouchableOpacity onPress={() => onTabPress(1)}>
-                    <Text style={[styles.tabText,tabVal == 1?styles.tabColor:null]}>帖子</Text>
+                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 1?styles.tabColor:null]}>帖子</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => onTabPress(2)}>
-                    <Text style={[styles.tabText,tabVal == 2?styles.tabColor:null]}>悬赏</Text>
+                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 2?styles.tabColor:null]}>悬赏</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => onTabPress(3)}>
-                    <Text style={[styles.tabText,tabVal == 3?styles.tabColor:null]}>成就</Text>
+                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 3?styles.tabColor:null]}>成就</Text>
                 </TouchableOpacity>
             </View>
         </View>

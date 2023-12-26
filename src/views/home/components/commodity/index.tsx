@@ -105,17 +105,17 @@ const ProductView = () => {
           icon={require('../../../../assets/images/chevron-left.png')}
           onPress={() => navigate('HomeStacker')}
         />
-        <Text style={styles.headerText}>交易圈</Text>
+        <Text allowFontScaling={false} style={styles.headerText}>交易圈</Text>
       </Appbar.Header>
       <View style={styles.filterBar}>
         <View style={styles.typeItem}>
-          <Text style={styles.typeText}>综合</Text>
+          <Text allowFontScaling={false} style={styles.typeText}>综合</Text>
           <Entypo size={14} color="#000" name="chevron-thin-down" />
         </View>
         {typeData.map(item => {
           return (
             <View style={styles.typeItem} key={item.index}>
-              <Text style={[styles.typeText, styles.typeText1]}>
+              <Text allowFontScaling={false} style={[styles.typeText, styles.typeText1]}>
                 {item.text}
               </Text>
               <View>
@@ -145,7 +145,7 @@ const ProductView = () => {
                   key={item.index}
                   onPress={() => navigate('DetailsRoute')}>
                   <Image style={styles.commodityImage} source={item.image} />
-                  <Text style={styles.commodityText}>{item.title}</Text>
+                  <Text allowFontScaling={false} style={styles.commodityText}>{item.title}</Text>
                   <View style={styles.priceView}>
                     <View style={styles.priceStyle}>
                       <Icon
@@ -153,9 +153,9 @@ const ProductView = () => {
                         color="#fa3d3c"
                         source={require('../../../../assets/images/coins-icon.png')}
                       />
-                      <Text style={styles.priceNum}>{item.num}</Text>
+                      <Text allowFontScaling={false} style={styles.priceNum}>{item.num}</Text>
                     </View>
-                    <Text style={styles.priceTime}>{item.time}</Text>
+                    <Text allowFontScaling={false} style={styles.priceTime}>{item.time}</Text>
                   </View>
                   <View style={styles.publisherView}>
                     <Avatar.Image
@@ -163,7 +163,7 @@ const ProductView = () => {
                       size={32}
                       source={item.avatar}
                     />
-                    <Text style={styles.publisherText}>{item.name}</Text>
+                    <Text allowFontScaling={false} style={styles.publisherText}>{item.name}</Text>
                   </View>
                 </TouchableOpacity>
               );

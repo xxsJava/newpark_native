@@ -97,14 +97,14 @@ const  HelpCircleView = () => {
                     icon={require('../../../../assets/images/chevron-left.png')}
                     onPress={() => navigate('HomeStacker')}
                 />
-                <Text style={styles.headerText}>
+                <Text allowFontScaling={false} style={styles.headerText}>
                     <Trans>navigationBar.title16</Trans>
                 </Text>
             </Appbar.Header>
             <View style={styles.typeView}>
-                <Text style={styles.typeTitle}>排序方式</Text>
+                <Text allowFontScaling={false} style={styles.typeTitle}>排序方式</Text>
                 <View style={styles.typeRight}>
-                    <Text style={styles.typeText}>时间排序</Text>
+                    <Text allowFontScaling={false} style={styles.typeText}>时间排序</Text>
                     <Entypo style={styles.typeIcon} size={16} name='chevron-thin-right'></Entypo>
                 </View>
             </View>

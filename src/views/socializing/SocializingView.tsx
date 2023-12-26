@@ -63,6 +63,7 @@ const SocializingView = () => {
                 <View style={tabVal === 'tab1'?styles.tabBg1:null} />
                 <TouchableOpacity onPress={() => handleTabPress('tab1')}>
                   <Text
+                  allowFontScaling={false}
                     style={
                       tabVal === 'tab1'
                         ? styles.selectedText
@@ -76,6 +77,7 @@ const SocializingView = () => {
                 <View style={tabVal === 'tab2'?styles.tabBg2:null}></View>
                 <TouchableOpacity onPress={() => handleTabPress('tab2')}>
                   <Text
+                  allowFontScaling={false}
                     style={
                       tabVal === 'tab2'
                         ? styles.selectedText
@@ -95,7 +97,7 @@ const SocializingView = () => {
           <View style={styles.searchGrid}>
             <TouchableOpacity onPress={() => navigate('SearchView')}>
               <View style={styles.searchBox}>
-                <Text style={styles.searchText}>搜索</Text>
+                <Text allowFontScaling={false} style={styles.searchText}>搜索</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -115,7 +117,7 @@ const SocializingView = () => {
                   <Image style={styles.itemImage} source={item.image}></Image>
                 </View>
                 <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
-                  <Text style={styles.itemText}>{item.text}</Text>
+                  <Text allowFontScaling={false} style={styles.itemText}>{item.text}</Text>
                 </TouchableOpacity>
                 {/* <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
                   <Text style={styles.itemText}>{item.text}</Text>

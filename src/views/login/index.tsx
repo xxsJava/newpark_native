@@ -59,7 +59,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         placement: 'bottom',
         render: () => {
           return (
-            <Text>手机号有误</Text>
+            <Text allowFontScaling={false}>手机号有误</Text>
           )
         },
       });
@@ -77,7 +77,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         placement: 'bottom',
         render: () => {
           return (
-            <Text>验证码发送，请注意查收</Text>
+            <Text allowFontScaling={false}>验证码发送，请注意查收</Text>
           )
         },
       });
@@ -90,7 +90,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         placement: 'top',
         render: () => {
           return (
-            <Text>登录成功，可享受功能</Text>
+            <Text allowFontScaling={false}>登录成功，可享受功能</Text>
           )
         },
       });
@@ -99,7 +99,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         placement: 'top',
         render: () => {
           return (
-            <Text>账号有误</Text>
+            <Text allowFontScaling={false}>账号有误</Text>
           )
         },
       });
@@ -113,7 +113,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         placement: 'top',
         render: () => {
           return (
-            <Text>请输入手机号</Text>
+            <Text allowFontScaling={false}>请输入手机号</Text>
           )
         },
       });
@@ -126,7 +126,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       placement: 'top',
       render: () => {
         return (
-          <Text>{smsLoginAPI.msg}</Text>
+          <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>
         )
       },
     });
@@ -158,11 +158,12 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
           <View style={styles.box}>
             <View>
-              <Text style={styles.text}>欢迎大家加入NewPark大家庭</Text>
+              <Text allowFontScaling={false} style={styles.text}>欢迎大家加入NewPark大家庭</Text>
             </View>
 
             <View style={styles.num}>
               <TextInput
+                allowFontScaling={false}
                 placeholder="请输入手机号"
                 placeholderTextColor="#fff"
                 underlineColor="#fff"
@@ -177,6 +178,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
             <View style={styles.pawoed}>
               <TextInput
+                allowFontScaling={false}
                 style={styles.inp}
                 secureTextEntry={securePass}
                 right={
@@ -210,19 +212,19 @@ const LoginView: React.FC<LoginScreenProps> = () => {
             </View>
             <View style={styles.verify}>
               <TouchableOpacity onPress={smsVerIf}>
-                <Text style={styles.underline}>
+                <Text allowFontScaling={false} style={styles.underline}>
                   <Trans>loginText.text2</Trans>
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={forgetPass}>
-                <Text style={styles.underline}>
+                <Text allowFontScaling={false} style={styles.underline}>
                   <Trans>loginText.text3</Trans>
                 </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.bottom}>
               <View style={styles.line} />
-              <Text>
+              <Text allowFontScaling={false}>
                 <Trans>loginText.text4</Trans>
               </Text>
               <View style={styles.line} />

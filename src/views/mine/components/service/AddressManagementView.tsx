@@ -60,7 +60,7 @@ export default class AddressManagementView extends Component {
             <View style={styles.parentView}>
                 <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>
+                    <Text allowFontScaling={false} style={styles.headerText}>
                         <Trans>navigationBar.title11</Trans>
                     </Text>
                 </Appbar.Header>
@@ -69,18 +69,18 @@ export default class AddressManagementView extends Component {
                         {listData.map(item => {
                             return(
                                 <View style={[styles.itemStyle,listData.length == item.index ?styles.itemNoBottom:styles.itemBottom]} key={item.index}>
-                                    <Text style={styles.itemTitle}>省市县街道</Text>
+                                    <Text allowFontScaling={false} style={styles.itemTitle}>省市县街道</Text>
                                     <View style={styles.itemContent}>
                                         <View style={styles.contentText}>
                                             <View style={styles.contentAddress}>
-                                                <Text style={[styles.labelText,styles.textStyle]}>详细地址：</Text>
-                                                <Text style={[styles.textStyle,styles.addressText]} numberOfLines={1} ellipsizeMode='tail' selectable={true}>{item.address}</Text>
+                                                <Text allowFontScaling={false} style={[styles.labelText,styles.textStyle]}>详细地址：</Text>
+                                                <Text allowFontScaling={false} style={[styles.textStyle,styles.addressText]} numberOfLines={1} ellipsizeMode='tail' selectable={true}>{item.address}</Text>
                                             </View>
                                             <View style={styles.personnelStyle}>
-                                                <Text style={[styles.labelText,styles.textStyle]}>{item.name}</Text>
-                                                <Text style={[styles.textStyle,styles.phoneText]}>{item.phone}</Text>
-                                                <Text style={[styles.labelStyle,styles.labelDefault]}>默认</Text>
-                                                <Text style={[styles.labelStyle,styles.labelNature]}>家</Text>
+                                                <Text allowFontScaling={false} style={[styles.labelText,styles.textStyle]}>{item.name}</Text>
+                                                <Text allowFontScaling={false} style={[styles.textStyle,styles.phoneText]}>{item.phone}</Text>
+                                                <Text allowFontScaling={false} style={[styles.labelStyle,styles.labelDefault]}>默认</Text>
+                                                <Text allowFontScaling={false} style={[styles.labelStyle,styles.labelNature]}>家</Text>
                                             </View>
                                         </View>
                                         <View style={styles.contentIcon}>

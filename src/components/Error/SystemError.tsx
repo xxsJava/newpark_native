@@ -38,10 +38,10 @@ const DisplayAnImage = () => {
                     padding: 10
                 }}
             >
-                <Text style={{ margin: "auto", width: 120, fontSize: 18, color: '#DAD8E0' }}>暂时没有数据</Text>
+                <Text allowFontScaling={false} style={{ margin: "auto", width: 120, fontSize: 18, color: '#DAD8E0' }}>暂时没有数据</Text>
             </View>
             <View>
-                <Text style={{ width: 140, fontSize: 13, color: '#CDCFDC' }}>快去寻找管理大大解决</Text>
+                <Text allowFontScaling={false} style={{ width: 140, fontSize: 13, color: '#CDCFDC' }}>快去寻找管理大大解决</Text>
             </View>
             <TouchableOpacity
                 style={styles.button}
@@ -49,10 +49,10 @@ const DisplayAnImage = () => {
                     () => { console.log('点击联系人'); }
                 }
             >
-                <Text style={{color:'white'}}>联系管理员</Text>
+                <Text allowFontScaling={false} style={{color:'white'}}>联系管理员</Text>
             </TouchableOpacity>
             <View style={{ position: 'absolute', bottom: 15 }}>
-                <Text style={{ width: 160, fontSize: 13, color: '#CDCFDC' }}>山东新园建业科技有限公司</Text>
+                <Text allowFontScaling={false} style={{ width: 160, fontSize: 13, color: '#CDCFDC' }}>山东新园建业科技有限公司</Text>
             </View>
         </View>
     );

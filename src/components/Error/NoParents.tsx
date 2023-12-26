@@ -39,10 +39,10 @@ const DisplayAnImage = () => {
                     padding: 10
                 }}
             >
-                <Text style={{ margin: "auto", width: 108, fontSize: 18, color: '#DAD8E0' }}>暂时没有伙伴</Text>
+                <Text allowFontScaling={false} style={{ margin: "auto", width: 108, fontSize: 18, color: '#DAD8E0' }}>暂时没有伙伴</Text>
             </View>
             <View>
-                <Text style={{ width: 118, fontSize: 13, color: '#CDCFDC' }}>邀请伙伴加入大家庭</Text>
+                <Text allowFontScaling={false} style={{ width: 118, fontSize: 13, color: '#CDCFDC' }}>邀请伙伴加入大家庭</Text>
             </View>
             <TouchableOpacity
                 style={styles.button}
@@ -50,10 +50,10 @@ const DisplayAnImage = () => {
                     () => { console.log('前往邀请伙伴'); }
                 }
             >
-                <Text style={{color:'white'}}>前往邀请伙伴</Text>
+                <Text allowFontScaling={false} style={{color:'white'}}>前往邀请伙伴</Text>
             </TouchableOpacity>
             <View style={{ position: 'absolute', bottom: 15 }}>
-                <Text style={{ width: 160, fontSize: 13, color: '#CDCFDC' }}>山东新园建业科技有限公司</Text>
+                <Text allowFontScaling={false} style={{ width: 160, fontSize: 13, color: '#CDCFDC' }}>山东新园建业科技有限公司</Text>
             </View>
         </View>
     );

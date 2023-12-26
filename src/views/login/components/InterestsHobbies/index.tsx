@@ -23,14 +23,14 @@ const InterestsHobbies:React.FC<RegisteredScreenProps> = () => {
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('Registered')}/>
-                <Text style={styles.headerText}>
+                <Text allowFontScaling={false} style={styles.headerText}>
                     <Trans>navigationBar.title5</Trans>
                 </Text>
             </Appbar.Header>
             <LabelViwe></LabelViwe>
             <View style={styles.bottomView}>
                 <TouchableOpacity onPress={() => navigate('HomeStacker')}>
-                    <Text style={styles.bottomText}>跳过，直接进入</Text>
+                    <Text allowFontScaling={false} style={styles.bottomText}>跳过，直接进入</Text>
                 </TouchableOpacity>
                 <Button style={styles.bottomButton} buttonColor='#6a1b9a' textColor='#FFF' labelStyle={styles.bottomButtonText} onPress={() => navigate('HomeStacker')}>进入校园生活</Button>
             </View>

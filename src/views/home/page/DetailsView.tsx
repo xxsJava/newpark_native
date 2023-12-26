@@ -39,7 +39,7 @@ const DetailsView = () => {
           icon={require('../../../assets/images/chevron-left.png')}
           onPress={() => navigate('ProductRoute')}
         />
-        <Text style={styles.headerText}>
+        <Text allowFontScaling={false} style={styles.headerText}>
           <Trans>navigationBar.title14</Trans>
         </Text>
       </Appbar.Header>
@@ -75,15 +75,15 @@ const DetailsView = () => {
             </Swiper>
           </View>
           <View style={styles.informationView}>
-            <Text style={styles.moneyText}>¥ 888</Text>
-            <Text style={styles.commodityName}>商品名称</Text>
+            <Text allowFontScaling={false} style={styles.moneyText}>¥ 888</Text>
+            <Text allowFontScaling={false} style={styles.commodityName}>商品名称</Text>
             <View style={styles.personalView}>
               <View style={styles.personalLeft}>
                 <Avatar.Image
                   size={56}
                   source={require('../../../assets/images/defaultheader.png')}
                 />
-                <Text style={styles.personalName}>o泡果奶</Text>
+                <Text allowFontScaling={false} style={styles.personalName}>o泡果奶</Text>
               </View>
               <View style={styles.personalRight}>
                 <Button
@@ -98,14 +98,14 @@ const DetailsView = () => {
             </View>
           </View>
           <View style={styles.introduceView}>
-            <Text style={styles.introduceTitle}>商品介绍</Text>
-            <Text style={styles.introduceText}>描述</Text>
+            <Text allowFontScaling={false} style={styles.introduceTitle}>商品介绍</Text>
+            <Text allowFontScaling={false} style={styles.introduceText}>描述</Text>
           </View>
           <View style={styles.commentView}>
             <View style={styles.commentTitel}>
-              <Text style={styles.commentText}>评论留言</Text>
+              <Text allowFontScaling={false} style={styles.commentText}>评论留言</Text>
               <TouchableOpacity style={styles.commentIconStyle}>
-                <Text style={styles.commentIconText}>热度排序</Text>
+                <Text allowFontScaling={false} style={styles.commentIconText}>热度排序</Text>
                 <Entypo
                   style={styles.commentIcon}
                   color="#fb4886"
@@ -136,7 +136,7 @@ const DetailsView = () => {
                   source={require('../../../assets/images/3.0x/goods_collect.png')}
                 />
               </TouchableOpacity>
-              <Text style={styles.controlLeftText}>收藏</Text>
+              <Text allowFontScaling={false} style={styles.controlLeftText}>收藏</Text>
             </View>
             <View style={styles.controlLeftItem}>
               <TouchableOpacity onPress={() => setTabPress('tab2')}>
@@ -155,7 +155,7 @@ const DetailsView = () => {
                   source={require('../../../assets/images/3.0x/goods_say.png')}
                 />
               </TouchableOpacity>
-              <Text style={styles.controlLeftText}>留言</Text>
+              <Text allowFontScaling={false} style={styles.controlLeftText}>留言</Text>
             </View>
           </View>
           <View style={styles.controlRight}>
@@ -165,7 +165,7 @@ const DetailsView = () => {
               buttonColor="#FFF"
               textColor="#faba3c"
               onPress={() => console.log('点击聊一聊')}>
-              聊一聊
+                <Text allowFontScaling={false}>聊一聊</Text>
             </Button>
 
             <Button
@@ -174,7 +174,7 @@ const DetailsView = () => {
               buttonColor="#faba3c"
               textColor="#FFF"
               onPress={() => navigate('PurchasePageRoute')}>
-              立即购买
+                <Text allowFontScaling={false}>立即购买</Text>
             </Button>
           </View>
         </View>

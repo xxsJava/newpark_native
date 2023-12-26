@@ -26,54 +26,54 @@ const ClockInView = () => {
                             <Image style={styles.avatarImage} source={require('../../../../assets/images/defaultheader.png')}></Image>
                         </View>
                         <View style={styles.avatarTextView1}>
-                            <Text style={styles.avatarText}>姓名:小学牛</Text>
+                            <Text allowFontScaling={false} style={styles.avatarText}>姓名:小学牛</Text>
                         </View>
                         <View style={styles.avatarTextView2}>
-                            <Text style={styles.avatarText}>社区:2401班</Text>
+                            <Text allowFontScaling={false} style={styles.avatarText}>社区:2401班</Text>
                         </View>
                         <View style={styles.ruleView}>
                             <Image style={styles.ruleIcon} source={require('../../../../assets/images/help_icon.png')}></Image>
-                            <Text style={styles.ruleText}> 查看打卡规则</Text>
+                            <Text allowFontScaling={false} style={styles.ruleText}> 查看打卡规则</Text>
                         </View>
                     </View>
                     <View style={styles.bgStyle}>
                         <View style={styles.timeView}>
                             <View style={styles.checkTimeView}>
-                                <Text style={styles.checkTimeStyle}>上午考勤08:00</Text>
+                                <Text allowFontScaling={false} style={styles.checkTimeStyle}>上午考勤08:00</Text>
                                 <View style={[styles.checkTextView,styles.notFinishedColor]}>
                                     <Image style={styles.checkIcon} source={require('../../../../assets/images/alimom/close_icon.png')}></Image>
-                                    <Text style={[styles.checkText,styles.checkTextColor1]}>未打卡</Text>
+                                    <Text allowFontScaling={false} style={[styles.checkText,styles.checkTextColor1]}>未打卡</Text>
                                 </View>
                             </View>
                             <View style={styles.checkTimeView}>
-                                <Text style={styles.checkTimeStyle}>下午考勤18:00</Text>
+                                <Text allowFontScaling={false} style={styles.checkTimeStyle}>下午考勤18:00</Text>
                                 <View style={[styles.checkTextView,styles.finishedColor]}>
                                     <Image style={styles.checkIcon} source={require('../../../../assets/images/alimom/correct1_icon.png')}></Image>
-                                    <Text style={[styles.checkText,styles.checkTextColor2]}>已打卡</Text>
+                                    <Text allowFontScaling={false} style={[styles.checkText,styles.checkTextColor2]}>已打卡</Text>
                                 </View>
                             </View>
                         </View>
-                        <Text style={styles.promptText}>小提示:到了管理员设置的指定位置方可打卡</Text>
+                        <Text allowFontScaling={false} style={styles.promptText}>小提示:到了管理员设置的指定位置方可打卡</Text>
                         <View style={styles.imageView}>
-                            <Text style={styles.imageTime}>17:31:49</Text>
+                            <Text allowFontScaling={false} style={styles.imageTime}>17:31:49</Text>
                             <View style={styles.imageBg}>
                                 <Image style={styles.imageStyle} source={require('../../../../assets/gif/Animation2.gif')}></Image>
                             </View>
-                            <Text style={styles.imageText}>考勤打卡</Text>
+                            <Text allowFontScaling={false} style={styles.imageText}>考勤打卡</Text>
                         </View>
                         <View style={styles.addressView}>
                             <Image style={styles.addressIcon} source={require('../../../../assets/images/alimom/place-icon.png')}></Image>
-                            <Text style={styles.addressText}>山东省滨州市博兴县博昌街道致泰广场</Text>
+                            <Text allowFontScaling={false} style={styles.addressText}>山东省滨州市博兴县博昌街道致泰广场</Text>
                         </View>
                         <TouchableOpacity activeOpacity={0.6} style={[styles.buttonStyle,styles.buttonColor1]}>
                             <Image style={styles.buttonIcon} source={require('../../../../assets/images/2.0x/takepicforheader.png')}></Image>
-                            <Text style={styles.buttonText}>拍照打卡</Text>
+                            <Text allowFontScaling={false} style={styles.buttonText}>拍照打卡</Text>
                         </TouchableOpacity>
                         <View style={styles.promptView}>
                             <Image style={styles.promptImage} source={require('../../../../assets/gif/Animation1.gif')}></Image>
                             <View style={styles.promptTextView}>
-                                <Text style={styles.promptText1}>您还不在管理员设置的打卡范围内</Text>
-                                <Text style={styles.promptText2}>如需打卡请检查打卡范围</Text>
+                                <Text allowFontScaling={false} style={styles.promptText1}>您还不在管理员设置的打卡范围内</Text>
+                                <Text allowFontScaling={false} style={styles.promptText2}>如需打卡请检查打卡范围</Text>
                             </View>
                         </View>
                     </View>

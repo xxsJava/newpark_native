@@ -101,6 +101,7 @@ const ForgetPass = ({ navigation }:any) => {
               source={require('../../../assets/images/search.png')}
             />
             <TextInput
+              allowFontScaling={false}
               style={styles.inputStyle}
               onChangeText={text => onChangeText(text)}
               value={inputValue}
@@ -108,17 +109,17 @@ const ForgetPass = ({ navigation }:any) => {
           </View>
         </View>
         <View style={styles.searchBarRight}>
-          <Text style={styles.searchBarRightText}>取消</Text>
+          <Text allowFontScaling={false} style={styles.searchBarRightText}>取消</Text>
         </View>
       </View>
       <View style={styles.contentModule}>
         <View style={styles.typeStyle}>
           <TouchableOpacity style={styles.typeItem}>
-            <Text style={styles.typeItemText}>排序方式</Text>
+            <Text allowFontScaling={false} style={styles.typeItemText}>排序方式</Text>
             <Entypo style={styles.typeItemIcon} name="chevron-thin-down" color="#888" size={14} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.typeItem}>
-            <Text style={styles.typeItemText}>类型分类</Text>
+            <Text allowFontScaling={false} style={styles.typeItemText}>类型分类</Text>
             <Entypo style={styles.typeItemIcon} name="chevron-thin-down" color="#888" size={14} />
           </TouchableOpacity>
           {/* <View style={styles.typeItem}>
@@ -200,8 +201,8 @@ const ForgetPass = ({ navigation }:any) => {
               return (
                 <View style={styles.itemView} key={item.index}>
                   <View style={styles.itemHeard}>
-                    <Text style={styles.itemHeardLeft}>相关社区</Text>
-                    <Text style={styles.itemHeardRight}>
+                    <Text allowFontScaling={false} style={styles.itemHeardLeft}>相关社区</Text>
+                    <Text allowFontScaling={false} style={styles.itemHeardRight}>
                       查看更多
                       <Entypo
                         name="chevron-thin-right"
@@ -219,12 +220,12 @@ const ForgetPass = ({ navigation }:any) => {
                     </View>
                     <View style={styles.itemModelRight}>
                       <View style={styles.itemModelRightTop}>
-                        <Text style={styles.itemTopText1}>一起学java</Text>
+                        <Text allowFontScaling={false} style={styles.itemTopText1}>一起学java</Text>
                         <Image
                           style={styles.itemModelIcon}
                           source={require('../../../assets/images/hotfuckicon.png')}
                         />
-                        <Text style={styles.itemTopText2}>热度150</Text>
+                        <Text allowFontScaling={false} style={styles.itemTopText2}>热度150</Text>
                       </View>
                       <View style={styles.itemModelRightBottom}>
                         <View style={styles.itemModelBottom}>
@@ -236,7 +237,7 @@ const ForgetPass = ({ navigation }:any) => {
                             start={{x: 0, y: 0}}
                             end={{x: 0, y: 1}}
                             style={styles.itemModelbottomBg}>
-                            <Text style={styles.itemModelbottomText}>
+                            <Text allowFontScaling={false} style={styles.itemModelbottomText}>
                               n个牛友在xxx
                             </Text>
                           </LinearGradinet>

@@ -60,7 +60,7 @@ const ChatModule = () => {
         <View style={styles.scrollStyle}>
           <View style={styles.topStyle}>
             <Image style={styles.topImg} source={require('../../../assets/images/search.png')}></Image>
-            <TextInput style={styles.inputStyle} value={'搜索您感兴趣的聊天室'}>
+            <TextInput allowFontScaling={false} style={styles.inputStyle} value={'搜索您感兴趣的聊天室'}>
             </TextInput>
           </View>
           <View style={styles.optionStyle}>
@@ -69,7 +69,7 @@ const ChatModule = () => {
                 return(
                   <View style={styles.optionItem} key={item.index}>
                     <Image source={item.icon}></Image>
-                    <Text style={styles.optionText}>
+                    <Text allowFontScaling={false} style={styles.optionText}>
                       <Trans>{item.name}</Trans>
                     </Text>
                   </View>
@@ -81,7 +81,7 @@ const ChatModule = () => {
                 return(
                   <View style={styles.optionItem} key={item.index}>
                     <Image source={item.icon}></Image>
-                    <Text style={styles.optionText}>
+                    <Text allowFontScaling={false} style={styles.optionText}>
                       <Trans>{item.name}</Trans>
                     </Text>
                   </View>
@@ -92,15 +92,15 @@ const ChatModule = () => {
           <View style={styles.glideStyle}>
             <View style={styles.glideHead}>
               <View style={styles.glideHeadList}>
-                <Text style={styles.glideHeadTitle}>
+                <Text allowFontScaling={false} style={styles.glideHeadTitle}>
                   <Trans>newPatkTab2.tableTitle</Trans>
                 </Text>
               </View>
               <View style={styles.glideHeadRight}>
-              <Text style={styles.headRightText1}>
+              <Text allowFontScaling={false} style={styles.headRightText1}>
                 <Trans>newPatkTab2.tab1</Trans>
               </Text>
-              <Text style={styles.headRightText2}>
+              <Text allowFontScaling={false} style={styles.headRightText2}>
                 <Trans>newPatkTab2.tab2</Trans>
               </Text>
               </View>
@@ -113,16 +113,16 @@ const ChatModule = () => {
                       <View style={styles.glidePortrait}></View>
                     </View>
                     <View style={styles.glideItemMiddle}>
-                      <Text style={styles.glideItemText1}>{item.title}</Text>
+                      <Text allowFontScaling={false} style={styles.glideItemText1}>{item.title}</Text>
                       <View style={styles.glideItemTextBg}>
                         <Image style={styles.glideItemIcon} source={require('../../../assets/images/tabs_4_on.png')}></Image>
-                        <Text style={styles.glideItemText2}>{item.num}</Text>
+                        <Text allowFontScaling={false} style={styles.glideItemText2}>{item.num}</Text>
                       </View>
                     </View>
                     <View style={styles.glideItemRight}>
                       {/* <Button title='前往聊天室' color={'#faba3c'}></Button> */}
                       <View style={styles.glideButton}>
-                        <Text style={styles.buttonText}>前往聊天室</Text>
+                        <Text allowFontScaling={false} style={styles.buttonText}>前往聊天室</Text>
                       </View>
                     </View>
                   </View>

@@ -80,7 +80,7 @@ const ListIndex: React.FC = () => {
         <View style={styles.avatarStyle} />
       </View>
       <View style={styles.itemRight}>
-        <Text style={styles.itemName}>{item.name}</Text>
+        <Text allowFontScaling={false} style={styles.itemName}>{item.name}</Text>
         <View style={styles.itemLabelStyle} />
       </View>
     </TouchableOpacity>
@@ -634,7 +634,7 @@ const ListIndex: React.FC = () => {
       placement: 'bottom',
       render: () => {
         return (
-          <Text>{data[index].title}</Text>
+          <Text allowFontScaling={false}>{data[index].title}</Text>
         )
       },
 

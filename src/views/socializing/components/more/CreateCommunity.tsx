@@ -18,9 +18,9 @@ const CreateCommunity = () => {
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('SocializingStacker')}></Appbar.Action>
-                <Text style={styles.headerText}>创建社区</Text>
+                <Text allowFontScaling={false} style={styles.headerText}>创建社区</Text>
                 <TouchableOpacity activeOpacity={0.6}>
-                    <Text style={styles.headerIcon}>创建</Text>
+                    <Text allowFontScaling={false} style={styles.headerIcon}>创建</Text>
                 </TouchableOpacity>
             </Appbar.Header>
             <View style={styles.contentView}>
@@ -29,15 +29,15 @@ const CreateCommunity = () => {
                         <View style={styles.avatarStyle}>
                             <Image style={styles.avatarImage} source={require('../../../../assets/images/takepicforheader.png')}></Image>
                         </View>
-                        <Text style={styles.avatarText}>设置社区头像</Text>
+                        <Text allowFontScaling={false} style={styles.avatarText}>设置社区头像</Text>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.itemName}>社区名称:</Text>
-                        <TextInput textAlign='center' selectionColor='#FABA3C' placeholder='请输入社区名称' maxLength={10} autoCorrect={false} style={styles.itemInput}></TextInput>
-                        <Text style={styles.itemRightText}>0/10</Text>
+                        <Text allowFontScaling={false} style={styles.itemName}>社区名称:</Text>
+                        <TextInput  allowFontScaling={false} textAlign='center' selectionColor='#FABA3C' placeholder='请输入社区名称' maxLength={10} autoCorrect={false} style={styles.itemInput}></TextInput>
+                        <Text allowFontScaling={false} style={styles.itemRightText}>0/10</Text>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.itemName}>社区背景图:</Text>
+                        <Text allowFontScaling={false} style={styles.itemName}>社区背景图:</Text>
                         <View style={styles.itemRight}>
                             <TouchableOpacity activeOpacity={0.6} style={styles.itemBgImage}>
                             </TouchableOpacity>
@@ -47,21 +47,21 @@ const CreateCommunity = () => {
                         </View>
                     </View>
                     <View style={[styles.itemView,{height:160}]}>
-                        <Text style={styles.itemName}>社区功能:</Text>
+                        <Text allowFontScaling={false} style={styles.itemName}>社区功能:</Text>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.itemName}>社区权限:</Text>
+                        <Text allowFontScaling={false} style={styles.itemName}>社区权限:</Text>
                         <View style={styles.itemRight}>
-                            <Text style={styles.itemText}>公开</Text>
+                            <Text allowFontScaling={false} style={styles.itemText}>公开</Text>
                             <TouchableOpacity activeOpacity={0.6}>
                                 <Entypo style={styles.itemIcon} color='#000' size={20} name="chevron-small-down"></Entypo>
                             </TouchableOpacity>
                         </View>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.itemName}>社区加入方式:</Text>
+                        <Text allowFontScaling={false} style={styles.itemName}>社区加入方式:</Text>
                         <View style={styles.itemRight}>
-                            <Text style={styles.itemText}>不需要批准</Text>
+                            <Text allowFontScaling={false} style={styles.itemText}>不需要批准</Text>
                             <TouchableOpacity activeOpacity={0.6}>
                                 <Entypo style={styles.itemIcon} color='#000' size={20} name="chevron-small-down"></Entypo>
                             </TouchableOpacity>

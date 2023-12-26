@@ -83,7 +83,7 @@ const CommunityChannel = ({ navigation }:any) => {
         <View style={styles.parentView}>
             <Appbar.Header>
                 <Appbar.Action icon={require('../../../assets/images/chevron-left.png')} onPress={() => navigation.goBack()} />
-                <Text style={styles.derTexthea}>
+                <Text allowFontScaling={false} style={styles.derTexthea}>
                     <Trans>navigationBar.title21</Trans>
                 </Text>
                 <TouchableOpacity>
@@ -97,9 +97,9 @@ const CommunityChannel = ({ navigation }:any) => {
                             <View style={styles.topContent}>
                                 <View style={styles.topImage}></View>
                                 <View style={styles.topRight}>
-                                    <Text style={styles.nameText}>社区频道名称</Text>
-                                    <Text style={styles.topText1}>热度：2w ｜ 话题：20w</Text>
-                                    <Text style={styles.topText2}>社区管理人员：小学牛、o泡果奶</Text>
+                                    <Text allowFontScaling={false} style={styles.nameText}>社区频道名称</Text>
+                                    <Text allowFontScaling={false} style={styles.topText1}>热度：2w ｜ 话题：20w</Text>
+                                    <Text allowFontScaling={false} style={styles.topText2}>社区管理人员：小学牛、o泡果奶</Text>
                                 </View>
                             </View>
                         </View>
@@ -109,12 +109,12 @@ const CommunityChannel = ({ navigation }:any) => {
                                     <View style={[styles.itemStyle,item.type == 1?styles.itemStyle1:styles.itemStyle2]} key={item.index}>
                                         <View style={styles.itemTitle}>
                                             <View style={[styles.lableView,item.label == 1?styles.lableColor1:item.label == 2?styles.labelColor2:styles.labelColor3]}>
-                                                <Text style={styles.lableStyle}>{item.labelText}</Text>
+                                                <Text allowFontScaling={false} style={styles.lableStyle}>{item.labelText}</Text>
                                             </View>
-                                            <Text style={item.type == 1?styles.itemText:styles.itemText1}>{item.title}</Text>
+                                            <Text allowFontScaling={false} style={item.type == 1?styles.itemText:styles.itemText1}>{item.title}</Text>
                                         </View>
                                         <View style={item.type == 2?styles.itemContent:{display:'none'}}>
-                                            <Text style={styles.itemContentText}>{item.text}</Text>
+                                            <Text allowFontScaling={false} style={styles.itemContentText}>{item.text}</Text>
                                             <View style={styles.itemImageView}>
                                                 <Image style={styles.itemImage} source={item.image}></Image>
                                                 <Image style={styles.itemImage} source={item.image}></Image>
@@ -122,20 +122,20 @@ const CommunityChannel = ({ navigation }:any) => {
                                             </View>
                                         </View>
                                         <View style={item.type == 2?styles.itemTabView:{display:'none'}}>
-                                            <Text style={styles.itemName}>{item.name}</Text>
+                                            <Text allowFontScaling={false} style={styles.itemName}>{item.name}</Text>
                                             <View style={styles.itemTab}>
-                                                <Text style={styles.itemTabTime}>{item.time}</Text>
+                                                <Text allowFontScaling={false} style={styles.itemTabTime}>{item.time}</Text>
                                                 <View style={styles.itemTabIconView}>
                                                     <View style={styles.itemTabIcon}>
                                                         <Icon size={28} color="#BBB" source={require('../../../assets/images/visible.png')}></Icon>
                                                     </View>
-                                                    <Text style={styles.itemTabText}>{item.read}</Text>
+                                                    <Text allowFontScaling={false} style={styles.itemTabText}>{item.read}</Text>
                                                 </View>
                                                 <View style={styles.itemTabIconView}>
                                                     <View style={styles.itemTabIcon}>
                                                         <Icon size={26} color="#BBB" source={require('../../../assets/images/3.0x/comment_new1.png')}></Icon>
                                                     </View>
-                                                    <Text style={styles.itemTabText}>
+                                                    <Text allowFontScaling={false} style={styles.itemTabText}>
                                                         {item.comment}
                                                     </Text>
                                                 </View>
@@ -151,7 +151,7 @@ const CommunityChannel = ({ navigation }:any) => {
                                     return (
                                         <TouchableOpacity key={item.index} style={styles.functionItem} activeOpacity={0.9} onPress={() => navigate(item.path)}>
                                             <Image source={item.image} style={styles.functionImage}></Image>
-                                            <Text style={styles.functionText}>{item.text}</Text>
+                                            <Text allowFontScaling={false} style={styles.functionText}>{item.text}</Text>
                                         </TouchableOpacity>
                                     )
                                 })}

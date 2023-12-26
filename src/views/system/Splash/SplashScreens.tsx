@@ -50,7 +50,7 @@ const Splashs= () => {
                   setCount(-1);
                 }}>
                 <View style={styles.navTime}>
-                  <Text style={styles.navText}>{count}</Text>
+                  <Text allowFontScaling={false} style={styles.navText}>{count}</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -67,6 +67,7 @@ const Splashs= () => {
             <View style={styles.bodyText}>
               <Animatable.View animation="bounceInLeft">
                 <Text
+                allowFontScaling={false}
                   style={[
                     styles.bodyTexta,
                     styles.navText,
@@ -78,6 +79,7 @@ const Splashs= () => {
 
               <Animatable.View animation="bounceInRight">
                 <Text
+                allowFontScaling={false}
                   style={[
                     styles.bodyTextb,
                     styles.navText,
@@ -89,7 +91,7 @@ const Splashs= () => {
             </View>
 
             <View style={styles.footer}>
-              <Text style={styles.footerText}>
+              <Text allowFontScaling={false} style={styles.footerText}>
                 © 2023 山东新园建业科技发展有限公司
               </Text>
             </View>

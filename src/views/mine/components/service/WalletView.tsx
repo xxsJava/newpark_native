@@ -22,29 +22,29 @@ export default class WalletView extends Component {
             <View style={styles.parentView}>
               <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>
+                    <Text allowFontScaling={false} style={styles.headerText}>
                       <Trans>navigationBar.title9</Trans>
                     </Text>
                 </Appbar.Header>
                 <View style={styles.walletView}>
                     <View style={styles.titleView}>
-                        <Text style={styles.titleStyle}>我的钱包</Text>
+                        <Text allowFontScaling={false} style={styles.titleStyle}>我的钱包</Text>
                     </View>
                     <View style={styles.walletCard}>
                         <LinearGradinet colors={['rgba(249,187,81,1)','rgba(254,241,217,0.90)']}start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.walletBg}>
                             <View style={styles.cardContent}>
-                                <Text style={styles.cardText1}>余额</Text>
-                                <Text style={styles.cardText2}>¥{BALANCE}</Text>
+                                <Text allowFontScaling={false} style={styles.cardText1}>余额</Text>
+                                <Text allowFontScaling={false} style={styles.cardText2}>¥{BALANCE}</Text>
                             </View>
                             <View style={styles.cardButtonView}>
                                 <View style={styles.cardButtonIos}>
                                     <TouchableOpacity style={styles.cardButtonStyle} onPress={buttonClick}>
-                                        <Text style={styles.cardButtonText}>我要提现</Text>
+                                        <Text allowFontScaling={false} style={styles.cardButtonText}>我要提现</Text>
                                     </TouchableOpacity>
                                 </View>
                                 <TouchableNativeFeedback>
                                     <View style={[styles.cardButtonStyle,styles.cardButtonAndroid]}>
-                                    <Text style={styles.cardButtonText}>我要提现</Text>
+                                    <Text allowFontScaling={false} style={styles.cardButtonText}>我要提现</Text>
                                     </View>
                                 </TouchableNativeFeedback>
                             </View>
@@ -52,15 +52,15 @@ export default class WalletView extends Component {
                     </View>
                     <View style={styles.tabView}>
                         <View style={styles.tabItem}>
-                            <Text style={textSelected === '1'?styles.tabTextSelected:styles.tabItemText}>收入</Text>
+                            <Text allowFontScaling={false} style={textSelected === '1'?styles.tabTextSelected:styles.tabItemText}>收入</Text>
                         </View>
                         <View style={styles.tabItem}>
-                            <Text style={textSelected === '2'?styles.tabTextSelected:styles.tabItemText}>支出</Text>
+                            <Text allowFontScaling={false} style={textSelected === '2'?styles.tabTextSelected:styles.tabItemText}>支出</Text>
                         </View>
                     </View>
                 </View>
                 <View>
-                    <Text>暂无收入</Text>
+                    <Text allowFontScaling={false}>暂无收入</Text>
                 </View>
             </View>
         )

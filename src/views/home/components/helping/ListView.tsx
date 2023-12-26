@@ -50,20 +50,20 @@ const ListView = () => {
                                 <View style={styles.avatarView}>
                                     <View style={styles.avatarStyle}></View>
                                     <View style={styles.stateStyle}></View>
-                                    <Text style={styles.timeStyle}>{item.time}</Text>
+                                    <Text allowFontScaling={false} style={styles.timeStyle}>{item.time}</Text>
                                 </View>
                                 <View style={styles.textView}>
-                                    <Text style={styles.textStyle1} numberOfLines={1} ellipsizeMode='tail'>{item.text}</Text>
-                                    <Text style={styles.textStyle2}>{item.school}</Text>
+                                    <Text allowFontScaling={false} style={styles.textStyle1} numberOfLines={1} ellipsizeMode='tail'>{item.text}</Text>
+                                    <Text allowFontScaling={false} style={styles.textStyle2}>{item.school}</Text>
                                 </View>
                                 <View style={styles.detailsView}>
                                     <View style={styles.moneyView}>
                                         <View style={styles.moneyIcon}>
                                             <Icon color="#FABA3C" size={34} source={require('../../../../assets/images/coins-icon.png')}></Icon>
                                         </View>
-                                        <Text style={styles.moneySum}>{item.sum.split('.')[0]}.<Text style={{fontSize:14}}>{item.sum.split('.')[1]}</Text></Text>
+                                        <Text allowFontScaling={false} style={styles.moneySum}>{item.sum.split('.')[0]}.<Text style={{fontSize:14}}>{item.sum.split('.')[1]}</Text></Text>
                                     </View>
-                                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('RewardDetailsRoute')}>查看详情</Button>
+                                    <Button  style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('RewardDetailsRoute')}>查看详情</Button>
                                 </View>
                             </View>
                         )

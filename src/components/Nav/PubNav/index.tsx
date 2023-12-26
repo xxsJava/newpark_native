@@ -25,7 +25,7 @@ const PubNav = (desc:string) => {
         </TouchableOpacity>
       </View>
       <View style={styles.content}>
-        <Text style={styles.contentText}>{desc}</Text>
+        <Text allowFontScaling={false} style={styles.contentText}>{desc}</Text>
       </View>
       <View style={styles.navRight} />
     </View>

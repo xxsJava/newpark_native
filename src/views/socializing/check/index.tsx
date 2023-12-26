@@ -36,8 +36,8 @@ function MessageList(props: { items: any; receiver: any; }) {
                 <View key={index} style={receiver == item.name ? styles.chatReceiver : styles.chatMessage}>
                     <Avatar.Image style={[styles.avatarImage1,receiver == item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
                     <View style={[styles.textStyle,receiver == item.name ? styles.textReceiver : null]}>
-                        <Text style={[styles.chatNameReceiver,receiver == item.name ? {display:'none'}:null]}>{item.name}</Text>
-                        <Text style={[styles.messageText,receiver == item.name?styles.messageReceiver:null,item.message ? null : {display:'none'}]}>{item.message}</Text>
+                        <Text allowFontScaling={false} style={[styles.chatNameReceiver,receiver == item.name ? {display:'none'}:null]}>{item.name}</Text>
+                        <Text allowFontScaling={false} style={[styles.messageText,receiver == item.name?styles.messageReceiver:null,item.message ? null : {display:'none'}]}>{item.message}</Text>
                         <Image style={[styles.messageImage,item.messageImage ? null : {display:'none'}]} source={item.messageImage} />
                     </View>
                     <Avatar.Image style={[styles.avatarImage2,receiver != item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
@@ -154,6 +154,7 @@ const CheckView = () => {
                 <View style={styles.sendColumn}>
                     <View style={styles.inputBox}>
                         <TextInput style={styles.sendColumnInput}
+                        allowFontScaling={false}
                         onChangeText={text => onChangeText(text)}
                         placeholder={'开始聊天吧'}
                         value={value}

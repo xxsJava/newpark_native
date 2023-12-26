@@ -1,8 +1,9 @@
 import React, {Component, useState} from 'react';
 import { View,StyleSheet,Dimensions,Platform,TextInput,Image,TouchableHighlight,TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-animatable';
-import { Appbar } from 'react-native-paper';
+import { Appbar} from 'react-native-paper';
 // import { Input,TextArea,Divider } from "native-base";
+import { Center,Box, CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, CheckIcon } from '@gluestack-ui/themed';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {useTranslation, Trans} from 'react-i18next';
 import {navigate} from '../../../../config/routs/NavigationContainer'
@@ -10,6 +11,24 @@ import { any } from 'prop-types';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+const groupList = [{
+    index:1,
+    text:'账号',
+    value:'zh'
+},{
+    index:2,
+    text:'系统',
+    value:'xt'
+},{
+    index:3,
+    text:'服务',
+    value:'fw'
+},{
+    index:4,
+    text:'其他',
+    value:'qt'
+}]
 
 
 const Photo = () => {
@@ -67,18 +86,36 @@ const Photo = () => {
     );
 }
 
+const CheckView = () => {
+    const [values, setValues] = useState([])
+    return (
+        <CheckboxGroup style={styles.groupStyle} value={values} onChange={(keys) => {setValues(keys)}}>
+            {groupList.map(item => {
+                return(
+                    <Checkbox key={item.index} borderColor='#FFB300' value={item.value}>
+                        <CheckboxIndicator borderColor='#FFB300' mr="$2">
+                            <CheckboxIcon bgColor='#FFB300' as={CheckIcon} />
+                        </CheckboxIndicator>
+                        <CheckboxLabel>{item.text}</CheckboxLabel>
+                    </Checkbox>
+                )
+            })}
+        </CheckboxGroup>
+    )
+}
+
 export default class FeedbackView extends Component {
     render () {
         return (
             <View style={styles.parentLevel}>
                 <Appbar.Header style={styles.headerStyle}>
                     <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text style={styles.headerText}>
+                    <Text allowFontScaling={false} style={styles.headerText}>
                         <Trans>navigationBar.title12</Trans>
                     </Text>
                 </Appbar.Header>
                 <View style={styles.titleView}>
-                    <Text style={styles.titleText}>请选择发生的问题类型</Text>
+                    <Text allowFontScaling={false} style={styles.titleText}>请选择发生的问题类型</Text>
                 </View>
                 <View style={styles.multipleChoiceView}>
                     <CheckView></CheckView>
@@ -89,16 +126,16 @@ export default class FeedbackView extends Component {
                 </View>
                 <View style={styles.contentView}>
                     <View>
-                        <TextInput selectionColor='#FFB300' placeholder='请输入标题' maxLength={26} style={styles.titleInput}></TextInput>
+                        <TextInput allowFontScaling={false} selectionColor='#FFB300' placeholder='请输入标题' maxLength={26} style={styles.titleInput}></TextInput>
                     </View>
                     <View style={styles.lineStyle}>
                     </View>
                     <View style={styles.textAreaView}>
-                        <TextInput autoCorrect={false} selectionColor='#FFB300' placeholder='请描述一下你遇到的场景及问题' maxLength={260} multiline={true} numberOfLines={8} style={styles.textAreaStyle}></TextInput>
+                        <TextInput allowFontScaling={false} autoCorrect={false} selectionColor='#FFB300' placeholder='请描述一下你遇到的场景及问题' maxLength={260} multiline={true} numberOfLines={8} style={styles.textAreaStyle}></TextInput>
                     </View>
                 </View>
                 <View style={styles.titleView}>
-                    <Text style={styles.titleText}>图片(提供问题截图方便我们快速定位)</Text>
+                    <Text allowFontScaling={false} style={styles.titleText}>图片(提供问题截图方便我们快速定位)</Text>
                 </View>
                 <View style={styles.pictureView}>
                     <Photo></Photo>
@@ -115,7 +152,7 @@ export default class FeedbackView extends Component {
                 </View>
                 <View style={styles.buttonView}>
                     <TouchableOpacity style={styles.buttonIos}>
-                        <Text style={styles.buttonText}>提交</Text>
+                        <Text allowFontScaling={false} style={styles.buttonText}>提交</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -162,6 +199,10 @@ const styles = StyleSheet.create({
     groupStyle:{
         flexDirection:'row',
         justifyContent:'space-around'
+    },
+    checkColor:{
+        borderColor:'#FFB300',
+        // backgroundColor:'#FFB300'
     },
     checkStyle:{
         width:50,

@@ -27,12 +27,13 @@ const SchoolIndex:React.FC<RegisteredScreenProps> = () => {
           icon={require('../../../../assets/images/chevron-left.png')}
           onPress={() => navigate('Registered')}
         />
-        <Text style={styles.headerText}>
+        <Text allowFontScaling={false} style={styles.headerText}>
           <Trans>navigationBar.title3</Trans>
         </Text>
       </Appbar.Header>
       <View style={styles.searchViwe}>
         <TextInput
+          allowFontScaling={false}
           placeholder="搜索\学校名称\学校代码"
           cursorColor='#ffb700'
           textAlign='center'

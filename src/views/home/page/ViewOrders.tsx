@@ -30,34 +30,34 @@ const ViewOrders = () => {
                             <Avatar.Image size={65} source={require('../../../assets/images/defaultheader.png')}></Avatar.Image>
                         </View>
                         <View style={styles.personalRight}>
-                            <Text style={styles.personalName}>o泡果奶</Text>
-                            <Text style={styles.personalSchool}>烟台大学</Text>
+                            <Text allowFontScaling={false} style={styles.personalName}>o泡果奶</Text>
+                            <Text allowFontScaling={false} style={styles.personalSchool}>烟台大学</Text>
                         </View>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.demandLabel}>需求:</Text>
-                        <Text style={styles.demandContent}></Text>
+                        <Text allowFontScaling={false} style={styles.demandLabel}>需求:</Text>
+                        <Text allowFontScaling={false} style={styles.demandContent}></Text>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.itemLabel}>悬赏金额:</Text>
-                        <Text style={styles.itemContent}>20.0</Text>
+                        <Text allowFontScaling={false} style={styles.itemLabel}>悬赏金额:</Text>
+                        <Text allowFontScaling={false} style={styles.itemContent}>20.0</Text>
                         <Image style={styles.moneyIcon} source={require('../../../assets/images/yuan_icon.png')}></Image>
                     </View>
                     <View style={styles.itemView}>
-                        <Text style={styles.itemLabel}>联系电话:</Text>
-                        <Text style={styles.itemContent}>12345678901</Text>
+                        <Text allowFontScaling={false} style={styles.itemLabel}>联系电话:</Text>
+                        <Text allowFontScaling={false} style={styles.itemContent}>12345678901</Text>
                     </View>
                     <View style={styles.remarksView}>
-                        <Text style={styles.demandLabel}>备注:</Text>
-                        <Text style={styles.remarksText}>帮我买一本书</Text>
+                        <Text allowFontScaling={false} style={styles.demandLabel}>备注:</Text>
+                        <Text allowFontScaling={false} style={styles.remarksText}>帮我买一本书</Text>
                     </View>
                     <View style={styles.recipientView}>
                         <View style={styles.personalLeft}>
                             <Avatar.Image size={65} source={require('../../../assets/images/defaultheader.png')}></Avatar.Image>
                         </View>
                         <View style={[styles.personalRight,{width:'60%'}]}>
-                            <Text style={styles.personalName}>接单人</Text>
-                            <Text style={styles.personalSchool}>张三</Text>
+                            <Text allowFontScaling={false} style={styles.personalName}>接单人</Text>
+                            <Text allowFontScaling={false} style={styles.personalSchool}>张三</Text>
                         </View>
                         <Image style={styles.recipientIcon} source={require('../../../assets/images/phone_icon.png')}></Image>
                     </View>

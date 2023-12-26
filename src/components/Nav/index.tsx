@@ -48,7 +48,7 @@ const HomeNav = () => {
           ]}
           onPress={() => handleTabPress(true)}>
           <View>
-            <Text style={styles.shoolTextCent}>全国</Text>
+            <Text allowFontScaling={false} style={styles.shoolTextCent}>全国</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -58,7 +58,7 @@ const HomeNav = () => {
           ]}
           onPress={() => handleTabPress(false)}>
           <View>
-            <Text style={styles.shoolTextCent}>本校</Text>
+            <Text allowFontScaling={false} style={styles.shoolTextCent}>本校</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -74,7 +74,7 @@ const HomeNav = () => {
           value={inputValue}
         /> */}
         <TouchableOpacity activeOpacity={0.6} style={styles.searchNavInput} onPress={() => navigate('SearchView')}>
-          <Text style={styles.searchNavInputText}>请输入需要搜索的/帖子/UID/群聊/商品</Text>
+          <Text allowFontScaling={false} style={styles.searchNavInputText}>请输入需要搜索的/帖子/UID/群聊/商品</Text>
         </TouchableOpacity>
       </View>
 
