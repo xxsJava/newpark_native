@@ -1,16 +1,24 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2023-12-16 17:32:39
+ * @LastEditTime: 2023-12-26 13:38:53
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
-import React, { useEffect } from 'react';
-import {Button, StyleSheet, Text, View,Pressable} from 'react-native';
+import React, {useEffect} from 'react';
+import {Button, DeviceEventEmitter, StyleSheet, View} from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
-import notifee, { AndroidImportance, AndroidStyle, AuthorizationStatus, EventType, RepeatFrequency, TimestampTrigger, TriggerType } from '@notifee/react-native';
-import { getNotification } from '../../../../api/NotificationApi';
-
+import notifee, {
+  AndroidImportance,
+  AndroidStyle,
+  AuthorizationStatus,
+  EventType,
+  RepeatFrequency,
+  TimestampTrigger,
+  TriggerType,
+} from '@notifee/react-native';
+import {getNotification} from '../../../../api/NotificationApi';
+import IMSDKRN from '../../../../plugins/IMSDKRN';
 
 Alipay.setAlipaySandbox(true);
 
@@ -41,17 +49,17 @@ async function checkNotificationPermission(channelId?: undefined | string) {
   } else if (settings.authorizationStatus == AuthorizationStatus.DENIED) {
     console.log('通知权限未授权');
     const openMsg = await notifee.openNotificationSettings(channelId);
-    console.log('通知权限已授权------>',openMsg);
+    console.log('通知权限已授权------>', openMsg);
   }
 }
 
 //本地通知
 async function onDisplayNotification() {
   // Request permissions (required for iOS)
-  
-  console.log('执行通知')
 
-  checkNotificationPermission("default")
+  console.log('执行通知');
+
+  checkNotificationPermission('default');
   // Create a channel (required for Android)
   const channelId = await notifee.createChannel({
     id: 'default1',
@@ -66,22 +74,26 @@ async function onDisplayNotification() {
     android: {
       sound: 'msg',
       smallIcon: 'ic_launcher',
-      largeIcon: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/2023/12/01/logo.png',
+      largeIcon:
+        'https://new-by-video.oss-cn-beijing.aliyuncs.com/2023/12/01/logo.png',
       channelId,
-      style: { type: AndroidStyle.BIGPICTURE, picture: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638355971556795.jpg' },
+      style: {
+        type: AndroidStyle.BIGPICTURE,
+        picture:
+          'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638355971556795.jpg',
+      },
       importance: AndroidImportance.HIGH,
     },
   });
 }
 
 // 远程通知
-async function onNotificationRemote(){
-
-  console.log('获取通知')
+async function onNotificationRemote() {
+  console.log('获取通知');
 
   const notifStr = await getNotification('token_pr_newpark_ae9784cad54a970f');
 
-  console.log(notifStr)
+  console.log(notifStr);
 
   const channelId = await notifee.createChannel({
     id: 'default2',
@@ -96,10 +108,13 @@ async function onNotificationRemote(){
     android: {
       sound: 'msg',
       smallIcon: 'ic_launcher',
-      largeIcon: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/2023/12/01/logo.png',
+      largeIcon:
+        'https://new-by-video.oss-cn-beijing.aliyuncs.com/2023/12/01/logo.png',
       channelId,
-      style: { 
-        type: AndroidStyle.BIGPICTURE, picture: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638355971556795.jpg' 
+      style: {
+        type: AndroidStyle.BIGPICTURE,
+        picture:
+          'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638355971556795.jpg',
       },
       importance: AndroidImportance.HIGH,
     },
@@ -130,10 +145,9 @@ async function onCreateTriggerNotification() {
     trigger,
   );
 }
- const onPressFunction = (str:string)=>{
-  console.log(str)
- }
-
+const onPressFunction = (str: string) => {
+  console.log(str);
+};
 
 const ForgetPass: React.FC = () => {
   return (
@@ -144,11 +158,51 @@ const ForgetPass: React.FC = () => {
       <Button title="通知" onPress={onDisplayNotification} />
       <Button title="远程通知" onPress={onNotificationRemote} />
       <Button title="定时通知" onPress={onCreateTriggerNotification} />
-      <Button title="测试"  onPress={
-        () => {
-          onPressFunction('1')
-        }
-      } />
+
+      <Button
+        title="开启登录监听"
+        onPress={() => {
+          console.log('开起监听');
+          DeviceEventEmitter.addListener('onSuccessLogin', resp => {
+            console.log('登录成功----->', resp);
+          });
+          DeviceEventEmitter.addListener('onErrorLogin', resp => {
+            console.log('登录失败----->', resp);
+          });
+        }}
+      />
+
+      <Button
+        title="IM初始化"
+        onPress={() => {
+          console.log('调用原生代码');
+          // let result = ToastExample.Constant;
+          // console.log('原生传递的参数--->',result)
+          console.log(IMSDKRN);
+          IMSDKRN.inItSDK();
+        }}
+      />
+
+      <Button
+        title="IM登录"
+        onPress={() => {
+          console.log('调用login');
+
+          const loginParams = {
+            usrId: '9689784708',
+            token:
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI5Njg5Nzg0NzA4IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzExMjczNDMwLCJuYmYiOjE3MDM0OTcxMzAsImlhdCI6MTcwMzQ5NzQzMH0.E0myh_vZNA0KkrgV-E76wJjrtIfWzLj8kGrpo2HOjLE',
+          };
+          IMSDKRN.login(loginParams.usrId, loginParams.token);
+        }}
+      />
+
+      <Button
+        title="IM退出"
+        onPress={() => {
+          IMSDKRN.doMethod('logout');
+        }}
+      />
     </View>
   );
 };

@@ -3,7 +3,7 @@
  * @description: TODO
  * @date 2023/12/25 18:14
  */
-package com.newpark_native.entity;
+package com.newpark_native.config;
 
 import android.os.Environment;
 import android.util.Log;

@@ -106,12 +106,16 @@ android {
 
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
-    implementation("com.facebook.react:react-android")
+    implementation('com.facebook.react:react-android:0.71.4')
+    implementation ("com.facebook.react:react-native:+")
     implementation project(':react-native-splash-screen')
     implementation project(':lottie-react-native')
     // 如果你需要支持GIF动图
     implementation 'com.facebook.fresco:animated-gif:2.5.0'
-    
+    implementation 'io.openim:android-sdk:3.4.1@aar'
+    implementation 'io.openim:core-sdk:3.4.1-alpha.4@aar'
+    implementation 'com.google.code.gson:gson:2.9.0'
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.squareup.okhttp3', module:'okhttp'
@@ -125,6 +129,6 @@ dependencies {
     }
 }
 
-apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); 
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle");
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle");
 applyNativeModulesAppBuildGradle(project)
