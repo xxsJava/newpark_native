@@ -13,6 +13,9 @@ import SortTabNav from './SortType';
 import {LsitRecommend} from './Lists';
 import StylesALL from '../../styles';
 import ColumnType from './ColumnType'
+import Storage from '../../utils/AsyncStorageUtils';
+import { postList } from '../../api/sys/home';
+import { postListType } from '../../api/sys/home/types';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -31,14 +34,49 @@ const menusData = [
   },
 ];
 
-const HomeComponents = () => (
-  <ScrollView style={styles.scrollStyle}>
-    <ColumnType></ColumnType>
-    <View style={styles.postsList}>
-      <LsitRecommend />
-    </View>
-  </ScrollView>
-);
+const postType: postListType = {
+  pageNo:1,
+  pageSize:5
+};
+
+
+// export default class HomeComponents extends React.PureComponent {
+
+//     render() {
+      
+//     }
+// }
+const HomeComponents = () => {
+  const [postListData,setPostListData] = React.useState([])
+
+  const PostsData = async () => {
+    const tokenStr = await Storage.get('usr-token');
+    if(tokenStr != null) {
+      const postListAPI = await postList(tokenStr,postType);
+      setPostListData(postListAPI.data)
+      // console.log('postVal',postListAPI)
+    } else {
+      return console.log('数据加载失败')
+    }
+  }
+
+  React.useEffect(() => {
+    PostsData()
+  }, []); // 只在组件挂载时调用一次
+
+  // PostsData()
+
+  return (
+    <>
+      {/* <ColumnType></ColumnType> */}
+      <View style={styles.postsList}>
+        <LsitRecommend message={postListData} />
+      </View>
+    </>
+  )
+}
+
+export default HomeComponents;
 
 const styles = StyleSheet.create({
   styleAll: {
@@ -84,4 +122,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeComponents;

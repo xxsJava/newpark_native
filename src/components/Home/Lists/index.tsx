@@ -11,9 +11,11 @@ import {FlatList, View} from 'react-native';
 import {postsList} from '../../../views/home/controller';
 import {renderLoadMoreView} from '../../Load';
 import {postsData} from '../../../views/home/mock';
+import ColumnType from '../ColumnType'
+
 
 //渲染列表
-export const LsitRecommend = () => {
+export const LsitRecommend = (props:any) => {
   const [loadTrue, loadFalse] = useState(true);
   //上拉加载更多数据
   const loadMoreData = () => {
@@ -22,10 +24,11 @@ export const LsitRecommend = () => {
       loadFalse(false);
     }, 3000);
   };
+  console.log('传递的参数',props.message)
   return (
     <FlatList
-      data={postsData}
-      // ListFooterComponent={renderLoadMoreView(loadTrue)}
+      data={props.message}
+      ListHeaderComponent={<ColumnType></ColumnType>}
       // onEndReached={() => loadMoreData()}
       renderItem={postsList}
       ItemSeparatorComponent={() => {
