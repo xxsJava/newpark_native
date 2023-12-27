@@ -71,7 +71,7 @@ const ColumnType = () => {
                 ]}
                 onPress={() => onSelected(item.index)}>
                 <Image style={styles.navigationItemImage} source={item.icon} />
-                <Text style={styles.navigationItemText}>
+                <Text allowFontScaling={false} style={styles.navigationItemText}>
                   <Trans>{item.text}</Trans>
                 </Text>
               </TouchableOpacity>
