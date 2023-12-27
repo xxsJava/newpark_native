@@ -11,6 +11,11 @@ import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../../config/routs/NavigationContainer';
 import {useTranslation, Trans} from 'react-i18next';
 import {commentData} from '../mock/index'
+import { dateToMsgTime } from "../../../components/Rests/TconTime";
+import { WebView } from 'react-native-webview';
+import {postComments} from '../../../api/sys/home'
+import {postCommentsParam} from '../../../api/sys/home/types'
+import Storage from "../../../utils/AsyncStorageUtils";
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
@@ -36,12 +41,22 @@ const windowHeight = Dimensions.get('window').height
 //     }]
 // }]
 
-const PostDetails = () => {
+
+const PostDetails = ({route}:any) => {
+    console.log('postsId',route.params.item.tid)
+    const commentsParam: postCommentsParam = {
+        pageNo: 1,
+        pageSize: 5,
+        postsId: 1000000,
+    };
     const [inputVal,onInputPress] = React.useState('')
     const [collectionSelect,setSelectCollection] =  React.useState('0')
     const [likeSelect,setSelectLike] = React.useState('0')
     const [transmitSelect,setSelectTransmit] = React.useState('0')
     const [likeSelect1,setSelectLike1] = React.useState(0)
+    const data = route.params.item
+
+    console.log('单条帖子数据',route.params)
     const onSelectPress= (prop:number) => {
         if(prop == 1) {
             collectionSelect == '0' ? setSelectCollection('1'):setSelectCollection('0')
@@ -53,9 +68,20 @@ const PostDetails = () => {
         }
         
     }
-    const ononSelectLike = (prop:number) => {
-
+    const [postCommentsList,setPostCommentsList] = React.useState([])
+    const PostsCommentsData = async () => {
+        const tokenStr = await Storage.get('usr-token');
+        if(tokenStr != null) {
+            const postCommentsAPI = await postComments(tokenStr,commentsParam);
+            setPostCommentsList(postCommentsAPI.data)
+            console.log('commentsParam',commentsParam)
+            console.log('全部评论',postCommentsAPI)
+            console.log('tokenStr',tokenStr)
+        } else {
+            return console.log('数据加载失败')
+        }
     }
+    PostsCommentsData()
     const myHeaders = new Headers();
     myHeaders.append("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
     // const requestOptions = {
@@ -63,15 +89,6 @@ const PostDetails = () => {
     //     headers: myHeaders,
     //     redirect: 'follow'
     // };
-
-    fetch("http://192.168.2.96:50000/posts/postsOneApi", {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    })
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
     return(
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
@@ -95,20 +112,21 @@ const PostDetails = () => {
                             </View>
                             <View style={styles.avatarConent}>
                                 <View style={styles.nameView}>
-                                    <Text allowFontScaling={false} style={styles.nameText}>o泡果奶</Text>
+                                    <Text allowFontScaling={false} style={styles.nameText}>{data.ttitle}</Text>
                                     <View style={styles.tabStyle}>
                                         <Icon size={15} color="#FFF" source={require('../../../assets/images/alimom/sex_icon1.png')}></Icon>
                                         <Text allowFontScaling={false} style={styles.tabText}>20</Text>
                                     </View>
                                 </View>
-                                <Text allowFontScaling={false} style={styles.timeText}>1小时前</Text>
+                                <Text allowFontScaling={false} style={styles.timeText}>{dateToMsgTime(data.tlastTime)}</Text>
                             </View>
                             <View style={styles.avatarButton}>
                                 <Button style={styles.avatarButtonStyle} labelStyle={styles.avatarButtonText} onPress={() => console.log('点击关注')}>关注</Button>
                             </View>
                         </View>
                         <View style={styles.postImage}>
-                            <Text allowFontScaling={false} style={styles.postText}>每个不起舞的日子，都是对生命的辜负。</Text>
+                            <WebView style={{height:50,width:windowWidth,marginHorizontal:30}} source={{html:data.tcontext}}></WebView>
+                            {/* <Text allowFontScaling={false} style={styles.postText}>每个不起舞的日子，都是对生命的辜负。</Text> */}
                             <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image>
                         </View>
                         <View style={styles.postBottom}>
@@ -123,13 +141,13 @@ const PostDetails = () => {
                                 <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(3)}>
                                     <Icon size={24} color={transmitSelect == '1'?'#6A1B9A':'#EFEBFA'} source={require('../../../assets/images/transmit_icon.png')}></Icon>
                                 </TouchableOpacity>
-                                <Text allowFontScaling={false} style={styles.heartText}> 2.0w</Text>
+                                <Text allowFontScaling={false} style={styles.heartText}> {data.tforwardCount}</Text>
                             </View>
                             <View style={styles.heartView}>
                                 <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(2)}>
                                     <Icon size={24} color={likeSelect == '1' ? '#FABA3C':'#EFEBFA'} source={require('../../../assets/images/Like-copy.png')}></Icon>
                                 </TouchableOpacity>
-                                <Text allowFontScaling={false} style={styles.heartText}> 2.0w</Text>
+                                <Text allowFontScaling={false} style={styles.heartText}> {data.tlikeCount}</Text>
                             </View>
                         </View>
                     </View>
@@ -231,7 +249,7 @@ const styles = StyleSheet.create({
         justifyContent:'flex-start',
     },
     avatarView:{
-        width:'22%',
+        width:'20%',
         height:70,
         alignItems:'flex-end',
         paddingTop:3,
@@ -239,7 +257,7 @@ const styles = StyleSheet.create({
     avatarConent:{
         width:'55%',
         height:70,
-        paddingLeft:15,
+        paddingLeft:10,
     },
     nameView:{
         height:40,
@@ -247,7 +265,7 @@ const styles = StyleSheet.create({
         justifyContent:'flex-start',
     },
     nameText:{
-        fontSize:18,
+        fontSize:16,
         color:'#000',
         lineHeight:40
     },
@@ -286,6 +304,7 @@ const styles = StyleSheet.create({
         marginLeft:2,
     },
     timeText:{
+        fontSize:13,
         height:30,
         color:'#bbb'
     },

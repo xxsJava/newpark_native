@@ -27,7 +27,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
   // }
   console.log('帖子item',item)
   return (
-    <TouchableOpacity activeOpacity={0.9} key={item.tid}  onPress={() => navigate('PostDetailsRoute')}>
+    <TouchableOpacity activeOpacity={0.9} key={item.tid}  onPress={() => navigate('PostDetailsRoute',{item})}>
       <Card style={styles.cardSty}>
         <Card.Title
           title={item.ttitle}
