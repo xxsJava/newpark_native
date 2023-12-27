@@ -17,6 +17,7 @@ import {
   useNavigation
 } from '@react-navigation/native'
 import { navigate } from '../../../config/routs/NavigationContainer';
+import { any } from 'prop-types';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -43,7 +44,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
             key={index}
             onPress={() => onSectionSelect(index)}
             style={styles.itemBar}>
-            <Text allowFontScaling={false} style={{ color: '#008fe4' }}>{section.title}</Text>
+            <Text style={{ color: '#008fe4',fontSize:14 }}>{section.title}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -87,7 +88,7 @@ const ListIndex: React.FC = () => {
 
   const renderSectionHeader = ({ section }: { section: DataSection }) => (
     <View style={{ backgroundColor: '#f4f4f4', padding: 4, height: 32 }}>
-      <Text allowFontScaling={false} style={{ fontWeight: 'bold' }}>{section.title}</Text>
+      <Text style={{ fontWeight: 'bold'}}>{section.title}</Text>
     </View>
   );
 
@@ -593,23 +594,26 @@ const ListIndex: React.FC = () => {
 
   // item 90
   const ITEM_HEIGHT = 90;
-  // 获取一共有多少子元素
-  const sum = () => {
-    let zong = 0;
-    for (var i = 0; i < data.length; i++) {
-      zong += data[i].data.length
-    }
 
-    return zong;
-  }
   const pre = (num: number) => {
     let pre = 0;
     for (let i = 0; i < num + 1; i++) {
       pre += data[i].data.length
-
     }
+    
     return pre;
   }
+  
+  //计算总高度
+  const _getHigth = () =>{
+    let nodeNum = 0;
+    console.log('计算高度',data.length)
+    for(let i = data.length-1;i>=0;i--){
+        nodeNum += (data[i].data.length*ITEM_HEIGHT) + 40;
+    }
+    return nodeNum;
+  }
+
   // 这里是滚动到指定位置
   const handleSectionSelect = (index: number) => {
     console.log(index);
@@ -617,7 +621,6 @@ const ListIndex: React.FC = () => {
 
     setSelectedSectionIndex(index);
     
-
     //一个分组的高度
     // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + (索引下标+偏移值)
     const itemHeight =
@@ -652,10 +655,11 @@ const ListIndex: React.FC = () => {
   //这里是渲染的总高度
   const _ItemLayout = (data: any, index: number) => {
     //总高度 (item * item^n  + 标题 + 间隙) * 子元素的数量 = 分组的高度
-    const dataHight =
-      (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40)* data.length;
-
-    // console.log(dataHight);
+    // const dataHight =
+    //   (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40)* data.length;
+    const dataHight = _getHigth();
+    console.log(data.length)
+    console.log('总高度-->',_getHigth());
     return {
       index,
       length: ITEM_HEIGHT,
