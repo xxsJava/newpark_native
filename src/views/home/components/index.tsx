@@ -29,37 +29,29 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
   return (
     <TouchableOpacity activeOpacity={0.9} key={item.tid}  onPress={() => navigate('PostDetailsRoute',{item})}>
       <Card style={styles.cardSty}>
-        <Card.Title
-          title={item.ttitle}
-          subtitle={dateToMsgTime(item.tlastTime)}
-          left={props => (
-            <View style={styles.titleLeft}>
+        <Card.Content style={styles.cardTitle}>
+          <View style={styles.titleLeft}>
+            <View>
               <Avatar.Image
-              {...props}
-              style={styles.avaSty}
-              size={44}
-              source={require('../../../assets/images/3.0x/defaultheader.png')}
+                style={styles.avaSty}
+                size={44}
+                source={require('../../../assets/images/3.0x/defaultheader.png')}
               />
               <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
             </View>
-      
-          )}
-          right={props => (
+            <View style={styles.titleView}>
+              <Text allowFontScaling={false} style={styles.titleStyle}>{item.ttitle}</Text>
+              <Text allowFontScaling={false} style={styles.timeStyle}>{dateToMsgTime(item.tlastTime)}</Text>
+            </View>
+          </View>
+          <View style={styles.rightSty}>
             <IconButton
-              {...props}
-              style={styles.rightSty}
+              style={styles.rightButton}
               icon="dots-horizontal"
               onPress={() => {}}
             />
-          )}
-          titleStyle={styles.titleSty}
-          subtitleStyle={styles.subSty}
-          subtitleNumberOfLines={0}
-          leftStyle={{
-            width: 25,
-          }}
-          style={styles.backColor}
-        />
+          </View>
+        </Card.Content>
         <Card.Content style={styles.backColor}>
           <WebView style={{height:90,width:windowWidth}} source={{html:item.tcontext}}></WebView>
           {/* <Text allowFontScaling={false} style={styles.context}>{item.text}</Text> */}
@@ -165,7 +157,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         </View>
         <View style={styles.leaveWordView}>
           <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
-          <TextInput allowFontScaling={false} value={'喜欢就告诉她'} style={styles.leaveWordInput}></TextInput>
+          <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
         </View>
       </Card>
     </TouchableOpacity>
@@ -182,6 +174,10 @@ const styles = StyleSheet.create({
     paddingTop:8,
     borderRadius:0
   },
+  cardTitle:{
+    flexDirection:'row',
+    justifyContent:'space-between'
+  },
   cardRadius:{
     borderRadius:8
   },
@@ -190,21 +186,41 @@ const styles = StyleSheet.create({
     color: '#999',
   },
   titleLeft:{
-    position:'relative',
-    left:-8,
+    flexDirection:'row',
+    justifyContent:'flex-start'
   },
   avaSty: {
-    bottom: 12,
+    bottom: 5,
+  },
+  titleView:{
+    paddingLeft:10
+  },
+  titleStyle:{
+    fontSize:15,
+    color:'#000',
+    fontWeight:'bold',
+    paddingBottom:2
+  },
+  timeStyle:{
+    fontSize:11,
+    color:'#bbb'
   },
   avatarIcon:{
     width:20,
     height:20,
     position:'absolute',
-    top:14,
-    left:24,
+    top:22,
+    left:27,
     zIndex:10
   },
-  rightSty: {position: 'relative', bottom: 15, right: 10},
+  rightSty: {
+    marginTop:-15,
+    marginRight:-15
+    // backgroundColor:'pink'
+  },
+  rightButton:{
+    // backgroundColor:'plum'
+  },
   titleSty: {
     fontWeight: 'bold',
     position: 'absolute',
@@ -254,7 +270,7 @@ const styles = StyleSheet.create({
     fontSize:15,
     color:'#FFF',
     textAlign:'center',
-    lineHeight:17,
+    lineHeight:18,
   },
   labelText:{
     lineHeight:24

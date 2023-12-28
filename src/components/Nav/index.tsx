@@ -36,8 +36,6 @@ const HomeNav = () => {
     setActiveTab(tab);
   };
 
-  const [inputValue,onChangeText] = React.useState('请输入需要搜索的/帖子/UID/群聊/商品');
-
   return (
     <Appbar.Header>
       <View style={styles.navWiidtha}>
@@ -98,7 +96,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   navWiidtha: {
-    width: Dimensions.get('window').width * 0.17,
+    width: Dimensions.get('window').width * 0.18,
+    // backgroundColor:'plum',
   },
   schoolTypeNava: {
     width: 35,
@@ -107,6 +106,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: 'center',
     margin: 10,
+    marginLeft:5
   },
   schoolTypeNavb: {
     width: 35,
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: 'center',
     position: 'absolute',
-    left: 25,
+    left: 20,
     top: 10,
     zIndex: -1,
   },
@@ -124,29 +124,33 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
   searchNav: {
-    width: Dimensions.get('window').width * 0.7,
+    width: Dimensions.get('window').width * 0.68,
     height: 40,
-    // backgroundColor: '#F5F5F5',
+    // paddingLeft:8,
+    backgroundColor: 'pink',
     borderRadius: 20,
     position: 'relative',
     zIndex: -10,
   },
   searchNavImg:{
     top: 11,
-    left: 15,
+    left: 12,
     position: 'absolute',
     zIndex: 10,
   },
   searchNavInput:{
-    width: Dimensions.get('window').width * 0.7,
+    width: Dimensions.get('window').width * 0.68,
     height: 40,
     // borderWidth: 0,
+    paddingLeft:8,
     backgroundColor: '#F5F5F5',
     borderRadius: 20,
     paddingVertical:0,
+    alignItems:'center'
   },
   searchNavInputText:{
-    fontSize:12,
+    width: Dimensions.get('window').width * 0.65,
+    fontSize:11,
     color: '#888',
     lineHeight:40,
     textAlign: 'center',
@@ -158,7 +162,7 @@ const styles = StyleSheet.create({
   tinyLogo: {
     width: 28,
     height: 28,
-    marginLeft: 12,
+    marginLeft: 8,
   },
 });
 

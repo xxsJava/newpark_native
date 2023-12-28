@@ -84,7 +84,7 @@ const typeData=[{
 
 const ForgetPass = ({ navigation }:any) => {
   let [service, setService] = React.useState('');
-  const [inputValue, onChangeText] = React.useState('搜索您感兴趣的/社区/帖子/UID');
+  const [inputValue, onChangeText] = React.useState('');
 
   return (
     <SafeAreaView style={styles.safeStyle}>
@@ -102,6 +102,7 @@ const ForgetPass = ({ navigation }:any) => {
             />
             <TextInput
               allowFontScaling={false}
+              placeholder='搜索您感兴趣的/社区/帖子/UID'
               style={styles.inputStyle}
               onChangeText={text => onChangeText(text)}
               value={inputValue}
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
   },
   topImg: {
     top: 32,
-    left: 15,
+    left: 13,
     position: 'absolute',
     zIndex: 10,
   },
@@ -298,7 +299,9 @@ const styles = StyleSheet.create({
     height: 40,
     lineHeight: 20,
     borderWidth: 0,
+    fontSize:12,
     color: '#888',
+    paddingLeft:20,
     backgroundColor: '#F5F5F5',
     borderRadius: 20,
     textAlign: 'center',
