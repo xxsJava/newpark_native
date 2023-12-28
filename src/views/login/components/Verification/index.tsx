@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-27 09:19:31
- * @LastEditTime: 2023-11-01 11:13:34
+ * @LastEditTime: 2023-12-28 15:21:43
  * @FilePath: \newpark_native\src\views\login\components\Verification\index.tsx
  * @Description: desc
  */
@@ -95,9 +95,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
     if (text.length == 4) {
       setLoad(true);
       console.log('验证码提交-' + text);
-
       smsLogin.code = text;
-
       verIfcode();
     }
   };
