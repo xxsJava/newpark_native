@@ -1,6 +1,6 @@
 // import {useToast} from 'native-base';
 import {useToast} from '@gluestack-ui/themed';
-import React, {useState, useRef, Component} from 'react';
+import React, {useState, useRef, Component, useEffect} from 'react';
 import {
   Button,
   View,
@@ -31,6 +31,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
+  
   //索引条
   return (
     <View style={styles.indexBarStyle}>

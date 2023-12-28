@@ -20,40 +20,8 @@ import {navigate} from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
 type DataSection = {title: string; data: DataItem[]};
-type AlphabetIndexProps = {
-  sections: DataSection[];
-  onSectionSelect: (index: number) => void;
-};
-
-const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
-  sections,
-  onSectionSelect,
-}) => {
-  const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
-    null,
-  );
-  //索引条
-  return (
-    <View style={styles.indexBarStyle}>
-      <View>
-        {sections.map((section, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => onSectionSelect(index)}
-            style={styles.itemBar}>
-            <Text allowFontScaling={false} style={{color: '#008fe4'}}>{section.title}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-      {panResponder && <View {...panResponder.panHandlers} />}
-    </View>
-  );
-};
 
 const ListIndex: React.FC = () => {
-  const toast = useToast();
-  //选中的索引值
-  const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
 
   const sectionListRef = useRef<SectionList<DataItem, DataSection> | null>(
     null,
@@ -96,12 +64,6 @@ const ListIndex: React.FC = () => {
         </View>
       </View>
     </TouchableOpacity>
-  );
-
-  const renderSectionHeader = ({section}: {section: DataSection}) => (
-    <View style={{backgroundColor: '#f4f4f4', height: 30}}>
-      <Text allowFontScaling={false} style={{fontWeight: 'bold',lineHeight:30,paddingLeft:10}}>{section.title}</Text>
-    </View>
   );
 
   const data: DataSection[] = [
@@ -602,72 +564,12 @@ const ListIndex: React.FC = () => {
 
     // 更多的数据...
   ];
-
-  const ITEM_HEIGHT = 110;
-
-  const handleSectionSelect = (index: number) => {
-    setSelectedSectionIndex(index);
-    let itemHeight = 0;
-    if(index < 3) {
-      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) - 14
-    } else if(index < 5) {
-      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 2 * index
-    } else if(index < 10) {
-      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 6 * index
-    } else if(index < 20) {
-      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 8 * index
-    } else {
-      itemHeight = (30 + ITEM_HEIGHT * data[index].data.length * index) + 9 * index
-    }
-    //一个分组的高度
-    // const itemHeight =
-    // (30 + ITEM_HEIGHT * data[index].data.length * index) + 6 * index;
-    //总高度
-    const itemSum = (ITEM_HEIGHT * data[index].data.length + 30) * 26;
-    console.log('滚动到的位置----->', itemSum - itemHeight);
-    toast.show({
-      placement: 'bottom',
-      render: () => {
-        return (
-          <Text allowFontScaling={false}>{data[index].title}</Text>
-        )
-      },
-    });
-
-    if (sectionListRef.current) {
-      sectionListRef.current.scrollToLocation({
-        animated: true,
-        sectionIndex: index,
-        itemIndex: 0,
-        //偏移高度 偏移160
-        viewOffset: itemSum - itemHeight,
-      });
-    }
-  };
-
- 
-  const _ItemLayout = (data: any, index: number) => {
-    //总高度 (item * item^n  + 标题 + 间隙) = 分组的高度
-    const dataHight =
-      (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 30) * 26;
-
-    // console.log(dataHight);
-    return {
-      index,
-      length: ITEM_HEIGHT,
-      offset: dataHight,
-    };
-  };
   return (
-    
     <View style={{flex: 1, marginTop: 10}}>
-      <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
      <SectionList
         ref={sectionListRef}
         sections={data}
         renderItem={renderItem}
-        renderSectionHeader={renderSectionHeader}
-        getItemLayout={_ItemLayout}
         keyExtractor={(item, index) => {
           // console.log(item)
           return index.toString();
@@ -675,7 +577,6 @@ const ListIndex: React.FC = () => {
         stickySectionHeadersEnabled={true}
       />
     </View>
-    
   );
 };
 
