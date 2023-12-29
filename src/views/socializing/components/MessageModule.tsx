@@ -1,6 +1,5 @@
-// import {useToast} from 'native-base';
-import { useToast } from '@gluestack-ui/themed';
-import React, {useState, useRef, Component} from 'react';
+
+import React, {useRef} from 'react';
 import {
   View,
   Text,
@@ -8,10 +7,7 @@ import {
   Dimensions,
   StyleSheet,
   SectionList,
-  TouchableOpacity,
-  PanResponder,
-  PanResponderInstance,
-  PixelRatio,
+  TouchableOpacity
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradinet from 'react-native-linear-gradient';
@@ -564,6 +560,7 @@ const ListIndex: React.FC = () => {
 
     // 更多的数据...
   ];
+  
   return (
     <View style={{flex: 1, marginTop: 10}}>
      <SectionList
@@ -610,7 +607,7 @@ const styles = StyleSheet.create({
   listItem: {
     width: windowWidth,
     height: 90,
-    marginBottom: 10,
+    marginBottom: 1,
     borderLeftWidth: 8,
     backgroundColor: '#FFF',
     flexDirection: 'row',
