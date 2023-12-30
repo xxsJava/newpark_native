@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-09 11:26:21
- * @LastEditTime: 2023-10-30 16:14:55
+ * @LastEditTime: 2023-12-29 16:42:53
  * @FilePath: \newpark_native\src\config\axios\service.ts
  * @Description: desc
  */
@@ -31,6 +31,7 @@ const service: AxiosInstance = axios.create({
 // request拦截器
 service.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    
     if (
       config.method === 'post' &&
       (config.headers as AxiosRequestHeaders)['Content-Type'] ===
