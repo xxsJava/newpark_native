@@ -54,7 +54,7 @@ const HomeComponents = () => {
     if(tokenStr != null) {
       const postListAPI = await postList(tokenStr,postType);
       setPostListData(postListAPI.data)
-      // console.log('postVal',postListAPI)
+      console.log('postVal',postListAPI)
     } else {
       return console.log('数据加载失败')
     }

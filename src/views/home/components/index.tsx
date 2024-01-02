@@ -11,6 +11,9 @@ import {StyleSheet, TouchableOpacity, View,Image,TextInput,Platform,Dimensions} 
 import {navigate} from '../../../config/routs/NavigationContainer';
 import {dateToMsgTime} from '../../../components/Rests/TconTime'
 import { WebView } from 'react-native-webview';
+import { postLike } from '../../../api/sys/home'
+import { postLikeParam } from '../../../api/sys/home/types'
+import Storage from '../../../utils/AsyncStorageUtils';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -25,6 +28,27 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
   //   onUpvoteSet(!porp)
     
   // }
+  const postLikeParam:postLikeParam ={
+    likeTime: 1396189015737,
+    comId: 0,
+    postsId: 1000000,
+    likeType: 1
+  }
+
+  const postLikePress = async () => {
+    const tokenStr = await Storage.get('usr-token');
+    const uidStr = await Storage.get('u-id');
+    console.log('uidStr',uidStr)
+    if(tokenStr != null) {
+      const postLikeUp = await postLike(tokenStr,postLikeParam);
+      // setPostCommentsList(postCommentsAPI.data)
+      // console.log('commentsParam',commentsData)
+      console.log('点赞返回',postLikeUp)
+    } else {
+      return console.log('数据加载失败')
+    }
+  }
+
   console.log('帖子item',item)
   return (
     <TouchableOpacity activeOpacity={0.9} key={item.tid}  onPress={() => navigate('PostDetailsRoute',{item})}>
@@ -91,9 +115,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
             <Button
               icon={require('../../../assets/images/3.0x/like.png')}
               style={styles.buttonDz}
-              onPress={() => {
-                console.log('点赞');
-              }}>
+              onPress={() => postLikePress()}>
                 {item.tlikeCount}
             </Button>
             <TouchableOpacity

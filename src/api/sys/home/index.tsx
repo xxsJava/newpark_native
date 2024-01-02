@@ -33,7 +33,7 @@ export const postList = (token:string,data:postListType): Promise<IResponse> => 
 export const postLike = (token:string,data:postLikeParam): Promise<IResponse> => {
   return request.get({
     url: '/posts-usr-like/postsUsrLikeApi',
-    params: data,
+    data: data,
     token:token
   });
 };

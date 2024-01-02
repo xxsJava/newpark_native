@@ -12,10 +12,10 @@ export type postListType = {
 
 // 添加点赞api参数
 export type postLikeParam = { 
-    uid:string,
-    postsId:string,
-    likeType:0,
-    likeTime:string
+    likeTime: number,
+    comId: number,
+    postsId: number,
+    likeType: number
 }
 
 //评论api参数Data

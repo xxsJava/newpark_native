@@ -1,3 +1,5 @@
+import { number, string } from "prop-types"
+
 /*
  * @Author: xxs
  * @Date: 2023-10-25 14:01:51
@@ -13,23 +15,14 @@ export const postsData = [
 ]
 
 export const commentData = [{
-  index:1,
-  name:'佩奇',
-  time:'刚刚',
-  num:'2.0w',
-  image:require('../../../assets/images/avatar-nan.png'),
-  text:'抬头和你分享一个月亮就很美好',
-  itemData:[]
-},{
-  index:2,
-  name:'佩奇',
-  time:'刚刚',
-  num:'2.0w',
-  image:require('../../../assets/images/avatar-nan.png'),
-  text:'抬头和你分享一个月亮就很美好',
-  itemData:[{
-      index:1,
-      name:'咕子',
-      text:6
-  }]
+  comId: number,
+  postsId: number,
+  comContent: string,
+  startTime: number,
+  comSupport: number,
+  comParentId: number,
+  coms: [],
+  uid: number,
+  upath: string,
+  unikname: string
 }]

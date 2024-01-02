@@ -105,11 +105,11 @@ const PostDetails = ({route}:any) => {
                     <View style={styles.postView}>
                         <View style={styles.postStyle}>
                             <View style={styles.avatarView}>
-                                <Avatar.Image size={65} source={require('../../../assets/images/avatar-nv.png')}></Avatar.Image>
+                                <Avatar.Image size={65} source={{uri:data.upath}}></Avatar.Image>
                             </View>
                             <View style={styles.avatarConent}>
                                 <View style={styles.nameView}>
-                                    <Text allowFontScaling={false} style={styles.nameText}>{data.ttitle}</Text>
+                                    <Text allowFontScaling={false} style={styles.nameText}>{data.unikname}</Text>
                                     <View style={styles.tabStyle}>
                                         <Icon size={15} color="#FFF" source={require('../../../assets/images/alimom/sex_icon1.png')}></Icon>
                                         <Text allowFontScaling={false} style={styles.tabText}>20</Text>
@@ -122,9 +122,9 @@ const PostDetails = ({route}:any) => {
                             </View>
                         </View>
                         <View style={styles.postImage}>
-                            <WebView style={{height:50,width:windowWidth,marginHorizontal:30}} source={{html:data.tcontext}}></WebView>
-                            {/* <Text allowFontScaling={false} style={styles.postText}>每个不起舞的日子，都是对生命的辜负。</Text> */}
-                            <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image>
+                            <Text allowFontScaling={false} style={styles.postText}>{data.ttitle}</Text>
+                            <WebView style={{height:150,width:windowWidth,marginHorizontal:30}} source={{html:data.tcontext}}></WebView>
+                            {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
                         </View>
                         <View style={styles.postBottom}>
                             <Text allowFontScaling={false} style={styles.postBottomText}>浏览记录   502</Text>
@@ -150,34 +150,34 @@ const PostDetails = ({route}:any) => {
                     </View>
                     <View style={styles.postComment}>
                         <View style={styles.scrollView}>
-                            <Text allowFontScaling={false} style={styles.commentTitle}>全部评论(2000)</Text>
+                            <Text allowFontScaling={false} style={styles.commentTitle}>全部评论({postCommentsList.length})</Text>
                             <View style={styles.listStyle}>
-                                {commentData.map(item => {
+                                {postCommentsList.map(item => {
                                     return(
-                                        <View style={styles.itemStyle} key={item.index}>
+                                        <View style={styles.itemStyle} key={item.comId}>
                                             <View style={styles.commentAvatarView}>
                                                 <View style={styles.itemAvatar}>
-                                                    <Avatar.Image size={56} source={item.image}></Avatar.Image>
+                                                    <Avatar.Image size={56} source={{uri:item.upath}}></Avatar.Image>
                                                 </View>
                                                 <View style={styles.itemNameView}>
-                                                    <Text allowFontScaling={false} style={styles.itemName}>{item.name}</Text>
-                                                    <Text allowFontScaling={false} style={styles.itemTime}>{item.time}</Text>
+                                                    <Text allowFontScaling={false} style={styles.itemName}>{item.unikname}</Text>
+                                                    <Text allowFontScaling={false} style={styles.itemTime}>{dateToMsgTime(item.startTime)}</Text>
                                                 </View>
                                                 <View style={styles.itemIconView}>
                                                     <TouchableOpacity>
                                                         <Icon size={22} color={likeSelect1 == 0?'#FABA3C':'#EFEBFA'}  source={require('../../../assets/images/Like-copy.png')}></Icon>
                                                     </TouchableOpacity>
-                                                    <Text allowFontScaling={false} style={styles.itemIconText}>  {item.num}</Text>
+                                                    <Text allowFontScaling={false} style={styles.itemIconText}>  {item.comSupport}</Text>
                                                     </View>
                                                 </View>
                                                 <View style={styles.itemContent}>
-                                                    <Text allowFontScaling={false} style={styles.itemContentText}>{item.text}</Text>
-                                                    <View style={[styles.itemComment,item.itemData.length == 0?{display:'none'}:null]}>
-                                                        {item.itemData.map(emeit => {
+                                                    <Text allowFontScaling={false} style={styles.itemContentText}>{item.comContent}</Text>
+                                                    <View style={[styles.itemComment,item.coms.length == 0?{display:'none'}:null]}>
+                                                        {item.coms.map((emeit:any) => {
                                                             return(
-                                                                <Text allowFontScaling={false} style={styles.commentArea} key={emeit.index}>
-                                                                    {emeit.name}:
-                                                                    <Text allowFontScaling={false} style={styles.commentAreaText}>  {emeit.text}</Text>
+                                                                <Text allowFontScaling={false} style={styles.commentArea} key={emeit.comId}>
+                                                                    {emeit.unikname}:
+                                                                    <Text allowFontScaling={false} style={styles.commentAreaText}>  {emeit.comContent}</Text>
                                                                 </Text>
                                                             )
                                                         })}
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
                 height:windowHeight-85,
             },
             android:{
-                height:windowHeight-40,
+                height:windowHeight-60,
             }
         })
     },
@@ -330,7 +330,8 @@ const styles = StyleSheet.create({
         height:30,
         fontSize:15,
         color:'#000',
-        textAlign:'center',
+        textAlign:"center",
+        // paddingHorizontal:30,
         lineHeight:20
     },
     postImageStyle:{
@@ -363,7 +364,7 @@ const styles = StyleSheet.create({
     },
     heartText:{
         fontSize:15,
-        color:'#EFEBFA',
+        color:'#ddd',
         // lineHeight:50,
     },
     postComment:{
@@ -438,9 +439,9 @@ const styles = StyleSheet.create({
         // backgroundColor:'red'
     },
     itemContentText:{
-        fontSize:14,
+        fontSize:15,
         color:'#000',
-        marginTop:10,
+        marginTop:5,
         marginBottom:5
     },
     itemComment:{
@@ -454,11 +455,13 @@ const styles = StyleSheet.create({
     },
     commentArea:{
         fontSize:16,
-        color:'#888',
+        color:'#999',
         fontWeight:'600'
     },
     commentAreaText:{
-        color:'#000'
+        fontSize:14,
+        color:'#000',
+        fontWeight:'500',
     },
     commentBottom:{
         width:windowWidth,
