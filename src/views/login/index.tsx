@@ -16,7 +16,7 @@ import {LoginScreenProps} from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
 // import {useToast} from 'native-base';
-import { useToast, Toast, ToastTitle } from '@gluestack-ui/themed';
+import { useToast } from '@gluestack-ui/themed';
 import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
 import {useTranslation, Trans} from 'react-i18next';
 import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
@@ -93,6 +93,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
             <Text allowFontScaling={false}>登录成功，可享受功能</Text>
           )
         },
+        
       });
     } else if (loginAPI.code === 1110) {
       toast.show({

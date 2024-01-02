@@ -35,12 +35,12 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
               <Avatar.Image
                 style={styles.avaSty}
                 size={44}
-                source={require('../../../assets/images/3.0x/defaultheader.png')}
+                source={{uri:item.upath}}
               />
               <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
             </View>
             <View style={styles.titleView}>
-              <Text allowFontScaling={false} style={styles.titleStyle}>{item.ttitle}</Text>
+              <Text allowFontScaling={false} style={styles.titleStyle}>{item.unikname}</Text>
               <Text allowFontScaling={false} style={styles.timeStyle}>{dateToMsgTime(item.tlastTime)}</Text>
             </View>
           </View>
@@ -53,10 +53,12 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           </View>
         </Card.Content>
         <Card.Content style={styles.backColor}>
-          <WebView style={{height:90,width:windowWidth}} source={{html:item.tcontext}}></WebView>
-          {/* <Text allowFontScaling={false} style={styles.context}>{item.text}</Text> */}
+          <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
+          <View style={{height:120,width:windowWidth,marginHorizontal:10}}>
+            <WebView source={{html:item.tcontext}}></WebView>
+          </View>
         </Card.Content>
-        <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} />
+        {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
         <Card.Content style={styles.backColor}>
           {/* <Text style={styles.context}>#情感#个人#官方#颜值#语录</Text> */}
           <View style={styles.labelList}>
@@ -133,27 +135,31 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         </Card.Actions> */}
         <View style={styles.commentAreaView}>
           <Text allowFontScaling={false} style={styles.commentAreaTitle}>精选评论</Text>
-          <View style={styles.commentArea}>
-            <View style={styles.commentAreaItem}>
-              <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
-              <View style={styles.commentAreaName}>
-                <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>小学牛：</Text>
-                <Text allowFontScaling={false} style={styles.commentAreaNameRight}>打卡留影</Text>
+            {item.postsComments.map((porp:any) => {
+              return(
+                <View style={styles.commentArea}>
+                  <View style={styles.commentAreaItem}>
+                    <Avatar.Image size={32} source={{uri:porp.upath}} />
+                    <View style={styles.commentAreaName}>
+                      <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>{porp.unikname}：</Text>
+                      <Text allowFontScaling={false} style={styles.commentAreaNameRight}>{porp.comContent}</Text>
+                    </View>
+                    <TouchableOpacity
+                      style={styles.commentAreaIcon}
+                      onPress={() => {
+                      console.log('评论');
+                    }}>
+                      <Button
+                        icon={require('../../../assets/images/3.0x/like.png')}
+                        // style={StylesALL.BGCOLOR}
+                      >
+                        {porp.comSupport}
+                      </Button>
+                    </TouchableOpacity>
+                </View>
               </View>
-              <TouchableOpacity
-                style={styles.commentAreaIcon}
-                onPress={() => {
-                  console.log('评论');
-                }}>
-                <Button
-                  icon={require('../../../assets/images/3.0x/like.png')}
-                  // style={StylesALL.BGCOLOR}
-                >
-                  4000
-                </Button>
-              </TouchableOpacity>
-            </View>
-          </View>
+              )
+            })}
         </View>
         <View style={styles.leaveWordView}>
           <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
@@ -231,7 +237,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     // fontWeight: 'bold',
     // color: '#6A1B9A',
-    color:'#000'
+    color:'#000',
+    marginTop:10,
+    paddingHorizontal:10
   },
   contentImg:{
     paddingLeft: '3%',
@@ -250,6 +258,7 @@ const styles = StyleSheet.create({
     width:'auto',
     height:24,
     paddingHorizontal:10,
+    marginBottom:5,
     backgroundColor:'#efebfa',
     borderRadius:12,
     marginRight:3,

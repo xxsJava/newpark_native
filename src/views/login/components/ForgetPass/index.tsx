@@ -6,7 +6,7 @@
  * @Description: desc
  */
 import React, {useEffect} from 'react';
-import {Button, DeviceEventEmitter, StyleSheet, View} from 'react-native';
+import {Button, DeviceEventEmitter, NativeModules, StyleSheet, View} from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
 import notifee, {
   AndroidImportance,
@@ -19,6 +19,10 @@ import notifee, {
 } from '@notifee/react-native';
 import {getNotification} from '../../../../api/NotificationApi';
 import IMSDKRN from '../../../../plugins/IMSDKRN';
+import {rewardListApi} from '../../../../api/sys/reward';
+import {rewardListType} from '../../../../api/sys/reward/types';
+import {postList} from '../../../../api/sys/home';
+import LottieView from 'lottie-react-native';
 
 Alipay.setAlipaySandbox(true);
 
@@ -203,6 +207,52 @@ const ForgetPass: React.FC = () => {
           IMSDKRN.doMethod('logout');
         }}
       />
+
+      <Button
+        title="IOS-接口测试"
+        onPress={async () => {
+          console.log('test');
+          const data: rewardListType = {
+            pageNo: 1,
+            pageSize: 5,
+          };
+          const res = await postList('token_pr_newpark_6e67d5670f2359fb', data);
+          console.log(res);
+        }}
+      />
+
+      <Button
+        title="IOS-IM"
+        onPress={() => {
+          const OPEMIMIOS = NativeModules.OpenIM;
+          console.log('调用IOS')
+          var cat = require('react-native').NativeModules.OpenIM;
+          console.log(cat)
+          const res = cat.whoName("RN-传参至IOS");
+          console.log(OPEMIMIOS.passDataToRN('ios 传参数至RN'))
+        }}
+      />
+
+    <Button
+        title="IOS-Promises"
+        onPress={async () => {
+          try{
+            var events=await require('react-native').NativeModules.OpenIM.testCallbackEventTwo();
+            console.log(events)
+        }catch(e){
+            console.error(e);
+        }
+        }}
+      />
+
+<Button
+        title="IOS-OpenIM初始化"
+        onPress={async () => {
+          var events=await require('react-native').NativeModules.OpenIM;
+          events.init('');
+        }}
+      />
+      <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop />
     </View>
   );
 };

@@ -5,7 +5,7 @@
  */
 
 import request from '../../../config/axios';
-import { postListType,postLikeParam,postCommentsParam } from './types'
+import { postListType,postLikeParam,postCommentsParam, postCommentsData } from './types'
 
 /**
  * 帖子列表api
@@ -14,7 +14,7 @@ import { postListType,postLikeParam,postCommentsParam } from './types'
 export const postList = (token:string,data:postListType): Promise<IResponse> => {
   return request.get({
     url: '/posts/postsApi',
-    data: data,
+    params: data,
     token:token
   });
 };
@@ -35,10 +35,11 @@ export const postLike = (token:string,data:postLikeParam): Promise<IResponse> =>
  * 评论api
  * @returns
  */
-export const postComments = (token:string,params:postCommentsParam): Promise<IResponse> => {
+export const postComments = (token:string,params:postCommentsParam,data:postCommentsData): Promise<IResponse> => {
   return request.get({
     url: '/postsComments/postsCommentsApi',
     params: params,
+    data:data,
     token:token
   });
 };
