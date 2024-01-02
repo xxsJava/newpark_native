@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-11-07 10:30:52
- * @LastEditTime: 2023-11-14 09:31:56
+ * @LastEditTime: 2024-01-02 17:42:43
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
  * @Description: desc
  */
@@ -39,7 +39,7 @@ const loginVal = async () => {
   //token校验
   const loginTokenAPI = await loginTokenApi(tokenStr);
   if (loginTokenAPI.code === 200) {
-    console.log(loginTokenAPI);
+    console.log(loginTokenAPI.data);
   
     //更新用户token
     Storage.set('usr-token', loginTokenAPI.data);

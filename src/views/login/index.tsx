@@ -69,7 +69,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
     const loginAPI = await loginApi(usrData);
 
-    console.log(loginAPI);
+    console.log(loginAPI.data);
 
     //用户不存在自动注册
     if (loginAPI.code === 1114) {
@@ -84,7 +84,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       navigate('Verification');
     } else if (loginAPI.code === 200) {
       //用户token存本地
-      Storage.set('usr-token', loginAPI.data);
+      Storage.set('usr-token', loginAPI.data.usrToken);
       navigate('LoginHome');
       toast.show({
         placement: 'top',
