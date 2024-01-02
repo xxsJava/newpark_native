@@ -14,4 +14,3 @@ LogBox.ignoreLogs([
   'Warning: BackAndroid is deprecated. Please use BackHandler instead.',
   'In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.',
 ]);
-

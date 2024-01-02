@@ -71,6 +71,7 @@ const PostDetails = ({route}:any) => {
     const [postCommentsList,setPostCommentsList] = React.useState([])
     const PostsCommentsData = async () => {
         const tokenStr = await Storage.get('usr-token');
+        console.log('tokenStr',tokenStr)
         if(tokenStr != null) {
             const postCommentsAPI = await postComments(tokenStr,commentsParam);
             setPostCommentsList(postCommentsAPI.data)
@@ -82,13 +83,6 @@ const PostDetails = ({route}:any) => {
         }
     }
     PostsCommentsData()
-    const myHeaders = new Headers();
-    myHeaders.append("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
-    // const requestOptions = {
-    //     method: 'GET',
-    //     headers: myHeaders,
-    //     redirect: 'follow'
-    // };
     return(
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>

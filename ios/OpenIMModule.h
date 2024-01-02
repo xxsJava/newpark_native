@@ -7,6 +7,13 @@
 
 #ifndef OpenIMModule_h
 #define OpenIMModule_h
+#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
 
+@interface OpenIM : NSObject <RCTBridgeModule>
+
+- (void)passDataToRN:(NSString *)data;
+
+@end
 
 #endif /* OpenIMModule_h */

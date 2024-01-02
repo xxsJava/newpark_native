@@ -63,4 +63,5 @@ target 'newpark_native' do
 end
 
 pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-pod 'AlipaySDK-iOS'
+#pod 'AlipaySDK-iOS'
+pod 'OpenIMSDK'

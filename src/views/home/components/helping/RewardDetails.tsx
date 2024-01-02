@@ -10,11 +10,14 @@ import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../../../config/routs/NavigationContainer'
 import {useTranslation, Trans} from 'react-i18next';
 import StepBar from '../StepBar'
+import { dateToMsgTime } from "../../../../components/Rests/TconTime";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const RewardDetails = () => {
+const RewardDetails = ({route}:any) => {
+    const data = route.params.item
+    console.log('data数据',data)
     return(
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
@@ -34,7 +37,7 @@ const RewardDetails = () => {
                             </View>
                             <View style={styles.nameView}>
                                 <Text allowFontScaling={false} style={styles.nameText}>小学牛</Text>
-                                <Text allowFontScaling={false} style={styles.timeText}>刚刚</Text>
+                                <Text allowFontScaling={false} style={styles.timeText}>{dateToMsgTime(data.startTime - data.endTime)}</Text>
                             </View>
                             <View style={styles.statusView}>
                                 <View style={[styles.statusStyle,styles.statusColor1]}>
@@ -43,7 +46,7 @@ const RewardDetails = () => {
                             </View>
                         </View>
                         <View style={styles.contcentTextView}>
-                            <Text allowFontScaling={false} style={styles.contcentText1}>去校门口拿个快递在</Text>
+                            <Text allowFontScaling={false} style={styles.contcentText1}>{data.rtitle}</Text>
                             <View style={styles.moneyView}>
                                 <View style={styles.moneyIcon}>
                                     <Icon color="#FABA3C" size={32} source={require('../../../../assets/images/coins-icon.png')}></Icon>
@@ -72,11 +75,13 @@ const RewardDetails = () => {
                             </View>
                             <View style={styles.remarksView}>
                                 <Text allowFontScaling={false} style={styles.remarksTitle}>备注</Text>
-                                <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false}></TextInput>
+                                <Text style={styles.remarksText}>{data.rdesc?data.rdesc:'小件/取件码/接单可查看具体信息'}</Text>
+                                {/* <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false}></TextInput> */}
                             </View>
                             <View style={[styles.remarksView,{marginTop:5}]}>
                                 <Text allowFontScaling={false} style={styles.remarksTitle}>完成时限</Text>
-                                <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='半个小时后' autoCorrect={false}></TextInput>
+                                <Text style={styles.remarksText}>半个小时后</Text>
+                                {/* <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='半个小时后' autoCorrect={false}></TextInput> */}
                             </View>
                         </View>
                         <View style={styles.takingOrders}>
@@ -128,7 +133,7 @@ const styles = StyleSheet.create({
                 height:windowHeight-90,
             },
             android:{
-                height:windowHeight-55,
+                height:windowHeight-75,
             }
         })
     },
@@ -302,6 +307,13 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         // backgroundColor:'yellow'
     },
+    remarksText:{
+        height:40,
+        fontSize:15,
+        color:'#aaa',
+        lineHeight:40,
+        paddingHorizontal:10,
+    },
     takingOrders:{
         width:windowWidth-30,
         height:50,
@@ -357,7 +369,8 @@ const styles = StyleSheet.create({
         color:'#bbb',
         lineHeight:30,
         textAlign:'center',
-        marginTop:30
+        marginTop:30,
+        marginBottom:20
     },
     buttonStyle:{
         width:'70%',

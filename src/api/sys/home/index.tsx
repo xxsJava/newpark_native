@@ -14,7 +14,7 @@ import { postListType,postLikeParam,postCommentsParam } from './types'
 export const postList = (token:string,data:postListType): Promise<IResponse> => {
   return request.get({
     url: '/posts/postsApi',
-    data: data,
+    params: data,
     token:token
   });
 };

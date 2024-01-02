@@ -9,9 +9,19 @@ import { View,Text,StyleSheet,Dimensions,ScrollView,Platform,TouchableOpacity } 
 import { Button,Icon } from 'react-native-paper';
 import { navigate } from "../../../../config/routs/NavigationContainer";
 import { Image } from "react-native-animatable";
+import {rewardListApi} from '../../../../api/sys/reward'
+import {rewardListType} from '../../../../api/sys/reward/types'
+import Storage from "../../../../utils/AsyncStorageUtils";
+import reactNativeConfig from "../../../../../react-native.config";
+import { dateToMsgTime } from "../../../../components/Rests/TconTime";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+const rewardType: rewardListType = {
+    pageNo:1,
+    pageSize:5
+};
 
 const listData = [{
     index:1,
@@ -40,30 +50,45 @@ const listData = [{
 }]
 
 const ListView = () => {
+    const [rewardData,rewardDataChange] = React.useState([])
+    // const rewardData = RewardApi()
+    // console.log('悬赏浏览获取',rewardData)
+    const RewardApi = async () => {
+        const tokenStr = await Storage.get('usr-token');
+        // console.log('悬赏token',tokenStr)
+        if(tokenStr != null) {
+          const rewardList = await rewardListApi(tokenStr,rewardType);
+          rewardDataChange(rewardList.data)
+        }
+    }
+    React.useEffect(() => {
+        RewardApi()
+    }, []); // 只在组件挂载时调用一次
+    console.log('悬赏浏览获取',rewardData)
     return (
         <View style={styles.parentLevel}>
             <ScrollView style={styles.scrollStyle}>
                 <View style={styles.listStyle}>
-                    {listData.map(item => {
+                    {rewardData.map(item => {
                         return(
-                            <View style={styles.itemStyle} key={item.index}>
+                            <View style={styles.itemStyle} key={item.rid}>
                                 <View style={styles.avatarView}>
                                     <View style={styles.avatarStyle}></View>
                                     <View style={styles.stateStyle}></View>
-                                    <Text allowFontScaling={false} style={styles.timeStyle}>{item.time}</Text>
+                                    <Text allowFontScaling={false} style={styles.timeStyle}>{dateToMsgTime(item.startTime - item.endTime)}</Text>
                                 </View>
                                 <View style={styles.textView}>
-                                    <Text allowFontScaling={false} style={styles.textStyle1} numberOfLines={1} ellipsizeMode='tail'>{item.text}</Text>
-                                    <Text allowFontScaling={false} style={styles.textStyle2}>{item.school}</Text>
+                                    <Text allowFontScaling={false} style={styles.textStyle1} numberOfLines={1} ellipsizeMode='tail'>{item.rtitle}</Text>
+                                    {/* <Text allowFontScaling={false} style={styles.textStyle2}>{item.school}</Text> */}
                                 </View>
                                 <View style={styles.detailsView}>
                                     <View style={styles.moneyView}>
                                         <View style={styles.moneyIcon}>
                                             <Icon color="#FABA3C" size={34} source={require('../../../../assets/images/coins-icon.png')}></Icon>
                                         </View>
-                                        <Text allowFontScaling={false} style={styles.moneySum}>{item.sum.split('.')[0]}.<Text style={{fontSize:14}}>{item.sum.split('.')[1]}</Text></Text>
+                                        <Text allowFontScaling={false} style={styles.moneySum}>{item.rmoney}</Text>
                                     </View>
-                                    <Button  style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('RewardDetailsRoute')}>查看详情</Button>
+                                    <Button  style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('RewardDetailsRoute',{item})}>查看详情</Button>
                                 </View>
                             </View>
                         )
