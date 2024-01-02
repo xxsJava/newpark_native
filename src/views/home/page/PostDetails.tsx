@@ -14,7 +14,7 @@ import {commentData} from '../mock/index'
 import { dateToMsgTime } from "../../../components/Rests/TconTime";
 import { WebView } from 'react-native-webview';
 import {postComments} from '../../../api/sys/home'
-import {postCommentsParam} from '../../../api/sys/home/types'
+import {postCommentsData, postCommentsParam} from '../../../api/sys/home/types'
 import Storage from "../../../utils/AsyncStorageUtils";
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
@@ -44,11 +44,13 @@ const windowHeight = Dimensions.get('window').height
 
 const PostDetails = ({route}:any) => {
     console.log('postsId',route.params.item.tid)
-    const commentsParam: postCommentsParam = {
+    const postCommentsData: postCommentsData = {
         pageNo: 1,
         pageSize: 5,
-        postsId: 1000000,
     };
+    const commentsParam:postCommentsParam = {
+        postsId: 1000000,
+    }
     const [inputVal,onInputPress] = React.useState('')
     const [collectionSelect,setSelectCollection] =  React.useState('0')
     const [likeSelect,setSelectLike] = React.useState('0')
@@ -73,7 +75,7 @@ const PostDetails = ({route}:any) => {
         const tokenStr = await Storage.get('usr-token');
         console.log('tokenStr',tokenStr)
         if(tokenStr != null) {
-            const postCommentsAPI = await postComments(tokenStr,commentsParam);
+            const postCommentsAPI = await postComments(tokenStr,commentsParam,postCommentsData);
             setPostCommentsList(postCommentsAPI.data)
             console.log('commentsParam',commentsParam)
             console.log('全部评论',postCommentsAPI)
