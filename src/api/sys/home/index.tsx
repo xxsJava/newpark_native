@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2024-01-02 11:34:24
+ * @LastEditTime: 2024-01-02 11:43:46
+ * @FilePath: \newpark_native\src\api\sys\home\index.tsx
+ * @Description: desc
+ */
 /**
  * 代码描述: home页api
  * 作者:cxr
@@ -5,7 +12,7 @@
  */
 
 import request from '../../../config/axios';
-import { postListType,postLikeParam,postCommentsParam, postCommentsData } from './types'
+import { postListType,postLikeParam, postCommentsData } from './types'
 
 /**
  * 帖子列表api
@@ -35,11 +42,10 @@ export const postLike = (token:string,data:postLikeParam): Promise<IResponse> =>
  * 评论api
  * @returns
  */
-export const postComments = (token:string,params:postCommentsParam,data:postCommentsData): Promise<IResponse> => {
+export const postComments = (token:string,data:postCommentsData): Promise<IResponse> => {
   return request.get({
     url: '/postsComments/postsCommentsApi',
-    params: params,
-    data:data,
+    params:data,
     token:token
   });
 };

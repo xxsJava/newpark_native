@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2023-12-26 13:38:53
+ * @LastEditTime: 2024-01-02 11:49:25
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
@@ -21,7 +21,7 @@ import {getNotification} from '../../../../api/NotificationApi';
 import IMSDKRN from '../../../../plugins/IMSDKRN';
 import {rewardListApi} from '../../../../api/sys/reward';
 import {rewardListType} from '../../../../api/sys/reward/types';
-import {postList} from '../../../../api/sys/home';
+import {postComments, postList} from '../../../../api/sys/home';
 import LottieView from 'lottie-react-native';
 
 Alipay.setAlipaySandbox(true);
@@ -245,11 +245,26 @@ const ForgetPass: React.FC = () => {
         }}
       />
 
-<Button
+    <Button
         title="IOS-OpenIM初始化"
         onPress={async () => {
           var events=await require('react-native').NativeModules.OpenIM;
           events.init('');
+        }}
+      />
+
+    <Button
+        title="接口测试"
+        onPress={async () => {
+
+          const postCommentsDatas = {
+            pageNo:1,
+            pageSize:5,
+            postsId:1000000
+          }
+
+           const apiTest = await postComments('token_pr_newpark_02a2bf5c639f2919',postCommentsDatas)
+           console.log(apiTest)
         }}
       />
       <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop />

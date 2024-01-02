@@ -18,13 +18,9 @@ export type postLikeParam = {
     likeTime:string
 }
 
-//评论api参数Param
-export type postCommentsParam = { 
-    postsId:number,
-}
-
 //评论api参数Data
 export type postCommentsData = { 
     pageNo:number,
     pageSize:number,
+    postsId:number
 }
