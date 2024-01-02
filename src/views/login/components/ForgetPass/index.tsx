@@ -173,7 +173,7 @@ const ForgetPass: React.FC = () => {
       />
 
       <Button
-        title="IM初始化"
+        title="IM初始化-Android"
         onPress={() => {
           console.log('调用原生代码');
           // let result = ToastExample.Constant;
@@ -184,7 +184,7 @@ const ForgetPass: React.FC = () => {
       />
 
       <Button
-        title="IM登录"
+        title="IM登录-Android"
         onPress={() => {
           console.log('调用login');
 
@@ -198,7 +198,7 @@ const ForgetPass: React.FC = () => {
       />
 
       <Button
-        title="IM退出"
+        title="IM-Android退出"
         onPress={() => {
           IMSDKRN.doMethod('logout');
         }}
