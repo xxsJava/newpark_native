@@ -14,7 +14,7 @@ import {commentData} from '../mock/index'
 import { dateToMsgTime } from "../../../components/Rests/TconTime";
 import { WebView } from 'react-native-webview';
 import {postComments} from '../../../api/sys/home'
-import {postCommentsData, postCommentsParam} from '../../../api/sys/home/types'
+import {postCommentsData} from '../../../api/sys/home/types'
 import Storage from "../../../utils/AsyncStorageUtils";
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
@@ -44,13 +44,11 @@ const windowHeight = Dimensions.get('window').height
 
 const PostDetails = ({route}:any) => {
     console.log('postsId',route.params.item.tid)
-    const postCommentsData: postCommentsData = {
+    const commentsData: postCommentsData = {
         pageNo: 1,
         pageSize: 5,
+        postsId: route.params.item.tid,
     };
-    const commentsParam:postCommentsParam = {
-        postsId: 1000000,
-    }
     const [inputVal,onInputPress] = React.useState('')
     const [collectionSelect,setSelectCollection] =  React.useState('0')
     const [likeSelect,setSelectLike] = React.useState('0')
@@ -75,16 +73,19 @@ const PostDetails = ({route}:any) => {
         const tokenStr = await Storage.get('usr-token');
         console.log('tokenStr',tokenStr)
         if(tokenStr != null) {
-            const postCommentsAPI = await postComments(tokenStr,commentsParam,postCommentsData);
+            const postCommentsAPI = await postComments(tokenStr,commentsData);
             setPostCommentsList(postCommentsAPI.data)
-            console.log('commentsParam',commentsParam)
+            console.log('commentsParam',commentsData)
             console.log('全部评论',postCommentsAPI)
             console.log('tokenStr',tokenStr)
         } else {
             return console.log('数据加载失败')
         }
     }
-    PostsCommentsData()
+    // PostsCommentsData()
+    React.useEffect(() => {
+        PostsCommentsData()
+      }, []); // 只在组件挂载时调用一次
     return(
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
