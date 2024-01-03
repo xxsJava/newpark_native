@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2024-01-02 11:49:25
+ * @LastEditTime: 2024-01-03 17:32:16
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
@@ -173,6 +173,12 @@ const ForgetPass: React.FC = () => {
           DeviceEventEmitter.addListener('onErrorLogin', resp => {
             console.log('登录失败----->', resp);
           });
+
+          DeviceEventEmitter.addListener('onRecvNewMessage', resp => {
+            const msg = JSON.parse(resp.message);
+            console.log('消息监听1----->', msg)
+            console.log('消息监听2----->', msg.textElem);
+          });
         }}
       />
 
@@ -193,9 +199,9 @@ const ForgetPass: React.FC = () => {
           console.log('调用login');
 
           const loginParams = {
-            usrId: '9689784708',
+            usrId: '1742430171993788416',
             token:
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI5Njg5Nzg0NzA4IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzExMjczNDMwLCJuYmYiOjE3MDM0OTcxMzAsImlhdCI6MTcwMzQ5NzQzMH0.E0myh_vZNA0KkrgV-E76wJjrtIfWzLj8kGrpo2HOjLE',
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzEyMDQ0ODQ3LCJuYmYiOjE3MDQyNjg1NDcsImlhdCI6MTcwNDI2ODg0N30.t9bHspkEgkB49EkiByczmyECf4OnmejZRpvR9_QqHfk',
           };
           IMSDKRN.login(loginParams.usrId, loginParams.token);
         }}
@@ -267,7 +273,7 @@ const ForgetPass: React.FC = () => {
            console.log(apiTest)
         }}
       />
-      <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop />
+      {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}
     </View>
   );
 };
