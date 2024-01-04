@@ -17,7 +17,8 @@ import {
     Button,
     Image,
     Dimensions,
-    ImageSourcePropType
+    ImageSourcePropType,
+    KeyboardAvoidingView
 } from 'react-native';
 import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
 import {navigate} from '../../../config/routs/NavigationContainer';
@@ -139,6 +140,7 @@ const CheckView = () => {
                 </View>
                 <Appbar.Action icon="dots-vertical" onPress={() => {}} />
             </Appbar.Header>
+            <KeyboardAvoidingView behavior="position" enabled >
             <SafeAreaView style={styles.mainContent}>
                 {/* <TextInput
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
@@ -153,12 +155,14 @@ const CheckView = () => {
                 </ScrollView>
                 <View style={styles.sendColumn}>
                     <View style={styles.inputBox}>
-                        <TextInput style={styles.sendColumnInput}
+                        <TextInput style={ value ==''? styles.sendColumnInputnull:styles.sendColumnInput}
                         allowFontScaling={false}
                         onChangeText={text => onChangeText(text)}
                         placeholder={'开始聊天吧'}
                         value={value}
                         onSubmitEditing={sendDo}
+                        multiline={true}
+                     
                         />
                         <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => console.log('Pressed')}></IconButton>
                     </View>
@@ -183,6 +187,7 @@ const CheckView = () => {
                     color="#841584"
                 /> */}
             </SafeAreaView>
+        </ KeyboardAvoidingView>
         </>
     )
 }
@@ -206,7 +211,8 @@ const styles = StyleSheet.create({
     chatBody: {
         flex:1,
         padding: 10,
-        backgroundColor:'#FFF'
+        backgroundColor:'#FFF',
+        marginTop:10
     },
     chatMessage: {
         marginVertical:10,
@@ -214,6 +220,7 @@ const styles = StyleSheet.create({
         justifyContent:'flex-start'
     },
     textStyle:{
+        maxlength:20,
         position: 'relative',
         backgroundColor: '#efebfa',
         borderRadius: 6,
@@ -300,7 +307,8 @@ const styles = StyleSheet.create({
     },
     appbarStyle:{
         borderWidth:0,
-        backgroundColor:'#FFF'
+        backgroundColor:'#FFF',
+        zIndex:999
     },
     avatarText:{
         color:'#000',
@@ -327,9 +335,16 @@ const styles = StyleSheet.create({
         })
     },
     inputBox:{
-        position:'relative',
+        position:'relative'
     },
     sendColumnInput:{
+        width:'80%',
+        // height:40,
+        borderRadius:20,
+        paddingHorizontal:20,
+        backgroundColor:'#f5f5f5'
+    },
+    sendColumnInputnull:{
         width:'100%',
         height:40,
         borderRadius:20,

@@ -5,6 +5,10 @@
  */
 package com.newpark_native.listener;
 
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
+import com.newpark_native.module.IMSDKRNModule;
+
 import java.util.List;
 
 import io.openim.android.sdk.OpenIMClient;
@@ -27,6 +31,7 @@ import io.openim.android.sdk.models.Message;
 import io.openim.android.sdk.models.RevokedInfo;
 import io.openim.android.sdk.models.UserInfo;
 import io.openim.android.sdk.models.UsersOnlineStatus;
+import io.openim.android.sdk.utils.JsonUtil;
 
 /**
  * @author xxs18
@@ -34,6 +39,8 @@ import io.openim.android.sdk.models.UsersOnlineStatus;
  * @date 2023/12/25 18:03
  */
 public class IMListener {
+
+    private final static String TAG = "IM-SDK-IMListener";
 
     public static IMListener create(){
         return new IMListener();
@@ -50,14 +57,17 @@ public class IMListener {
 
             @Override
             public void onUserStatusChanged(UsersOnlineStatus usersOnlineStatus) {
-
+                //订阅用户在线状态
             }
         });
         //Message-related Listener
         OpenIMClient.getInstance().messageManager.setAdvancedMsgListener(new OnAdvanceMsgListener() {
             @Override
             public void onRecvNewMessage(Message message) {
-
+                //接收消息监听
+                WritableMap params = Arguments.createMap();
+                params.putString("message", JsonUtil.toString(message));
+                IMSDKRNModule.create().sendEventRN("onRecvNewMessage",params);
             }
 
             @Override
@@ -97,7 +107,7 @@ public class IMListener {
 
             @Override
             public void onRecvOfflineNewMessage(List<Message> list) {
-
+                //离线消息
             }
         });
         //Friendship Status Change Listener
