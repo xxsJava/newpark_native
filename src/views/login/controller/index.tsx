@@ -42,7 +42,7 @@ const loginVal = async () => {
     console.log(loginTokenAPI.data);
   
     //更新用户token
-    Storage.set('usr-token', loginTokenAPI.data);
+    Storage.set('usr-token', loginTokenAPI.data.usrToken);
     isLoginFlag = true;
     return;
   }

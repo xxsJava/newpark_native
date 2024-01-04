@@ -18,38 +18,37 @@ import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-// const [upvoteVal,onUpvoteSet] = React.useState(false)
-
 //普通帖子组件
 export const postsOrdinary = (item: any, index: any, separators: any) => {
+  // const [upvoteVal,onUpvoteSet] = React.useState(false)
   let upvoteVal = false;
-  // const [inputValue, onChangeText] = useState('喜欢就告诉她');
-  // const onUpvote = (porp:boolean) => {
-  //   onUpvoteSet(!porp)
-    
-  // }
   const postLikeParam:postLikeParam ={
     likeTime: 1396189015737,
     comId: 0,
-    postsId: 1000000,
+    postsId: item.tid,
     likeType: 1
   }
 
-  const postLikePress = async () => {
+  const postLikePress = async (porp:any) => {
     const tokenStr = await Storage.get('usr-token');
-    const uidStr = await Storage.get('u-id');
-    console.log('uidStr',uidStr)
     if(tokenStr != null) {
       const postLikeUp = await postLike(tokenStr,postLikeParam);
-      // setPostCommentsList(postCommentsAPI.data)
-      // console.log('commentsParam',commentsData)
       console.log('点赞返回',postLikeUp)
+      if(postLikeUp.data) {
+        upvoteVal = true
+        item.tlikeCount = item.tlikeCount + 1 ;
+      }
     } else {
       return console.log('数据加载失败')
     }
+    // if(porp == 1) {
+    //   upvoteVal = true
+    // } else {
+    //   upvoteVal = false
+    // }
+    console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
 
-  console.log('帖子item',item)
   return (
     <TouchableOpacity activeOpacity={0.9} key={item.tid}  onPress={() => navigate('PostDetailsRoute',{item})}>
       <Card style={styles.cardSty}>
@@ -113,9 +112,9 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           </View>
           <View style={styles.interactionRight}>
             <Button
-              icon={require('../../../assets/images/3.0x/like.png')}
+              icon={upvoteVal?require('../../../assets/images/3.0x/like_block.png'):require('../../../assets/images/3.0x/like.png')}
               style={styles.buttonDz}
-              onPress={() => postLikePress()}>
+              onPress={() => postLikePress(1)}>
                 {item.tlikeCount}
             </Button>
             <TouchableOpacity

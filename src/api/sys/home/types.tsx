@@ -15,7 +15,8 @@ export type postLikeParam = {
     likeTime: number,
     comId: number,
     postsId: number,
-    likeType: number
+    likeType: number,
+    // uid:number
 }
 
 //评论api参数Data
