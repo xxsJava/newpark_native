@@ -24,6 +24,7 @@ import MemberServicesView from '../../../views/mine/components/service/MemberSer
 import MyOrderView from '../../../views/mine/components/service/MyOrderView';
 import MyPostView from '../../../views/mine/components/service/MyPostView';
 import WalletView from '../../../views/mine/components/service/WalletView';
+import CallCustom from '../../../views/mine/components/service/CallCustom';
 import CollectionView from '../../../views/mine/components/service/CollectionView';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
 import SearchView from '../../../views/socializing/components/SearchView';
@@ -45,6 +46,7 @@ import ClockInView from '../../../views/publish/page/clockIn'
 import RewardDetails from '../../../views/home/components/helping/RewardDetails'
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart'
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity'
+import ObjCard from '../../../views/socializing/components/ObjCard'
 import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
 import Empty from '../../../components/Error/empty'
 import SystemError from '../../../components/Error/SystemError'
@@ -169,6 +171,13 @@ export default {
       title: '我的钱包',
       headerShown: false,
     },
+  },
+  CallCustom:{
+    component:CallCustom,
+    options:{
+      title:'新园客服',
+      headerShown:false
+    }
   },
   CollectionRoute: {
     component: CollectionView,
@@ -328,6 +337,13 @@ export default {
     component:CreateCommunity,
     options:{
       title:'创建社区',
+      headerShown:false
+    }
+  },
+  ObjCard:{
+    component:ObjCard,
+    options:{
+      title:'对方的卡片',
       headerShown:false
     }
   },
