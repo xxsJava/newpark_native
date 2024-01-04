@@ -139,7 +139,7 @@ export default {
   CustomerServiceRoute: {
     component: CustomerServiceView,
     options: {
-      title: '我的订单',
+      title: '联系客服',
     },
   },
   MemberServicesRoute: {
