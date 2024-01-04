@@ -13,9 +13,11 @@ import {useTranslation, Trans} from 'react-i18next';
 import {commentData} from '../mock/index'
 import { dateToMsgTime } from "../../../components/Rests/TconTime";
 import { WebView } from 'react-native-webview';
-import {postComments} from '../../../api/sys/home'
-import {postCommentsData} from '../../../api/sys/home/types'
+import {postComments,postLike} from '../../../api/sys/home'
+import {postCommentsData,postLikeParam} from '../../../api/sys/home/types'
 import Storage from "../../../utils/AsyncStorageUtils";
+import CommentDetails from '../../../views/home/page/CommentDetails'
+
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
@@ -49,11 +51,19 @@ const PostDetails = ({route}:any) => {
         pageSize: 5,
         postsId: route.params.item.tid,
     };
+
+    const postLikeParam:postLikeParam = {
+        likeTime: 1396189015737,
+        comId: 0,
+        postsId: route.params.item.tid,
+        likeType: 1
+    }
     const [inputVal,onInputPress] = React.useState('')
     const [collectionSelect,setSelectCollection] =  React.useState('0')
     const [likeSelect,setSelectLike] = React.useState('0')
     const [transmitSelect,setSelectTransmit] = React.useState('0')
-    const [likeSelect1,setSelectLike1] = React.useState(0)
+    const [likeSelect1,setSelectLike1] = React.useState('0')
+    const [tlikeCount,setTlikeCount] = React.useState(route.params.item.tlikeCount)
     const data = route.params.item
 
     console.log('单条帖子数据',route.params)
@@ -61,12 +71,28 @@ const PostDetails = ({route}:any) => {
         if(prop == 1) {
             collectionSelect == '0' ? setSelectCollection('1'):setSelectCollection('0')
             console.log('返回值：',collectionSelect)
-        } else if (prop == 2) {
-            likeSelect == '0' ? setSelectLike('1'):setSelectLike('0')
         } else if(prop == 3) {
             transmitSelect == '0' ? setSelectTransmit('1'):setSelectTransmit('0')
         }
         
+    }
+    const postLikePress = async () => {
+        const tokenStr = await Storage.get('usr-token');
+        if(likeSelect == '0') {
+            if(tokenStr != null) {
+                const postLikeUp = await postLike(tokenStr,postLikeParam);
+                if(postLikeUp.data) {
+                    setSelectLike('1')
+                    setTlikeCount(tlikeCount+1)
+                }
+                console.log('点赞返回',postLikeUp)
+              } else {
+                return console.log('数据加载失败')
+              }
+        } else {
+            setSelectLike('0')
+            setTlikeCount(tlikeCount-1)
+        }
     }
     const [postCommentsList,setPostCommentsList] = React.useState([])
     const PostsCommentsData = async () => {
@@ -75,13 +101,36 @@ const PostDetails = ({route}:any) => {
         if(tokenStr != null) {
             const postCommentsAPI = await postComments(tokenStr,commentsData);
             setPostCommentsList(postCommentsAPI.data)
-            console.log('commentsParam',commentsData)
-            console.log('全部评论',postCommentsAPI)
-            console.log('tokenStr',tokenStr)
         } else {
             return console.log('数据加载失败')
         }
     }
+
+    const ComLikePress = async (prop1:any,prop2:any) => {
+        const comLikeParam:postLikeParam = {
+            likeTime: 1396189015737,
+            comId: prop2,
+            postsId: 0,
+            likeType: 1
+        }
+        const tokenStr = await Storage.get('usr-token');
+        if(likeSelect == '0') {
+            if(tokenStr != null) {
+                const comLikeUp = await postLike(tokenStr,comLikeParam);
+                if(comLikeUp.data) {
+                    setSelectLike1('1')
+                    // setTlikeCount(tlikeCount+1)
+                }
+                console.log('点赞返回',comLikeUp)
+            } else {
+                return console.log('数据加载失败')
+            }
+        } else {
+            setSelectLike1('0')
+            // setTlikeCount(tlikeCount-1)
+        }
+    }
+
     // PostsCommentsData()
     React.useEffect(() => {
         PostsCommentsData()
@@ -130,28 +179,29 @@ const PostDetails = ({route}:any) => {
                             <Text allowFontScaling={false} style={styles.postBottomText}>浏览记录   502</Text>
                             <View style={styles.heartView}>
                                 <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(1)}>
-                                    <Icon size={24} color={collectionSelect == '1' ? '#FC073B':'#EFEBFA'} source={require('../../../assets/images/Favorite.png')}></Icon>
+                                    <Icon size={24} color={collectionSelect == '1' ? '#FC073B':'#ddd'} source={require('../../../assets/images/Favorite.png')}></Icon>
                                 </TouchableOpacity>
                                 <Text allowFontScaling={false} style={styles.heartText}> 2000</Text>
                             </View>
                             <View style={styles.heartView}>
                                 <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(3)}>
-                                    <Icon size={24} color={transmitSelect == '1'?'#6A1B9A':'#EFEBFA'} source={require('../../../assets/images/transmit_icon.png')}></Icon>
+                                    <Icon size={24} color={transmitSelect == '1'?'#6A1B9A':'#ddd'} source={require('../../../assets/images/transmit_icon.png')}></Icon>
                                 </TouchableOpacity>
                                 <Text allowFontScaling={false} style={styles.heartText}> {data.tforwardCount}</Text>
                             </View>
                             <View style={styles.heartView}>
-                                <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(2)}>
-                                    <Icon size={24} color={likeSelect == '1' ? '#FABA3C':'#EFEBFA'} source={require('../../../assets/images/Like-copy.png')}></Icon>
+                                <TouchableOpacity style={styles.heartIcon} onPress={() => postLikePress()}>
+                                    <Icon size={24} color={likeSelect == '1' ? '#FABA3C':'#ddd'} source={require('../../../assets/images/Like-copy.png')}></Icon>
                                 </TouchableOpacity>
-                                <Text allowFontScaling={false} style={styles.heartText}> {data.tlikeCount}</Text>
+                                <Text allowFontScaling={false} style={styles.heartText}> {tlikeCount}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={styles.postComment}>
                         <View style={styles.scrollView}>
                             <Text allowFontScaling={false} style={styles.commentTitle}>全部评论({postCommentsList.length})</Text>
-                            <View style={styles.listStyle}>
+                            <CommentDetails commenData={postCommentsList}></CommentDetails>
+                            {/* <View style={styles.listStyle}>
                                 {postCommentsList.map(item => {
                                     return(
                                         <View style={styles.itemStyle} key={item.comId}>
@@ -164,29 +214,29 @@ const PostDetails = ({route}:any) => {
                                                     <Text allowFontScaling={false} style={styles.itemTime}>{dateToMsgTime(item.startTime)}</Text>
                                                 </View>
                                                 <View style={styles.itemIconView}>
-                                                    <TouchableOpacity>
-                                                        <Icon size={22} color={likeSelect1 == 0?'#FABA3C':'#EFEBFA'}  source={require('../../../assets/images/Like-copy.png')}></Icon>
+                                                    <TouchableOpacity onPress={() => ComLikePress(item.comSupport,item.comId)}>
+                                                        <Icon size={22} color={likeSelect1 == '0'?'#ddd':'#FABA3C'}  source={require('../../../assets/images/Like-copy.png')}></Icon>
                                                     </TouchableOpacity>
                                                     <Text allowFontScaling={false} style={styles.itemIconText}>  {item.comSupport}</Text>
-                                                    </View>
-                                                </View>
-                                                <View style={styles.itemContent}>
-                                                    <Text allowFontScaling={false} style={styles.itemContentText}>{item.comContent}</Text>
-                                                    <View style={[styles.itemComment,item.coms.length == 0?{display:'none'}:null]}>
-                                                        {item.coms.map((emeit:any) => {
-                                                            return(
-                                                                <Text allowFontScaling={false} style={styles.commentArea} key={emeit.comId}>
-                                                                    {emeit.unikname}:
-                                                                    <Text allowFontScaling={false} style={styles.commentAreaText}>  {emeit.comContent}</Text>
-                                                                </Text>
-                                                            )
-                                                        })}
-                                                    </View>
                                                 </View>
                                             </View>
-                                        )
-                                    })}
-                                </View>
+                                            <View style={styles.itemContent}>
+                                                <Text allowFontScaling={false} style={styles.itemContentText}>{item.comContent}</Text>
+                                                <View style={[styles.itemComment,item.coms.length == 0?{display:'none'}:null]}>
+                                                    {item.coms.map((emeit:any) => {
+                                                        return(
+                                                            <Text allowFontScaling={false} style={styles.commentArea} key={emeit.comId}>
+                                                                {emeit.unikname}:
+                                                                <Text allowFontScaling={false} style={styles.commentAreaText}>  {emeit.comContent}</Text>
+                                                            </Text>
+                                                        )
+                                                    })}
+                                                </View>
+                                            </View>
+                                        </View>
+                                    )
+                                })}
+                            </View> */}
                         </View>
                     </View>
                 </ScrollView>
@@ -387,6 +437,7 @@ const styles = StyleSheet.create({
         lineHeight:40,
         paddingLeft:20,
     },
+
     listStyle:{
         width:windowWidth,
         paddingTop:5,
@@ -427,7 +478,7 @@ const styles = StyleSheet.create({
     },
     itemIconText:{
         fontSize:15,
-        color:'#EFEBFA',
+        color:'#d d d',
         lineHeight:25
     },
     itemContent:{
@@ -463,6 +514,8 @@ const styles = StyleSheet.create({
         color:'#000',
         fontWeight:'500',
     },
+
+
     commentBottom:{
         width:windowWidth,
         backgroundColor:'#FFF',
@@ -472,7 +525,7 @@ const styles = StyleSheet.create({
         ...Platform.select({
             ios:{
                 height:85,
-                shadowColor: '#ccc',
+                shadowColor: '#ddd',
                 shadowOffset: {width: 0, height: 0},
                 shadowOpacity: 1,
                 shadowRadius: 2.5,

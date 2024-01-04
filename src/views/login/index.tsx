@@ -85,6 +85,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     } else if (loginAPI.code === 200) {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data.usrToken);
+      //用户uid存本地
+      Storage.set('uid', loginAPI.data.uId);
       navigate('LoginHome');
       toast.show({
         placement: 'top',
