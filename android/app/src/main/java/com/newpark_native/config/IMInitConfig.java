@@ -36,6 +36,8 @@ public class IMInitConfig {
      */
     private final String STORAGE_DIR = "NewPark/data";
 
+    private final String STORAGE_DIR_MSG = "NewPark/message";
+
     public static IMInitConfig create() {
         return new IMInitConfig();
     }
@@ -43,14 +45,14 @@ public class IMInitConfig {
     public InitConfig initConfigs() {
         //配置
         InitConfig initConfig = new InitConfig(API_URL, WS_URL, getStorageDir(STORAGE_DIR));
+        //创建消息存放目录
+        getStorageDir(STORAGE_DIR_MSG);
         initConfig.isLogStandardOutput = true;
         return initConfig;
     }
 
-
     /**
-     * 获取本地路径 创建数据库地址
-     *
+     * 获取本地路径
      * @param dirStr
      * @return
      */
