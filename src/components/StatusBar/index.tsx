@@ -10,25 +10,25 @@ import {StatusBar, View} from 'react-native';
  */
 
 export default class MainPage extends Component {
-  // render() {
-  //   return (
-  //     <StatusBar
-  //       backgroundColor="#ff0000"
-  //       translucent={true}
-  //       hidden={true}
-  //       animated={true}
-  //     />
-  //   );
-  // }
   render() {
     return (
-      <View >
-        <StatusBar backgroundColor="#F8B032"  />
-        <View>
-          <StatusBar hidden={false} />
-        </View>
-      </View>
-    ); 
-  };
+      <StatusBar
+        backgroundColor="#ff0000"
+        translucent={true}
+        hidden={true}
+        animated={true}
+      />
+    );
+  }
+  // render() {
+  //   return (
+  //     <View >
+  //       <StatusBar backgroundColor="#F8B032"  />
+  //       <View>
+  //         <StatusBar hidden={false} />
+  //       </View>
+  //     </View>
+  //   ); 
+  // };
 
 }

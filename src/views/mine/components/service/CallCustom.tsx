@@ -12,8 +12,8 @@ export default class CallCustom extends Component {
                         <Appbar.BackAction onPress={() => navigate('CustomerServiceRoute')} />
                         <Text>返回</Text>
                     </View>
-
-
+                  <Text>新园客服</Text>
+                    {/* <image  /> */}
 
                 </Appbar.Header>
                 <Text> textInComponent </Text>
