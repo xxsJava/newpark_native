@@ -19,10 +19,13 @@ import * as Animatable from 'react-native-animatable';
 import { IconButton } from 'react-native-paper';
 import { Center,Box } from '@gluestack-ui/themed';
 import React, {Component, useRef, useState} from 'react';
-import {Text, StyleSheet, View, Button, Animated, TouchableOpacity, Easing} from 'react-native';
+import {Text, StyleSheet, View, Button, Animated, TouchableOpacity, Easing, Dimensions} from 'react-native';
 import {loginOutApi} from '../../api/sys/lgoin';
 import Storage from '../../utils/AsyncStorageUtils';
 import {navigate} from '../../config/routs/NavigationContainer';
+import BellView from '../../components/Bell';
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 export default class PublishView extends Component {
   render() {
@@ -148,6 +151,9 @@ const Example = () => {
         </Animated.View>
         <Button title="点击出现" onPress={() => fadeIn()}></Button>
         <Button title="点击消失" onPress={() => fadeOut()}></Button>
+      <View style={styles.bell}>
+          <BellView isMsg={true}></BellView> 
+      </View>
       {/* <Stagger
         visible={isOpen}
         initial={{
@@ -294,5 +300,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    width:windowWidth,
+    height:windowHeight
   },
+  bell:{
+      position:'absolute',
+      bottom:-260,
+      right:-160
+  }
 });

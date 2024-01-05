@@ -20,6 +20,7 @@ import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
 import AfterSalesView from '../../../views/mine/components/oder/AfterSalesView';
 import CustomerServiceView from '../../../views/mine/components/service/CustomerServiceView';
 import FeedbackView from '../../../views/mine/components/service/FeedbackView';
+import MineThree from '../../../views/mine/components/MineThree';
 import MemberServicesView from '../../../views/mine/components/service/MemberServicesView';
 import MyOrderView from '../../../views/mine/components/service/MyOrderView';
 import MyPostView from '../../../views/mine/components/service/MyPostView';
@@ -200,6 +201,13 @@ export default {
       title: '意见反馈',
       headerShown: false,
     },
+  },
+  MineThree:{
+    component:MineThree,
+    options:{
+      title:'我的商品悬赏',
+      headerShown: false,
+    }
   },
   SearchView: {
     component: SearchView,

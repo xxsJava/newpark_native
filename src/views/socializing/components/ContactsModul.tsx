@@ -15,6 +15,7 @@ import {
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {navigate} from '../../../config/routs/NavigationContainer';
 import {any} from 'prop-types';
+import BellView from'../../../components/Bell'
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -694,6 +695,7 @@ const ListIndex: React.FC = () => {
         }}
         stickySectionHeadersEnabled={true}
       />
+      <BellView isMsg={false}></BellView>
     </View>
   );
 };

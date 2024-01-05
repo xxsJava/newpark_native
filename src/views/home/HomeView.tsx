@@ -8,6 +8,7 @@
 import React, {Component} from 'react';
 import HomeNav from '../../components/Nav';
 import HomeComponents from '../../components/Home';
+import BellView from'../../components/Bell'
 
 export default class HomeView extends Component {
   
@@ -16,6 +17,7 @@ export default class HomeView extends Component {
       <>
         <HomeNav />
         <HomeComponents />
+        <BellView isMsg={true}></BellView>
       </>
     );
   }
