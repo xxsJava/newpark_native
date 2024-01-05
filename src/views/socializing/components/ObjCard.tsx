@@ -54,7 +54,7 @@ export default class ObjCard extends Component {
 
         ]
     }
-    setIsSwitchOn = (key: any,value:any) => {
+    setIsSwitchOn = (key: string,value:boolean) => {
         console.log(key+':'+value);
         if(key=='topTalk'){
             if(value) {
@@ -126,7 +126,7 @@ export default class ObjCard extends Component {
                         <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} />
                     </TouchableOpacity>
                     <View style={styles.boxmin}>
-                        {this.switchList.map((item: any) => {
+                        {this.switchList.map((item: object) => {
                             return <View key={item.key} style={styles.boxStylemin}>
                                 <Text style={ this.state.switchControlList[item.key]?styles.h6 :styles.h6null}>{item.TiTle}</Text>
                                 <View>
