@@ -6,7 +6,7 @@
  * @Description: desc
  */
 import React, {useEffect} from 'react';
-import {Button, DeviceEventEmitter, NativeModules, StyleSheet, View} from 'react-native';
+import {Button, DeviceEventEmitter, NativeModules, StyleSheet, View, NativeEventEmitter} from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
 import notifee, {
   AndroidImportance,
@@ -25,6 +25,12 @@ import {postComments, postList} from '../../../../api/sys/home';
 import LottieView from 'lottie-react-native';
 
 Alipay.setAlipaySandbox(true);
+
+var callManager = NativeModules.CallManager;
+const subscribeStreamEvt = new NativeEventEmitter(callManager);
+const { WSNotification } = NativeModules;
+// console.log('接收OC定义的常量--->'+WSNotification.name+' -------->'+WSNotification.ocName);
+const calendarManagerEmitter = new NativeEventEmitter(WSNotification);
 
 async function aliPay() {
   // 支付宝端支付
@@ -153,6 +159,20 @@ const onPressFunction = (str: string) => {
   console.log(str);
 };
 
+//添加监听
+function componentDidMount() {
+  // this.listener = subscribeStreamEvt.addListener('CallIncoming', this._callIncoming.bind(this));
+  const subscription = calendarManagerEmitter.addListener('OCSendToRN',(reminder) => console.log('RN收到OC发来---->'+reminder.name))
+}
+
+//清除监听
+function componentWillUnmount(this: any) {
+  this.listener && this.listener.remove();
+  this.listener = null;
+}
+
+
+
 const ForgetPass: React.FC = () => {
   return (
     <View style={{flex: 1}}>
@@ -162,6 +182,8 @@ const ForgetPass: React.FC = () => {
       <Button title="通知" onPress={onDisplayNotification} />
       <Button title="远程通知" onPress={onNotificationRemote} />
       <Button title="定时通知" onPress={onCreateTriggerNotification} />
+      <Button title="添加监听" onPress={componentDidMount} />
+      <Button title="清除监听" onPress={componentWillUnmount} />
 
       <Button
         title="开启登录监听"

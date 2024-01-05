@@ -25,6 +25,7 @@ import {navigate} from '../../config/routs/NavigationContainer';
 import {getOpenIMConfig} from '../../api/IMAPI';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import { loginIM } from '../../entity/LoginOpenIM';
+import DateTimeUtils from '../../utils/DateTimeUtils';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -85,7 +86,14 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data.usrToken);
       // //用户OPEN-连接
-      // const openIMRes = await getOpenIMConfig(loginAPI.data.usrToken);
+      const openIMConfig = {
+        secret: "openIM123",
+        platformID: 2,
+        userID: loginAPI.data.uId
+      }
+      
+      console.log("获取到用户UID---->",openIMConfig.userID)
+      // const openIMRes = await getOpenIMConfig(openIMConfig,DateTimeUtils.timestamps+'');
       // console.log('获取到Open-IM-token---->', openIMRes.data.token);
       // const imParams:loginIM = {
       //   userId: '1742430171993788416',
@@ -96,12 +104,12 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       //   usrId: loginAPI.data.uId + '',
       //   token: openIMRes.data.token,
       // };
-
-      const loginParams = {
-        usrId: '1742430171993788416',
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzEyMTk1MzU0LCJuYmYiOjE3MDQ0MTkwNTQsImlhdCI6MTcwNDQxOTM1NH0.7DDrr9mV_0MZZ9HuRWQXQrV_BWQR5X_1OUYkLuY-698',
-      };
-      IMSDKRN.login(loginParams.usrId, loginParams.token);
+      // console.log('获取到openim配置------>',openIMRes)
+      // const loginParams = {
+      //   usrId: '1742430171993788416',
+      //   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzEyMTk1MzU0LCJuYmYiOjE3MDQ0MTkwNTQsImlhdCI6MTcwNDQxOTM1NH0.7DDrr9mV_0MZZ9HuRWQXQrV_BWQR5X_1OUYkLuY-698',
+      // };
+      // IMSDKRN.login(loginParams.usrId, loginParams.token);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       navigate('LoginHome');

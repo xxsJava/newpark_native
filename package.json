@@ -74,5 +74,9 @@
   },
   "engines": {
     "node": ">=16"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/xxsJava/newpark_native.git",
+  "author": "xxsJava <74550553+xxsJava@users.noreply.github.com>",
+  "license": "MIT"
 }
