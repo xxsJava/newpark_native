@@ -102,6 +102,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzEyMTk1MzU0LCJuYmYiOjE3MDQ0MTkwNTQsImlhdCI6MTcwNDQxOTM1NH0.7DDrr9mV_0MZZ9HuRWQXQrV_BWQR5X_1OUYkLuY-698',
       };
       IMSDKRN.login(loginParams.usrId, loginParams.token);
+      //用户uid存本地
+      Storage.set('uid', loginAPI.data.uId);
       navigate('LoginHome');
       toast.show({
         placement: 'top',

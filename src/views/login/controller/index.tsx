@@ -42,7 +42,7 @@ const loginVal = async () => {
     console.log(loginTokenAPI.data);
   
     //更新用户token
-    Storage.set('usr-token', loginTokenAPI.data);
+    Storage.set('usr-token', loginTokenAPI.data.usrToken);
     isLoginFlag = true;
     return;
   }
@@ -59,6 +59,7 @@ const Islogin = () => {
   console.log('查看登录状态------>', isLoginFlag);
   
   return isLoginFlag ? (
+    // return true ? (
     <Stack.Navigator initialRouteName="RootMain">
       <Stack.Screen
         name="RootMain"
