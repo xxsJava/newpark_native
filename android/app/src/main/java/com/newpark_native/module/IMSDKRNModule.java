@@ -61,7 +61,7 @@ public class IMSDKRNModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void login(String usrId,String token) {
-        Log.i(TAG, "-------------->IM登录");
+        Log.i(TAG, "-------------->IM登录"+usrId+"--"+token);
         OpenIMClient.getInstance().login(LoginLister.create(), usrId, token);
     }
 

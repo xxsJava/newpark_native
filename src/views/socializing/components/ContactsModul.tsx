@@ -563,7 +563,7 @@ const ListIndex: React.FC = () => {
 
   const renderItem = ({item}: {item: DataItem}) => (
     <TouchableOpacity
-      onPress={() => navigate('CheckRoute')}
+      onPress={() => navigate('ObjCard')}
       style={[
         styles.listItem,
         {

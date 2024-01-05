@@ -16,12 +16,15 @@ import {LoginScreenProps} from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
 // import {useToast} from 'native-base';
-import { useToast } from '@gluestack-ui/themed';
+import {useToast} from '@gluestack-ui/themed';
 import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
 import {useTranslation, Trans} from 'react-i18next';
 import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
 import {forgetPass} from './controller';
 import {navigate} from '../../config/routs/NavigationContainer';
+import {getOpenIMConfig} from '../../api/IMAPI';
+import IMSDKRN from '../../plugins/IMSDKRN';
+import { loginIM } from '../../entity/LoginOpenIM';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -58,9 +61,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       toast.show({
         placement: 'bottom',
         render: () => {
-          return (
-            <Text allowFontScaling={false}>手机号有误</Text>
-          )
+          return <Text allowFontScaling={false}>手机号有误</Text>;
         },
       });
       setLoad(false);
@@ -76,34 +77,45 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       toast.show({
         placement: 'bottom',
         render: () => {
-          return (
-            <Text allowFontScaling={false}>验证码发送，请注意查收</Text>
-          )
+          return <Text allowFontScaling={false}>验证码发送，请注意查收</Text>;
         },
       });
       navigate('Verification');
     } else if (loginAPI.code === 200) {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data.usrToken);
+      // //用户OPEN-连接
+      // const openIMRes = await getOpenIMConfig(loginAPI.data.usrToken);
+      // console.log('获取到Open-IM-token---->', openIMRes.data.token);
+      // const imParams:loginIM = {
+      //   userId: '1742430171993788416',
+      //   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MSwiZXhwIjoxNzEyMTM2NzY1LCJuYmYiOjE3MDQzNjA0NjUsImlhdCI6MTcwNDM2MDc2NX0.aA18qngtlswzfH52aJDAn-o-Lq4WPJaTj3uZ-2D8dJs'
+      // }
+      //oepnIm 登录
+      // const loginParams = {
+      //   usrId: loginAPI.data.uId + '',
+      //   token: openIMRes.data.token,
+      // };
+
+      const loginParams = {
+        usrId: '1742430171993788416',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzEyMTk1MzU0LCJuYmYiOjE3MDQ0MTkwNTQsImlhdCI6MTcwNDQxOTM1NH0.7DDrr9mV_0MZZ9HuRWQXQrV_BWQR5X_1OUYkLuY-698',
+      };
+      IMSDKRN.login(loginParams.usrId, loginParams.token);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       navigate('LoginHome');
       toast.show({
         placement: 'top',
         render: () => {
-          return (
-            <Text allowFontScaling={false}>登录成功，可享受功能</Text>
-          )
+          return <Text allowFontScaling={false}>登录成功，可享受功能</Text>;
         },
-        
       });
     } else if (loginAPI.code === 1110) {
       toast.show({
         placement: 'top',
         render: () => {
-          return (
-            <Text allowFontScaling={false}>账号有误</Text>
-          )
+          return <Text allowFontScaling={false}>账号有误</Text>;
         },
       });
     }
@@ -115,9 +127,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       toast.show({
         placement: 'top',
         render: () => {
-          return (
-            <Text allowFontScaling={false}>请输入手机号</Text>
-          )
+          return <Text allowFontScaling={false}>请输入手机号</Text>;
         },
       });
       return;
@@ -128,9 +138,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     toast.show({
       placement: 'top',
       render: () => {
-        return (
-          <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>
-        )
+        return <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>;
       },
     });
     //发送验证码
@@ -161,7 +169,9 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
           <View style={styles.box}>
             <View>
-              <Text allowFontScaling={false} style={styles.text}>欢迎大家加入NewPark大家庭</Text>
+              <Text allowFontScaling={false} style={styles.text}>
+                欢迎大家加入NewPark大家庭
+              </Text>
             </View>
 
             <View style={styles.num}>

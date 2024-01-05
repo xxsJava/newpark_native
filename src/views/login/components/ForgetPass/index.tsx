@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2024-01-03 17:32:16
+ * @LastEditTime: 2024-01-04 17:37:20
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
@@ -188,19 +188,7 @@ const ForgetPass: React.FC = () => {
       <Button
         title="开启登录监听"
         onPress={() => {
-          console.log('开起监听');
-          DeviceEventEmitter.addListener('onSuccessLogin', resp => {
-            console.log('登录成功----->', resp);
-          });
-          DeviceEventEmitter.addListener('onErrorLogin', resp => {
-            console.log('登录失败----->', resp);
-          });
-
-          DeviceEventEmitter.addListener('onRecvNewMessage', resp => {
-            const msg = JSON.parse(resp.message);
-            console.log('消息监听1----->', msg)
-            console.log('消息监听2----->', msg.textElem);
-          });
+          
         }}
       />
 
