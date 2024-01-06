@@ -14,6 +14,7 @@ import ChatModule from './ChatModule';
 import BellView from '../../../components/Bell'
 
 
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -82,8 +83,8 @@ export default TabNav;
 const styles = StyleSheet.create({
   bell:{
     position:'absolute',
-    bottom:20,
-    right:40,
+    bottom:10,
+    right:0,
     zIndex:999
   },
   safeStyle: {
