@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,ScrollView,TextInput } from "react-native";
+import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,ScrollView,TextInput, KeyboardAvoidingView } from "react-native";
 import { Image } from "react-native-animatable";
 import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import {navigate} from '../../../config/routs/NavigationContainer';
@@ -53,7 +53,7 @@ const PostDetails = ({route}:any) => {
     };
 
     const postLikeParam:postLikeParam = {
-        likeTime: 1396189015737,
+        likeTime: new Date().valueOf(),
         comId: 0,
         postsId: route.params.item.tid,
         likeType: 1
@@ -64,6 +64,9 @@ const PostDetails = ({route}:any) => {
     const [transmitSelect,setSelectTransmit] = React.useState('0')
     const [likeSelect1,setSelectLike1] = React.useState('0')
     const [tlikeCount,setTlikeCount] = React.useState(route.params.item.tlikeCount)
+    const [inputUp,setInputUp] = React.useState(false)
+    const [editable,setEditable] = React.useState(true)
+    const textInputRef = React.useRef(null);
     const data = route.params.item
 
     console.log('单条帖子数据',route.params)
@@ -76,6 +79,18 @@ const PostDetails = ({route}:any) => {
         }
         
     }
+
+    const inputPress = (porp:number) => {
+        if(porp == 1) {
+            setInputUp(true)
+            setEditable(true)
+            // refs.textInputRefer.focus();
+        } else {
+            setInputUp(false)
+            setEditable(false)
+        }
+    }
+
     const postLikePress = async () => {
         const tokenStr = await Storage.get('usr-token');
         if(likeSelect == '0') {
@@ -240,13 +255,17 @@ const PostDetails = ({route}:any) => {
                         </View>
                     </View>
                 </ScrollView>
-                <View style={styles.commentBottom}>
-                    <TextInput allowFontScaling={false} defaultValue={'说两句'} cursorColor='#FABA3C' style={styles.bottomTextInput}></TextInput>
+            </View>
+            <View style={[styles.commentBottom,inputUp?styles.commentBottomUp:null]}>  
+                    <TouchableOpacity activeOpacity={1} style={[styles.commentInput,inputUp?{display:'none'}:null]} onPress={() => inputPress(1)}>
+                        <Text style={styles.commentInputText}>说两句</Text>
+                    </TouchableOpacity>
+                    <TextInput ref={textInputRef} autoFocus={editable} allowFontScaling={false} placeholder='说两句' cursorColor='#FABA3C' style={[styles.bottomTextInput,inputUp?null:{display:'none'}]}></TextInput>
                     <TouchableOpacity style={styles.bottomIconView}>
                         <Image style={styles.bottomIcon} source={require('../../../assets/images/3.0x/like.png')}></Image>
                     </TouchableOpacity>
-                </View>
             </View>
+            <TouchableOpacity style={[styles.CommentBox,inputUp?null:{display:'none'}]} onPress={() => inputPress(0)}></TouchableOpacity>
         </View>
     )
 }
@@ -257,6 +276,7 @@ const styles = StyleSheet.create({
     parentView: {
         width: windowWidth,
         height: windowHeight,
+        position:'relative',
     },
     headerStyle: {
         height: 45,
@@ -272,10 +292,10 @@ const styles = StyleSheet.create({
         width:windowWidth,
         ...Platform.select({
             ios:{
-                height:windowHeight-85,
+                height:windowHeight-145,
             },
             android:{
-                height:windowHeight-60,
+                height:windowHeight-110,
             }
         })
     },
@@ -478,7 +498,7 @@ const styles = StyleSheet.create({
     },
     itemIconText:{
         fontSize:15,
-        color:'#d d d',
+        color:'#ddd',
         lineHeight:25
     },
     itemContent:{
@@ -521,6 +541,10 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFF',
         flexDirection:'row',
         paddingHorizontal:25,
+        // padding: 24,
+        position:'absolute',
+        bottom:0,
+        zIndex:40,
         justifyContent:'flex-start',
         ...Platform.select({
             ios:{
@@ -535,6 +559,24 @@ const styles = StyleSheet.create({
                 elevation: 8,
             }
         }),
+    },
+
+    commentBottomUp:{
+        bottom:280
+    },
+
+    commentInput:{
+        width:'89%',
+        height:42,
+        borderRadius:20,
+        marginVertical:9,
+        paddingHorizontal:25,
+        backgroundColor:'#F7F7FA',
+    },
+    commentInputText:{
+        fontSize:14,
+        color:'#777',
+        lineHeight:42
     },
     bottomTextInput:{
         width:'89%',
@@ -553,5 +595,13 @@ const styles = StyleSheet.create({
     bottomIcon:{
         width:32,
         height:32
+    },
+    CommentBox:{
+        position:'absolute',
+        width:windowWidth,
+        height:windowHeight,
+        backgroundColor:'#000',
+        zIndex:20,
+        opacity: 0.3,
     }
 })
