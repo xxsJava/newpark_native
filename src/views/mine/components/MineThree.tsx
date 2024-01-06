@@ -10,10 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import {useTranslation, Trans} from 'react-i18next';
 import LinearGradinet from 'react-native-linear-gradient';
-import {navigate} from '../../config/routs/NavigationContainer';
-import PersonalDataView from './components/setup/PersonalData'
-import HomePageView from './components/homepage'
-import BellView from'../../components/Bell/index'
+import { navigate } from '../../../config/routs/NavigationContainer';
+import PersonalDataView from '../components/setup/PersonalData'
+import HomePageView from '../components/homepage'
 
 import {
   Text,
@@ -33,8 +32,8 @@ import {
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default class MineVIew extends Component {
-  render() {
+const MineVIew =()=> {
+    const [tabVal,onTabPress] = React.useState(1)
     return (
       <SafeAreaView style={styles.safeStyle}>
         <View style={styles.parentLevel}>
@@ -83,7 +82,7 @@ export default class MineVIew extends Component {
                 </View>
                 <View style={styles.boxAvatarParent}>
                   {/* 这个是我的里的头像 */}
-                  <TouchableOpacity style={styles.boxAvatar}  onPress={() =>navigate('MineThree')}/>
+                  <View style={styles.boxAvatar}/>
                   <View style={styles.avatarView}>
                     <Text allowFontScaling={false} style={styles.avatarnText}>
                       <Trans>mineNav.navTab3</Trans>
@@ -92,7 +91,7 @@ export default class MineVIew extends Component {
                     <Image
                    
                       style={styles.avatarnImage}
-                      source={require('../../assets/images/alimom/V1.png')}
+                    source={require('../../../assets/images/alimom/V1.png')}
                     />
                   </View>
                   <View style={styles.uidFrame} 
@@ -114,29 +113,71 @@ export default class MineVIew extends Component {
               </View>
             
             </View>
+            <View style={styles.nullk}>
+               
+            </View>
             {/* <PersonalDataView></PersonalDataView> */}
-            <HomePageView></HomePageView>
+            {/* <HomePageView></HomePageView> */}
+            <View style={styles.bottBox}>
+            <TouchableOpacity onPress={() => onTabPress(1)}>
+                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 1?styles.tabColor:null]}>帖子</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => onTabPress(2)}>
+                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 2?styles.tabColor:null]}>悬赏</Text>  
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => onTabPress(3)}>
+                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 3?styles.tabColor:null]}>成就</Text>
+                </TouchableOpacity>
+            </View>
+            <View>
+                <View style={styles.nullf}></View>
+            </View>
           </ScrollView>
+         
         </View>
-       <View style={styles.bell}>
-          <BellView isMsg={false}></BellView>
-       </View>
       </SafeAreaView>
       
     );
   }
-}
-
+export default  MineVIew ;
 const styles = StyleSheet.create({
+    nullf:{
+        zIndex:9999,
+        // position:'absolute',
+        // bottom:0,
+        // right:0,
+        backgroundColor:'#FBF2F7',
+        height:600,
+        borderTopLeftRadius:40,
+        borderTopRightRadius:40
+    },
+    tabColor:{
+        fontSize:17,
+        color:'#FABA3C',
+        fontWeight:'bold'
+    },
+    tabText:{
+        fontSize:15,
+        color:'#555',
+        lineHeight:50
+    },
+    bottBox:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        padding:16
+    },
+    nullk:{
+        height:50
+    },
   safeStyle: {
     width: windowWidth,
     height: windowHeight,
-    backgroundColor: '#F8B032',
-    // ...Platform.select({
-    //   ios: {
-    //     height: 180,
-    //   },
-    // }),
+    backgroundColor: '#F49F0B',
+    ...Platform.select({
+      ios: {
+        height: 180
+      },
+    }),
   },
   parentLevel: {
     width: windowWidth,
@@ -151,7 +192,7 @@ const styles = StyleSheet.create({
   },
   scrollStyle: {
     flex:1,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#fff',
   },
   bgBox: {
     width: windowWidth,

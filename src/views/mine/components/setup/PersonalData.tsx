@@ -22,6 +22,9 @@ const PersonalDataView = () => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => onTabPress(2)}>
                     <Text allowFontScaling={false} style={[styles.tabText,tabVal == 2?styles.tabColor:null]}>悬赏</Text>
+                    <Text>11112</Text>
+
+                    <Text>22223</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => onTabPress(3)}>
                     <Text allowFontScaling={false} style={[styles.tabText,tabVal == 3?styles.tabColor:null]}>成就</Text>

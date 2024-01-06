@@ -187,6 +187,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
         </View>
       </Card>
+    
     </TouchableOpacity>
   );
 };

@@ -22,14 +22,12 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 // 开关的
-//const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-// const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-
-
-// const switchs = () => {
-//     <Switch value={this.state.isSwitchOn} onValueChange={() => this.setIsSwitchOn()} />
-// }
-export default class ObjCard extends Component {
+interface switchListType {
+    TiTle:string,
+    key:string
+}
+export default class ObjCard extends Component{
+    switchList: { TiTle: string; key: string; }[];
     constructor(props: any) {
         super(props);
         this.state = {
@@ -54,7 +52,7 @@ export default class ObjCard extends Component {
 
         ]
     }
-    setIsSwitchOn = (key: any,value:any) => {
+    setIsSwitchOn = (key: string,value:boolean) => {
         console.log(key+':'+value);
         if(key=='topTalk'){
             if(value) {
@@ -126,7 +124,7 @@ export default class ObjCard extends Component {
                         <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} />
                     </TouchableOpacity>
                     <View style={styles.boxmin}>
-                        {this.switchList.map((item: any) => {
+                        {this.switchList.map((item: switchListType) => {
                             return <View key={item.key} style={styles.boxStylemin}>
                                 <Text style={ this.state.switchControlList[item.key]?styles.h6 :styles.h6null}>{item.TiTle}</Text>
                                 <View>
