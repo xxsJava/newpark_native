@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2024-01-04 16:06:26
- * @LastEditTime: 2024-01-05 17:55:42
+ * @LastEditTime: 2024-01-08 14:25:50
  * @FilePath: \newpark_native\src\api\IMAPI\index.tsx
  * @Description: desc
  */
@@ -24,11 +24,10 @@ export const getOpenIMConfig = (data:any)=>{
     });
 }
 
-export const getGroupsInfo = (data:any,token:string) =>{
+export const getGroupsInfo = (data:any,token:any) =>{
     return request.post({
-        url: '/api/group/get_groups_info',
-        openIMToken: token,
-        operationID: DateTimeUtils.timestamps+"",
+        url: '/v1/groupGetGroupsInfo',
+        token: token,
         data: data
     });
 }

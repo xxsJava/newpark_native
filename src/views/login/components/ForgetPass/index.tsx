@@ -1,12 +1,19 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2024-01-04 17:37:20
+ * @LastEditTime: 2024-01-08 14:31:10
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
 import React, {useEffect} from 'react';
-import {Button, DeviceEventEmitter, NativeModules, StyleSheet, View, NativeEventEmitter} from 'react-native';
+import {
+  Button,
+  DeviceEventEmitter,
+  NativeModules,
+  StyleSheet,
+  View,
+  NativeEventEmitter,
+} from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
 import notifee, {
   AndroidImportance,
@@ -23,12 +30,13 @@ import {rewardListApi} from '../../../../api/sys/reward';
 import {rewardListType} from '../../../../api/sys/reward/types';
 import {postComments, postList} from '../../../../api/sys/home';
 import LottieView from 'lottie-react-native';
+import {getGroupsInfo} from '../../../../api/IMAPI';
 
 Alipay.setAlipaySandbox(true);
 
 var callManager = NativeModules.CallManager;
 // const subscribeStreamEvt = new NativeEventEmitter(callManager);
-const { WSNotification } = NativeModules;
+const {WSNotification} = NativeModules;
 // console.log('接收OC定义的常量--->'+WSNotification.name+' -------->'+WSNotification.ocName);
 // const calendarManagerEmitter = new NativeEventEmitter(WSNotification);
 
@@ -172,8 +180,6 @@ function componentWillUnmount(this: any) {
 
 // const subscription = calendarManagerEmitter.addListener('OCSendToRN',(reminder) => console.log('RN收到OC发来---->'+reminder.name))
 
-
-
 const ForgetPass: React.FC = () => {
   return (
     <View style={{flex: 1}}>
@@ -187,9 +193,15 @@ const ForgetPass: React.FC = () => {
       <Button title="清除监听" onPress={componentWillUnmount} />
 
       <Button
-        title="开启登录监听"
-        onPress={() => {
-          
+        title="获取群组信息"
+        onPress={async () => {
+          const groupParam = ['1944979969'];
+
+          const getGroup = await getGroupsInfo(
+            groupParam,
+            'token_pr_newpark_19f86bd4281dc1de',
+          );
+          console.log(getGroup);
         }}
       />
 
@@ -242,27 +254,28 @@ const ForgetPass: React.FC = () => {
         title="IOS-IM"
         onPress={() => {
           const OPEMIMIOS = NativeModules.OpenIM;
-          console.log('调用IOS')
+          console.log('调用IOS');
           var cat = require('react-native').NativeModules.OpenIM;
-          console.log(cat)
-          const res = cat.whoName("RN-传参至IOS");
-          console.log(OPEMIMIOS.passDataToRN('ios 传参数至RN'))
+          console.log(cat);
+          const res = cat.whoName('RN-传参至IOS');
+          console.log(OPEMIMIOS.passDataToRN('ios 传参数至RN'));
         }}
       />
 
-    <Button
+      <Button
         title="IOS-Promises"
         onPress={async () => {
-          try{
-            var events=await require('react-native').NativeModules.OpenIM.testCallbackEventTwo();
-            console.log(events)
-        }catch(e){
+          try {
+            var events =
+              await require('react-native').NativeModules.OpenIM.testCallbackEventTwo();
+            console.log(events);
+          } catch (e) {
             console.error(e);
-        }
+          }
         }}
       />
 
-    <Button
+      <Button
         title="IOS-OpenIM初始化"
         onPress={async () => {
           const {OpenIM} = NativeModules;
@@ -270,14 +283,14 @@ const ForgetPass: React.FC = () => {
         }}
       />
 
-    <Button
+      <Button
         title="IOS事件监听测试"
         onPress={() => {
-          DeviceEventEmitter.addListener('ItemAdded', resp =>{
-            console.log(resp)
-          })
+          DeviceEventEmitter.addListener('ItemAdded', resp => {
+            console.log(resp);
+          });
 
-          IMSDKRN.testEvent()
+          IMSDKRN.testEvent();
         }}
       />
       {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}

@@ -23,9 +23,9 @@ import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
 import {forgetPass} from './controller';
 import {navigate} from '../../config/routs/NavigationContainer';
 import {getOpenIMConfig} from '../../api/IMAPI';
-import IMSDKRN from '../../plugins/IMSDKRN/ANDROIDSDK';
 import { loginIM } from '../../entity/LoginOpenIM';
 import DateTimeUtils from '../../utils/DateTimeUtils';
+import IMSDKRN from '../../plugins/IMSDKRN';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -94,10 +94,10 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       }
       
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
-      // const openIMRes = await getOpenIMConfig(openIMConfig);
-      // console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+      const openIMRes = await getOpenIMConfig(openIMConfig);
+      console.log('获取到Open-IM-token1---->', openIMRes.data.token);
       //oepnIm 登录
-      // IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
+      IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       navigate('LoginHome');
