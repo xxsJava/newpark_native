@@ -160,9 +160,8 @@ const onPressFunction = (str: string) => {
 };
 
 //添加监听
-function componentDidMount() {
-  // this.listener = subscribeStreamEvt.addListener('CallIncoming', this._callIncoming.bind(this));
-  const subscription = calendarManagerEmitter.addListener('OCSendToRN',(reminder) => console.log('RN收到OC发来---->'+reminder.name))
+function componentDidMount(this: any) {
+  this.listener = subscribeStreamEvt.addListener('CallIncoming', this._callIncoming.bind(this));
 }
 
 //清除监听
@@ -170,6 +169,8 @@ function componentWillUnmount(this: any) {
   this.listener && this.listener.remove();
   this.listener = null;
 }
+
+// const subscription = calendarManagerEmitter.addListener('OCSendToRN',(reminder) => console.log('RN收到OC发来---->'+reminder.name))
 
 
 

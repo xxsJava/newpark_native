@@ -5,11 +5,14 @@
 //  ios监听
 //
 
-#import <React/RCTEventEmitter.h>
-#import <React/RCTBridgeModule.h>
+@interface CallManager : RCTEventEmitter<RCTBridgeModule>
+ 
+ NSDictionary *dic = @{@"peerNumber":peerNumber};
+  [self sendEventWithName:@"CallIncoming" body:dic];
 
-@interface WSNotification : RCTEventEmitter <RCTBridgeModule>
-
--(void)OCsendMessageToReactNative:(NSDictionary *)dictionary;
+-(NSArray<NSString *> *)supportedEvents {
+  return @[@"CallIncoming"];
+}
 
 @end
+

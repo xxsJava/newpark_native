@@ -12,11 +12,11 @@ import {navigate} from '../../../../config/routs/NavigationContainer'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const TakeOrderPart = () => {
+const TakeOrderPart = ({ navigation }:any) => {
     return(
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
-                <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('RewardDetailsRoute')}></Appbar.Action>
+                <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigation.goBack()}></Appbar.Action>
                 <TouchableOpacity style={{marginRight:10}}>
                     <Image source={require('../../../../assets/images/order_kefu.png')}></Image>
                 </TouchableOpacity>

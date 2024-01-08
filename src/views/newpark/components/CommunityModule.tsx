@@ -13,6 +13,8 @@ import LinearGradinet from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
 import {navigate} from '../../../config/routs/NavigationContainer'
 
+
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const listData = [
@@ -88,6 +90,7 @@ const CommunityModule = () => {
               );
             })}
           </View>
+        
         </ScrollView>
     )
 }
@@ -192,5 +195,5 @@ const styles = StyleSheet.create({
   rightIcon: {
     lineHeight: 100,
     color: '#000',
-  },
+  }
 })

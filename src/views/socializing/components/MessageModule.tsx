@@ -14,6 +14,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import LinearGradinet from 'react-native-linear-gradient';
 import {navigate} from '../../../config/routs/NavigationContainer';
 import { getGroupsInfo } from '../../../api/IMAPI';
+import BellView from'../../../components/Bell'
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -136,6 +137,7 @@ const ListIndex: React.FC = () => {
         }}
         stickySectionHeadersEnabled={true}
       />
+      {/* <BellView isMsg={true}></BellView> */}
     </View>
   );
 };
