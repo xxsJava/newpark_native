@@ -9,10 +9,13 @@
 #define OpenIMModule_h
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 
-@interface OpenIM : NSObject <RCTBridgeModule>
+@interface IMSDKRN : RCTEventEmitter <RCTBridgeModule>
 
 - (void)passDataToRN:(NSString *)data;
+
+- (void)initSDK;
 
 @end
 

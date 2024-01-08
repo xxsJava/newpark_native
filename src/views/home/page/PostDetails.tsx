@@ -65,7 +65,7 @@ const PostDetails = ({route}:any) => {
     const [likeSelect1,setSelectLike1] = React.useState('0')
     const [tlikeCount,setTlikeCount] = React.useState(route.params.item.tlikeCount)
     const [inputUp,setInputUp] = React.useState(false)
-    const [editable,setEditable] = React.useState(true)
+    const [editable,setEditable] = React.useState(false)
     const textInputRef = React.useRef(null);
     const data = route.params.item
 

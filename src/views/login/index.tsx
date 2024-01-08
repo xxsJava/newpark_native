@@ -23,9 +23,9 @@ import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
 import {forgetPass} from './controller';
 import {navigate} from '../../config/routs/NavigationContainer';
 import {getOpenIMConfig} from '../../api/IMAPI';
-import IMSDKRN from '../../plugins/IMSDKRN';
 import { loginIM } from '../../entity/LoginOpenIM';
 import DateTimeUtils from '../../utils/DateTimeUtils';
+import IMSDKRN from '../../plugins/IMSDKRN';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -85,31 +85,19 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     } else if (loginAPI.code === 200) {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data.usrToken);
-      // //用户OPEN-连接
+
+      //用户OPEN-配置
       const openIMConfig = {
         secret: "openIM123",
         platformID: 2,
         userID: loginAPI.data.uId
       }
       
-      console.log("获取到用户UID---->",openIMConfig.userID)
-      // const openIMRes = await getOpenIMConfig(openIMConfig,DateTimeUtils.timestamps+'');
-      // console.log('获取到Open-IM-token---->', openIMRes.data.token);
-      // const imParams:loginIM = {
-      //   userId: '1742430171993788416',
-      //   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MSwiZXhwIjoxNzEyMTM2NzY1LCJuYmYiOjE3MDQzNjA0NjUsImlhdCI6MTcwNDM2MDc2NX0.aA18qngtlswzfH52aJDAn-o-Lq4WPJaTj3uZ-2D8dJs'
-      // }
+      // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
+      const openIMRes = await getOpenIMConfig(openIMConfig);
+      console.log('获取到Open-IM-token1---->', openIMRes.data.token);
       //oepnIm 登录
-      // const loginParams = {
-      //   usrId: loginAPI.data.uId + '',
-      //   token: openIMRes.data.token,
-      // };
-      // console.log('获取到openim配置------>',openIMRes)
-      // const loginParams = {
-      //   usrId: '1742430171993788416',
-      //   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzEyMTk1MzU0LCJuYmYiOjE3MDQ0MTkwNTQsImlhdCI6MTcwNDQxOTM1NH0.7DDrr9mV_0MZZ9HuRWQXQrV_BWQR5X_1OUYkLuY-698',
-      // };
-      // IMSDKRN.login(loginParams.usrId, loginParams.token);
+      IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       navigate('LoginHome');

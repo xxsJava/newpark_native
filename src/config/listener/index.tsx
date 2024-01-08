@@ -3,7 +3,7 @@ import {DeviceEventEmitter} from 'react-native';
 /*
  * @Author: xxs
  * @Date: 2024-01-04 09:28:14
- * @LastEditTime: 2024-01-04 09:42:02
+ * @LastEditTime: 2024-01-05 17:06:39
  * @FilePath: \newpark_native\src\config\listener\index.tsx
  * @Description: desc
  */
@@ -19,9 +19,9 @@ export const initListener = () =>{
     });
     
     DeviceEventEmitter.addListener('onRecvNewMessage', resp => {
-      const msg = JSON.parse(resp.message);
-      console.log('消息监听1----->', msg);
-      console.log('消息监听2----->', msg.textElem);
+      // const msg = JSON.parse(resp.message);
+      // console.log('消息监听1----->', msg);
+      // console.log('消息监听2----->', msg.textElem);
     });
 
     DeviceEventEmitter.addListener('onConnectFailed', resp => {
