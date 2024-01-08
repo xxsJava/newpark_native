@@ -213,11 +213,11 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         alignItems: 'center',
         // 阴影的配置
-        elevation: 20, // 适配android的
+        elevation: 6, // 适配android的
         shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
         shadowColor: 'black',
-        shadowOpacity: 1,
-        shadowRadius: 5
+        shadowOpacity: .3,
+        shadowRadius: 2
     },
     rightIcon: {
         width: 20,
@@ -229,11 +229,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     boxStyle: {
-        elevation: 20, // 适配android的
+        elevation: 6, // 适配android的
         shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
         shadowColor: 'black',
-        shadowOpacity: 1,
-        shadowRadius: 5,
+        shadowOpacity: .3,
+        shadowRadius: 2,
         flexDirection: 'row',
         backgroundColor: '#fff',
         justifyContent: 'space-between',
@@ -249,11 +249,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     boxmin: {
-        elevation: 20, // 适配android的
+        elevation: 6, // 适配android的
         shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
         shadowColor: 'black',
-        shadowOpacity: 1,
-        shadowRadius: 5,
+        shadowOpacity: .3,
+        shadowRadius: 2,
         backgroundColor: '#fff',
         marginTop: 20,
 

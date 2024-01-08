@@ -18,7 +18,7 @@ import {
 import {navigate} from '../../config/routs/NavigationContainer';
 import MessageModule from './components/MessageModule'
 import ContactsModul from './components/ContactsModul'
-
+import BellView from'../../components/Bell'
 const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -129,7 +129,12 @@ const SocializingView = () => {
             )
           })}
         </View>
-        <TouchableOpacity style={[styles.maskLayer,more?null:{display:'none'}]} onPress={() => handleMorePress(more)}></TouchableOpacity>
+        <TouchableOpacity style={[styles.maskLayer,more?null:{display:'none'}]} onPress={() => handleMorePress(more)}>
+       
+        </TouchableOpacity>
+        <View>
+            <BellView isMsg={1}></BellView>
+        </View>
       </SafeAreaView>
   )
 }

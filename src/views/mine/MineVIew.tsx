@@ -119,7 +119,7 @@ export default class MineVIew extends Component {
           </ScrollView>
         </View>
        <View style={styles.bell}>
-          <BellView isMsg={false}></BellView>
+          <BellView isMsg={true}></BellView>
        </View>
       </SafeAreaView>
       
