@@ -22,9 +22,7 @@ const config: {
   base_url: {
     // 开发环境接口前缀
     // base: 'https://www.newpark.sougouhihg.top/gateway',
-    // base: 'http://www.newpark.sougouhihg.top',
-    base: 'http://124.70.199.125:50000',
-
+    base: 'http://www.newpark.sougouhihg.top',
     // 打包开发环境接口前缀
     dev: 'http://192.168.13.1:60001/',
 

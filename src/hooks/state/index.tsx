@@ -26,11 +26,9 @@ export const CounterProvider: React.FC<any> = ({children}) => {
 
   const [phone, setPhone] = useState('');
 
-
   const incrementsetPhone = (phone:string) => {
     setPhone(phone)
   }
-
   const value: CounterContextType = {
     phone,
     incrementsetPhone
