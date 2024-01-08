@@ -23,7 +23,7 @@ import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
 import {forgetPass} from './controller';
 import {navigate} from '../../config/routs/NavigationContainer';
 import {getOpenIMConfig} from '../../api/IMAPI';
-import IMSDKRN from '../../plugins/IMSDKRN';
+import IMSDKRN from '../../plugins/IMSDKRN/ANDROIDSDK';
 import { loginIM } from '../../entity/LoginOpenIM';
 import DateTimeUtils from '../../utils/DateTimeUtils';
 

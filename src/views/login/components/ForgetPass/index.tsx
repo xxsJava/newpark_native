@@ -18,7 +18,7 @@ import notifee, {
   TriggerType,
 } from '@notifee/react-native';
 import {getNotification} from '../../../../api/NotificationApi';
-import IMSDKRN from '../../../../plugins/IMSDKRN';
+import IMSDKRN from '../../../../plugins/IMSDKRN/ANDROIDSDK';
 import {rewardListApi} from '../../../../api/sys/reward';
 import {rewardListType} from '../../../../api/sys/reward/types';
 import {postComments, postList} from '../../../../api/sys/home';
@@ -27,10 +27,10 @@ import LottieView from 'lottie-react-native';
 Alipay.setAlipaySandbox(true);
 
 var callManager = NativeModules.CallManager;
-const subscribeStreamEvt = new NativeEventEmitter(callManager);
+// const subscribeStreamEvt = new NativeEventEmitter(callManager);
 const { WSNotification } = NativeModules;
 // console.log('接收OC定义的常量--->'+WSNotification.name+' -------->'+WSNotification.ocName);
-const calendarManagerEmitter = new NativeEventEmitter(WSNotification);
+// const calendarManagerEmitter = new NativeEventEmitter(WSNotification);
 
 async function aliPay() {
   // 支付宝端支付
@@ -161,7 +161,7 @@ const onPressFunction = (str: string) => {
 
 //添加监听
 function componentDidMount(this: any) {
-  this.listener = subscribeStreamEvt.addListener('CallIncoming', this._callIncoming.bind(this));
+  // this.listener = subscribeStreamEvt.addListener('CallIncoming', this._callIncoming.bind(this));
 }
 
 //清除监听
@@ -265,23 +265,19 @@ const ForgetPass: React.FC = () => {
     <Button
         title="IOS-OpenIM初始化"
         onPress={async () => {
-          var events=await require('react-native').NativeModules.OpenIM;
-          events.init('');
+          const {OpenIM} = NativeModules;
+          OpenIM.init();
         }}
       />
 
     <Button
-        title="接口测试"
-        onPress={async () => {
+        title="IOS事件监听测试"
+        onPress={() => {
+          DeviceEventEmitter.addListener('ItemAdded', resp =>{
+            console.log(resp)
+          })
 
-          const postCommentsDatas = {
-            pageNo:1,
-            pageSize:5,
-            postsId:1000000
-          }
-
-           const apiTest = await postComments('token_pr_newpark_02a2bf5c639f2919',postCommentsDatas)
-           console.log(apiTest)
+          IMSDKRN.testEvent()
         }}
       />
       {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}

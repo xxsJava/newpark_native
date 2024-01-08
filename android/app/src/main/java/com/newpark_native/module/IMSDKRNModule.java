@@ -47,7 +47,7 @@ public class IMSDKRNModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void inItSDK() {
+    public void initSDK() {
         Log.i(TAG, "------------------->IM初始化");
         //初始化IM
         Application application = new Application();

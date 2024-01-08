@@ -7,14 +7,19 @@
  */
 import 'react-native-gesture-handler';
 import {LogBox, Platform} from 'react-native';
-import '../listener'
-import { initListener } from '../listener';
+import '../listener';
+import {initListener} from '../listener';
 import IMSDKRN from '../../plugins/IMSDKRN';
 
-console.log("项目开始启动运行",Platform.OS)
-initListener()
-IMSDKRN.inItSDK();
-console.log('IM-INIT------->初始化完毕')
+console.log('项目开始启动运行', Platform.OS);
+
+IMSDKRN.initSDK();
+if (Platform.OS === 'android') {
+  console.log('android------>加载监听器');
+  initListener();
+}
+
+console.log('IM-INIT------->初始化完毕');
 LogBox.ignoreAllLogs(true); //关闭全部黄色警告
 LogBox.ignoreLogs([
   'Warning: BackAndroid is deprecated. Please use BackHandler instead.',

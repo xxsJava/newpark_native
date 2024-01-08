@@ -117,7 +117,7 @@ const ListIndex: React.FC = () => {
         }}
         stickySectionHeadersEnabled={true}
       />
-      <BellView isMsg={true}></BellView>
+      {/* <BellView isMsg={true}></BellView> */}
     </View>
   );
 };
