@@ -93,11 +93,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         userID: loginAPI.data.uId
       }
       
-      console.log("获取到用户UID---->",typeof(openIMConfig.userID))
-      const openIMRes = await getOpenIMConfig(openIMConfig);
-      console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+      // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
+      // const openIMRes = await getOpenIMConfig(openIMConfig);
+      // console.log('获取到Open-IM-token1---->', openIMRes.data.token);
       //oepnIm 登录
-      IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
+      // IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       navigate('LoginHome');
