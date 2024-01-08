@@ -1,18 +1,19 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-09 11:26:21
- * @LastEditTime: 2024-01-05 14:06:18
+ * @LastEditTime: 2024-01-05 18:00:43
  * @FilePath: \newpark_native\src\config\axios\index.ts
  * @Description: desc
  */
 import { service } from './service'
 
 import { config } from './config'
+import DateTimeUtils from '../../utils/DateTimeUtils'
 
 const { default_headers } = config
 
 const request = (option: any) => {
-  const { url, method, params, data, headersType, responseType , token ,operationID } = option
+  const { url, method, params, data, headersType, responseType , token ,operationID ,openIMToken} = option
   
   return service({
     url: url,
@@ -26,7 +27,9 @@ const request = (option: any) => {
       ,
       'Content-Token' : token
       ,
-      'operationID' : operationID
+      'operationID' : operationID 
+      ,
+      'token' : openIMToken
     }
   })
 }
