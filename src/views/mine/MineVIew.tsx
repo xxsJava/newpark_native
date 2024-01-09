@@ -83,14 +83,15 @@ export default class MineVIew extends Component {
                 </View>
                 <View style={styles.boxAvatarParent}>
                   {/* 这个是我的里的头像 */}
-                  <TouchableOpacity style={styles.boxAvatar}  onPress={() =>navigate('MineThree')}/>
+                  <TouchableOpacity style={styles.boxAvatar}  onPress={() =>navigate('MineThree')}>
+                    <Image source={require('../../assets/images/tup/ppy.png')} style={styles.imgTx}></Image>
+                  </TouchableOpacity>
                   <View style={styles.avatarView}>
                     <Text allowFontScaling={false} style={styles.avatarnText}>
                       <Trans>mineNav.navTab3</Trans>
                       {/* <Icon name="gem" /> */}
                     </Text>
                     <Image
-                   
                       style={styles.avatarnImage}
                       source={require('../../assets/images/alimom/V1.png')}
                     />
@@ -268,5 +269,10 @@ const styles = StyleSheet.create({
     position:'absolute',
     bottom:56,
     right:1
+  },
+  imgTx:{
+    width:100,
+    height:100,
+    textAlign:'center'
   }
 });
