@@ -15,12 +15,9 @@ import {
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradinet from 'react-native-linear-gradient';
 import {navigate} from '../../../config/routs/NavigationContainer';
-<<<<<<< HEAD
-=======
 import { getGroupsInfo } from '../../../api/IMAPI';
 import BellView from'../../../components/Bell'
 import Storage from '../../../utils/AsyncStorageUtils';
->>>>>>> 936208d4c2f39d71bd4f7652dbf32bb34a96c185
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -96,10 +93,7 @@ const ListIndex: React.FC = () => {
         data={data}
         renderItem={renderItem}
       />
-<<<<<<< HEAD
-=======
       {/* <BellView isMsg={true}></BellView> */}
->>>>>>> 936208d4c2f39d71bd4f7652dbf32bb34a96c185
     </View>
   );
 };

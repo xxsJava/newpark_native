@@ -25,11 +25,13 @@ import {navigate} from '../../config/routs/NavigationContainer';
 import {getOpenIMConfig} from '../../api/IMAPI';
 import { loginIM } from '../../entity/LoginOpenIM';
 import DateTimeUtils from '../../utils/DateTimeUtils';
+import ClausePopup from '../../views/login/components/ClausePopup'
 import IMSDKRN from '../../plugins/IMSDKRN';
 
 const windowWidth = Dimensions.get('window').width;
 
 const LoginView: React.FC<LoginScreenProps> = () => {
+  const [visible, setVisible] = useState(false)
   const toast = useToast();
   //获取输入框的手机号
   const [phone, setPhone] = useState('');
@@ -220,9 +222,14 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               </Button>
             </View>
             <View style={styles.verify}>
-              <TouchableOpacity onPress={smsVerIf}>
+              {/* <TouchableOpacity onPress={smsVerIf}>
                 <Text allowFontScaling={false} style={styles.underline}>
                   <Trans>loginText.text2</Trans>
+                </Text>
+              </TouchableOpacity> */}
+              <TouchableOpacity onPress={() => setVisible(true)}>
+                <Text allowFontScaling={false} style={styles.underline}>
+                  服务条款
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={forgetPass}>
@@ -246,6 +253,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
           </View>
         </KeyboardAwareScrollView>
       </ImageBackground>
+      <ClausePopup visible={visible} onClose={() => setVisible(false)}></ClausePopup>
     </Animatable.View>
   );
 };
