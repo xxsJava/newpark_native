@@ -26,6 +26,7 @@ import MyOrderView from '../../../views/mine/components/service/MyOrderView';
 import MyPostView from '../../../views/mine/components/service/MyPostView';
 import WalletView from '../../../views/mine/components/service/WalletView';
 import CallCustom from '../../../views/mine/components/service/CallCustom';
+import InviteFriends from '../../../views/mine/components/service/InviteFriends'
 import CollectionView from '../../../views/mine/components/service/CollectionView';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
 import SearchView from '../../../views/socializing/components/SearchView';
@@ -199,6 +200,13 @@ export default {
     component: FeedbackView,
     options: {
       title: '意见反馈',
+      headerShown: false,
+    },
+  },
+  InviteFriendsRoute: {
+    component: InviteFriends,
+    options: {
+      title: '邀请好友',
       headerShown: false,
     },
   },

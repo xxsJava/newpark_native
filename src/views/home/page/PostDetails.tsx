@@ -58,7 +58,6 @@ const PostDetails = ({route}:any) => {
         postsId: route.params.item.tid,
         likeType: 1
     }
-    const [inputVal,onInputPress] = React.useState('')
     const [collectionSelect,setSelectCollection] =  React.useState('0')
     const [likeSelect,setSelectLike] = React.useState('0')
     const [transmitSelect,setSelectTransmit] = React.useState('0')
@@ -66,7 +65,9 @@ const PostDetails = ({route}:any) => {
     const [tlikeCount,setTlikeCount] = React.useState(route.params.item.tlikeCount)
     const [inputUp,setInputUp] = React.useState(false)
     const [editable,setEditable] = React.useState(false)
+    const [inputVal,setInputVal] = React.useState('')
     const textInputRef = React.useRef(null);
+
     const data = route.params.item
 
     console.log('单条帖子数据',route.params)
@@ -82,12 +83,11 @@ const PostDetails = ({route}:any) => {
 
     const inputPress = (porp:number) => {
         if(porp == 1) {
-            setInputUp(true)
             setEditable(true)
-            // refs.textInputRefer.focus();
+            textInputRef.current.focus();
         } else {
-            setInputUp(false)
             setEditable(false)
+            textInputRef.current.blur();
         }
     }
 
@@ -256,16 +256,14 @@ const PostDetails = ({route}:any) => {
                     </View>
                 </ScrollView>
             </View>
-            <View style={[styles.commentBottom,inputUp?styles.commentBottomUp:null]}>  
-                    <TouchableOpacity activeOpacity={1} style={[styles.commentInput,inputUp?{display:'none'}:null]} onPress={() => inputPress(1)}>
-                        <Text style={styles.commentInputText}>说两句</Text>
+            <View style={[styles.commentBottom,editable?styles.commentBottomUp:null]}>  
+                    <TouchableOpacity activeOpacity={1} style={[styles.commentInput,editable?{display:'none'}:null]} onPress={() => inputPress(1)}>
+                        <Text style={styles.commentInputText}>{inputVal!= ''?inputVal:'说两句'}</Text>
                     </TouchableOpacity>
-                    <TextInput ref={textInputRef} autoFocus={editable} allowFontScaling={false} placeholder='说两句' cursorColor='#FABA3C' style={[styles.bottomTextInput,inputUp?null:{display:'none'}]}></TextInput>
-                    <TouchableOpacity style={styles.bottomIconView}>
-                        <Image style={styles.bottomIcon} source={require('../../../assets/images/3.0x/like.png')}></Image>
-                    </TouchableOpacity>
+                    <TextInput ref={textInputRef} value={inputVal} autoFocus={editable} allowFontScaling={false} placeholder='说两句' cursorColor='#FABA3C' onChangeText={text => setInputVal(text)} onSubmitEditing={() => inputPress(0)} style={[styles.bottomTextInput,editable?null:{display:'none'}]}></TextInput>
+                    <IconButton style={styles.commentInputImage} icon={require('../../../assets/images/send-icon.png')} onPress={() => console.log('点击发送')}></IconButton>
             </View>
-            <TouchableOpacity style={[styles.CommentBox,inputUp?null:{display:'none'}]} onPress={() => inputPress(0)}></TouchableOpacity>
+            <TouchableOpacity style={[styles.CommentBox,editable?null:{display:'none'}]} onPress={() => inputPress(0)}></TouchableOpacity>
         </View>
     )
 }
@@ -577,6 +575,12 @@ const styles = StyleSheet.create({
         fontSize:14,
         color:'#777',
         lineHeight:42
+    },
+    commentInputImage:{
+        width:35,
+        height:35,
+        marginVertical:15,
+        marginLeft:11
     },
     bottomTextInput:{
         width:'89%',
