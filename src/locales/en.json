@@ -45,7 +45,8 @@
         "serviceOption5":"Address Management",
         "serviceOption6":"My Post",
         "serviceOption7":"Feedback",
-        "serviceOption8":"Contact customer service"
+        "serviceOption8":"Contact customer service",
+        "serviceOption9":"invite friends"
     },
     "newPatkTab":{
         "tab1":"community",
