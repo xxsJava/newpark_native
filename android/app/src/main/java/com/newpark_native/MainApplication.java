@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-04 23:22:00
- * @LastEditTime: 2023-10-28 21:21:57
+ * @LastEditTime: 2024-01-09 10:34:14
  * @FilePath: \newpark_native\android\app\src\main\java\com\newpark_native\MainApplication.java
  * @Description: desc
  */
@@ -35,7 +35,9 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
            packages.add(new IMSDKPackage());
-          return packages;
+          //  packages.add(new MainReactPackage());
+          //  packages.add(new RNFSPackage());
+           return packages;
         }
 
         @Override

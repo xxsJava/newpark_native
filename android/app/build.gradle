@@ -110,6 +110,7 @@ dependencies {
     implementation ("com.facebook.react:react-native:+")
     implementation project(':react-native-splash-screen')
     implementation project(':lottie-react-native')
+    implementation project(':react-native-fs')
     // 如果你需要支持GIF动图
     implementation 'com.facebook.fresco:animated-gif:2.5.0'
     implementation 'io.openim:android-sdk:3.4.1@aar'

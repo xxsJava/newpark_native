@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2024-01-08 14:31:10
+ * @LastEditTime: 2024-01-09 15:54:59
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
@@ -13,6 +13,7 @@ import {
   StyleSheet,
   View,
   NativeEventEmitter,
+  SafeAreaView,
 } from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
 import notifee, {
@@ -31,7 +32,15 @@ import {rewardListType} from '../../../../api/sys/reward/types';
 import {postComments, postList} from '../../../../api/sys/home';
 import LottieView from 'lottie-react-native';
 import {getGroupsInfo} from '../../../../api/IMAPI';
-
+import {ScrollView} from 'react-native-gesture-handler';
+import RNFS from 'react-native-fs';
+import DateTimeUtils from '../../../../utils/DateTimeUtils';
+import {
+  createDirs,
+  readFileData,
+  writeFileData,
+} from '../../../../utils/FilesUtiles';
+import {INDEX_MSG_DIR, MSG_FILE_DIR} from '../../../../config/paramStatic';
 Alipay.setAlipaySandbox(true);
 
 var callManager = NativeModules.CallManager;
@@ -250,7 +259,7 @@ const ForgetPass: React.FC = () => {
         }}
       />
 
-      <Button
+      {/* <Button
         title="IOS-IM"
         onPress={() => {
           const OPEMIMIOS = NativeModules.OpenIM;
@@ -260,9 +269,9 @@ const ForgetPass: React.FC = () => {
           const res = cat.whoName('RN-传参至IOS');
           console.log(OPEMIMIOS.passDataToRN('ios 传参数至RN'));
         }}
-      />
+      /> */}
 
-      <Button
+      {/* <Button
         title="IOS-Promises"
         onPress={async () => {
           try {
@@ -273,15 +282,15 @@ const ForgetPass: React.FC = () => {
             console.error(e);
           }
         }}
-      />
+      /> */}
 
-      <Button
+      {/* <Button
         title="IOS-OpenIM初始化"
         onPress={async () => {
           const {OpenIM} = NativeModules;
           OpenIM.init();
         }}
-      />
+      /> */}
 
       <Button
         title="IOS事件监听测试"
@@ -291,6 +300,43 @@ const ForgetPass: React.FC = () => {
           });
 
           IMSDKRN.testEvent();
+        }}
+      />
+
+      <Button
+        title="json文件写"
+        onPress={async () => {
+          //写入json数据
+          const jsonData = [{groupId: 'value', path: ''}];
+          const jsonString = JSON.stringify(jsonData);
+
+          // 从上面的路径中写文件
+          //创建一个json文件
+          writeFileData(INDEX_MSG_DIR, jsonString);
+        }}
+      />
+
+      <Button
+        title="json文件读"
+        onPress={() => {
+          // 开始读取文件
+          readFileData(INDEX_MSG_DIR)
+            .then(res => {
+              console.log('读取原始数据----->',res);
+              res.push({groupId: 'value1', path: '11'});
+              console.log('数据更新----->',res);
+              writeFileData(INDEX_MSG_DIR,JSON.stringify(res));
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }}
+      />
+
+      <Button
+        title="json合并"
+        onPress={() => {
+          writeFileData(INDEX_MSG_DIR,MSG_FILE_DIR);
         }}
       />
       {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}
