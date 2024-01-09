@@ -1,10 +1,4 @@
-/*
- * @Author: xxs
- * @Date: 2024-01-04 16:06:26
- * @LastEditTime: 2024-01-08 14:25:50
- * @FilePath: \newpark_native\src\api\IMAPI\index.tsx
- * @Description: desc
- */
+
 /**
 * 代码描述: OPNE-IM 接口
 * 作者: xxs

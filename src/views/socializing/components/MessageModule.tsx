@@ -32,31 +32,34 @@ const ListIndex: React.FC = () => {
 
   // {"attachedInfo": "{\"groupHasReadInfo\":{\"hasReadCount\":0,\"groupMemberCount\":4},\"isPrivateChat\":false,\"burnDuration\":0,\"hasReadTime\":0,\"notSenderNotificationPush\":false,\"isEncryption\":false,\"inEncryptStatus\":false}", "attachedInfoElem": {"burnDuration": 0, "groupHasReadInfo": {"hasReadCount": 0, "unreadCount": 0}, "hasReadTime": 0, "inEncryptStatus": false, "isEncryption": false, "isPrivateChat": false, "notSenderNotificationPush": false}, "clientMsgID": "8679377145cd9e99cc28c799145edd9d", "contentType": 101, "createTime": 1704445634073, "groupID": "1944979969", "isExternalExtensions": false, "isReact": false, "isRead": false, "msgFrom": 100, "platformID": 0, "sendID": "5175689259", "sendTime": 1704445634073, "senderFaceUrl": "http://124.70.199.125:10002/object/5175689259/1.jpg", "senderNickname": "xxs18", "seq": 106, "serverMsgID": "ee4403b0f44021faaa1e79998d73cf31", "sessionType": 3, "status": 2, "textElem": {"content": "1"}}
   DeviceEventEmitter.addListener('onRecvNewMessage', async resp => {
-    const msg = JSON.parse(resp.message);
-    console.log("消息页面接收消息1------>",msg)
-    console.log("获取圈ID------>",msg.groupID)
-    let stringArray: string[] = [];
-    stringArray.push(msg.groupID)
-    console.log("群组数据1----->",stringArray)
+    // const msg = JSON.parse(resp.message);
+    // console.log("消息页面接收消息1------>",msg)
+    // console.log("获取圈ID------>",msg.groupID)
+    // let stringArray: string[] = [];
+    // stringArray.push(msg.groupID)
+    // console.log("群组数据1----->",stringArray)
 
-    const groupInfo = await getGroupsInfo(stringArray, await Storage.get('usr-token'));
+    // const groupInfo = await getGroupsInfo(stringArray, await Storage.get('usr-token'));
     
-    console.log('群组消息数据----->',groupInfo.data.groupInfos)
-    // setData(groupInfo.data.groupInfos);
+    // console.log('群组消息数据----->',groupInfo.data.groupInfos)
+    // // setData(groupInfo.data.groupInfos);
 
-    const newObj = {}
-    Object.assign(newObj,msg,groupInfo.data.groupInfos[0])
+    // const newObj = {}
+    // Object.assign(newObj,msg,groupInfo.data.groupInfos[0])
 
-    const newArr:any = []
-    newArr.push(newObj)
+    // let newArr:any = []
+    // newArr.push(newObj)
 
-    console.log(newArr)
-    setData(newArr)
+    // //数据合并
+    // // newArr = data.concat(newArr)
+
+    // console.log(newArr)
+    // setData(newArr)
   });
 
   const renderItem = ({item}: {item: DataItem}) => (
     <TouchableOpacity
-      onPress={() => navigate('CheckRoute')}
+      onPress={() => navigate('CheckRoute',{groupID:item.groupID})}
       style={[
         styles.listItem,
         {
