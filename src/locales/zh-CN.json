@@ -52,7 +52,8 @@
         "serviceOption5":"地址管理",
         "serviceOption6":"我的帖子",
         "serviceOption7":"意见反馈",
-        "serviceOption8":"联系客服"
+        "serviceOption8":"联系客服",
+        "serviceOption9":"邀请好友"
     },
     "minCommunity":{
         "communityName":"我的社区",

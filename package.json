@@ -23,6 +23,7 @@
     "@react-navigation/native-stack": "^6.9.16",
     "@uiw/react-native-alipay": "^5.0.2",
     "axios": "^1.5.1",
+    "babel-plugin-inline-import": "^3.0.0",
     "gm-crypto": "^0.1.12",
     "i18next": "^23.5.1",
     "intl-pluralrules": "^2.0.1",
@@ -47,12 +48,13 @@
     "react-native-safe-area-context": "^4.8.2",
     "react-native-screens": "^3.25.0",
     "react-native-splash-screen": "^3.3.0",
-    "react-native-svg": "13.4.0",
+    "react-native-svg": "^14.1.0",
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^10.0.0",
     "react-native-web": "^0.19.9",
     "react-native-webview": "^13.6.3",
-    "react-navigation": "^5.0.0"
+    "react-navigation": "^5.0.0",
+    "rn-dashline": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

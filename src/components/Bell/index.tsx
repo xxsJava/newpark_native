@@ -5,15 +5,15 @@ import { navigate } from '../../config/routs/NavigationContainer';
 
 
 //铃铛消息组件
- const BellView = (porp: boolean) => {
+ const BellView = (porp: Number) => {
   console.log('消息铃铛'+ porp.isMsg);
   return (
     <TouchableOpacity style={styles.loadMore} onPress={() => navigate('SocializingStacker')}>
         {/* notification      floatbuttonimg*/}
-        <View style={porp.isMsg? styles.hidden:styles.chu}>
+        {/* <View style={porp.isMsg? styles.hidden:styles.chu}>
             <Image source={require('../../assets/images/notification.png')} style={styles.img} />
-        </View>
-       <View style={porp.isMsg? styles.chu:styles.hidden}>
+        </View> */}
+       <View style={styles.chu}>
             <Image source={require('../../assets/images/floatbuttonimg.png')} style={styles.img1}></Image>
        </View>
     </TouchableOpacity>

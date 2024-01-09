@@ -51,11 +51,17 @@ const orderData = [
       text: 'minService.serviceOption1',
       icon: require('../../../../assets/images/alimom/pay.png'),
     },
+    // {
+    //   index: 2,
+    //   route: 'MyOrderRoute',
+    //   text: 'minService.serviceOption2',
+    //   icon: require('../../../../assets/images/alimom/order.png'),
+    // },
     {
       index: 2,
-      route: 'MyOrderRoute',
-      text: 'minService.serviceOption2',
-      icon: require('../../../../assets/images/alimom/order.png'),
+      route: 'MyPostRoute',
+      text: 'minService.serviceOption6',
+      icon: require('../../../../assets/images/alimom/posts.png'),
     },
     {
       index: 3,
@@ -79,9 +85,9 @@ const orderData = [
     },
     {
       index: 2,
-      route: 'MyPostRoute',
-      text: 'minService.serviceOption6',
-      icon: require('../../../../assets/images/alimom/posts.png'),
+      route: 'InviteFriendsRoute',
+      text: 'minService.serviceOption9',
+      icon: require('../../../../assets/images/alimom/invite_icon.jpg'),
     },
     {
       index: 3,

@@ -16,7 +16,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import LinearGradinet from 'react-native-linear-gradient';
 import {navigate} from '../../../config/routs/NavigationContainer';
 import { getGroupsInfo } from '../../../api/IMAPI';
-import BellView from'../../../components/Bell'
 import Storage from '../../../utils/AsyncStorageUtils';
 
 const windowWidth = Dimensions.get('window').width;
@@ -96,7 +95,6 @@ const ListIndex: React.FC = () => {
         data={data}
         renderItem={renderItem}
       />
-      {/* <BellView isMsg={true}></BellView> */}
     </View>
   );
 };
