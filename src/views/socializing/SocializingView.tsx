@@ -25,20 +25,27 @@ const windowHeight = Dimensions.get('window').height;
 
 const moreList = [{
   index:1,
-  image:require('../../assets/images/alimom/add-user.png'),
+  image:require('../../assets/images/tup/tianjiahaoyou.png'),
   text:'添加牛友',
   path:null
 },{
   index:2,
-  image:require('../../assets/images/alimom/basketball-icon.png'),
+  image:require('../../assets/images/tup/xieshangyizheng.png'),
   text:'加入社区',
   path:null
 },{
   index:3,
-  image:require('../../assets/images/alimom/add-icon.png'),
+  image:require('../../assets/images/tup/wanle.png'),
   text:'创建社区',
   path:'CreateCommunityRoute'
-}]
+},
+{
+  index:4,
+  image:require('../../assets/images/tup/saoyisao.png'),
+  text:'扫一扫',
+  path:'CreateCommunityRoute'
+},
+]
 
 const SocializingView = () => {
 
@@ -112,20 +119,20 @@ const SocializingView = () => {
         <View style={[styles.moreModule,more?null:{display:'none'}]}>
           {moreList.map(item => {
             return(
-              <View style={styles.itemMore} key={item.index}>
+              <TouchableOpacity style={styles.itemMore} key={item.index} activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
                 <View style={styles.itemImageView}>
                   <Image style={styles.itemImage} source={item.image}></Image>
                 </View>
-                <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
+                <View style={styles.itemTextView}>
                   <Text allowFontScaling={false} style={styles.itemText}>{item.text}</Text>
-                </TouchableOpacity>
+                </View>
                 {/* <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
                   <Text style={styles.itemText}>{item.text}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
                   <Text style={styles.itemText}>{item.text}</Text>
                 </TouchableOpacity> */}
-              </View>
+              </TouchableOpacity>
             )
           })}
         </View>
@@ -133,7 +140,7 @@ const SocializingView = () => {
        
         </TouchableOpacity>
         <View>
-            <BellView isMsg={1}></BellView>
+            <BellView></BellView>
         </View>
       </SafeAreaView>
   )
@@ -188,20 +195,34 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   moreModule:{
-    top:45,
+    top:50,
     right:18,
-    width:140,
-    height:130,
+    width:160,
+    height:165,
     paddingVertical:5,
+    paddingHorizontal:7,
     position:'absolute',
-    backgroundColor:'#414040',
-    zIndex:99
+    // backgroundColor:'#414040',
+    backgroundColor:'#fff',
+    borderRadius:10,
+    zIndex:99,
+     // 阴影的配置
+     elevation: 6, // 适配android的
+     shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
+     shadowColor: 'black',
+     shadowOpacity: .3,
+     shadowRadius: 2
   },
   itemMore:{
     height:30,
-    marginBottom:8,
+    marginBottom:12,
+    marginHorizontal:8,
+    paddingBottom:6,
     flexDirection:'row',
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    borderColor:'#bbb',
+    borderBottomWidth:1,
+    alignItems:'center'
   },
   itemImageView:{
     width:'40%',
@@ -213,13 +234,11 @@ const styles = StyleSheet.create({
     height:22
   },
   itemTextView:{
-    width:'60%',
-    borderColor:'#fff',
-    borderBottomWidth:1
+    width:'60%'
   },
   itemText:{
     fontSize:14,
-    color:'#fff',
+    color:'#000',
     lineHeight:30,
     textAlign:'center'
 

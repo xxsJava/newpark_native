@@ -53,6 +53,10 @@ import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
 import Empty from '../../../components/Error/empty'
 import SystemError from '../../../components/Error/SystemError'
 import beginOne from '../../../components/begin/beginOne'
+import beginTwo from '../../../components/begin/beginTwo'
+import beginThree from '../../../components/begin/beginThree'
+import beginFour from '../../../components/begin/beginFour'
+import PersonalData from '../../../views/mine/components/setup/PersonalData'
 import Comment from '../../../components/Error/Comment'
 import Collect from '../../../components/Error/Collect'
 import NoNews from '../../../components/Error/NoNews'
@@ -101,6 +105,34 @@ export default {
     options:{
       title:'引导页1',
       headerShown: false,
+    }
+  },
+  beginTwo:{
+    component:beginTwo,
+    options:{
+      title:'引导页2',
+      headerShown: false,
+    }
+  },
+  beginThree:{
+    component:beginThree,
+    options:{
+      title:'引导页3',
+      headerShown: false,
+    }
+  },
+  beginFour:{
+    component:beginFour,
+    options:{
+      title:'引导页4',
+      headerShown: false,
+    }
+  },
+  PersonalData:{
+    component:PersonalData,
+    options:{
+      title:'个人资料',
+      // headerShown: false,
     }
   },
   SchoolRoute:{

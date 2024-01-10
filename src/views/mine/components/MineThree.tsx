@@ -312,7 +312,7 @@ const MineVIew = () => {
         <View>
           <Button
             onPress={() =>navigate('beginOne')}
-            title="测试"
+            title="测试索引页面"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
           />

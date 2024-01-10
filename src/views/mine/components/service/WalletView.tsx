@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View,StyleSheet,Dimensions,Platform,SafeAreaView,TouchableOpacity,Button,TouchableNativeFeedback } from 'react-native';
+import { View,StyleSheet,Dimensions,Platform,SafeAreaView,TouchableOpacity,Button,TouchableNativeFeedback,Image } from 'react-native';
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
 import { Appbar } from 'react-native-paper';
@@ -28,13 +28,14 @@ export default class WalletView extends Component {
                 </Appbar.Header>
                 <View style={styles.walletView}>
                     <View style={styles.titleView}>
-                        <Text allowFontScaling={false} style={styles.titleStyle}>我的钱包</Text>
+                        {/* <Text allowFontScaling={false} style={styles.titleStyle}>我的钱包</Text> */}
                     </View>
                     <View style={styles.walletCard}>
                         <LinearGradinet colors={['rgba(249,187,81,1)','rgba(254,241,217,0.90)']}start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.walletBg}>
                             <View style={styles.cardContent}>
-                                <Text allowFontScaling={false} style={styles.cardText1}>余额</Text>
+                                <Text allowFontScaling={false} style={styles.cardText1}>新园豆</Text>
                                 <Text allowFontScaling={false} style={styles.cardText2}>¥{BALANCE}</Text>
+                                <Image source={require('../../../../assets/images/tup/能量豆.png')} style={styles.bean}></Image>
                             </View>
                             <View style={styles.cardButtonView}>
                                 <View style={styles.cardButtonIos}>
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     height:130,
     borderRadius:8,
     marginHorizontal:10,
-    marginTop:20
+    marginBottom:10
   },
   walletBg:{
     width:windowWidth-20,
@@ -188,6 +189,12 @@ const styles = StyleSheet.create({
     fontWeight:'600',
     color:'#000',
     lineHeight:50
+  },
+  bean:{
+    width:26,
+    height:26,
+    marginLeft:15,
+    marginTop:15
   }
 
 })
