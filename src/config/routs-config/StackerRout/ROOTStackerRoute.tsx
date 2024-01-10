@@ -52,6 +52,7 @@ import ObjCard from '../../../views/socializing/components/ObjCard'
 import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
 import Empty from '../../../components/Error/empty'
 import SystemError from '../../../components/Error/SystemError'
+import beginOne from '../../../components/begin/beginOne'
 import Comment from '../../../components/Error/Comment'
 import Collect from '../../../components/Error/Collect'
 import NoNews from '../../../components/Error/NoNews'
@@ -94,6 +95,13 @@ export default {
       headerTitleStyle: StylesALL.navText,
       headerStyle: StylesALL.BGCOLOR,
     },
+  },
+  beginOne:{
+    component:beginOne,
+    options:{
+      title:'引导页1',
+      headerShown: false,
+    }
   },
   SchoolRoute:{
     component:SchoolIndex,
