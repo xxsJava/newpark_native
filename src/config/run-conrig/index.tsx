@@ -10,17 +10,13 @@ import {LogBox, Platform} from 'react-native';
 import '../listener';
 import {initListener} from '../listener';
 import IMSDKRN from '../../plugins/IMSDKRN';
-import DateTimeUtils from '../../utils/DateTimeUtils';
 import { createDirs, writeFileData } from '../../utils/FilesUtiles';
 import { GROUP_MSG_DIR, INDEX_MSG_DIR, MSG_FILE_DIR, PRITIVE_MSG_DIR } from '../paramStatic';
 import RNFS from 'react-native-fs';
 console.log('项目开始启动运行', Platform.OS);
 
 IMSDKRN.initSDK();
-if (Platform.OS === 'android') {
-  console.log('android------>加载监听器');
-  initListener();
-}
+initListener();
 
 //根据时间格式化目录
 createDirs(GROUP_MSG_DIR);

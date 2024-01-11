@@ -23,23 +23,73 @@ RCT_EXPORT_METHOD(passDataToRN:(NSString *)data) {
   // 在这里可以将 data 传递给 React Native 的组件
 }
 
+/**
+ 初始化IM
+ */
 RCT_EXPORT_METHOD(initSDK){
-  NSLog(@"Success");
+    NSString*documentPath =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES).firstObject;
+  //初始化IM
+  NSLog(@"OpenIM初始化----->%@",documentPath);
+//  NSLog(@"OpenIM初始化----->");
+  OIMInitConfig *config = [OIMInitConfig new];
+  config.apiAddr = @"http://www.newpark.sougouhihg.top:10002/";
+  config.wsAddr = @"ws://www.newpark.sougouhihg.top:10001";
+  config.dataDir = documentPath;
+
+  BOOL success = [OIMManager.manager initSDKWithConfig:config
+                                          onConnecting:^{
+
+  } onConnectFailure:^(NSInteger code, NSString * _Nullable msg) {
+      // Callback function for connection failure
+      // code error code
+      // error error message
+    NSLog(@"Open-IM-连接-server---->失败,%li---%@",code,msg);
+    [self sendEventWithName:@"onConnectFailed" body:@{@"msg":msg}];
+  } onConnectSuccess:^{
+      // SDK has successfully connected to the IM server
+    NSLog(@"Open-IM-server---->成功");
+    [self sendEventWithName:@"onConnectServer" body:@{@"msg":@"Open-IM-server---->成功"}];
+  } onKickedOffline:^{
+      // SDK is connecting to the IM server
+    NSLog(@"Open-IM-server---->被踢");
+    [self sendEventWithName:@"onConnectServer" body:@{@"msg":@"Open-IM-server---->被踢"}];
+  } onUserTokenExpired:^{
+      // Token has expired while online: at this point, you need to generate a new token and call the login() function again to log in.
+    NSLog(@"Open-IM-server---->token错误");
+    [self sendEventWithName:@"onConnectServer" body:@{@"msg":@"Open-IM-server---->token错误"}];
+  }];
+
+  if (success) {
+    NSLog(@"Open-IM-初始化---->成功");
+    
+    IMSDKRN *imsdk = [[IMSDKRN alloc]init];
+    [imsdk initListeners];
+  } else {
+    NSLog(@"Open-IM-初始化---->失败");
+  }
 };
 
-// 返回的数组为支持的事件名列表
-//- (NSArray<NSString *> *)supportedEvents
-//{
-//    return @[@"ItemAdded"];
-//}
-
 RCT_EXPORT_METHOD(testEvent){
-  [self sendEventWithName:@"ItemAdded" body:@"hello"];
+  NSLog(@"发送监听事件");
+  [self sendEventWithName:@"ItemAdded" body:@{@"key":@"val"}];
 }
 
-//RCT_EXPORT_METHOD(init{
-//  
-//})
+/**
+openIM 登录
+ */
+RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
+//  NSLog(@"usrID----->%@,token---->%@",userID,token);
+  [OIMManager.manager login:userID // userID来自于自身业务服务器
+                      token:token  // token需要业务服务器向OpenIM服务端交换获取
+                  onSuccess:^(NSString * _Nullable data) {
+    NSLog(@"登录msg----->%@",data);
+    [self sendEventWithName:@"onSuccessLogin" body:data];
+  } onFailure:^(NSInteger code, NSString * _Nullable msg) {
+    [self sendEventWithName:@"onErrorLogin" body:msg];
+  }];
+}
+
+
 
 //接收RN传的参数
 //RCT_EXPORT_METHOD(whoName:(NSString *)name){
@@ -68,53 +118,6 @@ RCT_EXPORT_METHOD(testEvent){
 //  }
 //}
 
-//RCT_EXPORT_METHOD(init{
-  
-  //初始化IM
-//  NSString*documentPath =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES).firstObject;
-//  
-//  NSLog(@"OpenIM初始化----->%@",documentPath);
-////  NSLog(@"OpenIM初始化----->");
-//  OIMInitConfig *config = [OIMInitConfig new];
-//  config.apiAddr = @"http://www.newpark.sougouhihg.top:10002/";
-//  config.wsAddr = @"ws://www.newpark.sougouhihg.top:10001";
-//  config.dataDir = documentPath;
-//
-//  BOOL success = [OIMManager.manager initSDKWithConfig:config
-//                                          onConnecting:^{
-//
-//  } onConnectFailure:^(NSInteger code, NSString * _Nullable msg) {
-//      // Callback function for connection failure
-//      // code error code
-//      // error error message
-//    NSLog(@"Open-IM-连接-server---->失败,%li---%@",code,msg);
-//  } onConnectSuccess:^{
-//      // SDK has successfully connected to the IM server
-//    NSLog(@"Open-IM-server---->成功");
-//  } onKickedOffline:^{
-//      // SDK is connecting to the IM server
-//    NSLog(@"Open-IM-server---->被踢");
-//  } onUserTokenExpired:^{
-//      // Token has expired while online: at this point, you need to generate a new token and call the login() function again to log in.
-//    NSLog(@"Open-IM-server---->token错误");
-//  }];
-//  
-//  if (success) {
-//    NSLog(@"Open-IM-初始化---->成功");
-//  } else {
-//    NSLog(@"Open-IM-初始化---->失败");
-//  }
-//  
-//  //登录IM
-//  [OIMManager.manager login:@"9689784708" // userID obtained from your own business server
-//                      token:@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI5Njg5Nzg0NzA4IiwiUGxhdGZvcm1JRCI6MSwiZXhwIjoxNzExNzA3ODc4LCJuYmYiOjE3MDM5MzE1NzgsImlhdCI6MTcwMzkzMTg3OH0.mfY6ZiYMW5vcBZ69VagKaLLv_N4ockcy-NKiKw_GHJM"  // token acquired by business server from OpenIM server
-//                  onSuccess:^(NSString * _Nullable data) {
-//    NSLog(@"Open-IM-login---->成功");
-//  } onFailure:^(NSInteger code, NSString * _Nullable msg) {
-//    NSLog(@"Open-IM-login---->失败");
-//  }];
-  
-//})
 
 //- (void)testCallbackEventTwoWithResolver:(RCTPromiseResolveBlock)resolve
 //                                rejecter:(RCTPromiseRejectBlock)reject {
@@ -127,7 +130,88 @@ RCT_EXPORT_METHOD(testEvent){
 //    }
 //}
 
-- (void)inItSDK {
+// 返回的数组为支持的事件名列表
+- (NSArray<NSString *> *)supportedEvents
+{
+  return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer"];
+}
+
+- (void)initListeners{
+  NSLog(@"------- IOS监听器初始化 --------");
+  //用户信息监听
+  [OIMManager.callbacker setSelfUserInfoUpdateListener:^(OIMUserInfo * _Nullable userInfo) {
+          
+  }];
+  //会话相关监听
+  [OIMManager.callbacker setConversationListenerWithOnSyncServerStart:^{
+          
+  } onSyncServerFinish:^{
+          
+  } onSyncServerFailed:^{
+          
+  } onConversationChanged:^(NSArray<OIMConversationInfo *> * _Nullable conversations) {
+          
+  } onNewConversation:^(NSArray<OIMConversationInfo *> * _Nullable conversations) {
+          
+  } onTotalUnreadMessageCountChanged:^(NSInteger number) {
+          
+  }];
+  //关系链相关监听
+  [OIMManager.callbacker setFriendListenerWithOnBlackAdded:^(OIMBlackInfo * _Nullable blackInfo) {
+          
+  } onBlackDeleted:^(OIMBlackInfo * _Nullable blackInfo) {
+          
+  } onFriendApplicationAccepted:^(OIMFriendApplication * _Nullable friendApplication) {
+          
+  } onFriendApplicationAdded:^(OIMFriendApplication * _Nullable friendApplication) {
+      
+  } onFriendApplicationDeleted:^(OIMFriendApplication * _Nullable friendApplication) {
+          
+  } onFriendApplicationRejected:^(OIMFriendApplication * _Nullable friendApplication) {
+          
+  } onFriendInfoChanged:^(OIMFriendInfo * _Nullable friendInfo) {
+          
+  } onFriendAdded:^(OIMFriendInfo * _Nullable friendInfo) {
+          
+  } onFriendDeleted:^(OIMFriendInfo * _Nullable friendInfo) {
+          
+  }];
+  //群组相关监听
+  [OIMManager.callbacker setGroupListenerWithOnGroupInfoChanged:^(OIMGroupInfo * _Nullable groupInfo) {
+    
+  } onJoinedGroupAdded:^(OIMGroupInfo * _Nullable groupInfo) {
+    <#code#>
+  } onJoinedGroupDeleted:^(OIMGroupInfo * _Nullable groupInfo) {
+    <#code#>
+  } onGroupMemberAdded:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
+    <#code#>
+  } onGroupMemberDeleted:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
+    <#code#>
+  } onGroupMemberInfoChanged:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
+    <#code#>
+  } onGroupApplicationAdded:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
+    <#code#>
+  } onGroupApplicationDeleted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
+    <#code#>
+  } onGroupApplicationAccepted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
+    <#code#>
+  } onGroupApplicationRejected:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
+    <#code#>
+  } onGroupDismissed:^(OIMGroupInfo * _Nullable groupInfo) {
+    <#code#>
+  }];
+  // 消息相关监听器
+  [OIMManager.callbacker setAdvancedMsgListenerWithOnRecvMessageRevoked:^(OIMMessageRevokedInfo * _Nullable msgRovoked) {
+  } onRecvC2CReadReceipt:^(NSArray<OIMReceiptInfo *> * _Nullable msgReceiptList) {
+    
+  } onRecvGroupReadReceipt:^(NSArray<OIMReceiptInfo *> * _Nullable msgReceiptList) {
+    
+  } onRecvNewMessage:^(OIMMessageInfo * _Nullable message) {
+    BOOL isValid = [NSJSONSerialization isValidJSONObject:message];
+    NSLog(@"接收消息----> %@",isValid ? @"YES":@"NO");
+
+    [self sendEventWithName:@"onRecvNewMessage" body:message];
+  }];
 }
 
 @end

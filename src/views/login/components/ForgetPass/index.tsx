@@ -12,8 +12,8 @@ import {
   NativeModules,
   StyleSheet,
   View,
-  NativeEventEmitter,
   SafeAreaView,
+  NativeEventEmitter,
 } from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
 import notifee, {
@@ -43,9 +43,9 @@ import {
 import {INDEX_MSG_DIR, MSG_FILE_DIR} from '../../../../config/paramStatic';
 Alipay.setAlipaySandbox(true);
 
-var callManager = NativeModules.CallManager;
+// var callManager = NativeModules.CallManager;
 // const subscribeStreamEvt = new NativeEventEmitter(callManager);
-const {WSNotification} = NativeModules;
+// const {WSNotification} = NativeModules;
 // console.log('接收OC定义的常量--->'+WSNotification.name+' -------->'+WSNotification.ocName);
 // const calendarManagerEmitter = new NativeEventEmitter(WSNotification);
 
@@ -183,8 +183,8 @@ function componentDidMount(this: any) {
 
 //清除监听
 function componentWillUnmount(this: any) {
-  this.listener && this.listener.remove();
-  this.listener = null;
+  // this.listener && this.listener.remove();
+  // this.listener = null;
 }
 
 // const subscription = calendarManagerEmitter.addListener('OCSendToRN',(reminder) => console.log('RN收到OC发来---->'+reminder.name))
@@ -198,8 +198,8 @@ const ForgetPass: React.FC = () => {
       <Button title="通知" onPress={onDisplayNotification} />
       <Button title="远程通知" onPress={onNotificationRemote} />
       <Button title="定时通知" onPress={onCreateTriggerNotification} />
-      <Button title="添加监听" onPress={componentDidMount} />
-      <Button title="清除监听" onPress={componentWillUnmount} />
+      {/* <Button title="添加监听" onPress={componentDidMount} /> */}
+      {/* <Button title="清除监听" onPress={componentWillUnmount} /> */}
 
       <Button
         title="获取群组信息"
@@ -293,11 +293,28 @@ const ForgetPass: React.FC = () => {
       /> */}
 
       <Button
+        title="IOS开启监听"
+        onPress={() => {
+          console.log('获取ios方法------>', IMSDKRN);
+          // const testIos = new NativeEventEmitter(IMSDKRN);
+          // console.log(testIos);
+          // testIos.addListener('ItemAdded',res =>{
+          //   console.log('接收ios-监听----->',res)
+          // })
+        }}
+      />
+
+      <Button
+        title="IOS--登录"
+        onPress={() => {
+          IMSDKRN.login('1742430171993788416','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MSwiZXhwIjoxNzEyNjQ1MDY2LCJuYmYiOjE3MDQ4Njg3NjYsImlhdCI6MTcwNDg2OTA2Nn0.pp1P6ZyNaSFL0gWpSwM3_CqdY_PzCxoW1jX3rcfc-GI');
+        }}
+      />
+
+      <Button
         title="IOS事件监听测试"
         onPress={() => {
-          DeviceEventEmitter.addListener('ItemAdded', resp => {
-            console.log(resp);
-          });
+          console.log('点击ios监听事件');
 
           IMSDKRN.testEvent();
         }}
@@ -322,10 +339,10 @@ const ForgetPass: React.FC = () => {
           // 开始读取文件
           readFileData(INDEX_MSG_DIR)
             .then(res => {
-              console.log('读取原始数据----->',res);
-              res.push({groupId: 'value1', path: '11'});
-              console.log('数据更新----->',res);
-              writeFileData(INDEX_MSG_DIR,JSON.stringify(res));
+              console.log('读取原始数据----->', res);
+              res.data.push({groupId: 'value1', path: '11'});
+              console.log('数据更新----->', res);
+              writeFileData(INDEX_MSG_DIR, JSON.stringify(res));
             })
             .catch(err => {
               console.log(err);
@@ -336,7 +353,7 @@ const ForgetPass: React.FC = () => {
       <Button
         title="json合并"
         onPress={() => {
-          writeFileData(INDEX_MSG_DIR,MSG_FILE_DIR);
+          writeFileData(INDEX_MSG_DIR, MSG_FILE_DIR);
         }}
       />
       {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}

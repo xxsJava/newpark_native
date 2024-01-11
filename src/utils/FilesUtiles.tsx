@@ -11,6 +11,7 @@ import RNFS from 'react-native-fs';
  * @param filePath 文件名
  */
 export const createDirs = async (filePath: string) => {
+  console.log('创建文件的地址---->',filePath)
   try {
     if (!(await RNFS.exists(filePath))) {
       await RNFS.mkdir(filePath);

@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
-
 @interface IMSDKRN : RCTEventEmitter <RCTBridgeModule>
 
 - (void)passDataToRN:(NSString *)data;

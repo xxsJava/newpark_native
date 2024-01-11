@@ -1,7 +1,7 @@
-import {DeviceEventEmitter} from 'react-native';
-import {GROUP_MSG_DIR, INDEX_MSG_DIR, MSG_FILE_DIR} from '../paramStatic';
+import {DeviceEventEmitter, NativeEventEmitter, Platform} from 'react-native';
+import {INDEX_MSG_DIR} from '../paramStatic';
 import {readFileData, writeFileData} from '../../utils/FilesUtiles';
-import RNFS from 'react-native-fs';
+import IMSDKRN from '../../plugins/IMSDKRN';
 /*
  * @Author: xxs
  * @Date: 2024-01-04 09:28:14
@@ -11,17 +11,19 @@ import RNFS from 'react-native-fs';
  */
 type groupData = {groupId: string; groupPath: string};
 type privateData = {sendId: string; privatePath: string};
+const DevenIOS = new NativeEventEmitter(IMSDKRN);
+export const DeviceEvent = Platform.OS == 'ios'?DevenIOS:DeviceEventEmitter;
 export const initListener = () => {
   console.log('--------------->监听器初始化');
-  DeviceEventEmitter.addListener('onSuccessLogin', resp => {
+  DeviceEvent.addListener('onSuccessLogin', resp => {
     console.log('登录成功----->', resp);
   });
 
-  DeviceEventEmitter.addListener('onErrorLogin', resp => {
+  DeviceEvent.addListener('onErrorLogin', resp => {
     console.log('登录失败----->', resp);
   });
 
-  DeviceEventEmitter.addListener('onRecvNewMessage', resp => {
+  DeviceEvent.addListener('onRecvNewMessage', resp => {
     const msg = JSON.parse(resp.message);
     console.log('消息监听1----->', msg);
 
@@ -81,11 +83,11 @@ export const initListener = () => {
     });
   });
 
-  DeviceEventEmitter.addListener('onConnectFailed', resp => {
+  DeviceEvent.addListener('onConnectFailed', resp => {
     console.log('服务链接监听---------->', resp);
   });
 
-  DeviceEventEmitter.addListener('onConnectServer', resp => {
+  DeviceEvent.addListener('onConnectServer', resp => {
     console.log('服务链接监听---------->', resp);
   });
 
