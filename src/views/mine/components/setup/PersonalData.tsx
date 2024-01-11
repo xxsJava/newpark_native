@@ -1,35 +1,34 @@
-/**
- * 代码描述: 个人资料页面  设置
- * 作者:cxr
- * 修改时间:2023/12/08 14:40:11
- */
+
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity } from "react-native";
+import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,Image } from "react-native";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const PersonalDataView = () => {
 
-    const [tabVal,onTabPress] = React.useState(1)
-
+    const [name,setname] = React.useState('幼儿园最强恶霸')
+    const [sign,setSign] = React.useState('我是顿号！');
+    const [school,setSchool] = React.useState('庆北大学')
     return (
         <View style={styles.parentView}>
-            <View style={styles.tabView}>
-                <TouchableOpacity onPress={() => onTabPress(1)}>
-                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 1?styles.tabColor:null]}>帖子</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => onTabPress(2)}>
-                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 2?styles.tabColor:null]}>悬赏</Text>
-                    <Text>11112</Text>
-
-                    <Text>22223</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => onTabPress(3)}>
-                    <Text allowFontScaling={false} style={[styles.tabText,tabVal == 3?styles.tabColor:null]}>成就</Text>
-                </TouchableOpacity>
-            </View>
+           <View style={styles.heng}>
+                <Text style={styles.h3}>头像</Text>
+                <Image source={require('../../../../assets/images/tup/xy2.png')} style={styles.headImg}></Image>
+           </View>
+           <View style={styles.hengz}>
+                <Text style={styles.h3}>名字</Text>
+                <Text style={styles.h3}>{name}</Text>
+           </View>
+           <View style={styles.hengz}>
+                <Text style={styles.h3}>个性签名</Text>
+               <Text style={styles.h3}>{sign}</Text>
+           </View>
+           <View style={styles.hengz}>
+                <Text style={styles.h3}>学校</Text>
+                <Text style={styles.h3}>{school}</Text>
+           </View>
         </View>
     )
 }
@@ -41,25 +40,40 @@ const styles = StyleSheet.create({
         width:windowWidth,
         height:windowHeight - 190,
         backgroundColor:'#fff',
-        zIndex:-20
+        zIndex:-20,
+        padding:20
     },
-    tabView:{
-        width:windowWidth,
-        height:50,
-        marginTop:70,
-        paddingHorizontal:25,
+    headImg:{
+        width:70,
+        height:70,
+        borderWidth:1,
+        borderColor:'#BBBBBB',
+        margin:4,
+        padding:8,
+        borderRadius:10
+    },
+    heng:{
         flexDirection:'row',
+        flexWrap:'wrap',
         justifyContent:'space-between',
-        // backgroundColor:'red'
+        alignItems:'center',
+        borderBottomWidth:1,
+        borderColor:'#BBBBBB',
+        margin:6
     },
-    tabText:{
-        fontSize:15,
-        color:'#555',
-        lineHeight:50
+    h3:{
+        color:'black',
+        fontSize:18
     },
-    tabColor:{
-        fontSize:17,
-        color:'#FABA3C',
-        fontWeight:'bold'
+    hengz:{
+        flexDirection:'row',
+        flexWrap:'wrap',
+        justifyContent:'space-between',
+        alignItems:'center',
+        borderBottomWidth:1,
+        borderColor:'#BBBBBB',
+        paddingHorizontal:5,
+        paddingVertical:20
     }
+   
 })

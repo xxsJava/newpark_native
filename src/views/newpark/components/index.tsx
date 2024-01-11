@@ -73,7 +73,7 @@ const TabNav = () => {
         <ChatModule></ChatModule>
       </View>
       <View style={styles.bell}>
-      <BellView isMsg={true}></BellView> 
+      <BellView></BellView> 
       </View>
     </SafeAreaView>
   )

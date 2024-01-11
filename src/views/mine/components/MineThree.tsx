@@ -1,10 +1,4 @@
-/*
- * @Author: xxs
- * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2023-10-25 17:14:49
- * @FilePath: \newpark_native\src\components\Home\index.tsx
- * @Description: Home 页菜单
- */
+
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
@@ -26,6 +20,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  Button
 } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
@@ -107,36 +102,36 @@ const list2 = [
 ];
 const list3 = [
   {
-    index:1,
-    img:require('../../../assets/images/tup/xy1.png'),
-    title:'我是一个标题',
-    main:'部分内容',
-    autor:'咖啡牛',
-    time:'2023年12月11日'
+    index: 1,
+    img: require('../../../assets/images/tup/xy1.png'),
+    title: '我是一个标题',
+    main: '部分内容',
+    autor: '咖啡牛',
+    time: '2023年12月11日'
   },
   {
-    index:1,
-    img:require('../../../assets/images/tup/xy2.png'),
-    title:'我是一个标题',
-    main:'部分内容',
-    autor:'咖啡牛',
-    time:'2023年12月11日'
+    index: 1,
+    img: require('../../../assets/images/tup/xy2.png'),
+    title: '我是一个标题',
+    main: '部分内容',
+    autor: '咖啡牛',
+    time: '2023年12月11日'
   },
   {
-    index:1,
-    img:require('../../../assets/images/tup/xy3.png'),
-    title:'我是一个标题',
-    main:'部分内容',
-    autor:'咖啡牛',
-    time:'2023年12月11日'
+    index: 1,
+    img: require('../../../assets/images/tup/xy3.png'),
+    title: '我是一个标题',
+    main: '部分内容',
+    autor: '咖啡牛',
+    time: '2023年12月11日'
   },
   {
-    index:1,
-    img:require('../../../assets/images/tup/xy4.png'),
-    title:'我是一个标题',
-    main:'部分内容',
-    autor:'咖啡牛',
-    time:'2023年12月11日'
+    index: 1,
+    img: require('../../../assets/images/tup/xy4.png'),
+    title: '我是一个标题',
+    main: '部分内容',
+    autor: '咖啡牛',
+    time: '2023年12月11日'
   },
 
 ]
@@ -258,21 +253,21 @@ const MineVIew = () => {
                   </View>
                 })}
               </View>
-              <View style={[styles.heng,tabVal == 2 ? styles.xian : styles.hidd]}>
+              <View style={[styles.heng, tabVal == 2 ? styles.xian : styles.hidd]}>
                 {list2.map(item => {
                   return <View key={item.index}>
-                    <View style={[item.type == '商品' ? styles.xian : styles.hidd,styles.litBox]} >
+                    <View style={[item.type == '商品' ? styles.xian : styles.hidd, styles.litBox]} >
                       {/* <View> */}
-                        <Text style={styles.title}>{item.title}</Text>
-                        <Image source={item.img} style={styles.spImg}></Image>
-                        <View style={styles.hengpic}>
-                          <Text style={styles.price}> {item.price}</Text>
-                          <Text style={styles.unit}>元/个</Text>
-                        </View>
-                       
+                      <Text style={styles.title}>{item.title}</Text>
+                      <Image source={item.img} style={styles.spImg}></Image>
+                      <View style={styles.hengpic}>
+                        <Text style={styles.price}> {item.price}</Text>
+                        <Text style={styles.unit}>元/个</Text>
+                      </View>
+
                       {/* </View> */}
                     </View>
-                    <View style={[item.type == '悬赏' ? styles.xian : styles.hidd,styles.litBoxBZ]}>
+                    <View style={[item.type == '悬赏' ? styles.xian : styles.hidd, styles.litBoxBZ]}>
                       {/* <View style={styles.litBoxBZ}> */}
                       <Text style={styles.title}>{item.title}</Text>
                       <View style={styles.hengbz}>
@@ -283,38 +278,45 @@ const MineVIew = () => {
                         <Text style={styles.price}>{item.price}</Text>
                         <Text style={styles.unit}>元/次</Text>
                       </View>
-                      </View>
-                      <View style={(item.index % 2)==0 ? styles.greenX : styles.greenY}>
-                          <Text style={styles.fontY}>{item.type}</Text>
-                        </View>
                     </View>
+                    <View style={(item.index % 2) == 0 ? styles.greenX : styles.greenY}>
+                      <Text style={styles.fontY}>{item.type}</Text>
+                    </View>
+                  </View>
                   // </View>
                 }
                 )
                 }
               </View>
-              <View style={[styles.hengtz,tabVal == 1 ? styles.xian : styles.hidd]}>
-                {list3.map(item =>{
-                    return <TouchableOpacity style={styles.list3Box}> 
-                          <View>
-                            <Image source={item.img} style={styles.tzimg}></Image>
-                          </View>
-                          <View style={styles.right}>
-                            <Text style={styles.fonBlac}>{item.title}</Text>
-                            <Text style={styles.ge}>{item.main}</Text>
-                           <View style={styles.heng}>
-                           <Text>{item.autor}</Text>
-                            <Text style={styles.tzTime}>{item.time}</Text>
-                           </View>
-                          </View>
-                    </TouchableOpacity>
-                  })
+              <View style={[styles.hengtz, tabVal == 1 ? styles.xian : styles.hidd]}>
+                {list3.map(item => {
+                  return <TouchableOpacity style={styles.list3Box}>
+                    <View>
+                      <Image source={item.img} style={styles.tzimg}></Image>
+                    </View>
+                    <View style={styles.right}>
+                      <Text style={styles.fonBlac}>{item.title}</Text>
+                      <Text style={styles.ge}>{item.main}</Text>
+                      <View style={styles.heng}>
+                        <Text>{item.autor}</Text>
+                        <Text style={styles.tzTime}>{item.time}</Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                })
                 }
               </View>
             </View>
           </View>
         </ScrollView>
-
+        <View>
+          <Button
+            onPress={() =>navigate('beginOne')}
+            title="测试索引页面"
+            color="#841584"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
       </View>
     </SafeAreaView>
 
@@ -323,7 +325,6 @@ const MineVIew = () => {
 export default MineVIew;
 const styles = StyleSheet.create({
   nullf: {
-
     zIndex: 9999,
     // position:'absolute',
     // bottom:0,
@@ -531,19 +532,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap'
   },
-  hengtz:{
-    flexDirection:'column'
+  hengtz: {
+    flexDirection: 'column'
   },
-  hengbz:{
+  hengbz: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    width:130,
+    width: 130,
   },
-  hengpic:{
+  hengpic: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop:8,
-    marginLeft:8
+    marginTop: 8,
+    marginLeft: 8
   },
   litBox: {
     backgroundColor: '#fff',
@@ -576,39 +577,39 @@ const styles = StyleSheet.create({
     color: 'black',
     marginLeft: 6
   },
-  greenY:{
-    backgroundColor:'#F5A30B',
-    width:40,
-    height:40,
-    borderRadius:30,
-    position:'absolute',
-    left:0,
-    top:0
+  greenY: {
+    backgroundColor: '#F5A30B',
+    width: 40,
+    height: 40,
+    borderRadius: 30,
+    position: 'absolute',
+    left: 0,
+    top: 0
   },
-  greenX:{
-    backgroundColor:'#F5A30B',
-    width:40,
-    height:40,
-    borderRadius:30,
-    position:'absolute',
-    right:0,
-    top:0
+  greenX: {
+    backgroundColor: '#F5A30B',
+    width: 40,
+    height: 40,
+    borderRadius: 30,
+    position: 'absolute',
+    right: 0,
+    top: 0
   },
-  fontY:{
-    color:'#fff',
-    fontWeight:'bold',
-    textAlign:'center',
-    lineHeight:40
+  fontY: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    lineHeight: 40
   },
-  list3Box:{
-    backgroundColor:'#fff',
-    borderRadius:20,
-    borderWidth:1,
-    flexDirection:'row',
-    padding:20,
-    justifyContent:'space-between',
-    width:'86%',
-    margin:8,
+  list3Box: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    borderWidth: 1,
+    flexDirection: 'row',
+    padding: 20,
+    justifyContent: 'space-between',
+    width: '86%',
+    margin: 8,
     ...Platform.select({
       ios: {
         shadowColor: '#999', //设置阴影色
@@ -621,27 +622,27 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  tzimg:{
-    width:60,
-    height:60,
-    marginTop:8
+  tzimg: {
+    width: 60,
+    height: 60,
+    marginTop: 8
   },
-  right:{
-    marginLeft:20
+  right: {
+    marginLeft: 20
   },
-  fonBlac:{
-    color:'black',
-    fontSize:16
+  fonBlac: {
+    color: 'black',
+    fontSize: 16
   },
-  ge:{
-    marginVertical:8
+  ge: {
+    marginVertical: 8
   },
-  tzTime:{
-    fontSize:12,
-    marginLeft:6
+  tzTime: {
+    fontSize: 12,
+    marginLeft: 6
   },
-  imgTx:{
-    width:100,
-    height:100
+  imgTx: {
+    width: 100,
+    height: 100
   }
 });

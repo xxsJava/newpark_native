@@ -1,9 +1,3 @@
-/**
- * 代码描述: 设置页面  个人中心
- * 作者:cxr
- * 修改时间:2023/11/29 14:25:11
- */
-
 import React, { Component } from "react";
 import { View,Text,StyleSheet,Dimensions,ScrollView,TouchableOpacity, } from "react-native";
 import { Appbar } from 'react-native-paper';
@@ -13,28 +7,37 @@ import {navigate} from '../../../../config/routs/NavigationContainer'
 
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
-
+function PersonalInfo (){  navigate('PersonalData') }
+// const PersonalInfo =()=>{navigate('PersonalData')}
 const listData = [{
     index:1,
     text:'个人资料',
+    // onPress: ()=>{navigate('PersonalData');}
+    onPress:PersonalInfo
 },{
     index:2,
     text:'通知设置',
+    to:navigate('PersonalData')
 },{
     index:3,
     text:'清除缓存',
+    to:navigate('PersonalData')
 },{
     index:4,
     text:'黑名单',
+    to:navigate('PersonalData')
 },{
     index:5,
     text:'关于我们',
+    to:navigate('PersonalData')
 },{
     index:6,
     text:'注销用户',
+    to:navigate('PersonalData')
 },{
     index:7,
     text:'退出登录',
+    to:navigate('PersonalData')
 }]
 
 export default class SetUp extends Component {
@@ -52,7 +55,7 @@ export default class SetUp extends Component {
                             <View style={styles.listStyle}>
                                 {listData.map(item => {
                                     return (
-                                        <TouchableOpacity style={styles.itemStyle} key={item.index} activeOpacity={0.9}>
+                                        <TouchableOpacity style={styles.itemStyle} key={item.index} activeOpacity={0.4} onPress={()=>navigate('PersonalData')}>
                                             <Text allowFontScaling={false} style={[styles.itemText,item.index == 7?{color:'red'}:null]}>{item.text}</Text>
                                             <View style={styles.itemIconView}>
                                                 <Text allowFontScaling={false} style={[styles.itemIconText,item.index == 3?null:{display:'none'}]}>703.10k</Text>

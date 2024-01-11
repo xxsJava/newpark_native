@@ -17,7 +17,7 @@ export default class HomeView extends Component {
       <>
         <HomeNav />
         <HomeComponents />
-        <BellView isMsg={true}></BellView>
+        <BellView></BellView>
       </>
     );
   }

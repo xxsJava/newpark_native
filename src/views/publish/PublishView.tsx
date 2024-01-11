@@ -152,7 +152,7 @@ const Example = () => {
         <Button title="点击出现" onPress={() => fadeIn()}></Button>
         <Button title="点击消失" onPress={() => fadeOut()}></Button>
       <View style={styles.bell}>
-          <BellView isMsg={true}></BellView> 
+          <BellView></BellView> 
       </View>
       {/* <Stagger
         visible={isOpen}

@@ -1,12 +1,14 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import {StyleSheet, Text, View,Image,TouchableOpacity,Button} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import { navigate } from '../../config/routs/NavigationContainer';
 
 
 //铃铛消息组件
- const BellView = (porp: Number) => {
-  console.log('消息铃铛'+ porp.isMsg);
+ const BellView = () => {
+  const [isMsg,setisMsg] = useState(2);
+  console.log('消息铃铛'+ isMsg);
+
   return (
     <TouchableOpacity style={styles.loadMore} onPress={() => navigate('SocializingStacker')}>
         {/* notification      floatbuttonimg*/}
@@ -15,6 +17,9 @@ import { navigate } from '../../config/routs/NavigationContainer';
         </View> */}
        <View style={styles.chu}>
             <Image source={require('../../assets/images/floatbuttonimg.png')} style={styles.img1}></Image>
+       </View>
+       <View style={styles.tipBox}>
+        <Text style={styles.tip}>{isMsg}</Text>
        </View>
     </TouchableOpacity>
   );
@@ -47,5 +52,20 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: .9,
     shadowRadius: 9
+  },
+  tip:{
+    color:'red',
+    fontWeight:'bold'
+  },
+  tipBox:{
+    position:'absolute',
+    right:0,
+    top:0,
+    backgroundColor:'#fff',
+    width:18,
+    height:18,
+    borderRadius:12,
+    justifyContent:'center',
+    alignItems:'center'
   }
 });
