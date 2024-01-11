@@ -87,7 +87,7 @@ const orderData = [
       index: 2,
       route: 'InviteFriendsRoute',
       text: 'minService.serviceOption9',
-      icon: require('../../../../assets/images/alimom/invite_icon.jpg'),
+      icon: require('../../../../assets/images/alimom/invite_icon.png'),
     },
     {
       index: 3,

@@ -37,18 +37,18 @@ function MessageList(props: { items: any; receiver: any; }) {
     console.log('items---->',items);
     const listItems = items.map((item:any, index: React.Key | null | undefined) => {
             return (
+                <View>
                 <View key={index} style={receiver == item.name ? styles.chatReceiver : styles.chatMessage}>
-                    <Avatar.Image style={[styles.avatarImage1,receiver == item.name ? {display:'none'}:null]} size={34} source={{uri:item.senderFaceUrl}}></Avatar.Image>
-                    <View style={[styles.textStyle,receiver == item.name ? styles.textReceiver : null]}>
-                        <Text allowFontScaling={false} style={[styles.chatNameReceiver,receiver == item.senderNickname ? {display:'none'}:null]}>{item.senderNickname}</Text>
-                        <Text allowFontScaling={false} style={[styles.messageText,receiver == item.name?styles.messageReceiver:null,item.textElem.content ? null : {display:'none'}]}>{item.textElem.content}</Text>
-                        <Image style={[styles.messageImage,item.messageImage ? null : {display:'none'}]} source={item.messageImage} />
+                    <Avatar.Image style={[styles.avatarImage1, receiver == item.name ? { display: 'none' } : null]} size={34} source={{ uri: item.senderFaceUrl }}></Avatar.Image>
+                    <View style={[styles.textStyle, receiver == item.name ? styles.textReceiver : null]}>
+                        <Text allowFontScaling={false} style={[styles.chatNameReceiver, receiver == item.senderNickname ? { display: 'none' } : null]}>{item.senderNickname}</Text>
+                        <Text allowFontScaling={false} style={[styles.messageText, receiver == item.name ? styles.messageReceiver : null, item.textElem.content ? null : { display: 'none' }]}>{item.textElem.content}</Text>
+                        <Image style={[styles.messageImage, item.messageImage ? null : { display: 'none' }]} source={item.messageImage} />
                     </View>
-                    <Avatar.Image style={[styles.avatarImage2,receiver != item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
-                </View>
-            );
-        },
-    );
+                    <Avatar.Image style={[styles.avatarImage2, receiver != item.name ? { display: 'none' } : null]} size={34} source={item.avatar}></Avatar.Image>
+                </View><Avatar.Image style={[styles.avatarImage2, receiver != item.name ? { display: 'none' } : null]} size={34} source={item.avatar}></Avatar.Image>
+            </View>
+            )});
     return (
         <>{listItems}</>
     );
@@ -166,7 +166,7 @@ const CheckView = () => {
     //发送消息
     const sendMessage = (message: string) => {
         let newItems = JSON.parse(JSON.stringify(items));
-        newItems.push({name: receiver, message: message});
+        newItems.push({ name: receiver, message: message });
         setItems(newItems);
     };
     const sendDo = () => {
@@ -188,43 +188,43 @@ const CheckView = () => {
                     </View>
                     <Text style={styles.avatarText}>{headName}</Text>
                 </View>
-                <Appbar.Action icon="dots-vertical" onPress={() => {}} />
+                <Appbar.Action icon="dots-vertical" onPress={() => { }} />
             </Appbar.Header>
             <KeyboardAvoidingView behavior="position" enabled >
-            <SafeAreaView style={styles.mainContent}>
-                {/* <TextInput
+                <SafeAreaView style={styles.mainContent}>
+                    {/* <TextInput
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                     onChangeText={text => setReceiver(text)}
                     placeholder={'聊天人姓名'}
                     value={receiver}
                     onSubmitEditing={sendDo}
                 /> */}
-                <ScrollView style={styles.chatBody}>
-                    <View style={{height: 15}}></View>
-                    <MessageList items={items} receiver={receiver}/>
-                </ScrollView>
-                <View style={styles.sendColumn}>
-                    <View style={styles.inputBox}>
-                        <TextInput style={ value ==''? styles.sendColumnInputnull:styles.sendColumnInput}
-                        allowFontScaling={false}
-                        onChangeText={text => onChangeText(text)}
-                        placeholder={'开始聊天吧'}
-                        value={value}
-                        onSubmitEditing={sendDo}
-                        multiline={true}
-                     
-                        />
-                        <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => console.log('Pressed')}></IconButton>
+                    <ScrollView style={styles.chatBody}>
+                        <View style={{ height: 15 }}></View>
+                        <MessageList items={items} receiver={receiver} />
+                    </ScrollView>
+                    <View style={styles.sendColumn}>
+                        <View style={styles.inputBox}>
+                            <TextInput style={value == '' ? styles.sendColumnInputnull : styles.sendColumnInput}
+                                allowFontScaling={false}
+                                onChangeText={text => onChangeText(text)}
+                                placeholder={'开始聊天吧'}
+                                value={value}
+                                onSubmitEditing={sendDo}
+                                multiline={true}
+
+                            />
+                            <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => console.log('Pressed')}></IconButton>
+                        </View>
+                        <View style={styles.controlStrip}>
+                            <IconButton style={styles.controlIcon} icon={require('../../../assets/images/speech-icon.png')} onPress={() => console.log('点击语音')}></IconButton>
+                            <IconButton style={styles.controlIcon} icon={require('../../../assets/images/expression-icon.png')} onPress={() => console.log('点击表情')}></IconButton>
+                            <IconButton style={styles.controlIcon} icon={require('../../../assets/images/picture-icon.png')} onPress={() => console.log('点击图片')}></IconButton>
+                            <IconButton style={styles.controlIcon} icon={require('../../../assets/images/camera-icon.png')} onPress={() => console.log('点击相机')}></IconButton>
+                        </View>
                     </View>
-                    <View style={styles.controlStrip}>
-                        <IconButton style={styles.controlIcon} icon={require('../../../assets/images/speech-icon.png')} onPress={() => console.log('点击语音')}></IconButton>
-                        <IconButton style={styles.controlIcon} icon={require('../../../assets/images/expression-icon.png')} onPress={() => console.log('点击表情')}></IconButton>
-                        <IconButton style={styles.controlIcon} icon={require('../../../assets/images/picture-icon.png')} onPress={() => console.log('点击图片')}></IconButton>
-                        <IconButton style={styles.controlIcon} icon={require('../../../assets/images/camera-icon.png')} onPress={() => console.log('点击相机')}></IconButton>
-                    </View>
-                </View>
- 
-                {/* <TextInput
+
+                    {/* <TextInput
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                     onChangeText={text => onChangeText(text)}
                     placeholder={'开始聊天吧'}
@@ -236,8 +236,8 @@ const CheckView = () => {
                     title="发送"
                     color="#841584"
                 /> */}
-            </SafeAreaView>
-        </ KeyboardAvoidingView>
+                </SafeAreaView>
+            </ KeyboardAvoidingView>
         </>
     )
 }
@@ -247,78 +247,78 @@ export default CheckView;
 const styles = StyleSheet.create({
     mainContent: {
         width: windowWidth,
-        position:'relative',
+        position: 'relative',
         backgroundColor: '#FFF',
         ...Platform.select({
-            ios:{
-                height: windowHeight-80,
+            ios: {
+                height: windowHeight - 80,
             },
-            android:{
-                height: windowHeight-60,
+            android: {
+                height: windowHeight - 60,
             }
         })
     },
     chatBody: {
-        flex:1,
+        flex: 1,
         padding: 10,
-        backgroundColor:'#FFF',
-        marginTop:10
+        backgroundColor: '#FFF',
+        marginTop: 10
     },
     chatMessage: {
-        marginVertical:10,
-        flexDirection:'row',
-        justifyContent:'flex-start'
+        marginVertical: 10,
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
     },
-    textStyle:{
-        maxlength:20,
+    textStyle: {
+        maxlength: 20,
         position: 'relative',
         backgroundColor: '#efebfa',
         borderRadius: 6,
         alignSelf: 'flex-start',
         marginBottom: 25,
-        marginTop:8,
+        marginTop: 8,
         ...Platform.select({
-            ios:{
+            ios: {
                 padding: 10,
-                shadowColor: '#ccc', 
-                shadowOffset: {width: 0, height: 0}, 
+                shadowColor: '#ccc',
+                shadowOffset: { width: 0, height: 0 },
                 shadowOpacity: 1,
-                shadowRadius: 3.5, 
+                shadowRadius: 3.5,
             },
-            android:{
+            android: {
                 padding: 8,
                 elevation: 7,
             }
         })
     },
     chatReceiver: {
-        flexDirection:'row',
-        justifyContent:'space-between',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
-    textReceiver:{
-        color:'#FFF',
+    textReceiver: {
+        color: '#FFF',
         marginLeft: 'auto',
         backgroundColor: '#faba3c',
     },
-    avatarImage1:{
-        marginRight:10,
-        marginTop:-10
+    avatarImage1: {
+        marginRight: 10,
+        marginTop: -10
     },
-    avatarImage2:{
-        marginLeft:10,
-        marginTop:-10
+    avatarImage2: {
+        marginLeft: 10,
+        marginTop: -10
     },
     messageText: {
         fontSize: 15,
-        color:'#000'
+        color: '#000'
     },
-    messageImage:{
-        width:220,
-        height:150,
-        borderRadius:15
+    messageImage: {
+        width: 220,
+        height: 150,
+        borderRadius: 15
     },
-    messageReceiver:{
-        color:'#FFF'
+    messageReceiver: {
+        color: '#FFF'
     },
     chatName: {
         fontSize: 12,
@@ -330,90 +330,93 @@ const styles = StyleSheet.create({
         fontSize: 13,
         position: 'absolute',
         top: -20,
-        color:'#000',
+        color: '#000',
         fontWeight: 'bold',
         marginLeft: 'auto',
+        // 改动
+        minWidth:80,
+        overflow:'hidden'
     },
     chatTimeStamp: {
         marginLeft: 10,
         fontSize: 12,
     },
-    avatarView:{
-        width:'70%',
-        flexDirection:'row',
-        justifyContent:'flex-start'
+    avatarView: {
+        width: '70%',
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
     },
-    avatarStyle:{
-        position:'relative'
+    avatarStyle: {
+        position: 'relative'
     },
-    stateStyle:{
-        width:12,
-        height:12,
-        top:22,
-        right:-3,
-        borderRadius:6,
-        backgroundColor:'#26c78c',
-        position:'absolute'
+    stateStyle: {
+        width: 12,
+        height: 12,
+        top: 22,
+        right: -3,
+        borderRadius: 6,
+        backgroundColor: '#26c78c',
+        position: 'absolute'
     },
-    appbarStyle:{
-        borderWidth:0,
-        backgroundColor:'#FFF',
-        zIndex:999
+    appbarStyle: {
+        borderWidth: 0,
+        backgroundColor: '#FFF',
+        zIndex: 999
     },
-    avatarText:{
-        color:'#000',
-        lineHeight:34,
-        marginLeft:10
+    avatarText: {
+        color: '#000',
+        lineHeight: 34,
+        marginLeft: 10
     },
-    sendColumn:{
-        height:130,
-        marginTop:13,
-        paddingTop:15,
-        paddingHorizontal:15,
-        backgroundColor:'#FFF',
+    sendColumn: {
+        height: 130,
+        marginTop: 13,
+        paddingTop: 15,
+        paddingHorizontal: 15,
+        backgroundColor: '#FFF',
         ...Platform.select({
-            ios:{
-                shadowColor: '#ccc', 
-                shadowOffset: {width: 0, height: 0}, 
+            ios: {
+                shadowColor: '#ccc',
+                shadowOffset: { width: 0, height: 0 },
                 shadowOpacity: 1,
-                shadowRadius: 3.5, 
+                shadowRadius: 3.5,
                 // marginBottom:-30,
             },
-            android:{
+            android: {
                 elevation: 10,
             }
         })
     },
-    inputBox:{
-        position:'relative'
+    inputBox: {
+        position: 'relative'
     },
-    sendColumnInput:{
-        width:'80%',
+    sendColumnInput: {
+        width: '80%',
         // height:40,
-        borderRadius:20,
-        paddingHorizontal:20,
-        backgroundColor:'#f5f5f5'
+        borderRadius: 20,
+        paddingHorizontal: 20,
+        backgroundColor: '#f5f5f5'
     },
-    sendColumnInputnull:{
-        width:'100%',
-        height:40,
-        borderRadius:20,
-        paddingHorizontal:20,
-        backgroundColor:'#f5f5f5'
+    sendColumnInputnull: {
+        width: '100%',
+        height: 40,
+        borderRadius: 20,
+        paddingHorizontal: 20,
+        backgroundColor: '#f5f5f5'
     },
-    inputBoxIcon:{
-        position:'absolute',
-        top:-6,
-        right:5,
-        zIndex:10
+    inputBoxIcon: {
+        position: 'absolute',
+        top: -6,
+        right: 5,
+        zIndex: 10
     },
-    controlStrip:{
-        paddingTop:10,
-        flexDirection:'row',
-        justifyContent:'space-around'
+    controlStrip: {
+        paddingTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     },
-    controlIcon:{
-        flex:1
+    controlIcon: {
+        flex: 1
     }
 })
 
