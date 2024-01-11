@@ -5,8 +5,8 @@
  */
 
 import React, { Component } from "react";
-import { View,Text,StyleSheet,Dimensions,ImageBackground,Platform,Image,TouchableOpacity } from "react-native";
-import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
+import { View,Text,StyleSheet,Dimensions,ImageBackground,Platform,Image,TouchableOpacity,TextInput } from "react-native";
+import { Appbar,Avatar,IconButton,Tooltip,Button,Modal, } from 'react-native-paper';
 import {useTranslation, Trans} from 'react-i18next';
 import { navigate } from "../../../../config/routs/NavigationContainer";
 
@@ -14,6 +14,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const InviteFriends = () => {
+    const [visible, setVisible] = React.useState(false);
     return (
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
@@ -23,6 +24,9 @@ const InviteFriends = () => {
                 </Text>
             </Appbar.Header>
             <ImageBackground style={styles.bgStyle} source={require('../../../../assets/images/alimom/InvitationPoster.jpg')}>
+                <TouchableOpacity onPress={() => setVisible(true)}>
+                    <Text style={styles.inviteText}>填写邀请码</Text>
+                </TouchableOpacity>
                 <View style={styles.reminderView}>
                     <View style={styles.reminderItem}>
                         <Image style={styles.reminderImage} source={require('../../../../assets/images/expression-icon.png')}></Image>
@@ -42,8 +46,19 @@ const InviteFriends = () => {
                         <Image style={styles.buttonStyle} source={require('../../../../assets/images/alimom/yqhy_icon.jpg')}></Image>
                     </TouchableOpacity>
                 </View>
+                <ModalView visible={visible} onClose={() => setVisible(false)}></ModalView>
             </ImageBackground>
         </View>
+    )
+}
+
+const ModalView = (prop:any) => {
+    const { visible, onClose} = prop
+    return (
+        <Modal visible={visible} dismissable={true} onDismiss={() => onClose()} contentContainerStyle={styles.containerStyle}>
+            <Text style={styles.modalTitle}>好友邀请码:</Text>
+            <TextInput selectionColor='#FFBE00' placeholder='请输入邀请码'  style={styles.modalInput}></TextInput>
+        </Modal>
     )
 }
 
@@ -129,5 +144,38 @@ const styles = StyleSheet.create({
                 elevation: 7,
               },
         })
+    },
+    inviteText:{
+        fontSize:17,
+        color:'#FF5B00',
+        top:28,
+        right:28,
+        fontWeight:'600',
+        borderColor:'#FF5B00',
+        borderBottomWidth:2,
+        position:'absolute'
+    },
+    containerStyle:{
+        width:'70%',
+        height:200,
+        marginHorizontal:'15%',
+        borderRadius:15,
+        backgroundColor:'#fff'
+    },
+    modalInput:{
+        width:'80%',
+        height:40,
+        marginHorizontal:'10%',
+        borderWidth:1,
+        borderColor:'#FFBE00',
+        borderRadius:10,
+        paddingHorizontal:10
+    },
+    modalTitle:{
+        width:'80%',
+        height:35,
+        fontSize:16,
+        color:'#000',
+        marginHorizontal:'10%',
     }
 })
