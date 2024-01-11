@@ -16,7 +16,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 // import {Button, useToast} from 'native-base';
-import { useToast, Button, ButtonSpinner, ButtonText } from '@gluestack-ui/themed';
+import { useToast, Button, ButtonSpinner, ButtonText, Toast } from '@gluestack-ui/themed';
 import Storage from '../../../../utils/AsyncStorageUtils';
 import {smsLoginApi} from '../../../../api/sys/lgoin';
 import {SmsLoginType} from '../../../../api/sys/lgoin/types';
@@ -123,7 +123,9 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         placement: 'top',
         render: () => {
           return (
-            <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>
+            </Toast>
           )
         },
       });
@@ -135,7 +137,9 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         placement: 'top',
         render: () => {
           return (
-            <Text allowFontScaling={false}>登录成功,开始寻找好友</Text>
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>登录成功,开始寻找好友</Text>
+            </Toast>
           )
         },
       });

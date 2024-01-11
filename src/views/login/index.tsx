@@ -16,7 +16,7 @@ import {LoginScreenProps} from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
 // import {useToast} from 'native-base';
-import {useToast} from '@gluestack-ui/themed';
+import {Toast, ToastTitle, useToast} from '@gluestack-ui/themed';
 import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
 import {useTranslation, Trans} from 'react-i18next';
 import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
@@ -64,7 +64,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       toast.show({
         placement: 'bottom',
         render: () => {
-          return <Text allowFontScaling={false}>手机号有误</Text>;
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>手机号有误</Text>
+            </Toast>
+          )
         },
       });
       setLoad(false);
@@ -80,7 +84,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       toast.show({
         placement: 'bottom',
         render: () => {
-          return <Text allowFontScaling={false}>验证码发送，请注意查收</Text>;
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>验证码发送，请注意查收</Text>
+            </Toast>
+          )
         },
       });
       navigate('Verification');
@@ -106,14 +114,22 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       toast.show({
         placement: 'top',
         render: () => {
-          return <Text allowFontScaling={false}>登录成功，可享受功能</Text>;
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>登录成功，可享受功能</Text>
+            </Toast>
+          )
         },
       });
     } else if (loginAPI.code === 1110) {
       toast.show({
         placement: 'top',
         render: () => {
-          return <Text allowFontScaling={false}>账号有误</Text>;
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>账号有误</Text>
+            </Toast>
+          )
         },
       });
     }
@@ -125,7 +141,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       toast.show({
         placement: 'top',
         render: () => {
-          return <Text allowFontScaling={false}>请输入手机号</Text>;
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>请输入手机号</Text>
+            </Toast>
+          )
         },
       });
       return;
@@ -136,7 +156,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     toast.show({
       placement: 'top',
       render: () => {
-        return <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>;
+        return (
+          <Toast action="attention" variant="solid">
+            <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>
+          </Toast>
+        )
       },
     });
     //发送验证码

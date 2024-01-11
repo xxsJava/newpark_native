@@ -1,5 +1,5 @@
 // import {useToast} from 'native-base';
-import {useToast} from '@gluestack-ui/themed';
+import {Toast, useToast} from '@gluestack-ui/themed';
 import React, {useState, useRef, Component, useEffect} from 'react';
 import {
   Button,
@@ -637,7 +637,11 @@ const ListIndex: React.FC = () => {
     toast.show({
       placement: 'bottom',
       render: () => {
-        return <Text allowFontScaling={false}>{data[index].title}</Text>;
+        return (
+          <Toast action="attention" variant="solid">
+            <Text allowFontScaling={false}>{data[index].title}</Text>
+          </Toast>
+        )
       },
     });
 
