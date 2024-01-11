@@ -1,181 +1,272 @@
-/**
- * 代码描述: 邀请好友页面  个人中心
- * 作者:cxr
- * 修改时间:2024/1/09 10:23:11
- */
+import * as React from 'react';
+import { Modal, Portal, Text, Button, PaperProvider } from 'react-native-paper';
+import { View, Image, StyleSheet, Dimensions, ImageBackground, ScrollView,TouchableOpacity } from "react-native";
 
-import React, { Component } from "react";
-import { View,Text,StyleSheet,Dimensions,ImageBackground,Platform,Image,TouchableOpacity,TextInput } from "react-native";
-import { Appbar,Avatar,IconButton,Tooltip,Button,Modal, } from 'react-native-paper';
-import {useTranslation, Trans} from 'react-i18next';
-import { navigate } from "../../../../config/routs/NavigationContainer";
 
-const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
-const InviteFriends = () => {
+const MyComponent = () => {
     const [visible, setVisible] = React.useState(false);
+
+    const showModal = () => setVisible(true);
+    const hideModal = () => setVisible(false);
+    const containerStyle = { backgroundColor: 'white', padding: 20 };
+    const list1 = [
+        {
+            index: 1,
+            img: require('../../../../assets/images/tup/yqhy.jpg'),
+            text: '邀请好友'
+        },
+        {
+            index: 1,
+            img: require('../../../../assets/images/tup/hyld.jpg'),
+            text: '好友领豆'
+        },
+        {
+            index: 1,
+            img: require('../../../../assets/images/tup/xyddz.jpg'),
+            text: '新园豆到账'
+        }
+    ];
+    const list2 = [
+        {
+            index:1,
+            img:require('../../../../assets/images/tup/wx.jpg'),
+            text:'微信好友'
+        },
+        {
+            index:1,
+            img:require('../../../../assets/images/tup/pyq.jpg'),
+            text:'朋友圈'
+        },
+        {
+            index:1,
+            img:require('../../../../assets/images/tup/xlwb.jpg'),
+            text:'新浪微博'
+        },
+        {
+            index:1,
+            img:require('../../../../assets/images/tup/zflj.jpg'),
+            text:'复制链接'
+        },
+    ]
     return (
-        <View style={styles.parentView}>
-            <Appbar.Header style={styles.headerStyle}>
-                <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                <Text allowFontScaling={false} style={styles.headerText}>
-                    <Trans>minService.serviceOption9</Trans>
-                </Text>
-            </Appbar.Header>
-            <ImageBackground style={styles.bgStyle} source={require('../../../../assets/images/alimom/InvitationPoster.jpg')}>
-                <TouchableOpacity onPress={() => setVisible(true)}>
-                    <Text style={styles.inviteText}>填写邀请码</Text>
-                </TouchableOpacity>
-                <View style={styles.reminderView}>
-                    <View style={styles.reminderItem}>
-                        <Image style={styles.reminderImage} source={require('../../../../assets/images/expression-icon.png')}></Image>
-                        <Text style={styles.reminderText}>邀请码可多人使用</Text>
-                    </View>
-                    <View style={styles.reminderItem}>
-                        <Image style={styles.reminderImage} source={require('../../../../assets/images/expression-icon.png')}></Image>
-                        <Text style={styles.reminderText}>复制邀请码发送给好友</Text>
-                    </View>
-                    <View style={styles.reminderItem}>
-                        <Image style={styles.reminderImage} source={require('../../../../assets/images/expression-icon.png')}></Image>
-                        <Text style={styles.reminderText}>邀请的好友登录后可领取一周的VIP</Text>
-                    </View>
+
+        <PaperProvider>
+            <Portal>
+                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType}>
+                  
+                    <ScrollView   horizontal={true} style={styles.mt2list}>
+                        {
+                            list2.map(item => {
+                                return(
+                                    <View key={item.index} style={styles.mtlist}>
+                                        <Image source={item.img} style={styles.mtImg}></Image>
+                                        <Text>{item.text}</Text>
+                                    </View>
+                                )
+                            })
+                        }
+                    </ScrollView>
+                </Modal>
+            </Portal>
+            <ScrollView style={styles.parentbg}>
+                <View style={[styles.heng, styles.title]}>
+                    <Text style={styles.h1}>抢新园红包啦～</Text>
+                    <Image source={require('../../../../assets/images/tup/能量豆.png')} style={styles.iconBean}></Image>
                 </View>
-                <View style={styles.buttonView}>
-                    <TouchableOpacity activeOpacity={1}>
-                        <Image style={styles.buttonStyle} source={require('../../../../assets/images/alimom/yqhy_icon.jpg')}></Image>
+                <ImageBackground source={require('../../../../assets/images/tup/yqh.jpg')} style={styles.xf}>
+                    <View style={styles.xfont}>
+                        <View style={styles.heng1}>
+                            <Text style={styles.h6}>每成功邀请一位好友</Text>
+                            <Text style={[styles.h6, { color: 'red' }]}>[登陆新园]</Text>
+                        </View>
+                        <Text style={[styles.h6, { marginTop: 10 }]}>你们都可获得</Text>
+                        <View style={styles.heng1}>
+                            <Text style={styles.a1}>20</Text>
+                            <Text style={[styles.h6, { color: 'red', fontWeight: 'bold' }]}>枚新园豆红包</Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity style={styles.intent}  onPress={showModal}>
+                        <Text style={styles.yqhy}>邀请好友</Text>
                     </TouchableOpacity>
+                </ImageBackground>
+                <View style={styles.list1Bg}>
+                    <View style={styles.tit1}>
+                        <Text style={styles.tit1Font}>活动流程</Text>
+                    </View>
+                    <View style={styles.heng2}>
+                        {list1.map(item => {
+                            return (
+                                <View key={item.index} style={styles.list1Box}>
+                                    <Image source={item.img} style={styles.list1Icon}></Image>
+                                    <Text style={styles.h4}>{item.text}</Text>
+                                </View>
+                            )
+                        })}
+                    </View>
                 </View>
-                <ModalView visible={visible} onClose={() => setVisible(false)}></ModalView>
-            </ImageBackground>
-        </View>
-    )
-}
+                <View style={styles.list2Bg}>
+                    <View style={styles.tit1}>
+                        <Text style={styles.tit1Font}>活动规则</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.bzFont}>
+                            1、将本页面分享给您的好友,被邀请者打开链接输入手机号或者微信登录,完成注册/登陆，即可绑定邀请关系;
+                        </Text>
+                        <Text style={styles.bzFont}>
+                            2、被邀请者打开新园APP并登陆,激活奖励,您和被邀请者各获得20新园豆红包;
+                        </Text>
+                        <Text style={styles.bzFont}>
+                            3、同一手机设备/手机号/微信，只能被邀请一次;
+                        </Text>
+                        <Text style={styles.bzFont}>
+                            4、新园豆为新园APP虚拟币,可用于组建团队、兑换优惠券、获取成就徽章等;
+                        </Text>
+                    </View>
+                </View>
+            </ScrollView>
+        </PaperProvider>
 
-const ModalView = (prop:any) => {
-    const { visible, onClose} = prop
-    return (
-        <Modal visible={visible} dismissable={true} onDismiss={() => onClose()} contentContainerStyle={styles.containerStyle}>
-            <Text style={styles.modalTitle}>好友邀请码:</Text>
-            <TextInput selectionColor='#FFBE00' placeholder='请输入邀请码'  style={styles.modalInput}></TextInput>
-        </Modal>
-    )
-}
+    );
+};
 
-export default InviteFriends;
-
+export default MyComponent;
 const styles = StyleSheet.create({
-    parentView: {
+    parentbg: {
+        backgroundColor: '#FAF5E7',
         width: windowWidth,
         height: windowHeight,
+        padding: 20
     },
-    headerStyle: {
-        width: windowWidth,
-        height: 45,
-        backgroundColor: '#FFB300',
+    heng: {
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        flexDirection: 'row'
     },
-    headerText: {
-        width: '80%',
-        fontSize: 17,
-        color: '#FFF',
-        lineHeight: 45,
-        textAlign: 'center',
+    heng1: {
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        alignItems: 'flex-end'
     },
-    bgStyle:{
-        width:windowWidth,
-        position:'relative',
-        ...Platform.select({
-            ios:{
-                height:windowHeight - 90,
-            },
-            android:{
-                height:windowHeight - 45,
-            }
-        })
+    heng2: {
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        width: '100%'
     },
-    reminderView:{
-        width:320,
-        height:150,
-        bottom:110,
-        left:(windowWidth-330)/2,
-        borderRadius:20,
-        paddingVertical:15,
+    title: {
+        width: '70%'
+    },
+    iconBean: {
+        width: 49,
+        height: 43
+    },
+    h1: {
+        fontSize: 28,
+        color: 'black',
+        fontWeight: 'bold'
+    },
+    h6: {
+        fontSize: 15,
+        color: 'black',
+        fontWeight: 'bold'
+    },
+    h4: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    a1: {
+        color: 'red',
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginRight: 6
+    },
+    xf: {
+        width: 360,
+        height: 260,
+        marginTop: 40
+    },
+    xfont: {
+        alignItems: 'center',
+        width: 360,
+        height: 260,
+        marginTop: 40
+    },
+    intent: {
+        position: 'absolute',
+        left: '39%',
+        bottom: 57
+    },
+    yqhy: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 20
+    },
+    list1Bg: {
+        backgroundColor: '#fff',
+        width: '100%',
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    list2Bg: {
+        backgroundColor: '#fff',
+        width: '100%',
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop:20,
+        paddingHorizontal:12,
+        marginBottom:60,
+        paddingBottom:12
+    },
+    list1Icon: {
+        width: 80,
+        height: 80
+    },
+    list1Box: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 8,
+        marginTop: 20
+    },
+    tit1: {
+        backgroundColor: '#F7B98B',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        padding: 10,
+        width: 120,
+        textAlign: 'center'
+    },
+    tit1Font: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 22
+    },
+    bzFont:{
+        color:'#726F6F',
+        fontSize:13,
+        padding:5,
+        lineHeight:22
+    },
+    // 底下是模态框的样式
+    modelType:{
         position:'absolute',
-        backgroundColor:'#FEFA83'
+        bottom:0,
+        height:windowHeight
     },
-    reminderItem:{
-        width:'80%',
-        height:35,
-        marginBottom:5,
-        marginHorizontal:'10%',
-        // backgroundColor:'pink',
+    mtImg:{
+        width:60,
+        height:60
+    },
+    mt2list:{
         flexDirection:'row',
-        justifyContent:'flex-start'
+        width:windowWidth,
+        flexWrap:'wrap'
     },
-    reminderImage:{
-        width:21,
-        height:21,
-        marginVertical:7,
-        marginRight:10
-    },
-    reminderText:{
-        fontSize:14,
-        color:'#000',
-        lineHeight:35
-
-    },
-    buttonView:{
-        width:150,
-        height:70,
-        bottom:20,
-        left:(windowWidth-160)/2,
-        position:'absolute',
-        // backgroundColor:'pink'
-    },
-    buttonStyle:{
-        ...Platform.select({
-            ios: {
-                shadowColor: '#DDD', //设置阴影色
-                shadowOffset: {width: 0, height: 3}, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
-                shadowOpacity: 1,
-                shadowRadius: 4, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
-              },
-              android: {
-                elevation: 7,
-              },
-        })
-    },
-    inviteText:{
-        fontSize:17,
-        color:'#FF5B00',
-        top:28,
-        right:28,
-        fontWeight:'600',
-        borderColor:'#FF5B00',
-        borderBottomWidth:2,
-        position:'absolute'
-    },
-    containerStyle:{
-        width:'70%',
-        height:200,
-        marginHorizontal:'15%',
-        borderRadius:15,
-        backgroundColor:'#fff'
-    },
-    modalInput:{
-        width:'80%',
-        height:40,
-        marginHorizontal:'10%',
-        borderWidth:1,
-        borderColor:'#FFBE00',
-        borderRadius:10,
-        paddingHorizontal:10
-    },
-    modalTitle:{
-        width:'80%',
-        height:35,
-        fontSize:16,
-        color:'#000',
-        marginHorizontal:'10%',
+    mtlist:{
+        
     }
-})
+});

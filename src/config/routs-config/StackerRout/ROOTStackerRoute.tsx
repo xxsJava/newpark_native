@@ -247,7 +247,7 @@ export default {
     component: InviteFriends,
     options: {
       title: '邀请好友',
-      headerShown: false,
+      headerShown: true,
     },
   },
   MineThree:{
