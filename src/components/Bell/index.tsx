@@ -6,7 +6,7 @@ import { navigate } from '../../config/routs/NavigationContainer';
 
 //铃铛消息组件
  const BellView = () => {
-  const [isMsg,setisMsg] = useState(2);
+  const [isMsg,setisMsg] = useState(6);
   console.log('消息铃铛'+ isMsg);
 
   return (
@@ -54,16 +54,17 @@ const styles = StyleSheet.create({
     shadowRadius: 9
   },
   tip:{
-    color:'red',
-    fontWeight:'bold'
+    color:'#fff',
+    fontWeight:'bold',
+    fontSize:12
   },
   tipBox:{
     position:'absolute',
     right:0,
     top:0,
-    backgroundColor:'#fff',
-    width:18,
-    height:18,
+    backgroundColor:'red',
+    width:15,
+    height:15,
     borderRadius:12,
     justifyContent:'center',
     alignItems:'center'
