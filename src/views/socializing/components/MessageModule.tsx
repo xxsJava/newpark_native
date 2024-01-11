@@ -1,100 +1,173 @@
-
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
   Platform,
   Dimensions,
   StyleSheet,
-  SectionList,
   TouchableOpacity,
-  DeviceEventEmitter,
   FlatList,
-  Image
+  Image,
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradinet from 'react-native-linear-gradient';
 import {navigate} from '../../../config/routs/NavigationContainer';
-import { getGroupsInfo } from '../../../api/IMAPI';
+import {getGroupsInfo} from '../../../api/IMAPI';
 import Storage from '../../../utils/AsyncStorageUtils';
+import {DeviceEvent} from '../../../config/listener';
+import {isFile, readFileData, writeFileData} from '../../../utils/FilesUtiles';
+import {
+  GROUP_MSG_DIR,
+  INDEX_MSG_DIR,
+  PRITIVE_MSG_DIR,
+} from '../../../config/paramStatic';
+import {any} from 'prop-types';
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
-type DataSection = { data: DataItem[]};
-type dataItem = {name:string,labelText:string,color:number,lableType:number,icon:boolean}
-
 const ListIndex: React.FC = () => {
-  const [data,setData] = useState([])
+  const [data, setData]: any = useState([]);
+  const [newObj, setNewObj]: any = useState({});
+  const [newArr, setNewArr]: any = useState([]);
 
-  const sectionListRef = useRef<SectionList<DataItem, DataSection> | null>(
-    null,
-  );
+  useEffect(() => {
+    //显示历史记录
+    initMsg();
+    const listener = DeviceEvent.addListener('onRecvNewMessage', async resp => {
+      setNewObj({});
+      setNewArr([]);
+      const msg = JSON.parse(resp.message);
+      console.log('消息页面接收消息1------>', msg);
+      //群组
+      if (msg.groupID != undefined) {
+        console.log('获取圈ID------>', msg.groupID);
+        let stringArray: string[] = [];
+        stringArray.push(msg.groupID);
+        console.log('群组数据1----->', stringArray);
+        const groupInfo = await getGroupsInfo(
+          stringArray,
+          await Storage.get('usr-token'),
+        );
+        console.log('群组消息数据----->', groupInfo.data.groupInfos);
+        // setData(groupInfo.data.groupInfos);
+        Object.assign(newObj, msg, groupInfo.data.groupInfos[0]);
+        //设置群组状态
+        newObj.stateMsg = 2;
+        newArr.push(newObj);
+        //数据合并
+        // newArr = data.concat(newArr)
+        console.log(newArr);
+        const fileGroupPath = GROUP_MSG_DIR + '/' + msg.groupID + '.json';
+        jsonDataRead(fileGroupPath, newArr);
+        timeOutInitMsg();
+        return;
+      }
 
-  // {"attachedInfo": "{\"groupHasReadInfo\":{\"hasReadCount\":0,\"groupMemberCount\":4},\"isPrivateChat\":false,\"burnDuration\":0,\"hasReadTime\":0,\"notSenderNotificationPush\":false,\"isEncryption\":false,\"inEncryptStatus\":false}", "attachedInfoElem": {"burnDuration": 0, "groupHasReadInfo": {"hasReadCount": 0, "unreadCount": 0}, "hasReadTime": 0, "inEncryptStatus": false, "isEncryption": false, "isPrivateChat": false, "notSenderNotificationPush": false}, "clientMsgID": "8679377145cd9e99cc28c799145edd9d", "contentType": 101, "createTime": 1704445634073, "groupID": "1944979969", "isExternalExtensions": false, "isReact": false, "isRead": false, "msgFrom": 100, "platformID": 0, "sendID": "5175689259", "sendTime": 1704445634073, "senderFaceUrl": "http://124.70.199.125:10002/object/5175689259/1.jpg", "senderNickname": "xxs18", "seq": 106, "serverMsgID": "ee4403b0f44021faaa1e79998d73cf31", "sessionType": 3, "status": 2, "textElem": {"content": "1"}}
-  DeviceEventEmitter.addListener('onRecvNewMessage', async resp => {
-    // const msg = JSON.parse(resp.message);
-    // console.log("消息页面接收消息1------>",msg)
-    // console.log("获取圈ID------>",msg.groupID)
-    // let stringArray: string[] = [];
-    // stringArray.push(msg.groupID)
-    // console.log("群组数据1----->",stringArray)
+      //单聊
+      const filePrivatePath = PRITIVE_MSG_DIR + '/' + msg.sendID + '.json';
+      console.log('执行单聊');
+      //设置单聊状态
+      msg.stateMsg = 1;
+      let newMsgArr = [];
+      newMsgArr.push(msg);
+      jsonDataRead(filePrivatePath, newMsgArr);
+      timeOutInitMsg();
+    });
 
-    // const groupInfo = await getGroupsInfo(stringArray, await Storage.get('usr-token'));
-    
-    // console.log('群组消息数据----->',groupInfo.data.groupInfos)
-    // // setData(groupInfo.data.groupInfos);
+    return () => {
+      // 在组件卸载时移除监听
+      listener.remove();
+    };
+  }, []);
 
-    // const newObj = {}
-    // Object.assign(newObj,msg,groupInfo.data.groupInfos[0])
+  /**
+   * 数据文件写入
+   * @param filePath 文件地址
+   * @param data 数据
+   * @returns
+   */
+  const jsonDataRead = async (filePath: string, data?: any) => {
+    console.log('——----------------->执行数据写入', data);
+    //写入MSG数据
+    if (await isFile(filePath)) {
+      //查找到文件直接写入
+      readFileData(filePath).then(res => {
+        console.log('读取到数据----->', res);
+        res.push(data[0]);
+        writeFileData(filePath, JSON.stringify(res));
+      });
+      return;
+    }
+    console.log('----------->创建文件写入数据');
+    writeFileData(filePath, JSON.stringify(data));
+  };
 
-    // let newArr:any = []
-    // newArr.push(newObj)
+  const initMsg = () => {
+    let newArr: any[] = [];
+    //查找到文件直接写入
+    readFileData(INDEX_MSG_DIR).then(res => {
+      res.data.map(async (key: any) => {
+        if (await isFile(key.path)) {
+          readFileData(key.path).then(res1 => {
+            newArr.push(res1[res1.length - 1]);
+          });
+        }
+      });
+    });
+    setData(newArr);
+  };
 
-    // //数据合并
-    // // newArr = data.concat(newArr)
-
-    // console.log(newArr)
-    // setData(newArr)
-  });
+  const timeOutInitMsg = () => {
+    //1秒后执行callback, 只会执行一次
+    const timeoutID = setTimeout(() => {
+      console.log('--- 数据更新 ---');
+      initMsg();
+      //清除
+      clearTimeout(timeoutID);
+    }, 500);
+  };
 
   const renderItem = ({item}: {item: DataItem}) => (
     <TouchableOpacity
-      onPress={() => navigate('CheckRoute',{groupID:item.groupID})}
+      onPress={() => navigate('CheckRoute', {id: item.stateMsg===2?item.groupID:item.sendID,type:item.stateMsg})}
       style={[
         styles.listItem,
         {
           borderLeftColor:
-            item.color === 1
+            item.groupID != undefined
               ? '#FABA3C'
-              : item.color === 2
+              : item.recvID === undefined
               ? '#6A1B9A'
               : '#26C78C',
         },
       ]}>
-        
       <View style={styles.itemLeft}>
         <View style={styles.avatarStyle}>
-        <Image style={styles.avatar} source={{
-          uri: item.faceURL,
-        }}
-      />
+          <Image
+            style={styles.avatar}
+            source={{
+              uri: item.stateMsg === 2 ? item.faceURL : item.senderFaceUrl,
+            }}
+          />
         </View>
       </View>
       <View style={styles.itemRight}>
-        <Text allowFontScaling={false} style={styles.itemName}>{item.groupName}</Text>
+        <Text allowFontScaling={false} style={styles.itemName}>
+          {item.stateMsg === 2 ? item.groupName : item.senderNickname}
+        </Text>
         <View style={styles.itemLabelStyle}>
-            <Text allowFontScaling={false} style={styles.labelText}>{item.senderNickname}:{item.textElem.content}</Text>
+          <Text allowFontScaling={false} style={styles.labelText}>
+            {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
+            {item.textElem.content}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
   );
-  
+
   return (
     <View style={{flex: 1, marginTop: 10}}>
-     <FlatList
-        data={data}
-        renderItem={renderItem}
-      />
+      <FlatList data={data} renderItem={renderItem} />
     </View>
   );
 };
@@ -179,10 +252,10 @@ const styles = StyleSheet.create({
     lineHeight: 15,
   },
   labelIcon: {},
-  avatar:{
+  avatar: {
     width: 60,
     height: 60,
     borderWidth: 1,
     borderRadius: 30,
-  }
+  },
 });

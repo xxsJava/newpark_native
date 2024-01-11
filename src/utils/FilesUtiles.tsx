@@ -51,9 +51,24 @@ export const readFileData = async (filePath: string) => {
     const jsonData = JSON.parse(fileContent);
     return jsonData;
   } catch (error) {
-    console.error('Error reading the JSON file:', error);
+    // console.error('Error reading the JSON file:', error);
     return null;
   }
 };
+
+/**
+ * 判断文件是否存在
+ * @param filePath 文件路径
+ */
+export const isFile = (filePath:string): Promise<boolean | null> => {
+  return RNFS.exists(filePath)
+    .then((exists) => {
+      return exists;
+    })
+    .catch((error) => {
+      console.error(error);
+      return null;
+    });
+}
 
 

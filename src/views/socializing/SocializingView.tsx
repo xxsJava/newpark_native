@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2023-10-08 00:46:23
+ * @LastEditTime: 2024-01-11 11:25:29
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     top:-3,
     right:28,
     borderRadius: 9,
-    borderWidth: 1.5,
+    // borderWidth: 1.5,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     top:-4,
     right:20,
     borderRadius: 9,
-    borderWidth: 1.5,
+    // borderWidth: 1.5,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',

@@ -4,7 +4,7 @@
  * 创建时间:2023/11/13 16:10:11
  */
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { Appbar,Avatar,IconButton } from 'react-native-paper';
 import {
     SafeAreaView,
@@ -22,23 +22,26 @@ import {
 } from 'react-native';
 import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
 import {navigate} from '../../../config/routs/NavigationContainer';
+import { useRoute } from '@react-navigation/native';
+import { isFile, readFileData } from '../../../utils/FilesUtiles';
+import { FILE_SUFFIX, GROUP_MSG_DIR, PRITIVE_MSG_DIR } from '../../../config/paramStatic';
+import { DeviceEvent } from '../../../config/listener';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 function MessageList(props: { items: any; receiver: any; }) {
+    
     const items = props.items;
     const receiver = props.receiver;
-    const listItems = items.map((item: {
-        messageImage: ImageSourcePropType;
-        avatar: AvatarImageSource; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; message: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; 
-}, index: React.Key | null | undefined) => {
+    console.log('items---->',items);
+    const listItems = items.map((item:any, index: React.Key | null | undefined) => {
             return (
                 <View key={index} style={receiver == item.name ? styles.chatReceiver : styles.chatMessage}>
-                    <Avatar.Image style={[styles.avatarImage1,receiver == item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
+                    <Avatar.Image style={[styles.avatarImage1,receiver == item.name ? {display:'none'}:null]} size={34} source={{uri:item.senderFaceUrl}}></Avatar.Image>
                     <View style={[styles.textStyle,receiver == item.name ? styles.textReceiver : null]}>
-                        <Text allowFontScaling={false} style={[styles.chatNameReceiver,receiver == item.name ? {display:'none'}:null]}>{item.name}</Text>
-                        <Text allowFontScaling={false} style={[styles.messageText,receiver == item.name?styles.messageReceiver:null,item.message ? null : {display:'none'}]}>{item.message}</Text>
+                        <Text allowFontScaling={false} style={[styles.chatNameReceiver,receiver == item.senderNickname ? {display:'none'}:null]}>{item.senderNickname}</Text>
+                        <Text allowFontScaling={false} style={[styles.messageText,receiver == item.name?styles.messageReceiver:null,item.textElem.content ? null : {display:'none'}]}>{item.textElem.content}</Text>
                         <Image style={[styles.messageImage,item.messageImage ? null : {display:'none'}]} source={item.messageImage} />
                     </View>
                     <Avatar.Image style={[styles.avatarImage2,receiver != item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
@@ -54,23 +57,70 @@ function MessageList(props: { items: any; receiver: any; }) {
 // const URL_SERVER = 'http://192.168.199.133:8080';
 
 const CheckView = () => {
+    const route = useRoute();
     const [items, setItems] = useState([
-        {name: '小学牛', message: '今天晚上吃点啥？',avatar:require('../../../assets/images/avatar-nan.png'),messageImage:null},
-        {name: 'o泡果奶', message: '我们去吃牛排吧！',avatar:require('../../../assets/images/avatar-nv.png'),messageImage:null},
-        {name: '小学牛', message: '好的，我去给小红打气。',avatar:require('../../../assets/images/avatar-nan.png'),messageImage:null},
-        {name: '小学牛', message: '你们在门口等我吧。',avatar:require('../../../assets/images/avatar-nan.png'),messageImage:null},
-        {name: 'o泡果奶', message: '你人呢？我到门口啦',avatar:require('../../../assets/images/avatar-nv.png'),messageImage:null},
-        {name: '小学牛', message: null,avatar:require('../../../assets/images/avatar-nan.png'),messageImage:require('../../../assets/images/alimom/R-C.jpg')},
+        // {name: '小学牛', message: '今天晚上吃点啥？',avatar:require('../../../assets/images/avatar-nan.png'),messageImage:null},
+        // {name: 'o泡果奶', message: '我们去吃牛排吧！',avatar:require('../../../assets/images/avatar-nv.png'),messageImage:null},
+        // {name: '小学牛', message: '好的，我去给小红打气。',avatar:require('../../../assets/images/avatar-nan.png'),messageImage:null},
+        // {name: '小学牛', message: '你们在门口等我吧。',avatar:require('../../../assets/images/avatar-nan.png'),messageImage:null},
+        // {name: 'o泡果奶', message: '你人呢？我到门口啦',avatar:require('../../../assets/images/avatar-nv.png'),messageImage:null},
+        // {name: '小学牛', message: null,avatar:require('../../../assets/images/avatar-nan.png'),messageImage:require('../../../assets/images/alimom/R-C.jpg')},
     ]);
-    const [receiver, setReceiver] = useState('o泡果奶');
+    const [receiver, setReceiver] = useState('');
     const [value, onChangeText] = React.useState('');
+    // const [data,setData]:any = useState([]);
+    const [headName,setHeadName] = useState('');
+    const [headImg,setHeadImg] = useState('');
 
     let timer;  //计时器
-    useEffect(() => {
+    useEffect(()=> {
         //loadMessage();
         // eslint-disable-next-line react-hooks/exhaustive-deps
+        //获取历史记录
+        initMsg();
+
+        const listener = DeviceEvent.addListener('onRecvNewMessage', resp => {
+            const timeoutID = setTimeout(() => {
+                console.log('--- 数据更新 ---');
+                initMsg();
+                //清除
+                clearTimeout(timeoutID);
+              }, 500);
+            return () => {
+                // 在组件卸载时移除监听
+                listener.remove();
+              };
+        },[])
     }, []);
 
+    const initMsg = () => {
+        msgFind();
+        // setReceiver(data[0].groupName);
+        //1秒后执行callback, 只会执行一次
+    }
+
+    const msgFind = () =>{
+        const param:any = route.params;
+        if(param.type === 2){
+            console.log('群聊');
+            msgGet(GROUP_MSG_DIR + "/"+ param.id + FILE_SUFFIX);
+            return;
+        }
+        console.log('单聊');
+        msgGet(PRITIVE_MSG_DIR + "/"+param.id + FILE_SUFFIX);
+    }
+
+    const msgGet = (filePath:string) => {
+        //查找到文件直接写入
+        readFileData(filePath).then(res => {
+            const isPGFlag = res[0].stateMsg===2;
+            // console.log(res);
+            // console.log(res[0].groupName);
+            setItems(res);
+            setHeadName(isPGFlag?res[0].groupName:res[0].senderNickname);
+            setHeadImg(isPGFlag?res[0].faceURL:res[0].senderFaceUrl);
+        });
+      };
     /**
      * 加载聊天信息
      */
@@ -133,10 +183,10 @@ const CheckView = () => {
                 <Appbar.BackAction onPress={() => navigate('SocializingStacker')} />
                 <View style={styles.avatarView}>
                     <View style={styles.avatarStyle}>
-                        <Avatar.Image size={34} source={require('../../../assets/images/avatar-nv.png')}></Avatar.Image>
+                        <Avatar.Image size={34} source={{ uri: headImg }}></Avatar.Image>
                         <View style={styles.stateStyle}></View>
                     </View>
-                    <Text style={styles.avatarText}>O泡果奶</Text>
+                    <Text style={styles.avatarText}>{headName}</Text>
                 </View>
                 <Appbar.Action icon="dots-vertical" onPress={() => {}} />
             </Appbar.Header>
@@ -366,3 +416,7 @@ const styles = StyleSheet.create({
         flex:1
     }
 })
+
+function setData(newArr: any[]) {
+    throw new Error('Function not implemented.');
+}

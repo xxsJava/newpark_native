@@ -5,12 +5,11 @@ import IMSDKRN from '../../plugins/IMSDKRN';
 /*
  * @Author: xxs
  * @Date: 2024-01-04 09:28:14
- * @LastEditTime: 2024-01-09 18:24:19
+ * @LastEditTime: 2024-01-11 15:22:03
  * @FilePath: \newpark_native\src\config\listener\index.tsx
  * @Description: desc
  */
-type groupData = {groupId: string; groupPath: string};
-type privateData = {sendId: string; privatePath: string};
+type msgData = {id: string; path: string};
 const DevenIOS = new NativeEventEmitter(IMSDKRN);
 export const DeviceEvent = Platform.OS == 'ios'?DevenIOS:DeviceEventEmitter;
 export const initListener = () => {
@@ -25,21 +24,21 @@ export const initListener = () => {
 
   DeviceEvent.addListener('onRecvNewMessage', resp => {
     const msg = JSON.parse(resp.message);
-    console.log('消息监听1----->', msg);
+    // console.log('消息监听1----->', msg);
 
     //存群聊消息文件地址
     readFileData(INDEX_MSG_DIR).then(res => {
       console.log(res);
       if (msg.groupID != undefined) {
         console.log('............ 群聊 ..............')
-        const groupFile: groupData = {
-          groupId: msg.groupID,
-          groupPath: res.groupPath + '/' + msg.groupID + '.json',
+        const groupFile: msgData = {
+          id: msg.groupID,
+          path: res.groupPath + '/' + msg.groupID + '.json',
         };
 
         const jsonFlag = res.data.some((item: any) => {
-          console.log('--------------->开始查找数据', item.groupId);
-          return item.groupId === groupFile.groupId;
+          console.log('--------------->开始查找数据', groupFile.id);
+          return item.id === groupFile.id;
         });
 
         //不存在存入群聊数据
@@ -52,20 +51,18 @@ export const initListener = () => {
           return;
         }
         //群聊数据文件写入
-        
       }
 
       //写入单聊文件地址
-      if (msg.recvID != undefined) {
         console.log('............ 单聊 ..............')
-        const privateFile: privateData = {
-          sendId: msg.sendID,
-          privatePath: res.privatePath + '/' + msg.sendID + '.json',
+        const privateFile: msgData = {
+          id: msg.sendID,
+          path: res.privatePath + '/' + msg.sendID + '.json',
         };
 
         const jsonFlag = res.data.some((item: any) => {
-          console.log('--------------->开始查找数据', item.sendId);
-          return item.sendId === privateFile.sendId;
+          console.log('--------------->开始查找数据', privateFile.id);
+          return item.id === privateFile.id;
         });
 
         //不存在写入数据
@@ -78,8 +75,6 @@ export const initListener = () => {
           return;
         }
         //单聊消息数据写入
-        
-      }
     });
   });
 

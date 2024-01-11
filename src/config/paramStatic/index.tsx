@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2024-01-09 11:44:57
+ * @LastEditTime: 2024-01-11 17:27:53
+ * @FilePath: \newpark_native\src\config\paramStatic\index.tsx
+ * @Description: desc
+ */
 import DateTimeUtils from '../../utils/DateTimeUtils';
 import RNFS from 'react-native-fs';
 /**
@@ -21,3 +28,5 @@ export let PRITIVE_MSG_DIR = filePathMsg + '/private';
 export let INDEX_MSG_DIR = filePathMsg + '/index.json';
 //消息文件路径数据
 export let MSG_FILE_DIR = JSON.stringify({"groupPath":GROUP_MSG_DIR,"privatePath":PRITIVE_MSG_DIR,"data":[]});
+//文件后缀
+export let FILE_SUFFIX = '.json';
