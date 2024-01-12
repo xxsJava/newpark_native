@@ -13,7 +13,7 @@ const ClausePopup = (props:any) => {
 
     return (
         <Modal transparent visible={visible} animationType={'slide'} onRequestClose={() => onClose()}>
-            <TouchableOpacity style={styles.overlay} activeOpacity={0.2} onPress={() => onClose()} />
+            <TouchableOpacity style={styles.overlay} activeOpacity={1.0} onPress={() => onClose()} />
             <View style={styles.content}>
                 <Text style={styles.clauseTitle}>服务协议及隐私保护</Text>
                 <Text style={styles.contentText}>为了更好的保障您的合法权益，请您阅读并同意<Text style={styles.emphasizeText}>《用户协议》、《隐私政策》、《买家须知》</Text>未注册手机号将自动注册！</Text>

@@ -153,7 +153,7 @@ export default class ObjCard extends Component{
                         <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} />
                     </TouchableOpacity>
                     <View style={styles.boxmin}>
-                        <TouchableOpacity style={styles.boxStylemin1} onPress={() => navigate('CheckRoute')}>
+                        <TouchableOpacity style={styles.boxStylemin1} onPress={() => navigate('CheckRoute',{id:'123',type:1})}>
                             <Image source={require('../../../assets/images/tup/qunfaxinxi.png')} style={styles.rightIcon} />
                             <Text style={styles.h7}>发消息</Text>
                         </TouchableOpacity>
@@ -162,7 +162,7 @@ export default class ObjCard extends Component{
                             <Text style={styles.h7}>音视频通话</Text>
                         </TouchableOpacity> */}
                     </View>
-
+                        
                 </View>
             </View>
         )

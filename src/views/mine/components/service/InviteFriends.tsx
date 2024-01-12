@@ -55,7 +55,8 @@ const MyComponent = () => {
 
         <PaperProvider>
             <Portal>
-                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType}>
+            {/* animationType={slide}  */}
+                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType} >
                   
                     <ScrollView   horizontal={true} style={styles.mt2list}>
                         {
@@ -267,6 +268,6 @@ const styles = StyleSheet.create({
         flexWrap:'wrap'
     },
     mtlist:{
-        
+
     }
 });

@@ -195,7 +195,10 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 欢迎大家加入NewPark大家庭
               </Text>
             </View>
-
+            <View style={styles.heng}>
+            <Button style={styles.buttonStyle} labelStyle={styles.buttonText} rippleColor='#ddd' onPress={() => console.log('登录')}>登录</Button>
+            <Button style={styles.buttonStyle} labelStyle={styles.buttonText} rippleColor='#ddd' onPress={() => console.log('注册')}>注册</Button>
+            </View>
             <View style={styles.num}>
               <TextInput
                 allowFontScaling={false}
@@ -377,6 +380,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonText:{
+    fontSize:18,
+    color:'#F0BA38',
+    lineHeight:25
+},
+buttonStyle:{
+  width:120,
+  height:48,
+  marginTop:10,
+  marginHorizontal:'16%',
+  backgroundColor:'#fff',
+  borderWidth:1,
+  borderColor:'#bbb',
+  borderRadius:24
+},
+heng:{
+  flexDirection:'row',
+  width:'60%'
+}
+
 });
 
 export default LoginView;
