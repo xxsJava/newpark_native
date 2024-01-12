@@ -333,9 +333,9 @@ const styles = StyleSheet.create({
         color: '#000',
         fontWeight: 'bold',
         marginLeft: 'auto',
-        // 改动
-        minWidth:80,
-        overflow:'hidden'
+        // // 改动
+        // minWidth:80,
+        // overflow:'hidden'
     },
     chatTimeStamp: {
         marginLeft: 10,

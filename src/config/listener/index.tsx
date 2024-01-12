@@ -24,7 +24,7 @@ export const initListener = () => {
 
   DeviceEvent.addListener('onRecvNewMessage', resp => {
     const msg = JSON.parse(resp.message);
-    // console.log('消息监听1----->', msg);
+    console.log('消息监听1----->', msg);
 
     //存群聊消息文件地址
     readFileData(INDEX_MSG_DIR).then(res => {

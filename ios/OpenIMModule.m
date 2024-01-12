@@ -136,6 +136,7 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
   return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer"];
 }
 
+
 - (void)initListeners{
   NSLog(@"------- IOS监听器初始化 --------");
   //用户信息监听
@@ -180,25 +181,25 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
   [OIMManager.callbacker setGroupListenerWithOnGroupInfoChanged:^(OIMGroupInfo * _Nullable groupInfo) {
     
   } onJoinedGroupAdded:^(OIMGroupInfo * _Nullable groupInfo) {
-    <#code#>
+  
   } onJoinedGroupDeleted:^(OIMGroupInfo * _Nullable groupInfo) {
-    <#code#>
+  
   } onGroupMemberAdded:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-    <#code#>
+  
   } onGroupMemberDeleted:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-    <#code#>
+    
   } onGroupMemberInfoChanged:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-    <#code#>
+    
   } onGroupApplicationAdded:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-    <#code#>
+  
   } onGroupApplicationDeleted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-    <#code#>
+  
   } onGroupApplicationAccepted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-    <#code#>
+  
   } onGroupApplicationRejected:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-    <#code#>
+  
   } onGroupDismissed:^(OIMGroupInfo * _Nullable groupInfo) {
-    <#code#>
+  
   }];
   // 消息相关监听器
   [OIMManager.callbacker setAdvancedMsgListenerWithOnRecvMessageRevoked:^(OIMMessageRevokedInfo * _Nullable msgRovoked) {
@@ -207,11 +208,25 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
   } onRecvGroupReadReceipt:^(NSArray<OIMReceiptInfo *> * _Nullable msgReceiptList) {
     
   } onRecvNewMessage:^(OIMMessageInfo * _Nullable message) {
-    BOOL isValid = [NSJSONSerialization isValidJSONObject:message];
-    NSLog(@"接收消息----> %@",isValid ? @"YES":@"NO");
+    
+    NSDictionary *dict = message.mj_keyValues;
+    
+    
+//    NSLog(@"dict---->%@",dict);
+//    NSError *error = nil;
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
+//    if (error) {
+//        NSLog(@"转换失败:%@", error.localizedDescription);
+//    } else {
+//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSLog(@"转换后的JSON字符串是：%@", jsonString);
+//    }
+    
+    //    NSLog(@"jsonData---->%@",jsonData);
+//    [self sendEventWithName:@"onRecvNewMessage" body:jsonData];
 
-    [self sendEventWithName:@"onRecvNewMessage" body:message];
   }];
 }
 
 @end
+

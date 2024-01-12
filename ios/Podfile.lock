@@ -417,14 +417,6 @@ PODS:
     - React-Core
   - react-native-blur (4.3.2):
     - React-Core
-  - react-native-camera (3.44.3):
-    - React-Core
-    - react-native-camera/RCT (= 3.44.3)
-    - react-native-camera/RN (= 3.44.3)
-  - react-native-camera/RCT (3.44.3):
-    - React-Core
-  - react-native-camera/RN (3.44.3):
-    - React-Core
   - react-native-image-picker (7.1.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -608,6 +600,7 @@ DEPENDENCIES:
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
+  - MJExtension
   - OpenIMSDK
   - OpenSSL-Universal (= 1.1.1100)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -629,7 +622,6 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - "react-native-alipay (from `../node_modules/@uiw/react-native-alipay`)"
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
-  - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
@@ -736,8 +728,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@uiw/react-native-alipay"
   react-native-blur:
     :path: "../node_modules/@react-native-community/blur"
-  react-native-camera:
-    :path: "../node_modules/react-native-camera"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-safe-area-context:
@@ -845,7 +835,6 @@ SPEC CHECKSUMS:
   React-logger: cebf22b6cf43434e471dc561e5911b40ac01d289
   react-native-alipay: 96b1843cc59d018b2a3a4b20899b4585af72bff0
   react-native-blur: cfdad7b3c01d725ab62a8a729f42ea463998afa2
-  react-native-camera: b8cc03e2feec0c04403d0998e37cf519d8fd4c6f
   react-native-image-picker: 5e076db26cd81660cfb6db5bcf517cfa12054d45
   react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
@@ -881,6 +870,6 @@ SPEC CHECKSUMS:
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 71336e0b431db911589e573ac1a103998f4fcd11
+PODFILE CHECKSUM: 810b2042de6c82239a9b1c384d79a9456377d82b
 
 COCOAPODS: 1.13.0
