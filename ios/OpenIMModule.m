@@ -10,6 +10,7 @@
 #import <React/RCTBridge.h>
 #import "OpenIMModule.h"
 #import <React/RCTEventDispatcher.h>
+#import <MJExtension/MJExtension.h>
 
 @import OpenIMSDK;
 
@@ -207,11 +208,18 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
   } onRecvGroupReadReceipt:^(NSArray<OIMReceiptInfo *> * _Nullable msgReceiptList) {
     
   } onRecvNewMessage:^(OIMMessageInfo * _Nullable message) {
-    BOOL isValid = [NSJSONSerialization isValidJSONObject:message];
-    NSLog(@"接收消息----> %@",isValid ? @"YES":@"NO");
+    NSLog(@"获取数据----> %@", message.senderNickname);
 
-    [self sendEventWithName:@"onRecvNewMessage" body:message];
+    NSString *jsonStr = [message mj_JSONString];
+    NSLog(@"转jsonStr----> %@", jsonStr);
+
+//    if (error) {
+//      NSLog(@"转换为 NSDictionary 时发生错误: %@", error);
+//    } else {
+//      [self sendEventWithName:@"onRecvNewMessage" body:messageData];
+//    }
   }];
 }
+
 
 @end
