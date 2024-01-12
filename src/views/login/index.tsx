@@ -29,6 +29,7 @@ import ClausePopup from '../../views/login/components/ClausePopup'
 import IMSDKRN from '../../plugins/IMSDKRN';
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const LoginView: React.FC<LoginScreenProps> = () => {
   const [visible, setVisible] = useState(false)
@@ -181,7 +182,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       <ImageBackground
         style={styles.imgbgc}
         source={require('../../assets/images/loginBG.png')}>
-        <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
+          {/* style={{flex: 1}} */}
+        <KeyboardAwareScrollView enableOnAndroid={true} style={styles.opcity}>
           <View style={styles.top}>
             <Image
               style={styles.img}
@@ -192,13 +194,13 @@ const LoginView: React.FC<LoginScreenProps> = () => {
           <View style={styles.box}>
             <View>
               <Text allowFontScaling={false} style={styles.text}>
-                欢迎大家加入NewPark大家庭
+                输入手机号
               </Text>
             </View>
-            <View style={styles.heng}>
+            {/* <View style={styles.heng}>
             <Button style={styles.buttonStyle} labelStyle={styles.buttonText} rippleColor='#ddd' onPress={() => console.log('登录')}>登录</Button>
             <Button style={styles.buttonStyle} labelStyle={styles.buttonText} rippleColor='#ddd' onPress={() => console.log('注册')}>注册</Button>
-            </View>
+            </View> */}
             <View style={styles.num}>
               <TextInput
                 allowFontScaling={false}
@@ -214,8 +216,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               />
             </View>
 
-            <View style={styles.pawoed}>
-              <TextInput
+            {/* <View style={styles.pawoed}> */}
+              {/* <TextInput
                 allowFontScaling={false}
                 style={styles.inp}
                 secureTextEntry={securePass}
@@ -233,8 +235,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 maxLength={16}
                 activeUnderlineColor="#fff"
                 onChangeText={text => setPass(text)}
-              />
-            </View>
+              /> */}
+            {/* </View> */}
 
             <View style={styles.login}>
               <Button
@@ -243,7 +245,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 disabled={load}
                 mode="contained"
                 buttonColor="#fff"
-                textColor="#000"
+                textColor="#E8AE0E"
                 onPress={onLogin}>
                 <Trans>loginText.text1</Trans>
               </Button>
@@ -254,9 +256,9 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                   <Trans>loginText.text2</Trans>
                 </Text>
               </TouchableOpacity> */}
-              <TouchableOpacity onPress={() => setVisible(true)}>
+              <TouchableOpacity onPress={() =>{}}>
                 <Text allowFontScaling={false} style={styles.underline}>
-                  服务条款
+                  注册
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={forgetPass}>
@@ -277,6 +279,10 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 source={require('../../assets/images/2.0x/weixin_icon.png')}
               />
             </View>
+            <TouchableOpacity onPress={() => setVisible(true)}>
+              <Text>我已同意并阅读</Text>
+              <Text style={{color:'blue'}}>服务条款</Text>
+            </TouchableOpacity>
           </View>
         </KeyboardAwareScrollView>
       </ImageBackground>
@@ -303,12 +309,13 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 27,
+    fontSize: 29,
     marginBottom: 30,
+    fontWeight:'bold'
   },
   box: {
     width: windowWidth,
-    height: 500,
+    height: 600,
     padding: 20,
   },
   inp: {
@@ -398,6 +405,11 @@ buttonStyle:{
 heng:{
   flexDirection:'row',
   width:'60%'
+},
+opcity:{
+  width:windowWidth,
+  height:windowHeight
+
 }
 
 });
