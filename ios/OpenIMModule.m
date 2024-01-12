@@ -180,25 +180,25 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
   [OIMManager.callbacker setGroupListenerWithOnGroupInfoChanged:^(OIMGroupInfo * _Nullable groupInfo) {
     
   } onJoinedGroupAdded:^(OIMGroupInfo * _Nullable groupInfo) {
-    <#code#>
+  
   } onJoinedGroupDeleted:^(OIMGroupInfo * _Nullable groupInfo) {
-    <#code#>
+  
   } onGroupMemberAdded:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-    <#code#>
+  
   } onGroupMemberDeleted:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-    <#code#>
+    
   } onGroupMemberInfoChanged:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-    <#code#>
+    
   } onGroupApplicationAdded:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-    <#code#>
+  
   } onGroupApplicationDeleted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-    <#code#>
+  
   } onGroupApplicationAccepted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-    <#code#>
+  
   } onGroupApplicationRejected:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-    <#code#>
+  
   } onGroupDismissed:^(OIMGroupInfo * _Nullable groupInfo) {
-    <#code#>
+  
   }];
   // 消息相关监听器
   [OIMManager.callbacker setAdvancedMsgListenerWithOnRecvMessageRevoked:^(OIMMessageRevokedInfo * _Nullable msgRovoked) {
