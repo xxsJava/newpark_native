@@ -14,9 +14,10 @@ import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
 import Gender from '../../../views/login/components/Gender/index';
 import InterestsHobbies from '../../../views/login/components/InterestsHobbies'
 import Verification from '../../../views/login/components/Verification';
-import passWord from '../../../views/login/components/passWord'
+import passWord from '../../../views/login/passWord'
 import PaymentView from '../../../views/mine/components/oder/PaymentView';
 import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
+import ReviceCode from '../../../components/ReviceCode';
 import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
 import AfterSalesView from '../../../views/mine/components/oder/AfterSalesView';
 import CustomerServiceView from '../../../views/mine/components/service/CustomerServiceView';
@@ -125,6 +126,13 @@ export default {
     component:BeginThree,
     options:{
       title:'引导页3',
+      headerShown: false,
+    }
+  },
+  ReviceCode:{
+    component:ReviceCode,
+    options:{
+      title:'收到验证码',
       headerShown: false,
     }
   },

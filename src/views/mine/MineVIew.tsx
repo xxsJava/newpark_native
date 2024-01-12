@@ -27,6 +27,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  Button
 } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
@@ -117,6 +118,12 @@ export default class MineVIew extends Component {
             </View>
             {/* <PersonalDataView></PersonalDataView> */}
             <HomePageView></HomePageView>
+            <Button
+            onPress={() => navigate('ReviceCode')}
+            title="测试收到验证码页面"
+            color="#841584"
+            accessibilityLabel="Learn more about this purple button"
+          />
           </ScrollView>
         </View>
        <View style={styles.bell}>
