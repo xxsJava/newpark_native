@@ -10,18 +10,23 @@ import {LogBox, Platform} from 'react-native';
 import '../listener';
 import {initListener} from '../listener';
 import IMSDKRN from '../../plugins/IMSDKRN';
-import { requestPermissionStorage } from '../storagePermissionStatus';
+import {
+  initDataDir,
+  requestPermissionStorage,
+} from '../storagePermissionStatus';
+
 console.log('项目开始启动运行', Platform.OS);
 
 IMSDKRN.initSDK();
 initListener();
 
 //android获取设备权限
-if(Platform.OS === 'android'){
+if (Platform.OS === 'android') {
   //获取存储权限
   requestPermissionStorage();
+} else {
+  initDataDir();
 }
-
 console.log('IM-INIT------->初始化完毕');
 LogBox.ignoreAllLogs(true); //关闭全部黄色警告
 LogBox.ignoreLogs([
