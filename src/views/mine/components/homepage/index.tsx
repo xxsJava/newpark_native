@@ -97,7 +97,7 @@ const orderData = [
     },
     {
       index: 4,
-      route: 'CustomerServiceRoute',
+      route: 'CallCustom',
       text: 'minService.serviceOption8',
       icon: require('../../../../assets/images/alimom/kf.png'),
     },

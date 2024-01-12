@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginTop: 30,
         paddingVertical: 20,
-        marginLeft:3
+        marginLeft:8
     },
     littit: {
         flexDirection: 'row',
