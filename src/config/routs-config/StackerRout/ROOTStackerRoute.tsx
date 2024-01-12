@@ -14,6 +14,7 @@ import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
 import Gender from '../../../views/login/components/Gender/index';
 import InterestsHobbies from '../../../views/login/components/InterestsHobbies'
 import Verification from '../../../views/login/components/Verification';
+import passWord from '../../../views/login/components/passWord'
 import PaymentView from '../../../views/mine/components/oder/PaymentView';
 import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
 import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
@@ -52,10 +53,10 @@ import ObjCard from '../../../views/socializing/components/ObjCard'
 import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
 import Empty from '../../../components/Error/empty'
 import SystemError from '../../../components/Error/SystemError'
-import beginOne from '../../../components/begin/beginOne'
-import beginTwo from '../../../components/begin/beginTwo'
-import beginThree from '../../../components/begin/beginThree'
-import beginFour from '../../../components/begin/beginFour'
+import BeginOne from '../../../components/begin/BeginOne'
+import BeginTwo from '../../../components/begin/BeginTwo'
+import BeginThree from '../../../components/begin/BeginThree'
+import BeginFour from '../../../components/begin/BeginFour'
 import PersonalData from '../../../views/mine/components/setup/PersonalData'
 import Comment from '../../../components/Error/Comment'
 import Collect from '../../../components/Error/Collect'
@@ -91,6 +92,12 @@ export default {
       headerStyle: StylesALL.BGCOLOR,
     },
   },
+  passWord:{
+    component: passWord,
+    options: {
+      headerShown: false,
+    },
+  },
   Registered: {
     component: Registered,
     options: {
@@ -100,29 +107,29 @@ export default {
       headerStyle: StylesALL.BGCOLOR,
     },
   },
-  beginOne:{
-    component:beginOne,
+  BeginOne:{
+    component:BeginOne,
     options:{
       title:'引导页1',
       headerShown: false,
     }
   },
-  beginTwo:{
-    component:beginTwo,
+  BeginTwo:{
+    component:BeginTwo,
     options:{
       title:'引导页2',
       headerShown: false,
     }
   },
-  beginThree:{
-    component:beginThree,
+  BeginThree:{
+    component:BeginThree,
     options:{
       title:'引导页3',
       headerShown: false,
     }
   },
-  beginFour:{
-    component:beginFour,
+  BeginFour:{
+    component:BeginFour,
     options:{
       title:'引导页4',
       headerShown: false,

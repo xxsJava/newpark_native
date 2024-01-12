@@ -6,12 +6,12 @@ import {
 import { navigate } from '../../config/routs/NavigationContainer'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const beginOne = () => {
+const BeginTwo = () => {
   return (
     <View style={styles.safeStyle}>
       <ImageBackground source={require('../../assets/images/tup/a2.jpg')} style={styles.img} resizeMode="cover" >
         <View style={styles.btn}>
-          <TouchableOpacity onPress={() => navigate('beginThree')} style={styles.btnBox}>
+          <TouchableOpacity onPress={() => navigate('BeginThree')} style={styles.btnBox}>
             <Text style={styles.btnFont}>Next</Text>
           </TouchableOpacity>
         </View>
@@ -19,7 +19,7 @@ const beginOne = () => {
     </View>
   )
 }
-export default beginOne;
+export default BeginTwo;
 const styles = StyleSheet.create({
   safeStyle: {
     width: windowWidth,
