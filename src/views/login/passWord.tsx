@@ -1,5 +1,5 @@
-//import {useNavigation} from '@react-navigation/native';
-import React, { useState } from 'react';
+// import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
 
 import {
   Text,
@@ -10,26 +10,25 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Button, TextInput } from 'react-native-paper';
-import { LoginScreenProps } from '../../config/routs';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {Button, TextInput} from 'react-native-paper';
+import {LoginScreenProps} from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
 // import {useToast} from 'native-base';
-import { Toast, ToastTitle, useToast } from '@gluestack-ui/themed';
-import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
-import { useTranslation, Trans } from 'react-i18next';
-import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
-import { forgetPass } from './controller';
-import { navigate } from '../../config/routs/NavigationContainer';
-import { getOpenIMConfig } from '../../api/IMAPI';
+import {Toast, ToastTitle, useToast} from '@gluestack-ui/themed';
+import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
+import {useTranslation, Trans} from 'react-i18next';
+import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
+import {forgetPass} from './controller';
+import {navigate} from '../../config/routs/NavigationContainer';
+import {getOpenIMConfig} from '../../api/IMAPI';
 import { loginIM } from '../../entity/LoginOpenIM';
 import DateTimeUtils from '../../utils/DateTimeUtils';
 import ClausePopup from '../../views/login/components/ClausePopup'
 import IMSDKRN from '../../plugins/IMSDKRN';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const LoginView: React.FC<LoginScreenProps> = () => {
   const [visible, setVisible] = useState(false)
@@ -58,7 +57,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   const onLogin = async () => {
     setLoad(true);
     console.log('登录点击');
-    navigate('passWord')
+
     console.log('输入框数据' + phone + '-' + pass);
 
     if (phone.length != 11) {
@@ -103,7 +102,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         platformID: 2,
         userID: loginAPI.data.uId
       }
-
+      
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
       const openIMRes = await getOpenIMConfig(openIMConfig);
       console.log('获取到Open-IM-token1---->', openIMRes.data.token);
@@ -176,13 +175,13 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       Storage.set('usr-phone', text);
     }
   };
+
   return (
     <Animatable.View animation="fadeIn">
       <ImageBackground
         style={styles.imgbgc}
         source={require('../../assets/images/loginBG.png')}>
-        {/* style={{flex: 1}} */}
-        <KeyboardAwareScrollView enableOnAndroid={true}>
+        <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
           <View style={styles.top}>
             <Image
               style={styles.img}
@@ -193,13 +192,10 @@ const LoginView: React.FC<LoginScreenProps> = () => {
           <View style={styles.box}>
             <View>
               <Text allowFontScaling={false} style={styles.text}>
-                输入手机号
+                欢迎大家加入NewPark大家庭
               </Text>
             </View>
-            {/* <View style={styles.heng}>
-            <Button style={styles.buttonStyle} labelStyle={styles.buttonText} rippleColor='#ddd' onPress={() => console.log('登录')}>登录</Button>
-            <Button style={styles.buttonStyle} labelStyle={styles.buttonText} rippleColor='#ddd' onPress={() => console.log('注册')}>注册</Button>
-            </View> */}
+
             <View style={styles.num}>
               <TextInput
                 allowFontScaling={false}
@@ -215,8 +211,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               />
             </View>
 
-            {/* <View style={styles.pawoed}> */}
-            {/* <TextInput
+            <View style={styles.pawoed}>
+              <TextInput
                 allowFontScaling={false}
                 style={styles.inp}
                 secureTextEntry={securePass}
@@ -234,8 +230,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 maxLength={16}
                 activeUnderlineColor="#fff"
                 onChangeText={text => setPass(text)}
-              /> */}
-            {/* </View> */}
+              />
+            </View>
 
             <View style={styles.login}>
               <Button
@@ -244,28 +240,20 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 disabled={load}
                 mode="contained"
                 buttonColor="#fff"
-                textColor="#E8AE0E"
+                textColor="#000"
                 onPress={onLogin}>
-                <Text>密码登录</Text>
-                {/* passWord */}
+                <Trans>loginText.text1</Trans>
               </Button>
             </View>
-            <View style={styles.center}>
-              <TouchableOpacity onPress={() => {navigate('Verification')}}>
-                <Text allowFontScaling={false} style={styles.underline}>
-                <Trans>loginText.text1</Trans>
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {/* <View style={styles.verify}> */}
-            {/* <TouchableOpacity onPress={smsVerIf}>
+            <View style={styles.verify}>
+              {/* <TouchableOpacity onPress={smsVerIf}>
                 <Text allowFontScaling={false} style={styles.underline}>
                   <Trans>loginText.text2</Trans>
                 </Text>
               </TouchableOpacity> */}
-            {/* <TouchableOpacity onPress={() =>{}}>
+              <TouchableOpacity onPress={() => setVisible(true)}>
                 <Text allowFontScaling={false} style={styles.underline}>
-                  注册
+                  服务条款
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={forgetPass}>
@@ -273,10 +261,10 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                   <Trans>loginText.text3</Trans>
                 </Text>
               </TouchableOpacity>
-            </View> */}
+            </View>
             <View style={styles.bottom}>
               <View style={styles.line} />
-              <Text allowFontScaling={false} style={styles.san}>
+              <Text allowFontScaling={false}>
                 <Trans>loginText.text4</Trans>
               </Text>
               <View style={styles.line} />
@@ -285,13 +273,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               <Image
                 source={require('../../assets/images/2.0x/weixin_icon.png')}
               />
-              <Text style={{color:'#fff'}}>微信登录</Text>
             </View>
-            <TouchableOpacity onPress={() => setVisible(true)} style={styles.heng1}>
-              <Image source={require('../../assets/images/tup/tongyi.png')} style={styles.icon}></Image>
-              <Text>我已同意并阅读</Text>
-              <Text style={{ color: 'blue' }}>服务条款</Text>
-            </TouchableOpacity>
           </View>
         </KeyboardAwareScrollView>
       </ImageBackground>
@@ -318,13 +300,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 29,
+    fontSize: 27,
     marginBottom: 30,
-    fontWeight: 'bold'
   },
   box: {
     width: windowWidth,
-    height: 600,
+    height: 500,
     padding: 20,
   },
   inp: {
@@ -336,7 +317,7 @@ const styles = StyleSheet.create({
   arrows: {
     marginLeft: 10,
     marginRight: 10,
-    transform: [{ rotate: '-90deg' }],
+    transform: [{rotate: '-90deg'}],
   },
   num: {
     width: '100%',
@@ -356,14 +337,12 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom:20
   },
   loginBox: {
     paddingTop: '1%',
     paddingBottom: '1%',
-    paddingLeft: '25%',
-    paddingRight: '25%',
-    fontSize: 30
+    paddingLeft: '30%',
+    paddingRight: '30%',
   },
   loginText: {
     color: '#000',
@@ -398,46 +377,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonText: {
-    fontSize: 18,
-    color: '#F0BA38',
-    lineHeight: 25
-  },
-  buttonStyle: {
-    width: 120,
-    height: 48,
-    marginTop: 10,
-    marginHorizontal: '16%',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#bbb',
-    borderRadius: 24
-  },
-  heng: {
-    flexDirection: 'row',
-    width: '60%'
-  },
-  heng1: {
-    flexDirection: 'row',
-    justifyContent:'center',
-    marginTop:120,
-    alignItems:'flex-end'
-  },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    
-  },
-  san:{
-    color:'#fff',
-    fontSize:16
-  },
-  icon:{
-    width:15,
-    height:15,
-    margin:3
-  }
-
 });
 
 export default LoginView;

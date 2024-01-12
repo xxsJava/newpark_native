@@ -14,7 +14,7 @@ import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
 import Gender from '../../../views/login/components/Gender/index';
 import InterestsHobbies from '../../../views/login/components/InterestsHobbies'
 import Verification from '../../../views/login/components/Verification';
-import passWord from '../../../views/login/components/passWord'
+import passWord from '../../../views/login/passWord'
 import PaymentView from '../../../views/mine/components/oder/PaymentView';
 import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
 import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
