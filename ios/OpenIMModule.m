@@ -10,7 +10,6 @@
 #import <React/RCTBridge.h>
 #import "OpenIMModule.h"
 #import <React/RCTEventDispatcher.h>
-#import <MJExtension/MJExtension.h>
 
 @import OpenIMSDK;
 
@@ -137,6 +136,7 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
   return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer"];
 }
 
+
 - (void)initListeners{
   NSLog(@"------- IOS监听器初始化 --------");
   //用户信息监听
@@ -208,18 +208,25 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
   } onRecvGroupReadReceipt:^(NSArray<OIMReceiptInfo *> * _Nullable msgReceiptList) {
     
   } onRecvNewMessage:^(OIMMessageInfo * _Nullable message) {
-    NSLog(@"获取数据----> %@", message.senderNickname);
-
-    NSString *jsonStr = [message mj_JSONString];
-    NSLog(@"转jsonStr----> %@", jsonStr);
-
+    
+    NSDictionary *dict = message.mj_keyValues;
+    
+    
+//    NSLog(@"dict---->%@",dict);
+//    NSError *error = nil;
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
 //    if (error) {
-//      NSLog(@"转换为 NSDictionary 时发生错误: %@", error);
+//        NSLog(@"转换失败:%@", error.localizedDescription);
 //    } else {
-//      [self sendEventWithName:@"onRecvNewMessage" body:messageData];
+//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSLog(@"转换后的JSON字符串是：%@", jsonString);
 //    }
+    
+    //    NSLog(@"jsonData---->%@",jsonData);
+//    [self sendEventWithName:@"onRecvNewMessage" body:jsonData];
+
   }];
 }
 
-
 @end
+
