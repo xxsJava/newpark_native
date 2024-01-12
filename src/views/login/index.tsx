@@ -41,6 +41,9 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   const [pass, setPass] = useState('');
 
   const [securePass, setSecurePass] = useState(true);
+  // 这是密码登录的地方
+  const [recode , setrecode] = useState(true);
+
 
   const [load, setLoad] = useState(false);
 
@@ -58,7 +61,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   const onLogin = async () => {
     setLoad(true);
     console.log('登录点击');
-    navigate('passWord')
+    // navigate('passWord')
+    setrecode(!recode)
     console.log('输入框数据' + phone + '-' + pass);
 
     if (phone.length != 11) {
@@ -215,8 +219,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               />
             </View>
 
-            {/* <View style={styles.pawoed}> */}
-            {/* <TextInput
+            <View style={[styles.pawoed,recode? {display:'none'} : null]} >
+            <TextInput
                 allowFontScaling={false}
                 style={styles.inp}
                 secureTextEntry={securePass}
@@ -234,10 +238,23 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 maxLength={16}
                 activeUnderlineColor="#fff"
                 onChangeText={text => setPass(text)}
-              /> */}
-            {/* </View> */}
+              />
+            </View>
 
-            <View style={styles.login}>
+            <View style={[styles.login,recode ? {display:'none'} : null]}>
+              <Button
+                contentStyle={styles.loginBox}
+                loading={load}
+                disabled={load}
+                mode="contained"
+                buttonColor="#fff"
+                textColor="#E8AE0E"
+                onPress={onLogin}>
+                <Text>手机号登录</Text>
+                {/* passWord */}
+              </Button>
+            </View>
+            <View style={[styles.login,recode ? null :{display:'none'}]}>
               <Button
                 contentStyle={styles.loginBox}
                 loading={load}
@@ -257,23 +274,23 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 </Text>
               </TouchableOpacity>
             </View>
-            {/* <View style={styles.verify}> */}
-            {/* <TouchableOpacity onPress={smsVerIf}>
+            <View style={styles.verify}>
+            <TouchableOpacity onPress={smsVerIf}>
                 <Text allowFontScaling={false} style={styles.underline}>
                   <Trans>loginText.text2</Trans>
                 </Text>
-              </TouchableOpacity> */}
+              </TouchableOpacity>
             {/* <TouchableOpacity onPress={() =>{}}>
                 <Text allowFontScaling={false} style={styles.underline}>
                   注册
                 </Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity onPress={forgetPass}>
                 <Text allowFontScaling={false} style={styles.underline}>
                   <Trans>loginText.text3</Trans>
                 </Text>
               </TouchableOpacity>
-            </View> */}
+            </View>
             <View style={styles.bottom}>
               <View style={styles.line} />
               <Text allowFontScaling={false} style={styles.san}>
@@ -420,8 +437,8 @@ const styles = StyleSheet.create({
   heng1: {
     flexDirection: 'row',
     justifyContent:'center',
-    marginTop:120,
-    alignItems:'flex-end'
+    alignItems:'flex-end',
+    marginTop:20
   },
   center: {
     justifyContent: 'center',
