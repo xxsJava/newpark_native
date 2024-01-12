@@ -140,6 +140,114 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     }
     setLoad(false);
   };
+// 这里是手机号登录会执行的操作
+  const onLoginsj = async () => {
+     setrecode(!recode)
+    setLoad(true);
+    console.log('登录点击');
+    // navigate('passWord')
+    setrecode(!recode)
+    console.log('输入框数据' + phone + '-' + pass);
+    // text = ''
+    if (phone.length != 11) {
+      toast.show({
+        placement: 'bottom',
+        render: () => {
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>手机号有误</Text>
+            </Toast>
+          )
+        },
+      });
+      setLoad(false);
+      return;
+    }
+    //这是手机号登录的地方
+    const onLoginmm = async () => {
+      setrecode(!recode)
+      // setLoad(true);
+      // console.log('登录点击');
+      // navigate('passWord')
+      // setrecode(!recode)
+      // console.log('输入框数据' + phone + '-' + pass);
+      // // text = ''
+      // if (phone.length != 11) {
+      //   toast.show({
+      //     placement: 'bottom',
+      //     render: () => {
+      //       return (
+      //         <Toast action="attention" variant="solid">
+      //           <Text allowFontScaling={false}>手机号有误</Text>
+      //         </Toast>
+      //       )
+      //     },
+      //   });
+      //   setLoad(false);
+      //   return;
+      }
+
+    const loginAPI = await loginApi(usrData);
+
+    console.log(loginAPI.data);
+
+    //用户不存在自动注册
+    if (loginAPI.code === 1114) {
+      toast.show({
+        placement: 'bottom',
+        render: () => {
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>验证码发送，请注意查收</Text>
+            </Toast>
+          )
+        },
+      });
+      navigate('Verification');
+    } else if (loginAPI.code === 200) {
+      //用户token存本地
+      Storage.set('usr-token', loginAPI.data.usrToken);
+
+      //用户OPEN-配置
+      const openIMConfig = {
+        secret: "openIM123",
+        platformID: 2,
+        userID: loginAPI.data.uId
+      }
+
+      // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
+      const openIMRes = await getOpenIMConfig(openIMConfig);
+      console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+      //oepnIm 登录
+      IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
+      //用户uid存本地
+      Storage.set('uid', loginAPI.data.uId);
+      navigate('LoginHome');
+      toast.show({
+        placement: 'top',
+        render: () => {
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>登录成功，可享受功能</Text>
+            </Toast>
+          )
+        },
+      });
+    } else if (loginAPI.code === 1110) {
+      toast.show({
+        placement: 'top',
+        render: () => {
+          return (
+            <Toast action="attention" variant="solid">
+              <Text allowFontScaling={false}>账号有误</Text>
+            </Toast>
+          )
+        },
+      });
+    }
+    setLoad(false);
+  };
+
 
   const smsVerIf = async () => {
     if (phone.length != 11) {
@@ -249,7 +357,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 mode="contained"
                 buttonColor="#fff"
                 textColor="#E8AE0E"
-                onPress={onLogin}>
+                onPress={() => setrecode(!recode)}>
                 <Text>手机号登录</Text>
                 {/* passWord */}
               </Button>
@@ -262,15 +370,22 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 mode="contained"
                 buttonColor="#fff"
                 textColor="#E8AE0E"
-                onPress={onLogin}>
+                onPress={() => setrecode(!recode)}>
                 <Text>密码登录</Text>
                 {/* passWord */}
               </Button>
             </View>
-            <View style={styles.center}>
+            <View style={[styles.center, recode ? null : {display:'none'}]}>
               <TouchableOpacity onPress={() => {navigate('Verification')}}>
                 <Text allowFontScaling={false} style={styles.underline}>
                 <Trans>loginText.text1</Trans>
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={[styles.center, recode ? {display:'none'} : null]}>
+              <TouchableOpacity onPress={onLogin}>
+                <Text allowFontScaling={false} style={styles.underline}>
+                <Trans>确认密码登录</Trans>
                 </Text>
               </TouchableOpacity>
             </View>
