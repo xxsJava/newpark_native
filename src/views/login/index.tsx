@@ -258,6 +258,13 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 </Text>
               </TouchableOpacity>
             </View>
+            <View style={styles.center}>
+              <TouchableOpacity onPress={() => {forgetPass()}}>
+                <Text allowFontScaling={false} style={styles.underline}>
+                <Trans>忘记密码</Trans>
+                </Text>
+              </TouchableOpacity>
+            </View>
             {/* <View style={styles.verify}> */}
             {/* <TouchableOpacity onPress={smsVerIf}>
                 <Text allowFontScaling={false} style={styles.underline}>
