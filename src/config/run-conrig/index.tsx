@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-28 21:58:06
- * @LastEditTime: 2024-01-09 17:18:14
+ * @LastEditTime: 2024-01-12 09:53:18
  * @FilePath: \newpark_native\src\config\run-conrig\index.tsx
  * @Description: 全局自行导入依赖
  */
@@ -10,25 +10,17 @@ import {LogBox, Platform} from 'react-native';
 import '../listener';
 import {initListener} from '../listener';
 import IMSDKRN from '../../plugins/IMSDKRN';
-import { createDirs, writeFileData } from '../../utils/FilesUtiles';
-import { GROUP_MSG_DIR, INDEX_MSG_DIR, MSG_FILE_DIR, PRITIVE_MSG_DIR } from '../paramStatic';
-import RNFS from 'react-native-fs';
+import { requestPermissionStorage } from '../storagePermissionStatus';
 console.log('项目开始启动运行', Platform.OS);
 
 IMSDKRN.initSDK();
 initListener();
 
-//根据时间格式化目录
-createDirs(GROUP_MSG_DIR);
-createDirs(PRITIVE_MSG_DIR);
-//创建文件路径写入文件地址
-RNFS.exists(INDEX_MSG_DIR).then((fileExists) => {
-  if (!fileExists) {
-    console.log('创建写入文件')
-    //不存在创建写入文件
-    writeFileData(INDEX_MSG_DIR,MSG_FILE_DIR);
-  }
-})
+//android获取设备权限
+if(Platform.OS === 'android'){
+  //获取存储权限
+  requestPermissionStorage();
+}
 
 console.log('IM-INIT------->初始化完毕');
 LogBox.ignoreAllLogs(true); //关闭全部黄色警告
