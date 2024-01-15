@@ -42,7 +42,7 @@ const moreList = [{
 {
   index:4,
   image:require('../../assets/images/tup/saoyisao.png'),
-  text:'扫一扫',
+  text:'好友申请',
   path:'CreateCommunityRoute'
 },
 ]
@@ -139,7 +139,7 @@ const SocializingView = () => {
         <TouchableOpacity style={[styles.maskLayer,more?null:{display:'none'}]} onPress={() => handleMorePress(more)}>
        
         </TouchableOpacity>
-        <View>
+        <View style={styles.bell}>
             <BellView></BellView>
         </View>
       </SafeAreaView>
@@ -309,6 +309,11 @@ const styles = StyleSheet.create({
     position:'absolute',
     zIndex:80,
     // backgroundColor:'red'
+  },
+  bell:{
+    position:'absolute',
+    bottom:0,
+    right:0
   }
 });
 function tabClick(porps: any, string: any) {

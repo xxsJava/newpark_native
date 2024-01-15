@@ -55,6 +55,7 @@ import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
 import Empty from '../../../components/Error/empty'
 import SystemError from '../../../components/Error/SystemError'
 import BeginOne from '../../../components/begin/BeginOne'
+import Testone from '../../../views/mine/components/TestOne'
 import BeginTwo from '../../../components/begin/BeginTwo'
 import BeginThree from '../../../components/begin/BeginThree'
 import BeginFour from '../../../components/begin/BeginFour'
@@ -107,6 +108,13 @@ export default {
       headerTitleStyle: StylesALL.navText,
       headerStyle: StylesALL.BGCOLOR,
     },
+  },
+  Testone:{
+    component:Testone,
+    options:{
+      title:'测试复制页1',
+      headerShown: true,
+    }
   },
   BeginOne:{
     component:BeginOne,

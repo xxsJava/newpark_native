@@ -71,6 +71,9 @@ export default class PublishView extends Component {
         <Button title="登出调试" onPress={loginOut} /> */}
         <Example />
         {/* <Button title="test" onPress={test} /> */}
+        <View style={styles.bell}>
+          <BellView></BellView> 
+      </View>
       </View>
     );
   }
@@ -151,9 +154,7 @@ const Example = () => {
         </Animated.View>
         <Button title="点击出现" onPress={() => fadeIn()}></Button>
         <Button title="点击消失" onPress={() => fadeOut()}></Button>
-      <View style={styles.bell}>
-          <BellView></BellView> 
-      </View>
+     
       {/* <Stagger
         visible={isOpen}
         initial={{
@@ -305,7 +306,7 @@ const styles = StyleSheet.create({
   },
   bell:{
       position:'absolute',
-      bottom:-260,
-      right:-160
+      bottom:0,
+      right:0
   }
 });
