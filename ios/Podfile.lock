@@ -76,8 +76,8 @@ PODS:
     - hermes-engine/Pre-built (= 0.72.6)
   - hermes-engine/Pre-built (0.72.6)
   - libevent (2.1.12)
-  - lottie-ios (4.3.3)
-  - lottie-react-native (6.4.1):
+  - lottie-ios (4.3.4)
+  - lottie-react-native (6.5.1):
     - lottie-ios (~> 4.3.3)
     - React-Core
   - MJExtension (3.4.1)
@@ -424,7 +424,8 @@ PODS:
     - React-Core
   - react-native-splash-screen (3.3.0):
     - React-Core
-  - react-native-webview (13.6.3):
+  - react-native-webview (13.6.4):
+    - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - React-NativeModulesApple (0.72.6):
     - hermes-engine
@@ -542,10 +543,10 @@ PODS:
     - React
   - RNFS (2.20.0):
     - React-Core
-  - RNGestureHandler (2.14.0):
+  - RNGestureHandler (2.14.1):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - RNLocalize (3.0.4):
+  - RNLocalize (3.0.5):
     - React-Core
   - RNNotifee (7.8.2):
     - React-Core
@@ -811,8 +812,8 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 8057e75cfc1437b178ac86c8654b24e7fead7f60
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  lottie-ios: 25e7b2675dad5c3ddad369ac9baab03560c5bfdd
-  lottie-react-native: a2ae9c27c273b060b2affff2957bc0ff7fdca353
+  lottie-ios: 3d98679b41fa6fd6aff2352b3953dbd3df8a397e
+  lottie-react-native: cdeae481649c11d586084b8662f03251c4dd8249
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   OpenIMSDK: 401be23a28acc9442eb3fb6fa9207c8477368622
   OpenIMSDKCore: 47e0e830afe0d2dd905ad3dda255e6a6d26a555c
@@ -837,7 +838,7 @@ SPEC CHECKSUMS:
   react-native-image-picker: 5e076db26cd81660cfb6db5bcf517cfa12054d45
   react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
-  react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
+  react-native-webview: 107961c73db53d66549c867a3b64eaa20d34c41f
   React-NativeModulesApple: 02e35e9a51e10c6422f04f5e4076a7c02243fff2
   React-perflogger: e3596db7e753f51766bceadc061936ef1472edc3
   React-RCTActionSheet: 17ab132c748b4471012abbcdcf5befe860660485
@@ -858,8 +859,8 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
-  RNGestureHandler: 32a01c29ecc9bb0b5bf7bc0a33547f61b4dc2741
-  RNLocalize: 1ce4263770515f53d3de442ce7657b3661b16a37
+  RNGestureHandler: fe2be3be5598dc74329b211c58c9f2d231461769
+  RNLocalize: a725877f311db45acc6bff2382b3283e744a3945
   RNNotifee: 8e2d3df3f0e9ce8f5d1fe4c967431138190b6175
   RNReanimated: fdbaa9c964bbab7fac50c90862b6cc5f041679b9
   RNScreens: 3c5b9f4a9dcde752466854b6109b79c0e205dad3
@@ -871,4 +872,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 810b2042de6c82239a9b1c384d79a9456377d82b
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.13.0
