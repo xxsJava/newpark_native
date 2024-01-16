@@ -14,7 +14,8 @@ import {navigate} from '../../config/routs/NavigationContainer';
 import PersonalDataView from './components/setup/PersonalData'
 import HomePageView from './components/homepage'
 import BellView from'../../components/Bell/index'
-
+// 1
+import Clipboard from '@react-native-clipboard/clipboard';
 import {
   Text,
   StyleSheet,
@@ -108,7 +109,7 @@ export default class MineVIew extends Component {
                         start={{x: 0, y: 0}}
                         end={{x: 1, y: 0}}
                         style={styles.uidBgJb}>
-                        <Text allowFontScaling={false} style={styles.uidText} >UID:099624</Text>
+                        <Text allowFontScaling={false} style={styles.uidText} selectable={true}>UID:0996241</Text>
                       </LinearGradinet>
                     </View>
                   </View>
@@ -126,7 +127,7 @@ export default class MineVIew extends Component {
           />
           </ScrollView>
         </View>
-       <View style={styles.bell}>
+       <View>
           <BellView></BellView>
        </View>
       </SafeAreaView>

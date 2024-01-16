@@ -64,8 +64,8 @@ export default class AddressManagementView extends Component {
                         <Trans>navigationBar.title11</Trans>
                     </Text>
                 </Appbar.Header>
-                <ScrollView style={styles.scrollStyle}>
-                    <View style={styles.listStyle}>
+                <View style={styles.scrollStyle}>
+                    <ScrollView style={styles.listStyle}>
                         {listData.map(item => {
                             return(
                                 <View style={[styles.itemStyle,listData.length == item.index ?styles.itemNoBottom:styles.itemBottom]} key={item.index}>
@@ -90,11 +90,11 @@ export default class AddressManagementView extends Component {
                                 </View>
                             )
                         })}
-                    </View>
+                    </ScrollView>
                     <View style={styles.buttonView}>
                         <Button style={styles.buttonStyle} labelStyle={styles.buttonText} buttonColor='#ffb700' textColor='#FFF'>新建收货地址</Button>
                     </View>
-                </ScrollView>
+                </View>
             </View>
         )
     }
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     },
     listStyle:{
         width:'100%',
-        height:'auto',
+        height:'80%',
         paddingHorizontal:15,
         paddingBottom:12,
         marginBottom:20,
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     },
     buttonView:{
         width:'100%',
-        height:60,
+        height:30,
         marginBottom:20
     },
     buttonStyle:{

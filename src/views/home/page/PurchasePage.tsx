@@ -13,6 +13,7 @@ import { node } from "prop-types";
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
+
 const PurchasePage = () => {
     const [selectedVal,onSelectedPress] = React.useState('selected1')
     return(

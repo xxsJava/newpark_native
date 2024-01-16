@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, Portal, Text, Button, PaperProvider } from 'react-native-paper';
-import { View, Image, StyleSheet, Dimensions, ImageBackground, ScrollView,TouchableOpacity } from "react-native";
+import { View, Image, StyleSheet, Dimensions, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
 
 
 const windowHeight = Dimensions.get('window').height;
@@ -31,37 +31,37 @@ const MyComponent = () => {
     ];
     const list2 = [
         {
-            index:1,
-            img:require('../../../../assets/images/tup/wx.jpg'),
-            text:'微信好友'
+            index: 1,
+            img: require('../../../../assets/images/tup/wx.jpg'),
+            text: '微信好友'
         },
         {
-            index:1,
-            img:require('../../../../assets/images/tup/pyq.jpg'),
-            text:'朋友圈'
+            index: 1,
+            img: require('../../../../assets/images/tup/pyq.jpg'),
+            text: '朋友圈'
         },
         {
-            index:1,
-            img:require('../../../../assets/images/tup/xlwb.jpg'),
-            text:'新浪微博'
+            index: 1,
+            img: require('../../../../assets/images/tup/xlwb.jpg'),
+            text: '新浪微博'
         },
         {
-            index:1,
-            img:require('../../../../assets/images/tup/zflj.jpg'),
-            text:'复制链接'
+            index: 1,
+            img: require('../../../../assets/images/tup/zflj.jpg'),
+            text: '复制链接'
         },
     ]
     return (
 
         <PaperProvider>
             <Portal>
-            {/* animationType={slide}  */}
+                {/* animationType={slide}  */}
                 <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType} >
-                  
-                    <ScrollView   horizontal={true} style={styles.mt2list}>
+
+                    <ScrollView horizontal={true} style={styles.mt2list}>
                         {
                             list2.map(item => {
-                                return(
+                                return (
                                     <View key={item.index} style={styles.mtlist}>
                                         <Image source={item.img} style={styles.mtImg}></Image>
                                         <Text>{item.text}</Text>
@@ -77,22 +77,24 @@ const MyComponent = () => {
                     <Text style={styles.h1}>抢新园红包啦～</Text>
                     <Image source={require('../../../../assets/images/tup/能量豆.png')} style={styles.iconBean}></Image>
                 </View>
-                <ImageBackground source={require('../../../../assets/images/tup/yqh.jpg')} style={styles.xf}>
-                    <View style={styles.xfont}>
-                        <View style={styles.heng1}>
-                            <Text style={styles.h6}>每成功邀请一位好友</Text>
-                            <Text style={[styles.h6, { color: 'red' }]}>[登陆新园]</Text>
+                <View style={styles.zhong}>
+                    <ImageBackground source={require('../../../../assets/images/tup/yqh.jpg')} style={styles.xf}>
+                        <View style={styles.xfont}>
+                            <View style={styles.heng1}>
+                                <Text style={styles.h6}>每成功邀请一位好友</Text>
+                                <Text style={[styles.h6, { color: 'red' }]}>[登陆新园]</Text>
+                            </View>
+                            <Text style={[styles.h6, { marginTop: 10 }]}>你们都可获得</Text>
+                            <View style={styles.heng1}>
+                                <Text style={styles.a1}>20</Text>
+                                <Text style={[styles.h6, { color: 'red', fontWeight: 'bold' }]}>枚新园豆红包</Text>
+                            </View>
                         </View>
-                        <Text style={[styles.h6, { marginTop: 10 }]}>你们都可获得</Text>
-                        <View style={styles.heng1}>
-                            <Text style={styles.a1}>20</Text>
-                            <Text style={[styles.h6, { color: 'red', fontWeight: 'bold' }]}>枚新园豆红包</Text>
-                        </View>
-                    </View>
-                    <TouchableOpacity style={styles.intent}  onPress={showModal}>
-                        <Text style={styles.yqhy}>邀请好友</Text>
-                    </TouchableOpacity>
-                </ImageBackground>
+                        <TouchableOpacity style={styles.intent} onPress={showModal}>
+                            <Text style={styles.yqhy}>邀请好友</Text>
+                        </TouchableOpacity>
+                    </ImageBackground>
+                </View>
                 <View style={styles.list1Bg}>
                     <View style={styles.tit1}>
                         <Text style={styles.tit1Font}>活动流程</Text>
@@ -185,13 +187,13 @@ const styles = StyleSheet.create({
         marginRight: 6
     },
     xf: {
-        width: 360,
+        width: 370,
         height: 260,
         marginTop: 40
     },
     xfont: {
         alignItems: 'center',
-        width: 360,
+        width: 370,
         height: 260,
         marginTop: 40
     },
@@ -218,10 +220,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:20,
-        paddingHorizontal:12,
-        marginBottom:60,
-        paddingBottom:12
+        marginTop: 20,
+        paddingHorizontal: 12,
+        marginBottom: 60,
+        paddingBottom: 12
     },
     list1Icon: {
         width: 80,
@@ -246,28 +248,31 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 22
     },
-    bzFont:{
-        color:'#726F6F',
-        fontSize:13,
-        padding:5,
-        lineHeight:22
+    bzFont: {
+        color: '#726F6F',
+        fontSize: 13,
+        padding: 5,
+        lineHeight: 22
     },
     // 底下是模态框的样式
-    modelType:{
-        position:'absolute',
-        bottom:0,
-        height:windowHeight
+    modelType: {
+        position: 'absolute',
+        bottom: 0,
+        height: windowHeight
     },
-    mtImg:{
-        width:60,
-        height:60
+    mtImg: {
+        width: 60,
+        height: 60
     },
-    mt2list:{
-        flexDirection:'row',
+    mt2list: {
+        flexDirection: 'row',
+        width: windowWidth,
+        flexWrap: 'wrap'
+    },
+    zhong:{
         width:windowWidth,
-        flexWrap:'wrap'
-    },
-    mtlist:{
-
+        // height:windowHeight,
+        justifyContent:'center',
+        // alignItems:'center'
     }
 });

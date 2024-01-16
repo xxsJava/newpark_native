@@ -68,7 +68,7 @@ const ChatModule = () => {
               {optionData1.map(item => {
                 return(
                   <View style={styles.optionItem} key={item.index}>
-                    <Image source={item.icon}></Image>
+                    <Image source={item.icon} style={styles.iconList}></Image>
                     <Text allowFontScaling={false} style={styles.optionText}>
                       <Trans>{item.name}</Trans>
                     </Text>
@@ -80,7 +80,7 @@ const ChatModule = () => {
               {optionData2.map(item => {
                 return(
                   <View style={styles.optionItem} key={item.index}>
-                    <Image source={item.icon}></Image>
+                    <Image source={item.icon} style={styles.iconList}></Image>
                     <Text allowFontScaling={false} style={styles.optionText}>
                       <Trans>{item.name}</Trans>
                     </Text>
@@ -199,6 +199,10 @@ const styles = StyleSheet.create({
         color:'#000',
         alignItems:'center',
         marginBottom:20
+      },
+      iconList:{
+        width:40,
+        height:40
       },
       optionText:{
         color:'#000'

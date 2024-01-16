@@ -205,7 +205,9 @@ const styles = StyleSheet.create({
   commoditylist: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+    // justifyContent: 'space-around',
+    justifyContent:'flex-start',
+    alignItems:'center'
   },
   headerText: {
     width: '80%',
@@ -239,7 +241,7 @@ const styles = StyleSheet.create({
     width: '50%',
     height: 320,
     marginBottom:15,
-    paddingHorizontal: '4%',
+    paddingHorizontal: '2%',
   },
   commodityImage: {
     width: '94%',

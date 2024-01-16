@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
@@ -135,94 +134,96 @@ const list3 = [
   },
 
 ]
+const leftList = [
+  {
+    index: 1,
+    num: 0,
+    text: '关注的人'
+  },
+  {
+    index: 2,
+    num: 0,
+    text: '粉丝'
+  }
+];
+const rightList = [
+  {
+    index: 1,
+    num: 0,
+    text: '关注的圈'
+  },
+  {
+    index: 2,
+    num: 0,
+    text: '发帖'
+  },
+]
+const userName = 'O泡果奶'
 
 const MineVIew = () => {
   const [tabVal, onTabPress] = React.useState(1)
+
   return (
     <SafeAreaView style={styles.safeStyle}>
-      <View style={styles.parentLevel}>
-        <ScrollView style={styles.scrollStyle} alwaysBounceVertical={true}>
+      <View>
+        <ScrollView style={styles.bgTop}>
           <View>
-            <View style={styles.bgBox}>
-              <TouchableOpacity onPress={() => navigate('SetUpRoute')}>
-                <Icon
-                  name="cog"
-                  size={30}
-                  color="white"
-                  style={styles.boxIcon}
-                />
-              </TouchableOpacity>
-              <View style={styles.boxnNav}>
-                <View style={styles.boxItem}>
-                  <Text allowFontScaling={false} >0</Text>
-                  <Text allowFontScaling={false} style={styles.navTabColor}>
-                    <Trans>mineNav.navTab1</Trans>
-                  </Text>
-                </View>
-                <View style={styles.boxItem}>
-                  <Text allowFontScaling={false}>0</Text>
-                  <Text allowFontScaling={false} style={styles.navTabColor}>
-                    <Trans>mineNav.navTab2</Trans>
-                  </Text>
-                </View>
-                <View style={styles.boxItem} >
-                  <Text allowFontScaling={false} style={styles.navTab3} >
-                    <Trans>mineNav.navTab3</Trans>
-                  </Text>
-                </View>
-                <View style={styles.boxItem}>
-                  <Text allowFontScaling={false}>0</Text>
-                  <Text allowFontScaling={false} style={styles.navTabColor}>
-                    <Trans>mineNav.navTab4</Trans>
-                  </Text>
-                </View>
-                <View style={styles.boxItem} >
-                  <Text allowFontScaling={false} >0</Text>
-                  <Text allowFontScaling={false} style={styles.navTabColor}>
-                    <Trans>mineNav.navTab5</Trans>
-                  </Text>
-                </View>
+            <View style={[styles.heng,styles.boxnNav]}>
+              <View style={styles.heng}>
+                {
+                  leftList.map(item => {
+                    return <View >
+                      <View style={styles.litt1}>
+                      <Text style={{fontSize:18,color:'black',fontWeight:'bold'}}>{item.num}</Text>
+                      <Text style={{fontSize:16,color:'black'}}> {item.text}</Text>
+                      </View>
+                    </View>
+                  })
+                }
               </View>
-              <View style={styles.boxAvatarParent}>
-                {/* 这个是我的里的头像 */}
-                <View style={styles.boxAvatar} >
-                  <Image source={require('../../../assets/images/tup/ppy.png')} style={styles.imgTx}></Image>
-                </View>
-                <View style={styles.avatarView}>
-                  <Text allowFontScaling={false} style={styles.avatarnText}>
-                    <Trans>mineNav.navTab3</Trans>
-                    {/* <Icon name="gem" /> */}
-                  </Text>
-                  <Image
-
-                    style={styles.avatarnImage}
-                    source={require('../../../assets/images/alimom/V1.png')}
-                  />
-                </View>
-                <View style={styles.uidFrame}
-                >
-                  <View style={styles.uidBg}>
-                    <LinearGradinet
+              <View>
+                <View>
+                  <View style={styles.uid}>
+                     <LinearGradinet
                       colors={[
                         'rgba(247, 27, 147,0.90)',
                         'rgba(247, 27, 147,0.20)',
                       ]}
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 0 }}
-                      style={styles.uidBgJb}>
-                      <Text allowFontScaling={false} style={styles.uidText} >UID:099624</Text>
+                      style={styles.uidBgJb}> 
+                      <Text selectable={true} key={Math.random()} style={{textAlign:'center',lineHeight:30}}>UID:123456789</Text>
                     </LinearGradinet>
-                  </View>
+                    <View style={styles.wire}></View>
+                  </View >
+                       <View style={styles.headT}>
+                        <View >
+                          <Image source={require('../../../assets/images/tup/ppy.png')} style={styles.boxAvatar}></Image>
+                        </View>
+                        <View style={{justifyContent:'center',alignItems:'center',marginTop:'-10%'}}>
+                        <Image source={require('../../../assets/images/tup/jia.png')} style={styles.jia}></Image>
+                        </View>
+                        <View style={styles.heng}>
+                            <Text style={{color:'black'}}>{userName}</Text>
+                            <Image source={require('../../../assets/images/alimom/V1.png')} style={[styles.avatarnImage,{marginTop:2}]}></Image>
+                        </View>
+                      </View> 
                 </View>
               </View>
+              <View style={styles.heng1}>
+                {
+                  rightList.map(item => {
+                    return <View  key={item.index} >
+                    <View style={styles.litt}>
+                    <Text style={{fontSize:18,color:'black',fontWeight:'bold'}}>{item.num}</Text>
+                      <Text style={{fontSize:16,color:'black'}}>{item.text}</Text>
+                    </View>
+                    </View>
+                  })
+                }
+              </View>
             </View>
-
           </View>
-          <View style={styles.nullk}>
-
-          </View>
-          {/* <PersonalDataView></PersonalDataView> */}
-          {/* <HomePageView></HomePageView> */}
           <View style={styles.bottBox}>
             <TouchableOpacity onPress={() => onTabPress(1)}>
               <Text allowFontScaling={false} style={[styles.tabText, tabVal == 1 ? styles.tabColor : null]}>帖子</Text>
@@ -234,7 +235,7 @@ const MineVIew = () => {
               <Text allowFontScaling={false} style={[styles.tabText, tabVal == 3 ? styles.tabColor : null]}>成就</Text>
             </TouchableOpacity>
           </View>
-          <View>
+          <View style={{backgroundColor:'#fff'}}>
             <View style={styles.nullf}>
               <View style={[styles.heng, tabVal == 3 ? styles.xian : styles.hidd]}>
                 {list1.map(item => {
@@ -269,7 +270,7 @@ const MineVIew = () => {
                     </View>
                     <View style={[item.type == '悬赏' ? styles.xian : styles.hidd, styles.litBoxBZ]}>
                       {/* <View style={styles.litBoxBZ}> */}
-                      <Text style={styles.title}>{item.title}</Text>
+                      <Text style={styles.title} selectable={true}>{item.title}</Text>
                       <View style={styles.hengbz}>
                         <Text>备注:</Text>
                         <Text style={styles.unit}>{item.text}</Text>
@@ -295,7 +296,7 @@ const MineVIew = () => {
                       <Image source={item.img} style={styles.tzimg}></Image>
                     </View>
                     <View style={styles.right}>
-                      <Text style={styles.fonBlac}>{item.title}</Text>
+                      <Text style={styles.fonBlac} selectable={true}>{item.title}</Text>
                       <Text style={styles.ge}>{item.main}</Text>
                       <View style={styles.heng}>
                         <Text>{item.autor}</Text>
@@ -308,22 +309,38 @@ const MineVIew = () => {
               </View>
             </View>
           </View>
-        </ScrollView>
-        <View>
+          <View>
           <Button
-            onPress={() =>navigate('beginOne')}
+            onPress={() => navigate('Testone')}
+            title="测试复制页面"
+            color="green"
+            accessibilityLabel="Learn more about this purple button"
+          />
+          <Button
+            onPress={() => navigate('BeginOne')}
             title="测试索引页面"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
           />
         </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
-
-  );
+  )
 }
 export default MineVIew;
 const styles = StyleSheet.create({
+  litt:{
+   width:70,
+   justifyContent:'space-between',
+   alignItems:'center'
+  },
+  litt1:{
+    width:70,
+    justifyContent:'space-between',
+    margin:2,
+    alignItems:'center'
+   },
   nullf: {
     zIndex: 9999,
     // position:'absolute',
@@ -350,7 +367,10 @@ const styles = StyleSheet.create({
   bottBox: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 16
+    padding: 16,
+    backgroundColor:'#fff',
+    paddingTop:100,
+    marginTop:-60
   },
   nullk: {
     height: 50
@@ -358,7 +378,7 @@ const styles = StyleSheet.create({
   safeStyle: {
     width: windowWidth,
     height: windowHeight,
-    backgroundColor: '#F49F0B',
+    backgroundColor: '#F8B032',
     ...Platform.select({
       ios: {
         height: 180
@@ -396,7 +416,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
     height: 100,
     borderRadius: 50,
-    marginTop: 40,
+    marginTop: 140,
     backgroundColor: '#FFFFFF',
     zIndex: 10,
     paddingHorizontal: 10,
@@ -470,20 +490,22 @@ const styles = StyleSheet.create({
     height: 80,
     borderBottomWidth: 1,
     borderBottomColor: '#FFFFFF',
-    position: 'absolute',
-    top: -57,
-    right: windowWidth / 4.5,
-    zIndex: 99,
+    // position: 'absolute',
+    // top: -57,
+    // right: windowWidth / 4.5,
+    // zIndex: 99,
   },
   uidBg: {
     width: 120,
-    position: 'absolute',
-    top: 50,
-    paddingLeft: 2,
+    marginTop: 50
+    // position: 'absolute',
+    // top: 50,
+    // paddingLeft: 2
   },
   uidBgJb: {
     height: 30,
     borderRadius: 8,
+    width:120
   },
   uidText: {
     color: '#FFFFFF',
@@ -530,7 +552,14 @@ const styles = StyleSheet.create({
   },
   heng: {
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    alignItems:'center'
+  },
+  heng1:{
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent:'center',
+    alignItems:'center'
   },
   hengtz: {
     flexDirection: 'column'
@@ -644,5 +673,36 @@ const styles = StyleSheet.create({
   imgTx: {
     width: 100,
     height: 100
+  },
+  bgTop: {
+    backgroundColor: '#F8B032'
+  },
+  headBox:{
+    width:windowWidth,
+    backgroundColor:'#fff'
+  },
+  jia:{
+    width:20,
+    height:20
+  },
+  id:{
+    marginTop:'-40%'
+  },
+  headT:{
+    marginTop:-35,
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  uid:{
+    marginTop:-40,
+    marginLeft:-120
+  },
+  wire:{
+    borderBottomWidth:1,
+    borderBottomColor:'#fff',
+    width:130
   }
-});
+
+
+})
+

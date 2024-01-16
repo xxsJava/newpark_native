@@ -1,6 +1,5 @@
 //import {useNavigation} from '@react-navigation/native';
 import React, { useState } from 'react';
-
 import {
   Text,
   StyleSheet,
@@ -304,8 +303,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
           <View style={styles.box}>
             <View>
-              <Text allowFontScaling={false} style={styles.text}>
-                输入手机号
+              <Text allowFontScaling={false} style={[styles.text,recode? null :{display:'none'}]}>
+                请手机号登录
+              </Text>
+              <Text allowFontScaling={false} style={[styles.text,recode? {display:'none'} : null]}>
+                请密码登录
               </Text>
             </View>
             {/* <View style={styles.heng}>
@@ -357,8 +359,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 mode="contained"
                 buttonColor="#fff"
                 textColor="#E8AE0E"
-                onPress={() => setrecode(!recode)}>
-                <Text>手机号登录</Text>
+                // onPress={() => setrecode(!recode)}
+                onPress={onLogin}
+                >
+                {/* <Text>手机号登录</Text> */}
+                <Trans>确认密码登录</Trans>
                 {/* passWord */}
               </Button>
             </View>
@@ -370,22 +375,23 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 mode="contained"
                 buttonColor="#fff"
                 textColor="#E8AE0E"
-                onPress={() => setrecode(!recode)}>
-                <Text>密码登录</Text>
+                onPress={() => {navigate('Verification')}}>
+                <Trans>loginText.text1</Trans>
                 {/* passWord */}
               </Button>
             </View>
+            {/* {navigate('Verification')} */}
             <View style={[styles.center, recode ? null : {display:'none'}]}>
-              <TouchableOpacity onPress={() => {navigate('Verification')}}>
+              <TouchableOpacity onPress={() => setrecode(!recode)}>
                 <Text allowFontScaling={false} style={styles.underline}>
-                <Trans>loginText.text1</Trans>
+               <Text>密码登录</Text>
                 </Text>
               </TouchableOpacity>
             </View>
             <View style={[styles.center, recode ? {display:'none'} : null]}>
-              <TouchableOpacity onPress={onLogin}>
+              <TouchableOpacity onPress={() => setrecode(!recode)} >
                 <Text allowFontScaling={false} style={styles.underline}>
-                <Trans>确认密码登录</Trans>
+                <Text>手机号登录</Text>
                 </Text>
               </TouchableOpacity>
             </View>

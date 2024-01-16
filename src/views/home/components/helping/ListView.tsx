@@ -108,9 +108,12 @@ const ListView = () => {
             </TouchableOpacity>
 
             {/* 加入的模态框 */}
+            {/* <TouchableOpacity onPress={() =>setModalVisible(true)}></TouchableOpacity> */}
             <Modal animationType="slide" visible={modalVisible}  onRequestClose={()=> {
                 setModalVisible(!modalVisible);
             }} transparent={true}>
+                <TouchableOpacity style={styles.waiM} onPress={() =>{setModalVisible(false);}}>
+                 {/* <TouchableOpacity onPress={() =>setModalVisible(true)}></TouchableOpacity> */}
                 <KeyboardAvoidingView behavior="padding" enabled keyboardVerticalOffset={20} style={styles.modalBox}>
                     {/* <ScrollView></ScrollView> */}
                     <ScrollView style={styles.contentView}>
@@ -148,6 +151,7 @@ const ListView = () => {
                         </View>
                     </ScrollView>
                 </KeyboardAvoidingView>
+                </TouchableOpacity>
             </Modal>
         </View>
     )
@@ -449,7 +453,16 @@ const styles = StyleSheet.create({
         fontSize:14,
         color:'#fff',
         lineHeight:20
-    }
+    },
+    waiM:{
+        position:'absolute',
+        top:0,
+        bottom:0,
+        left:0,
+        right:0,
+        width:windowWidth,
+        height:windowHeight
+      }
 
 })
 
