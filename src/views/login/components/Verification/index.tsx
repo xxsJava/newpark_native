@@ -5,8 +5,8 @@
  * @FilePath: \newpark_native\src\views\login\components\Verification\index.tsx
  * @Description: desc
  */
-import React, {useEffect, useState} from 'react';
-import {VerificationScreenProps} from '../../../../config/routs';
+import React, { useEffect, useState } from 'react';
+import { VerificationScreenProps } from '../../../../config/routs';
 import {
   Text,
   View,
@@ -18,11 +18,11 @@ import {
 // import {Button, useToast} from 'native-base';
 import { useToast, Button, ButtonSpinner, ButtonText, Toast } from '@gluestack-ui/themed';
 import Storage from '../../../../utils/AsyncStorageUtils';
-import {smsLoginApi} from '../../../../api/sys/lgoin';
-import {SmsLoginType} from '../../../../api/sys/lgoin/types';
+import { smsLoginApi } from '../../../../api/sys/lgoin';
+import { SmsLoginType } from '../../../../api/sys/lgoin/types';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
-const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
+const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
   //输入框状态
   const [textString, setTextString] = useState('');
 
@@ -73,7 +73,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
     for (let i = 0; i < 4; i++) {
       inputs.push(
         <Text
-        allowFontScaling={false}
+          allowFontScaling={false}
           key={i}
           style={[
             styles.text,
@@ -132,7 +132,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
       return;
     }
 
-    if(smsLoginAPI.data != null){
+    if (smsLoginAPI.data != null) {
       toast.show({
         placement: 'top',
         render: () => {
@@ -152,6 +152,8 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
   //按钮下一步
   const next = () => {
     setLoad(true);
+    // console.log(inpTextChang);
+    
   };
 
   return (
@@ -179,7 +181,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         />
 
         <View>
-          <TouchableOpacity disabled={send} onPress={() => {}}>
+          <TouchableOpacity disabled={send} onPress={() => { }}>
             <Text allowFontScaling={false} style={styles.verifTextTime}>
               重新发送 {msgShow && <>({count})</>}
             </Text>
@@ -191,7 +193,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
             disabled={disabled}
             onPress={next}
             style={[styles.buttR, disabled && styles.buttW]}>
-              <ButtonSpinner as={isLoad} mr="$1" />
+            <ButtonSpinner as={isLoad} mr="$1" />
             <ButtonText>下一步</ButtonText>
           </Button>
         </View>
@@ -255,6 +257,7 @@ const styles = StyleSheet.create({
   verifyText: {
     flexDirection: 'row',
     justifyContent: 'center',
+    // backgroundColor:'red'
   },
   verifTextTime: {
     textAlign: 'center',

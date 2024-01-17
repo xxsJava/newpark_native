@@ -60,8 +60,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   const onLogin = async () => {
     setLoad(true);
     console.log('登录点击');
-    // navigate('passWord')
-    setrecode(!recode)
+    navigate('Registered')
+    // setrecode(!recode)
     console.log('输入框数据' + phone + '-' + pass);
 
     if (phone.length != 11) {
@@ -114,7 +114,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
-      navigate('LoginHome');
+      // 这个是跳转到主页面的
+      // navigate('LoginHome');
       toast.show({
         placement: 'top',
         render: () => {
@@ -362,7 +363,6 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 // onPress={() => setrecode(!recode)}
                 onPress={onLogin}
                 >
-                {/* <Text>手机号登录</Text> */}
                 <Trans>确认密码登录</Trans>
                 {/* passWord */}
               </Button>
@@ -430,6 +430,26 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               <Text>我已同意并阅读</Text>
               <Text style={{ color: 'blue' }}>服务条款</Text>
             </TouchableOpacity>
+          </View>
+          <View>
+            <Button icon="camera" mode="contained" onPress={() =>navigate('Verification')}>
+              查看页面Verification
+            </Button>
+            <Button icon="camera" mode="contained" onPress={() =>navigate('GenderRoute')}>
+              查看页面GenderRoute
+            </Button>
+            <Button icon="camera" mode="contained" onPress={() =>navigate('InterestsHobbies')}>
+              查看页面InterestsHobbies
+            </Button>
+            <Button icon="camera" mode="contained" onPress={() =>navigate('SchoolRoute')}>
+              查看页面SchoolRoute
+            </Button>
+            <Button icon="camera" mode="contained" onPress={() =>navigate('Registered')}>
+              查看页面Registered
+            </Button>
+            <Button icon="camera" mode="contained" onPress={() =>navigate('ForgetPass')}>
+              查看页面ForgetPass
+            </Button>
           </View>
         </KeyboardAwareScrollView>
       </ImageBackground>

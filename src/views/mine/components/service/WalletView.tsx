@@ -191,8 +191,8 @@ const styles = StyleSheet.create({
     lineHeight:50
   },
   bean:{
-    width:26,
-    height:26,
+    width:33,
+    height:28,
     marginLeft:15,
     marginTop:15
   }

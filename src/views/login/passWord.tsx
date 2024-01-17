@@ -1,5 +1,5 @@
 // import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import {
   Text,
@@ -8,21 +8,21 @@ import {
   ImageBackground,
   Dimensions,
   Image,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Button, TextInput} from 'react-native-paper';
-import {LoginScreenProps} from '../../config/routs';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Button, TextInput } from 'react-native-paper';
+import { LoginScreenProps } from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
 // import {useToast} from 'native-base';
-import {Toast, ToastTitle, useToast} from '@gluestack-ui/themed';
-import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
-import {useTranslation, Trans} from 'react-i18next';
-import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
-import {forgetPass} from './controller';
-import {navigate} from '../../config/routs/NavigationContainer';
-import {getOpenIMConfig} from '../../api/IMAPI';
+import { Toast, ToastTitle, useToast } from '@gluestack-ui/themed';
+import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
+import { useTranslation, Trans } from 'react-i18next';
+import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
+import { forgetPass } from './controller';
+import { navigate } from '../../config/routs/NavigationContainer';
+import { getOpenIMConfig } from '../../api/IMAPI';
 import { loginIM } from '../../entity/LoginOpenIM';
 import DateTimeUtils from '../../utils/DateTimeUtils';
 import ClausePopup from '../../views/login/components/ClausePopup'
@@ -102,7 +102,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         platformID: 2,
         userID: loginAPI.data.uId
       }
-      
+
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
       const openIMRes = await getOpenIMConfig(openIMConfig);
       console.log('获取到Open-IM-token1---->', openIMRes.data.token);
@@ -181,7 +181,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       <ImageBackground
         style={styles.imgbgc}
         source={require('../../assets/images/loginBG.png')}>
-        <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
+        <KeyboardAwareScrollView enableOnAndroid={true} style={{ flex: 1 }}>
           <View style={styles.top}>
             <Image
               style={styles.img}
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
   arrows: {
     marginLeft: 10,
     marginRight: 10,
-    transform: [{rotate: '-90deg'}],
+    transform: [{ rotate: '-90deg' }],
   },
   num: {
     width: '100%',
