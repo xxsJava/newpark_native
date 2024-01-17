@@ -15,6 +15,7 @@
 
 @implementation IMSDKRN
 
+@synthesize bridge = _bridge;
 RCT_EXPORT_MODULE();
 
 //传递参数至rn
@@ -46,6 +47,9 @@ RCT_EXPORT_METHOD(initSDK){
     NSLog(@"Open-IM-连接-server---->失败,%li---%@",code,msg);
     [self sendEventWithName:@"onConnectFailed" body:@{@"msg":msg}];
   } onConnectSuccess:^{
+    NSLog(@"事件------>%@  self--->%@",self.bridge, self);
+   
+    [self sendEventWithName:@"onTest" body:@{@"msg": @"test监听运行中！！！"}];
       // SDK has successfully connected to the IM server
     NSLog(@"Open-IM-server---->成功");
     [self sendEventWithName:@"onConnectServer" body:@{@"msg":@"Open-IM-server---->成功"}];
@@ -63,7 +67,8 @@ RCT_EXPORT_METHOD(initSDK){
     NSLog(@"Open-IM-初始化---->成功");
     
     IMSDKRN *imsdk = [[IMSDKRN alloc]init];
-    [imsdk initListeners];
+    [imsdk initListeners:self.bridge];
+    
   } else {
     NSLog(@"Open-IM-初始化---->失败");
   }
@@ -83,6 +88,7 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
                       token:token  // token需要业务服务器向OpenIM服务端交换获取
                   onSuccess:^(NSString * _Nullable data) {
     NSLog(@"登录msg----->%@",data);
+    
     [self sendEventWithName:@"onSuccessLogin" body:data];
   } onFailure:^(NSInteger code, NSString * _Nullable msg) {
     [self sendEventWithName:@"onErrorLogin" body:msg];
@@ -130,101 +136,98 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
 //    }
 //}
 
+- (void)sendRNEven{
+  NSLog(@"执行数据传输");
+  
+  NSLog(@"sendRNEven事件------>%@  self--->%@",self.bridge, self);
+
+  [self sendEventWithName:@"onTest" body:@{@"name": @"TEST"}];
+}
+
 // 返回的数组为支持的事件名列表
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer"];
+  return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer",@"onTest"];
 }
 
 
-- (void)initListeners{
-  NSLog(@"------- IOS监听器初始化 --------");
+- (void)initListeners:(RCTBridge *)bridge{
+  
   //用户信息监听
-  [OIMManager.callbacker setSelfUserInfoUpdateListener:^(OIMUserInfo * _Nullable userInfo) {
-          
-  }];
-  //会话相关监听
-  [OIMManager.callbacker setConversationListenerWithOnSyncServerStart:^{
-          
-  } onSyncServerFinish:^{
-          
-  } onSyncServerFailed:^{
-          
-  } onConversationChanged:^(NSArray<OIMConversationInfo *> * _Nullable conversations) {
-          
-  } onNewConversation:^(NSArray<OIMConversationInfo *> * _Nullable conversations) {
-          
-  } onTotalUnreadMessageCountChanged:^(NSInteger number) {
-          
-  }];
-  //关系链相关监听
-  [OIMManager.callbacker setFriendListenerWithOnBlackAdded:^(OIMBlackInfo * _Nullable blackInfo) {
-          
-  } onBlackDeleted:^(OIMBlackInfo * _Nullable blackInfo) {
-          
-  } onFriendApplicationAccepted:^(OIMFriendApplication * _Nullable friendApplication) {
-          
-  } onFriendApplicationAdded:^(OIMFriendApplication * _Nullable friendApplication) {
-      
-  } onFriendApplicationDeleted:^(OIMFriendApplication * _Nullable friendApplication) {
-          
-  } onFriendApplicationRejected:^(OIMFriendApplication * _Nullable friendApplication) {
-          
-  } onFriendInfoChanged:^(OIMFriendInfo * _Nullable friendInfo) {
-          
-  } onFriendAdded:^(OIMFriendInfo * _Nullable friendInfo) {
-          
-  } onFriendDeleted:^(OIMFriendInfo * _Nullable friendInfo) {
-          
-  }];
-  //群组相关监听
-  [OIMManager.callbacker setGroupListenerWithOnGroupInfoChanged:^(OIMGroupInfo * _Nullable groupInfo) {
-    
-  } onJoinedGroupAdded:^(OIMGroupInfo * _Nullable groupInfo) {
-  
-  } onJoinedGroupDeleted:^(OIMGroupInfo * _Nullable groupInfo) {
-  
-  } onGroupMemberAdded:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-  
-  } onGroupMemberDeleted:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-    
-  } onGroupMemberInfoChanged:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
-    
-  } onGroupApplicationAdded:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-  
-  } onGroupApplicationDeleted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-  
-  } onGroupApplicationAccepted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-  
-  } onGroupApplicationRejected:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
-  
-  } onGroupDismissed:^(OIMGroupInfo * _Nullable groupInfo) {
-  
-  }];
-  // 消息相关监听器
+//  [OIMManager.callbacker setSelfUserInfoUpdateListener:^(OIMUserInfo * _Nullable userInfo) {
+//          
+//  }];
+//  //会话相关监听
+//  [OIMManager.callbacker setConversationListenerWithOnSyncServerStart:^{
+//          
+//  } onSyncServerFinish:^{
+//          
+//  } onSyncServerFailed:^{
+//          
+//  } onConversationChanged:^(NSArray<OIMConversationInfo *> * _Nullable conversations) {
+//          
+//  } onNewConversation:^(NSArray<OIMConversationInfo *> * _Nullable conversations) {
+//          
+//  } onTotalUnreadMessageCountChanged:^(NSInteger number) {
+//          
+//  }];
+//  //关系链相关监听
+//  [OIMManager.callbacker setFriendListenerWithOnBlackAdded:^(OIMBlackInfo * _Nullable blackInfo) {
+//          
+//  } onBlackDeleted:^(OIMBlackInfo * _Nullable blackInfo) {
+//          
+//  } onFriendApplicationAccepted:^(OIMFriendApplication * _Nullable friendApplication) {
+//          
+//  } onFriendApplicationAdded:^(OIMFriendApplication * _Nullable friendApplication) {
+//      
+//  } onFriendApplicationDeleted:^(OIMFriendApplication * _Nullable friendApplication) {
+//          
+//  } onFriendApplicationRejected:^(OIMFriendApplication * _Nullable friendApplication) {
+//          
+//  } onFriendInfoChanged:^(OIMFriendInfo * _Nullable friendInfo) {
+//          
+//  } onFriendAdded:^(OIMFriendInfo * _Nullable friendInfo) {
+//          
+//  } onFriendDeleted:^(OIMFriendInfo * _Nullable friendInfo) {
+//          
+//  }];
+//  //群组相关监听
+//  [OIMManager.callbacker setGroupListenerWithOnGroupInfoChanged:^(OIMGroupInfo * _Nullable groupInfo) {
+//    
+//  } onJoinedGroupAdded:^(OIMGroupInfo * _Nullable groupInfo) {
+//  
+//  } onJoinedGroupDeleted:^(OIMGroupInfo * _Nullable groupInfo) {
+//  
+//  } onGroupMemberAdded:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
+//  
+//  } onGroupMemberDeleted:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
+//    
+//  } onGroupMemberInfoChanged:^(OIMGroupMemberInfo * _Nullable groupMemberInfo) {
+//    
+//  } onGroupApplicationAdded:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
+//  
+//  } onGroupApplicationDeleted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
+//  
+//  } onGroupApplicationAccepted:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
+//  
+//  } onGroupApplicationRejected:^(OIMGroupApplicationInfo * _Nullable groupApplication) {
+//  
+//  } onGroupDismissed:^(OIMGroupInfo * _Nullable groupInfo) {
+//  
+//  }];
+//  // 消息相关监听器
   [OIMManager.callbacker setAdvancedMsgListenerWithOnRecvMessageRevoked:^(OIMMessageRevokedInfo * _Nullable msgRovoked) {
+    
   } onRecvC2CReadReceipt:^(NSArray<OIMReceiptInfo *> * _Nullable msgReceiptList) {
     
   } onRecvGroupReadReceipt:^(NSArray<OIMReceiptInfo *> * _Nullable msgReceiptList) {
     
   } onRecvNewMessage:^(OIMMessageInfo * _Nullable message) {
-    
+    NSLog(@"----- ios新消息监听 ------");
+    // 在这里发送事件给 React Native
     NSDictionary *dict = message.mj_keyValues;
-    
-    
-//    NSLog(@"dict---->%@",dict);
-//    NSError *error = nil;
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&error];
-//    if (error) {
-//        NSLog(@"转换失败:%@", error.localizedDescription);
-//    } else {
-//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        NSLog(@"转换后的JSON字符串是：%@", jsonString);
-//    }
-    
-    //    NSLog(@"jsonData---->%@",jsonData);
-//    [self sendEventWithName:@"onRecvNewMessage" body:jsonData];
-
+//    NSLog(@"idct----->%@",dict);
+    [bridge.eventDispatcher sendAppEventWithName:@"onRecvNewMessage" body:@{@"message":dict}];
   }];
 }
 
