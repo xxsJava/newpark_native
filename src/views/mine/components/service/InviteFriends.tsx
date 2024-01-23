@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Modal, Portal, Text, Button, PaperProvider } from 'react-native-paper';
 import { View, Image, StyleSheet, Dimensions, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
-
+import Invite from '../../../../components/Invite/index';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -11,7 +11,7 @@ const MyComponent = () => {
 
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-    const containerStyle = { backgroundColor: 'white', padding: 20 };
+    const containerStyle = { backgroundColor: 'white', padding: 25, marginTop:480, paddingHorizontal:30, paddingVertical:90};
     const list1 = [
         {
             index: 1,
@@ -19,12 +19,12 @@ const MyComponent = () => {
             text: '邀请好友'
         },
         {
-            index: 1,
+            index: 2,
             img: require('../../../../assets/images/tup/hyld.jpg'),
             text: '好友领豆'
         },
         {
-            index: 1,
+            index: 3,
             img: require('../../../../assets/images/tup/xyddz.jpg'),
             text: '新园豆到账'
         }
@@ -56,21 +56,24 @@ const MyComponent = () => {
         <PaperProvider>
             <Portal>
                 {/* animationType={slide}  */}
-                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType} >
-
+                {/* <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType} >
                     <ScrollView horizontal={true} style={styles.mt2list}>
                         {
                             list2.map(item => {
                                 return (
-                                    <View key={item.index} style={styles.mtlist}>
-                                        <Image source={item.img} style={styles.mtImg}></Image>
-                                        <Text>{item.text}</Text>
-                                    </View>
+                                    <TouchableOpacity key={item.index} style={styles.mtlist} onPress={() =>{console.log(item.text);
+                                    }}>
+                                        <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 76 } : null]}></Image>
+                                        <View style={styles.zi}>
+                                            <Text style={styles.h4}>{item.text}</Text>
+                                        </View>
+                                    </TouchableOpacity>
                                 )
                             })
                         }
                     </ScrollView>
-                </Modal>
+                </Modal> */}
+                <Invite item={visible}></Invite>
             </Portal>
             <ScrollView style={styles.parentbg}>
                 <View style={[styles.heng, styles.title]}>
@@ -142,6 +145,7 @@ const styles = StyleSheet.create({
         width: windowWidth,
         height: windowHeight,
         padding: 20
+       
     },
     heng: {
         justifyContent: 'space-between',
@@ -267,12 +271,21 @@ const styles = StyleSheet.create({
     mt2list: {
         flexDirection: 'row',
         width: windowWidth,
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        // marginTop:162,
+        // paddingTop:360
     },
-    zhong:{
-        width:windowWidth,
+    zhong: {
+        width: windowWidth,
         // height:windowHeight,
-        justifyContent:'center',
+        justifyContent: 'center',
         // alignItems:'center'
+    },
+    mtlist: {
+        width: 120
+    },
+    zi:{
+        marginTop:12,
+        justifyContent:'center'
     }
 });

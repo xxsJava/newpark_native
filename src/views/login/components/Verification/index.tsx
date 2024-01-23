@@ -96,7 +96,9 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
       setLoad(true);
       console.log('验证码提交-' + text);
       smsLogin.code = text;
-      verIfcode();
+      verIfcode(); 
+      // console.log('下一步。。。。。。。。。。');
+      
     }
   };
 
@@ -129,9 +131,8 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
           )
         },
       });
-      return;
+      return false;
     }
-
     if (smsLoginAPI.data != null) {
       toast.show({
         placement: 'top',
@@ -144,7 +145,7 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
         },
       });
       navigate('LoginHome');
-      return
+      return false;
     }
     navigate('Registered');
   };
@@ -153,7 +154,6 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
   const next = () => {
     setLoad(true);
     // console.log(inpTextChang);
-    
   };
 
   return (
@@ -179,7 +179,6 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
           caretHidden={true}
           onChangeText={inpTextChang}
         />
-
         <View>
           <TouchableOpacity disabled={send} onPress={() => { }}>
             <Text allowFontScaling={false} style={styles.verifTextTime}>
@@ -193,7 +192,7 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
             disabled={disabled}
             onPress={next}
             style={[styles.buttR, disabled && styles.buttW]}>
-            <ButtonSpinner as={isLoad} mr="$1" />
+            {/* <ButtonSpinner as={isLoad} mr="$1" /> */}
             <ButtonText>下一步</ButtonText>
           </Button>
         </View>

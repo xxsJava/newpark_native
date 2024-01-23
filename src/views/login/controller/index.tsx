@@ -58,8 +58,8 @@ const Islogin = () => {
   console.log("时间戳转格式",DateTimeUtils.formattedDateTime(1698827125))
   console.log('查看登录状态------>', isLoginFlag);
   
-  return isLoginFlag ? (
-    // return true ? (
+  // return isLoginFlag ? (
+    return true ? (
     <Stack.Navigator initialRouteName="RootMain">
       <Stack.Screen
         name="RootMain"

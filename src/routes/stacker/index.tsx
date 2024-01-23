@@ -39,6 +39,7 @@ export const BommonTab = () => {
     <>
       <Tab.Navigator
         screenOptions={({route}) => ({
+          // screenOptions={() => ({
           tabBarActiveTintColor: '#F8B032',
           tabBarInactiveTintColor: 'gray',
           headerShown: false,

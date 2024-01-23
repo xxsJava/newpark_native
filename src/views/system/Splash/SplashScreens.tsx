@@ -89,7 +89,6 @@ const Splashs= () => {
                 </Text>
               </Animatable.View>
             </View>
-
             <View style={styles.footer}>
               <Text allowFontScaling={false} style={styles.footerText}>
                 © 2023 山东新园建业科技发展有限公司
@@ -99,12 +98,11 @@ const Splashs= () => {
         </ImageBackground>
       ) : (
         <IsLogin />
+        
       )}
     </>
   );
 };
-
-
 const styles = StyleSheet.create({
   img: {
     flex: 1,

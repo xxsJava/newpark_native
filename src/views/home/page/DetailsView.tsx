@@ -54,6 +54,7 @@ const DetailsView = () => {
               style={styles.swiperStyle}
               height={300}
               loop={true}
+            
               horizontal={true}
               autoplay={true}
               autoplayTimeout={5}
@@ -317,24 +318,25 @@ const styles = StyleSheet.create({
   swiperStyle: {},
   paginationStyle: {
     bottom: 0,
+    left:-280
   },
   bannerImage: {
     width: windowWidth,
     height: 300,
   },
   dotStyle: {
-    width: 12,
-    height: 12,
+    width: 10,
+    height: 10,
     borderRadius: 6,
-    marginHorizontal: 10,
+    marginHorizontal: 3,
     marginVertical: 9,
-    backgroundColor: 'rgba(0,0,0,.2)',
+    backgroundColor: 'rgba(0,0,0,.2)'
   },
   activeDotStyle: {
     width: 12,
     height: 12,
     borderRadius: 6,
-    marginHorizontal: 10,
+    marginHorizontal: 16,
     marginVertical: 9,
     backgroundColor: '#ffb700',
   },

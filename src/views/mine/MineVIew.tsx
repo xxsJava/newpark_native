@@ -54,13 +54,13 @@ export default class MineVIew extends Component {
                 </TouchableOpacity>
                 <View style={styles.boxnNav}>
                   <View style={styles.boxItem}>
-                    <Text allowFontScaling={false} >0</Text>
+                    <Text allowFontScaling={false} style={styles.dataColor}>0</Text>
                     <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab1</Trans>
                     </Text>
                   </View>
                   <View style={styles.boxItem}>
-                    <Text allowFontScaling={false}>0</Text>
+                    <Text allowFontScaling={false} style={styles.dataColor}>0</Text>
                     <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab2</Trans>
                     </Text>
@@ -71,13 +71,13 @@ export default class MineVIew extends Component {
                     </Text>
                   </View>
                   <View style={styles.boxItem}>
-                    <Text allowFontScaling={false}>0</Text>
+                    <Text allowFontScaling={false} style={styles.dataColor}> 0</Text>
                     <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab4</Trans>
                     </Text>
                   </View>
                   <View style={styles.boxItem} >
-                    <Text allowFontScaling={false} >0</Text>
+                    <Text allowFontScaling={false} style={styles.dataColor}>0</Text>
                     <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab5</Trans>
                     </Text>
@@ -206,7 +206,9 @@ const styles = StyleSheet.create({
     display: 'none',
   },
   navTabColor: {
-    color: '#dbdbdb',
+    // color: '#dbdbdb',
+    fontSize:15,
+    color:'black'
   },
   boxAvatar: {
     width: 100,
@@ -281,6 +283,12 @@ const styles = StyleSheet.create({
   imgTx:{
     width:100,
     height:100,
-    textAlign:'center'
+    // textAlign:'center'
+  },
+  dataColor:{
+    color:'black',
+    fontWeight:'bold',
+    fontSize:18,
+    marginBottom:6
   }
 });

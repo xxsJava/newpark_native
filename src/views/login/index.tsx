@@ -41,8 +41,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
   const [securePass, setSecurePass] = useState(true);
   // 这是密码登录的地方
-  const [recode , setrecode] = useState(true);
-
+  const [recode, setrecode] = useState(true);
 
   const [load, setLoad] = useState(false);
 
@@ -60,11 +59,24 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   const onLogin = async () => {
     setLoad(true);
     console.log('登录点击');
-    navigate('Registered')
+    // navigate('LoginHome')
     // setrecode(!recode)
     console.log('输入框数据' + phone + '-' + pass);
 
     if (phone.length != 11) {
+      if (phone.length == 0) {
+        toast.show({
+          placement: 'bottom',
+          render: () => {
+            return (
+              <Toast action="attention" variant="solid">
+                <Text allowFontScaling={false}>手机号为空</Text>
+              </Toast>
+            )
+          },
+        });
+        return;
+      }
       toast.show({
         placement: 'bottom',
         render: () => {
@@ -95,7 +107,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
           )
         },
       });
-      navigate('Verification');
+      navigate('Registered');
     } else if (loginAPI.code === 200) {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data.usrToken);
@@ -127,6 +139,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         },
       });
     } else if (loginAPI.code === 1110) {
+      setLoad(true);
       toast.show({
         placement: 'top',
         render: () => {
@@ -137,12 +150,14 @@ const LoginView: React.FC<LoginScreenProps> = () => {
           )
         },
       });
+      return false;
     }
     setLoad(false);
+    navigate('LoginHome')
   };
-// 这里是手机号登录会执行的操作
+  // 这里是手机号登录会执行的操作
   const onLoginsj = async () => {
-     setrecode(!recode)
+    setrecode(!recode)
     setLoad(true);
     console.log('登录点击');
     // navigate('passWord')
@@ -150,6 +165,18 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     console.log('输入框数据' + phone + '-' + pass);
     // text = ''
     if (phone.length != 11) {
+      if (phone.length == 0) {
+        toast.show({
+          placement: 'bottom',
+          render: () => {
+            return (
+              <Toast action="attention" variant="solid">
+                <Text allowFontScaling={false}>手机号为空</Text>
+              </Toast>
+            )
+          }
+        })
+      }
       toast.show({
         placement: 'bottom',
         render: () => {
@@ -185,7 +212,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       //   });
       //   setLoad(false);
       //   return;
-      }
+    }
 
     const loginAPI = await loginApi(usrData);
 
@@ -245,7 +272,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         },
       });
     }
-    setLoad(false);
+    setLoad(true);
+    return;
   };
 
 
@@ -301,20 +329,51 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               source={require('../../assets/images/logo.png')}
             />
           </View>
-
+          {/* 手机号登录 */}
           <View style={styles.box}>
-            <View>
-              <Text allowFontScaling={false} style={[styles.text,recode? null :{display:'none'}]}>
+            <View style={recode ? null : { display: 'none' }}>
+              <Text allowFontScaling={false} style={styles.text}>
                 请手机号登录
               </Text>
-              <Text allowFontScaling={false} style={[styles.text,recode? {display:'none'} : null]}>
-                请密码登录
-              </Text>
+              <View style={styles.num}>
+                <TextInput
+                  allowFontScaling={false}
+                  placeholder="请输入手机号"
+                  placeholderTextColor="#fff"
+                  underlineColor="#fff"
+                  activeUnderlineColor="#fff"
+                  textColor="#fff"
+                  maxLength={11}
+                  keyboardType="number-pad"
+                  onChangeText={changePhoneText}
+                  style={styles.inp}
+                />
+              </View>
+              <View style={styles.login}>
+                <Button
+                  contentStyle={styles.loginBox}
+                  loading={load}
+                  disabled={load}
+                  mode="contained"
+                  buttonColor="#fff"
+                  textColor="#E8AE0E"
+                  onPress={() => smsVerIf()}>
+                  <Trans>loginText.text1</Trans>
+                </Button>
+              </View>
+              <View style={styles.center}>
+                <TouchableOpacity onPress={() => setrecode(!recode)}>
+                  <Text allowFontScaling={false} style={styles.underline}>
+                    <Text>密码登录</Text>
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
             </View>
-            {/* <View style={styles.heng}>
-            <Button style={styles.buttonStyle} labelStyle={styles.buttonText} rippleColor='#ddd' onPress={() => console.log('登录')}>登录</Button>
-            <Button style={styles.buttonStyle} labelStyle={styles.buttonText} rippleColor='#ddd' onPress={() => console.log('注册')}>注册</Button>
-            </View> */}
+            <View style={!recode ? null : { display: 'none' }}>
+            <Text allowFontScaling={false} style={styles.text}>
+                请密码登录
+            </Text>
             <View style={styles.num}>
               <TextInput
                 allowFontScaling={false}
@@ -329,11 +388,10 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 style={styles.inp}
               />
             </View>
-
-            <View style={[styles.pawoed,recode? {display:'none'} : null]} >
-            <TextInput
+            <View style={styles.pawoed} >
+              <TextInput
                 allowFontScaling={false}
-                style={styles.inp}
+                style={[styles.inp, { paddingLeft: 18 }]}
                 secureTextEntry={securePass}
                 right={
                   <TextInput.Icon
@@ -351,57 +409,37 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 onChangeText={text => setPass(text)}
               />
             </View>
-
-            <View style={[styles.login,recode ? {display:'none'} : null]}>
+            <View style={[styles.login, recode ? { display: 'none' } : null]}>
               <Button
                 contentStyle={styles.loginBox}
                 loading={load}
-                disabled={load}
+                // disabled={load}
                 mode="contained"
                 buttonColor="#fff"
                 textColor="#E8AE0E"
                 // onPress={() => setrecode(!recode)}
                 onPress={onLogin}
-                >
+              >
                 <Trans>确认密码登录</Trans>
                 {/* passWord */}
               </Button>
             </View>
-            <View style={[styles.login,recode ? null :{display:'none'}]}>
-              <Button
-                contentStyle={styles.loginBox}
-                loading={load}
-                disabled={load}
-                mode="contained"
-                buttonColor="#fff"
-                textColor="#E8AE0E"
-                onPress={() => {navigate('Verification')}}>
-                <Trans>loginText.text1</Trans>
-                {/* passWord */}
-              </Button>
-            </View>
-            {/* {navigate('Verification')} */}
-            <View style={[styles.center, recode ? null : {display:'none'}]}>
-              <TouchableOpacity onPress={() => setrecode(!recode)}>
-                <Text allowFontScaling={false} style={styles.underline}>
-               <Text>密码登录</Text>
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={[styles.center, recode ? {display:'none'} : null]}>
+            <View style={[styles.center, recode ? { display: 'none' } : null]}>
               <TouchableOpacity onPress={() => setrecode(!recode)} >
                 <Text allowFontScaling={false} style={styles.underline}>
-                <Text>手机号登录</Text>
+                  <Text>手机号登录</Text>
                 </Text>
               </TouchableOpacity>
             </View>
+            </View>
+          
             <View style={styles.verify}>
-            <TouchableOpacity onPress={smsVerIf}>
+              <TouchableOpacity onPress={smsVerIf}>
                 <Text allowFontScaling={false} style={styles.underline}>
                   <Trans>loginText.text2</Trans>
                 </Text>
               </TouchableOpacity>
-            {/* <TouchableOpacity onPress={() =>{}}>
+              {/* <TouchableOpacity onPress={() =>{}}>
                 <Text allowFontScaling={false} style={styles.underline}>
                   注册
                 </Text>
@@ -423,7 +461,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               <Image
                 source={require('../../assets/images/2.0x/weixin_icon.png')}
               />
-              <Text style={{color:'#fff'}}>微信登录</Text>
+              <Text style={{ color: '#fff' }}>微信登录</Text>
             </View>
             <TouchableOpacity onPress={() => setVisible(true)} style={styles.heng1}>
               <Image source={require('../../assets/images/tup/tongyi.png')} style={styles.icon}></Image>
@@ -431,33 +469,33 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               <Text style={{ color: 'blue' }}>服务条款</Text>
             </TouchableOpacity>
           </View>
-          <View>
-            <Button icon="camera" mode="contained" onPress={() =>navigate('Verification')}>
+          {/* <View>
+            <Button icon="camera" mode="contained" onPress={() => navigate('Verification')}>
               查看页面Verification
             </Button>
-            <Button icon="camera" mode="contained" onPress={() =>navigate('GenderRoute')}>
+            <Button icon="camera" mode="contained" onPress={() => navigate('GenderRoute')}>
               查看页面GenderRoute
             </Button>
-            <Button icon="camera" mode="contained" onPress={() =>navigate('InterestsHobbies')}>
+            <Button icon="camera" mode="contained" onPress={() => navigate('InterestsHobbies')}>
               查看页面InterestsHobbies
             </Button>
-            <Button icon="camera" mode="contained" onPress={() =>navigate('SchoolRoute')}>
+            <Button icon="camera" mode="contained" onPress={() => navigate('SchoolRoute')}>
               查看页面SchoolRoute
             </Button>
-            <Button icon="camera" mode="contained" onPress={() =>navigate('Registered')}>
+            <Button icon="camera" mode="contained" onPress={() => navigate('Registered')}>
               查看页面Registered
             </Button>
-            <Button icon="camera" mode="contained" onPress={() =>navigate('ForgetPass')}>
+            <Button icon="camera" mode="contained" onPress={() => navigate('ForgetPass')}>
               查看页面ForgetPass
             </Button>
-          </View>
+          </View> */}
         </KeyboardAwareScrollView>
       </ImageBackground>
       <ClausePopup visible={visible} onClose={() => setVisible(false)}></ClausePopup>
     </Animatable.View>
   );
 };
-
+export default LoginView;
 const styles = StyleSheet.create({
   top: {
     width: windowWidth,
@@ -514,7 +552,7 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom:20
+    marginBottom: 20
   },
   loginBox: {
     paddingTop: '1%',
@@ -577,25 +615,24 @@ const styles = StyleSheet.create({
   },
   heng1: {
     flexDirection: 'row',
-    justifyContent:'center',
-    alignItems:'flex-end',
-    marginTop:20
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginTop: 20
   },
   center: {
     justifyContent: 'center',
     alignItems: 'center',
-    
+
   },
-  san:{
-    color:'#fff',
-    fontSize:16
+  san: {
+    color: '#fff',
+    fontSize: 16
   },
-  icon:{
-    width:15,
-    height:15,
-    margin:3
+  icon: {
+    width: 15,
+    height: 15,
+    margin: 3
   }
 
 });
 
-export default LoginView;

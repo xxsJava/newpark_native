@@ -29,6 +29,8 @@ import MyOrderView from '../../../views/mine/components/service/MyOrderView';
 import MyPostView from '../../../views/mine/components/service/MyPostView';
 import WalletView from '../../../views/mine/components/service/WalletView';
 import CallCustom from '../../../views/mine/components/service/CallCustom';
+// import SanJiLiand from '../../../views/mine/components/service/sanJiLiand';
+import SanJiLiand from '../../../views/mine/components/service/SanJiLiand'
 import InviteFriends from '../../../views/mine/components/service/InviteFriends'
 import CollectionView from '../../../views/mine/components/service/CollectionView';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
@@ -65,6 +67,8 @@ import Comment from '../../../components/Error/Comment'
 import Collect from '../../../components/Error/Collect'
 import NoNews from '../../../components/Error/NoNews'
 import NoParents from '../../../components/Error/NoParents'
+import AddNewAddress from '../../../views/mine/components/service/AddNewAddress'
+import ThreeJiContent from '../../../views/mine/components/service/threeJiContent'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -79,6 +83,27 @@ export default {
     options: {
       headerShown: false,
     },
+  },
+  AddNewAddress:{
+    component: AddNewAddress,
+     options: {
+    //   headerShown: false,
+    title: '新增收货地址',
+     },
+  },
+  ThreeJiContent:{
+    component: ThreeJiContent,
+     options: {
+    //   headerShown: false,
+    title: '三级联动',
+     },
+  },
+  SanJiLiand:{
+    component: SanJiLiand,
+     options: {
+    //   headerShown: false,
+    title: '三级联动测试版',
+     },
   },
   LoginHome: {
     component: BommonTab,
