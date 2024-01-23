@@ -157,7 +157,8 @@ const HomePageView = () => {
                 </View>
               </View>
               <View style={styles.communitList}>
-                <ScrollView horizontal={true} style={styles.communitScroll}>
+                {/* 设置的没有滚动条 */}
+                <ScrollView horizontal={true} style={styles.communitScroll} showsHorizontalScrollIndicator={false}>
                   {communitData.map(item =>{
                     return(
                       <TouchableOpacity style={styles.communitItem} key={item.index} onPress={() => navigate('CommunityChannelRoute')}>

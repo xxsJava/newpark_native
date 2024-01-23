@@ -11,7 +11,7 @@ const MyComponent = () => {
 
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-    const containerStyle = { backgroundColor: 'white', padding: 25, marginTop:480, paddingHorizontal:30, paddingVertical:90};
+    const containerStyle = { backgroundColor: 'white', padding: 25, marginTop:480, paddingHorizontal:40, paddingBottom:155};
     const list1 = [
         {
             index: 1,
@@ -56,8 +56,8 @@ const MyComponent = () => {
         <PaperProvider>
             <Portal>
                 {/* animationType={slide}  */}
-                {/* <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType} >
-                    <ScrollView horizontal={true} style={styles.mt2list}>
+                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType} >
+                    <ScrollView horizontal={true} style={styles.mt2list} showsHorizontalScrollIndicator={false}>
                         {
                             list2.map(item => {
                                 return (
@@ -72,8 +72,8 @@ const MyComponent = () => {
                             })
                         }
                     </ScrollView>
-                </Modal> */}
-                <Invite item={visible}></Invite>
+                </Modal>
+                {/* <Invite item={visible}></Invite> */}
             </Portal>
             <ScrollView style={styles.parentbg}>
                 <View style={[styles.heng, styles.title]}>

@@ -27,6 +27,7 @@ import { isFile, readFileData } from '../../../utils/FilesUtiles';
 import { FILE_SUFFIX, GROUP_MSG_DIR, PRITIVE_MSG_DIR } from '../../../config/paramStatic';
 import { DeviceEvent } from '../../../config/listener';
 import { set } from '@gluestack-style/react';
+import {sendMsg} from '../../../api/IMAPI/index'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -124,6 +125,10 @@ const CheckView = () => {
             setHeadImg(isPGFlag?res[0].faceURL:res[0].senderFaceUrl);
         });
       };
+      const sends = (val:string) => {
+        // 这里
+        // const msg = async sendMsg
+      }
     /**
      * 加载聊天信息
      */
@@ -217,7 +222,7 @@ const CheckView = () => {
                                 multiline={true}
 
                             />
-                            <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => console.log('Pressed')}></IconButton>
+                            <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => sends(value)}></IconButton>
                         </View>
                         <View style={styles.controlStrip}>
                             <IconButton style={styles.controlIcon} icon={require('../../../assets/images/speech-icon.png')} onPress={() => console.log('点击语音')}></IconButton>

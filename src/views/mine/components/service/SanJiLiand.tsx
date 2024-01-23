@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import { View } from 'react-native';
+import { View,StyleSheet,Dimensions} from 'react-native';
 import {province,city,region} from '../../data/Area'
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const MultiLevelPicker = () => {
   const [selectedLevel1, setSelectedLevel1] = useState(null);
   const [selectedLevel2, setSelectedLevel2] = useState(null);
@@ -12,23 +14,23 @@ const MultiLevelPicker = () => {
   const level2Items = city;
 
   const level3Items = region;
-  const firSelect = (value) => {
+  const firSelect = (value:any) => {
     setSelectedLevel1(value);
     console.log(value,'选择省');
     
   };
-  const secSelect = (value) => {
+  const secSelect = (value:any) => {
     setSelectedLevel2(value);
     console.log(value,'选择市');
     
   };
-  const endSelect = (value) => {
+  const endSelect = (value:any) => {
     setSelectedLevel3(value);
     console.log(value,'选择区');
     
   };
   return (
-    <View>
+    <View style={styles.box}>
       <RNPickerSelect
         onValueChange={(value) => firSelect(value)}
         items={level1Items}
@@ -53,3 +55,9 @@ const MultiLevelPicker = () => {
 };
 
 export default MultiLevelPicker;
+const styles = StyleSheet.create({
+  box:{
+    backgroundColor:'aqua',
+    width:windowWidth * 0.4
+  }
+})

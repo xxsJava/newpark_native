@@ -12,6 +12,7 @@ import {
     Platform
 } from 'react-native';
 import { navigate } from '../../../../config/routs/NavigationContainer';
+import MultiLevelPicker from './SanJiLiand'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const AddNewAddress = () => {
@@ -49,12 +50,18 @@ const AddNewAddress = () => {
                         />
                     </View>
                     <View style={styles.litBox}>
+                        <Text style={styles.dec}>地区</Text>
+                       <View style={styles.areas}>
+                        <MultiLevelPicker />
+                       </View>
+                    </View>
+                    <View style={styles.litBox}>
                         <Text style={styles.dec}>地址</Text>
                         <TextInput
                             style={[styles.inpVal, { fontSize: 13 }]}
                             onChangeText={text => onChangevalueAddre(text)}
                             value={valueAddre}
-                            placeholder='请输入收货人地址，例如:4号楼218'
+                            placeholder='请输入详细收货人地址，例如:4号楼218'
                         />
                     </View>
                     <Button mode="contained" onPress={() => navigate('ThreeJiContent')} style={styles.btn} labelStyle={styles.btnFont}>
@@ -76,23 +83,23 @@ const styles = StyleSheet.create({
     litBox: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: 12,
+        paddingVertical: 4,
         width: windowWidth,
-        height: 66,
-        paddingHorizontal: 20,
+        height: 51,
+        paddingHorizontal: 18,
         borderColor: 'gray',
         borderWidth: 1,
         backgroundColor: '#fff',
-        marginVertical: 6
+        marginVertical: 3
     },
     inpVal: {
         color: 'black',
-        fontSize: 15,
+        fontSize: 14,
         height: 43,
         fontWeight: 'bold'
     },
     dec: {
-        fontSize: 18,
+        fontSize: 16,
         lineHeight: 43,
         color: 'black',
         fontWeight: 'bold',
@@ -117,5 +124,11 @@ const styles = StyleSheet.create({
         fontSize: 18,
         height: 60,
         lineHeight: 30
+    },
+    areas:{
+        width:170,
+        height:50,
+        zIndex:20,
+        
     }
 })
