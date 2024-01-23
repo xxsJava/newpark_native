@@ -1,22 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
-  StyleSheet, Text, View, Image, Dimensions, Platform, ImageBackground, TouchableOpacity
-
-} from 'react-native'
+  Dimensions,
+  Image,
+  StyleSheet, Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 //额外加的
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
  // 额外加的
-// const Stack = createNativeStackNavigator();
+// const Stack = create../StatusBar
 // import LoginStacker from '../../routes/stacker/Login';
 // 额外
 import StatusBar from '../../components/StatusBar';
 // import { navigate } from '../../config/routs/NavigationContainer'
 // import BeginTwo from './BeginTwo';
-import LoginView from '../../views/login/index'
 // import IsLogin from '../../../login/controller';
-import Islogin from '../../views/login/controller'
 import Swiper from 'react-native-swiper';
+import Islogin from '../../views/login/controller';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const BeginOne = () => {

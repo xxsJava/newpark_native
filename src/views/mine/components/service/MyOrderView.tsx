@@ -1,13 +1,13 @@
 /*
  * @Author: xxs
  * @Date: 2023-12-20 17:44:35
- * @LastEditTime: 2024-01-23 18:30:57
+ * @LastEditTime: 2024-01-23 18:43:55
  * @FilePath: \newpark_native\src\views\mine\components\service\MyOrderView.tsx
  * @Description: desc
  */
 import React, { useEffect } from 'react';
 import { Trans } from 'react-i18next';
-import { Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
