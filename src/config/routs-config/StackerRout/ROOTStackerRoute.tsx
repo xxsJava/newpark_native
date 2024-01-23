@@ -51,9 +51,9 @@ import Empty from '../../../components/Error/empty'
 import SystemError from '../../../components/Error/SystemError'
 import BeginOne from '../../../components/begin/BeginOne'
 import Testone from '../../../views/mine/components/TestOne'
-import BeginTwo from '../../../components/begin/BeginTwo'
-import BeginThree from '../../../components/begin/BeginThree'
-import BeginFour from '../../../components/begin/BeginFour'
+// import BeginTwo from '../../../components/begin/BeginTwo'
+// import BeginThree from '../../../components/begin/BeginThree'
+// import BeginFour from '../../../components/begin/BeginFour'
 import PersonalData from '../../../views/mine/components/setup/PersonalData'
 import Comment from '../../../components/Error/Comment'
 import Collect from '../../../components/Error/Collect'
@@ -141,20 +141,20 @@ export default {
       headerShown: false,
     }
   },
-  BeginTwo:{
-    component:BeginTwo,
-    options:{
-      title:'引导页2',
-      headerShown: false,
-    }
-  },
-  BeginThree:{
-    component:BeginThree,
-    options:{
-      title:'引导页3',
-      headerShown: false,
-    }
-  },
+  // BeginTwo:{
+  //   component:BeginTwo,
+  //   options:{
+  //     title:'引导页2',
+  //     headerShown: false,
+  //   }
+  // },
+  // BeginThree:{
+  //   component:BeginThree,
+  //   options:{
+  //     title:'引导页3',
+  //     headerShown: false,
+  //   }
+  // },
   ReviceCode:{
     component:ReviceCode,
     options:{
@@ -162,13 +162,13 @@ export default {
       headerShown: false,
     }
   },
-  BeginFour:{
-    component:BeginFour,
-    options:{
-      title:'引导页4',
-      headerShown: false,
-    }
-  },
+  // BeginFour:{
+  //   component:BeginFour,
+  //   options:{
+  //     title:'引导页4',
+  //     headerShown: false,
+  //   }
+  // },
   PersonalData:{
     component:PersonalData,
     options:{
