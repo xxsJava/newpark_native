@@ -6,6 +6,7 @@
 */
 import request from '../../config/axios'
 import DateTimeUtils from '../../utils/DateTimeUtils';
+import { MsgInfo } from './type';
 
 /**
  * 获取OpenIm配置
@@ -23,5 +24,14 @@ export const getGroupsInfo = (data:any,token:any) =>{
         url: '/v1/groupGetGroupsInfo',
         token: token,
         data: data
+    });
+}
+
+export const sendMsg = (params:MsgInfo) =>{
+    return request.post({
+        url: '/api/msg/send_msg',
+        operationID: DateTimeUtils.timestamps,
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiJvcGVuSU0xMjM0NTYiLCJQbGF0Zm9ybUlEIjoyLCJleHAiOjE3MTIyMjMwMzcsIm5iZiI6MTcwNDQ0NjczNywiaWF0IjoxNzA0NDQ3MDM3fQ.XhAqxP6oZOOgPw-_33aRgWCYs61nkcW8H1_lEgljT9c',
+        data: params
     });
 }

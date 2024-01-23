@@ -28,5 +28,7 @@ export let PRITIVE_MSG_DIR = filePathMsg + '/private';
 export let INDEX_MSG_DIR = filePathMsg + '/index.json';
 //消息文件路径数据
 export let MSG_FILE_DIR = JSON.stringify({"groupPath":GROUP_MSG_DIR,"privatePath":PRITIVE_MSG_DIR,"data":[]});
+//数据文件存储主目录
+export let FILE_PATH  = filePathMsg;
 //文件后缀
 export let FILE_SUFFIX = '.json';

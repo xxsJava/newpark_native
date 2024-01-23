@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <React/RCTLog.h>
+#import <React/RCTLog.h> 
 #import <React/RCTBridge.h>
 #import "OpenIMModule.h"
 #import <React/RCTEventDispatcher.h>
@@ -83,13 +83,23 @@ RCT_EXPORT_METHOD(testEvent){
 openIM 登录
  */
 RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
-//  NSLog(@"usrID----->%@,token---->%@",userID,token);
+  NSLog(@"OPENIM-LOGIN-IOS userID--->%@ ,TOKEN--->%@",userID,token);
   [OIMManager.manager login:userID // userID来自于自身业务服务器
                       token:token  // token需要业务服务器向OpenIM服务端交换获取
                   onSuccess:^(NSString * _Nullable data) {
     NSLog(@"登录msg----->%@",data);
     
     [self sendEventWithName:@"onSuccessLogin" body:data];
+  } onFailure:^(NSInteger code, NSString * _Nullable msg) {
+    [self sendEventWithName:@"onErrorLogin" body:msg];
+  }];
+}
+
+//openIM
+RCT_EXPORT_METHOD(logout){
+  NSLog(@"IM LOGOUT----->");
+  [OIMManager.manager logoutWithOnSuccess:^(NSString * _Nullable data) {
+    [self sendEventWithName:@"onErrorLogin" body:data];
   } onFailure:^(NSInteger code, NSString * _Nullable msg) {
     [self sendEventWithName:@"onErrorLogin" body:msg];
   }];
@@ -147,7 +157,7 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
 // 返回的数组为支持的事件名列表
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer",@"onTest"];
+  return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer",@"onTest",@"onErrorLogin"];
 }
 
 

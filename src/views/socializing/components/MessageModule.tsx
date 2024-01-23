@@ -17,6 +17,7 @@ import Storage from '../../../utils/AsyncStorageUtils';
 import {DeviceEvent} from '../../../config/listener';
 import {isFile, readFileData, writeFileData} from '../../../utils/FilesUtiles';
 import {
+  FILE_PATH,
   GROUP_MSG_DIR,
   INDEX_MSG_DIR,
   PRITIVE_MSG_DIR,
@@ -36,7 +37,7 @@ const ListIndex: React.FC = () => {
     const listener = DeviceEvent.addListener('onRecvNewMessage', async resp => {
       setNewObj({});
       setNewArr([]);
-      const msg = JSON.parse(resp.message);
+      const msg = Platform.OS === 'ios'?resp.message:JSON.parse(resp.message);
       console.log('消息页面接收消息1------>', msg);
       //群组
       if (msg.groupID != undefined) {
@@ -103,12 +104,15 @@ const ListIndex: React.FC = () => {
   };
 
   const initMsg = () => {
+    console.log('文件初始化！！！',INDEX_MSG_DIR);
     let newArr: any[] = [];
     //查找到文件直接写入
     readFileData(INDEX_MSG_DIR).then(res => {
       res.data.map(async (key: any) => {
-        if (await isFile(key.path)) {
-          readFileData(key.path).then(res1 => {
+        let path:string[] = key.path.split('/');
+        if (await isFile(FILE_PATH+'/'+path[path.length-2]+'/'+path[path.length-1])) {
+          readFileData(FILE_PATH+'/'+path[path.length-2]+'/'+path[path.length-1]).then(res1 => {
+            console.log('文件读取--->',res1);
             newArr.push(res1[res1.length - 1]);
           });
         }
