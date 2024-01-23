@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, Dimensions,Image,TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, Dimensions,Image,TouchableOpacity,Linking } from 'react-native';
 import { View } from 'react-native-animatable';
 
 const windowHeight = Dimensions.get('window').height;
@@ -9,6 +9,9 @@ function freeGet() {
     
 }
 const ReviceCode = () => {
+        const handleOpenApp = () => {
+          Linking.openURL('yourapp://somepath');
+        };
     return (
        <View style={styles.parentBox}>
             <View style={styles.heng}>
@@ -39,7 +42,7 @@ const ReviceCode = () => {
                 </View>
             </View>
             <TouchableOpacity style={{position:'absolute',
-        bottom:40}} onPress={() => {}}>
+        bottom:40}} onPress={handleOpenApp}>
                 <Text style={{color:'red',textDecorationLine:'underline'}}>打开新园APP</Text>
             </TouchableOpacity>
        </View>
