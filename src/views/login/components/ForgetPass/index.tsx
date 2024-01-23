@@ -346,12 +346,12 @@ const ForgetPass: React.FC = () => {
           writeFileData(INDEX_MSG_DIR, MSG_FILE_DIR);
         }}
       />
-      <Button title='IOS OPEN-IM' onPress={() => {
+      {/* <Button title='IOS OPEN-IM' onPress={() => {
         IMSDKRN.logout();
         // console.log(IMSDKRN);
       }}>
         
-      </Button>
+      </Button> */}
       {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}
     </View>
   );
