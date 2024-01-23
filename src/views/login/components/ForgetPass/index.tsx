@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2024-01-23 18:06:25
+ * @LastEditTime: 2024-01-23 18:30:03
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
@@ -296,7 +296,8 @@ const ForgetPass: React.FC = () => {
       <Button
         title="IOS--登录"
         onPress={() => {
-          IMSDKRN.login('1742430171993788416','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MSwiZXhwIjoxNzEyNjQ1MDY2LCJuYmYiOjE3MDQ4Njg3NjYsImlhdCI6MTcwNDg2OTA2Nn0.pp1P6ZyNaSFL0gWpSwM3_CqdY_PzCxoW1jX3rcfc-GI');
+          console.log("IOS 登录----------->");
+          IMSDKRN.login("1742430171993788416","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MSwiZXhwIjoxNzEyNjQ1MDY2LCJuYmYiOjE3MDQ4Njg3NjYsImlhdCI6MTcwNDg2OTA2Nn0.pp1P6ZyNaSFL0gWpSwM3_CqdY_PzCxoW1jX3rcfc-GI");
         }}
       />
 
@@ -345,6 +346,12 @@ const ForgetPass: React.FC = () => {
           writeFileData(INDEX_MSG_DIR, MSG_FILE_DIR);
         }}
       />
+      <Button title='IOS OPEN-IM' onPress={() => {
+        IMSDKRN.logout();
+        // console.log(IMSDKRN);
+      }}>
+        
+      </Button>
       {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}
     </View>
   );

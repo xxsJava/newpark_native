@@ -86,7 +86,7 @@ const RewardDetails = ({route}:any) => {
                         </View>
                         <View style={styles.takingOrders}>
                             <Text allowFontScaling={false} style={styles.takingOrdersText1}>接单人信息:</Text>
-                            <TouchableOpacity activeOpacity={0.5}>
+                            <TouchableOpacity activeOpacity={0.5} onPress={() =>{}}>
                                 <Text allowFontScaling={false} style={styles.takingOrdersText2}>点击查看</Text>
                             </TouchableOpacity>
                         </View>

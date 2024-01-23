@@ -31,7 +31,7 @@ const InterestsHobbies:React.FC<RegisteredScreenProps> = () => {
                 <TouchableOpacity onPress={() => navigate('HomeStacker')}>
                     <Text allowFontScaling={false} style={styles.bottomText}>跳过，直接进入</Text>
                 </TouchableOpacity>
-                <Button style={styles.bottomButton} buttonColor='#6a1b9a' textColor='#FFF' labelStyle={styles.bottomButtonText} onPress={() => navigate('HomeStacker')}>进入校园生活</Button>
+                <Button style={styles.bottomButton} buttonColor='#6a1b9a' textColor='#FFF' labelStyle={styles.bottomButtonText} onPress={() => navigate('LoginHome')}>进入校园生活</Button>
             </View>
         </View>
     )

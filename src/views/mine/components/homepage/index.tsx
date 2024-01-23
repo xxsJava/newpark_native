@@ -17,21 +17,21 @@ const orderData = [
     {
       index: 1,
       route: 'PaymentRoute',
-      type:'type1',
+      type:'type2',
       text: 'minOrder.orderOption1',
       icon: require('../../../../assets/images/alimom/dpay.png'),
     },
     {
       index: 2,
       route: 'ReceiptRoute',
-      type:'type2',
+      type:'type3',
       text: 'minOrder.orderOption2',
       icon: require('../../../../assets/images/alimom/dsh.png'),
     },
     {
       index: 3,
       route: 'EvaluateRoute',
-      type:'type3',
+      type:'type4',
       text: 'minOrder.orderOption3',
       icon: require('../../../../assets/images/alimom/dk.png'),
     },
@@ -156,7 +156,8 @@ const HomePageView = () => {
                 </View>
               </View>
               <View style={styles.communitList}>
-                <ScrollView horizontal={true} style={styles.communitScroll}>
+                {/* 设置的没有滚动条 */}
+                <ScrollView horizontal={true} style={styles.communitScroll} showsHorizontalScrollIndicator={false}>
                   {communitData.map(item =>{
                     return(
                       <TouchableOpacity style={styles.communitItem} key={item.index} onPress={() => navigate('CommunityChannelRoute')}>

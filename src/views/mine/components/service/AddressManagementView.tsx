@@ -92,7 +92,8 @@ export default class AddressManagementView extends Component {
                         })}
                     </ScrollView>
                     <View style={styles.buttonView}>
-                        <Button style={styles.buttonStyle} labelStyle={styles.buttonText} buttonColor='#ffb700' textColor='#FFF'>新建收货地址</Button>
+                        <Button style={styles.buttonStyle} labelStyle={styles.buttonText} buttonColor='#ffb700' textColor='#FFF' onPress={() => navigate('AddNewAddress')}>新建收货地址</Button>
+
                     </View>
                 </View>
             </View>

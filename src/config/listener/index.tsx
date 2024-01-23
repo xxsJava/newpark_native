@@ -23,7 +23,9 @@ export const initListener = () => {
   });
 
   DeviceEvent.addListener('onRecvNewMessage', resp => {
-    const msg = JSON.parse(resp.message);
+    console.log('消息监听resp----->',resp);
+    
+    const msg = Platform.OS === 'ios'?resp.message:JSON.parse(resp.message);
     console.log('消息监听1----->', msg);
 
     //存群聊消息文件地址
@@ -85,6 +87,14 @@ export const initListener = () => {
   DeviceEvent.addListener('onConnectServer', resp => {
     console.log('服务链接监听---------->', resp);
   });
+  
+  DeviceEvent.addListener('onTest', resp => {
+    console.log('接收ios消息---------->', resp);
+  });
 
+  DeviceEvent.addListener('onErrorLogin', resp => {
+    console.log('接收ios消息---------->', resp);
+  });
+  
   console.log('监听器初始化完毕<------------');
 };

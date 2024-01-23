@@ -160,15 +160,20 @@ const MineVIew = () => {
     <SafeAreaView style={styles.safeStyle}>
       <View>
         <ScrollView style={styles.bgTop}>
-          <View>
-            <View style={[styles.heng,styles.boxnNav]}>
+          <View >
+            {/* <ImageBackground
+              style={styles.bgImage}
+              blurRadius={7}
+              source={require('../../../assets/images/tup/xrk.png')}
+            > */}
+            <View style={[styles.heng, styles.boxnNav]}>
               <View style={styles.heng}>
                 {
                   leftList.map(item => {
                     return <View >
                       <View style={styles.litt1}>
-                      <Text style={{fontSize:18,color:'black',fontWeight:'bold'}}>{item.num}</Text>
-                      <Text style={{fontSize:16,color:'black'}}> {item.text}</Text>
+                        <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{item.num}</Text>
+                        <Text style={{ fontSize: 16, color: 'black' }}> {item.text}</Text>
                       </View>
                     </View>
                   })
@@ -177,45 +182,46 @@ const MineVIew = () => {
               <View>
                 <View>
                   <View style={styles.uid}>
-                     <LinearGradinet
+                    <LinearGradinet
                       colors={[
                         'rgba(247, 27, 147,0.90)',
                         'rgba(247, 27, 147,0.20)',
                       ]}
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 0 }}
-                      style={styles.uidBgJb}> 
-                      <Text selectable={true} key={Math.random()} style={{textAlign:'center',lineHeight:30}}>UID:123456789</Text>
+                      style={styles.uidBgJb}>
+                      <Text selectable={true} key={Math.random()} style={{ textAlign: 'center', lineHeight: 30, color: '#fff' }}>UID:123456789</Text>
                     </LinearGradinet>
                     <View style={styles.wire}></View>
                   </View >
-                       <View style={styles.headT}>
-                        <View >
-                          <Image source={require('../../../assets/images/tup/ppy.png')} style={styles.boxAvatar}></Image>
-                        </View>
-                        <View style={{justifyContent:'center',alignItems:'center',marginTop:'-10%'}}>
-                        <Image source={require('../../../assets/images/tup/jia.png')} style={styles.jia}></Image>
-                        </View>
-                        <View style={styles.heng}>
-                            <Text style={{color:'black'}}>{userName}</Text>
-                            <Image source={require('../../../assets/images/alimom/V1.png')} style={[styles.avatarnImage,{marginTop:2}]}></Image>
-                        </View>
-                      </View> 
+                  <View style={styles.headT}>
+                    <View >
+                      <Image source={require('../../../assets/images/tup/ppy.png')} style={styles.boxAvatar}></Image>
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '-10%' }}>
+                      <Image source={require('../../../assets/images/tup/jia.png')} style={styles.jia}></Image>
+                    </View>
+                    <View style={styles.heng}>
+                      <Text style={{ color: 'black' }}>{userName}</Text>
+                      <Image source={require('../../../assets/images/alimom/V1.png')} style={[styles.avatarnImage, { marginTop: 2 }]}></Image>
+                    </View>
+                  </View>
                 </View>
               </View>
               <View style={styles.heng1}>
                 {
                   rightList.map(item => {
-                    return <View  key={item.index} >
-                    <View style={styles.litt}>
-                    <Text style={{fontSize:18,color:'black',fontWeight:'bold'}}>{item.num}</Text>
-                      <Text style={{fontSize:16,color:'black'}}>{item.text}</Text>
-                    </View>
+                    return <View key={item.index} >
+                      <View style={styles.litt}>
+                        <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{item.num}</Text>
+                        <Text style={{ fontSize: 16, color: 'black' }}>{item.text}</Text>
+                      </View>
                     </View>
                   })
                 }
               </View>
             </View>
+            {/* </ImageBackground> */}
           </View>
           <View style={styles.bottBox}>
             <TouchableOpacity onPress={() => onTabPress(1)}>
@@ -228,7 +234,7 @@ const MineVIew = () => {
               <Text allowFontScaling={false} style={[styles.tabText, tabVal == 3 ? styles.tabColor : null]}>成就</Text>
             </TouchableOpacity>
           </View>
-          <View style={{backgroundColor:'#fff'}}>
+          <View style={{ backgroundColor: '#fff' }}>
             <View style={styles.nullf}>
               <View style={[styles.heng, tabVal == 3 ? styles.xian : styles.hidd]}>
                 {list1.map(item => {
@@ -303,19 +309,19 @@ const MineVIew = () => {
             </View>
           </View>
           <View>
-          <Button
-            onPress={() => navigate('Testone')}
-            title="测试复制页面"
-            color="green"
-            accessibilityLabel="Learn more about this purple button"
-          />
-          <Button
-            onPress={() => navigate('BeginOne')}
-            title="测试索引页面"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
+            <Button
+              onPress={() => navigate('Testone')}
+              title="测试复制页面"
+              color="green"
+              accessibilityLabel="Learn more about this purple button"
+            />
+            <Button
+              onPress={() => navigate('BeginOne')}
+              title="测试索引页面"
+              color="#841584"
+              accessibilityLabel="Learn more about this purple button"
+            />
+          </View>
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -323,17 +329,17 @@ const MineVIew = () => {
 }
 export default MineVIew;
 const styles = StyleSheet.create({
-  litt:{
-   width:70,
-   justifyContent:'space-between',
-   alignItems:'center'
+  litt: {
+    width: 70,
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
-  litt1:{
-    width:70,
-    justifyContent:'space-between',
-    margin:2,
-    alignItems:'center'
-   },
+  litt1: {
+    width: 70,
+    justifyContent: 'space-between',
+    margin: 2,
+    alignItems: 'center'
+  },
   nullf: {
     zIndex: 9999,
     // position:'absolute',
@@ -361,9 +367,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 16,
-    backgroundColor:'#fff',
-    paddingTop:100,
-    marginTop:-60
+    backgroundColor: '#fff',
+    paddingTop: 100,
+    marginTop: -60
   },
   nullk: {
     height: 50
@@ -498,7 +504,7 @@ const styles = StyleSheet.create({
   uidBgJb: {
     height: 30,
     borderRadius: 8,
-    width:120
+    width: 120
   },
   uidText: {
     color: '#FFFFFF',
@@ -546,13 +552,13 @@ const styles = StyleSheet.create({
   heng: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems:'center'
+    alignItems: 'center'
   },
-  heng1:{
+  heng1: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   hengtz: {
     flexDirection: 'column'
@@ -668,32 +674,37 @@ const styles = StyleSheet.create({
     height: 100
   },
   bgTop: {
-    backgroundColor: '#F8B032'
+    backgroundColor: '#F8B032',
+    
   },
-  headBox:{
-    width:windowWidth,
-    backgroundColor:'#fff'
+  headBox: {
+    width: windowWidth,
+    backgroundColor: '#fff'
   },
-  jia:{
-    width:20,
-    height:20
+  jia: {
+    width: 20,
+    height: 20
   },
-  id:{
-    marginTop:'-40%'
+  id: {
+    marginTop: '-40%'
   },
-  headT:{
-    marginTop:-35,
-    justifyContent:'center',
-    alignItems:'center'
+  headT: {
+    marginTop: -35,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  uid:{
-    marginTop:-40,
-    marginLeft:-120
+  uid: {
+    marginTop: -40,
+    marginLeft: -120
   },
-  wire:{
-    borderBottomWidth:1,
-    borderBottomColor:'#fff',
-    width:130
+  wire: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#fff',
+    width: 130
+  },
+  bgImage:{
+    zIndex:-3,
+    width:windowWidth
   }
 
 

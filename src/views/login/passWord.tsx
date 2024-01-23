@@ -100,7 +100,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         platformID: 2,
         userID: loginAPI.data.uId
       }
-      
+
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
       const openIMRes = await getOpenIMConfig(openIMConfig);
       console.log('获取到Open-IM-token3---->', openIMRes.data.token);
@@ -181,7 +181,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       <ImageBackground
         style={styles.imgbgc}
         source={require('../../assets/images/loginBG.png')}>
-        <KeyboardAwareScrollView enableOnAndroid={true} style={{flex: 1}}>
+        <KeyboardAwareScrollView enableOnAndroid={true} style={{ flex: 1 }}>
           <View style={styles.top}>
             <Image
               style={styles.img}
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
   arrows: {
     marginLeft: 10,
     marginRight: 10,
-    transform: [{rotate: '-90deg'}],
+    transform: [{ rotate: '-90deg' }],
   },
   num: {
     width: '100%',

@@ -11,7 +11,7 @@ const MyComponent = () => {
 
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-    const containerStyle = { backgroundColor: 'white', padding: 20 };
+    const containerStyle = { backgroundColor: 'white', padding: 25, marginTop:480, paddingHorizontal:40, paddingBottom:155};
     const list1 = [
         {
             index: 1,
@@ -19,12 +19,12 @@ const MyComponent = () => {
             text: '邀请好友'
         },
         {
-            index: 1,
+            index: 2,
             img: require('../../../../assets/images/tup/hyld.jpg'),
             text: '好友领豆'
         },
         {
-            index: 1,
+            index: 3,
             img: require('../../../../assets/images/tup/xyddz.jpg'),
             text: '新园豆到账'
         }
@@ -57,8 +57,7 @@ const MyComponent = () => {
             <Portal>
                 {/* animationType={slide}  */}
                 <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType} >
-
-                    <ScrollView horizontal={true} style={styles.mt2list}>
+                    <ScrollView horizontal={true} style={styles.mt2list} showsHorizontalScrollIndicator={false}>
                         {
                             list2.map(item => {
                                 return (
@@ -71,6 +70,7 @@ const MyComponent = () => {
                         }
                     </ScrollView>
                 </Modal>
+                {/* <Invite item={visible}></Invite> */}
             </Portal>
             <ScrollView style={styles.parentbg}>
                 <View style={[styles.heng, styles.title]}>
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
         width: windowWidth,
         height: windowHeight,
         padding: 20
+       
     },
     heng: {
         justifyContent: 'space-between',
@@ -267,12 +268,21 @@ const styles = StyleSheet.create({
     mt2list: {
         flexDirection: 'row',
         width: windowWidth,
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        // marginTop:162,
+        // paddingTop:360
     },
-    zhong:{
-        width:windowWidth,
+    zhong: {
+        width: windowWidth,
         // height:windowHeight,
-        justifyContent:'center',
+        justifyContent: 'center',
         // alignItems:'center'
+    },
+    mtlist: {
+        width: 120
+    },
+    zi:{
+        marginTop:12,
+        justifyContent:'center'
     }
 });

@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2024-01-23 10:27:13
- * @LastEditTime: 2024-01-23 15:48:44
+ * @LastEditTime: 2024-01-23 18:28:51
  * @FilePath: \newpark_native\src\api\IMAPI\type.tsx
  * @Description: desc
  */

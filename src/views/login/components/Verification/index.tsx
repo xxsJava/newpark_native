@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-27 09:19:31
- * @LastEditTime: 2023-12-28 15:21:43
+ * @LastEditTime: 2024-01-23 18:30:34
  * @FilePath: \newpark_native\src\views\login\components\Verification\index.tsx
  * @Description: desc
  */
@@ -22,7 +22,7 @@ import { SmsLoginType } from '../../../../api/sys/lgoin/types';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import Storage from '../../../../utils/AsyncStorageUtils';
 
-const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
+const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
   //输入框状态
   const [textString, setTextString] = useState('');
 
@@ -73,7 +73,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
     for (let i = 0; i < 4; i++) {
       inputs.push(
         <Text
-        allowFontScaling={false}
+          allowFontScaling={false}
           key={i}
           style={[
             styles.text,
@@ -96,7 +96,9 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
       setLoad(true);
       console.log('验证码提交-' + text);
       smsLogin.code = text;
-      verIfcode();
+      verIfcode(); 
+      // console.log('下一步。。。。。。。。。。');
+      
     }
   };
 
@@ -129,10 +131,9 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
           )
         },
       });
-      return;
+      return false;
     }
-
-    if(smsLoginAPI.data != null){
+    if (smsLoginAPI.data != null) {
       toast.show({
         placement: 'top',
         render: () => {
@@ -144,7 +145,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
         },
       });
       navigate('LoginHome');
-      return
+      return false;
     }
     navigate('Registered');
   };
@@ -152,6 +153,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
   //按钮下一步
   const next = () => {
     setLoad(true);
+    // console.log(inpTextChang);
   };
 
   return (
@@ -177,9 +179,8 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
           caretHidden={true}
           onChangeText={inpTextChang}
         />
-
         <View>
-          <TouchableOpacity disabled={send} onPress={() => {}}>
+          <TouchableOpacity disabled={send} onPress={() => { }}>
             <Text allowFontScaling={false} style={styles.verifTextTime}>
               重新发送 {msgShow && <>({count})</>}
             </Text>
@@ -191,7 +192,7 @@ const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
             disabled={disabled}
             onPress={next}
             style={[styles.buttR, disabled && styles.buttW]}>
-              <ButtonSpinner as={isLoad} mr="$1" />
+            {/* <ButtonSpinner as={isLoad} mr="$1" /> */}
             <ButtonText>下一步</ButtonText>
           </Button>
         </View>
@@ -255,6 +256,7 @@ const styles = StyleSheet.create({
   verifyText: {
     flexDirection: 'row',
     justifyContent: 'center',
+    // backgroundColor:'red'
   },
   verifTextTime: {
     textAlign: 'center',

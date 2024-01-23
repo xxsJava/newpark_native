@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2024-01-23 11:34:06
+ * @LastEditTime: 2024-01-23 18:29:10
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
@@ -28,6 +28,8 @@ import MyOrderView from '../../../views/mine/components/service/MyOrderView';
 import MyPostView from '../../../views/mine/components/service/MyPostView';
 import WalletView from '../../../views/mine/components/service/WalletView';
 import CallCustom from '../../../views/mine/components/service/CallCustom';
+// import SanJiLiand from '../../../views/mine/components/service/sanJiLiand';
+import SanJiLiand from '../../../views/mine/components/service/SanJiLiand'
 import InviteFriends from '../../../views/mine/components/service/InviteFriends'
 import CollectionView from '../../../views/mine/components/service/CollectionView';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
@@ -56,14 +58,16 @@ import Empty from '../../../components/Error/empty'
 import SystemError from '../../../components/Error/SystemError'
 import BeginOne from '../../../components/begin/BeginOne'
 import Testone from '../../../views/mine/components/TestOne'
-import BeginTwo from '../../../components/begin/BeginTwo'
-import BeginThree from '../../../components/begin/BeginThree'
-import BeginFour from '../../../components/begin/BeginFour'
+// import BeginTwo from '../../../components/begin/BeginTwo'
+// import BeginThree from '../../../components/begin/BeginThree'
+// import BeginFour from '../../../components/begin/BeginFour'
 import PersonalData from '../../../views/mine/components/setup/PersonalData'
 import Comment from '../../../components/Error/Comment'
 import Collect from '../../../components/Error/Collect'
 import NoNews from '../../../components/Error/NoNews'
 import NoParents from '../../../components/Error/NoParents'
+import AddNewAddress from '../../../views/mine/components/service/AddNewAddress'
+import ThreeJiContent from '../../../views/mine/components/service/threeJiContent'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
  * @Author: xxs
@@ -78,6 +82,27 @@ export default {
     options: {
       headerShown: false,
     },
+  },
+  AddNewAddress:{
+    component: AddNewAddress,
+     options: {
+    //   headerShown: false,
+    title: '新增收货地址',
+     },
+  },
+  ThreeJiContent:{
+    component: ThreeJiContent,
+     options: {
+    //   headerShown: false,
+    title: '三级联动',
+     },
+  },
+  SanJiLiand:{
+    component: SanJiLiand,
+     options: {
+    //   headerShown: false,
+    title: '三级联动测试版',
+     },
   },
   LoginHome: {
     component: BommonTab,
@@ -123,20 +148,20 @@ export default {
       headerShown: false,
     }
   },
-  BeginTwo:{
-    component:BeginTwo,
-    options:{
-      title:'引导页2',
-      headerShown: false,
-    }
-  },
-  BeginThree:{
-    component:BeginThree,
-    options:{
-      title:'引导页3',
-      headerShown: false,
-    }
-  },
+  // BeginTwo:{
+  //   component:BeginTwo,
+  //   options:{
+  //     title:'引导页2',
+  //     headerShown: false,
+  //   }
+  // },
+  // BeginThree:{
+  //   component:BeginThree,
+  //   options:{
+  //     title:'引导页3',
+  //     headerShown: false,
+  //   }
+  // },
   ReviceCode:{
     component:ReviceCode,
     options:{
@@ -144,13 +169,13 @@ export default {
       headerShown: false,
     }
   },
-  BeginFour:{
-    component:BeginFour,
-    options:{
-      title:'引导页4',
-      headerShown: false,
-    }
-  },
+  // BeginFour:{
+  //   component:BeginFour,
+  //   options:{
+  //     title:'引导页4',
+  //     headerShown: false,
+  //   }
+  // },
   PersonalData:{
     component:PersonalData,
     options:{

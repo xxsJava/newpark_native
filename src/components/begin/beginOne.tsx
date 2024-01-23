@@ -1,56 +1,113 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet, Text, View, Image, Dimensions, Platform, ImageBackground, TouchableOpacity
 
 } from 'react-native'
-import { navigate } from '../../config/routs/NavigationContainer'
+//额外加的
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+ // 额外加的
+// const Stack = createNativeStackNavigator();
+// import LoginStacker from '../../routes/stacker/Login';
+// 额外
+import StatusBar from '../../components/StatusBar';
+// import { navigate } from '../../config/routs/NavigationContainer'
+// import BeginTwo from './BeginTwo';
+import LoginView from '../../views/login/index'
+// import IsLogin from '../../../login/controller';
+import Islogin from '../../views/login/controller'
+import Swiper from 'react-native-swiper';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const BeginOne = () => {
+  const [next, setNext] = useState(true)
   return (
-    <View style={styles.safeStyle}>
-      <ImageBackground source={require('../../assets/images/tup/a1.jpg')} style={styles.img} resizeMode="cover" >
+    <>
+      <StatusBar />
+      {next ? (<View style={styles.swiperView}>
+        <Swiper
+          style={styles.swiperStyle}
+          height={windowHeight}
+          loop={true}
+          horizontal={true}
+          autoplay={true}
+          autoplayTimeout={80}
+          paginationStyle={styles.paginationStyle}
+          dot={<View style={styles.dotStyle} />}
+          activeDot={<View style={styles.activeDotStyle} />}>
+          <Image
+            source={require('../..//assets/images/tup/a1.jpg')}
+            style={styles.bannerImage}
+          />
+          <Image
+            source={require('../..//assets/images/tup/a2.jpg')}
+            style={styles.bannerImage}
+          />
+          <Image
+            source={require('../..//assets/images/tup/a3.jpg')}
+            style={styles.bannerImage}
+          />
+          <Image
+            source={require('../..//assets/images/tup/a4.jpg')}
+            style={styles.bannerImage}
+          />
+        </Swiper>
         <View style={styles.btn}>
-          <TouchableOpacity onPress={() => navigate('BeginTwo')} style={styles.btnBox}>
-            <Text style={styles.btnFont}>Next</Text>
+          <TouchableOpacity onPress={() => setNext(false)} style={styles.btnBox}>
+            <Text style={styles.btnFont}>跳过，直接登录</Text>
           </TouchableOpacity>
         </View>
-      </ImageBackground>
-    </View>
+      </View>):(<Islogin />)}
+    </>
   )
 }
 export default BeginOne;
 const styles = StyleSheet.create({
-  safeStyle: {
+  swiperView: {
     width: windowWidth,
     height: windowHeight,
-    backgroundColor: '#fff',
-    ...Platform.select({
-      ios: {
-        height: 180
-      },
-    }),
   },
-  img: {
-    flex: 1,
-    marginTop: -8
+  swiperStyle: {},
+  paginationStyle: {
+    bottom: 0,
+    left: -280
+  },
+  dotStyle: {
+    width: 10,
+    height: 10,
+    borderRadius: 6,
+    marginHorizontal: 3,
+    marginVertical: 9,
+    backgroundColor: 'rgba(0,0,0,.2)'
+  },
+  activeDotStyle: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    marginHorizontal: 16,
+    marginVertical: 9,
+    backgroundColor: '#ffb700',
+  },
+  bannerImage: {
+    width: windowWidth,
+    height: windowHeight,
   },
   btn: {
     position: 'absolute',
-    bottom: 14,
-    left: '40%'
+    bottom: 18,
+    left: '30%'
   },
-  btnBox:{
-    backgroundColor:'#fff',
-    borderRadius:18,
-    width:120,
-    height:60,
-    alignItems:'center',
-    justifyContent:'center'
+  btnBox: {
+    backgroundColor: '#fff',
+    borderRadius: 18,
+    width: 180,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  btnFont:{
-    color:'#F0B833',
-    fontWeight:'bold',
-    fontSize:20
+  btnFont: {
+    color: '#F0B833',
+    fontWeight: 'bold',
+    fontSize: 17
   }
 })

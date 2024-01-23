@@ -48,7 +48,6 @@ const optionData1=[{
     name:'newPatkOption.optionName8',
     icon:require('../../../assets/images/chatroomicon08.png')
   }]
-  
   const glideData=[{
     index:1,
     title:'某秘密聊天室',
@@ -201,11 +200,13 @@ const styles = StyleSheet.create({
         marginBottom:20
       },
       iconList:{
-        width:40,
-        height:40
+        width:35,
+        height:35
       },
       optionText:{
-        color:'#000'
+        color:'#000',
+        fontSize:13,
+        marginTop:8
       },
       glideStyle:{
         marginTop:20,
