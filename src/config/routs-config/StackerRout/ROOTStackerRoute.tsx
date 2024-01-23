@@ -1,11 +1,3 @@
-/*
- * @Author: xxs
- * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2023-11-01 17:05:01
- * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
- * @Description: desc
- */
-// 配的总路径
 import {StyleSheet} from 'react-native';
 import {BommonTab} from '../../../routes/stacker';
 import StylesALL from '../../../styles';

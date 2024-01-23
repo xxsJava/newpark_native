@@ -92,5 +92,9 @@ export const initListener = () => {
     console.log('接收ios消息---------->', resp);
   });
 
+  DeviceEvent.addListener('onErrorLogin', resp => {
+    console.log('接收ios消息---------->', resp);
+  });
+  
   console.log('监听器初始化完毕<------------');
 };

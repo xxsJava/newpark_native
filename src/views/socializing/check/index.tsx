@@ -26,6 +26,7 @@ import { useRoute } from '@react-navigation/native';
 import { isFile, readFileData } from '../../../utils/FilesUtiles';
 import { FILE_SUFFIX, GROUP_MSG_DIR, PRITIVE_MSG_DIR } from '../../../config/paramStatic';
 import { DeviceEvent } from '../../../config/listener';
+import { set } from '@gluestack-style/react';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -71,6 +72,7 @@ const CheckView = () => {
     // const [data,setData]:any = useState([]);
     const [headName,setHeadName] = useState('');
     const [headImg,setHeadImg] = useState('');
+    const [msgType,setMsgType] = useState('');
 
     let timer;  //计时器
     useEffect(()=> {
@@ -101,11 +103,12 @@ const CheckView = () => {
 
     const msgFind = () =>{
         const param:any = route.params;
+        setMsgType(param.type);
         if(param.type === 2){
             console.log('群聊');
             msgGet(GROUP_MSG_DIR + "/"+ param.id + FILE_SUFFIX);
             return;
-        }
+        } 
         console.log('单聊');
         msgGet(PRITIVE_MSG_DIR + "/"+param.id + FILE_SUFFIX);
     }

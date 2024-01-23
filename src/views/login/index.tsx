@@ -8,6 +8,7 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, TextInput } from 'react-native-paper';
@@ -115,15 +116,17 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       //用户OPEN-配置
       const openIMConfig = {
         secret: "openIM123",
-        platformID: 2,
+        platformID: Platform.OS === 'ios'?1:2,
         userID: loginAPI.data.uId
       }
 
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
       const openIMRes = await getOpenIMConfig(openIMConfig);
-      console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+      console.log('获取到Open-IM-token2---->', openIMRes.data.token);
       //oepnIm 登录
+      // console.log(IMSDKRN);
       IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
+      
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       // 这个是跳转到主页面的
@@ -216,7 +219,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
     const loginAPI = await loginApi(usrData);
 
-    console.log(loginAPI.data);
+    console.log('loginAPI---->'+loginAPI.data);
+    console.log('loginAPI code---->'+loginAPI.code);
 
     //用户不存在自动注册
     if (loginAPI.code === 1114) {
@@ -238,13 +242,12 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       //用户OPEN-配置
       const openIMConfig = {
         secret: "openIM123",
-        platformID: 2,
+        platformID: Platform.OS === 'ios'?1:2,
         userID: loginAPI.data.uId
       }
-
+      console.log('usrID------>',loginAPI.data.uId);
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
       const openIMRes = await getOpenIMConfig(openIMConfig);
-      console.log('获取到Open-IM-token1---->', openIMRes.data.token);
       //oepnIm 登录
       IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
       //用户uid存本地
