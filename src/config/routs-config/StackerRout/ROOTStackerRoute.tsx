@@ -1,4 +1,3 @@
-
 import {StyleSheet} from 'react-native';
 import {BommonTab} from '../../../routes/stacker';
 import StylesALL from '../../../styles';

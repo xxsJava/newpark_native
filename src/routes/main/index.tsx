@@ -15,9 +15,6 @@ const index = () => {
     //隐藏初始屏幕
     SplashScreen.hide();
   }, []);
-
- 
-
   return <Splashs />;
 };
 

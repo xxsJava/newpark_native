@@ -46,7 +46,7 @@ const SchoolIndex:React.FC<RegisteredScreenProps> = () => {
         <IndexTable></IndexTable>
       </View>
       <View style={styles.buttonView}>
-        <Button buttonColor="#ffb700" textColor="#FFF" style={styles.buttonStyle} labelStyle={styles.buttonText}>下一步</Button>
+        <Button buttonColor="#ffb700" textColor="#FFF" style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('GenderRoute')}>下一步</Button>
       </View>
     </View>
   );
