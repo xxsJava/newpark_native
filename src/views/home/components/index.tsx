@@ -5,15 +5,14 @@
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
-import React, { useState } from 'react';
-import {Avatar, Button, Card, IconButton, Text} from 'react-native-paper';
-import {StyleSheet, TouchableOpacity, View,Image,TextInput,Platform,Dimensions} from 'react-native';
-import {navigate} from '../../../config/routs/NavigationContainer';
-import {dateToMsgTime} from '../../../components/Rests/TconTime'
+import React from 'react';
+import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
-import { postLike } from '../../../api/sys/home'
-import { postLikeParam } from '../../../api/sys/home/types'
-import Storage from '../../../utils/AsyncStorageUtils';
+import { postLike } from '../../../api/sys/home';
+import { postLikeParam } from '../../../api/sys/home/types';
+import { dateToMsgTime } from '../../../components/Rests/TconTime';
+import { navigate } from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -30,17 +29,12 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
   }
 
   const postLikePress = async (porp:any) => {
-    const tokenStr = await Storage.get('usr-token');
-    if(tokenStr != null) {
-      const postLikeUp = await postLike(tokenStr,postLikeParam);
+      const postLikeUp = await postLike(postLikeParam);
       console.log('点赞返回',postLikeUp)
       if(postLikeUp.data) {
         upvoteVal = true
         item.tlikeCount = item.tlikeCount + 1 ;
       }
-    } else {
-      return console.log('数据加载失败')
-    }
     // if(porp == 1) {
     //   upvoteVal = true
     // } else {

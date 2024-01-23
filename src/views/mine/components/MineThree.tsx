@@ -1,25 +1,18 @@
-import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import Feather from 'react-native-vector-icons/Feather';
-import { useTranslation, Trans } from 'react-i18next';
+import React from 'react';
 import LinearGradinet from 'react-native-linear-gradient';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import PersonalDataView from '../components/setup/PersonalData'
-import HomePageView from '../components/homepage'
 
 import {
-  Text,
-  StyleSheet,
-  Platform,
-  View,
-  ImageBackground,
+  Button,
   Dimensions,
   Image,
-  TextInput,
+  Platform,
   SafeAreaView,
-  TouchableOpacity,
   ScrollView,
-  Button
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';

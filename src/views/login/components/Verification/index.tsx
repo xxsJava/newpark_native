@@ -5,22 +5,22 @@
  * @FilePath: \newpark_native\src\views\login\components\Verification\index.tsx
  * @Description: desc
  */
-import React, {useEffect, useState} from 'react';
-import {VerificationScreenProps} from '../../../../config/routs';
+import React, { useEffect, useState } from 'react';
 import {
-  Text,
-  View,
   SafeAreaView,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from 'react-native';
+import { VerificationScreenProps } from '../../../../config/routs';
 // import {Button, useToast} from 'native-base';
-import { useToast, Button, ButtonSpinner, ButtonText, Toast } from '@gluestack-ui/themed';
-import Storage from '../../../../utils/AsyncStorageUtils';
-import {smsLoginApi} from '../../../../api/sys/lgoin';
-import {SmsLoginType} from '../../../../api/sys/lgoin/types';
+import { Button, ButtonSpinner, ButtonText, Toast, useToast } from '@gluestack-ui/themed';
+import { smsLoginApi } from '../../../../api/sys/lgoin';
+import { SmsLoginType } from '../../../../api/sys/lgoin/types';
 import { navigate } from '../../../../config/routs/NavigationContainer';
+import Storage from '../../../../utils/AsyncStorageUtils';
 
 const Verification: React.FC<VerificationScreenProps> = ({navigation}) => {
   //输入框状态

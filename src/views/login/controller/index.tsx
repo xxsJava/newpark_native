@@ -1,17 +1,17 @@
 /*
  * @Author: xxs
  * @Date: 2023-11-07 10:30:52
- * @LastEditTime: 2024-01-02 17:42:43
+ * @LastEditTime: 2024-01-23 18:07:04
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
  * @Description: desc
  */
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Storage from '../../../utils/AsyncStorageUtils';
-import LoginStacker from '../../../routes/stacker/Login';
+import { loginTokenApi } from '../../../api/sys/lgoin';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import {loginTokenApi} from '../../../api/sys/lgoin';
-import  DateTimeUtils  from '../../../utils/DateTimeUtils';
+import LoginStacker from '../../../routes/stacker/Login';
+import Storage from '../../../utils/AsyncStorageUtils';
+import DateTimeUtils from '../../../utils/DateTimeUtils';
 
 /*
  * @Author: xxs
@@ -37,7 +37,7 @@ const loginVal = async () => {
   }
 
   //token校验
-  const loginTokenAPI = await loginTokenApi(tokenStr);
+  const loginTokenAPI = await loginTokenApi();
   if (loginTokenAPI.code === 200) {
     console.log(loginTokenAPI.data);
   

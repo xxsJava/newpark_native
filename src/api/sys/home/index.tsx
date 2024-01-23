@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2024-01-02 11:34:24
- * @LastEditTime: 2024-01-02 11:43:46
+ * @LastEditTime: 2024-01-23 17:38:04
  * @FilePath: \newpark_native\src\api\sys\home\index.tsx
  * @Description: desc
  */
@@ -18,11 +18,10 @@ import { postListType,postLikeParam, postCommentsData } from './types'
  * 帖子列表api
  * @returns
  */
-export const postList = (token:string,data:postListType): Promise<IResponse> => {
+export const postList = (data:postListType): Promise<IResponse> => {
   return request.get({
     url: '/posts/postsApi',
-    params: data,
-    token:token
+    params: data
   });
 };
 
@@ -30,11 +29,10 @@ export const postList = (token:string,data:postListType): Promise<IResponse> => 
  * 点赞api
  * @returns
  */
-export const postLike = (token:string,data:postLikeParam): Promise<IResponse> => {
+export const postLike = (data:postLikeParam): Promise<IResponse> => {
   return request.post({
     url: '/posts-usr-like/postsUsrLikeApi',
-    data: data,
-    token:token
+    data: data
   });
 };
 
@@ -42,10 +40,9 @@ export const postLike = (token:string,data:postLikeParam): Promise<IResponse> =>
  * 评论api
  * @returns
  */
-export const postComments = (token:string,data:postCommentsData): Promise<IResponse> => {
+export const postComments = (data:postCommentsData): Promise<IResponse> => {
   return request.get({
     url: '/postsComments/postsCommentsApi',
-    params:data,
-    token:token
+    params:data
   });
 };

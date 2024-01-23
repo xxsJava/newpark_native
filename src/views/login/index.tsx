@@ -1,31 +1,29 @@
 //import {useNavigation} from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
-  Text,
-  StyleSheet,
-  View,
-  ImageBackground,
   Dimensions,
   Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, TextInput } from 'react-native-paper';
 import { LoginScreenProps } from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
-import * as Animatable from 'react-native-animatable';
 // import {useToast} from 'native-base';
-import { Toast, ToastTitle, useToast } from '@gluestack-ui/themed';
+import { Toast, useToast } from '@gluestack-ui/themed';
+import { Trans } from 'react-i18next';
+import { getOpenIMConfig } from '../../api/imApi';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
-import { useTranslation, Trans } from 'react-i18next';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
-import { forgetPass } from './controller';
 import { navigate } from '../../config/routs/NavigationContainer';
-import { getOpenIMConfig } from '../../api/IMAPI';
-import { loginIM } from '../../entity/LoginOpenIM';
-import DateTimeUtils from '../../utils/DateTimeUtils';
-import ClausePopup from '../../views/login/components/ClausePopup'
 import IMSDKRN from '../../plugins/IMSDKRN';
+import ClausePopup from '../../views/login/components/ClausePopup';
+import { forgetPass } from './controller';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -110,6 +108,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
       const openIMRes = await getOpenIMConfig(openIMConfig);
       console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+      Storage.set('openim-token',openIMRes.data.token);
       //oepnIm 登录
       IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
       //用户uid存本地
@@ -215,10 +214,17 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       }
 
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
-      const openIMRes = await getOpenIMConfig(openIMConfig);
-      console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+      let openImToken = await Storage.get("openim-token");
+
+      if(openImToken === null){
+        const openIMRes = await getOpenIMConfig(openIMConfig);
+        console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+        console.log('设置openim-token3---->',Storage.set('openim-token',openIMRes.data.token));
+        openImToken = await Storage.get("openim-token");
+      }
+      
       //oepnIm 登录
-      IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
+      IMSDKRN.login(loginAPI.data.uId, openImToken);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       navigate('LoginHome');

@@ -1,32 +1,30 @@
 // import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import {
-  Text,
-  StyleSheet,
-  View,
-  ImageBackground,
   Dimensions,
   Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Button, TextInput} from 'react-native-paper';
-import {LoginScreenProps} from '../../config/routs';
-import Storage from '../../utils/AsyncStorageUtils';
 import * as Animatable from 'react-native-animatable';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Button, TextInput } from 'react-native-paper';
+import { LoginScreenProps } from '../../config/routs';
+import Storage from '../../utils/AsyncStorageUtils';
 // import {useToast} from 'native-base';
-import {Toast, ToastTitle, useToast} from '@gluestack-ui/themed';
-import {loginApi, smsLoginApi} from '../../api/sys/lgoin';
-import {useTranslation, Trans} from 'react-i18next';
-import {SmsLoginType, UserLoginType} from '../../api/sys/lgoin/types';
-import {forgetPass} from './controller';
-import {navigate} from '../../config/routs/NavigationContainer';
-import {getOpenIMConfig} from '../../api/IMAPI';
-import { loginIM } from '../../entity/LoginOpenIM';
-import DateTimeUtils from '../../utils/DateTimeUtils';
-import ClausePopup from '../../views/login/components/ClausePopup'
+import { Toast, useToast } from '@gluestack-ui/themed';
+import { Trans } from 'react-i18next';
+import { getOpenIMConfig } from '../../api/imApi';
+import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
+import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
+import { navigate } from '../../config/routs/NavigationContainer';
 import IMSDKRN from '../../plugins/IMSDKRN';
+import ClausePopup from '../../views/login/components/ClausePopup';
+import { forgetPass } from './controller';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -105,7 +103,9 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       
       // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
       const openIMRes = await getOpenIMConfig(openIMConfig);
-      console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+      console.log('获取到Open-IM-token3---->', openIMRes.data.token);
+      
+      
       //oepnIm 登录
       IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
       //用户uid存本地

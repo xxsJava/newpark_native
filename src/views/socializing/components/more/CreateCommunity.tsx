@@ -5,10 +5,10 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Platform,Image,TextInput,TouchableOpacity,ScrollView } from "react-native";
-import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
+import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Appbar } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

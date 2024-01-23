@@ -5,17 +5,16 @@
  * @FilePath: \newpark_native\src\views\newpark\NewPatkView.tsx
  * @Description: desc
  */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
-  View,
   Dimensions,
-  StyleSheet,
-  SafeAreaView,
   Platform,
-  StatusBar
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  View
 } from 'react-native';
 import TabNav from './components';
-import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

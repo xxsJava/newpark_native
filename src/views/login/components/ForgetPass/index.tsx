@@ -1,46 +1,35 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2024-01-09 15:54:59
+ * @LastEditTime: 2024-01-23 18:06:25
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
-import React, {useEffect} from 'react';
-import {
-  Button,
-  DeviceEventEmitter,
-  NativeModules,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  NativeEventEmitter,
-} from 'react-native';
-import Alipay from '@uiw/react-native-alipay';
 import notifee, {
   AndroidImportance,
   AndroidStyle,
   AuthorizationStatus,
-  EventType,
   RepeatFrequency,
   TimestampTrigger,
-  TriggerType,
+  TriggerType
 } from '@notifee/react-native';
-import {getNotification} from '../../../../api/NotificationApi';
-import IMSDKRN from '../../../../plugins/IMSDKRN/ANDROIDSDK';
-import {rewardListApi} from '../../../../api/sys/reward';
-import {rewardListType} from '../../../../api/sys/reward/types';
-import {postComments, postList} from '../../../../api/sys/home';
-import LottieView from 'lottie-react-native';
-import {getGroupsInfo} from '../../../../api/IMAPI';
-import {ScrollView} from 'react-native-gesture-handler';
-import RNFS from 'react-native-fs';
-import DateTimeUtils from '../../../../utils/DateTimeUtils';
+import Alipay from '@uiw/react-native-alipay';
+import React from 'react';
 import {
-  createDirs,
+  Button,
+  StyleSheet,
+  View
+} from 'react-native';
+import { getNotification } from '../../../../api/notificationApi';
+import IMSDKRN from '../../../../plugins/IMSDKRN/ANDROIDSDK';
+
+import { postList } from '../../../../api/sys/home';
+import { rewardListType } from '../../../../api/sys/reward/types';
+import { INDEX_MSG_DIR, MSG_FILE_DIR } from '../../../../config/paramStatic';
+import {
   readFileData,
-  writeFileData,
+  writeFileData
 } from '../../../../utils/FilesUtiles';
-import {INDEX_MSG_DIR, MSG_FILE_DIR} from '../../../../config/paramStatic';
 Alipay.setAlipaySandbox(true);
 
 // var callManager = NativeModules.CallManager;
@@ -118,7 +107,7 @@ async function onDisplayNotification() {
 async function onNotificationRemote() {
   console.log('获取通知');
 
-  const notifStr = await getNotification('token_pr_newpark_ae9784cad54a970f');
+  const notifStr = await getNotification();
 
   console.log(notifStr);
 
@@ -204,13 +193,13 @@ const ForgetPass: React.FC = () => {
       <Button
         title="获取群组信息"
         onPress={async () => {
-          const groupParam = ['1944979969'];
+          // const groupParam = ['1944979969'];
 
-          const getGroup = await getGroupsInfo(
-            groupParam,
-            'token_pr_newpark_19f86bd4281dc1de',
-          );
-          console.log(getGroup);
+          // const getGroup = await getGroupsInfo(
+          //   groupParam,
+          //   'token_pr_newpark_19f86bd4281dc1de',
+          // );
+          // console.log(getGroup);
         }}
       />
 
@@ -254,7 +243,7 @@ const ForgetPass: React.FC = () => {
             pageNo: 1,
             pageSize: 5,
           };
-          const res = await postList('token_pr_newpark_6e67d5670f2359fb', data);
+          const res = await postList(data);
           console.log(res);
         }}
       />

@@ -5,12 +5,12 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Platform,Image, ScrollView,TouchableOpacity,TextInput } from "react-native";
-import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
-import {navigate} from '../../../../config/routs/NavigationContainer'
-import {useTranslation, Trans} from 'react-i18next';
-import StepBar from '../StepBar'
+import { Trans } from 'react-i18next';
+import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Appbar, Button, Icon } from 'react-native-paper';
 import { dateToMsgTime } from "../../../../components/Rests/TconTime";
+import { navigate } from '../../../../config/routs/NavigationContainer';
+import StepBar from '../StepBar';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

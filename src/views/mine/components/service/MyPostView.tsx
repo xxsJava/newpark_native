@@ -1,8 +1,8 @@
-import React, {Component, useState} from 'react';
-import { View,Text,StyleSheet,Dimensions,TouchableOpacity,ScrollView,Platform } from 'react-native';
-import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import React from 'react';
+import { Trans } from 'react-i18next';
+import { Dimensions, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Appbar } from 'react-native-paper';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const listData = [{
     index:1,

@@ -5,12 +5,12 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions, TouchableOpacity } from "react-native";
-import {Icon, IconButton, Avatar, Button} from 'react-native-paper';
-import { dateToMsgTime } from "../../../components/Rests/TconTime";
-import { postLikeParam } from "../../../api/sys/home/types";
-import Storage from "../../../utils/AsyncStorageUtils";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Avatar, Icon } from 'react-native-paper';
 import { postLike } from "../../../api/sys/home";
+import { postLikeParam } from "../../../api/sys/home/types";
+import { dateToMsgTime } from "../../../components/Rests/TconTime";
+import Storage from "../../../utils/AsyncStorageUtils";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -30,7 +30,7 @@ const CommentDetails = ({commenData}: any) => {
         const tokenStr = await Storage.get('usr-token');
         if(likeSelect1 == '0') {
             if(tokenStr != null) {
-                const comLikeUp = await postLike(tokenStr,comLikeParam);
+                const comLikeUp = await postLike(comLikeParam);
                 if(comLikeUp.data) {
                     setSelectLike1('1')
                     // setTlikeCount(tlikeCount+1)

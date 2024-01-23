@@ -4,18 +4,15 @@
  * 创建时间:2023/11/20 15:14:11
  */
 
-import React, {useState} from 'react';
-import { View,Text,StyleSheet,Dimensions,ScrollView,Platform,Image,TouchableOpacity, } from 'react-native';
-import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
-import {navigate} from '../../../../config/routs/NavigationContainer';
-import LinearGradinet from 'react-native-linear-gradient';
+import React from 'react';
+import { Trans } from 'react-i18next';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Appbar } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {useTranslation, Trans} from 'react-i18next';
-import { withDecay } from 'react-native-reanimated';
-import {rewardListApi} from '../../../../api/sys/reward'
-import {rewardListType} from '../../../../api/sys/reward/types'
-import ListView from './ListView'
-import Storage from '../../../../utils/AsyncStorageUtils';
+import { rewardListApi } from '../../../../api/sys/reward';
+import { rewardListType } from '../../../../api/sys/reward/types';
+import { navigate } from '../../../../config/routs/NavigationContainer';
+import ListView from './ListView';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -27,16 +24,10 @@ const rewardType: rewardListType = {
 };
 
 const RewardApi = async () => {
-    const tokenStr = await Storage.get('usr-token');
-    // console.log('悬赏token',tokenStr)
-    if(tokenStr != null) {
-      const rewardList = await rewardListApi(tokenStr,rewardType);
+      const rewardList = await rewardListApi(rewardType);
     //   rewardDataChange(rewardList.data)
     //   console.log('悬赏浏览',rewardList)
         // return rewardList.data
-    } else {
-      return console.log('数据加载失败')
-    }
 }
 
 const  HelpCircleView = () => {

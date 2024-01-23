@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 const windowWidth = Dimensions.get('window').width
 
 const StepBar = () => {

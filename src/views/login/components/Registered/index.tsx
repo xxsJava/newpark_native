@@ -6,27 +6,24 @@
  * @Description: 注册信息
  */
 
-import {RegisteredScreenProps} from '../../../../config/routs';
-import React, {useEffect, useRef, useState} from 'react';
+import LottieView from 'lottie-react-native';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  View,
+  Dimensions,
+  Image,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
-  Image,
-  Dimensions,
+  View,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import LottieView from 'lottie-react-native';
 import {
   Appbar,
-  IconButton,
-  Avatar,
   Button,
-  TextInput,
+  TextInput
 } from 'react-native-paper';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import { RegisteredScreenProps } from '../../../../config/routs';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

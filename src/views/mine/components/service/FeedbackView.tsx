@@ -1,13 +1,12 @@
-import React, {Component, useState} from 'react';
-import { View,StyleSheet,Dimensions,Platform,TextInput,Image,TouchableHighlight,TouchableOpacity } from 'react-native';
+import React, { Component, useState } from 'react';
+import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-animatable';
-import { Appbar} from 'react-native-paper';
+import { Appbar } from 'react-native-paper';
 // import { Input,TextArea,Divider } from "native-base";
-import { Center,Box, CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, CheckIcon } from '@gluestack-ui/themed';
-import {launchImageLibrary} from 'react-native-image-picker';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../../config/routs/NavigationContainer'
-import { any } from 'prop-types';
+import { CheckIcon, Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '@gluestack-ui/themed';
+import { Trans } from 'react-i18next';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -33,7 +32,7 @@ const groupList = [{
 
 const Photo = () => {
     // const [imgs, setImgs] = useState([])
-    const [imgList, setimgList] = useState([])
+    const [imgList, setimgList]:any = useState([])
 
     // const addPhoto = () => {
     //     launchImageLibrary({
@@ -60,19 +59,19 @@ const Photo = () => {
             // console.log('返回数据',res.assets)
             // console.log('赋值',imgList)
             // setimgList(res.assets)
-            const curFiles = res.assets;
+            let curFiles:any = res.assets;
             let result
             for(var i = 0; i < curFiles.length; i++){
               console.log(curFiles[i]);
               result=curFiles[i]
-              await setimgList([...imgList,curFiles[i]])
+              setimgList([...imgList, curFiles[i]])
             }   
             }
         )
     }
     return (
         <View style={styles.imageListView}>
-            {imgList.map(item =>{
+            {imgList.map((item:any) =>{
                 return(
                     <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}}/>
                 )

@@ -5,9 +5,9 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Platform,ScrollView,TextInput,TouchableOpacity,Image } from "react-native";
-import { Appbar,Avatar,IconButton,Button,Icon } from 'react-native-paper';
-import { weekList,dataList } from '../../mock/index'
+import { Dimensions, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Appbar, Button, Icon, IconButton } from 'react-native-paper';
+import { dataList, weekList } from '../../mock/index';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

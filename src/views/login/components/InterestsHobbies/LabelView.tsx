@@ -4,8 +4,8 @@
  * 创建时间:2023/11/17 15:57:11
  */
 
-import React, {useState} from 'react';
-import { View,Text,StyleSheet,Dimensions,ScrollView,Platform,TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Dimensions, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'react-native-animatable';
 
 const windowWidth = Dimensions.get('window').width;

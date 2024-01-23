@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { Trans } from 'react-i18next';
 import {
   Dimensions,
-  Text,
-  StyleSheet,
-  View,
   Image,
-  ScrollView,
   Platform,
-  TextInput
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
 } from 'react-native';
-import {Trans} from 'react-i18next';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Modal,TouchableOpacity } from "react-native";
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Button } from "react-native-paper";
 
 const ClausePopup = (props:any) => {

@@ -1,8 +1,8 @@
 /*
  * @Author: xxs
  * @Date: 2023-12-16 15:50:12
- * @LastEditTime: 2023-12-16 16:05:46
- * @FilePath: \newpark_native\src\api\NotificationApi\index.tsx
+ * @LastEditTime: 2024-01-23 17:59:27
+ * @FilePath: \newpark_native\src\api\notificationApi\index.tsx
  * @Description: desc
  */
 import request from '../../config/axios'
@@ -12,9 +12,8 @@ import request from '../../config/axios'
  * @param token 
  * @returns 
  */
-export const getNotification = (token:string)=>{
+export const getNotification = ()=>{
     return request.get({
         url: '/notice/noticeApi',
-        token: token
     });
 }

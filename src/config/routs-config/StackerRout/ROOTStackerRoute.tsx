@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2023-11-01 17:05:01
+ * @LastEditTime: 2024-01-23 11:34:06
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
@@ -14,7 +14,7 @@ import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
 import Gender from '../../../views/login/components/Gender/index';
 import InterestsHobbies from '../../../views/login/components/InterestsHobbies'
 import Verification from '../../../views/login/components/Verification';
-import passWord from '../../../views/login/passWord'
+// import passWord from '../../../views/login/passWord'
 import PaymentView from '../../../views/mine/components/oder/PaymentView';
 import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
 import ReviceCode from '../../../components/ReviceCode';
@@ -94,12 +94,12 @@ export default {
       headerStyle: StylesALL.BGCOLOR,
     },
   },
-  passWord:{
-    component: passWord,
-    options: {
-      headerShown: false,
-    },
-  },
+  // passWord:{
+  //   component: passWord,
+  //   options: {
+  //     headerShown: false,
+  //   },
+  // },
   Registered: {
     component: Registered,
     options: {

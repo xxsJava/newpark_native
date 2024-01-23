@@ -5,9 +5,8 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Image,TouchableOpacity,ScrollView,Platform } from "react-native";
-import {Appbar, Avatar, Button} from 'react-native-paper';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Appbar, Avatar, Button } from 'react-native-paper';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

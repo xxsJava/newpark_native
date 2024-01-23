@@ -1,17 +1,17 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
+import { Trans } from 'react-i18next';
 import {
   Dimensions,
-  Text,
-  StyleSheet,
-  View,
   Image,
   SafeAreaView,
-  TouchableOpacity
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
-import { Trans } from 'react-i18next';
-import CommunityModule from './CommunityModule';
+import BellView from '../../../components/Bell';
 import ChatModule from './ChatModule';
-import BellView from '../../../components/Bell'
+import CommunityModule from './CommunityModule';
 
 
 

@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import { View,StyleSheet,Dimensions,Platform,SafeAreaView,TouchableOpacity,Button,TouchableNativeFeedback,Image } from 'react-native';
+import React, { Component } from 'react';
+import { Trans } from 'react-i18next';
+import { Dimensions, Image, Platform, StyleSheet, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
 import { Appbar } from 'react-native-paper';
-import {useTranslation, Trans} from 'react-i18next';
 // import { Button } from 'react-native-paper';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

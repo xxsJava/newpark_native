@@ -5,11 +5,11 @@
  */
 
 import React, { useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView, Dimensions, Platform, Image, TextInput, KeyboardAvoidingView, ScrollView, Modal, Alert } from "react-native";
-import { Appbar, Avatar, IconButton, Button } from 'react-native-paper';
+import { Alert, Dimensions, Image, KeyboardAvoidingView, Modal, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import LinearGradinet from 'react-native-linear-gradient';
+import { Avatar, Button, IconButton } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { navigate } from '../../../../config/routs/NavigationContainer'
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

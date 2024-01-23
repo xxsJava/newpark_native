@@ -5,11 +5,11 @@
  * @FilePath: \newpark_native\src\views\mine\components\service\MyOrderView.tsx
  * @Description: desc
  */
-import React, {Component, useEffect} from 'react';
-import { View,Text,StyleSheet,Dimensions,TouchableOpacity,ScrollView,Platform } from 'react-native';
-import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import React, { useEffect } from 'react';
+import { Trans } from 'react-i18next';
+import { Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Appbar } from 'react-native-paper';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height

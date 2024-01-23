@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Modal, Portal, Text, Button, PaperProvider } from 'react-native-paper';
-import { View, Image, StyleSheet, Dimensions, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
+import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Modal, PaperProvider, Portal, Text } from 'react-native-paper';
 
 
 const windowHeight = Dimensions.get('window').height;
@@ -62,7 +62,7 @@ const MyComponent = () => {
                         {
                             list2.map(item => {
                                 return (
-                                    <View key={item.index} style={styles.mtlist}>
+                                    <View key={item.index}>
                                         <Image source={item.img} style={styles.mtImg}></Image>
                                         <Text>{item.text}</Text>
                                     </View>

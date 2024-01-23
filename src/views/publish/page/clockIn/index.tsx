@@ -5,10 +5,9 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,SafeAreaView,Platform,ScrollView,Image,TouchableOpacity } from "react-native";
-import { Appbar,Avatar,IconButton,Button,Icon } from 'react-native-paper';
-import { SharedTransition } from "react-native-reanimated";
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import { Dimensions, Image, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { IconButton } from 'react-native-paper';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

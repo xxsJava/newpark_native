@@ -4,24 +4,24 @@
  * 创建时间:2023/11/21 10:43:11
  */
 
-import React, {useState, useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
-    View,
-    Text,
-    Platform,
-    TextInput,
-    Image,
     Dimensions,
+    Image,
+    ImageSourcePropType,
+    Platform,
+    SafeAreaView,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
     TouchableOpacity,
-    ImageSourcePropType
+    View
 } from 'react-native';
-import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
 import LinearGradinet from 'react-native-linear-gradient';
+import { Appbar, Avatar, Button, IconButton } from 'react-native-paper';
 import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
-import {navigate} from '../../../config/routs/NavigationContainer';
+import { navigate } from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

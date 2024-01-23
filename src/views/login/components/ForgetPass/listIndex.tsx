@@ -1,14 +1,12 @@
 // import {useToast} from 'native-base';
 // import { useToast, Toast, ToastTitle } from '@gluestack-ui/themed';
-import React, {useState, useRef} from 'react';
+import React, { useRef, useState } from 'react';
 import {
-  View,
-  Text,
-  SectionList,
-  TouchableOpacity,
-  PanResponder,
   PanResponderInstance,
-  PixelRatio,
+  SectionList,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 type DataItem = string;

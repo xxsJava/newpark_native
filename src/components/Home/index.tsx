@@ -50,14 +50,9 @@ const HomeComponents = () => {
   const [postListData,setPostListData] = React.useState([])
 
   const PostsData = async () => {
-    const tokenStr = await Storage.get('usr-token');
-    if(tokenStr != null) {
-      const postListAPI = await postList(tokenStr,postType);
+      const postListAPI = await postList(postType);
       setPostListData(postListAPI.data)
       console.log('postVal',postListAPI)
-    } else {
-      return console.log('数据加载失败')
-    }
   }
 
   React.useEffect(() => {

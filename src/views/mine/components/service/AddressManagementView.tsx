@@ -3,11 +3,11 @@
  * 作者:cxr
  * 修改时间:2023/11/20 09:13:11
  */
-import React, {Component} from 'react';
-import { View,Text,StyleSheet,Dimensions,ScrollView,Platform } from 'react-native';
-import { Appbar,Avatar,IconButton,Tooltip,Button } from 'react-native-paper';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import React, { Component } from 'react';
+import { Trans } from 'react-i18next';
+import { Dimensions, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Appbar, Button, IconButton } from 'react-native-paper';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height

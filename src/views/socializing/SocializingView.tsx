@@ -5,20 +5,20 @@
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React, {Component,useState} from 'react';
-import Feather from 'react-native-vector-icons/Feather';
-import {Image, Text, View} from 'react-native-animatable';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useState } from 'react';
 import {
   Dimensions,
-  StyleSheet,
   SafeAreaView,
+  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {navigate} from '../../config/routs/NavigationContainer';
-import MessageModule from './components/MessageModule'
-import ContactsModul from './components/ContactsModul'
-import BellView from'../../components/Bell'
+import { Image, Text, View } from 'react-native-animatable';
+import Feather from 'react-native-vector-icons/Feather';
+import BellView from '../../components/Bell';
+import { navigate } from '../../config/routs/NavigationContainer';
+import ContactsModul from './components/ContactsModul';
+import MessageModule from './components/MessageModule';
 const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

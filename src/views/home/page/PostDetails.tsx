@@ -4,22 +4,28 @@
  * 创建时间:2023/11/23 17:58:11
  */
 
-import React from "react";
-import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,ScrollView,TextInput, KeyboardAvoidingView } from "react-native";
-import { Image } from "react-native-animatable";
-import {Appbar, Icon, IconButton, Avatar, Button} from 'react-native-paper';
-import {navigate} from '../../../config/routs/NavigationContainer';
-import {useTranslation, Trans} from 'react-i18next';
-import {commentData} from '../mock/index'
-import { dateToMsgTime } from "../../../components/Rests/TconTime";
+import React from 'react';
+import { Trans } from 'react-i18next';
+import {
+  Dimensions,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from 'react-native';
+import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
-import {postComments,postLike} from '../../../api/sys/home'
-import {postCommentsData,postLikeParam} from '../../../api/sys/home/types'
-import Storage from "../../../utils/AsyncStorageUtils";
-import CommentDetails from '../../../views/home/page/CommentDetails'
+import { postComments, postLike } from '../../../api/sys/home';
+import { postCommentsData, postLikeParam } from '../../../api/sys/home/types';
+import { dateToMsgTime } from '../../../components/Rests/TconTime';
+import { navigate } from '../../../config/routs/NavigationContainer';
+import CommentDetails from '../../../views/home/page/CommentDetails';
 
-const windowWidth = Dimensions.get('window').width
-const windowHeight = Dimensions.get('window').height
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 // const listData = [{
 //     index:1,
@@ -43,180 +49,221 @@ const windowHeight = Dimensions.get('window').height
 //     }]
 // }]
 
+const PostDetails = ({route}: any) => {
+  console.log('postsId', route.params.item.tid);
+  const commentsData: postCommentsData = {
+    pageNo: 1,
+    pageSize: 5,
+    postsId: route.params.item.tid,
+  };
 
-const PostDetails = ({route}:any) => {
-    console.log('postsId',route.params.item.tid)
-    const commentsData: postCommentsData = {
-        pageNo: 1,
-        pageSize: 5,
-        postsId: route.params.item.tid,
+  const postLikeParam: postLikeParam = {
+    likeTime: new Date().valueOf(),
+    comId: 0,
+    postsId: route.params.item.tid,
+    likeType: 1,
+  };
+  const [collectionSelect, setSelectCollection] = React.useState('0');
+  const [likeSelect, setSelectLike] = React.useState('0');
+  const [transmitSelect, setSelectTransmit] = React.useState('0');
+  const [likeSelect1, setSelectLike1] = React.useState('0');
+  const [tlikeCount, setTlikeCount] = React.useState(
+    route.params.item.tlikeCount,
+  );
+  const [inputUp, setInputUp] = React.useState(false);
+  const [editable, setEditable] = React.useState(false);
+  const [inputVal, setInputVal] = React.useState('');
+  const textInputRef:any = React.useRef(null);
+
+  const data = route.params.item;
+
+  console.log('单条帖子数据', route.params);
+  const onSelectPress = (prop: number) => {
+    if (prop == 1) {
+      collectionSelect == '0'
+        ? setSelectCollection('1')
+        : setSelectCollection('0');
+      console.log('返回值：', collectionSelect);
+    } else if (prop == 3) {
+      transmitSelect == '0' ? setSelectTransmit('1') : setSelectTransmit('0');
+    }
+  };
+
+  const inputPress = (porp: number) => {
+    if (porp == 1) {
+      setEditable(true);
+      textInputRef.current.focus();
+    } else {
+      setEditable(false);
+      textInputRef.current.blur();
+    }
+  };
+
+  const postLikePress = async () => {
+   
+    if (likeSelect == '0') {
+        const postLikeUp = await postLike( postLikeParam);
+        if (postLikeUp.data) {
+          setSelectLike('1');
+          setTlikeCount(tlikeCount + 1);
+        }
+        console.log('点赞返回', postLikeUp);
+
+    } else {
+      setSelectLike('0');
+      setTlikeCount(tlikeCount - 1);
+    }
+  };
+  const [postCommentsList, setPostCommentsList] = React.useState([]);
+  const PostsCommentsData = async () => {
+    const postCommentsAPI = await postComments(commentsData);
+    setPostCommentsList(postCommentsAPI.data);
+  };
+
+  const ComLikePress = async (prop1: any, prop2: any) => {
+    const comLikeParam: postLikeParam = {
+      likeTime: 1396189015737,
+      comId: prop2,
+      postsId: 0,
+      likeType: 1,
     };
+    
+    if (likeSelect == '0') {
 
-    const postLikeParam:postLikeParam = {
-        likeTime: new Date().valueOf(),
-        comId: 0,
-        postsId: route.params.item.tid,
-        likeType: 1
-    }
-    const [collectionSelect,setSelectCollection] =  React.useState('0')
-    const [likeSelect,setSelectLike] = React.useState('0')
-    const [transmitSelect,setSelectTransmit] = React.useState('0')
-    const [likeSelect1,setSelectLike1] = React.useState('0')
-    const [tlikeCount,setTlikeCount] = React.useState(route.params.item.tlikeCount)
-    const [inputUp,setInputUp] = React.useState(false)
-    const [editable,setEditable] = React.useState(false)
-    const [inputVal,setInputVal] = React.useState('')
-    const textInputRef = React.useRef(null);
-
-    const data = route.params.item
-
-    console.log('单条帖子数据',route.params)
-    const onSelectPress= (prop:number) => {
-        if(prop == 1) {
-            collectionSelect == '0' ? setSelectCollection('1'):setSelectCollection('0')
-            console.log('返回值：',collectionSelect)
-        } else if(prop == 3) {
-            transmitSelect == '0' ? setSelectTransmit('1'):setSelectTransmit('0')
+        const comLikeUp = await postLike( comLikeParam);
+        if (comLikeUp.data) {
+          setSelectLike1('1');
+          // setTlikeCount(tlikeCount+1)
         }
-        
+        console.log('点赞返回', comLikeUp);
+    } else {
+      setSelectLike1('0');
+      // setTlikeCount(tlikeCount-1)
     }
+  };
 
-    const inputPress = (porp:number) => {
-        if(porp == 1) {
-            setEditable(true)
-            textInputRef.current.focus();
-        } else {
-            setEditable(false)
-            textInputRef.current.blur();
-        }
-    }
-
-    const postLikePress = async () => {
-        const tokenStr = await Storage.get('usr-token');
-        if(likeSelect == '0') {
-            if(tokenStr != null) {
-                const postLikeUp = await postLike(tokenStr,postLikeParam);
-                if(postLikeUp.data) {
-                    setSelectLike('1')
-                    setTlikeCount(tlikeCount+1)
-                }
-                console.log('点赞返回',postLikeUp)
-              } else {
-                return console.log('数据加载失败')
-              }
-        } else {
-            setSelectLike('0')
-            setTlikeCount(tlikeCount-1)
-        }
-    }
-    const [postCommentsList,setPostCommentsList] = React.useState([])
-    const PostsCommentsData = async () => {
-        const tokenStr = await Storage.get('usr-token');
-        console.log('tokenStr',tokenStr)
-        if(tokenStr != null) {
-            const postCommentsAPI = await postComments(tokenStr,commentsData);
-            setPostCommentsList(postCommentsAPI.data)
-        } else {
-            return console.log('数据加载失败')
-        }
-    }
-
-    const ComLikePress = async (prop1:any,prop2:any) => {
-        const comLikeParam:postLikeParam = {
-            likeTime: 1396189015737,
-            comId: prop2,
-            postsId: 0,
-            likeType: 1
-        }
-        const tokenStr = await Storage.get('usr-token');
-        if(likeSelect == '0') {
-            if(tokenStr != null) {
-                const comLikeUp = await postLike(tokenStr,comLikeParam);
-                if(comLikeUp.data) {
-                    setSelectLike1('1')
-                    // setTlikeCount(tlikeCount+1)
-                }
-                console.log('点赞返回',comLikeUp)
-            } else {
-                return console.log('数据加载失败')
-            }
-        } else {
-            setSelectLike1('0')
-            // setTlikeCount(tlikeCount-1)
-        }
-    }
-
-    // PostsCommentsData()
-    React.useEffect(() => {
-        PostsCommentsData()
-      }, []); // 只在组件挂载时调用一次
-    return(
-        <View style={styles.parentView}>
-            <Appbar.Header style={styles.headerStyle}>
-                <Appbar.Action
-                    icon={require('../../../assets/images/chevron-left.png')}
-                    onPress={() => navigate('HomeStacker')}
-                />
-                <Text allowFontScaling={false} style={styles.headerText}>
-                    <Trans>navigationBar.title18</Trans>
+  // PostsCommentsData()
+  React.useEffect(() => {
+    PostsCommentsData();
+  }, []); // 只在组件挂载时调用一次
+  return (
+    <View style={styles.parentView}>
+      <Appbar.Header style={styles.headerStyle}>
+        <Appbar.Action
+          icon={require('../../../assets/images/chevron-left.png')}
+          onPress={() => navigate('HomeStacker')}
+        />
+        <Text allowFontScaling={false} style={styles.headerText}>
+          <Trans>navigationBar.title18</Trans>
+        </Text>
+        <Appbar.Action
+          icon={require('../../../assets/images/ellipsis_v.png')}
+        />
+      </Appbar.Header>
+      <View style={styles.contentView}>
+        <ScrollView style={styles.contentScroll}>
+          <View style={styles.postView}>
+            <View style={styles.postStyle}>
+              <View style={styles.avatarView}>
+                <Avatar.Image size={65} source={{uri: data.upath}} />
+              </View>
+              <View style={styles.avatarConent}>
+                <View style={styles.nameView}>
+                  <Text allowFontScaling={false} style={styles.nameText}>
+                    {data.unikname}
+                  </Text>
+                  <View style={styles.tabStyle}>
+                    <Icon
+                      size={15}
+                      color="#FFF"
+                      source={require('../../../assets/images/alimom/sex_icon1.png')}
+                    />
+                    <Text allowFontScaling={false} style={styles.tabText}>
+                      20
+                    </Text>
+                  </View>
+                </View>
+                <Text allowFontScaling={false} style={styles.timeText}>
+                  {dateToMsgTime(data.tlastTime)}
                 </Text>
-                <Appbar.Action
-                    icon={require('../../../assets/images/ellipsis_v.png')}
-                />
-            </Appbar.Header>
-            <View style={styles.contentView}>
-                <ScrollView style={styles.contentScroll}>
-                    <View style={styles.postView}>
-                        <View style={styles.postStyle}>
-                            <View style={styles.avatarView}>
-                                <Avatar.Image size={65} source={{uri:data.upath}}></Avatar.Image>
-                            </View>
-                            <View style={styles.avatarConent}>
-                                <View style={styles.nameView}>
-                                    <Text allowFontScaling={false} style={styles.nameText}>{data.unikname}</Text>
-                                    <View style={styles.tabStyle}>
-                                        <Icon size={15} color="#FFF" source={require('../../../assets/images/alimom/sex_icon1.png')}></Icon>
-                                        <Text allowFontScaling={false} style={styles.tabText}>20</Text>
-                                    </View>
-                                </View>
-                                <Text allowFontScaling={false} style={styles.timeText}>{dateToMsgTime(data.tlastTime)}</Text>
-                            </View>
-                            <View style={styles.avatarButton}>
-                                <Button style={styles.avatarButtonStyle} labelStyle={styles.avatarButtonText} onPress={() => console.log('点击关注')}>关注</Button>
-                            </View>
-                        </View>
-                        <View style={styles.postImage}>
-                            <Text allowFontScaling={false} style={styles.postText}>{data.ttitle}</Text>
-                            <WebView style={{height:150,width:windowWidth,marginHorizontal:30}} source={{html:data.tcontext}}></WebView>
-                            {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
-                        </View>
-                        <View style={styles.postBottom}>
-                            <Text allowFontScaling={false} style={styles.postBottomText}>浏览记录   502</Text>
-                            <View style={styles.heartView}>
-                                <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(1)}>
-                                    <Icon size={24} color={collectionSelect == '1' ? '#FC073B':'#ddd'} source={require('../../../assets/images/Favorite.png')}></Icon>
-                                </TouchableOpacity>
-                                <Text allowFontScaling={false} style={styles.heartText}> 2000</Text>
-                            </View>
-                            <View style={styles.heartView}>
-                                <TouchableOpacity style={styles.heartIcon} onPress={() => onSelectPress(3)}>
-                                    <Icon size={24} color={transmitSelect == '1'?'#6A1B9A':'#ddd'} source={require('../../../assets/images/transmit_icon.png')}></Icon>
-                                </TouchableOpacity>
-                                <Text allowFontScaling={false} style={styles.heartText}> {data.tforwardCount}</Text>
-                            </View>
-                            <View style={styles.heartView}>
-                                <TouchableOpacity style={styles.heartIcon} onPress={() => postLikePress()}>
-                                    <Icon size={24} color={likeSelect == '1' ? '#FABA3C':'#ddd'} source={require('../../../assets/images/Like-copy.png')}></Icon>
-                                </TouchableOpacity>
-                                <Text allowFontScaling={false} style={styles.heartText}> {tlikeCount}</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.postComment}>
-                        <View style={styles.scrollView}>
-                            <Text allowFontScaling={false} style={styles.commentTitle}>全部评论({postCommentsList.length})</Text>
-                            <CommentDetails commenData={postCommentsList}></CommentDetails>
-                            {/* <View style={styles.listStyle}>
+              </View>
+              <View style={styles.avatarButton}>
+                <Button
+                  style={styles.avatarButtonStyle}
+                  labelStyle={styles.avatarButtonText}
+                  onPress={() => console.log('点击关注')}>
+                  关注
+                </Button>
+              </View>
+            </View>
+            <View style={styles.postImage}>
+              <Text allowFontScaling={false} style={styles.postText}>
+                {data.ttitle}
+              </Text>
+              <WebView
+                style={{height: 150, width: windowWidth, marginHorizontal: 30}}
+                source={{html: data.tcontext}}
+              />
+              {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
+            </View>
+            <View style={styles.postBottom}>
+              <Text allowFontScaling={false} style={styles.postBottomText}>
+                浏览记录 502
+              </Text>
+              <View style={styles.heartView}>
+                <TouchableOpacity
+                  style={styles.heartIcon}
+                  onPress={() => onSelectPress(1)}>
+                  <Icon
+                    size={24}
+                    color={collectionSelect == '1' ? '#FC073B' : '#ddd'}
+                    source={require('../../../assets/images/Favorite.png')}
+                  />
+                </TouchableOpacity>
+                <Text allowFontScaling={false} style={styles.heartText}>
+                  {' '}
+                  2000
+                </Text>
+              </View>
+              <View style={styles.heartView}>
+                <TouchableOpacity
+                  style={styles.heartIcon}
+                  onPress={() => onSelectPress(3)}>
+                  <Icon
+                    size={24}
+                    color={transmitSelect == '1' ? '#6A1B9A' : '#ddd'}
+                    source={require('../../../assets/images/transmit_icon.png')}
+                  />
+                </TouchableOpacity>
+                <Text allowFontScaling={false} style={styles.heartText}>
+                  {' '}
+                  {data.tforwardCount}
+                </Text>
+              </View>
+              <View style={styles.heartView}>
+                <TouchableOpacity
+                  style={styles.heartIcon}
+                  onPress={() => postLikePress()}>
+                  <Icon
+                    size={24}
+                    color={likeSelect == '1' ? '#FABA3C' : '#ddd'}
+                    source={require('../../../assets/images/Like-copy.png')}
+                  />
+                </TouchableOpacity>
+                <Text allowFontScaling={false} style={styles.heartText}>
+                  {' '}
+                  {tlikeCount}
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.postComment}>
+            <View style={styles.scrollView}>
+              <Text allowFontScaling={false} style={styles.commentTitle}>
+                全部评论({postCommentsList.length})
+              </Text>
+              <CommentDetails commenData={postCommentsList} />
+              {/* <View style={styles.listStyle}>
                                 {postCommentsList.map(item => {
                                     return(
                                         <View style={styles.itemStyle} key={item.comId}>
@@ -252,360 +299,382 @@ const PostDetails = ({route}:any) => {
                                     )
                                 })}
                             </View> */}
-                        </View>
-                    </View>
-                </ScrollView>
             </View>
-            <View style={[styles.commentBottom,editable?styles.commentBottomUp:null]}>  
-                    <TouchableOpacity activeOpacity={1} style={[styles.commentInput,editable?{display:'none'}:null]} onPress={() => inputPress(1)}>
-                        <Text style={styles.commentInputText}>{inputVal!= ''?inputVal:'说两句'}</Text>
-                    </TouchableOpacity>
-                    <TextInput ref={textInputRef} value={inputVal} autoFocus={editable} allowFontScaling={false} placeholder='说两句' cursorColor='#FABA3C' onChangeText={text => setInputVal(text)} onSubmitEditing={() => inputPress(0)} style={[styles.bottomTextInput,editable?null:{display:'none'}]}></TextInput>
-                    <IconButton style={styles.commentInputImage} icon={require('../../../assets/images/send-icon.png')} onPress={() => console.log('点击发送')}></IconButton>
-            </View>
-            <TouchableOpacity style={[styles.CommentBox,editable?null:{display:'none'}]} onPress={() => inputPress(0)}></TouchableOpacity>
-        </View>
-    )
-}
+          </View>
+        </ScrollView>
+      </View>
+      <View
+        style={[
+          styles.commentBottom,
+          editable ? styles.commentBottomUp : null,
+        ]}>
+        <TouchableOpacity
+          activeOpacity={1}
+          style={[styles.commentInput, editable ? {display: 'none'} : null]}
+          onPress={() => inputPress(1)}>
+          <Text style={styles.commentInputText}>
+            {inputVal != '' ? inputVal : '说两句'}
+          </Text>
+        </TouchableOpacity>
+        <TextInput
+          ref={textInputRef}
+          value={inputVal}
+          autoFocus={editable}
+          allowFontScaling={false}
+          placeholder="说两句"
+          cursorColor="#FABA3C"
+          onChangeText={text => setInputVal(text)}
+          onSubmitEditing={() => inputPress(0)}
+          style={[styles.bottomTextInput, editable ? null : {display: 'none'}]}
+        />
+        <IconButton
+          style={styles.commentInputImage}
+          icon={require('../../../assets/images/send-icon.png')}
+          onPress={() => console.log('点击发送')}
+        />
+      </View>
+      <TouchableOpacity
+        style={[styles.CommentBox, editable ? null : {display: 'none'}]}
+        onPress={() => inputPress(0)}
+      />
+    </View>
+  );
+};
 
 export default PostDetails;
 
 const styles = StyleSheet.create({
-    parentView: {
-        width: windowWidth,
-        height: windowHeight,
-        position:'relative',
-    },
-    headerStyle: {
-        height: 45,
-        backgroundColor: '#faba3c',
-    },
-    headerText: {
-        width: '75%',
-        fontSize: 18,
-        color: '#FFF',
-        textAlign: 'center',
-    },
-    contentView:{
-        width:windowWidth,
-        ...Platform.select({
-            ios:{
-                height:windowHeight-145,
-            },
-            android:{
-                height:windowHeight-110,
-            }
-        })
-    },
-    contentScroll:{
-        flex:1
-    },
-    postView:{
-        width:windowWidth,
-        height:'auto',
-        borderRadius:20,
-        backgroundColor:'#FFF',
-    },
-    postStyle:{
-        width:windowWidth,
-        height:70,
-        marginTop:15,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-    },
-    avatarView:{
-        width:'20%',
-        height:70,
-        alignItems:'flex-end',
-        paddingTop:3,
-    },
-    avatarConent:{
-        width:'55%',
-        height:70,
-        paddingLeft:10,
-    },
-    nameView:{
-        height:40,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-    },
-    nameText:{
-        fontSize:16,
-        color:'#000',
-        lineHeight:40
-    },
-    tabStyle:{
-        width:60,
-        height:24,
-        borderRadius:12,
-        marginTop:10,
-        marginLeft:15,
-        alignItems:'center',
-        flexDirection:'row',
-        justifyContent:'center',
-        ...Platform.select({
-            ios: {
-              shadowColor: '#FF65B8',
-              shadowOffset: {width: 0, height: 0},
-              shadowOpacity: 1,
-              shadowRadius: 3.5,
-              backgroundColor:'#FF65B8',
-            },
-            android: {
-              shadowColor: '#FF00FF',
-              elevation: 9,
-              borderColor:'#ff93cd',
-              marginHorizontal:15,
-              marginVertical:10,
-              backgroundColor:'#ff74bf'
-              
-            },
-        }),
-    },
-    tabText:{
-        color:'#FFF',
-        fontWeight:'600',
-        lineHeight:24,
-        marginLeft:2,
-    },
-    timeText:{
-        fontSize:13,
-        height:30,
-        color:'#bbb'
-    },
-    avatarButton:{
-        width:'20%',
-        paddingTop:10,
-    },
-    avatarButtonStyle:{
-        width:80,
-        height:32,
-        borderRadius:6,
-        backgroundColor:'#FABA3C'
-    },
-    avatarButtonText:{
-        color:'#FFF',
-        fontSize:15,
-        fontWeight:'600',
-        lineHeight:16
-    },
-    postImage:{
-        width:windowWidth,
-        height:'auto',
-        paddingTop:20,
-    },
-    postText:{
-        height:30,
-        fontSize:15,
-        color:'#000',
-        textAlign:"center",
-        // paddingHorizontal:30,
-        lineHeight:20
-    },
-    postImageStyle:{
-        width:'84%',
-        height:160,
-        marginHorizontal:'8%',
-        marginVertical:5,
-        borderRadius:14,
-    },
-    postBottom:{
-        width:windowWidth,
-        height:50,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-    },
-    postBottomText:{
-        width:'48%',
-        fontSize:15,
-        color:'#999',
-        lineHeight:50,
-        paddingLeft:20,
-    },
-    heartIcon:{
-    },
-    heartView:{
-        width:'17%',
-        alignItems:'center',
-        flexDirection:'row',
-        justifyContent:'center',
-    },
-    heartText:{
-        fontSize:15,
-        color:'#ddd',
-        // lineHeight:50,
-    },
-    postComment:{
-        width:windowWidth,
-        height:'auto',
-        marginTop:20,
-        paddingBottom:20,
-        backgroundColor:'#FFF'
-    },
-    scrollView:{
-        width:windowWidth,
-        height:'74%',
-        paddingTop:5,
-    },
-    commentTitle:{
-        height:40,
-        fontSize:17,
-        color:'#000',
-        fontWeight:'600',
-        lineHeight:40,
-        paddingLeft:20,
-    },
+  parentView: {
+    width: windowWidth,
+    height: windowHeight,
+    position: 'relative',
+  },
+  headerStyle: {
+    height: 45,
+    backgroundColor: '#faba3c',
+  },
+  headerText: {
+    width: '75%',
+    fontSize: 18,
+    color: '#FFF',
+    textAlign: 'center',
+  },
+  contentView: {
+    width: windowWidth,
+    ...Platform.select({
+      ios: {
+        height: windowHeight - 145,
+      },
+      android: {
+        height: windowHeight - 110,
+      },
+    }),
+  },
+  contentScroll: {
+    flex: 1,
+  },
+  postView: {
+    width: windowWidth,
+    height: 'auto',
+    borderRadius: 20,
+    backgroundColor: '#FFF',
+  },
+  postStyle: {
+    width: windowWidth,
+    height: 70,
+    marginTop: 15,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  avatarView: {
+    width: '20%',
+    height: 70,
+    alignItems: 'flex-end',
+    paddingTop: 3,
+  },
+  avatarConent: {
+    width: '55%',
+    height: 70,
+    paddingLeft: 10,
+  },
+  nameView: {
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  nameText: {
+    fontSize: 16,
+    color: '#000',
+    lineHeight: 40,
+  },
+  tabStyle: {
+    width: 60,
+    height: 24,
+    borderRadius: 12,
+    marginTop: 10,
+    marginLeft: 15,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#FF65B8',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 1,
+        shadowRadius: 3.5,
+        backgroundColor: '#FF65B8',
+      },
+      android: {
+        shadowColor: '#FF00FF',
+        elevation: 9,
+        borderColor: '#ff93cd',
+        marginHorizontal: 15,
+        marginVertical: 10,
+        backgroundColor: '#ff74bf',
+      },
+    }),
+  },
+  tabText: {
+    color: '#FFF',
+    fontWeight: '600',
+    lineHeight: 24,
+    marginLeft: 2,
+  },
+  timeText: {
+    fontSize: 13,
+    height: 30,
+    color: '#bbb',
+  },
+  avatarButton: {
+    width: '20%',
+    paddingTop: 10,
+  },
+  avatarButtonStyle: {
+    width: 80,
+    height: 32,
+    borderRadius: 6,
+    backgroundColor: '#FABA3C',
+  },
+  avatarButtonText: {
+    color: '#FFF',
+    fontSize: 15,
+    fontWeight: '600',
+    lineHeight: 16,
+  },
+  postImage: {
+    width: windowWidth,
+    height: 'auto',
+    paddingTop: 20,
+  },
+  postText: {
+    height: 30,
+    fontSize: 15,
+    color: '#000',
+    textAlign: 'center',
+    // paddingHorizontal:30,
+    lineHeight: 20,
+  },
+  postImageStyle: {
+    width: '84%',
+    height: 160,
+    marginHorizontal: '8%',
+    marginVertical: 5,
+    borderRadius: 14,
+  },
+  postBottom: {
+    width: windowWidth,
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  postBottomText: {
+    width: '48%',
+    fontSize: 15,
+    color: '#999',
+    lineHeight: 50,
+    paddingLeft: 20,
+  },
+  heartIcon: {},
+  heartView: {
+    width: '17%',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  heartText: {
+    fontSize: 15,
+    color: '#ddd',
+    // lineHeight:50,
+  },
+  postComment: {
+    width: windowWidth,
+    height: 'auto',
+    marginTop: 20,
+    paddingBottom: 20,
+    backgroundColor: '#FFF',
+  },
+  scrollView: {
+    width: windowWidth,
+    height: '74%',
+    paddingTop: 5,
+  },
+  commentTitle: {
+    height: 40,
+    fontSize: 17,
+    color: '#000',
+    fontWeight: '600',
+    lineHeight: 40,
+    paddingLeft: 20,
+  },
 
-    listStyle:{
-        width:windowWidth,
-        paddingTop:5,
-    },
-    itemStyle:{
-        width:windowWidth-50,
-        height:'auto',
-        marginTop:5,
-        marginHorizontal:25,
-    },
-    commentAvatarView:{
-        width:'100%',
-        height:60,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-    },
-    itemAvatar:{
-        width:'20%',
-        alignItems:'center',
-    },
-    itemNameView:{
-        width:'55%',
-    },
-    itemName:{
-        fontSize:16,
-        color:'#000',
-        lineHeight:35
-    },
-    itemTime:{
-        fontSize:13,
-        color:'#aaa'
-    },
-    itemIconView:{
-        width:'25%',
-        paddingTop:15,
-        flexDirection:'row',
-        justifyContent:'flex-end',
-    },
-    itemIconText:{
-        fontSize:15,
-        color:'#ddd',
-        lineHeight:25
-    },
-    itemContent:{
-        marginLeft:'20%',
-        marginRight:15,
-        paddingBottom:10,
-        borderBottomWidth:1,
-        borderColor:'#aaa',
-        // backgroundColor:'red'
-    },
-    itemContentText:{
-        fontSize:15,
-        color:'#000',
-        marginTop:5,
-        marginBottom:5
-    },
-    itemComment:{
-        width:'100%',
-        height:'auto',
-        marginTop:5,
-        paddingVertical:10,
-        paddingHorizontal:15,
-        borderRadius:8,
-        backgroundColor:'#F7F7FA'
-    },
-    commentArea:{
-        fontSize:16,
-        color:'#999',
-        fontWeight:'600'
-    },
-    commentAreaText:{
-        fontSize:14,
-        color:'#000',
-        fontWeight:'500',
-    },
+  listStyle: {
+    width: windowWidth,
+    paddingTop: 5,
+  },
+  itemStyle: {
+    width: windowWidth - 50,
+    height: 'auto',
+    marginTop: 5,
+    marginHorizontal: 25,
+  },
+  commentAvatarView: {
+    width: '100%',
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  itemAvatar: {
+    width: '20%',
+    alignItems: 'center',
+  },
+  itemNameView: {
+    width: '55%',
+  },
+  itemName: {
+    fontSize: 16,
+    color: '#000',
+    lineHeight: 35,
+  },
+  itemTime: {
+    fontSize: 13,
+    color: '#aaa',
+  },
+  itemIconView: {
+    width: '25%',
+    paddingTop: 15,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  itemIconText: {
+    fontSize: 15,
+    color: '#ddd',
+    lineHeight: 25,
+  },
+  itemContent: {
+    marginLeft: '20%',
+    marginRight: 15,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderColor: '#aaa',
+    // backgroundColor:'red'
+  },
+  itemContentText: {
+    fontSize: 15,
+    color: '#000',
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  itemComment: {
+    width: '100%',
+    height: 'auto',
+    marginTop: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 8,
+    backgroundColor: '#F7F7FA',
+  },
+  commentArea: {
+    fontSize: 16,
+    color: '#999',
+    fontWeight: '600',
+  },
+  commentAreaText: {
+    fontSize: 14,
+    color: '#000',
+    fontWeight: '500',
+  },
 
+  commentBottom: {
+    width: windowWidth,
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    paddingHorizontal: 25,
+    // padding: 24,
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 40,
+    justifyContent: 'flex-start',
+    ...Platform.select({
+      ios: {
+        height: 85,
+        shadowColor: '#ddd',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 1,
+        shadowRadius: 2.5,
+      },
+      android: {
+        height: 70,
+        elevation: 8,
+      },
+    }),
+  },
 
-    commentBottom:{
-        width:windowWidth,
-        backgroundColor:'#FFF',
-        flexDirection:'row',
-        paddingHorizontal:25,
-        // padding: 24,
-        position:'absolute',
-        bottom:0,
-        zIndex:40,
-        justifyContent:'flex-start',
-        ...Platform.select({
-            ios:{
-                height:85,
-                shadowColor: '#ddd',
-                shadowOffset: {width: 0, height: 0},
-                shadowOpacity: 1,
-                shadowRadius: 2.5,
-            },
-            android:{
-                height:70,
-                elevation: 8,
-            }
-        }),
-    },
+  commentBottomUp: {
+    bottom: 280,
+  },
 
-    commentBottomUp:{
-        bottom:280
-    },
-
-    commentInput:{
-        width:'89%',
-        height:42,
-        borderRadius:20,
-        marginVertical:9,
-        paddingHorizontal:25,
-        backgroundColor:'#F7F7FA',
-    },
-    commentInputText:{
-        fontSize:14,
-        color:'#777',
-        lineHeight:42
-    },
-    commentInputImage:{
-        width:35,
-        height:35,
-        marginVertical:15,
-        marginLeft:11
-    },
-    bottomTextInput:{
-        width:'89%',
-        height:42,
-        borderRadius:20,
-        marginVertical:9,
-        paddingHorizontal:25,
-        backgroundColor:'#F7F7FA',
-        ...Platform.select({
-        })
-    },
-    bottomIconView:{
-        paddingTop:15,
-        marginLeft:10,
-    },
-    bottomIcon:{
-        width:32,
-        height:32
-    },
-    CommentBox:{
-        position:'absolute',
-        width:windowWidth,
-        height:windowHeight,
-        backgroundColor:'#000',
-        zIndex:20,
-        opacity: 0.3,
-    }
-})
+  commentInput: {
+    width: '89%',
+    height: 42,
+    borderRadius: 20,
+    marginVertical: 9,
+    paddingHorizontal: 25,
+    backgroundColor: '#F7F7FA',
+  },
+  commentInputText: {
+    fontSize: 14,
+    color: '#777',
+    lineHeight: 42,
+  },
+  commentInputImage: {
+    width: 35,
+    height: 35,
+    marginVertical: 15,
+    marginLeft: 11,
+  },
+  bottomTextInput: {
+    width: '89%',
+    height: 42,
+    borderRadius: 20,
+    marginVertical: 9,
+    paddingHorizontal: 25,
+    backgroundColor: '#F7F7FA',
+    ...Platform.select({}),
+  },
+  bottomIconView: {
+    paddingTop: 15,
+    marginLeft: 10,
+  },
+  bottomIcon: {
+    width: 32,
+    height: 32,
+  },
+  CommentBox: {
+    position: 'absolute',
+    width: windowWidth,
+    height: windowHeight,
+    backgroundColor: '#000',
+    zIndex: 20,
+    opacity: 0.3,
+  },
+});

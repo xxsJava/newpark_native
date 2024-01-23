@@ -1,27 +1,23 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  View,
-  Text,
-  Platform,
   Dimensions,
-  StyleSheet,
-  TouchableOpacity,
   FlatList,
   Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import LinearGradinet from 'react-native-linear-gradient';
-import {navigate} from '../../../config/routs/NavigationContainer';
-import {getGroupsInfo} from '../../../api/IMAPI';
-import Storage from '../../../utils/AsyncStorageUtils';
-import {DeviceEvent} from '../../../config/listener';
-import {isFile, readFileData, writeFileData} from '../../../utils/FilesUtiles';
+import { getGroupsInfo } from '../../../api/imApi';
+import { DeviceEvent } from '../../../config/listener';
 import {
   GROUP_MSG_DIR,
   INDEX_MSG_DIR,
   PRITIVE_MSG_DIR,
 } from '../../../config/paramStatic';
-import {any} from 'prop-types';
+import { navigate } from '../../../config/routs/NavigationContainer';
+import { isFile, readFileData, writeFileData } from '../../../utils/FilesUtiles';
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -44,10 +40,7 @@ const ListIndex: React.FC = () => {
         let stringArray: string[] = [];
         stringArray.push(msg.groupID);
         console.log('群组数据1----->', stringArray);
-        const groupInfo = await getGroupsInfo(
-          stringArray,
-          await Storage.get('usr-token'),
-        );
+        const groupInfo = await getGroupsInfo(stringArray);
         console.log('群组消息数据----->', groupInfo.data.groupInfos);
         // setData(groupInfo.data.groupInfos);
         Object.assign(newObj, msg, groupInfo.data.groupInfos[0]);
@@ -129,7 +122,12 @@ const ListIndex: React.FC = () => {
 
   const renderItem = ({item}: {item: DataItem}) => (
     <TouchableOpacity
-      onPress={() => navigate('CheckRoute', {id: item.stateMsg===2?item.groupID:item.sendID,type:item.stateMsg})}
+      onPress={() =>
+        navigate('CheckRoute', {
+          id: item.stateMsg === 2 ? item.groupID : item.sendID,
+          type: item.stateMsg,
+        })
+      }
       style={[
         styles.listItem,
         {

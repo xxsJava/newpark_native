@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,Image } from "react-native";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

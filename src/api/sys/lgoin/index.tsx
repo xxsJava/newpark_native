@@ -25,10 +25,9 @@ export const loginApi = (data: UserLoginType): Promise<IResponse> => {
  * @param token 
  * @returns 
  */
-export const loginTokenApi = (token:string) : Promise<IResponse> => {
+export const loginTokenApi = () : Promise<IResponse> => {
   return request.post({
-    url: '/usr/loginToken',
-    token: token
+    url: '/usr/loginToken'
   });
 }
 

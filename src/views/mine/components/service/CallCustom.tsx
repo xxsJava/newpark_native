@@ -1,8 +1,7 @@
-import React, { Component, useState } from 'react'
-import { Text, StyleSheet, View, Image, SafeAreaView, ScrollView, TouchableOpacity, TextInput,KeyboardAvoidingView,Platform} from 'react-native'
-import { Appbar, Avatar, IconButton } from 'react-native-paper';
-import { navigate } from '../../../../config/routs/NavigationContainer';
-import DashLine from 'rn-dashline';
+import React from 'react';
+import { Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Appbar } from 'react-native-paper';
+// import DashLine from 'rn-dashline';
 
 const CallCustom = ({ navigation }: any) => {
     // const [tabVal, setTab] = useState('tab1');
@@ -74,7 +73,7 @@ const CallCustom = ({ navigation }: any) => {
                         <Text>请问您想问这些问题吗～</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
-                        <DashLine style={{ flex: 1, margin: 5 }} lineWidth={1} />
+                        {/* <DashLine style={{ flex: 1, margin: 5 }} lineWidth={1} /> */}
                     </View>
                     <View style={styles.tit}>
                         <View style={styles.littit}>

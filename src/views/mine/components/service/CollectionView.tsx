@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions, Platform} from 'react-native';
-import {Text} from 'react-native-animatable';
-import {Appbar, RadioButton} from 'react-native-paper';
+import React from 'react';
+import { Trans } from 'react-i18next';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../../config/routs/NavigationContainer';
+import { Appbar, RadioButton } from 'react-native-paper';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

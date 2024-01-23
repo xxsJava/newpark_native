@@ -4,13 +4,13 @@
  * 创建时间:2023/11/16 16:26:11
  */
 
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, Dimensions,Platform, TextInput} from 'react-native';
-import {Appbar,Button} from 'react-native-paper';
-import IndexTable from './IndexTableView'
-import {useTranslation, Trans} from 'react-i18next';
-import {RegisteredScreenProps} from '../../../../config/routs';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import React from 'react';
+import { Trans } from 'react-i18next';
+import { Dimensions, Platform, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Appbar, Button } from 'react-native-paper';
+import { RegisteredScreenProps } from '../../../../config/routs';
+import { navigate } from '../../../../config/routs/NavigationContainer';
+import IndexTable from './IndexTableView';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

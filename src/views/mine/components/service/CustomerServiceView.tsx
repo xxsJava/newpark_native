@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { Dimensions, Image, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-animatable';
-import { navigate } from '../../../../config/routs/NavigationContainer'
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

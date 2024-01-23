@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import { View,Text,SafeAreaView,StyleSheet,Dimensions,ImageBackground,Platform,ScrollView,TouchableOpacity,Image } from 'react-native';
-import { Avatar,IconButton } from 'react-native-paper';
+import React, { Component } from 'react';
+import { Dimensions, Image, ImageBackground, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Avatar, IconButton } from 'react-native-paper';
 // import { Checkbox } from "native-base";
-import { Center,Box, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, CheckIcon } from '@gluestack-ui/themed';
-import LinearGradinet from 'react-native-linear-gradient';
+import { CheckIcon, Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '@gluestack-ui/themed';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import {navigate} from '../../../../config/routs/NavigationContainer';
+import LinearGradinet from 'react-native-linear-gradient';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height

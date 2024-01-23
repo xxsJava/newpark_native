@@ -1,22 +1,14 @@
 
-import React, { useState, useEffect, Component } from 'react';
-import { Appbar, Avatar, IconButton, Switch } from 'react-native-paper';
+import React, { Component } from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
-    View,
-    Text,
-    Platform,
-    TextInput,
-    Button,
-    Image,
     Dimensions,
-    ImageSourcePropType,
-    KeyboardAvoidingView,
-    TouchableOpacity
+    Image,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
-import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
+import { Appbar, Avatar, Switch } from 'react-native-paper';
 import { navigate } from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
@@ -26,8 +18,8 @@ interface switchListType {
     TiTle:string,
     key:string
 }
-export default class ObjCard extends Component{
-    switchList: { TiTle: string; key: string; }[];
+export default class ObjCard<T> extends Component{
+    switchList: { TiTle: string; key: string; }[] | any;
     constructor(props: any) {
         super(props);
         this.state = {

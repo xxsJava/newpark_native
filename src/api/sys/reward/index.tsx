@@ -12,10 +12,9 @@ import {rewardListType} from './types'
  * 悬赏浏览api
  * @returns
  */
-export const rewardListApi = (token:string,data:rewardListType): Promise<IResponse> => {
+export const rewardListApi = (data:rewardListType): Promise<IResponse> => {
     return request.get({
       url: '/reward/rewardApi',
-      params: data,
-      token: token
+      params: data
     });
   };

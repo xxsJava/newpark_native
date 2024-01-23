@@ -1,20 +1,17 @@
 // import {useToast} from 'native-base';
-import {Toast, useToast} from '@gluestack-ui/themed';
-import React, {useState, useRef, Component, useEffect} from 'react';
+import { Toast, useToast } from '@gluestack-ui/themed';
+import React, { useRef, useState } from 'react';
 import {
-  Button,
-  View,
-  Text,
-  Platform,
   Dimensions,
-  StyleSheet,
-  SectionList,
-  TouchableOpacity,
   PanResponderInstance,
+  Platform,
+  SectionList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
-import {navigate} from '../../../config/routs/NavigationContainer';
-import {any} from 'prop-types';
+import { navigate } from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;

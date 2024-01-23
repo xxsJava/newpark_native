@@ -3,14 +3,13 @@
  * 作者:cxr
  * 创建时间:2023/11/17 11:02:11
  */
-import React, {useState} from 'react';
-import { View,Text,StyleSheet,Dimensions,ScrollView,Platform,TouchableOpacity } from 'react-native';
-import { Image } from 'react-native-animatable';
-import {Appbar,Button,Chip} from 'react-native-paper';
-import LabelViwe from './LabelView'
-import {useTranslation, Trans} from 'react-i18next';
-import {RegisteredScreenProps} from '../../../../config/routs';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import React from 'react';
+import { Trans } from 'react-i18next';
+import { Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Appbar, Button } from 'react-native-paper';
+import { RegisteredScreenProps } from '../../../../config/routs';
+import { navigate } from '../../../../config/routs/NavigationContainer';
+import LabelViwe from './LabelView';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

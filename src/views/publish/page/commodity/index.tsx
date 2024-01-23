@@ -4,13 +4,12 @@
  * 修改时间:2023/12/05 9:17:11
  */
 
-import { node } from "prop-types";
-import React,{ Component, useRef } from "react";
-import { View,Text,StyleSheet,Dimensions,TextInput,Platform,Image,TouchableOpacity,TouchableHighlight } from "react-native";
-import { Appbar,Avatar,IconButton,Button } from 'react-native-paper';
-import {launchImageLibrary} from 'react-native-image-picker';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import React from "react";
+import { Trans } from 'react-i18next';
+import { Dimensions, Image, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { launchImageLibrary } from 'react-native-image-picker';
+import { Appbar, Button } from 'react-native-paper';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -28,7 +27,7 @@ const modeList = [{
 
 const Photo = () => {
     // const [imgs, setImgs] = useState([])
-    const [imgList, setimgList] = React.useState([])
+    const [imgList, setimgList]:any = React.useState([])
 
     // const addPhoto = () => {
     //     launchImageLibrary({
@@ -55,7 +54,7 @@ const Photo = () => {
             // console.log('返回数据',res.assets)
             // console.log('赋值',imgList)
             // setimgList(res.assets)
-            const curFiles = res.assets;
+            let curFiles:any = res.assets;
             let result
             for(var i = 0; i < curFiles.length; i++){
               console.log(curFiles[i]);
@@ -68,7 +67,7 @@ const Photo = () => {
     }
     return (
         <View style={styles.imageListView}>
-            {imgList.map(item =>{
+            {imgList.map((item:any) =>{
                 return(
                     <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}}/>
                 )

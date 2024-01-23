@@ -1,18 +1,18 @@
 import React from 'react';
 import {
-  View,
   Dimensions,
-  StyleSheet,
-  SafeAreaView,
   Image,
-  TextInput,
   Platform,
+  SafeAreaView,
   ScrollView,
-  TouchableOpacity
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native';
-import {Text} from 'react-native-animatable';
-import Entypo from 'react-native-vector-icons/Entypo';
+import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
+import Entypo from 'react-native-vector-icons/Entypo';
 // import {navigate} from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;

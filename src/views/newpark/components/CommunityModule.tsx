@@ -1,17 +1,17 @@
 import React from 'react';
 import {
   Dimensions,
-  Text,
-  StyleSheet,
-  View,
   Image,
-  ScrollView,
   Platform,
-  TouchableOpacity
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import LinearGradinet from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
-import {navigate} from '../../../config/routs/NavigationContainer'
+import { navigate } from '../../../config/routs/NavigationContainer';
 
 
 

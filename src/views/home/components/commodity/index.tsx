@@ -6,19 +6,18 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
   Dimensions,
-  ScrollView,
   Image,
   Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View
 } from 'react-native';
-import {Appbar, Icon, IconButton, Avatar} from 'react-native-paper';
-import { navigate } from '../../../../config/routs/NavigationContainer';
+import { Appbar, Avatar, Icon } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const typeData = [
   {

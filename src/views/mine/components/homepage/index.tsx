@@ -5,11 +5,10 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,ScrollView,TouchableOpacity,Dimensions,Platform,Image } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { Trans } from 'react-i18next';
+import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Feather from 'react-native-vector-icons/Feather';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../../config/routs/NavigationContainer';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

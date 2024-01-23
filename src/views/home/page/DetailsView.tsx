@@ -5,25 +5,23 @@
  */
 
 import React, { useState } from 'react';
+import { Trans } from 'react-i18next';
 import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
+  Alert,
   Dimensions,
   Image,
-  Platform,
-  TouchableOpacity,
   Modal,
-  Alert,
-  TouchableHighlight
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
+import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
-import { Appbar, Icon, IconButton, Avatar, Button } from 'react-native-paper';
-import { navigate } from '../../../config/routs/NavigationContainer';
-import { useTranslation, Trans } from 'react-i18next';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { navigate } from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

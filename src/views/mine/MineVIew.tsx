@@ -5,30 +5,25 @@
  * @FilePath: \newpark_native\src\components\Home\index.tsx
  * @Description: Home 页菜单
  */
-import React, {Component} from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import Feather from 'react-native-vector-icons/Feather';
-import {useTranslation, Trans} from 'react-i18next';
+import React, { Component } from 'react';
+import { Trans } from 'react-i18next';
 import LinearGradinet from 'react-native-linear-gradient';
-import {navigate} from '../../config/routs/NavigationContainer';
-import PersonalDataView from './components/setup/PersonalData'
-import HomePageView from './components/homepage'
-import BellView from'../../components/Bell/index'
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import BellView from '../../components/Bell/index';
+import { navigate } from '../../config/routs/NavigationContainer';
+import HomePageView from './components/homepage';
 // 1
-import Clipboard from '@react-native-clipboard/clipboard';
 import {
-  Text,
-  StyleSheet,
-  Platform,
-  View,
-  ImageBackground,
+  Button,
   Dimensions,
   Image,
-  TextInput,
+  Platform,
   SafeAreaView,
-  TouchableOpacity,
   ScrollView,
-  Button
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';

@@ -5,10 +5,10 @@
  * @FilePath: \newpark_native\src\views\home\HomeView.tsx
  * @Description: 推荐 Home展示页
  */
-import React, {Component} from 'react';
-import HomeNav from '../../components/Nav';
+import React, { Component } from 'react';
+import BellView from '../../components/Bell';
 import HomeComponents from '../../components/Home';
-import BellView from'../../components/Bell'
+import HomeNav from '../../components/Nav';
 
 export default class HomeView extends Component {
   

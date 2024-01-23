@@ -5,12 +5,12 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Platform,TouchableOpacity,TextInput } from "react-native";
+import { Trans } from 'react-i18next';
+import { Dimensions, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Image } from "react-native-animatable";
-import { Appbar,Avatar,IconButton,Button } from 'react-native-paper';
+import { Appbar, IconButton } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../../config/routs/NavigationContainer'
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

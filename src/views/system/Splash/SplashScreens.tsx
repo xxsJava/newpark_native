@@ -1,24 +1,24 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2023-11-07 10:53:05
+ * @LastEditTime: 2024-01-23 17:22:37
  * @FilePath: \newpark_native\src\views\system\Splash\SplashScreens.tsx
  * @Description: desc
  */
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Text,
-  StyleSheet,
-  View,
-  ImageBackground,
   Image,
-  TouchableOpacity,
+  ImageBackground,
   SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import StylesALL from '../../../styles';
 import * as Animatable from 'react-native-animatable';
-import IsLogin from '../../login/controller';
 import StatusBar from '../../../components/StatusBar';
+import StylesALL from '../../../styles';
+import IsLogin from '../../login/controller';
 
 const Splashs= () => {
   const [count, setCount] = useState(3);

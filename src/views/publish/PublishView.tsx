@@ -15,15 +15,13 @@
 //   useDisclose,
 //   useToast,
 // } from 'native-base';
-import * as Animatable from 'react-native-animatable';
-import { IconButton } from 'react-native-paper';
-import { Center,Box } from '@gluestack-ui/themed';
-import React, {Component, useRef, useState} from 'react';
-import {Text, StyleSheet, View, Button, Animated, TouchableOpacity, Easing, Dimensions} from 'react-native';
-import {loginOutApi} from '../../api/sys/lgoin';
-import Storage from '../../utils/AsyncStorageUtils';
-import {navigate} from '../../config/routs/NavigationContainer';
+import { Box, Center } from '@gluestack-ui/themed';
+import React, { Component, useRef } from 'react';
+import { Animated, Button, Dimensions, StyleSheet, Text, View } from 'react-native';
+import { loginOutApi } from '../../api/sys/lgoin';
 import BellView from '../../components/Bell';
+import { navigate } from '../../config/routs/NavigationContainer';
+import Storage from '../../utils/AsyncStorageUtils';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 

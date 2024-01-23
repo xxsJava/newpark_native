@@ -5,9 +5,9 @@
  */
 
 import React from "react";
-import { View,Text,StyleSheet,Dimensions,Image,ScrollView } from "react-native";
-import { Appbar,Avatar,IconButton,Button } from 'react-native-paper';
-import {navigate} from '../../../config/routs/NavigationContainer';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Appbar, Avatar, Button } from 'react-native-paper';
+import { navigate } from '../../../config/routs/NavigationContainer';
 import StepBar from "../components/StepBar";
 
 const windowWidth = Dimensions.get('window').width;
