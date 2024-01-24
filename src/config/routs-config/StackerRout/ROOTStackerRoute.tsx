@@ -225,13 +225,18 @@ export default {
   AfterSalesRoute: {
     component: AfterSalesView,
     options: {
-      title: '我的订单',
+      title: '我的订单'
     },
   },
   CustomerServiceRoute: {
     component: CustomerServiceView,
     options: {
+<<<<<<< Updated upstream
       title: '联系客服',
+=======
+      title: '新园客服',
+      headerShown: false,
+>>>>>>> Stashed changes
     },
   },
   MemberServicesRoute: {

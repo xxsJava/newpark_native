@@ -56,6 +56,7 @@ const ClockInView = () => {
                         <View style={styles.imageView}>
                             <Text allowFontScaling={false} style={styles.imageTime}>17:31:49</Text>
                             <View style={styles.imageBg}>
+                                
                                 <Image style={styles.imageStyle} source={require('../../../../assets/gif/Animation2.gif')}></Image>
                             </View>
                             <Text allowFontScaling={false} style={styles.imageText}>考勤打卡</Text>
