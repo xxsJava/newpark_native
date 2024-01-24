@@ -9,7 +9,8 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import Alipay from '@uiw/react-native-alipay';
 import notifee, { AndroidImportance, AndroidStyle, AuthorizationStatus, EventType, RepeatFrequency, TimestampTrigger, TriggerType } from '@notifee/react-native';
-import { getNotification } from '../../api/notificationApi';
+// import { getNotification } from '../../api/notificationApi';
+import { getNotification } from '../../api/NotificationApi';
 
 
 

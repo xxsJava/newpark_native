@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { getGroupsInfo } from '../../../api/imApi';
+import { getGroupsInfo } from '../../../api/IMAPI';
 import { DeviceEvent } from '../../../config/listener';
 import {
   FILE_PATH,

@@ -13,7 +13,7 @@ import {
 // const Stack = create../StatusBar
 // import LoginStacker from '../../routes/stacker/Login';
 // 额外
-import StatusBar from '../../components/StatusBar';
+import StatusBar from '../StatusBar';
 // import { navigate } from '../../config/routs/NavigationContainer'
 // import BeginTwo from './BeginTwo';
 // import IsLogin from '../../../login/controller';

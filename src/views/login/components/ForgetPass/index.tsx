@@ -20,7 +20,8 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import { getNotification } from '../../../../api/notificationApi';
+// import { getNotification } from '../../../../api/notificationApi';
+import { getNotification } from '../../../../api/NotificationApi';
 import IMSDKRN from '../../../../plugins/IMSDKRN/ANDROIDSDK';
 
 import { postList } from '../../../../api/sys/home';

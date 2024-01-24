@@ -15,7 +15,8 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 import { Appbar, Avatar, IconButton } from 'react-native-paper';
 import { DeviceEvent } from '../../../config/listener';
@@ -27,11 +28,10 @@ import {
 import { navigate } from '../../../config/routs/NavigationContainer';
 import Storage from '../../../utils/AsyncStorageUtils';
 import { readFileData } from '../../../utils/FilesUtiles';
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-function MessageList(props: {items: any; receiver: any}) {
+function MessageList(props: { items: any; receiver: any }) {
   const items = props.items;
   const receiver = props.receiver;
   console.log('receiver---->', receiver);
@@ -39,6 +39,8 @@ function MessageList(props: {items: any; receiver: any}) {
   const listItems = items.map(
     (item: any, index: React.Key | null | undefined) => {
       console.log('data----->', item.sendID == receiver);
+
+     
       return (
         <View>
           <View
@@ -49,10 +51,10 @@ function MessageList(props: {items: any; receiver: any}) {
             <Avatar.Image
               style={[
                 styles.avatarImage1,
-                item.sendID === receiver ? {display: 'none'} : null,
+                item.sendID === receiver ? { display: 'none' } : null,
               ]}
               size={34}
-              source={{uri: item.senderFaceUrl}}
+              source={{ uri: item.senderFaceUrl }}
             />
             <View
               style={[
@@ -63,7 +65,7 @@ function MessageList(props: {items: any; receiver: any}) {
                 allowFontScaling={false}
                 style={[
                   styles.chatNameReceiver,
-                  receiver == item.senderNickname ? {display: 'none'} : null,
+                  receiver == item.senderNickname ? { display: 'none' } : null,
                 ]}>
                 {item.senderNickname}
               </Text>
@@ -72,7 +74,7 @@ function MessageList(props: {items: any; receiver: any}) {
                 style={[
                   styles.messageText,
                   item.sendID === receiver ? styles.messageReceiver : null,
-                  item.textElem.content ? null : {display: 'none'},
+                  item.textElem.content ? null : { display: 'none' },
                 ]}>
                 {item.textElem.content}
               </Text>
@@ -87,7 +89,7 @@ function MessageList(props: {items: any; receiver: any}) {
             <Avatar.Image
               style={[
                 styles.avatarImage2,
-                receiver != item.sendID ? {display: 'none'} : null,
+                receiver != item.sendID ? { display: 'none' } : null,
               ]}
               size={34}
               source={item.avatar}
@@ -101,6 +103,7 @@ function MessageList(props: {items: any; receiver: any}) {
             size={34}
             source={item.avatar}
           /> */}
+
         </View>
       );
     },
@@ -125,7 +128,7 @@ const CheckView = () => {
   // const [data,setData]:any = useState([]);
   const [headName, setHeadName] = useState('');
   const [headImg, setHeadImg] = useState('');
-  const [msg,setMsg]:any = useState({});
+  const [msg, setMsg]: any = useState({});
 
   let timer; //计时器
   useEffect(() => {
@@ -204,6 +207,13 @@ const CheckView = () => {
     //postMessage();
     onChangeText('');
   };
+ // 测试调的接口
+ const msgVal = async () => {
+
+  const tokenStr = await Storage.get('usr-token');
+  console.log('获取到用户token', tokenStr);
+}
+// 到这里结束
 
   return (
     <>
@@ -212,7 +222,7 @@ const CheckView = () => {
         <Appbar.BackAction onPress={() => navigate('SocializingStacker')} />
         <View style={styles.avatarView}>
           <View style={styles.avatarStyle}>
-            <Avatar.Image size={34} source={{uri: headImg}} />
+            <Avatar.Image size={34} source={{ uri: headImg }} />
             <View style={styles.stateStyle} />
           </View>
           <Text style={styles.avatarText}>{headName}</Text>
@@ -234,9 +244,14 @@ const CheckView = () => {
                     onSubmitEditing={sendDo}
                 /> */}
           <ScrollView style={styles.chatBody}>
-            <View style={{height: 15}} />
+            <View style={{ height: 15 }} />
             <MessageList items={items} receiver={receiver} />
           </ScrollView>
+
+          <TouchableOpacity onPress={() => msgVal()} style={{backgroundColor:'aqua'}}>
+            <Text>点这里测试接口</Text>
+          </TouchableOpacity>
+
           <View style={styles.sendColumn}>
             <View style={styles.inputBox}>
               <TextInput
@@ -341,7 +356,7 @@ const styles = StyleSheet.create({
       ios: {
         padding: 10,
         shadowColor: '#ccc',
-        shadowOffset: {width: 0, height: 0},
+        shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
         shadowRadius: 3.5,
       },
@@ -437,7 +452,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#ccc',
-        shadowOffset: {width: 0, height: 0},
+        shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
         shadowRadius: 3.5,
         // marginBottom:-30,

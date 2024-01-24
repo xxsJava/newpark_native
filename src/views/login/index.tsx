@@ -18,7 +18,7 @@ import Storage from '../../utils/AsyncStorageUtils';
 // import {useToast} from 'native-base';
 import { Toast, useToast } from '@gluestack-ui/themed';
 import { Trans } from 'react-i18next';
-import { getOpenIMConfig } from '../../api/imApi';
+import { getOpenIMConfig } from '../../api/IMAPI';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
 import { navigate } from '../../config/routs/NavigationContainer';
@@ -356,8 +356,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                   maxLength={11}
                   keyboardType="number-pad"
                   onChangeText={changePhoneText}
-                  style={styles.inp}
-                />
+                  style={[styles.inp, { paddingLeft: 18 }]}
+                  value={phone}                />
               </View>
               <View style={styles.login}>
                 <Button
@@ -395,7 +395,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 maxLength={11}
                 keyboardType="number-pad"
                 onChangeText={changePhoneText}
-                style={styles.inp}
+                style={[styles.inp, { paddingLeft: 18 }]}
+                value={phone}
               />
             </View>
             <View style={styles.pawoed} >

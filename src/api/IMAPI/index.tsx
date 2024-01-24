@@ -6,7 +6,8 @@
 */
 import request from '../../config/axios';
 import DateTimeUtils from '../../utils/DateTimeUtils';
-import { MsgInfo } from './type';
+// 这里有改动
+// import { MsgInfo } from './type';
 
 /**
  * 获取OpenIm配置
@@ -26,7 +27,7 @@ export const getGroupsInfo = (data:any) =>{
     });
 }
 
-export const sendMsg = (params:MsgInfo) =>{
+export const sendMsg = (params:any) =>{
     return request.post({
         url: '/api/msg/send_msg',
         operationID: DateTimeUtils.timestamps,
