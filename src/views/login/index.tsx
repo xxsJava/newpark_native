@@ -18,7 +18,9 @@ import Storage from '../../utils/AsyncStorageUtils';
 // import {useToast} from 'native-base';
 import { Toast, useToast } from '@gluestack-ui/themed';
 import { Trans } from 'react-i18next';
-import { getOpenIMConfig } from '../../api/IMAPI';
+
+
+import { getOpenIMConfig } from '../../api/imApi';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
 import { navigate } from '../../config/routs/NavigationContainer';

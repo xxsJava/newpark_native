@@ -8,9 +8,6 @@
 import React, { useEffect } from "react";
 import SplashScreen from 'react-native-splash-screen';
 import Splashs from "../../views/system/Splash/SplashScreens";
-import App from "../../../App";
-import BeginOne from "../../components/begin/BeginOne";
-import Storage from '../../utils/AsyncStorageUtils';
 const index = () => {
   useEffect(() => {
     //隐藏初始屏幕

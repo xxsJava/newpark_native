@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2024-01-25 10:22:05
+ * @LastEditTime: 2024-01-25 10:34:24
+ * @FilePath: \newpark_native\src\api\imApi\index.tsx
+ * @Description: desc
+ */
 
 /**
 * 代码描述: OPNE-IM 接口
@@ -30,8 +37,6 @@ export const getGroupsInfo = (data:any) =>{
 export const sendMsg = (params:any) =>{
     return request.post({
         url: '/api/msg/send_msg',
-        operationID: DateTimeUtils.timestamps,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiJvcGVuSU0xMjM0NTYiLCJQbGF0Zm9ybUlEIjoyLCJleHAiOjE3MTIyMjMwMzcsIm5iZiI6MTcwNDQ0NjczNywiaWF0IjoxNzA0NDQ3MDM3fQ.XhAqxP6oZOOgPw-_33aRgWCYs61nkcW8H1_lEgljT9c',
         data: params
     });
 }
