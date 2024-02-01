@@ -7,15 +7,10 @@
  */
 
 import React from 'react';
-import MenusComponents from './Menu';
-import {View, StyleSheet, SafeAreaView, TouchableOpacity,ScrollView,Dimensions} from 'react-native';
-import SortTabNav from './SortType';
-import {LsitRecommend} from './Lists';
-import StylesALL from '../../styles';
-import ColumnType from './ColumnType'
-import Storage from '../../utils/AsyncStorageUtils';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { postList } from '../../api/sys/home';
 import { postListType } from '../../api/sys/home/types';
+import { LsitRecommend } from './Lists';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

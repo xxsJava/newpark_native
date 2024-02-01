@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2024-01-23 18:30:03
+ * @LastEditTime: 2024-01-25 10:52:23
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
@@ -21,11 +21,10 @@ import {
   View
 } from 'react-native';
 // import { getNotification } from '../../../../api/notificationApi';
-import { getNotification } from '../../../../api/NotificationApi';
+// import { getNotification } from '../../../../api/NotificationApi';
 import IMSDKRN from '../../../../plugins/IMSDKRN/ANDROIDSDK';
 
-import { postList } from '../../../../api/sys/home';
-import { rewardListType } from '../../../../api/sys/reward/types';
+import { schoolFindAll } from '../../../../api/test';
 import { INDEX_MSG_DIR, MSG_FILE_DIR } from '../../../../config/paramStatic';
 import {
   readFileData,
@@ -108,34 +107,34 @@ async function onDisplayNotification() {
 async function onNotificationRemote() {
   console.log('获取通知');
 
-  const notifStr = await getNotification();
+  // const notifStr = await getNotification();
 
-  console.log(notifStr);
+  // console.log(notifStr);
 
-  const channelId = await notifee.createChannel({
-    id: 'default2',
-    name: 'Default2',
-    importance: AndroidImportance.HIGH,
-    sound: 'msg',
-  });
+  // const channelId = await notifee.createChannel({
+  //   id: 'default2',
+  //   name: 'Default2',
+  //   importance: AndroidImportance.HIGH,
+  //   sound: 'msg',
+  // });
 
-  notifee.displayNotification({
-    title: notifStr.data.title,
-    body: notifStr.data.body,
-    android: {
-      sound: 'msg',
-      smallIcon: 'ic_launcher',
-      largeIcon:
-        'https://new-by-video.oss-cn-beijing.aliyuncs.com/2023/12/01/logo.png',
-      channelId,
-      style: {
-        type: AndroidStyle.BIGPICTURE,
-        picture:
-          'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638355971556795.jpg',
-      },
-      importance: AndroidImportance.HIGH,
-    },
-  });
+  // notifee.displayNotification({
+  //   title: notifStr.data.title,
+  //   body: notifStr.data.body,
+  //   android: {
+  //     sound: 'msg',
+  //     smallIcon: 'ic_launcher',
+  //     largeIcon:
+  //       'https://new-by-video.oss-cn-beijing.aliyuncs.com/2023/12/01/logo.png',
+  //     channelId,
+  //     style: {
+  //       type: AndroidStyle.BIGPICTURE,
+  //       picture:
+  //         'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638355971556795.jpg',
+  //     },
+  //     importance: AndroidImportance.HIGH,
+  //   },
+  // });
 }
 
 //定时通知
@@ -239,13 +238,13 @@ const ForgetPass: React.FC = () => {
       <Button
         title="IOS-接口测试"
         onPress={async () => {
-          console.log('test');
-          const data: rewardListType = {
-            pageNo: 1,
-            pageSize: 5,
-          };
-          const res = await postList(data);
-          console.log(res);
+          const jsonData = {
+            "schoolCode": "",
+            "schoolName": ""
+        }
+
+          const data = await schoolFindAll(jsonData);
+          console.log(data);
         }}
       />
 

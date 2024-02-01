@@ -1,8 +1,10 @@
+import { Platform } from "react-native";
+
 /*
  * @Author: xxs
  * @Date: 2024-01-23 10:27:13
- * @LastEditTime: 2024-01-23 18:28:51
- * @FilePath: \newpark_native\src\api\IMAPI\type.tsx
+ * @LastEditTime: 2024-01-25 17:14:24
+ * @FilePath: \newpark_native\src\api\imApi\type.tsx
  * @Description: desc
  */
 export type MsgInfoSend = {
@@ -19,6 +21,7 @@ export type MsgInfoSend = {
   notOfflinePush: boolean;
   sendTime: number;
   offlinePushInfo: offlinePushInfo;
+  textElem:any
 };
 
 type content = {
@@ -39,20 +42,23 @@ export const MsgInfoSendJson:MsgInfoSend = {
   groupID: "",
   senderNickname: "",
   senderFaceURL: "",
-  senderPlatformID: 0,
+  senderPlatformID: Platform.OS === 'ios' ? 1 : 2,
   content: {
     content: ""
   },
-  contentType: 0,
-  sessionType: 0,
+  contentType: 101,
+  sessionType: 1,
   isOnlineOnly: false,
   notOfflinePush: false,
-  sendTime: 0,
+  sendTime: Date.now(),
   offlinePushInfo: {
-    title: "",
+    title: "send message",
     desc: "",
     ex: "",
-    iOSPushSound: "",
-    iOSBadgeCount: false
+    iOSPushSound: "default",
+    iOSBadgeCount: true
+  },
+  textElem: {
+    content: ''
   }
 }

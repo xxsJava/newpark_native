@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-04 23:22:00
- * @LastEditTime: 2024-01-03 17:43:22
+ * @LastEditTime: 2024-01-25 11:06:39
  * @FilePath: \newpark_native\App.tsx
  * @Description: 第二入口文件
  */
@@ -24,10 +24,6 @@ export default function App(): JSX.Element {
       <GluestackUIProvider config={config}>
         <CounterProvider>
           <APPNewPark />
-            {/* <Registered/> */}
-            {/* <SchoolIndex></SchoolIndex> */}
-            {/* <Gender></Gender> */}
-            {/* <InterestsHobbies></InterestsHobbies> */}
         </CounterProvider>
       </GluestackUIProvider>
     </NavigationContainer>

@@ -9,8 +9,10 @@ import { Appbar, Avatar, IconButton, Button } from 'react-native-paper';
 import LinearGradinet from 'react-native-linear-gradient';
 // import { Avatar, Button, IconButton } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { navigate } from '../../../../config/routs/NavigationContainer'
 import { red } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
+
+import { navigate } from '../../../../config/routs/NavigationContainer';
+
 // import { ScrollView } from "@gluestack-ui/config/build/theme";
 
 const windowWidth = Dimensions.get('window').width;
@@ -65,6 +67,7 @@ const RewardView = () => {
                     </KeyboardAvoidingView>
                 </View>
            
+        
         </SafeAreaView>
 
     )

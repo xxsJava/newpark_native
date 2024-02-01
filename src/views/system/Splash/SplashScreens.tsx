@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2024-01-23 17:22:37
+ * @LastEditTime: 2024-01-25 11:06:09
  * @FilePath: \newpark_native\src\views\system\Splash\SplashScreens.tsx
  * @Description: desc
  */
@@ -98,7 +98,6 @@ const Splashs= () => {
         </ImageBackground>
       ) : (
         <IsLogin />
-        
       )}
     </>
   );
