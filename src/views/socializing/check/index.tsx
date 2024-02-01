@@ -78,7 +78,7 @@ function MessageList(props: { items: any; receiver: any }) {
                   item.sendID === receiver ? styles.messageReceiver : null,
                   // item.textElem.content ? null : { display: 'none' },
                 ]}>
-                {item.stateMsg === 2?'':item.textElem.content}
+                {item.textElem.content}
               </Text>
               {/* <Image
                 style={[
@@ -135,17 +135,17 @@ function MessageList(props: { items: any; receiver: any }) {
 
   let timer; //计时器
   useEffect(() => {
-    //loadMessage();
+    // loadMessage();
 
     //获取历史记录
-    // initMsg();
+    initMsg();
 
     const listener = DeviceEvent.addListener(
       'onRecvNewMessage',
       resp => {
         const timeoutID = setTimeout(() => {
           console.log('--- 数据更新 ---');
-        //   initMsg();
+          initMsg();
           //清除
           clearTimeout(timeoutID);
         }, 500);
