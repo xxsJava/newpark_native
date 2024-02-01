@@ -27,7 +27,7 @@ import { navigate } from '../../config/routs/NavigationContainer';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import ClausePopup from '../../views/login/components/ClausePopup';
 import { forgetPass } from './controller';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -318,7 +318,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
         )
       },
     });
-    //发送验证码
+    await AsyncStorage.setItem('uphone', phone);
+   //发送验证码
     navigate('Verification');
   };
 
@@ -433,8 +434,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 mode="contained"
                 buttonColor="#fff"
                 textColor="#E8AE0E"
-                // onPress={() => setrecode(!recode)}
-                onPress={onLogin}
+                // onPress={onLogin}
+                onPress={() => onLogin()}
               >
                 <Trans>确认登录</Trans>
                 {/* passWord */}
@@ -485,7 +486,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               <Text style={{ color: 'blue' }}>服务条款</Text>
             </TouchableOpacity>
           </View>
-          {/* <View>
+         {/* <View>
             <Button icon="camera" mode="contained" onPress={() => navigate('Verification')}>
               查看页面Verification
             </Button>
@@ -504,7 +505,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
             <Button icon="camera" mode="contained" onPress={() => navigate('ForgetPass')}>
               查看页面ForgetPass
             </Button>
-          </View> */}
+          </View>  */}
         </KeyboardAwareScrollView>
       </ImageBackground>
       <ClausePopup visible={visible} onClose={() => setVisible(false)}></ClausePopup>

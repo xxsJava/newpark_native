@@ -138,14 +138,14 @@ function MessageList(props: { items: any; receiver: any }) {
     //loadMessage();
 
     //获取历史记录
-    initMsg();
+    // initMsg();
 
     const listener = DeviceEvent.addListener(
       'onRecvNewMessage',
       resp => {
         const timeoutID = setTimeout(() => {
           console.log('--- 数据更新 ---');
-          initMsg();
+        //   initMsg();
           //清除
           clearTimeout(timeoutID);
         }, 500);

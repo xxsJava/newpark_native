@@ -3,14 +3,14 @@
  * 作者:cxr
  * 修改时间:2023/12/04 10:13:11
  */
-
 import React from "react";
-
-import { Dimensions, Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Dimensions, Platform, Image, TextInput, KeyboardAvoidingView, ScrollView } from "react-native";
+import { Appbar, Avatar, IconButton, Button } from 'react-native-paper';
 import LinearGradinet from 'react-native-linear-gradient';
-import { Avatar, Button, IconButton } from 'react-native-paper';
-
+// import { Avatar, Button, IconButton } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { red } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
+
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
 // import { ScrollView } from "@gluestack-ui/config/build/theme";
@@ -66,6 +66,7 @@ const RewardView = () => {
                         </View>
                     </KeyboardAvoidingView>
                 </View>
+           
         
         </SafeAreaView>
 

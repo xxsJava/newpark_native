@@ -90,11 +90,11 @@ var setAreaData = (data: any, val: number) => {
   
   setAreaData(data, 1);
    
-  // console.log('province:', province);
-  // console.log('city: ', city);
-  // console.log('region: ', region);
+  console.log('province:', province);
+  console.log('city: ', city);
+  console.log('region: ', region);
   
-  }, 700);
+  }, 1000);
 
 
 

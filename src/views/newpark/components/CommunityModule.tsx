@@ -35,7 +35,7 @@ const listData = [
       icon: require('../../../assets/images/alimom/R-C.jpg'),
     },
     {
-      index: 2,
+      index: 3,
       title: '女神在哪',
       sum: '4.5w',
       slogan: 'n个牛友在xxx',

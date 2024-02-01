@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Image, Modal, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
-// import { CalendarList } from "react-native-common-date-picker";
+import { CalendarList } from "react-native-common-date-picker";
 import { navigate } from '../../../../config/routs/NavigationContainer';
 // import { DatePicker } from "react-native-common-date-picker";
 const PunchCardScreen = () => {
-    const [punchTime, setPunchTime] = useState(null);
+    const [punchTime, setPunchTime] = useState('');
     const [visible, setVisible] = useState(false)
     const handlePunch = () => {
         const currentTime = new Date().toLocaleString();
-        // setPunchTime(currentTime);
+        setPunchTime(currentTime);
         setVisible(true)
         // 在这里处理打卡逻辑，将打卡时间记录到数据中
     };

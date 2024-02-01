@@ -67,6 +67,7 @@ const AddNewAddress = () => {
                     <Button mode="contained" onPress={() => navigate('ThreeJiContent')} style={styles.btn} labelStyle={styles.btnFont}>
                         新增收货地址
                     </Button>
+                    <MultiLevelPicker />
                 </View>
             </KeyboardAvoidingView>
 
