@@ -7,7 +7,7 @@
  */
 import React, { useEffect } from 'react';
 import { Trans } from 'react-i18next';
-import { Dimensions, FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View,ScrollView } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
@@ -19,27 +19,27 @@ const windowHeight = Dimensions.get('window').height
 // };
 const data1 = [
     {
-        index: 1,
+        index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '全部订单小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！',
         time:'2024.6.12'
     },
     {
-        index: 2,
+        index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '全部订单小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！',
         time:'2024.6.12'
     },
     {
-        index: 3,
+        index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '全部订单小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 4,
+        index: '4',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '全部订单小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
@@ -47,25 +47,25 @@ const data1 = [
 ];
 const data2 = [
     {
-        index: 1,
+        index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待付款小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 2,
+        index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待付款小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 3,
+        index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待付款小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 4,
+        index:'4',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待付款小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
@@ -73,25 +73,25 @@ const data2 = [
 ];
 const data3 = [
     {
-        index: 1,
+        index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待收货小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 2,
+        index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待收货小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 3,
+        index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待收货小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 4,
+        index: '4',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待收货小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎!'
@@ -100,25 +100,25 @@ const data3 = [
 ]
 const data4 = [
     {
-        index: 1,
+        index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待评价小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 2,
+        index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待评价小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 3,
+        index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待评价小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 4,
+        index: '4',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '待评价小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
@@ -126,31 +126,31 @@ const data4 = [
 ]
 const data5 = [
     {
-        index: 1,
+        index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '已取消小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 2,
+        index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '已取消小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 3,
+        index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '已取消小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 4,
+        index: '4',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '已取消小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index: 5,
+        index: '5',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '已取消小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
@@ -158,7 +158,7 @@ const data5 = [
 
 ]
 interface listType {
-    index:number,
+    index:string,
     img:any,
     name:string,
     desc:string
@@ -219,31 +219,36 @@ const MyOrderView = ({ route }: any) => {
                 <View style={typeVal == 'type1' ? null : { display: 'none' }}>
                     <FlatList data={data1}
                         renderItem={renderItem}
-                        keyExtractor={(item) => item.desc}>
+                        keyExtractor={(item) => item.index}>
+
                     </FlatList>
                 </View>
                 <View style={typeVal == 'type2' ? null : { display: 'none' }}>
                 <FlatList data={data2}
                         renderItem={renderItem}
-                        keyExtractor={(item) => item.desc}>
+                        // keyExtractor={(item) => item.index}
+                        >
                 </FlatList>
                 </View>
                 <View style={typeVal == 'type3' ? null : { display: 'none' }}>
                 <FlatList data={data3}
                         renderItem={renderItem}
-                        keyExtractor={(item) => item.desc}>
+                        // keyExtractor={(item) => item.index}
+                        >
                 </FlatList>
                 </View>
                 <View style={typeVal == 'type4' ? null : { display: 'none' }}>
                 <FlatList data={data4}
                         renderItem={renderItem}
-                        keyExtractor={(item) => item.desc}>
+                        // keyExtractor={(item) => item.index}
+                        >
                 </FlatList>
                 </View>
                 <View style={typeVal == 'type5' ? null : { display: 'none' }}>
                 <FlatList data={data5}
                         renderItem={renderItem}
-                        keyExtractor={(item) => item.desc}>
+                        // keyExtractor={(item) => item.index}
+                        >
                 </FlatList>
                 </View>
             </View>

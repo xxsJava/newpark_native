@@ -49,7 +49,7 @@ const windowHeight = Dimensions.get('window').height;
 //     }]
 // }]
 
-const PostDetails = ({route}: any) => {
+const PostDetails = ({ route }: any) => {
   console.log('postsId', route.params.item.tid);
   const commentsData: postCommentsData = {
     pageNo: 1,
@@ -73,7 +73,7 @@ const PostDetails = ({route}: any) => {
   const [inputUp, setInputUp] = React.useState(false);
   const [editable, setEditable] = React.useState(false);
   const [inputVal, setInputVal] = React.useState('');
-  const textInputRef:any = React.useRef(null);
+  const textInputRef: any = React.useRef(null);
 
   const data = route.params.item;
 
@@ -100,14 +100,14 @@ const PostDetails = ({route}: any) => {
   };
 
   const postLikePress = async () => {
-   
+
     if (likeSelect == '0') {
-        const postLikeUp = await postLike( postLikeParam);
-        if (postLikeUp.data) {
-          setSelectLike('1');
-          setTlikeCount(tlikeCount + 1);
-        }
-        console.log('点赞返回', postLikeUp);
+      const postLikeUp = await postLike(postLikeParam);
+      if (postLikeUp.data) {
+        setSelectLike('1');
+        setTlikeCount(tlikeCount + 1);
+      }
+      console.log('点赞返回', postLikeUp);
 
     } else {
       setSelectLike('0');
@@ -127,15 +127,15 @@ const PostDetails = ({route}: any) => {
       postsId: 0,
       likeType: 1,
     };
-    
+
     if (likeSelect == '0') {
 
-        const comLikeUp = await postLike( comLikeParam);
-        if (comLikeUp.data) {
-          setSelectLike1('1');
-          // setTlikeCount(tlikeCount+1)
-        }
-        console.log('点赞返回', comLikeUp);
+      const comLikeUp = await postLike(comLikeParam);
+      if (comLikeUp.data) {
+        setSelectLike1('1');
+        // setTlikeCount(tlikeCount+1)
+      }
+      console.log('点赞返回', comLikeUp);
     } else {
       setSelectLike1('0');
       // setTlikeCount(tlikeCount-1)
@@ -165,7 +165,7 @@ const PostDetails = ({route}: any) => {
           <View style={styles.postView}>
             <View style={styles.postStyle}>
               <View style={styles.avatarView}>
-                <Avatar.Image size={65} source={{uri: data.upath}} />
+                <Avatar.Image size={65} source={{ uri: data.upath }} />
               </View>
               <View style={styles.avatarConent}>
                 <View style={styles.nameView}>
@@ -201,8 +201,8 @@ const PostDetails = ({route}: any) => {
                 {data.ttitle}
               </Text>
               <WebView
-                style={{height: 150, width: windowWidth, marginHorizontal: 30}}
-                source={{html: data.tcontext}}
+                style={{ height: 150, width: windowWidth, marginHorizontal: 30 }}
+                source={{ html: data.tcontext }}
               />
               {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
             </View>
@@ -310,7 +310,7 @@ const PostDetails = ({route}: any) => {
         ]}>
         <TouchableOpacity
           activeOpacity={1}
-          style={[styles.commentInput, editable ? {display: 'none'} : null]}
+          style={[styles.commentInput, editable ? { display: 'none' } : null]}
           onPress={() => inputPress(1)}>
           <Text style={styles.commentInputText}>
             {inputVal != '' ? inputVal : '说两句'}
@@ -325,7 +325,7 @@ const PostDetails = ({route}: any) => {
           cursorColor="#FABA3C"
           onChangeText={text => setInputVal(text)}
           onSubmitEditing={() => inputPress(0)}
-          style={[styles.bottomTextInput, editable ? null : {display: 'none'}]}
+          style={[styles.bottomTextInput, editable ? null : { display: 'none' }]}
         />
         <IconButton
           style={styles.commentInputImage}
@@ -334,7 +334,7 @@ const PostDetails = ({route}: any) => {
         />
       </View>
       <TouchableOpacity
-        style={[styles.CommentBox, editable ? null : {display: 'none'}]}
+        style={[styles.CommentBox, editable ? null : { display: 'none' }]}
         onPress={() => inputPress(0)}
       />
     </View>
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#FF65B8',
-        shadowOffset: {width: 0, height: 0},
+        shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
         shadowRadius: 3.5,
         backgroundColor: '#FF65B8',
@@ -618,7 +618,7 @@ const styles = StyleSheet.create({
       ios: {
         height: 85,
         shadowColor: '#ddd',
-        shadowOffset: {width: 0, height: 0},
+        shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
         shadowRadius: 2.5,
       },

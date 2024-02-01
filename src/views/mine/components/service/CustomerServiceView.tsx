@@ -118,7 +118,7 @@ const LittleTips = () => {
 //       </View>
 //     );
 //   }  
-const onlineservice = ({ navigation }: any) => {
+const Onlineservice = ({ navigation }: any) => {
 
     return (
         <KeyboardAvoidingView behavior='position'>
@@ -158,7 +158,7 @@ const onlineservice = ({ navigation }: any) => {
         </KeyboardAvoidingView>
     )
 }
-export default onlineservice;
+export default Onlineservice;
 // export default App;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

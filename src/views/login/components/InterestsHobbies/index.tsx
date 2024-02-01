@@ -10,14 +10,33 @@ import { Appbar, Button } from 'react-native-paper';
 import { RegisteredScreenProps } from '../../../../config/routs';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import LabelViwe from './LabelView';
-
+import {regApi} from '../../../../api/sys/reg'
+import {UserRegType} from '../../../../api/sys/reg/types'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const InterestsHobbies:React.FC<RegisteredScreenProps> = () => {
 
     const [labelVal,labelOnPrass] = React.useState(0)
-
+    const goNext = async() => {
+        var description = await AsyncStorage.getItem('description');
+        var pass = await AsyncStorage.getItem('pass');
+        // var schoolId = await AsyncStorage.getItem('schoolId');
+            var schoolId = 1;
+        var unikname = await AsyncStorage.getItem('unikname');
+        var uphone = await AsyncStorage.getItem('uphone');
+        var usex = Number(await AsyncStorage.getItem('usex'));
+        var ulab = '#颜值#美女'
+        // navigate('LoginHome')
+        console.log(description,'描述');
+        console.log(pass,'密码');
+        console.log(schoolId,'学校ID');
+        console.log(unikname,'昵称');
+        console.log(uphone,'电话');
+        console.log(usex,'性别');
+        console.log(ulab,'标签');
+    }
     return(
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
@@ -28,10 +47,10 @@ const InterestsHobbies:React.FC<RegisteredScreenProps> = () => {
             </Appbar.Header>
             <LabelViwe></LabelViwe>
             <View style={styles.bottomView}>
-                <TouchableOpacity onPress={() => navigate('HomeStacker')}>
+                <TouchableOpacity onPress={() => navigate('LoginHome')}>
                     <Text allowFontScaling={false} style={styles.bottomText}>跳过，直接进入</Text>
                 </TouchableOpacity>
-                <Button style={styles.bottomButton} buttonColor='#6a1b9a' textColor='#FFF' labelStyle={styles.bottomButtonText} onPress={() => navigate('LoginHome')}>进入校园生活</Button>
+                <Button style={styles.bottomButton} buttonColor='#6a1b9a' textColor='#FFF' labelStyle={styles.bottomButtonText} onPress={() =>goNext()}>进入校园生活</Button>
             </View>
         </View>
     )

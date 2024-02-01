@@ -36,17 +36,17 @@ const MyComponent = () => {
             text: '微信好友'
         },
         {
-            index: 1,
+            index: 2,
             img: require('../../../../assets/images/tup/pyq.jpg'),
             text: '朋友圈'
         },
         {
-            index: 1,
+            index: 3,
             img: require('../../../../assets/images/tup/xlwb.jpg'),
             text: '新浪微博'
         },
         {
-            index: 1,
+            index: 4,
             img: require('../../../../assets/images/tup/zflj.jpg'),
             text: '复制链接'
         },
@@ -61,10 +61,13 @@ const MyComponent = () => {
                         {
                             list2.map(item => {
                                 return (
-                                    <View key={item.index}>
-                                        <Image source={item.img} style={styles.mtImg}></Image>
-                                        <Text>{item.text}</Text>
-                                    </View>
+                                    <TouchableOpacity key={item.index} style={styles.mtlist} onPress={() =>{console.log(item.text);
+                                    }}>
+                                        <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 78 } : null]}></Image>
+                                        <View style={styles.zi}>
+                                            <Text style={styles.h4}>{item.text}</Text>
+                                        </View>
+                                    </TouchableOpacity>
                                 )
                             })
                         }

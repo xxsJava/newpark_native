@@ -152,6 +152,7 @@ const Example = () => {
         </Animated.View>
         <Button title="点击出现" onPress={() => fadeIn()}></Button>
         <Button title="点击消失" onPress={() => fadeOut()}></Button>
+        <Button title='富文本框' onPress={() =>navigate('Test1') }></Button>
      
       {/* <Stagger
         visible={isOpen}

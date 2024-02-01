@@ -277,12 +277,12 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderColor:'#e1e1e1',
         borderRadius:8,
-        alignItems:'center'
+        alignItems:'center',
+        justifyContent:'center'
     },
     photoImage:{
         width:20,
-        height:20,
-        marginTop:40
+        height:20
     },
     buttonIos:{
         width:windowWidth-20,

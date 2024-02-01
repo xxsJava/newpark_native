@@ -44,7 +44,7 @@ const CallCustom = ({ navigation }: any) => {
             main: '官方客服电话'
         },
         {
-            index: 5,
+            index: 6,
             main: '怎么创建群聊'
         }
     ]
@@ -109,7 +109,7 @@ const CallCustom = ({ navigation }: any) => {
                         {
                             list2.map(item => {
                                 return (
-                                    <View style={styles.litbg}>
+                                    <View style={styles.litbg} key={item.index}>
                                         <Text style={styles.list2text}>{item.main}</Text>
                                     </View>
                                 )

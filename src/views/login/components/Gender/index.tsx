@@ -4,20 +4,31 @@
  * 创建时间:2023/11/16 17:45:11
  */
 
-import React from 'react';
+import React,{useState} from 'react';
 import { Trans } from 'react-i18next';
 import { Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'react-native-animatable';
 import { Appbar, Button } from 'react-native-paper';
 import { RegisteredScreenProps } from '../../../../config/routs';
 import { navigate } from '../../../../config/routs/NavigationContainer';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Gender: React.FC<RegisteredScreenProps> = () => {
 
+const Gender: React.FC<RegisteredScreenProps> = () => {
     const [confirmVal, confirmOnPress] = React.useState('sex0')
+    const goNext = async() => {
+        if(confirmVal == 'sex0'){
+            await AsyncStorage.setItem('usex','0');
+        }else {
+            await AsyncStorage.setItem('usex','1');
+        }
+       
+        navigate('InterestsHobbies')
+         var usex = await AsyncStorage.getItem('usex');
+        console.log(usex,'性别!!!!!!!!');
+    }
 
     return (
         <View style={styles.parentView}>
@@ -40,7 +51,7 @@ const Gender: React.FC<RegisteredScreenProps> = () => {
                 </TouchableOpacity>
             </View>
             <View style={styles.btn}>
-                <Button mode="contained" onPress={() => navigate('InterestsHobbies')}>
+                <Button mode="contained" onPress={() => goNext()}>
                     下一步
                 </Button>
             </View>

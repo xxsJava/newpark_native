@@ -43,11 +43,13 @@ const navigateData = [
 //菜单组件数据
 const menusData = [
     {
+      index:0,
       title: 'home.help',
       desc: 'home.help1',
       type: true,
     },
     {
+      index:1,
       title: 'home.order',
       desc: 'home.order1',
       type: false,
@@ -81,6 +83,7 @@ const ColumnType = () => {
       </View>
       <View style={styles.modalAll}>
         <TouchableOpacity
+        key={menusData[0].index}
           style={[styles.wd, styles.back]}
           onPress={() => navigate('HelpCircleRoute')}>
           <View>
@@ -88,6 +91,7 @@ const ColumnType = () => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
+          key={menusData[1].index}
           style={[styles.wd, styles.back1]}
           onPress={() => navigate('ProductRoute')}>
           <View>

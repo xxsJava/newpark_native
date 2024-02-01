@@ -96,7 +96,9 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
       setLoad(true);
       console.log('验证码提交-' + text);
       smsLogin.code = text;
-      verIfcode(); 
+      // 记得改过来
+      // verIfcode(); 
+      navigate('Registered');
       // console.log('下一步。。。。。。。。。。');
       
     }
@@ -133,29 +135,34 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
       });
       return false;
     }
-    if (smsLoginAPI.data != null) {
-      toast.show({
-        placement: 'top',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>登录成功,开始寻找好友</Text>
-            </Toast>
-          )
-        },
-      });
-      navigate('LoginHome');
-      return false;
-    }
+    // if (smsLoginAPI.data != null) {
+    //   toast.show({
+    //     placement: 'top',
+    //     render: () => {
+    //       return (
+    //         <Toast action="attention" variant="solid">
+    //           <Text allowFontScaling={false}>登录成功,开始寻找好友</Text>
+    //         </Toast>
+    //       )
+    //     },
+    //   });
+    //   navigate('LoginHome');
+    //   return false;
+    // }
     navigate('Registered');
   };
 
   //按钮下一步
   const next = () => {
     setLoad(true);
-    // console.log(inpTextChang);
+    console.log(inpTextChang);
   };
-
+  // 测试按钮的功能
+  const text = () =>{
+    navigate('LoginHome')
+    console.log('111111');
+    
+  }
   return (
     <SafeAreaView style={styles.contion}>
       <View style={styles.body}>
@@ -180,9 +187,9 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
           onChangeText={inpTextChang}
         />
         <View>
-          <TouchableOpacity disabled={send} onPress={() => { }}>
+          <TouchableOpacity disabled={send} onPress={() => text()}>
             <Text allowFontScaling={false} style={styles.verifTextTime}>
-              重新发送 {msgShow && <>({count})</>}
+              重新发送{msgShow && <>({count})</>}
             </Text>
           </TouchableOpacity>
         </View>
@@ -219,7 +226,7 @@ const styles = StyleSheet.create({
     left: '4%',
   },
   bodyTexta: {
-    fontSize: 24,
+    fontSize: 25,
     fontWeight: '400',
     color: '#000',
     paddingBottom: '3%',
