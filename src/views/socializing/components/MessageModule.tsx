@@ -87,6 +87,7 @@ const ListIndex: React.FC = () => {
   };
 
   const renderItem = ({item}: {item: DataItem}) => (
+    
     <TouchableOpacity
       onPress={() =>
         navigate('CheckRoute', {
@@ -122,7 +123,7 @@ const ListIndex: React.FC = () => {
         <View style={styles.itemLabelStyle}>
           <Text allowFontScaling={false} style={styles.labelText}>
             {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
-            {item.textElem.content}
+            {item.stateMsg === 2?'':item.textElem.content}
           </Text>
         </View>
       </View>

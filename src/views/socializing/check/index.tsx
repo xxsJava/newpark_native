@@ -76,9 +76,9 @@ function MessageList(props: { items: any; receiver: any }) {
                 style={[
                   styles.messageText,
                   item.sendID === receiver ? styles.messageReceiver : null,
-                  item.textElem.content ? null : { display: 'none' },
+                  // item.textElem.content ? null : { display: 'none' },
                 ]}>
-                {item.textElem.content}
+                {item.stateMsg === 2?'':item.textElem.content}
               </Text>
               {/* <Image
                 style={[
