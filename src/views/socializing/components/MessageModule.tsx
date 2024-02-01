@@ -52,7 +52,7 @@ const ListIndex: React.FC = () => {
           readFileData(FILE_PATH+'/'+path[path.length-2]+'/'+path[path.length-1]).then( res1 => {
             // console.log('文件读取--->',res1);
               for(let i = res1.length-1;i>=0;i--){
-                console.log(uId + '---' + res1[i].sendID);
+                console.log('data------>' + res1[i]);
                 if(Number(uId) === Number(res1[i].sendID)){
                   continue;
                 }
@@ -77,6 +77,7 @@ const ListIndex: React.FC = () => {
   };
 
   const renderItem = ({item}: {item: DataItem}) => (
+    
     <TouchableOpacity
       onPress={() =>
         navigate('CheckRoute', {
@@ -112,7 +113,7 @@ const ListIndex: React.FC = () => {
         <View style={styles.itemLabelStyle}>
           <Text allowFontScaling={false} style={styles.labelText}>
             {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
-            {item.textElem.content}
+            {item.stateMsg === 2?'':item.textElem.content}
           </Text>
         </View>
       </View>

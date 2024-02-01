@@ -19,8 +19,6 @@
 
 - (void)initSDK;
 
-
-
 @end
 
 
