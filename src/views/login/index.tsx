@@ -360,7 +360,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                   maxLength={11}
                   keyboardType="number-pad"
                   onChangeText={changePhoneText}
-                  style={[styles.inp, { paddingLeft: 18 }]}
+                  style={[styles.inp]}
                   value={phone}                />
               </View>
               <View style={styles.login}>
@@ -406,11 +406,12 @@ const LoginView: React.FC<LoginScreenProps> = () => {
             <View style={styles.pawoed} >
               <TextInput
                 allowFontScaling={false}
-                style={[styles.inp, { paddingLeft: 18 }]}
+                style={[styles.inp, { paddingLeft: 0 }]}
                 secureTextEntry={securePass}
                 right={
                   <TextInput.Icon
                     icon="eye"
+                    color={"#FFF"}
                     onLongPress={() => setSecurePass(false)}
                     onPressOut={() => setSecurePass(true)}
                   />
@@ -435,7 +436,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 // onPress={() => setrecode(!recode)}
                 onPress={onLogin}
               >
-                <Trans>确认密码登录</Trans>
+                <Trans>确认登录</Trans>
                 {/* passWord */}
               </Button>
             </View>

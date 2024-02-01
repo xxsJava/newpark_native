@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
@@ -9,26 +9,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { DeviceEvent } from '../../../config/listener';
-import {
-  FILE_PATH,
-  INDEX_MSG_DIR
-} from '../../../config/paramStatic';
-import { navigate } from '../../../config/routs/NavigationContainer';
+import {DeviceEvent} from '../../../config/listener';
+import {FILE_PATH, INDEX_MSG_DIR} from '../../../config/paramStatic';
+import {navigate} from '../../../config/routs/NavigationContainer';
 import Storage from '../../../utils/AsyncStorageUtils';
-import { isFile, readFileData } from '../../../utils/FilesUtiles';
+import {isFile, readFileData} from '../../../utils/FilesUtiles';
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
 const ListIndex: React.FC = () => {
   const [data, setData]: any = useState([]);
 
-
   useEffect(() => {
     //显示历史记录
     initMsg();
     const listener = DeviceEvent.addListener('onRecvNewMessage', async resp => {
-      const msg = Platform.OS === 'ios'?resp.message:JSON.parse(resp.message);
+      const msg =
+        Platform.OS === 'ios' ? resp.message : JSON.parse(resp.message);
       console.log('消息页面接收消息1------>', msg);
       timeOutInitMsg();
     });
@@ -39,26 +36,39 @@ const ListIndex: React.FC = () => {
     };
   }, []);
 
-  
   const initMsg = () => {
-    console.log('文件初始化！！！',INDEX_MSG_DIR);
+    console.log('文件初始化！！！', INDEX_MSG_DIR);
     let newArr: any[] = [];
     //查找到文件读取
     readFileData(INDEX_MSG_DIR).then(res => {
-      res.data.map(async (key: any,index:number) => {
-        let path:string[] = key.path.split('/');
-        if (await isFile(FILE_PATH+'/'+path[path.length-2]+'/'+path[path.length-1])) {
+      res.data.map(async (key: any, index: number) => {
+        let path: string[] = key.path.split('/');
+        if (
+          await isFile(
+            FILE_PATH +
+              '/' +
+              path[path.length - 2] +
+              '/' +
+              path[path.length - 1],
+          )
+        ) {
           let uId = await Storage.get('uid');
-          readFileData(FILE_PATH+'/'+path[path.length-2]+'/'+path[path.length-1]).then( res1 => {
+          readFileData(
+            FILE_PATH +
+              '/' +
+              path[path.length - 2] +
+              '/' +
+              path[path.length - 1],
+          ).then(res1 => {
             // console.log('文件读取--->',res1);
-              for(let i = res1.length-1;i>=0;i--){
-                console.log(uId + '---' + res1[i].sendID);
-                if(Number(uId) === Number(res1[i].sendID)){
-                  continue;
-                }
-                newArr.push(res1[i]);
-                return;
+            for (let i = res1.length - 1; i >= 0; i--) {
+              console.log(uId + '---' + res1[i].sendID);
+              if (Number(uId) === Number(res1[i].sendID)) {
+                continue;
               }
+              newArr.push(res1[i]);
+              return;
+            }
           });
         }
       });
