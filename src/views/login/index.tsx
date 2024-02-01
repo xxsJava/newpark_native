@@ -20,7 +20,7 @@ import { Toast, useToast } from '@gluestack-ui/themed';
 import { Trans } from 'react-i18next';
 
 
-import { getOpenIMConfig } from '../../api/imApi';
+import { getClientConfig, getOpenIMConfig } from '../../api/imApi';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
 import { navigate } from '../../config/routs/NavigationContainer';
@@ -128,6 +128,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       // console.log(IMSDKRN);
       IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
       
+      const imAuth = await getClientConfig();
+      Storage.set('im-auth',imAuth.data.token);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       // 这个是跳转到主页面的

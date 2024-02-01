@@ -24,8 +24,7 @@ import {
 // import { getNotification } from '../../../../api/NotificationApi';
 import IMSDKRN from '../../../../plugins/IMSDKRN/ANDROIDSDK';
 
-import { postList } from '../../../../api/sys/home';
-import { rewardListType } from '../../../../api/sys/reward/types';
+import { schoolFindAll } from '../../../../api/test';
 import { INDEX_MSG_DIR, MSG_FILE_DIR } from '../../../../config/paramStatic';
 import {
   readFileData,
@@ -239,13 +238,13 @@ const ForgetPass: React.FC = () => {
       <Button
         title="IOS-接口测试"
         onPress={async () => {
-          console.log('test');
-          const data: rewardListType = {
-            pageNo: 1,
-            pageSize: 5,
-          };
-          const res = await postList(data);
-          console.log(res);
+          const jsonData = {
+            "schoolCode": "",
+            "schoolName": ""
+        }
+
+          const data = await schoolFindAll(jsonData);
+          console.log(data);
         }}
       />
 

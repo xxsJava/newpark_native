@@ -9,21 +9,27 @@ import request from '../../config/axios';
 /**
  * 获取OpenIm配置
  */
-export const getOpenIMConfig = (data:any)=>{
+export const getOpenIMConfig = (data:any): Promise<IResponse>=>{
     return request.post({
         url: '/api/auth/user_token',
         data: data
     });
 }
 
-export const getGroupsInfo = (data:any) =>{
+export const getGroupsInfo = (data:any): Promise<IResponse> =>{
     return request.post({
         url: '/v1/groupGetGroupsInfo',
         data: data
     });
 }
 
-export const sendMsg = (params:any) =>{
+export const getClientConfig = (): Promise<IResponse> => {
+    return request.post({
+        url: '/v1/getClientConfig'
+    });
+}
+
+export const sendMsg = (params:any): Promise<IResponse> =>{
     return request.post({
         url: '/api/msg/send_msg',
         data: params

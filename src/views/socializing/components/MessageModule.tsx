@@ -9,62 +9,27 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { getGroupsInfo } from '../../../api/imApi';
 import { DeviceEvent } from '../../../config/listener';
 import {
   FILE_PATH,
-  GROUP_MSG_DIR,
-  INDEX_MSG_DIR,
-  PRITIVE_MSG_DIR,
+  INDEX_MSG_DIR
 } from '../../../config/paramStatic';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import { isFile, readFileData, writeFileData } from '../../../utils/FilesUtiles';
+import Storage from '../../../utils/AsyncStorageUtils';
+import { isFile, readFileData } from '../../../utils/FilesUtiles';
 
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
 const ListIndex: React.FC = () => {
   const [data, setData]: any = useState([]);
-  const [newObj, setNewObj]: any = useState({});
-  const [newArr, setNewArr]: any = useState([]);
+
 
   useEffect(() => {
     //显示历史记录
     initMsg();
     const listener = DeviceEvent.addListener('onRecvNewMessage', async resp => {
-      setNewObj({});
-      setNewArr([]);
       const msg = Platform.OS === 'ios'?resp.message:JSON.parse(resp.message);
       console.log('消息页面接收消息1------>', msg);
-      //群组
-      if (msg.groupID != undefined) {
-        console.log('获取圈ID------>', msg.groupID);
-        let stringArray: string[] = [];
-        stringArray.push(msg.groupID);
-        console.log('群组数据1----->', stringArray);
-        const groupInfo = await getGroupsInfo(stringArray);
-        console.log('群组消息数据----->', groupInfo.data.groupInfos);
-        // setData(groupInfo.data.groupInfos);
-        Object.assign(newObj, msg, groupInfo.data.groupInfos[0]);
-        //设置群组状态
-        newObj.stateMsg = 2;
-        newArr.push(newObj);
-        //数据合并
-        // newArr = data.concat(newArr)
-        console.log(newArr);
-        const fileGroupPath = GROUP_MSG_DIR + '/' + msg.groupID + '.json';
-        jsonDataRead(fileGroupPath, newArr);
-        timeOutInitMsg();
-        return;
-      }
-
-      //单聊
-      const filePrivatePath = PRITIVE_MSG_DIR + '/' + msg.sendID + '.json';
-      console.log('执行单聊');
-      //设置单聊状态
-      msg.stateMsg = 1;
-      let newMsgArr = [];
-      newMsgArr.push(msg);
-      jsonDataRead(filePrivatePath, newMsgArr);
       timeOutInitMsg();
     });
 
@@ -74,39 +39,26 @@ const ListIndex: React.FC = () => {
     };
   }, []);
 
-  /**
-   * 数据文件写入
-   * @param filePath 文件地址
-   * @param data 数据
-   * @returns
-   */
-  const jsonDataRead = async (filePath: string, data?: any) => {
-    console.log('——----------------->执行数据写入', data);
-    //写入MSG数据
-    if (await isFile(filePath)) {
-      //查找到文件直接写入
-      readFileData(filePath).then(res => {
-        console.log('读取到数据----->', res);
-        res.push(data[0]);
-        writeFileData(filePath, JSON.stringify(res));
-      });
-      return;
-    }
-    console.log('----------->创建文件写入数据');
-    writeFileData(filePath, JSON.stringify(data));
-  };
-
+  
   const initMsg = () => {
     console.log('文件初始化！！！',INDEX_MSG_DIR);
     let newArr: any[] = [];
-    //查找到文件直接写入
+    //查找到文件读取
     readFileData(INDEX_MSG_DIR).then(res => {
-      res.data.map(async (key: any) => {
+      res.data.map(async (key: any,index:number) => {
         let path:string[] = key.path.split('/');
         if (await isFile(FILE_PATH+'/'+path[path.length-2]+'/'+path[path.length-1])) {
-          readFileData(FILE_PATH+'/'+path[path.length-2]+'/'+path[path.length-1]).then(res1 => {
-            console.log('文件读取--->',res1);
-            newArr.push(res1[res1.length - 1]);
+          let uId = await Storage.get('uid');
+          readFileData(FILE_PATH+'/'+path[path.length-2]+'/'+path[path.length-1]).then( res1 => {
+            // console.log('文件读取--->',res1);
+              for(let i = res1.length-1;i>=0;i--){
+                console.log(uId + '---' + res1[i].sendID);
+                if(Number(uId) === Number(res1[i].sendID)){
+                  continue;
+                }
+                newArr.push(res1[i]);
+                return;
+              }
           });
         }
       });

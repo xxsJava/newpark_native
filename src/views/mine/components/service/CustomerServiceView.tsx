@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Dimensions, StyleSheet, View, Image, TouchableOpacity, ImageSourcePropType, Platform, KeyboardAvoidingView, SafeAreaView, ScrollView, TextInput, Alert, Button } from 'react-native';
-import { Text } from 'react-native-animatable';
+import React from 'react';
 import { Trans } from 'react-i18next';
-import { AvatarImageSource } from 'react-native-paper/lib/typescript/components/Avatar/AvatarImage';
-import { Appbar, Avatar, IconButton } from 'react-native-paper';
-import { symbol } from 'prop-types';
+import { Dimensions, Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Text } from 'react-native-animatable';
+import { Appbar } from 'react-native-paper';
 
 function QuestList() {
     const list = [{
@@ -118,7 +116,7 @@ const LittleTips = () => {
 //       </View>
 //     );
 //   }  
-const onlineservice = ({ navigation }: any) => {
+const Onlineservice = ({ navigation }: any) => {
 
     return (
         <KeyboardAvoidingView behavior='position'>
@@ -158,7 +156,7 @@ const onlineservice = ({ navigation }: any) => {
         </KeyboardAvoidingView>
     )
 }
-export default onlineservice;
+export default Onlineservice;
 // export default App;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

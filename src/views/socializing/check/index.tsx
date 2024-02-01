@@ -18,6 +18,9 @@ import {
   View
 } from 'react-native';
 import { Appbar, Avatar, IconButton } from 'react-native-paper';
+import { sendMsg } from '../../../api/imApi';
+import { MsgInfoSendJson } from '../../../api/imApi/type';
+import { usrInfo } from '../../../api/sys/usr';
 import { DeviceEvent } from '../../../config/listener';
 import {
   FILE_SUFFIX,
@@ -37,9 +40,9 @@ function MessageList(props: { items: any; receiver: any }) {
   console.log('items---->', items);
   const listItems = items.map(
     (item: any, index: React.Key | null | undefined) => {
-      console.log('data----->', item.sendID == receiver);
 
-     
+      console.log('receiver-------->',receiver);
+      console.log('data----->', item.sendID +'-'+receiver);
       return (
         <View>
           <View
@@ -128,6 +131,7 @@ function MessageList(props: { items: any; receiver: any }) {
   const [headName, setHeadName] = useState('');
   const [headImg, setHeadImg] = useState('');
   const [msg, setMsg]: any = useState({});
+  const [msgId,setMsgId] = useState('');
 
   let timer; //计时器
   useEffect(() => {
@@ -154,14 +158,18 @@ function MessageList(props: { items: any; receiver: any }) {
     );
   }, []);
 
-  const initMsg = () => {
+  const initMsg = async () => {
     msgFind();
     // setReceiver(data[0].groupName);
     //1秒后执行callback, 只会执行一次
+    const usrId = await Storage.get('uid');
+    setReceiver(usrId + '');
   };
 
   const msgFind = () => {
     const param: any = route.params;
+    setMsgId(param.id);
+    console.log('id--------------------->',param.id);
     if (param.type === 2) {
       console.log('群聊');
       msgGet(GROUP_MSG_DIR + '/' + param.id + FILE_SUFFIX);
@@ -186,32 +194,32 @@ function MessageList(props: { items: any; receiver: any }) {
   //发送消息
   const sendMessage = async () => {
     let newItems = JSON.parse(JSON.stringify(items));
+    
 
-    const usrId = await Storage.get('uid');
-    setReceiver(usrId + '');
-    newItems.push({
-      name: 'xxs18',
-      textElem: {
-        content: 'hello',
-      },
-      sendID: usrId,
-    });
+    const usrInFo = (await usrInfo()).data;
 
+    const msgJsonData = MsgInfoSendJson;
+    msgJsonData.content.content = value;
+    msgJsonData.recvID = msgId;
+    msgJsonData.sendID = receiver;
+    msgJsonData.senderFaceURL = usrInFo.uPath;
+    msgJsonData.senderNickname = usrInFo.uNikname;
+    msgJsonData.textElem.content = value;
+    console.log('userINFO ------->',msgJsonData);
+
+    newItems.push(msgJsonData);
     setItems(newItems);
-    const openToken = await Storage.get('openim-token');
-    console.log('发送消息----->', openToken);
+    
+    const snedMsgJson = await sendMsg(msgJsonData);
+    console.log('sendMsg-------------->',snedMsgJson);
+    onChangeText('');
   };
   const sendDo = () => {
     // sendMessage(value);
     //postMessage();
     onChangeText('');
   };
- // 测试调的接口
- const msgVal = async () => {
 
-  const tokenStr = await Storage.get('usr-token');
-  console.log('获取到用户token', tokenStr);
-}
 // 到这里结束
 
   return (
@@ -259,7 +267,7 @@ function MessageList(props: { items: any; receiver: any }) {
                             onSubmitEditing={sendDo}
 
                         />
-                        <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => console.log('Pressed')}></IconButton>
+                        <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => sendMessage()}></IconButton>
                     </View>
                     <View style={styles.controlStrip}>
                         <IconButton style={styles.controlIcon} icon={require('../../../assets/images/speech-icon.png')} onPress={() => console.log('点击语音')}></IconButton>
@@ -379,11 +387,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   chatNameReceiver: {
-    fontSize: 13,
+    fontSize: 12,
+    width: 100,
     position: 'absolute',
     top: -20,
-    color: '#000',
-    fontWeight: 'bold',
+    color: '#666',
+    // fontWeight: 'bold',
     marginLeft: 'auto',
     // // 改动
     // minWidth:80,
