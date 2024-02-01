@@ -25,16 +25,18 @@ export const LsitRecommend = (props:any) => {
     }, 3000);
   };
   console.log('传递的参数',props.message)
+  
   return (
     <FlatList
       data={props.message}
       ListHeaderComponent={<ColumnType></ColumnType>}
-      // onEndReached={() => loadMoreData()}
+      onEndReached={() => loadMoreData()}
       renderItem={postsList}
+      // onEndReachedThreshold={0.1}
       ItemSeparatorComponent={() => {
         return <View style={{height: 5}} />;
       }}
-      keyExtractor={item => item.key}
+      keyExtractor={item => item.index}
     />
   );
 };

@@ -22,6 +22,7 @@ import Registered from '../../views/login/components/Registered';
 import Verification from '../../views/login/components/Verification';
 import {LoginInterceptor} from '../routs/lib/filter/LoginFilter';
 
+
 export default {
   //主路由
   ROOT: {

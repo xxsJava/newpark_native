@@ -61,6 +61,7 @@ import Testone from '../../../views/mine/components/TestOne'
 // import BeginTwo from '../../../components/begin/BeginTwo'
 // import BeginThree from '../../../components/begin/BeginThree'
 // import BeginFour from '../../../components/begin/BeginFour'
+import Test1  from '../../../views/login/components/Registered/test';
 import PersonalData from '../../../views/mine/components/setup/PersonalData'
 import Comment from '../../../components/Error/Comment'
 import Collect from '../../../components/Error/Collect'
@@ -70,6 +71,7 @@ import AddNewAddress from '../../../views/mine/components/service/AddNewAddress'
 import ThreeJiContent from '../../../views/mine/components/service/threeJiContent'
 import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
 /*
+
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
  * @LastEditTime: 2023-10-31 15:05:30
@@ -95,6 +97,12 @@ export default {
      options: {
     //   headerShown: false,
     title: '三级联动',
+     },
+  },
+  Test1:{
+    component: Test1,
+     options: {
+    title: '测试头像',
      },
   },
   SanJiLiand:{
@@ -132,6 +140,7 @@ export default {
       // headerTitleAlign: 'center',
       headerTitleStyle: StylesALL.navText,
       headerStyle: StylesALL.BGCOLOR,
+      headerShown:false
     },
   },
   Testone:{

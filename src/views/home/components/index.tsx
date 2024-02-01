@@ -13,7 +13,6 @@ import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -42,6 +41,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
     // }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
+  // 添加点击右边圆点弹出分享模态框
 
   return (
     <TouchableOpacity activeOpacity={0.9} key={item.tid}  onPress={() => navigate('PostDetailsRoute',{item})}>
@@ -65,7 +65,8 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
             <IconButton
               style={styles.rightButton}
               icon="dots-horizontal"
-              onPress={() => {}}
+              onPress={() => {console.log('分享');
+              }}
             />
           </View>
         </Card.Content>

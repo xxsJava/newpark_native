@@ -7,20 +7,20 @@ const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const Invite = (props:any) => {
-    const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = React.useState(true);
     console.log('我是item哦哦哦哦',props.item);
     
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
     if(props.item){
-        setVisible(true);
-        console.log('111111111');
+        // setVisible(true);
+        // console.log('111111111');
         
     }
     const containerStyle = { backgroundColor: 'white', padding: 25, marginTop:480, paddingHorizontal:30, paddingVertical:90};
     const list2 = [
         {
-            index: 1,
+            index: 0,
             img: require('../../assets/images/tup/wx.jpg'),
             text: '微信好友'
         },
@@ -48,7 +48,7 @@ const Invite = (props:any) => {
                     return (
                         <TouchableOpacity key={item.index} style={styles.mtlist} onPress={() =>{console.log(item.text);
                         }}>
-                            <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 76 } : null]}></Image>
+                            <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 78 } : null]}></Image>
                             <View style={styles.zi}>
                                 <Text style={styles.h4}>{item.text}</Text>
                             </View>
