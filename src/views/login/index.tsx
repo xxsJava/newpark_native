@@ -1,4 +1,4 @@
-//import {useNavigation} from '@react-navigation/native';
+
 import React, { useState } from 'react';
 import {
   Dimensions,
@@ -15,19 +15,20 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Button, TextInput } from 'react-native-paper';
 import { LoginScreenProps } from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
-// import {useToast} from 'native-base';
+
 import { Toast, useToast } from '@gluestack-ui/themed';
 import { Trans } from 'react-i18next';
 
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getClientConfig, getOpenIMConfig } from '../../api/imApi';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
 import { navigate } from '../../config/routs/NavigationContainer';
+import { requestPermissionStorage } from '../../config/storagePermissionStatus';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import ClausePopup from '../../views/login/components/ClausePopup';
 import { forgetPass } from './controller';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -132,8 +133,12 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       Storage.set('im-auth',imAuth.data.token);
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
-      // 这个是跳转到主页面的
-      // navigate('LoginHome');
+      //android获取设备权限
+      if (Platform.OS === 'android') {
+        //获取存储权限
+        requestPermissionStorage();
+      } 
+      
       toast.show({
         placement: 'top',
         render: () => {
@@ -159,6 +164,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       return false;
     }
     setLoad(false);
+    // 这个是跳转到主页面的
     navigate('LoginHome')
   };
   // 这里是手机号登录会执行的操作
@@ -254,8 +260,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
       if(openImToken === null){
         const openIMRes = await getOpenIMConfig(openIMConfig);
-        console.log('获取到Open-IM-token1---->', openIMRes.data.token);
-        console.log('设置openim-token3---->',Storage.set('openim-token',openIMRes.data.token));
+        // console.log('获取到Open-IM-token1---->', openIMRes.data.token);
+        // console.log('设置openim-token3---->',Storage.set('openim-token',openIMRes.data.token));
         openImToken = await Storage.get("openim-token");
       }
       

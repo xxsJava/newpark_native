@@ -5,7 +5,7 @@
  */
 
 import { useRoute } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Dimensions,
   KeyboardAvoidingView,
@@ -23,6 +23,7 @@ import { MsgInfoSendJson } from '../../../api/imApi/type';
 import { usrInfo } from '../../../api/sys/usr';
 import { DeviceEvent } from '../../../config/listener';
 import {
+  FILE_PATH,
   FILE_SUFFIX,
   GROUP_MSG_DIR,
   PRITIVE_MSG_DIR,
@@ -132,11 +133,10 @@ function MessageList(props: { items: any; receiver: any }) {
   const [headImg, setHeadImg] = useState('');
   const [msg, setMsg]: any = useState({});
   const [msgId,setMsgId] = useState('');
-
   let timer; //计时器
   useEffect(() => {
     // loadMessage();
-
+    
     //获取历史记录
     initMsg();
 
@@ -148,6 +148,7 @@ function MessageList(props: { items: any; receiver: any }) {
           initMsg();
           //清除
           clearTimeout(timeoutID);
+          
         }, 500);
         return () => {
           // 在组件卸载时移除监听
@@ -164,40 +165,40 @@ function MessageList(props: { items: any; receiver: any }) {
     //1秒后执行callback, 只会执行一次
     const usrId = await Storage.get('uid');
     setReceiver(usrId + '');
+    
   };
 
-  const msgFind = () => {
+  const msgFind = async () => {
+    let uId = await Storage.get('uid');
     const param: any = route.params;
     setMsgId(param.id);
     console.log('id--------------------->',param.id);
     if (param.type === 2) {
       console.log('群聊');
-      msgGet(GROUP_MSG_DIR + '/' + param.id + FILE_SUFFIX);
+      msgGet(FILE_PATH + uId+ GROUP_MSG_DIR + '/' + param.id + FILE_SUFFIX);
       return;
     }
     console.log('单聊');
-    msgGet(PRITIVE_MSG_DIR + '/' + param.id + FILE_SUFFIX);
+    msgGet(FILE_PATH + uId+PRITIVE_MSG_DIR + '/' + param.id + FILE_SUFFIX);
   };
 
   const msgGet = (filePath: string) => {
     //查找到文件直接写入
     readFileData(filePath).then(res => {
       const isPGFlag = res[0].stateMsg === 2;
-      // console.log(res);
-      // console.log(res[0].groupName);
       setItems(res);
       setHeadName(isPGFlag ? res[0].groupName : res[0].senderNickname);
       setHeadImg(isPGFlag ? res[0].faceURL : res[0].senderFaceUrl);
+      setTimeout(() => {
+        handleContentSizeChange();
+      }, 500);
     });
   };
 
   //发送消息
   const sendMessage = async () => {
     let newItems = JSON.parse(JSON.stringify(items));
-    
-
     const usrInFo = (await usrInfo()).data;
-
     const msgJsonData = MsgInfoSendJson;
     msgJsonData.content.content = value;
     msgJsonData.recvID = msgId;
@@ -206,18 +207,23 @@ function MessageList(props: { items: any; receiver: any }) {
     msgJsonData.senderNickname = usrInFo.uNikname;
     msgJsonData.textElem.content = value;
     console.log('userINFO ------->',msgJsonData);
-
     newItems.push(msgJsonData);
     setItems(newItems);
-    
     const snedMsgJson = await sendMsg(msgJsonData);
     console.log('sendMsg-------------->',snedMsgJson);
     onChangeText('');
+    handleContentSizeChange();
   };
   const sendDo = () => {
-    // sendMessage(value);
-    //postMessage();
     onChangeText('');
+  };
+
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  const handleContentSizeChange = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: false });
+    }
   };
 
 // 到这里结束
@@ -250,7 +256,11 @@ function MessageList(props: { items: any; receiver: any }) {
                     value={s}
                     onSubmitEditing={sendDo}
                 /> */}
-                <ScrollView style={styles.chatBody}>
+                <ScrollView  
+                    ref={scrollViewRef}
+                    onContentSizeChange={handleContentSizeChange}
+                    onLayout={handleContentSizeChange} 
+                    style={styles.chatBody}>
                     <View style={{ height: 10 }}></View>
                     <MessageList items={items} receiver={receiver} />
                 </ScrollView>
@@ -265,7 +275,6 @@ function MessageList(props: { items: any; receiver: any }) {
                             placeholder={'开始聊天吧'}
                             value={value}
                             onSubmitEditing={sendDo}
-
                         />
                         <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => sendMessage()}></IconButton>
                     </View>

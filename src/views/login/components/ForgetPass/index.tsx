@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 17:25:19
- * @LastEditTime: 2024-01-25 10:52:23
+ * @LastEditTime: 2024-02-18 11:35:43
  * @FilePath: \newpark_native\src\views\login\components\ForgetPass\index.tsx
  * @Description: desc
  */
@@ -16,20 +16,12 @@ import notifee, {
 import Alipay from '@uiw/react-native-alipay';
 import React from 'react';
 import {
-  Button,
-  StyleSheet,
-  View
+  StyleSheet
 } from 'react-native';
 // import { getNotification } from '../../../../api/notificationApi';
 // import { getNotification } from '../../../../api/NotificationApi';
-import IMSDKRN from '../../../../plugins/IMSDKRN/ANDROIDSDK';
 
-import { schoolFindAll } from '../../../../api/test';
-import { INDEX_MSG_DIR, MSG_FILE_DIR } from '../../../../config/paramStatic';
-import {
-  readFileData,
-  writeFileData
-} from '../../../../utils/FilesUtiles';
+import { WebView } from 'react-native-webview';
 Alipay.setAlipaySandbox(true);
 
 // var callManager = NativeModules.CallManager;
@@ -179,181 +171,204 @@ function componentWillUnmount(this: any) {
 // const subscription = calendarManagerEmitter.addListener('OCSendToRN',(reminder) => console.log('RN收到OC发来---->'+reminder.name))
 
 const ForgetPass: React.FC = () => {
+
+  //RN webview 向 vue发送数据
+const handleInjectJavascript = (data:any) => {
+  console.log('执行向vue数据传输');
+  // 拼接数据为方法
+  const injectJavascriptStr =  `(function() {
+    window.WebViewBridge.onMessage(${JSON.stringify(data)});
+  })()`; 
+  // 通过 injectJavaScript  将数据传递给WebView页面，并立即执行为js
+  return injectJavascriptStr;
+}
+
   return (
-    <View style={{flex: 1}}>
-      {/* <MyComponent/> */}
-      <Button title="支付宝支付" onPress={aliPay} />
-      <Button title="微信支付" color="#24C78C" />
-      <Button title="通知" onPress={onDisplayNotification} />
-      <Button title="远程通知" onPress={onNotificationRemote} />
-      <Button title="定时通知" onPress={onCreateTriggerNotification} />
-      {/* <Button title="添加监听" onPress={componentDidMount} /> */}
-      {/* <Button title="清除监听" onPress={componentWillUnmount} /> */}
+    <WebView
+       originWhitelist={ ['*'] }
+       // 布尔值,指定WebView中是否启用JavaScript。只在Android上使用，因为在iOS上默认启用了JavaScript。
+       javaScriptEnabled={ true }
+       // 布尔值,指定是否开启DOM本地存储
+       //  domStorageEnabled={ true }
+       injectedJavaScript={handleInjectJavascript('hello world')}
+       // 加载时强制使用loading转圈视图，如果为true，webview可能会加载失败，显示为空白
+       startInLoadingState={true}
+       source={ {uri: 'http://192.168.129.1:4000/'} }
+       />
+    // <View style={{flex: 1}}>
+    //   {/* <MyComponent/> */}
+    //   <Button title="支付宝支付" onPress={aliPay} />
+    //   <Button title="微信支付" color="#24C78C" />
+    //   <Button title="通知" onPress={onDisplayNotification} />
+    //   <Button title="远程通知" onPress={onNotificationRemote} />
+    //   <Button title="定时通知" onPress={onCreateTriggerNotification} />
+    //   {/* <Button title="添加监听" onPress={componentDidMount} /> */}
+    //   {/* <Button title="清除监听" onPress={componentWillUnmount} /> */}
 
-      <Button
-        title="获取群组信息"
-        onPress={async () => {
-          // const groupParam = ['1944979969'];
+    //   <Button
+    //     title="获取群组信息"
+    //     onPress={async () => {
+    //       // const groupParam = ['1944979969'];
 
-          // const getGroup = await getGroupsInfo(
-          //   groupParam,
-          //   'token_pr_newpark_19f86bd4281dc1de',
-          // );
-          // console.log(getGroup);
-        }}
-      />
+    //       // const getGroup = await getGroupsInfo(
+    //       //   groupParam,
+    //       //   'token_pr_newpark_19f86bd4281dc1de',
+    //       // );
+    //       // console.log(getGroup);
+    //     }}
+    //   />
 
-      <Button
-        title="IM初始化-Android"
-        onPress={() => {
-          console.log('调用原生代码');
-          // let result = ToastExample.Constant;
-          // console.log('原生传递的参数--->',result)
-          console.log(IMSDKRN);
-          IMSDKRN.inItSDK();
-        }}
-      />
+    //   <Button
+    //     title="IM初始化-Android"
+    //     onPress={() => {
+    //       console.log('调用原生代码');
+    //       // let result = ToastExample.Constant;
+    //       // console.log('原生传递的参数--->',result)
+    //       console.log(IMSDKRN);
+    //       IMSDKRN.inItSDK();
+    //     }}
+    //   />
 
-      <Button
-        title="IM登录-Android"
-        onPress={() => {
-          console.log('调用login');
+    //   <Button
+    //     title="IM登录-Android"
+    //     onPress={() => {
+    //       console.log('调用login');
 
-          const loginParams = {
-            usrId: '1742430171993788416',
-            token:
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzEyMDQ0ODQ3LCJuYmYiOjE3MDQyNjg1NDcsImlhdCI6MTcwNDI2ODg0N30.t9bHspkEgkB49EkiByczmyECf4OnmejZRpvR9_QqHfk',
-          };
-          IMSDKRN.login(loginParams.usrId, loginParams.token);
-        }}
-      />
+    //       const loginParams = {
+    //         usrId: '1742430171993788416',
+    //         token:
+    //           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MiwiZXhwIjoxNzEyMDQ0ODQ3LCJuYmYiOjE3MDQyNjg1NDcsImlhdCI6MTcwNDI2ODg0N30.t9bHspkEgkB49EkiByczmyECf4OnmejZRpvR9_QqHfk',
+    //       };
+    //       IMSDKRN.login(loginParams.usrId, loginParams.token);
+    //     }}
+    //   />
 
-      <Button
-        title="IM-Android退出"
-        onPress={() => {
-          IMSDKRN.doMethod('logout');
-        }}
-      />
+    //   <Button
+    //     title="IM-Android退出"
+    //     onPress={() => {
+    //       IMSDKRN.doMethod('logout');
+    //     }}
+    //   />
 
-      <Button
-        title="IOS-接口测试"
-        onPress={async () => {
-          const jsonData = {
-            "schoolCode": "",
-            "schoolName": ""
-        }
+    //   <Button
+    //     title="IOS-接口测试"
+    //     onPress={async () => {
+    //       const jsonData = {
+    //         "schoolCode": "",
+    //         "schoolName": ""
+    //     }
 
-          const data = await schoolFindAll(jsonData);
-          console.log(data);
-        }}
-      />
+    //       const data = await schoolFindAll(jsonData);
+    //       console.log(data);
+    //     }}
+    //   />
 
-      {/* <Button
-        title="IOS-IM"
-        onPress={() => {
-          const OPEMIMIOS = NativeModules.OpenIM;
-          console.log('调用IOS');
-          var cat = require('react-native').NativeModules.OpenIM;
-          console.log(cat);
-          const res = cat.whoName('RN-传参至IOS');
-          console.log(OPEMIMIOS.passDataToRN('ios 传参数至RN'));
-        }}
-      /> */}
+    //   {/* <Button
+    //     title="IOS-IM"
+    //     onPress={() => {
+    //       const OPEMIMIOS = NativeModules.OpenIM;
+    //       console.log('调用IOS');
+    //       var cat = require('react-native').NativeModules.OpenIM;
+    //       console.log(cat);
+    //       const res = cat.whoName('RN-传参至IOS');
+    //       console.log(OPEMIMIOS.passDataToRN('ios 传参数至RN'));
+    //     }}
+    //   /> */}
 
-      {/* <Button
-        title="IOS-Promises"
-        onPress={async () => {
-          try {
-            var events =
-              await require('react-native').NativeModules.OpenIM.testCallbackEventTwo();
-            console.log(events);
-          } catch (e) {
-            console.error(e);
-          }
-        }}
-      /> */}
+    //   {/* <Button
+    //     title="IOS-Promises"
+    //     onPress={async () => {
+    //       try {
+    //         var events =
+    //           await require('react-native').NativeModules.OpenIM.testCallbackEventTwo();
+    //         console.log(events);
+    //       } catch (e) {
+    //         console.error(e);
+    //       }
+    //     }}
+    //   /> */}
 
-      {/* <Button
-        title="IOS-OpenIM初始化"
-        onPress={async () => {
-          const {OpenIM} = NativeModules;
-          OpenIM.init();
-        }}
-      /> */}
+    //   {/* <Button
+    //     title="IOS-OpenIM初始化"
+    //     onPress={async () => {
+    //       const {OpenIM} = NativeModules;
+    //       OpenIM.init();
+    //     }}
+    //   /> */}
 
-      <Button
-        title="IOS开启监听"
-        onPress={() => {
-          console.log('获取ios方法------>', IMSDKRN);
-          // const testIos = new NativeEventEmitter(IMSDKRN);
-          // console.log(testIos);
-          // testIos.addListener('ItemAdded',res =>{
-          //   console.log('接收ios-监听----->',res)
-          // })
-        }}
-      />
+    //   <Button
+    //     title="IOS开启监听"
+    //     onPress={() => {
+    //       console.log('获取ios方法------>', IMSDKRN);
+    //       // const testIos = new NativeEventEmitter(IMSDKRN);
+    //       // console.log(testIos);
+    //       // testIos.addListener('ItemAdded',res =>{
+    //       //   console.log('接收ios-监听----->',res)
+    //       // })
+    //     }}
+    //   />
 
-      <Button
-        title="IOS--登录"
-        onPress={() => {
-          console.log("IOS 登录----------->");
-          IMSDKRN.login("1742430171993788416","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MSwiZXhwIjoxNzEyNjQ1MDY2LCJuYmYiOjE3MDQ4Njg3NjYsImlhdCI6MTcwNDg2OTA2Nn0.pp1P6ZyNaSFL0gWpSwM3_CqdY_PzCxoW1jX3rcfc-GI");
-        }}
-      />
+    //   <Button
+    //     title="IOS--登录"
+    //     onPress={() => {
+    //       console.log("IOS 登录----------->");
+    //       IMSDKRN.login("1742430171993788416","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxNzQyNDMwMTcxOTkzNzg4NDE2IiwiUGxhdGZvcm1JRCI6MSwiZXhwIjoxNzEyNjQ1MDY2LCJuYmYiOjE3MDQ4Njg3NjYsImlhdCI6MTcwNDg2OTA2Nn0.pp1P6ZyNaSFL0gWpSwM3_CqdY_PzCxoW1jX3rcfc-GI");
+    //     }}
+    //   />
 
-      <Button
-        title="IOS事件监听测试"
-        onPress={() => {
-          console.log('点击ios监听事件');
+    //   <Button
+    //     title="IOS事件监听测试"
+    //     onPress={() => {
+    //       console.log('点击ios监听事件');
 
-          IMSDKRN.testEvent();
-        }}
-      />
+    //       IMSDKRN.testEvent();
+    //     }}
+    //   />
 
-      <Button
-        title="json文件写"
-        onPress={async () => {
-          //写入json数据
-          const jsonData = [{groupId: 'value', path: ''}];
-          const jsonString = JSON.stringify(jsonData);
+    //   <Button
+    //     title="json文件写"
+    //     onPress={async () => {
+    //       //写入json数据
+    //       const jsonData = [{groupId: 'value', path: ''}];
+    //       const jsonString = JSON.stringify(jsonData);
 
-          // 从上面的路径中写文件
-          //创建一个json文件
-          writeFileData(INDEX_MSG_DIR, jsonString);
-        }}
-      />
+    //       // 从上面的路径中写文件
+    //       //创建一个json文件
+    //       writeFileData(INDEX_MSG_DIR, jsonString);
+    //     }}
+    //   />
 
-      <Button
-        title="json文件读"
-        onPress={() => {
-          // 开始读取文件
-          readFileData(INDEX_MSG_DIR)
-            .then(res => {
-              console.log('读取原始数据----->', res);
-              res.data.push({groupId: 'value1', path: '11'});
-              console.log('数据更新----->', res);
-              writeFileData(INDEX_MSG_DIR, JSON.stringify(res));
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }}
-      />
+    //   <Button
+    //     title="json文件读"
+    //     onPress={() => {
+    //       // 开始读取文件
+    //       readFileData(INDEX_MSG_DIR)
+    //         .then(res => {
+    //           console.log('读取原始数据----->', res);
+    //           res.data.push({groupId: 'value1', path: '11'});
+    //           console.log('数据更新----->', res);
+    //           writeFileData(INDEX_MSG_DIR, JSON.stringify(res));
+    //         })
+    //         .catch(err => {
+    //           console.log(err);
+    //         });
+    //     }}
+    //   />
 
-      <Button
-        title="json合并"
-        onPress={() => {
-          writeFileData(INDEX_MSG_DIR, MSG_FILE_DIR);
-        }}
-      />
-      {/* <Button title='IOS OPEN-IM' onPress={() => {
-        IMSDKRN.logout();
-        // console.log(IMSDKRN);
-      }}>
+    //   <Button
+    //     title="json合并"
+    //     onPress={() => {
+    //       writeFileData(INDEX_MSG_DIR, MSG_FILE_DIR);
+    //     }}
+    //   />
+    //   {/* <Button title='IOS OPEN-IM' onPress={() => {
+    //     IMSDKRN.logout();
+    //     // console.log(IMSDKRN);
+    //   }}>
         
-      </Button> */}
-      {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}
-    </View>
+    //   </Button> */}
+    //   {/* <LottieView style={{width:200,height:200}} source={require("../../../../assets/json/sex0.json")} autoPlay loop /> */}
+    // </View>
   );
 };
 

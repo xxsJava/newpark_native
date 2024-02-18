@@ -3,11 +3,11 @@ import { getGroupsInfo } from '../../api/imApi';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import Storage from '../../utils/AsyncStorageUtils';
 import { isFile, readFileData, writeFileData } from '../../utils/FilesUtiles';
-import { GROUP_MSG_DIR, INDEX_MSG_DIR, PRITIVE_MSG_DIR } from '../paramStatic';
+import { FILE_PATH, GROUP_MSG_DIR, INDEX_MSG_DIR, PRITIVE_MSG_DIR } from '../paramStatic';
 /*
  * @Author: xxs
  * @Date: 2024-01-04 09:28:14
- * @LastEditTime: 2024-01-26 10:36:45
+ * @LastEditTime: 2024-02-18 16:51:37
  * @FilePath: \newpark_native\src\config\listener\index.tsx
  * @Description: desc
  */
@@ -32,8 +32,9 @@ export const initListener = () => {
 
     const uId = await Storage.get('uid');
 
+    let filePath = FILE_PATH + uId + INDEX_MSG_DIR;
     //存群聊消息文件地址
-    readFileData(INDEX_MSG_DIR).then(async res => {
+    readFileData(filePath).then(async res => {
       console.log(res);
       if (msg.groupID != undefined) {
         console.log('............ 群聊 ..............');
@@ -41,7 +42,6 @@ export const initListener = () => {
           id: msg.groupID,
           path: res.groupPath + '/' + msg.groupID + '.json',
         };
-
         const jsonFlag = res.data.some((item: any) => {
           console.log('--------------->开始查找数据', groupFile.id);
           return item.id === groupFile.id;
@@ -52,7 +52,7 @@ export const initListener = () => {
           console.log('群组数据文件更新----->');
           res.data.push(groupFile);
           console.log('插入数据后----->', res.data);
-          writeFileData(INDEX_MSG_DIR, JSON.stringify(res));
+          writeFileData(filePath, JSON.stringify(res));
           console.log('............ 群聊数据地址已写入 ..............');
         }
         //群聊数据文件写入
@@ -74,7 +74,7 @@ export const initListener = () => {
           //数据合并
           // newArr = data.concat(newArr)
           console.log(newArr);
-          const fileGroupPath = GROUP_MSG_DIR + '/' + msg.groupID + '.json';
+          const fileGroupPath = FILE_PATH + uId + GROUP_MSG_DIR + '/' + msg.groupID + '.json';
           jsonDataRead(fileGroupPath, newArr);
         }
         return;
@@ -84,10 +84,13 @@ export const initListener = () => {
       
       //写入单聊文件地址
       console.log('............ 单聊 ..............');
+      
       const privateFile: msgData = {
         id: usrFlag,
         path: res.privatePath + '/' + usrFlag + '.json',
       };
+
+      console.log('res----->',res);
 
       const jsonFlag = res.data.some((item: any) => {
         console.log('--------------->开始查找数据', privateFile.id);
@@ -99,11 +102,11 @@ export const initListener = () => {
         console.log('单聊数据文件更新----->');
         res.data.push(privateFile);
         console.log('插入数据后----->', res.data);
-        writeFileData(INDEX_MSG_DIR, JSON.stringify(res));
+        writeFileData(filePath, JSON.stringify(res));
         console.log('............ 单聊数据地址已写入 ..............');
       }
       //单聊消息数据写入
-      const filePrivatePath = PRITIVE_MSG_DIR + '/' + usrFlag + '.json';
+      const filePrivatePath = FILE_PATH + uId + PRITIVE_MSG_DIR + '/' + usrFlag + '.json';
       //设置单聊状态
       msg.stateMsg = 1;
       let newMsgArr = [];
