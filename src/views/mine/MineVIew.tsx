@@ -1,20 +1,17 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2023-10-25 17:14:49
- * @FilePath: \newpark_native\src\components\Home\index.tsx
+ * @LastEditTime: 2024-02-19 17:00:28
+ * @FilePath: \newpark_native\src\views\mine\MineVIew.tsx
  * @Description: Home 页菜单
  */
 import React, { Component } from 'react';
 import { Trans } from 'react-i18next';
 import LinearGradinet from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import BellView from '../../components/Bell/index';
 import { navigate } from '../../config/routs/NavigationContainer';
-import HomePageView from './components/homepage';
 // 1
 import {
-  Button,
   Dimensions,
   Image,
   Platform,
@@ -25,6 +22,8 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import BellView from '../../components/Bell';
+import HomePageView from './components/homepage';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 const windowWidth = Dimensions.get('window').width;
@@ -113,17 +112,17 @@ export default class MineVIew extends Component {
             
             </View>
             {/* <PersonalDataView></PersonalDataView> */}
-            <HomePageView></HomePageView>
-            <Button
+            <HomePageView />
+            {/* <Button
             onPress={() => navigate('ReviceCode')}
             title="测试收到验证码页面"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
-          />
+          /> */}
           </ScrollView>
         </View>
        <View>
-          <BellView></BellView>
+          <BellView />
        </View>
       </SafeAreaView>
       
@@ -135,7 +134,7 @@ const styles = StyleSheet.create({
   safeStyle: {
     width: windowWidth,
     height: windowHeight,
-    backgroundColor: '#F8B032',
+    // backgroundColor: '#F8B032',
     // ...Platform.select({
     //   ios: {
     //     height: 180,

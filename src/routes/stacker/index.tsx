@@ -1,22 +1,22 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2023-12-22 10:44:55
+ * @LastEditTime: 2024-02-19 18:46:01
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import React, {useEffect} from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { useState } from 'react';
+import * as Animatable from 'react-native-animatable';
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+import { Image, Text } from '@gluestack-ui/themed';
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
 import routsConfig from '../../config/routs-config';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+const windowWidth = Dimensions.get('window').width;
 // import { Stagger, useDisclose} from 'native-base';
-import { Icon, IconButton, Avatar, Button} from 'react-native-paper';
-import {navigate} from '../../config/routs/NavigationContainer'
 /*
  * @Author: xxs
  * @Date: 2023-10-24 16:56:09
@@ -26,17 +26,12 @@ import {navigate} from '../../config/routs/NavigationContainer'
  */
 export const BommonTab = () => {
   const Tab = createBottomTabNavigator();
-
+  const [isVisible, setIsVisible] = useState(false);
   const {t} = useTranslation();
-
-  // const {isOpen, onToggle} = useDisclose();
-
-  const test = () => {
-     
-  }
 
   return (
     <>
+    
       <Tab.Navigator
         screenOptions={({route}) => ({
           // screenOptions={() => ({
@@ -44,8 +39,11 @@ export const BommonTab = () => {
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
           tabBarLabelStyle: {
-            fontSize: 14,
+            fontSize: 16
           },
+          tabBarStyle:{
+            height:60
+          }
         })}>
         {Object.entries(routsConfig).map(([key, value]) => {
           if (key === 'Routes') {
@@ -74,10 +72,72 @@ export const BommonTab = () => {
           }
         })}
       </Tab.Navigator>
+      <View style={styles.tabPub}>
+          <TouchableOpacity onPress={()=>{ setIsVisible(!isVisible)}}>
+            <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')}/>
+          </TouchableOpacity>
+      {
+        
+          isVisible?
+          <View>
+            <TouchableOpacity>
+          <Animatable.View style={styles.aniNav1} animation='fadeInLeftBig'>
+            <View style={styles.nav1}></View>
+            <Text style={styles.nav1Text}>发布</Text>
+          </Animatable.View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+          <Animatable.View style={styles.aniNav2} animation='fadeInRightBig'>
+            <View style={styles.nav1}></View>
+            <Text style={styles.nav1Text}>活动</Text>
+          </Animatable.View>
+          </TouchableOpacity>
+          </View>
+          :''
+      }
+      </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  // publishImg: {width: 64, height: 64,},
+  tabPub:{
+    position:'absolute',
+    bottom:25,
+    left:windowWidth/2-32,
+    borderWidth:2,
+    borderColor: '#F8B032',
+    width:64,
+    height:64,
+    borderRadius:50
+  },
+  bthImg:{
+    marginLeft:8,
+    marginTop:8,
+    width:44,
+    height:44
+  },
+  nav1:{
+    width: 42,
+    height: 42,
+    backgroundColor:'green',
+    borderRadius:50
+  },
+  aniNav1:{
+    position:'absolute',
+    right: windowWidth/4-30,
+    bottom:30
+  },
+  nav1Text:{
+    alignContent:'center',
+    textAlign:'center',
+    fontSize: 14,
+    color:'#000',
+    fontWeight:'bold'
+  },
+  aniNav2:{
+    position:'absolute',
+    left: windowWidth/4-30,
+    bottom:30
+  }
 });

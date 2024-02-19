@@ -2,7 +2,6 @@ import React from 'react';
 import { Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 // import DashLine from 'rn-dashline';
-
 const CallCustom = ({ navigation }: any) => {
     // const [tabVal, setTab] = useState('tab1');
     // const handleTabPress = (tab: string) => {
@@ -138,8 +137,11 @@ const CallCustom = ({ navigation }: any) => {
                         </View>
                     </View>
                 </KeyboardAvoidingView>
+                
             </ScrollView>
+            
         </SafeAreaView>
+        
     )
 }
 export default CallCustom;

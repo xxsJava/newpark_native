@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-29 20:43:34
- * @LastEditTime: 2023-10-31 14:55:18
+ * @LastEditTime: 2024-02-19 17:57:52
  * @FilePath: \newpark_native\src\config\routs-config\index.tsx
  * @Description: 路由表
  *  component 组件
@@ -12,15 +12,12 @@
 
 // import {BommonTab} from '../../routes/stacker';
 import HomeStacker from '../../routes/stacker/HomeStacker';
-import LoginStacker from '../../routes/stacker/Login';
 import MineStacker from '../../routes/stacker/MineStacker';
 import NewPatkStacker from '../../routes/stacker/NewPatkStacker';
 import PublishStacker from '../../routes/stacker/PublishStacker';
 import SocializingStacker from '../../routes/stacker/SocializingStacker';
 import LoginView from '../../views/login';
-import Registered from '../../views/login/components/Registered';
-import Verification from '../../views/login/components/Verification';
-import {LoginInterceptor} from '../routs/lib/filter/LoginFilter';
+import { LoginInterceptor } from '../routs/lib/filter/LoginFilter';
 
 
 export default {
@@ -48,8 +45,8 @@ export default {
     Publish: {
       component: PublishStacker,
       label: 'homeTab.publish',
-      SelectedIcon: 'add-circle',
-      UnSelectedIcon: 'add-circle-outline',
+      SelectedIcon: '',
+      UnSelectedIcon: '',
     },
     //消息
     Socializing: {

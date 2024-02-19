@@ -98,6 +98,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           {item.labs.map((emit: any) => {
             return (
               <TouchableOpacity activeOpacity={0.6} style={styles.labelStyle} key={emit.lableId}>
+                <View></View>
                 <View style={styles.labelIcon}>
                   <Text allowFontScaling={false} style={styles.labelIconText}>#</Text>
                 </View>
