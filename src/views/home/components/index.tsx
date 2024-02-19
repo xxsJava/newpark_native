@@ -1,10 +1,11 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2023-11-07 14:25:58
+ * @LastEditTime: 2024-02-19 15:37:49
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
+import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
 import React from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
@@ -41,149 +42,135 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
     // }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
-  // 添加点击右边圆点弹出分享模态框
 
   return (
-    <TouchableOpacity activeOpacity={0.9} key={item.tid}  onPress={() => navigate('PostDetailsRoute',{item})}>
-      <Card style={styles.cardSty}>
-        <Card.Content style={styles.cardTitle}>
-          <View style={styles.titleLeft}>
-            <View>
-              <Avatar.Image
-                style={styles.avaSty}
-                size={44}
-                source={{uri:item.upath}}
-              />
-              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
-            </View>
-            <View style={styles.titleView}>
-              <Text allowFontScaling={false} style={styles.titleStyle}>{item.unikname}</Text>
-              <Text allowFontScaling={false} style={styles.timeStyle}>{dateToMsgTime(item.tlastTime)}</Text>
-            </View>
+    <Card style={styles.cardSty}>
+      <Card.Content style={styles.cardTitle}>
+        <View style={styles.titleLeft}>
+          <View>
+            <Avatar.Image
+              style={styles.avaSty}
+              size={44}
+              source={{ uri: item.upath }} />
+            <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
           </View>
-          <View style={styles.rightSty}>
-            <IconButton
-              style={styles.rightButton}
-              icon="dots-horizontal"
-              onPress={() => {console.log('分享');
-              }}
-            />
-          </View>
-        </Card.Content>
-        <Card.Content style={styles.backColor}>
-          <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
-          <View style={{height:120,width:windowWidth,marginHorizontal:10}}>
-            <WebView source={{html:item.tcontext}}></WebView>
-          </View>
-        </Card.Content>
-        {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
-        <Card.Content style={styles.backColor}>
-          {/* <Text style={styles.context}>#情感#个人#官方#颜值#语录</Text> */}
-          <View style={styles.labelList}>
-            {item.labs.map((emit:any) => {
-              return(
-                <TouchableOpacity activeOpacity={0.6} style={styles.labelStyle} key={emit.lableId}>
-                  <View style={styles.labelIcon}>
-                    <Text allowFontScaling={false} style={styles.labelIconText}>#</Text>
-                  </View>
-                  <Text allowFontScaling={false} style={styles.labelText}>{emit.lableText}</Text>
-                </TouchableOpacity>
-              )
-            })}
-          </View>
-        </Card.Content>
-        <View style={styles.interactionStyle}>
-          <View style={styles.interactionLeft}>
-          <TouchableOpacity
-              onPress={() => {
-                console.log('转发');
-              }}>
-              <Button
-                icon={require('../../../assets/images/share-icon.png')}
-                style={styles.buttonDz}>
-                    {item.tforwardCount}
-              </Button>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.interactionRight}>
-            <Button
-              icon={upvoteVal?require('../../../assets/images/3.0x/like_block.png'):require('../../../assets/images/3.0x/like.png')}
-              style={styles.buttonDz}
-              onPress={() => postLikePress(1)}>
-                {item.tlikeCount}
-            </Button>
-            <TouchableOpacity
-              onPress={() => {
-                console.log('评论');
-              }}>
-              <Button
-                icon={require('../../../assets/images/3.0x/tabs_3_on.png')}
-                // style={StylesALL.BGCOLOR}
-              >
-                {item.tcomCount}
-              </Button>
-            </TouchableOpacity>
+          <View style={styles.titleView}>
+            <Text allowFontScaling={false} style={styles.titleStyle}>{item.unikname}</Text>
+            <Text allowFontScaling={false} style={styles.timeStyle}>{dateToMsgTime(item.tlastTime)}</Text>
           </View>
         </View>
-        {/* </TouchableHighlight> */}
-        {/* <Card.Actions>
+        <View style={styles.rightSty}>
+        
+          <Menu
+            style={{position:'relative',top:-30,bottom:0}}
+            placement='bottom right'
+            trigger={({ ...triggerProps }) => {
+              return (
+                  <IconButton
+                  { ...triggerProps }
+                  style={styles.rightButton}
+                  icon="dots-horizontal"
+                  />
+              )
+            }}
+          >
+            <MenuItem key="Report" textValue="Report">
+              <MenuItemLabel size="sm">举报</MenuItemLabel>
+            </MenuItem>
+            <MenuItem key="Blacklist" textValue="Community">
+              <MenuItemLabel size="sm">拉入黑名单</MenuItemLabel>
+            </MenuItem>
+          </Menu>
+        </View>
+      </Card.Content>
+      <TouchableOpacity activeOpacity={0.9} key={item.tid} onPress={() => navigate('PostDetailsRoute', { item })}>
+        <Card.Content style={styles.backColor}>
+          <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
+          <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
+            <WebView source={{ html: item.tcontext }}></WebView>
+          </View>
+        </Card.Content>
+      </TouchableOpacity>
+      {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
+      <Card.Content style={styles.backColor}>
+        {/* <Text style={styles.context}>#情感#个人#官方#颜值#语录</Text> */}
+        <View style={styles.labelList}>
+          {item.labs.map((emit: any) => {
+            return (
+              <TouchableOpacity activeOpacity={0.6} style={styles.labelStyle} key={emit.lableId}>
+                <View style={styles.labelIcon}>
+                  <Text allowFontScaling={false} style={styles.labelIconText}>#</Text>
+                </View>
+                <Text allowFontScaling={false} style={styles.labelText}>{emit.lableText}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </Card.Content>
+      <View style={styles.interactionStyle}>
+        <View style={styles.interactionLeft}>
           <TouchableOpacity
             onPress={() => {
-              console.log('点赞');
-            }}>
+              console.log('转发');
+            } }>
             <Button
-              icon={require('../../../assets/images/3.0x/like.png')}
+              icon={require('../../../assets/images/share-icon.png')}
               style={styles.buttonDz}>
-              200
+              {item.tforwardCount}
             </Button>
           </TouchableOpacity>
+        </View>
+        <View style={styles.interactionRight}>
+          <Button
+            icon={upvoteVal ? require('../../../assets/images/3.0x/like_block.png') : require('../../../assets/images/3.0x/like.png')}
+            style={styles.buttonDz}
+            onPress={() => postLikePress(1)}>
+            {item.tlikeCount}
+          </Button>
           <TouchableOpacity
             onPress={() => {
               console.log('评论');
-            }}>
+            } }>
             <Button
               icon={require('../../../assets/images/3.0x/tabs_3_on.png')}
-              // style={StylesALL.BGCOLOR}
             >
-              2000
+              {item.tcomCount}
             </Button>
           </TouchableOpacity>
-        </Card.Actions> */}
-        <View style={styles.commentAreaView}>
-          <Text allowFontScaling={false} style={styles.commentAreaTitle}>精选评论</Text>
-            {item.postsComments.map((porp:any) => {
-              return(
-                <View style={styles.commentArea}>
-                  <View style={styles.commentAreaItem}>
-                    <Avatar.Image size={32} source={{uri:porp.upath}} />
-                    <View style={styles.commentAreaName}>
-                      <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>{porp.unikname}：</Text>
-                      <Text allowFontScaling={false} style={styles.commentAreaNameRight}>{porp.comContent}</Text>
-                    </View>
-                    <TouchableOpacity
-                      style={styles.commentAreaIcon}
-                      onPress={() => {
-                      console.log('评论');
-                    }}>
-                      <Button
-                        icon={require('../../../assets/images/3.0x/like.png')}
-                        // style={StylesALL.BGCOLOR}
-                      >
-                        {porp.comSupport}
-                      </Button>
-                    </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.commentAreaView}>
+        <Text allowFontScaling={false} style={styles.commentAreaTitle}>精选评论</Text>
+        {item.postsComments.map((porp: any) => {
+          return (
+            <View style={styles.commentArea}>
+              <View style={styles.commentAreaItem}>
+                <Avatar.Image size={32} source={{ uri: porp.upath }} />
+                <View style={styles.commentAreaName}>
+                  <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>{porp.unikname}：</Text>
+                  <Text allowFontScaling={false} style={styles.commentAreaNameRight}>{porp.comContent}</Text>
                 </View>
+                <TouchableOpacity
+                  style={styles.commentAreaIcon}
+                  onPress={() => {
+                    console.log('评论');
+                  } }>
+                  <Button
+                    icon={require('../../../assets/images/3.0x/like.png')}
+                  >
+                    {porp.comSupport}
+                  </Button>
+                </TouchableOpacity>
               </View>
-              )
-            })}
-        </View>
-        <View style={styles.leaveWordView}>
-          <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
-          <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
-        </View>
-      </Card>
-    
-    </TouchableOpacity>
+            </View>
+          );
+        })}
+      </View>
+      <View style={styles.leaveWordView}>
+        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
+        <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
+      </View>
+    </Card>
   );
 };
 
@@ -238,11 +225,12 @@ const styles = StyleSheet.create({
   },
   rightSty: {
     marginTop:-15,
-    marginRight:-15
-    // backgroundColor:'pink'
-  },
+    marginRight:-15,
+  
+  }
+  ,
   rightButton:{
-    // backgroundColor:'plum'
+    
   },
   titleSty: {
     fontWeight: 'bold',
@@ -377,7 +365,3 @@ const styles = StyleSheet.create({
     })
   }
 });
-function componentDidMount() {
-  throw new Error('Function not implemented.');
-}
-

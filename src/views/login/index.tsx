@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Dimensions,
@@ -24,6 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getClientConfig, getOpenIMConfig } from '../../api/imApi';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
+import OpenIMConfig from '../../config/im/OpenIMConfig';
 import { navigate } from '../../config/routs/NavigationContainer';
 import { requestPermissionStorage } from '../../config/storagePermissionStatus';
 import IMSDKRN from '../../plugins/IMSDKRN';
@@ -37,14 +37,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   const toast = useToast();
   //获取输入框的手机号
   const [phone, setPhone] = useState('');
-
   //获取输入框的密码
   const [pass, setPass] = useState('');
-
   const [securePass, setSecurePass] = useState(true);
   // 这是密码登录的地方
   const [recode, setrecode] = useState(true);
-
   const [load, setLoad] = useState(false);
 
   const usrData: UserLoginType = {
@@ -94,7 +91,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     }
 
     const loginAPI = await loginApi(usrData);
-
+    OpenIMConfig.userID = loginAPI.data.uId;
     console.log(loginAPI.data);
 
     //用户不存在自动注册
@@ -113,16 +110,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     } else if (loginAPI.code === 200) {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data.usrToken);
-
-      //用户OPEN-配置
-      const openIMConfig = {
-        secret: "openIM123",
-        platformID: Platform.OS === 'ios'?1:2,
-        userID: loginAPI.data.uId
-      }
-
-      // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
-      const openIMRes = await getOpenIMConfig(openIMConfig);
+      
+      const openIMRes = await getOpenIMConfig(OpenIMConfig);
       console.log('获取到Open-IM-token1---->', openIMRes.data.token);
       Storage.set('openim-token',openIMRes.data.token);
       //oepnIm 登录
@@ -167,135 +156,6 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     // 这个是跳转到主页面的
     navigate('LoginHome')
   };
-  // 这里是手机号登录会执行的操作
-  const onLoginsj = async () => {
-    setrecode(!recode)
-    setLoad(true);
-    console.log('登录点击');
-    // navigate('passWord')
-    setrecode(!recode)
-    console.log('输入框数据' + phone + '-' + pass);
-    // text = ''
-    if (phone.length != 11) {
-      if (phone.length == 0) {
-        toast.show({
-          placement: 'bottom',
-          render: () => {
-            return (
-              <Toast action="attention" variant="solid">
-                <Text allowFontScaling={false}>手机号为空</Text>
-              </Toast>
-            )
-          }
-        })
-      }
-      toast.show({
-        placement: 'bottom',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>手机号有误</Text>
-            </Toast>
-          )
-        },
-      });
-      setLoad(false);
-      return;
-    }
-    //这是手机号登录的地方
-    const onLoginmm = async () => {
-      setrecode(!recode)
-      // setLoad(true);
-      // console.log('登录点击');
-      // navigate('passWord')
-      // setrecode(!recode)
-      // console.log('输入框数据' + phone + '-' + pass);
-      // // text = ''
-      // if (phone.length != 11) {
-      //   toast.show({
-      //     placement: 'bottom',
-      //     render: () => {
-      //       return (
-      //         <Toast action="attention" variant="solid">
-      //           <Text allowFontScaling={false}>手机号有误</Text>
-      //         </Toast>
-      //       )
-      //     },
-      //   });
-      //   setLoad(false);
-      //   return;
-    }
-
-    const loginAPI = await loginApi(usrData);
-
-    console.log('loginAPI---->'+loginAPI.data);
-    console.log('loginAPI code---->'+loginAPI.code);
-
-    //用户不存在自动注册
-    if (loginAPI.code === 1114) {
-      toast.show({
-        placement: 'bottom',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>验证码发送，请注意查收</Text>
-            </Toast>
-          )
-        },
-      });
-      navigate('Verification');
-    } else if (loginAPI.code === 200) {
-      //用户token存本地
-      Storage.set('usr-token', loginAPI.data.usrToken);
-
-      //用户OPEN-配置
-      const openIMConfig = {
-        secret: "openIM123",
-        platformID: Platform.OS === 'ios'?1:2,
-        userID: loginAPI.data.uId
-      }
-      console.log('usrID------>',loginAPI.data.uId);
-      // console.log("获取到用户UID---->",typeof(openIMConfig.userID))
-      let openImToken = await Storage.get("openim-token");
-
-      if(openImToken === null){
-        const openIMRes = await getOpenIMConfig(openIMConfig);
-        // console.log('获取到Open-IM-token1---->', openIMRes.data.token);
-        // console.log('设置openim-token3---->',Storage.set('openim-token',openIMRes.data.token));
-        openImToken = await Storage.get("openim-token");
-      }
-      
-      //oepnIm 登录
-      IMSDKRN.login(loginAPI.data.uId, openImToken);
-      //用户uid存本地
-      Storage.set('uid', loginAPI.data.uId);
-      navigate('LoginHome');
-      toast.show({
-        placement: 'top',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>登录成功，可享受功能</Text>
-            </Toast>
-          )
-        },
-      });
-    } else if (loginAPI.code === 1110) {
-      toast.show({
-        placement: 'top',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>账号有误</Text>
-            </Toast>
-          )
-        },
-      });
-    }
-    setLoad(true);
-    return;
-  };
-
 
   const smsVerIf = async () => {
     if (phone.length != 11) {

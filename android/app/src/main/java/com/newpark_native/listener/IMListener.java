@@ -5,6 +5,8 @@
  */
 package com.newpark_native.listener;
 
+import android.util.Log;
+
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
 import com.newpark_native.module.IMSDKRNModule;
@@ -124,37 +126,65 @@ public class IMListener {
 
             @Override
             public void onFriendApplicationAccepted(FriendApplicationInfo friendApplicationInfo) {
-
+                //好友申请被接受
+                Log.i(TAG,"------->好友申请被接受");
+                WritableMap params = Arguments.createMap();
+                params.putString("data", JsonUtil.toString(friendApplicationInfo));
+                IMSDKRNModule.create().sendEventRN("onFriendApplicationAccepted",params);
             }
 
             @Override
             public void onFriendApplicationAdded(FriendApplicationInfo friendApplicationInfo) {
-
+                Log.i(TAG,"------->好友申请新增通知");
+                //好友申请新增通知
+                WritableMap params = Arguments.createMap();
+                params.putString("data", JsonUtil.toString(friendApplicationInfo));
+                IMSDKRNModule.create().sendEventRN("onFriendApplicationAdded",params);
             }
 
             @Override
             public void onFriendApplicationDeleted(FriendApplicationInfo friendApplicationInfo) {
-
+                //好友申请被删除
+                Log.i(TAG,"------->好友申请被删除");
+                WritableMap params = Arguments.createMap();
+                params.putString("data", JsonUtil.toString(friendApplicationInfo));
+                IMSDKRNModule.create().sendEventRN("onFriendApplicationDeleted",params);
             }
 
             @Override
             public void onFriendApplicationRejected(FriendApplicationInfo friendApplicationInfo) {
-
+                //好友申请被拒绝
+                Log.i(TAG,"------->好友申请被拒绝");
+                WritableMap params = Arguments.createMap();
+                params.putString("data", JsonUtil.toString(friendApplicationInfo));
+                IMSDKRNModule.create().sendEventRN("onFriendApplicationRejected",params);
             }
 
             @Override
             public void onFriendInfoChanged(FriendInfo friendInfo) {
-
+                //好友资料变更通知
+                Log.i(TAG,"------->好友资料变更通知");
+                WritableMap params = Arguments.createMap();
+                params.putString("data", JsonUtil.toString(friendInfo));
+                IMSDKRNModule.create().sendEventRN("onFriendInfoChanged",params);
             }
 
             @Override
             public void onFriendAdded(FriendInfo friendInfo) {
-
+                //	好友新增通知
+                Log.i(TAG,"------->好友新增通知");
+                WritableMap params = Arguments.createMap();
+                params.putString("data", JsonUtil.toString(friendInfo));
+                IMSDKRNModule.create().sendEventRN("onFriendAdded",params);
             }
 
             @Override
             public void onFriendDeleted(FriendInfo friendInfo) {
-
+                // 好友删除通知
+                Log.i(TAG,"------->好友删除通知");
+                WritableMap params = Arguments.createMap();
+                params.putString("data", JsonUtil.toString(friendInfo));
+                IMSDKRNModule.create().sendEventRN("onFriendDeleted",params);
             }
         });
         //Conversation-related Listener

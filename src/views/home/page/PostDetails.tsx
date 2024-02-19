@@ -4,6 +4,7 @@
  * 创建时间:2023/11/23 17:58:11
  */
 
+import { Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetIcon, ActionsheetItem, ActionsheetItemText, CloseIcon, FavouriteIcon, Icon as ICON, ShareIcon, TrashIcon } from '@gluestack-ui/themed';
 import React from 'react';
 import { Trans } from 'react-i18next';
 import {
@@ -74,6 +75,9 @@ const PostDetails = ({ route }: any) => {
   const [editable, setEditable] = React.useState(false);
   const [inputVal, setInputVal] = React.useState('');
   const textInputRef: any = React.useRef(null);
+
+  const [showActionsheet, setShowActionsheet] = React.useState(false)
+  const handleClose = () => setShowActionsheet(!showActionsheet)
 
   const data = route.params.item;
 
@@ -147,18 +151,49 @@ const PostDetails = ({ route }: any) => {
     PostsCommentsData();
   }, []); // 只在组件挂载时调用一次
   return (
-    <View style={styles.parentView}>
+    <><View style={styles.parentView}>
       <Appbar.Header style={styles.headerStyle}>
         <Appbar.Action
           icon={require('../../../assets/images/chevron-left.png')}
-          onPress={() => navigate('HomeStacker')}
-        />
+          onPress={() => navigate('HomeStacker')} />
         <Text allowFontScaling={false} style={styles.headerText}>
           <Trans>navigationBar.title18</Trans>
         </Text>
         <Appbar.Action
           icon={require('../../../assets/images/ellipsis_v.png')}
-        />
+          onPress={handleClose} />
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+          <ActionsheetBackdrop />
+          <ActionsheetContent maxHeight="$56" zIndex={999}>
+            <ActionsheetDragIndicatorWrapper>
+              <ActionsheetDragIndicator />
+            </ActionsheetDragIndicatorWrapper>
+            <ActionsheetItem onPress={handleClose}>
+              <ActionsheetIcon>
+                <ICON as={TrashIcon} size="sm" />
+              </ActionsheetIcon>
+              <ActionsheetItemText size='sm'>删除</ActionsheetItemText>
+            </ActionsheetItem>
+            <ActionsheetItem onPress={handleClose}>
+              <ActionsheetIcon>
+                <ICON as={ShareIcon} size="sm" />
+              </ActionsheetIcon>
+              <ActionsheetItemText size='sm'>分享</ActionsheetItemText>
+            </ActionsheetItem>
+            <ActionsheetItem onPress={handleClose}>
+              <ActionsheetIcon>
+                <ICON as={FavouriteIcon} size="sm" />
+              </ActionsheetIcon>
+              <ActionsheetItemText size='sm'>喜欢</ActionsheetItemText>
+            </ActionsheetItem>
+            <ActionsheetItem onPress={handleClose}>
+              <ActionsheetIcon>
+                <ICON as={CloseIcon} size="sm" />
+              </ActionsheetIcon>
+              <ActionsheetItemText size='sm'>取消</ActionsheetItemText>
+            </ActionsheetItem>
+          </ActionsheetContent>
+        </Actionsheet>
       </Appbar.Header>
       <View style={styles.contentView}>
         <ScrollView style={styles.contentScroll}>
@@ -176,8 +211,7 @@ const PostDetails = ({ route }: any) => {
                     <Icon
                       size={15}
                       color="#FFF"
-                      source={require('../../../assets/images/alimom/sex_icon1.png')}
-                    />
+                      source={require('../../../assets/images/alimom/sex_icon1.png')} />
                     <Text allowFontScaling={false} style={styles.tabText}>
                       20
                     </Text>
@@ -202,8 +236,7 @@ const PostDetails = ({ route }: any) => {
               </Text>
               <WebView
                 style={{ height: 150, width: windowWidth, marginHorizontal: 30 }}
-                source={{ html: data.tcontext }}
-              />
+                source={{ html: data.tcontext }} />
               {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
             </View>
             <View style={styles.postBottom}>
@@ -217,8 +250,7 @@ const PostDetails = ({ route }: any) => {
                   <Icon
                     size={24}
                     color={collectionSelect == '1' ? '#FC073B' : '#ddd'}
-                    source={require('../../../assets/images/Favorite.png')}
-                  />
+                    source={require('../../../assets/images/Favorite.png')} />
                 </TouchableOpacity>
                 <Text allowFontScaling={false} style={styles.heartText}>
                   {' '}
@@ -232,8 +264,7 @@ const PostDetails = ({ route }: any) => {
                   <Icon
                     size={24}
                     color={transmitSelect == '1' ? '#6A1B9A' : '#ddd'}
-                    source={require('../../../assets/images/transmit_icon.png')}
-                  />
+                    source={require('../../../assets/images/transmit_icon.png')} />
                 </TouchableOpacity>
                 <Text allowFontScaling={false} style={styles.heartText}>
                   {' '}
@@ -247,8 +278,7 @@ const PostDetails = ({ route }: any) => {
                   <Icon
                     size={24}
                     color={likeSelect == '1' ? '#FABA3C' : '#ddd'}
-                    source={require('../../../assets/images/Like-copy.png')}
-                  />
+                    source={require('../../../assets/images/Like-copy.png')} />
                 </TouchableOpacity>
                 <Text allowFontScaling={false} style={styles.heartText}>
                   {' '}
@@ -264,50 +294,48 @@ const PostDetails = ({ route }: any) => {
               </Text>
               <CommentDetails commenData={postCommentsList} />
               {/* <View style={styles.listStyle}>
-                                {postCommentsList.map(item => {
-                                    return(
-                                        <View style={styles.itemStyle} key={item.comId}>
-                                            <View style={styles.commentAvatarView}>
-                                                <View style={styles.itemAvatar}>
-                                                    <Avatar.Image size={56} source={{uri:item.upath}}></Avatar.Image>
-                                                </View>
-                                                <View style={styles.itemNameView}>
-                                                    <Text allowFontScaling={false} style={styles.itemName}>{item.unikname}</Text>
-                                                    <Text allowFontScaling={false} style={styles.itemTime}>{dateToMsgTime(item.startTime)}</Text>
-                                                </View>
-                                                <View style={styles.itemIconView}>
-                                                    <TouchableOpacity onPress={() => ComLikePress(item.comSupport,item.comId)}>
-                                                        <Icon size={22} color={likeSelect1 == '0'?'#ddd':'#FABA3C'}  source={require('../../../assets/images/Like-copy.png')}></Icon>
-                                                    </TouchableOpacity>
-                                                    <Text allowFontScaling={false} style={styles.itemIconText}>  {item.comSupport}</Text>
-                                                </View>
-                                            </View>
-                                            <View style={styles.itemContent}>
-                                                <Text allowFontScaling={false} style={styles.itemContentText}>{item.comContent}</Text>
-                                                <View style={[styles.itemComment,item.coms.length == 0?{display:'none'}:null]}>
-                                                    {item.coms.map((emeit:any) => {
-                                                        return(
-                                                            <Text allowFontScaling={false} style={styles.commentArea} key={emeit.comId}>
-                                                                {emeit.unikname}:
-                                                                <Text allowFontScaling={false} style={styles.commentAreaText}>  {emeit.comContent}</Text>
-                                                            </Text>
-                                                        )
-                                                    })}
-                                                </View>
-                                            </View>
-                                        </View>
-                                    )
-                                })}
-                            </View> */}
+                      {postCommentsList.map(item => {
+                          return(
+                              <View style={styles.itemStyle} key={item.comId}>
+                                  <View style={styles.commentAvatarView}>
+                                      <View style={styles.itemAvatar}>
+                                          <Avatar.Image size={56} source={{uri:item.upath}}></Avatar.Image>
+                                      </View>
+                                      <View style={styles.itemNameView}>
+                                          <Text allowFontScaling={false} style={styles.itemName}>{item.unikname}</Text>
+                                          <Text allowFontScaling={false} style={styles.itemTime}>{dateToMsgTime(item.startTime)}</Text>
+                                      </View>
+                                      <View style={styles.itemIconView}>
+                                          <TouchableOpacity onPress={() => ComLikePress(item.comSupport,item.comId)}>
+                                              <Icon size={22} color={likeSelect1 == '0'?'#ddd':'#FABA3C'}  source={require('../../../assets/images/Like-copy.png')}></Icon>
+                                          </TouchableOpacity>
+                                          <Text allowFontScaling={false} style={styles.itemIconText}>  {item.comSupport}</Text>
+                                      </View>
+                                  </View>
+                                  <View style={styles.itemContent}>
+                                      <Text allowFontScaling={false} style={styles.itemContentText}>{item.comContent}</Text>
+                                      <View style={[styles.itemComment,item.coms.length == 0?{display:'none'}:null]}>
+                                          {item.coms.map((emeit:any) => {
+                                              return(
+                                                  <Text allowFontScaling={false} style={styles.commentArea} key={emeit.comId}>
+                                                      {emeit.unikname}:
+                                                      <Text allowFontScaling={false} style={styles.commentAreaText}>  {emeit.comContent}</Text>
+                                                  </Text>
+                                              )
+                                          })}
+                                      </View>
+                                  </View>
+                              </View>
+                          )
+                      })}
+                  </View> */}
             </View>
           </View>
         </ScrollView>
       </View>
-      <View
-        style={[
-          styles.commentBottom,
-          editable ? styles.commentBottomUp : null,
-        ]}>
+
+    </View><View
+      style={styles.commentBottom}>
         <TouchableOpacity
           activeOpacity={1}
           style={[styles.commentInput, editable ? { display: 'none' } : null]}
@@ -325,19 +353,14 @@ const PostDetails = ({ route }: any) => {
           cursorColor="#FABA3C"
           onChangeText={text => setInputVal(text)}
           onSubmitEditing={() => inputPress(0)}
-          style={[styles.bottomTextInput, editable ? null : { display: 'none' }]}
-        />
+          style={[styles.bottomTextInput, editable ? null : { display: 'none' }]} />
         <IconButton
           style={styles.commentInputImage}
           icon={require('../../../assets/images/send-icon.png')}
-          onPress={() => console.log('点击发送')}
-        />
-      </View>
-      <TouchableOpacity
+          onPress={() => console.log('点击发送')} />
+      </View><TouchableOpacity
         style={[styles.CommentBox, editable ? null : { display: 'none' }]}
-        onPress={() => inputPress(0)}
-      />
-    </View>
+        onPress={() => inputPress(0)} /></>
   );
 };
 
@@ -623,16 +646,11 @@ const styles = StyleSheet.create({
         shadowRadius: 2.5,
       },
       android: {
-        height: 70,
+        // height: 70,
         elevation: 8,
       },
     }),
   },
-
-  commentBottomUp: {
-    bottom: 280,
-  },
-
   commentInput: {
     width: '89%',
     height: 42,

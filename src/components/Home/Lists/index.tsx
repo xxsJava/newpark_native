@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-14 16:08:59
- * @LastEditTime: 2023-11-07 14:30:08
+ * @LastEditTime: 2024-02-19 09:46:21
  * @FilePath: \newpark_native\src\components\Home\Lists\index.tsx
  * @Description: desc
  */
@@ -9,8 +9,6 @@
 import React, {useState} from 'react';
 import {FlatList, View} from 'react-native';
 import {postsList} from '../../../views/home/controller';
-import {renderLoadMoreView} from '../../Load';
-import {postsData} from '../../../views/home/mock';
 import ColumnType from '../ColumnType'
 
 

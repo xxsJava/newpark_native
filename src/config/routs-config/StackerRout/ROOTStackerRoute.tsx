@@ -1,75 +1,69 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2024-01-23 18:29:10
+ * @LastEditTime: 2024-02-18 18:13:49
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
-import {StyleSheet} from 'react-native';
-import {BommonTab} from '../../../routes/stacker';
+import ReviceCode from '../../../components/ReviceCode';
+import { BommonTab } from '../../../routes/stacker';
 import StylesALL from '../../../styles';
 import LoginView from '../../../views/login';
+import Gender from '../../../views/login/components/Gender/index';
+import InterestsHobbies from '../../../views/login/components/InterestsHobbies';
 import Registered from '../../../views/login/components/Registered';
 import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
-import Gender from '../../../views/login/components/Gender/index';
-import InterestsHobbies from '../../../views/login/components/InterestsHobbies'
 import Verification from '../../../views/login/components/Verification';
-// import passWord from '../../../views/login/passWord'
+import MineThree from '../../../views/mine/components/MineThree';
+import AfterSalesView from '../../../views/mine/components/oder/AfterSalesView';
+import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
 import PaymentView from '../../../views/mine/components/oder/PaymentView';
 import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
-import ReviceCode from '../../../components/ReviceCode';
-import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
-import AfterSalesView from '../../../views/mine/components/oder/AfterSalesView';
+import CallCustom from '../../../views/mine/components/service/CallCustom';
 import CustomerServiceView from '../../../views/mine/components/service/CustomerServiceView';
 import FeedbackView from '../../../views/mine/components/service/FeedbackView';
-import MineThree from '../../../views/mine/components/MineThree';
 import MemberServicesView from '../../../views/mine/components/service/MemberServicesView';
 import MyOrderView from '../../../views/mine/components/service/MyOrderView';
 import MyPostView from '../../../views/mine/components/service/MyPostView';
 import WalletView from '../../../views/mine/components/service/WalletView';
-import CallCustom from '../../../views/mine/components/service/CallCustom';
 // import SanJiLiand from '../../../views/mine/components/service/sanJiLiand';
-import SanJiLiand from '../../../views/mine/components/service/SanJiLiand'
-import InviteFriends from '../../../views/mine/components/service/InviteFriends'
-import CollectionView from '../../../views/mine/components/service/CollectionView';
-import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
-import SearchView from '../../../views/socializing/components/SearchView';
+import Collect from '../../../components/Error/Collect';
+import Comment from '../../../components/Error/Comment';
+import NoNews from '../../../components/Error/NoNews';
+import NoParents from '../../../components/Error/NoParents';
+import SystemError from '../../../components/Error/SystemError';
+import Empty from '../../../components/Error/empty';
+import BeginOne from '../../../components/Begin/BeginOne';
+import ProductView from '../../../views/home/components/commodity/index';
+import RewardDetails from '../../../views/home/components/helping/RewardDetails';
+import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart';
+import HelpCircleView from '../../../views/home/components/helping/index';
+import DetailsView from '../../../views/home/page/DetailsView';
+import PostDetails from '../../../views/home/page/PostDetails';
+import ProductChat from '../../../views/home/page/ProductChat';
+import PurchasePage from '../../../views/home/page/PurchasePage';
+import ViewOrders from '../../../views/home/page/ViewOrders';
 import ForgetPass from '../../../views/login/components/ForgetPass';
-import CheckView from '../../../views/socializing/check/index'
-import ProductView from '../../../views/home/components/commodity/index'
-import HelpCircleView from '../../../views/home/components/helping/index'
-import DetailsView from '../../../views/home/page/DetailsView'
-import ProductChat from '../../../views/home/page/ProductChat'
-import ViewOrders from '../../../views/home/page/ViewOrders'
-import PurchasePage from '../../../views/home/page/PurchasePage'
-import PostDetails from '../../../views/home/page/PostDetails'
+import Test1 from '../../../views/login/components/Registered/test';
+import Testone from '../../../views/mine/components/TestOne';
+import AddNewAddress from '../../../views/mine/components/service/AddNewAddress';
+import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
+import CollectionView from '../../../views/mine/components/service/CollectionView';
+import InviteFriends from '../../../views/mine/components/service/InviteFriends';
+import SanJiLiand from '../../../views/mine/components/service/SanJiLiand';
+import ThreeJiContent from '../../../views/mine/components/service/threeJiContent';
 import SetUp from '../../../views/mine/components/setup';
-import CommunityChannel from '../../../views/newpark/page/CommunityChannel'
-import RewardView from '../../../views/publish/page/reward'
-import PublishProducts from '../../../views/publish/page/commodity'
-import ReleasePost from '../../../views/publish/page/post'
-import ClockInView from '../../../views/publish/page/clockIn'
-import RewardDetails from '../../../views/home/components/helping/RewardDetails'
-import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart'
-import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity'
-import ObjCard from '../../../views/socializing/components/ObjCard'
-import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord'
-import Empty from '../../../components/Error/empty'
-import SystemError from '../../../components/Error/SystemError'
-import BeginOne from '../../../components/begin/BeginOne'
-import Testone from '../../../views/mine/components/TestOne'
-// import BeginTwo from '../../../components/begin/BeginTwo'
-// import BeginThree from '../../../components/begin/BeginThree'
-// import BeginFour from '../../../components/begin/BeginFour'
-import Test1  from '../../../views/login/components/Registered/test';
-import PersonalData from '../../../views/mine/components/setup/PersonalData'
-import Comment from '../../../components/Error/Comment'
-import Collect from '../../../components/Error/Collect'
-import NoNews from '../../../components/Error/NoNews'
-import NoParents from '../../../components/Error/NoParents'
-import AddNewAddress from '../../../views/mine/components/service/AddNewAddress'
-import ThreeJiContent from '../../../views/mine/components/service/threeJiContent'
-import { options } from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
+import PersonalData from '../../../views/mine/components/setup/PersonalData';
+import CommunityChannel from '../../../views/newpark/page/CommunityChannel';
+import ClockInView from '../../../views/publish/page/clockIn';
+import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord';
+import PublishProducts from '../../../views/publish/page/commodity';
+import ReleasePost from '../../../views/publish/page/post';
+import RewardView from '../../../views/publish/page/reward';
+import CheckView from '../../../views/socializing/check/index';
+import ObjCard from '../../../views/socializing/components/ObjCard';
+import SearchView from '../../../views/socializing/components/SearchView';
+import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity';
 /*
 
  * @Author: xxs
@@ -127,12 +121,6 @@ export default {
       headerStyle: StylesALL.BGCOLOR,
     },
   },
-  // passWord:{
-  //   component: passWord,
-  //   options: {
-  //     headerShown: false,
-  //   },
-  // },
   Registered: {
     component: Registered,
     options: {

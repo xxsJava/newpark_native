@@ -7,7 +7,7 @@ import { FILE_PATH, GROUP_MSG_DIR, INDEX_MSG_DIR, PRITIVE_MSG_DIR } from '../par
 /*
  * @Author: xxs
  * @Date: 2024-01-04 09:28:14
- * @LastEditTime: 2024-02-18 16:51:37
+ * @LastEditTime: 2024-02-18 17:38:48
  * @FilePath: \newpark_native\src\config\listener\index.tsx
  * @Description: desc
  */
@@ -16,6 +16,7 @@ const DevenIOS = new NativeEventEmitter(IMSDKRN);
 export const DeviceEvent = Platform.OS == 'ios' ? DevenIOS : DeviceEventEmitter;
 export const initListener = () => {
   console.log('--------------->监听器初始化');
+  //登录监听Start
   DeviceEvent.addListener('onSuccessLogin', resp => {
     console.log('登录成功----->', resp);
   });
@@ -23,7 +24,9 @@ export const initListener = () => {
   DeviceEvent.addListener('onErrorLogin', resp => {
     console.log('登录失败----->', resp);
   });
+  //登录监听End
   
+  //消息监听
   DeviceEvent.addListener('onRecvNewMessage', async resp => {
     console.log('消息监听resp----->', resp);
 
@@ -118,6 +121,9 @@ export const initListener = () => {
     });
   });
 
+  //消息监听结束
+
+  //服务连接监听Start
   DeviceEvent.addListener('onConnectFailed', resp => {
     console.log('服务链接监听---------->', resp);
   });
@@ -133,7 +139,34 @@ export const initListener = () => {
   DeviceEvent.addListener('onErrorLogin', resp => {
     console.log('接收ios消息---------->', resp);
   });
+  //服务连接监听End
 
+  //好友监听Start
+  DeviceEvent.addListener('onFriendApplicationAccepted', resp => {
+    console.log('好友申请被接受---------->', resp);
+  });
+
+  DeviceEvent.addListener('onFriendApplicationAdded', resp => {
+    console.log('好友申请新增通知---------->', resp);
+  });
+  
+  DeviceEvent.addListener('onFriendApplicationDeleted', resp => {
+    console.log('好友申请被删除---------->', resp);
+  });
+
+  DeviceEvent.addListener('onFriendApplicationRejected', resp => {
+    console.log('好友申请被拒绝---------->', resp);
+  });
+
+  DeviceEvent.addListener('onFriendAdded', resp => {
+    console.log('好友资料变更通知---------->', resp);
+  });
+
+  DeviceEvent.addListener('onFriendDeleted', resp => {
+    console.log('好友删除通知---------->', resp);
+  });
+
+  //好友监听End
   console.log('监听器初始化完毕<------------');
 };
 

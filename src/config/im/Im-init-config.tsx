@@ -1,7 +1,9 @@
+import { Platform } from "react-native";
+
 /*
  * @Author: xxs
  * @Date: 2023-11-13 15:43:51
- * @LastEditTime: 2023-11-22 10:44:27
+ * @LastEditTime: 2024-02-19 09:15:50
  * @FilePath: \newpark_native\src\config\im\Im-init-config.tsx
  * @Description: desc
  */
@@ -9,7 +11,7 @@ export default {
   /**
    * 平台号: iOS 1, Android 2, Windows 3, OSX 4, WEB 5, 小程序 6，linux 7
    */
-  platformID: 2,
+  platformID: Platform.OS === 'ios'?1:2,
   /**
    * IM api 地址，一般为http://xxx:10002或https://xxx/api
    */

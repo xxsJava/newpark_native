@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2023-10-25 17:14:49
+ * @LastEditTime: 2024-02-19 11:14:40
  * @FilePath: \newpark_native\src\components\Home\index.tsx
  * @Description: Home 页菜单
  */
@@ -34,13 +34,6 @@ const postType: postListType = {
   pageSize:5
 };
 
-
-// export default class HomeComponents extends React.PureComponent {
-
-//     render() {
-      
-//     }
-// }
 const HomeComponents = () => {
   const [postListData,setPostListData] = React.useState([])
 
