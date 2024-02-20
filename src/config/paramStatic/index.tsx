@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2024-01-09 11:44:57
- * @LastEditTime: 2024-02-18 16:00:27
+ * @LastEditTime: 2024-02-20 09:49:34
  * @FilePath: \newpark_native\src\config\paramStatic\index.tsx
  * @Description: desc
  */
@@ -19,7 +19,7 @@ export let FROMA_DATE_DIR = DateTimeUtils.formattedDateTime(
 );
 
 //数据文件存储主目录
-export let FILE_PATH  = RNFS.DocumentDirectoryPath +'/';
+export let FILE_PATH  = RNFS.DocumentDirectoryPath+'/';
 //群聊消息目录
 export const GROUP_MSG_DIR ='/' + FROMA_DATE_DIR + '/group';
 //单聊消息目录

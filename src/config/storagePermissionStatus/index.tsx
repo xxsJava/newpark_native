@@ -1,13 +1,13 @@
 /*
  * @Author: xxs
  * @Date: 2024-01-12 09:23:48
- * @LastEditTime: 2024-02-18 16:05:16
+ * @LastEditTime: 2024-02-20 14:16:07
  * @FilePath: \newpark_native\src\config\storagePermissionStatus\index.tsx
  * @Description: desc
  */
+
 import { PermissionsAndroid } from 'react-native';
 import RNFS from 'react-native-fs';
-import Storage from '../../utils/AsyncStorageUtils';
 import { createDirs, writeFileData } from '../../utils/FilesUtiles';
 import {
   FILE_PATH,
@@ -18,20 +18,18 @@ import {
 let PERM_NAME = 'Newpak';
 
 export const requestPermissionStorage = async () => {
+
   const permissArr = [PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE];
-
   const granted = await PermissionsAndroid.requestMultiple(permissArr);
-
   if (
-    granted[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE] ===
-    PermissionsAndroid.RESULTS.GRANTED
-  ) {
-    console.log('已获取权限');
-    const uid = await Storage.get('uid') + '';
-    initDataDir(uid);
-  } else {
-    console.log('部分权限未获取到');
-  }
+      granted[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE] ===
+      PermissionsAndroid.RESULTS.GRANTED
+    ) {
+      console.log('已获取权限');
+    } else {
+      console.log('部分权限未获取到');
+      
+    }
 };
 
 export const initDataDir = (uid:string) => {

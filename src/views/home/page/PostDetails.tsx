@@ -5,10 +5,12 @@
  */
 
 import { Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetIcon, ActionsheetItem, ActionsheetItemText, CloseIcon, FavouriteIcon, Icon as ICON, ShareIcon, TrashIcon } from '@gluestack-ui/themed';
-import React from 'react';
+import React, { useState } from 'react';
 import { Trans } from 'react-i18next';
 import {
   Dimensions,
+  Image,
+  Modal,
   Platform,
   ScrollView,
   StyleSheet,
@@ -17,14 +19,15 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import ImageViewer from 'react-native-image-zoom-viewer';
 import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
-import { WebView } from 'react-native-webview';
 import { postComments, postLike } from '../../../api/sys/home';
 import { postCommentsData, postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
+import WebViews from '../../../components/WebView/WebViewCompent';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import CommentDetails from '../../../views/home/page/CommentDetails';
-
+import webview from '../../../config/webview';
+import CommentDetails from './CommentDetails';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -78,7 +81,7 @@ const PostDetails = ({ route }: any) => {
 
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(!showActionsheet)
-
+  const [isVisible, setIsVisible] = useState(false)
   const data = route.params.item;
 
   console.log('单条帖子数据', route.params);
@@ -234,9 +237,26 @@ const PostDetails = ({ route }: any) => {
               <Text allowFontScaling={false} style={styles.postText}>
                 {data.ttitle}
               </Text>
-              <WebView
-                style={{ height: 150, width: windowWidth, marginHorizontal: 30 }}
-                source={{ html: data.tcontext }} />
+
+              {/* 音乐 */}
+              <WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={120}/>
+              {/* 视频 */}
+              <WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} /> 
+              
+              {/* 图片开始 */}
+                <View style={{width:windowWidth,height:200,}}>
+                <TouchableOpacity onPress={()=>{
+                setIsVisible(true);
+              }}>
+                  <Image style={{width:200,height:'100%',resizeMode: 'stretch'}} source={{uri:'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png'}} />
+                  </TouchableOpacity>
+                </View>
+              <Modal visible={isVisible} transparent={true}>
+                <ImageViewer enableSwipeDown  imageUrls={[{url:'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png'}]} onClick={()=>{
+                  setIsVisible(false);
+                }}></ImageViewer>
+              </Modal>
+                {/* 图片介绍 */}
               {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
             </View>
             <View style={styles.postBottom}>

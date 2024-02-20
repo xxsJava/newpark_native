@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-02-19 15:37:49
+ * @LastEditTime: 2024-02-20 15:10:26
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -9,7 +9,6 @@ import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
 import React from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
-import { WebView } from 'react-native-webview';
 import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
@@ -87,7 +86,12 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
           <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
-            <WebView source={{ html: item.tcontext }}></WebView>
+            {/* <WebView source={{ html: item.tcontext }}></WebView> */}
+          </View>
+          <View style={styles.cover} >
+            <Text style={styles.converText}>
+              点击查看更多内容......
+            </Text>
           </View>
         </Card.Content>
       </TouchableOpacity>
@@ -364,5 +368,18 @@ const styles = StyleSheet.create({
         paddingVertical:0
       }
     })
+  },
+  cover:{
+    height: 110, 
+    width: windowWidth,
+    // backgroundColor:'#FABA3C',
+    position:'absolute',
+    opacity:0.4,
+    bottom:5
+  },
+  converText:{
+    color:'#000',
+    textAlign:'center',
+    lineHeight:110
   }
 });

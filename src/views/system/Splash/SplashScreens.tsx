@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2024-01-25 11:06:09
+ * @LastEditTime: 2024-02-20 15:05:01
  * @FilePath: \newpark_native\src\views\system\Splash\SplashScreens.tsx
  * @Description: desc
  */
@@ -110,10 +110,12 @@ const styles = StyleSheet.create({
   nav: {
     flex: 0.1,
     // backgroundColor: '#fff',
+    marginTop: '10%'
   },
   navTime: {
     width: 60,
     backgroundColor: '#F1CA7D',
+    opacity:0.8,
     borderRadius: 20,
     position: 'absolute',
     right: '5%',
@@ -124,6 +126,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     paddingTop: '5%',
     paddingBottom: '5%',
+    
   },
   body: {
     paddingLeft: '30%',

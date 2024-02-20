@@ -52,7 +52,7 @@ public class IMSDKRNModule extends ReactContextBaseJavaModule {
         //初始化IM
         Application application = new Application();
         //初始化sdk
-        Boolean isInItSDK = OpenIMClient.getInstance().initSDK(application, IMInitConfig.create().initConfigs(), IMConnLister.create());
+        Boolean isInItSDK = OpenIMClient.getInstance().initSDK(application, IMInitConfig.create().initConfigs(reactContext), IMConnLister.create());
         Log.i(TAG, "IM初始化状态 ----------->" + isInItSDK);
         //监听器初始化
         IMListener.create().initListener();

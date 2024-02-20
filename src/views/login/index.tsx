@@ -3,11 +3,10 @@ import {
   Dimensions,
   Image,
   ImageBackground,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -25,7 +24,7 @@ import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
 import OpenIMConfig from '../../config/im/OpenIMConfig';
 import { navigate } from '../../config/routs/NavigationContainer';
-import { requestPermissionStorage } from '../../config/storagePermissionStatus';
+import { initDataDir } from '../../config/storagePermissionStatus';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import ClausePopup from '../../views/login/components/ClausePopup';
 import { forgetPass } from './controller';
@@ -92,7 +91,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
     const loginAPI = await loginApi(usrData);
     OpenIMConfig.userID = loginAPI.data.uId;
-    console.log(loginAPI.data);
+    console.log('OPENIMCONFIG------------->',OpenIMConfig);
 
     //用户不存在自动注册
     if (loginAPI.code === 1114) {
@@ -123,10 +122,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       //用户uid存本地
       Storage.set('uid', loginAPI.data.uId);
       //android获取设备权限
-      if (Platform.OS === 'android') {
-        //获取存储权限
-        requestPermissionStorage();
-      } 
+      initDataDir(loginAPI.data.uId);
       
       toast.show({
         placement: 'top',
