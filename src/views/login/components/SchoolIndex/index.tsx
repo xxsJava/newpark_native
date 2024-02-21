@@ -46,7 +46,7 @@ const SchoolIndex: React.FC<RegisteredScreenProps> = () => {
     var DX: any = [];
     for (let i = 0; i < getschoolData.data.length; i++) {
       var data = getschoolData.data[i].schoolName;
-      // console.log(i+data);
+      console.log(i+data);
       // console.log(pinyin(data));
 
       var shouzimu = pinyin(data).replace(pinyin(data)[0], pinyin(data)[0].toUpperCase());

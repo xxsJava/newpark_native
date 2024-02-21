@@ -29,3 +29,13 @@ export const selSchoolApi = (data: selectSchoolType): Promise<IResponse> => {
       url: '/usr/schoolFindAll', data
     });
   };
+  /**
+ * token登录api
+ * @param data token登录
+ * @returns
+ */
+export const tokenApi = (): Promise<IResponse> => {
+  return request.post({
+    url: '/usr/loginToken'
+  });
+};

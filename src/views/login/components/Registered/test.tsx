@@ -1,44 +1,52 @@
 import React, { useState } from 'react';
-import { View, Image, Button } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+import { View, TouchableOpacity, Animated,Image } from 'react-native';
 
-const App = () => {
-  const [avatarSource, setAvatarSource] = useState(null);
+const ClickZoom = () => {
+  const [scaleValue] = useState(new Animated.Value(1));
 
-  const options = {
-    title: 'Select Avatar',
-    storageOptions: {
-      skipBackup: true,
-      path: 'images',
-    },
+  const handleZoomIn = () => {
+    Animated.timing(scaleValue, {
+      toValue: 1.2,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
   };
 
-  const selectImage = () => {
-    ImagePicker.showImagePicker(options, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        const source = { uri: response.uri };
-        setAvatarSource(source);
-      }
-    });
+  const handleZoomOut = () => {
+    Animated.timing(scaleValue, {
+      toValue: 1,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
   };
-
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      {avatarSource ? (
-        <Image source={avatarSource} style={{ width: 200, height: 200, borderRadius: 100 }} />
-      ) : (
-        <Image source={require('../../../../assets/images/defaultheader.png')} style={{ width: 200, height: 200, borderRadius: 100 }} />
-      )}
-      <Button title="Select Image" onPress={selectImage} />
+    <View>
+      <TouchableOpacity onPress={handleZoomIn}>
+        <Animated.View
+          style={{
+            transform: [{ scale: scaleValue }],
+            // 其他样式
+          }}
+        >
+          {/* 点击放大的内容 */}
+          <Image source={require('../../../../assets/images/tup/cd6.png')}></Image>
+        </Animated.View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={handleZoomOut}>
+        <Animated.View
+          style={{
+            transform: [{ scale: scaleValue }],
+            // 其他样式
+          }}
+        >
+          {/* 点击缩小的内容 */}
+          <Image source={require('../../../../assets/images/tup/cd5.png')}></Image>
+        </Animated.View>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default App;
+export default ClickZoom;

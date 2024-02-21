@@ -117,24 +117,39 @@ const SocializingView = () => {
           <ContactsModul></ContactsModul>
         </View>
         <View style={[styles.moreModule,more?null:{display:'none'}]}>
-          {moreList.map(item => {
-            return(
-              <TouchableOpacity style={styles.itemMore} key={item.index} activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+         
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
                 <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={item.image}></Image>
+                  <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')}></Image>
                 </View>
                 <View style={styles.itemTextView}>
-                  <Text allowFontScaling={false} style={styles.itemText}>{item.text}</Text>
+                  <Text allowFontScaling={false} style={styles.itemText}>添加牛友</Text>
                 </View>
-                {/* <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
-                  <Text style={styles.itemText}>{item.text}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} style={styles.itemTextView} onPress={() => navigate('CreateCommunityRoute')}>
-                  <Text style={styles.itemText}>{item.text}</Text>
-                </TouchableOpacity> */}
               </TouchableOpacity>
-            )
-          })}
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+                <View style={styles.itemImageView}>
+                  <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')}></Image>
+                </View>
+                <View style={styles.itemTextView}>
+                  <Text allowFontScaling={false} style={styles.itemText}>加入社区</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+                <View style={styles.itemImageView}>
+                  <Image style={styles.itemImage} source={require('../../assets/images/tup/wanle.png')}></Image>
+                </View>
+                <View style={styles.itemTextView}>
+                  <Text allowFontScaling={false} style={styles.itemText}>创建社区</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+                <View style={styles.itemImageView}>
+                  <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')}></Image>
+                </View>
+                <View style={styles.itemTextView}>
+                  <Text allowFontScaling={false} style={styles.itemText}>好友申请</Text>
+                </View>
+              </TouchableOpacity>
         </View>
         <TouchableOpacity style={[styles.maskLayer,more?null:{display:'none'}]} onPress={() => handleMorePress(more)}>
        

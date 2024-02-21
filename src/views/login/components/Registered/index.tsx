@@ -34,6 +34,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Registered = () => {
+  var upath = ''
   const [imghead, setImghead] = useState(false)
   const animationRef = useRef<LottieView>(null);
   // 昵称
@@ -53,6 +54,24 @@ const Registered = () => {
       includeBase64: true
     }, res => {
       setImghead(res.assets)
+      if(!res.didCancel) {
+         if(res.assets[0].uri){
+          upath = res.assets[0].uri
+         }
+        // console.log(res.assets[0].uri,'res.assets[0].uri');
+       
+      }
+      // else {
+      //   const selectedImageUri = '../../../../assets/images/tup/defaultheader.png'
+      // }
+      
+    
+     
+      console.log(upath,'upath');
+      // await AsyncStorage.setItem('upath', upath);
+      // console.log(imghead,'imghead');
+      
+      
     })
   }
   useEffect(() => {
@@ -102,7 +121,6 @@ const Registered = () => {
                       <View key={index}>
                         <Image
                           style={styles.avatarImage}
-                          // source={require('../../../../assets/images/3.0x/chat_takephoto.png')}
                           source={{ uri: item.uri }}
                         />
                       </View>
@@ -110,7 +128,7 @@ const Registered = () => {
                   })
                 // }
               ):(
-              <Image source={require('../../../../assets/images/defaultheader.png')} style={{ width: 100, height: 100, borderRadius: 100 }} />
+              <Image source={require('../../../../assets/images/3.0x/chat_takephoto.png')} style={{ width: 100, height: 100, borderRadius: 100 }} />
               )
               }
              
