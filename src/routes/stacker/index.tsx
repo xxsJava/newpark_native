@@ -54,9 +54,6 @@ export const BommonTab = () => {
           headerShown: false,
           tabBarLabelStyle: {
             fontSize: 16
-          },
-          tabBarStyle:{
-            height:60
           }
         })}>
         {Object.entries(routsConfig).map(([key, value]) => {
