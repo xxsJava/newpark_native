@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2024-02-22 14:29:37
+ * @LastEditTime: 2024-02-22 15:53:51
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react';
 import * as Animatable from 'react-native-animatable';
 
 import { Image, Text } from '@gluestack-ui/themed';
-import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { DeviceEvent } from '../../config/listener';
 import routsConfig from '../../config/routs-config';
 import { useCounter } from '../../hooks/state';
@@ -56,7 +56,7 @@ export const BommonTab = () => {
             fontSize: 16
           },
           tabBarStyle:{
-            height:60
+            height: Platform.OS == 'ios'?80:60
           }
         })}>
         {Object.entries(routsConfig).map(([key, value]) => {
@@ -124,7 +124,7 @@ export const BommonTab = () => {
 const styles = StyleSheet.create({
   tabPub:{
     position:'absolute',
-    bottom:25,
+    bottom:18,
     left:windowWidth/2-32,
     borderWidth:2,
     borderColor: '#F8B032',
