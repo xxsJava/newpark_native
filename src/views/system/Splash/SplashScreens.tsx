@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Image,
   ImageBackground,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   nav: {
     flex: 0.1,
     // backgroundColor: '#fff',
-    marginTop: '10%'
+    marginTop: Platform.OS === 'ios'?'0%':'10%'
   },
   navTime: {
     width: 60,
@@ -126,7 +127,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     paddingTop: '5%',
     paddingBottom: '5%',
-    
   },
   body: {
     paddingLeft: '30%',
