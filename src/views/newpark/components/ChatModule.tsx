@@ -90,6 +90,7 @@ const ChatModule = () => {
           </View>
           <View style={styles.glideStyle}>
             <View style={styles.glideHead}>
+
               <View style={styles.glideHeadList}>
                 <Text allowFontScaling={false} style={styles.glideHeadTitle}>
                   <Trans>newPatkTab2.tableTitle</Trans>

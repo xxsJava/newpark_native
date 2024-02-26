@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2024-02-20 15:05:01
+ * @LastEditTime: 2024-02-22 17:03:46
  * @FilePath: \newpark_native\src\views\system\Splash\SplashScreens.tsx
  * @Description: desc
  */
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     paddingTop: '5%',
     paddingBottom: '5%',
-    
   },
   body: {
     paddingLeft: '30%',
