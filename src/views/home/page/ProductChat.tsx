@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
             },
             android:{
                 padding: 8,
-                elevation: 7,
+                elevation: 3,
             }
         })
     },

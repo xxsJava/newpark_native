@@ -6,13 +6,16 @@
  * @Description: desc
  */
 import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
-import React from 'react';
+import React,{useState} from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
 import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import HTML from 'react-native-render-html';
+import Video from 'react-native-video';
+import text from '../../socializing/text';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -41,7 +44,10 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
     // }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
-
+  const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> <audio src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></audio>';
+    // const ceshi = ' <Video source={{ uri: "https://www.runoob.com/try/demo_source/mov_bbb.mp4" }} style={{ width: 300, height: 200 }} controls={true} />'
+    // 
+    
   return (
     <Card style={styles.cardSty}>
       <Card.Content style={styles.cardTitle}>
@@ -50,8 +56,9 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
             <Avatar.Image
               style={styles.avaSty}
               size={44}
-              source={{ uri: item.upath }} />
-            <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
+              source={{ uri: item.upath }} 
+              />
+            <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')} alt='加个关注'></Image>
           </View>
           <View style={styles.titleView}>
             <Text allowFontScaling={false} style={styles.titleStyle}>{item.unikname}</Text>
@@ -59,7 +66,6 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           </View>
         </View>
         <View style={styles.rightSty}>
-        
           <Menu
             style={{position:'relative',top:-30,bottom:0}}
             placement='bottom right'
@@ -67,7 +73,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
               return (
                   <IconButton
                   { ...triggerProps }
-                  style={styles.rightButton}
+                  // style={styles.rightButton}
                   icon="dots-horizontal"
                   />
               )
@@ -92,6 +98,8 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
             <Text style={styles.converText}>
               点击查看更多内容......
             </Text>
+            <Video source={{ uri: 'https://www.w3school.com.cn/i/movie.ogg' }} style={{ width: 60, height: 200 }} controls={true} paused={true} />
+              <HTML source={{ html: ceshi}} contentWidth={200}/>
           </View>
         </Card.Content>
       </TouchableOpacity>
@@ -147,12 +155,14 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
       <View style={styles.commentAreaView}>
         <Text allowFontScaling={false} style={styles.commentAreaTitle}>精选评论</Text>
         {item.postsComments.map((porp: any) => {
+
+
           return (
             <View style={styles.commentArea}>
               <View style={styles.commentAreaItem}>
                 <Avatar.Image size={32} source={{ uri: porp.upath }} />
                 <View style={styles.commentAreaName}>
-                  <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>{porp.unikname}：</Text>
+                  <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>{porp.unikname}:</Text>
                   <Text allowFontScaling={false} style={styles.commentAreaNameRight}>{porp.comContent}</Text>
                 </View>
                 <TouchableOpacity
@@ -172,7 +182,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         })}
       </View>
       <View style={styles.leaveWordView}>
-        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
+        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')}/>
         <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
       </View>
     </Card>
@@ -232,10 +242,6 @@ const styles = StyleSheet.create({
     marginTop:-15,
     marginRight:-15,
   
-  }
-  ,
-  rightButton:{
-    
   },
   titleSty: {
     fontWeight: 'bold',
@@ -245,8 +251,6 @@ const styles = StyleSheet.create({
   buttonDz: {borderWidth: 0},
   context: {
     fontSize: 15,
-    // fontWeight: 'bold',
-    // color: '#6A1B9A',
     color:'#000',
     marginTop:10,
     paddingHorizontal:10
@@ -372,14 +376,22 @@ const styles = StyleSheet.create({
   cover:{
     height: 110, 
     width: windowWidth,
-    // backgroundColor:'#FABA3C',
     position:'absolute',
     opacity:0.4,
-    bottom:5
+    bottom:5,
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    padding:20,
+    flexDirection:'row'
   },
   converText:{
     color:'#000',
     textAlign:'center',
     lineHeight:110
+  },
+  postimg:{
+    width:'80%',
+    height:'60%'
   }
 });

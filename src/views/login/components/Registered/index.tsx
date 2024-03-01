@@ -35,7 +35,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const Registered = () => {
   var upath = ''
-  const [imghead, setImghead] = useState(false)
+  const [imghead, setImghead] = useState(null)
   const animationRef = useRef<LottieView>(null);
   // 昵称
   const [nameVal, nameOnChange] = React.useState('');
@@ -116,7 +116,7 @@ const Registered = () => {
           <View style={styles.avatarView}>
             <TouchableOpacity style={styles.avatarStyle} onPress={() => changeHeader()}>
               {imghead ? (
-                  imghead.map((item: any, index: any) => {
+                  imghead&&imghead.map((item: any, index: any) => {
                     return (
                       <View key={index}>
                         <Image

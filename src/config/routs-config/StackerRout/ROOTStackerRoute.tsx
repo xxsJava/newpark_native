@@ -26,14 +26,13 @@ import MemberServicesView from '../../../views/mine/components/service/MemberSer
 import MyOrderView from '../../../views/mine/components/service/MyOrderView';
 import MyPostView from '../../../views/mine/components/service/MyPostView';
 import WalletView from '../../../views/mine/components/service/WalletView';
-// import SanJiLiand from '../../../views/mine/components/service/sanJiLiand';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
 import NoNews from '../../../components/Error/NoNews';
 import NoParents from '../../../components/Error/NoParents';
 import SystemError from '../../../components/Error/SystemError';
 import Empty from '../../../components/Error/empty';
-import BeginOne from '../../../components/Begin/BeginOne';
+import BeginOne from '../../../components/begin/BeginOne';
 import ProductView from '../../../views/home/components/commodity/index';
 import RewardDetails from '../../../views/home/components/helping/RewardDetails';
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart';
@@ -45,13 +44,11 @@ import PurchasePage from '../../../views/home/page/PurchasePage';
 import ViewOrders from '../../../views/home/page/ViewOrders';
 import ForgetPass from '../../../views/login/components/ForgetPass';
 import Test1 from '../../../views/login/components/Registered/test';
-import Testone from '../../../views/mine/components/TestOne';
 import AddNewAddress from '../../../views/mine/components/service/AddNewAddress';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
 import CollectionView from '../../../views/mine/components/service/CollectionView';
 import InviteFriends from '../../../views/mine/components/service/InviteFriends';
 import SanJiLiand from '../../../views/mine/components/service/SanJiLiand';
-import ThreeJiContent from '../../../views/mine/components/service/threeJiContent';
 import SetUp from '../../../views/mine/components/setup';
 import PersonalData from '../../../views/mine/components/setup/PersonalData';
 import CommunityChannel from '../../../views/newpark/page/CommunityChannel';
@@ -64,8 +61,15 @@ import CheckView from '../../../views/socializing/check/index';
 import ObjCard from '../../../views/socializing/components/ObjCard';
 import SearchView from '../../../views/socializing/components/SearchView';
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity';
+import Uplode from '../../../components/post/uplode';
+import AddPeople from '../../../views/socializing/add/people';
+import Addcomm from '../../../views/socializing/add/community';
+import Apply from '../../../views/socializing/add/apply'
+import PubGood from '../../../views/publish/page/commodity'
+import Black from '../../../views/mine/components/manage/Black';
+import About from '../../../views/mine/components/manage/About';
+import MainMess from '../../../components/Bell/MainMess';
 /*
-
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
  * @LastEditTime: 2023-10-31 15:05:30
@@ -86,12 +90,61 @@ export default {
     title: '新增收货地址',
      },
   },
-  ThreeJiContent:{
-    component: ThreeJiContent,
-     options: {
-    //   headerShown: false,
-    title: '三级联动',
-     },
+  Black: {
+    component: Black,
+    options: {
+      headerTitleAlign: 'center',
+      title: '黑名单管理'
+    },
+  },
+  MainMess:{
+    component: MainMess,
+    options: {
+      headerTitleAlign: 'center',
+      title: '待处理消息'
+    },
+  },
+  About:{
+    component: About,
+    options: {
+      headerTitleAlign: 'center',
+      title: '关于我们'
+    },
+  },
+  Uplode:{
+    component: Uplode,
+    options: {
+   //   headerShown: false,
+   title: '发布悬赏',
+   headerTitleAlign: 'center',
+    },
+  },
+  PubGood:{
+    component: PubGood,
+    options: {
+     headerShown: false,
+   title: '发布商品',
+    },
+  },
+  Apply:{
+    component: Apply,
+    options: {
+   //   headerShown: false,
+   title: '好友申请',
+    },
+  },
+  AddPeople:{
+    component: AddPeople,
+    options: {
+   //   headerShown: false,
+   title: '添加牛友',
+    },
+  },
+  Addcomm:{
+    component: Addcomm,
+    options: {
+   title: '加入社区',
+    },
   },
   Test1:{
     component: Test1,
@@ -131,13 +184,6 @@ export default {
       headerShown:false
     },
   },
-  Testone:{
-    component:Testone,
-    options:{
-      title:'测试复制页1',
-      headerShown: true,
-    }
-  },
   BeginOne:{
     component:BeginOne,
     options:{
@@ -145,20 +191,6 @@ export default {
       headerShown: false,
     }
   },
-  // BeginTwo:{
-  //   component:BeginTwo,
-  //   options:{
-  //     title:'引导页2',
-  //     headerShown: false,
-  //   }
-  // },
-  // BeginThree:{
-  //   component:BeginThree,
-  //   options:{
-  //     title:'引导页3',
-  //     headerShown: false,
-  //   }
-  // },
   ReviceCode:{
     component:ReviceCode,
     options:{
@@ -177,7 +209,7 @@ export default {
     component:PersonalData,
     options:{
       title:'个人资料',
-      // headerShown: false,
+      headerTitleAlign: 'center'
     }
   },
   SchoolRoute:{
@@ -400,7 +432,7 @@ export default {
       headerShown:false
     }
   },
-  ReleasePostRoute:{
+  ReleasePost:{
     component:ReleasePost,
     options:{
       title:'发布帖子',
@@ -445,8 +477,9 @@ export default {
   ObjCard:{
     component:ObjCard,
     options:{
-      title:'对方的卡片',
-      headerShown:false
+      title:'资料设置',
+      headerTitleAlign: 'center'
+     
     }
   },
   Empty:{

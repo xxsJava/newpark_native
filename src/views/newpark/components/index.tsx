@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import  { useState } from 'react';
 import { Trans } from 'react-i18next';
 import {
   Dimensions,
@@ -13,8 +14,6 @@ import BellView from '../../../components/Bell';
 import ChatModule from './ChatModule';
 import CommunityModule from './CommunityModule';
 
-
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -24,6 +23,10 @@ const TabNav = () => {
     console.log('Tab状态' + tab);
     setTab(tab);
   };
+  const [chat,setchat] = useState('chat1');
+  const handleTabaChat = (tab:string) => {
+    setchat(tab);
+  }
 
   return (
     <SafeAreaView style={styles.safeStyle}>
@@ -73,7 +76,7 @@ const TabNav = () => {
         <ChatModule></ChatModule>
       </View>
       <View style={styles.bell}>
-      <BellView></BellView> 
+        <BellView></BellView>
       </View>
     </SafeAreaView>
   )
@@ -81,17 +84,17 @@ const TabNav = () => {
 export default TabNav;
 
 const styles = StyleSheet.create({
-  bell:{
-    position:'absolute',
-    bottom:10,
-    right:0,
-    zIndex:999
+  bell: {
+    position: 'absolute',
+    bottom: 10,
+    right: 0,
+    zIndex: 999
   },
   safeStyle: {
     width: windowWidth,
-    height: windowHeight-60,
+    height: windowHeight - 60,
     backgroundColor: '#FFFFFF',
-    zIndex:-10
+    zIndex: -10
   },
   headView: {
     width: windowWidth,
@@ -158,7 +161,5 @@ const styles = StyleSheet.create({
   scrollShow: {
     display: 'none'
   },
-  scrollStyle: {
-
-  }
+  
 })

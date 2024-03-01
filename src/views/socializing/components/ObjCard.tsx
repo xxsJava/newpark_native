@@ -6,13 +6,12 @@ import {
     StyleSheet,
     Text,
     TouchableOpacity,
-    View
+    View,
+    SafeAreaView
 } from 'react-native';
 import { Appbar, Avatar, Switch } from 'react-native-paper';
 import { navigate } from '../../../config/routs/NavigationContainer';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 // 开关的
 interface switchListType {
     TiTle:string,
@@ -79,30 +78,15 @@ export default class ObjCard<T> extends Component{
             })
         });
     }
-    //    setIsSwitchOn = () => {
-    //     this.setState({
-    //         isSwitchOn : !this.state.isSwitchOn
-    //     })
-    // }
-    // setIsSwitchOn1 = () => {
-    //     this.setState({
-    //         isSwitchOn1: !this.state.isSwitchOn1
-    //     })
-    // }
-    // setIsSwitchOn2 = () => {
-    //     this.setState({
-    //         isSwitchOn2: !this.state.isSwitchOn2
-    //     })
-    // }
     render() {
         return (
-            <View>
-                <Appbar.Header style={styles.appbarStyle}>
+            <SafeAreaView>
+                {/* <Appbar.Header style={styles.appbarStyle}>
                     <Appbar.BackAction onPress={() => navigate('SocializingStacker')} />
-                    <View>
+                    <View >
                         <Text style={styles.h4}>资料设置</Text>
                     </View>
-                </Appbar.Header>
+                </Appbar.Header> */}
                 <View>
                     <TouchableOpacity style={styles.avatarStyle}>
                         <View style={styles.info}>
@@ -156,7 +140,7 @@ export default class ObjCard<T> extends Component{
                     </View>
                         
                 </View>
-            </View>
+            </SafeAreaView>
         )
     }
 }
@@ -205,7 +189,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         alignItems: 'center',
         // 阴影的配置
-        elevation: 6, // 适配android的
+        elevation: 2, // 适配android的
         shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
         shadowColor: 'black',
         shadowOpacity: .3,
@@ -221,11 +205,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     boxStyle: {
-        elevation: 6, // 适配android的
+        elevation: 2, // 适配android的
         shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
         shadowColor: 'black',
         shadowOpacity: .3,
-        shadowRadius: 2,
+        shadowRadius: 1,
         flexDirection: 'row',
         backgroundColor: '#fff',
         justifyContent: 'space-between',
@@ -241,7 +225,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     boxmin: {
-        elevation: 6, // 适配android的
+        elevation: 2, // 适配android的
         shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
         shadowColor: 'black',
         shadowOpacity: .3,

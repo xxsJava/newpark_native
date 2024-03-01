@@ -118,7 +118,7 @@ const SocializingView = () => {
         </View>
         <View style={[styles.moreModule,more?null:{display:'none'}]}>
          
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
                 <View style={styles.itemImageView}>
                   <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')}></Image>
                 </View>
@@ -126,7 +126,7 @@ const SocializingView = () => {
                   <Text allowFontScaling={false} style={styles.itemText}>添加牛友</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('Addcomm')}>
                 <View style={styles.itemImageView}>
                   <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')}></Image>
                 </View>
@@ -142,7 +142,7 @@ const SocializingView = () => {
                   <Text allowFontScaling={false} style={styles.itemText}>创建社区</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('Apply')}>
                 <View style={styles.itemImageView}>
                   <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')}></Image>
                 </View>

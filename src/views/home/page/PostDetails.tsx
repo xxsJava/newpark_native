@@ -95,7 +95,6 @@ const PostDetails = ({ route }: any) => {
       transmitSelect == '0' ? setSelectTransmit('1') : setSelectTransmit('0');
     }
   };
-
   const inputPress = (porp: number) => {
     if (porp == 1) {
       setEditable(true);
@@ -136,7 +135,6 @@ const PostDetails = ({ route }: any) => {
     };
 
     if (likeSelect == '0') {
-
       const comLikeUp = await postLike(comLikeParam);
       if (comLikeUp.data) {
         setSelectLike1('1');

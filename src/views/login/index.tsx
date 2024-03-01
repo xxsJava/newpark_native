@@ -269,7 +269,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
             <View style={styles.pawoed} >
               <TextInput
                 allowFontScaling={false}
-                style={[styles.inp, { paddingLeft: 0 }]}
+                style={[styles.inp, { paddingLeft: 18 }]}
                 secureTextEntry={securePass}
                 right={
                   <TextInput.Icon

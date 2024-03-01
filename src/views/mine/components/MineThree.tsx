@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import LinearGradinet from 'react-native-linear-gradient';
 import { navigate } from '../../../config/routs/NavigationContainer';
-
+import { Appbar, Avatar, IconButton } from 'react-native-paper';
 import {
   Button,
   Dimensions,
@@ -152,179 +152,170 @@ const rightList = [
   },
 ]
 const userName = 'O泡果奶'
-
+const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
 const MineVIew = () => {
   const [tabVal, onTabPress] = React.useState(1)
 
   return (
-    <SafeAreaView style={styles.safeStyle}>
-      <View>
-        <ScrollView style={styles.bgTop}>
-          <View >
-            {/* <ImageBackground
+    <>
+      {/* <Appbar.Header style={styles.appbarStyle}> */}
+      <Appbar.BackAction onPress={() => navigate('MineStacker')} />
+      {/* </Appbar.Header> */}
+      <SafeAreaView style={styles.safeStyle}>
+        <View>
+          <ScrollView style={styles.bgTop}>
+            <View >
+              {/* <ImageBackground
               style={styles.bgImage}
               blurRadius={7}
               source={require('../../../assets/images/tup/xrk.png')}
             > */}
-            <View style={[styles.heng, styles.boxnNav]}>
-              <View style={styles.heng}>
-                {
-                  leftList.map(item => {
-                    return <View >
-                      <View style={styles.litt1}>
-                        <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{item.num}</Text>
-                        <Text style={{ fontSize: 16, color: 'black' }}> {item.text}</Text>
+              <View style={[styles.heng, styles.boxnNav]}>
+                <View style={styles.heng}>
+                  {
+                    leftList.map(item => {
+                      return <View >
+                        <View style={styles.litt1}>
+                          <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{item.num}</Text>
+                          <Text style={{ fontSize: 16, color: 'black' }}> {item.text}</Text>
+                        </View>
                       </View>
-                    </View>
-                  })
-                }
-              </View>
-              <View>
+                    })
+                  }
+                </View>
                 <View>
-                  <View style={styles.uid}>
-                    <LinearGradinet
-                      colors={[
-                        'rgba(247, 27, 147,0.90)',
-                        'rgba(247, 27, 147,0.20)',
-                      ]}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 0 }}
-                      style={styles.uidBgJb}>
-                      <Text selectable={true} key={Math.random()} style={{ textAlign: 'center', lineHeight: 30, color: '#fff' }}>UID:123456789</Text>
-                    </LinearGradinet>
-                    <View style={styles.wire}></View>
-                  </View >
-                  <View style={styles.headT}>
-                    <View >
-                      <Image source={require('../../../assets/images/tup/ppy.png')} style={styles.boxAvatar}></Image>
-                    </View>
-                    <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '-10%' }}>
-                      <Image source={require('../../../assets/images/tup/jia.png')} style={styles.jia}></Image>
-                    </View>
-                    <View style={styles.heng}>
-                      <Text style={{ color: 'black' }}>{userName}</Text>
-                      <Image source={require('../../../assets/images/alimom/V1.png')} style={[styles.avatarnImage, { marginTop: 2 }]}></Image>
+                  <View>
+                    <View style={styles.uid}>
+                      <LinearGradinet
+                        colors={[
+                          'rgba(247, 27, 147,0.90)',
+                          'rgba(247, 27, 147,0.20)',
+                        ]}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
+                        style={styles.uidBgJb}>
+                        <Text selectable={true} key={Math.random()} style={{ textAlign: 'center', lineHeight: 30, color: '#fff' }}>UID:123456789</Text>
+                      </LinearGradinet>
+                      <View style={styles.wire}></View>
+                    </View >
+                    <View style={styles.headT}>
+                      <View >
+                        <Image source={require('../../../assets/images/tup/ppy.png')} style={styles.boxAvatar}></Image>
+                      </View>
+                      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '-10%' }}>
+                        <Image source={require('../../../assets/images/tup/jia.png')} style={styles.jia}></Image>
+                      </View>
+                      <View style={styles.heng}>
+                        <Text style={{ color: 'black' }}>{userName}</Text>
+                        <Image source={require('../../../assets/images/alimom/V1.png')} style={[styles.avatarnImage, { marginTop: 2 }]}></Image>
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-              <View style={styles.heng1}>
-                {
-                  rightList.map(item => {
-                    return <View key={item.index} >
-                      <View style={styles.litt}>
-                        <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{item.num}</Text>
-                        <Text style={{ fontSize: 16, color: 'black' }}>{item.text}</Text>
+                <View style={styles.heng1}>
+                  {
+                    rightList.map(item => {
+                      return <View key={item.index} >
+                        <View style={styles.litt}>
+                          <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{item.num}</Text>
+                          <Text style={{ fontSize: 16, color: 'black' }}>{item.text}</Text>
+                        </View>
                       </View>
-                    </View>
-                  })
-                }
+                    })
+                  }
+                </View>
               </View>
+              {/* </ImageBackground> */}
             </View>
-            {/* </ImageBackground> */}
-          </View>
-          <View style={styles.bottBox}>
-            <TouchableOpacity onPress={() => onTabPress(1)}>
-              <Text allowFontScaling={false} style={[styles.tabText, tabVal == 1 ? styles.tabColor : null]}>帖子</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => onTabPress(2)}>
-              <Text allowFontScaling={false} style={[styles.tabText, tabVal == 2 ? styles.tabColor : null]}>悬赏/商品</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => onTabPress(3)}>
-              <Text allowFontScaling={false} style={[styles.tabText, tabVal == 3 ? styles.tabColor : null]}>成就</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ backgroundColor: '#fff' }}>
-            <View style={styles.nullf}>
-              <View style={[styles.heng, tabVal == 3 ? styles.xian : styles.hidd]}>
-                {list1.map(item => {
-                  return <View key={item.index}>
-                    <View >
-                      <View style={styles.box}>
-                        <Image source={item.img} style={styles.listimg}></Image>
-                        <View>
-                          <Text style={styles.listTit}>{item.title}</Text>
-                        </View>
-                        <View style={styles.textBox}>
-                          <Text style={styles.listText}>{item.text}</Text>
+            <View style={styles.bottBox}>
+              <TouchableOpacity onPress={() => onTabPress(1)}>
+                <Text allowFontScaling={false} style={[styles.tabText, tabVal == 1 ? styles.tabColor : null]}>帖子</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => onTabPress(2)}>
+                <Text allowFontScaling={false} style={[styles.tabText, tabVal == 2 ? styles.tabColor : null]}>悬赏/商品</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => onTabPress(3)}>
+                <Text allowFontScaling={false} style={[styles.tabText, tabVal == 3 ? styles.tabColor : null]}>成就</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{ backgroundColor: '#fff' }}>
+              <View style={styles.nullf}>
+                <View style={[styles.heng, tabVal == 3 ? styles.xian : styles.hidd]}>
+                  {list1.map(item => {
+                    return <View key={item.index}>
+                      <View >
+                        <View style={styles.box}>
+                          <Image source={item.img} style={styles.listimg}></Image>
+                          <View>
+                            <Text style={styles.listTit}>{item.title}</Text>
+                          </View>
+                          <View style={styles.textBox}>
+                            <Text style={styles.listText}>{item.text}</Text>
+                          </View>
                         </View>
                       </View>
                     </View>
-                  </View>
-                })}
-              </View>
-              <View style={[styles.heng, tabVal == 2 ? styles.xian : styles.hidd]}>
-                {list2.map(item => {
-                  return <View key={item.index}>
-                    <View style={[item.type == '商品' ? styles.xian : styles.hidd, styles.litBox]} >
-                      {/* <View> */}
-                      <Text style={styles.title}>{item.title}</Text>
-                      <Image source={item.img} style={styles.spImg}></Image>
-                      <View style={styles.hengpic}>
-                        <Text style={styles.price}> {item.price}</Text>
-                        <Text style={styles.unit}>元/个</Text>
-                      </View>
+                  })}
+                </View>
+                <View style={[styles.heng, tabVal == 2 ? styles.xian : styles.hidd]}>
+                  {list2.map(item => {
+                    return <View key={item.index}>
+                      <View style={[item.type == '商品' ? styles.xian : styles.hidd, styles.litBox]} >
+                        {/* <View> */}
+                        <Text style={styles.title}>{item.title}</Text>
+                        <Image source={item.img} style={styles.spImg}></Image>
+                        <View style={styles.hengpic}>
+                          <Text style={styles.price}> {item.price}</Text>
+                          <Text style={styles.unit}>元/个</Text>
+                        </View>
 
-                      {/* </View> */}
-                    </View>
-                    <View style={[item.type == '悬赏' ? styles.xian : styles.hidd, styles.litBoxBZ]}>
-                      {/* <View style={styles.litBoxBZ}> */}
-                      <Text style={styles.title} selectable={true}>{item.title}</Text>
-                      <View style={styles.hengbz}>
-                        <Text>备注:</Text>
-                        <Text style={styles.unit}>{item.text}</Text>
+                        {/* </View> */}
                       </View>
-                      <View style={styles.hengpic}>
-                        <Text style={styles.price}>{item.price}</Text>
-                        <Text style={styles.unit}>元/次</Text>
+                      <View style={[item.type == '悬赏' ? styles.xian : styles.hidd, styles.litBoxBZ]}>
+                        {/* <View style={styles.litBoxBZ}> */}
+                        <Text style={styles.title} selectable={true}>{item.title}</Text>
+                        <View style={styles.hengbz}>
+                          <Text>备注:</Text>
+                          <Text style={styles.unit}>{item.text}</Text>
+                        </View>
+                        <View style={styles.hengpic}>
+                          <Text style={styles.price}>{item.price}</Text>
+                          <Text style={styles.unit}>元/次</Text>
+                        </View>
                       </View>
-                    </View>
-                    <View style={(item.index % 2) == 0 ? styles.greenX : styles.greenY}>
-                      <Text style={styles.fontY}>{item.type}</Text>
-                    </View>
-                  </View>
-                  // </View>
-                }
-                )
-                }
-              </View>
-              <View style={[styles.hengtz, tabVal == 1 ? styles.xian : styles.hidd]}>
-                {list3.map(item => {
-                  return <TouchableOpacity style={styles.list3Box}>
-                    <View>
-                      <Image source={item.img} style={styles.tzimg}></Image>
-                    </View>
-                    <View style={styles.right}>
-                      <Text style={styles.fonBlac} selectable={true}>{item.title}</Text>
-                      <Text style={styles.ge}>{item.main}</Text>
-                      <View style={styles.heng}>
-                        <Text>{item.autor}</Text>
-                        <Text style={styles.tzTime}>{item.time}</Text>
+                      <View style={(item.index % 2) == 0 ? styles.greenX : styles.greenY}>
+                        <Text style={styles.fontY}>{item.type}</Text>
                       </View>
                     </View>
-                  </TouchableOpacity>
-                })
-                }
+                    // </View>
+                  }
+                  )
+                  }
+                </View>
+                <View style={[styles.hengtz, tabVal == 1 ? styles.xian : styles.hidd]}>
+                  {list3.map(item => {
+                    return <TouchableOpacity style={styles.list3Box}>
+                      <View>
+                        <Image source={item.img} style={styles.tzimg}></Image>
+                      </View>
+                      <View style={styles.right}>
+                        <Text style={styles.fonBlac} selectable={true}>{item.title}</Text>
+                        <Text style={styles.ge}>{item.main}</Text>
+                        <View style={styles.heng}>
+                          <Text>{item.autor}</Text>
+                          <Text style={styles.tzTime}>{item.time}</Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  })
+                  }
+                </View>
               </View>
             </View>
-          </View>
-          <View>
-            <Button
-              onPress={() => navigate('Testone')}
-              title="测试复制页面"
-              color="green"
-              accessibilityLabel="Learn more about this purple button"
-            />
-            <Button
-              onPress={() => navigate('BeginOne')}
-              title="测试索引页面"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
-          </View>
-        </ScrollView>
-      </View>
-    </SafeAreaView>
+          </ScrollView>
+        </View>
+      </SafeAreaView>
+    </>
   )
 }
 export default MineVIew;
@@ -429,7 +420,7 @@ const styles = StyleSheet.create({
         shadowRadius: 2.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
       android: {
-        elevation: 7,
+        elevation: 3,
       },
     }),
   },
@@ -458,7 +449,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
       android: {
-        elevation: 9,
+        elevation: 3,
       },
     }),
   },
@@ -646,7 +637,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
       android: {
-        elevation: 9,
+        elevation: 3,
       },
     }),
   },
@@ -675,7 +666,7 @@ const styles = StyleSheet.create({
   },
   bgTop: {
     backgroundColor: '#F8B032',
-    
+
   },
   headBox: {
     width: windowWidth,
@@ -702,10 +693,31 @@ const styles = StyleSheet.create({
     borderBottomColor: '#fff',
     width: 130
   },
-  bgImage:{
-    zIndex:-3,
-    width:windowWidth
-  }
+  bgImage: {
+    zIndex: -3,
+    width: windowWidth
+  },
+  appbarStyle: {
+    borderWidth: 0,
+    backgroundColor: '#FFF'
+  },
+  avatarStyle: {
+    position: 'relative'
+  },
+  stateStyle: {
+    width: 12,
+    height: 12,
+    top: 22,
+    right: -3,
+    borderRadius: 6,
+    backgroundColor: '#26c78c',
+    position: 'absolute'
+  },
+  avatarText: {
+    color: '#000',
+    lineHeight: 34,
+    marginLeft: 10
+  },
 
 
 })

@@ -4,14 +4,14 @@
  * 修改时间:2023/11/29 17:10:11
  */
 
-import React from "react";
+import React from 'react';
 import { Trans } from 'react-i18next';
 import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Appbar, Icon } from 'react-native-paper';
 import { navigate } from '../../../config/routs/NavigationContainer';
 
-const windowWidth = Dimensions.get('window').width
-const windowHeight = Dimensions.get('window').height
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const listData = [{
     index:1,
@@ -77,6 +77,7 @@ const functionListData = [{
     image:require('../../../assets/images/alimom/jl.png'),
     text:'打卡记录',
     path:'CheckRecordRoute'
+    
 }]
 const CommunityChannel = ({ navigation }:any) => {
     return (
