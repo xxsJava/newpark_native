@@ -17,6 +17,7 @@ import { Dimensions, Platform, StyleSheet, TouchableOpacity, View } from 'react-
 import { DeviceEvent } from '../../config/listener';
 import routsConfig from '../../config/routs-config';
 import { useCounter } from '../../hooks/state';
+import { navigate } from '../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 // import { Stagger, useDisclose} from 'native-base';
 /*

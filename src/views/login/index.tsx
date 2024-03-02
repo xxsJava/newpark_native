@@ -13,11 +13,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Button, TextInput } from 'react-native-paper';
 import { LoginScreenProps } from '../../config/routs';
 import Storage from '../../utils/AsyncStorageUtils';
-
 import { Toast, useToast } from '@gluestack-ui/themed';
 import { Trans } from 'react-i18next';
-
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getClientConfig, getOpenIMConfig } from '../../api/imApi';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';

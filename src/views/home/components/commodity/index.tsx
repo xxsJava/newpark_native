@@ -18,10 +18,11 @@ import { Appbar, Avatar, Icon } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import { productApi,productApip } from '../../../../api/sys/Recommended/index';
-import { postList } from '../../../../api/sys/home/index'
+// import { postList } from '../../../../api/sys/home/index'
 import { productType,productpType } from '../../../../api/sys/Recommended/types';
-import text from '../../../socializing/text';
+// import text from '../../../socializing/text';
 import formatDate from './formatDate';
+// import { any } from 'prop-types';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const typeData = [
@@ -224,16 +225,17 @@ const ProductView = () => {
       "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
   }
   ]
-  const [covPic, setCovPic] = React.useState('');
+
   const [listData, setListData] = React.useState(text);
 
   const postLikePress = async () => {
-    const product = [{
+    
+    const product:productType = [{
       pageNo: 1,
       pageSize: 5,
-      priceSort: 'DESC',
-      PStatus: 'SOLD',
-      timeSort: 'DESC',
+      priceSort: "DESC",
+      PStatus: "SOLD",
+      timeSort: "DESC",
     }];
 
     const hdz2 = {
@@ -254,8 +256,9 @@ const ProductView = () => {
   
     const productData2:any = await productApip(product2);
 
-    const productData:any = await productApi(product);
-    const hdz1:any = await postList(hdz2)
+    const productData = await productApi(product);
+
+    // const hdz1:any = await postList(hdz2)
 
     console.log('在这里', productData);
     console.log('打印试试', productData2);

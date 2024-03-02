@@ -9,7 +9,7 @@ import {
     View,
     SafeAreaView
 } from 'react-native';
-import { Appbar, Avatar, Switch } from 'react-native-paper';
+import { Avatar, Switch } from 'react-native-paper';
 import { navigate } from '../../../config/routs/NavigationContainer';
 
 // 开关的
