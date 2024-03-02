@@ -1,5 +1,6 @@
 import { DeviceEventEmitter, NativeEventEmitter, Platform } from 'react-native';
 import { getGroupsInfo } from '../../api/imApi';
+import { useCounter } from '../../hooks/state';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import Storage from '../../utils/AsyncStorageUtils';
 import { isFile, readFileData, writeFileData } from '../../utils/FilesUtiles';
@@ -7,7 +8,7 @@ import { FILE_PATH, GROUP_MSG_DIR, INDEX_MSG_DIR, PRITIVE_MSG_DIR } from '../par
 /*
  * @Author: xxs
  * @Date: 2024-01-04 09:28:14
- * @LastEditTime: 2024-02-20 09:39:45
+ * @LastEditTime: 2024-02-22 14:16:48
  * @FilePath: \newpark_native\src\config\listener\index.tsx
  * @Description: desc
  */
@@ -28,6 +29,7 @@ export const initListener = () => {
   
   //消息监听
   DeviceEvent.addListener('onRecvNewMessage', async resp => {
+    
     console.log('消息监听resp----->', resp);
 
     const msg = Platform.OS === 'ios' ? resp.message : JSON.parse(resp.message);
@@ -132,13 +134,13 @@ export const initListener = () => {
     console.log('服务链接监听---------->', resp);
   });
 
-  // DeviceEvent.addListener('onTest', resp => {
-  //   console.log('接收ios消息---------->', resp);
-  // });
+  DeviceEvent.addListener('onTest', resp => {
+    console.log('接收ios消息---------->', resp);
+  });
 
-  // DeviceEvent.addListener('onErrorLogin', resp => {
-  //   console.log('接收ios消息---------->', resp);
-  // });
+  DeviceEvent.addListener('onErrorLogin', resp => {
+    console.log('接收ios消息---------->', resp);
+  });
   //服务连接监听End
 
   //好友监听Start

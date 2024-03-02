@@ -1,4 +1,4 @@
-import * as React  from 'react';
+import * as React from 'react';
 
 import { Trans } from 'react-i18next';
 import {
@@ -16,8 +16,6 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-
 const optionData1 = [{
   index: 1,
   name: 'newPatkOption.optionName1',
@@ -72,7 +70,6 @@ const ChatModule = () => {
     setTab(tab);
 
   };
-
   return (
     <View style={styles.scrollStyle}>
       <View style={styles.topStyle}>
@@ -108,6 +105,29 @@ const ChatModule = () => {
       </View>
       <View style={styles.glideStyle}>
         <View style={styles.glideHead}>
+
+          <View style={styles.glideHeadList}>
+            <Text allowFontScaling={false} style={styles.glideHeadTitle}>
+              <Trans>newPatkTab2.tableTitle</Trans>
+            </Text>
+          </View>
+          )
+        </View>
+        <View style={styles.optionList}>
+          {optionData2.map(item => {
+            return (
+              <View style={styles.optionItem} key={item.index}>
+                <Image source={item.icon} style={styles.iconList}></Image>
+                <Text allowFontScaling={false} style={styles.optionText}>
+                  <Trans>{item.name}</Trans>
+                </Text>
+              </View>
+            )
+          })}
+        </View>
+      </View>
+      <View style={styles.glideStyle}>
+        <View style={styles.glideHead}>
           <View style={styles.glideHeadList}>
             <Text allowFontScaling={false} style={styles.glideHeadTitle}>
               <Trans>newPatkTab2.tableTitle</Trans>
@@ -115,22 +135,22 @@ const ChatModule = () => {
           </View>
           <View style={styles.glideHeadRight}>
             <TouchableOpacity onPress={() => handleTabPress('tab1')}>
-              <Text allowFontScaling={false}  
-              style={
-                    tabVal === 'tab2'
-                      ? styles.headRightText1
-                      : styles.headRightText2
-                  }>
+              <Text allowFontScaling={false}
+                style={
+                  tabVal === 'tab2'
+                    ? styles.headRightText1
+                    : styles.headRightText2
+                }>
                 <Trans>newPatkTab2.tab1</Trans>
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => handleTabPress('tab2')}>
-              <Text allowFontScaling={false} 
-               style={
-                tabVal === 'tab1'
-                  ? styles.headRightText1
-                  : styles.headRightText2
-              }
+              <Text allowFontScaling={false}
+                style={
+                  tabVal === 'tab1'
+                    ? styles.headRightText1
+                    : styles.headRightText2
+                }
               >
                 <Trans>newPatkTab2.tab2</Trans>
               </Text>
@@ -152,13 +172,12 @@ const ChatModule = () => {
                   </View>
                 </View>
                 <View style={styles.glideItemRight}>
-                  <TouchableOpacity style={styles.glideButton} onPress={()=> navigate('')}>
+                  <TouchableOpacity style={styles.glideButton} onPress={() => navigate('')}>
                     <Text allowFontScaling={false} style={styles.buttonText}>前往聊天室</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             )
-
           })}
         </ScrollView>
       </View>

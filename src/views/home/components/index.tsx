@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-02-20 15:10:26
+ * @LastEditTime: 2024-02-22 17:39:07
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -53,12 +53,15 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
       <Card.Content style={styles.cardTitle}>
         <View style={styles.titleLeft}>
           <View>
-            <Avatar.Image
-              style={styles.avaSty}
-              size={44}
-              source={{ uri: item.upath }} 
-              />
-            <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')} alt='加个关注'></Image>
+            <TouchableOpacity onPress={()=>{console.log('点击--头像')}}>
+              <Avatar.Image
+                style={styles.avaSty}
+                size={44}
+                source={{ uri: item.upath }} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.touchaOp} onPress={() =>{ console.log('点击--关注用户')}}>
+              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
+            </TouchableOpacity>
           </View>
           <View style={styles.titleView}>
             <Text allowFontScaling={false} style={styles.titleStyle}>{item.unikname}</Text>
@@ -233,10 +236,7 @@ const styles = StyleSheet.create({
   avatarIcon:{
     width:20,
     height:20,
-    position:'absolute',
-    top:22,
-    left:27,
-    zIndex:10
+    
   },
   rightSty: {
     marginTop:-15,
@@ -393,5 +393,12 @@ const styles = StyleSheet.create({
   postimg:{
     width:'80%',
     height:'60%'
+  },
+  touchaOp:{
+    opacity:0.9,
+    position:'absolute',
+    top:22,
+    left:27,
+    zIndex:10
   }
 });

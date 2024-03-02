@@ -32,7 +32,6 @@ import NoNews from '../../../components/Error/NoNews';
 import NoParents from '../../../components/Error/NoParents';
 import SystemError from '../../../components/Error/SystemError';
 import Empty from '../../../components/Error/empty';
-import BeginOne from '../../../components/begin/BeginOne';
 import ProductView from '../../../views/home/components/commodity/index';
 import RewardDetails from '../../../views/home/components/helping/RewardDetails';
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart';
@@ -184,13 +183,13 @@ export default {
       headerShown:false
     },
   },
-  BeginOne:{
-    component:BeginOne,
-    options:{
-      title:'引导页1',
-      headerShown: false,
-    }
-  },
+  // BeginOne:{
+  //   component:BeginOne,
+  //   options:{
+  //     title:'引导页1',
+  //     headerShown: false,
+  //   }
+  // },
   ReviceCode:{
     component:ReviceCode,
     options:{

@@ -99,7 +99,7 @@ RCT_EXPORT_METHOD(login:(NSString *)userID tokenStr:(NSString *)token){
 RCT_EXPORT_METHOD(logout){
   NSLog(@"IM LOGOUT----->");
   [OIMManager.manager logoutWithOnSuccess:^(NSString * _Nullable data) {
-    [self sendEventWithName:@"onErrorLogin" body:data];
+    [self sendEventWithName:@"onSuccessLogin" body:data];
   } onFailure:^(NSInteger code, NSString * _Nullable msg) {
     [self sendEventWithName:@"onErrorLogin" body:msg];
   }];

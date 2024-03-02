@@ -6,18 +6,17 @@
  * @Description: 顶部tab 导航文件
  */
 import * as React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import {
-  View,
-  Text,
   Dimensions,
-  StyleSheet,
-  TouchableOpacity,
   Image,
-  TextInput
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
-import {Appbar, Icon} from 'react-native-paper';
-import {navigate} from '../../config/routs/NavigationContainer';
+import { Appbar } from 'react-native-paper';
+import { navigate } from '../../config/routs/NavigationContainer';
 
 const HomeNav = () => {
   const [activeTab, setActiveTab] = useState(true);
@@ -79,6 +78,7 @@ const HomeNav = () => {
       <TouchableOpacity
         onPress={() => {
           console.log('点击收藏');
+          navigate('CollectionRoute');
         }}>
         <Image
           style={styles.tinyLogo}

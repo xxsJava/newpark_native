@@ -1,6 +1,12 @@
-import React ,{useState}from 'react';
-import {StyleSheet, Text, View,Image,TouchableOpacity,Button} from 'react-native';
-import {ActivityIndicator} from 'react-native-paper';
+/*
+ * @Author: xxs
+ * @Date: 2024-01-11 11:21:31
+ * @LastEditTime: 2024-02-22 11:45:02
+ * @FilePath: \newpark_native\src\components\Bell\index.tsx
+ * @Description: desc
+ */
+import React, { useState } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { navigate } from '../../config/routs/NavigationContainer';
 
 
@@ -56,7 +62,9 @@ const styles = StyleSheet.create({
   tip:{
     color:'#fff',
     fontWeight:'bold',
-    fontSize:12
+    fontSize:12,
+    textAlign:'center',
+    lineHeight:15
   },
   tipBox:{
     position:'absolute',
@@ -66,7 +74,5 @@ const styles = StyleSheet.create({
     width:15,
     height:15,
     borderRadius:12,
-    justifyContent:'center',
-    alignItems:'center'
   }
 });

@@ -74,7 +74,8 @@ const ListIndex: React.FC = () => {
     }, 500);
   };
 
-  const renderItem = ({item}: {item: DataItem}) => (
+  const renderItem = ({item}: {item: DataItem}) => 
+    (
     
     <TouchableOpacity
       onPress={() =>
@@ -96,10 +97,16 @@ const ListIndex: React.FC = () => {
       ]}>
       <View style={styles.itemLeft}>
         <View style={styles.avatarStyle}>
+        <View style={styles.corner}>
+          <Text style={styles.cornerText}>
+            1
+          </Text>
+        </View>
           <Image
             style={styles.avatar}
             source={{
-              uri: item.stateMsg === 2 ? item.faceURL : item.senderFaceUrl,
+              //https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png
+              uri: item.stateMsg === 2 ? item.faceURL==''?'https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png':item.faceURL : item.senderFaceUrl,
             }}
           />
         </View>
@@ -112,6 +119,12 @@ const ListIndex: React.FC = () => {
           <Text allowFontScaling={false} style={styles.labelText}>
             {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
             {item.stateMsg === 2?'':item.textElem.content}
+          </Text>
+        </View>
+        
+        <View style={styles.timeFormer}>
+          <Text>
+            1分钟前
           </Text>
         </View>
       </View>
@@ -211,4 +224,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 30,
   },
+  corner:{
+    width:15,
+    height:15,
+    backgroundColor:'red',
+    position:'absolute',
+    right:0,  
+    zIndex:10,
+    borderRadius:50
+  },
+  cornerText:{
+    fontSize:12,
+    color:'#fff',
+    textAlign:'center',
+    lineHeight:15,
+    fontWeight: 'bold'
+  },
+  timeFormer:{
+    position:'absolute',
+    right:10,
+    bottom:15
+  }
 });
