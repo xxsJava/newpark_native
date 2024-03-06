@@ -230,13 +230,13 @@ const ProductView = () => {
 
   const postLikePress = async () => {
     
-    const product:productType = [{
+    const product:productType = {
       pageNo: 1,
       pageSize: 5,
       priceSort: "DESC",
-      PStatus: "SOLD",
+      PStatus: "AUDIT",
       timeSort: "DESC",
-    }];
+    };
 
     const hdz2 = {
       pageNo: 1,

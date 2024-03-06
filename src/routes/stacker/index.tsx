@@ -116,10 +116,10 @@ export const BommonTab = () => {
                   <View style={[styles.nav1, { backgroundColor: '#C6C6C6', }]}></View>
                 </Animatable.View>
               </TouchableOpacity>
-              <TouchableOpacity>
-                <Animatable.View style={styles.aniNav4} animation='fadeInLeftBig'>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { padding: 5 }]}>公告</Text>
+              <TouchableOpacity onPress={() => navigate('ChatRoom')}>
+                <Animatable.View style={styles.aniNav4} animation='fadeInLeftBig' >
+                  <View style={{ backgroundColor: '#fff', borderRadius: 20, width: 80, marginLeft:'-50%'}}>
+                    <Text style={[styles.nav1Text, { padding: 5,fontSize:12}]}>创建聊天室</Text>
                   </View>
                   <View style={[styles.nav1, { backgroundColor: '#FB4886', }]}></View>
                 </Animatable.View>
@@ -173,18 +173,18 @@ const styles = StyleSheet.create({
   },
   aniNav1: {
     position: 'absolute',
-    right: windowWidth / 4 - 0,
+    right: windowWidth / 4 - 10,
     bottom: 30
   },
   aniNav3: {
     position: 'absolute',
-    right: windowWidth / 4 - 22,
+    right: windowWidth / 4 - 34,
     bottom: 83
   },
   aniNav4: {
     position: 'absolute',
-    right: 11,
-    bottom: 106
+    right: 0,
+    bottom: 100
   },
   aniNav5: {
     position: 'absolute',

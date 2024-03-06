@@ -90,11 +90,9 @@ const CommunityModule = () => {
               );
             })}
           </View>
-        
         </ScrollView>
     )
 }
-
 export default CommunityModule;
 
 const styles = StyleSheet.create({

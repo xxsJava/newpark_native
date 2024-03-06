@@ -82,28 +82,29 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
               )
             }}
           >
-            <MenuItem key="Report" textValue="Report">
+            <MenuItem key="Report" textValue="Report" onPress={() => {console.log('举报');}}>
               <MenuItemLabel size="sm">举报</MenuItemLabel>
             </MenuItem>
-            <MenuItem key="Blacklist" textValue="Community">
+            <MenuItem key="Blacklist" textValue="Community" onPress={() => {console.log('拉入黑名单');}}>
               <MenuItemLabel size="sm">拉入黑名单</MenuItemLabel>
             </MenuItem>
           </Menu>
         </View>
       </Card.Content>
-      <TouchableOpacity activeOpacity={0.9} key={item.tid} onPress={() => navigate('PostDetailsRoute', { item })}>
+      {/* 页面传参的方式 */}
+      <TouchableOpacity activeOpacity={0.9} key={item.tid} onPress={() => navigate('PostDetailsRoute', { item })} style={styles.cardd}>
         <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
-          <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
+          {/* <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}> */}
             {/* <WebView source={{ html: item.tcontext }}></WebView> */}
-          </View>
+          {/* </View> */}
           <View style={styles.cover} >
-            <Text style={styles.converText}>
-              点击查看更多内容......
-            </Text>
-            <Video source={{ uri: 'https://www.w3school.com.cn/i/movie.ogg' }} style={{ width: 60, height: 200 }} controls={true} paused={true} />
+            {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
+              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
+              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
+              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
               <HTML source={{ html: ceshi}} contentWidth={200}/>
-          </View>
+            </View>
         </Card.Content>
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
@@ -194,7 +195,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
 
 const styles = StyleSheet.create({
   backColor: {
-    shadowOpacity: 0,
+    shadowOpacity: 0
   },
   cardSty: {
     marginBottom: -3, 
@@ -374,16 +375,17 @@ const styles = StyleSheet.create({
     })
   },
   cover:{
-    height: 110, 
     width: windowWidth,
-    position:'absolute',
-    opacity:0.4,
-    bottom:5,
+    // position:'absolute',
+    opacity:0.9,
+    // bottom:5,
     display:'flex',
     alignItems:'center',
-    justifyContent:'center',
+    // justifyContent:'center',
     padding:20,
-    flexDirection:'row'
+    paddingBottom:0,
+    flexDirection:'row',
+    flexWrap:'wrap'
   },
   converText:{
     color:'#000',
@@ -400,5 +402,12 @@ const styles = StyleSheet.create({
     top:22,
     left:27,
     zIndex:10
+  },
+  cardd:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'stretch',
+    justifyContent:'flex-start'
+    
   }
 });
