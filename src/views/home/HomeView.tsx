@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:40:28
- * @LastEditTime: 2023-12-22 10:23:16
+ * @LastEditTime: 2024-03-06 10:31:36
  * @FilePath: \newpark_native\src\views\home\HomeView.tsx
  * @Description: 推荐 Home展示页
  */
@@ -17,7 +17,6 @@ export default class HomeView extends Component {
       <>
         <HomeNav />
         <HomeComponents />
-        <BellView />
       </>
     );
   }

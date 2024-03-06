@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2024-02-22 15:53:51
+ * @LastEditTime: 2024-03-06 10:37:00
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
@@ -14,10 +14,11 @@ import * as Animatable from 'react-native-animatable';
 
 import { Image, Text } from '@gluestack-ui/themed';
 import { Dimensions, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
+import BellView from '../../components/Bell';
 import { DeviceEvent } from '../../config/listener';
 import routsConfig from '../../config/routs-config';
-import { useCounter } from '../../hooks/state';
 import { navigate } from '../../config/routs/NavigationContainer';
+import { useCounter } from '../../hooks/state';
 const windowWidth = Dimensions.get('window').width;
 // import { Stagger, useDisclose} from 'native-base';
 /*
@@ -145,6 +146,11 @@ export const BommonTab = () => {
             : ''
         }
       </View>
+
+        <View style={styles.ld}>
+          <BellView />
+        </View>
+      
     </>
   );
 };
@@ -202,5 +208,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: windowWidth / 4,
     bottom: 30
+  },
+  ld:{
+    position:'relative',
+    bottom: '8%'
   }
 });

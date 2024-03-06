@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2024-02-19 17:00:28
+ * @LastEditTime: 2024-03-06 10:31:01
  * @FilePath: \newpark_native\src\views\mine\MineVIew.tsx
  * @Description: Home 页菜单
  */
@@ -121,9 +121,7 @@ export default class MineVIew extends Component {
           /> */}
           </ScrollView>
         </View>
-       <View>
-          <BellView />
-       </View>
+
       </SafeAreaView>
       
     );

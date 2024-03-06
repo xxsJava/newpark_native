@@ -225,7 +225,7 @@ RCT_EXPORT_METHOD(logout){
 //  } onGroupDismissed:^(OIMGroupInfo * _Nullable groupInfo) {
 //  
 //  }];
-//  // 消息相关监听器
+  // 消息相关监听器
   [OIMManager.callbacker setAdvancedMsgListenerWithOnRecvMessageRevoked:^(OIMMessageRevokedInfo * _Nullable msgRovoked) {
     
   } onRecvC2CReadReceipt:^(NSArray<OIMReceiptInfo *> * _Nullable msgReceiptList) {
