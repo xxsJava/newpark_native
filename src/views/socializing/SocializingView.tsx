@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-01-11 11:25:29
+ * @LastEditTime: 2024-03-06 10:31:22
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 import { Image, Text, View } from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
-import BellView from '../../components/Bell';
 import { navigate } from '../../config/routs/NavigationContainer';
 import ContactsModul from './components/ContactsModul';
 import MessageModule from './components/MessageModule';
@@ -154,9 +153,6 @@ const SocializingView = () => {
         <TouchableOpacity style={[styles.maskLayer,more?null:{display:'none'}]} onPress={() => handleMorePress(more)}>
        
         </TouchableOpacity>
-        <View style={styles.bell}>
-            <BellView></BellView>
-        </View>
       </SafeAreaView>
   )
 }
