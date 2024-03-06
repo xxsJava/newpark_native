@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import LinearGradinet from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
 import { navigate } from '../../../config/routs/NavigationContainer';
 
@@ -67,7 +66,7 @@ const CommunityModule = () => {
                       <Text allowFontScaling={false} style={styles.middleEnd}>热度{item.sum}</Text>
                     </View>
                     <View style={styles.middleBottom}>
-                      <LinearGradinet
+                      {/* <LinearGradinet
                         colors={[
                           'rgba(233,231,255,0.9)',
                           'rgba(233,231,255,0)',
@@ -75,8 +74,13 @@ const CommunityModule = () => {
                         start={{x: 0, y: 0}}
                         end={{x: 0, y: 1}}
                         style={styles.bottomBg}>
+                          
                         <Text allowFontScaling={false} style={styles.bottomText}>{item.slogan}</Text>
-                      </LinearGradinet>
+                      </LinearGradinet> */}
+
+                      {/* <Avatar bgColor='$amber600' size="sm" borderRadius="$full" >
+                        <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
+                      </Avatar> */}
                     </View>
                   </View>
                   <View style={styles.itemRight}>
