@@ -149,7 +149,7 @@ function MessageList(props: { items: any; receiver: any }) {
           //清除
           clearTimeout(timeoutID);
           
-        }, 500);
+        }, 1);
         return () => {
           // 在组件卸载时移除监听
           listener.remove();
@@ -191,7 +191,7 @@ function MessageList(props: { items: any; receiver: any }) {
       setHeadImg(isPGFlag ? res[0].faceURL : res[0].senderFaceUrl);
       setTimeout(() => {
         handleContentSizeChange();
-      }, 500);
+      }, 100);
     });
   };
 
