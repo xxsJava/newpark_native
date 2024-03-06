@@ -1,5 +1,5 @@
 import * as React from 'react';
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Trans } from 'react-i18next';
 import {
   Dimensions,
@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import BellView from '../../../components/Bell';
 import ChatModule from './ChatModule';
 import CommunityModule from './CommunityModule';
 
@@ -70,13 +69,13 @@ const TabNav = () => {
         </View>
       </View>
       <View style={tabVal === 'tab1' ? null : styles.scrollShow}>
-        <CommunityModule></CommunityModule>
+        <CommunityModule />
       </View>
       <View style={tabVal === 'tab2' ? null : styles.scrollShow}>
-        <ChatModule></ChatModule>
+        <ChatModule />
       </View>
       <View style={styles.bell}>
-        <BellView></BellView>
+        {/* <BellView /> */}
       </View>
     </SafeAreaView>
   )
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
     top: -2,
     right: 27,
     borderRadius: 9,
-    borderWidth: 1.5,
+    // borderWidth: 1.5,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',
@@ -144,7 +143,7 @@ const styles = StyleSheet.create({
     top: -2,
     right: 7,
     borderRadius: 9,
-    borderWidth: 1.5,
+    // borderWidth: 1.5,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',

@@ -111,7 +111,6 @@ const ChatModule = () => {
               <Trans>newPatkTab2.tableTitle</Trans>
             </Text>
           </View>
-          )
         </View>
         <View style={styles.optionList}>
           {optionData2.map(item => {
