@@ -68,6 +68,7 @@ import PubGood from '../../../views/publish/page/commodity'
 import Black from '../../../views/mine/components/manage/Black';
 import About from '../../../views/mine/components/manage/About';
 import MainMess from '../../../components/Bell/MainMess';
+import ChatRoom from '../../../views/newpark/components/ChatRoom.tsx'
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -87,6 +88,13 @@ export default {
      options: {
     //   headerShown: false,
     title: '新增收货地址',
+     },
+  },
+  ChatRoom:{
+    component: ChatRoom,
+     options: {
+      // headerShown: false,
+    title: '创建聊天室',
      },
   },
   Black: {

@@ -32,6 +32,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 // import * as ImagePicker from 'expo-image-picker';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+import ImagePicker from 'react-native-image-crop-picker';
 
 const Registered = () => {
   var upath = ''
@@ -54,25 +55,26 @@ const Registered = () => {
       includeBase64: true
     }, res => {
       setImghead(res.assets)
-      if(!res.didCancel) {
-         if(res.assets[0].uri){
+      if (!res.didCancel) {
+        if (res.assets[0].uri) {
           upath = res.assets[0].uri
-         }
+        }
         // console.log(res.assets[0].uri,'res.assets[0].uri');
-       
+
       }
       // else {
       //   const selectedImageUri = '../../../../assets/images/tup/defaultheader.png'
       // }
-      
-    
-     
-      console.log(upath,'upath');
+
+
+
+      console.log(upath, 'upath');
       // await AsyncStorage.setItem('upath', upath);
       // console.log(imghead,'imghead');
-      
-      
-    })
+
+
+    });
+
   }
   useEffect(() => {
     console.log('开始执行动画');
@@ -116,22 +118,22 @@ const Registered = () => {
           <View style={styles.avatarView}>
             <TouchableOpacity style={styles.avatarStyle} onPress={() => changeHeader()}>
               {imghead ? (
-                  imghead&&imghead.map((item: any, index: any) => {
-                    return (
-                      <View key={index}>
-                        <Image
-                          style={styles.avatarImage}
-                          source={{ uri: item.uri }}
-                        />
-                      </View>
-                    )
-                  })
+                imghead && imghead.map((item: any, index: any) => {
+                  return (
+                    <View key={index}>
+                      <Image
+                        style={styles.avatarImage}
+                        source={{ uri: item.uri }}
+                      />
+                    </View>
+                  )
+                })
                 // }
-              ):(
-              <Image source={require('../../../../assets/images/3.0x/chat_takephoto.png')} style={{ width: 100, height: 100, borderRadius: 100 }} />
+              ) : (
+                <Image source={require('../../../../assets/images/3.0x/chat_takephoto.png')} style={{ width: 100, height: 100, borderRadius: 100 }} />
               )
               }
-             
+
             </TouchableOpacity>
             <Text allowFontScaling={false} style={styles.avatarText}>上传头像</Text>
           </View>
@@ -298,17 +300,16 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     // backgroundColor: '#6a1b9a',
-
     ...Platform.select({
       ios: {
-        shadowColor: '#aaa',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 1,
-        shadowRadius: 3.5,
+        // shadowColor: '#aaa',
+        shadowOffset: { width: 20, height: 20 },
+        shadowOpacity: 20,
+        shadowRadius: 10,
       },
       android: {
-        elevation: 11,
-        marginTop: 10,
+        elevation: 23,
+        // marginTop: 10,
       },
     }),
   },
@@ -316,7 +317,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     marginTop: 20,
-    borderRadius: 100 
+    borderRadius: 100
   },
   avatarText: {
     fontSize: 16,

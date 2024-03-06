@@ -104,7 +104,7 @@ export default class ObjCard<T> extends Component{
                             return <View key={item.key} style={styles.boxStylemin}>
                                 <Text style={ this.state.switchControlList[item.key]?styles.h6 :styles.h6null}>{item.TiTle}</Text>
                                 <View>
-                                    <Switch value={this.state.switchControlList[item.key]} onValueChange={(value) => { this.setIsSwitchOn(item.key,value); }} />
+                                    <Switch value={this.state.switchControlList[item.key]} onValueChange={(value) => { this.setIsSwitchOn(item.key,value); }} color='#ECB32C'/>
                                 </View>
                             </View>
                         })}
@@ -112,16 +112,16 @@ export default class ObjCard<T> extends Component{
                         {/* <View style={styles.boxStylemin}>
                             <Text style={styles.h6}>置顶聊天</Text>
                            <View>
-                            <Switch value={this.state.isSwitchOn} onValueChange={() => this.setIsSwitchOn()} />
+                            <Switch value={this.state.isSwitchOn} onValueChange={() => this.setIsSwitchOn()} color='#ECB32C'/>
                            </View>
                         </View>
                         <View style={styles.boxStylemin}>
                             <Text style={styles.h6}>消息免打扰</Text>
-                            <Switch value={this.state.isSwitchOn1} onValueChange={() => this.setIsSwitchOn1()} />
+                            <Switch value={this.state.isSwitchOn1} onValueChange={() => this.setIsSwitchOn1()} color='#ECB32C'/>
                         </View>
                         <View style={styles.boxStylemin}>
                             <Text style={styles.h6}>加入黑名单</Text>
-                            <Switch value={this.state.isSwitchOn2} onValueChange={() => this.setIsSwitchOn2()} />
+                            <Switch value={this.state.isSwitchOn2} onValueChange={() => this.setIsSwitchOn2()} color='#ECB32C'/>
                         </View> */}
                     </View>
                     <TouchableOpacity style={styles.boxStyle}>

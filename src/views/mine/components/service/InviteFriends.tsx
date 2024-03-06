@@ -52,7 +52,6 @@ const MyComponent = () => {
         },
     ]
     return (
-
         <PaperProvider>
             <Portal>
                 {/* animationType={slide}  */}
@@ -63,7 +62,7 @@ const MyComponent = () => {
                                 return (
                                     <TouchableOpacity key={item.index} style={styles.mtlist} onPress={() =>{console.log(item.text);
                                     }}>
-                                        <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 78 } : null]}></Image>
+                                        <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 68 } : null]}></Image>
                                         <View style={styles.zi}>
                                             <Text style={styles.h4}>{item.text}</Text>
                                         </View>
@@ -164,24 +163,24 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     title: {
-        width: '70%'
+        width: '65%'
     },
     iconBean: {
         width: 49,
         height: 43
     },
     h1: {
-        fontSize: 28,
+        fontSize: 25,
         color: 'black',
         fontWeight: 'bold'
     },
     h6: {
         fontSize: 15,
         color: 'black',
-        fontWeight: 'bold'
+        // fontWeight: 'bold'
     },
     h4: {
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: 'bold'
     },
     a1: {
@@ -209,7 +208,7 @@ const styles = StyleSheet.create({
     yqhy: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 18
     },
     list1Bg: {
         backgroundColor: '#fff',
@@ -262,18 +261,20 @@ const styles = StyleSheet.create({
     modelType: {
         position: 'absolute',
         bottom: 0,
-        height: windowHeight
+        height: windowHeight,
+        
     },
     mtImg: {
-        width: 60,
-        height: 60
+        width: 55,
+        height: 55
     },
     mt2list: {
+        display:'flex',
         flexDirection: 'row',
         width: windowWidth,
         flexWrap: 'wrap',
-        // marginTop:162,
-        // paddingTop:360
+        height:160,
+        // paddingTop:12
     },
     zhong: {
         width: windowWidth,
@@ -282,7 +283,12 @@ const styles = StyleSheet.create({
         // alignItems:'center'
     },
     mtlist: {
-        width: 120
+        width: 120,
+        // height:110,
+        // backgroundColor:'pink',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
     },
     zi:{
         marginTop:12,

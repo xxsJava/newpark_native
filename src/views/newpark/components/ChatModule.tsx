@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Trans } from 'react-i18next';
 import {
+
   Dimensions,
   Image,
   Platform,
@@ -81,12 +82,13 @@ const ChatModule = () => {
         <View style={styles.optionList}>
           {optionData1.map(item => {
             return (
-              <View style={styles.optionItem} key={item.index}>
+              <TouchableOpacity style={styles.optionItem} key={item.index} onPress={()=>{console.log(item.name);} }
+              >
                 <Image source={item.icon} style={styles.iconList}></Image>
                 <Text allowFontScaling={false} style={styles.optionText}>
                   <Trans>{item.name}</Trans>
                 </Text>
-              </View>
+              </TouchableOpacity>
             )
           })}
         </View>
@@ -104,27 +106,9 @@ const ChatModule = () => {
         </View>
       </View>
       <View style={styles.glideStyle}>
-        <View style={styles.glideHead}>
-
-          <View style={styles.glideHeadList}>
-            <Text allowFontScaling={false} style={styles.glideHeadTitle}>
-              <Trans>newPatkTab2.tableTitle</Trans>
-            </Text>
-          </View>
-        </View>
-        <View style={styles.optionList}>
-          {optionData2.map(item => {
-            return (
-              <View style={styles.optionItem} key={item.index}>
-                <Image source={item.icon} style={styles.iconList}></Image>
-                <Text allowFontScaling={false} style={styles.optionText}>
-                  <Trans>{item.name}</Trans>
-                </Text>
-              </View>
-            )
-          })}
-        </View>
       </View>
+
+
       <View style={styles.glideStyle}>
         <View style={styles.glideHead}>
           <View style={styles.glideHeadList}>
