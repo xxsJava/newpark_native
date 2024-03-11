@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { Trans } from 'react-i18next';
 import {
-
   Dimensions,
   Image,
   Platform,
@@ -69,7 +68,6 @@ const ChatModule = () => {
   const handleTabPress = (tab: string) => {
     console.log('Tab状态' + tab);
     setTab(tab);
-
   };
   return (
     <View style={styles.scrollStyle}>

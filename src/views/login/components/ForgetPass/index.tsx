@@ -372,6 +372,4 @@ const handleInjectJavascript = (data:any) => {
   );
 };
 
-const styles = StyleSheet.create({});
-
 export default ForgetPass;

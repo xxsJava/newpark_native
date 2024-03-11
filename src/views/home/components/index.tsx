@@ -29,8 +29,25 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
     postsId: item.tid,
     likeType: 1
   }
+  // const [isPlay,setisPlay] = useState(false);
+  // const [time,etTime] = useState();
+  const loadStart = () => {
+      console.log('视频正在加载！');
+      
+  };
+  const setDuration = () =>{
+    console.log('视频加载完毕');
+    
+  }
+  const onEnd = () => {
+    console.log('视频播放完毕');
+  }
+  const videoError = () => {
+    console.log('视频播放失败');
+  }
 
   const postLikePress = async (porp:any) => {
+   
       const postLikeUp = await postLike(postLikeParam);
       console.log('点赞返回',postLikeUp)
       if(postLikeUp.data) {
@@ -44,10 +61,10 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
     // }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
-  const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> <audio src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></audio>';
+  const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> ';
     // const ceshi = ' <Video source={{ uri: "https://www.runoob.com/try/demo_source/mov_bbb.mp4" }} style={{ width: 300, height: 200 }} controls={true} />'
-    // 
-    
+    // <audio src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></audio>
+
   return (
     <Card style={styles.cardSty}>
       <Card.Content style={styles.cardTitle}>
@@ -92,7 +109,8 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         </View>
       </Card.Content>
       {/* 页面传参的方式 */}
-      <TouchableOpacity activeOpacity={0.9} key={item.tid} onPress={() => navigate('PostDetailsRoute', { item })} style={styles.cardd}>
+      {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
+      <TouchableOpacity activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
           {/* <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}> */}
@@ -100,10 +118,27 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           {/* </View> */}
           <View style={styles.cover} >
             {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
+              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} 
+                  // onPress={() => {setSound(!sound)}} paused={sound}
+                  ref='player'
+                  // rate={isPlay?1:0}                  // 控制暂停/播放，0 代表暂停paused, 1代表播放normal.
+                  volume={1.0}                      // 声音的放大倍数大倍数，0 代表没有声音，就是静音muted, 1 代表正常音量 normal，更大的数字表示放大的倍数
+                  muted={true}                    // true代表静音，默认为false.
+                  paused={false}                  // true代表暂停，默认为false
+                  resizeMode="contain"           // 视频的自适应伸缩铺放行为，contain、stretch、cover
+                  repeat={true}                // 是否重复播放
+                  playInBackground={true}     // 当app转到后台运行的时候，播放是否暂停
+                  playWhenInactive={false}     // [iOS] Video continues to play when control or notification center are shown. 仅适用于IOS
+                  onLoadStart={loadStart}      // 当视频开始加载时的回调函数
+                  onLoad={setDuration}         // 当视频加载完毕时的回调函数
+                  // onProgress={setTime}         // 进度控制，每250ms调用一次，以获取视频播放的进度
+                  onEnd={onEnd}                // 当视频播放完毕后的回调函数
+                  onError={videoError}        //  当视频播放失败后的回调函数
+                  controls={true}               //显示控制按钮
+              />
+              {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
               <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <HTML source={{ html: ceshi}} contentWidth={200}/>
+              <HTML source={{ html: ceshi}} contentWidth={200}/> */}
             </View>
         </Card.Content>
       </TouchableOpacity>
@@ -159,8 +194,6 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
       <View style={styles.commentAreaView}>
         <Text allowFontScaling={false} style={styles.commentAreaTitle}>精选评论</Text>
         {item.postsComments.map((porp: any) => {
-
-
           return (
             <View style={styles.commentArea}>
               <View style={styles.commentAreaItem}>
@@ -192,7 +225,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
     </Card>
   );
 };
-
+export default postsOrdinary;
 const styles = StyleSheet.create({
   backColor: {
     shadowOpacity: 0
