@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2024-02-22 15:53:51
+ * @LastEditTime: 2024-03-06 10:37:00
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
@@ -14,8 +14,10 @@ import * as Animatable from 'react-native-animatable';
 
 import { Image, Text } from '@gluestack-ui/themed';
 import { Dimensions, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
+import BellView from '../../components/Bell';
 import { DeviceEvent } from '../../config/listener';
 import routsConfig from '../../config/routs-config';
+import { navigate } from '../../config/routs/NavigationContainer';
 import { useCounter } from '../../hooks/state';
 const windowWidth = Dimensions.get('window').width;
 // import { Stagger, useDisclose} from 'native-base';
@@ -29,25 +31,24 @@ const windowWidth = Dimensions.get('window').width;
 export const BommonTab = () => {
   const Tab = createBottomTabNavigator();
   const [isVisible, setIsVisible] = useState(false);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
-  const { corner,incrementsetCorner } = useCounter();
+  const { corner, incrementsetCorner } = useCounter();
 
-  useEffect(() =>{
+  useEffect(() => {
 
     DeviceEvent.addListener('onRecvNewMessage', async resp => {
       // incrementsetCorner();
-      console.log('corner--------->',corner);
+      console.log('corner--------->', corner);
       incrementsetCorner(corner);
     })
 
-  },[])
+  }, [])
 
   return (
     <>
-    
       <Tab.Navigator
-        screenOptions={({route}) => ({
+        screenOptions={({ route }) => ({
           // screenOptions={() => ({
           tabBarActiveTintColor: '#F8B032',
           tabBarInactiveTintColor: 'gray',
@@ -55,17 +56,17 @@ export const BommonTab = () => {
           tabBarLabelStyle: {
             fontSize: 16
           },
-          tabBarStyle:{
-            height: Platform.OS == 'ios'?80:60
+          tabBarStyle: {
+            height: Platform.OS == 'ios' ? 80 : 60
           }
         })}>
         {Object.entries(routsConfig).map(([key, value]) => {
           if (key === 'Routes') {
             const subArray = Object.entries(value);
             return subArray.map(([routeKey, routeValue]) => {
-              const option:any = {
+              const option: any = {
                 tabBarLabel: t(routeValue.label),
-                tabBarIcon: ({focused, size, color}:any) => {
+                tabBarIcon: ({ focused, size, color }: any) => {
                   let iconName = focused
                     ? routeValue.SelectedIcon
                     : routeValue.UnSelectedIcon;
@@ -76,7 +77,7 @@ export const BommonTab = () => {
               };
 
               //添加角标
-              if(routeKey === 'Socializing'){
+              if (routeKey === 'Socializing') {
                 option['tabBarBadge'] = corner;
               }
 
@@ -94,29 +95,62 @@ export const BommonTab = () => {
         })}
       </Tab.Navigator>
       <View style={styles.tabPub}>
-          <TouchableOpacity onPress={()=>{ setIsVisible(!isVisible)}}>
-            <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')}/>
-          </TouchableOpacity>
-      {
-        
-          isVisible?
-          <View>
-            <TouchableOpacity>
-          <Animatable.View style={styles.aniNav1} animation='fadeInLeftBig'>
-            <View style={styles.nav1}></View>
-            <Text style={styles.nav1Text}>发布</Text>
-          </Animatable.View>
-          </TouchableOpacity>
-          <TouchableOpacity>
-          <Animatable.View style={styles.aniNav2} animation='fadeInRightBig'>
-            <View style={styles.nav1}></View>
-            <Text style={styles.nav1Text}>活动</Text>
-          </Animatable.View>
-          </TouchableOpacity>
-          </View>
-          :''
-      }
+        <TouchableOpacity onPress={() => { setIsVisible(!isVisible) }}>
+          <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')} />
+        </TouchableOpacity>
+        {
+          isVisible ?
+            <View>
+              <TouchableOpacity onPress={() => navigate('ClockInViewRoute')}>
+                <Animatable.View style={[styles.aniNav1, { display: 'flex', flexDirection: 'row' }]} animation='fadeInLeftBig'>
+                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
+                    <Text style={[styles.nav1Text, { marginRight: 6, marginTop: 8 }]}>打卡</Text>
+                  </View>
+                  <View style={[styles.nav1, { backgroundColor: '#26C78C', }]}></View>
+                </Animatable.View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigate('PubGood')}>
+                <Animatable.View style={[styles.aniNav3, { display: 'flex', flexDirection: 'row' }]} animation='fadeInLeftBig'>
+                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
+                    <Text style={[styles.nav1Text, { marginRight: 3, marginTop: 8 }]}>发布商品</Text>
+                  </View>
+                  <View style={[styles.nav1, { backgroundColor: '#C6C6C6', }]}></View>
+                </Animatable.View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigate('ChatRoom')}>
+                <Animatable.View style={styles.aniNav4} animation='fadeInLeftBig' >
+                  <View style={{ backgroundColor: '#fff', borderRadius: 20, width: 80, marginLeft:'-50%'}}>
+                    <Text style={[styles.nav1Text, { padding: 5,fontSize:12}]}>创建聊天室</Text>
+                  </View>
+                  <View style={[styles.nav1, { backgroundColor: '#FB4886', }]}></View>
+                </Animatable.View>
+              </TouchableOpacity>
+              {/* <TouchableOpacity  onPress={()=>navigate('Uplode')}> */}
+              <TouchableOpacity onPress={() => navigate('ReleasePost')}>
+                <Animatable.View style={[styles.aniNav5, { display: 'flex', flexDirection: 'row' }]} animation='fadeInRightBig'>
+                  <View style={[styles.nav1, { backgroundColor: '#90C486', }]}></View>
+                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
+                    <Text style={[styles.nav1Text, { marginTop: 10 }]}>发布帖子</Text>
+                  </View>
+                </Animatable.View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigate('Uplode')}>
+                <Animatable.View style={[styles.aniNav2, { display: 'flex', flexDirection: 'row' }]} animation='fadeInRightBig'>
+                  <View style={[styles.nav1, { backgroundColor: '#FBBA3F' }]}></View>
+                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
+                    <Text style={[styles.nav1Text, { lineHeight: 44 }]}>发布悬赏</Text>
+                  </View>
+                </Animatable.View>
+              </TouchableOpacity>
+            </View>
+            : ''
+        }
       </View>
+
+        <View style={styles.ld}>
+          <BellView />
+        </View>
+      
     </>
   );
 };
@@ -128,37 +162,55 @@ const styles = StyleSheet.create({
     left:windowWidth/2-32,
     borderWidth:2,
     borderColor: '#F8B032',
-    width:64,
-    height:64,
-    borderRadius:50
+    width: 64,
+    height: 64,
+    borderRadius: 50
   },
-  bthImg:{
-    marginLeft:8,
-    marginTop:8,
-    width:44,
-    height:44
+  bthImg: {
+    marginLeft: 8,
+    marginTop: 8,
+    width: 44,
+    height: 44
   },
-  nav1:{
+  nav1: {
     width: 42,
     height: 42,
-    backgroundColor:'green',
-    borderRadius:50
+    borderRadius: 50
   },
-  aniNav1:{
-    position:'absolute',
-    right: windowWidth/4-30,
-    bottom:30
+  aniNav1: {
+    position: 'absolute',
+    right: windowWidth / 4 - 10,
+    bottom: 30
   },
-  nav1Text:{
-    alignContent:'center',
-    textAlign:'center',
+  aniNav3: {
+    position: 'absolute',
+    right: windowWidth / 4 - 34,
+    bottom: 83
+  },
+  aniNav4: {
+    position: 'absolute',
+    right: 0,
+    bottom: 100
+  },
+  aniNav5: {
+    position: 'absolute',
+    right: windowWidth / 4 - 210,
+    bottom: 83
+  },
+  nav1Text: {
+    alignContent: 'center',
+    textAlign: 'center',
     fontSize: 14,
-    color:'#000',
-    fontWeight:'bold'
+    color: '#FFB700',
+    fontWeight: 'bold'
   },
-  aniNav2:{
-    position:'absolute',
-    left: windowWidth/4-30,
-    bottom:30
+  aniNav2: {
+    position: 'absolute',
+    left: windowWidth / 4,
+    bottom: 30
+  },
+  ld:{
+    position:'relative',
+    bottom: '8%'
   }
 });

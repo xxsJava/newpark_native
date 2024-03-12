@@ -71,7 +71,7 @@ const ListIndex: React.FC = () => {
       initMsg();
       //清除
       clearTimeout(timeoutID);
-    }, 500);
+    }, 1);
   };
 
   const renderItem = ({item}: {item: DataItem}) => 
@@ -133,7 +133,14 @@ const ListIndex: React.FC = () => {
 
   return (
     <View style={{flex: 1, marginTop: 10}}>
-      <FlatList data={data} renderItem={renderItem} />
+      <FlatList 
+        keyExtractor={(item) => item.recvID} 
+        data={data} 
+        renderItem={renderItem} 
+        getItemLayout={(data, index) => (
+          {length: 1000, offset: 1000 * index, index}
+        )}
+      />
     </View>
   );
 };

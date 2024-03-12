@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
           shadowRadius: 6.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
         },
         android: {
-          elevation: 12,
+          elevation: 2,
         },
     }),
   },

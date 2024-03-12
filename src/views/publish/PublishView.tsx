@@ -44,7 +44,7 @@ const App = () => {
           },
         ]}>
           <TouchableOpacity style={[styles.bigbtn,styles.btn1]}>
-            <Text style={[styles.tips, {marginRight:8}]}>打卡</Text>
+            <Text style={[styles.tips, {marginRight:16,paddingRight:20}]}>打卡</Text>
             <View style={styles.litbtn1}></View>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.bigbtn,styles.btn2]}>
@@ -52,12 +52,13 @@ const App = () => {
             <View style={[styles.litbtn1,{backgroundColor:'#C6C6C6'}]}></View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn3}>
-            <Text style={styles.tips}>公告</Text>
+          <Text style={styles.tips}>公告</Text>
             <View style={[styles.litbtn1,{backgroundColor:'#FA4A86'}]}></View>
+            
           </TouchableOpacity>
           <TouchableOpacity style={[styles.bigbtn,styles.btn4]}>
             <View style={[styles.litbtn1,{backgroundColor:'#90C485'}]}></View>
-            <Text style={[styles.tips, {marginLeft:8}]}>发布帖子</Text>
+            <Text style={[styles.tips, {marginLeft:8,}]}>发布帖子</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.bigbtn,styles.btn5]}>
             <View style={[styles.litbtn1,{backgroundColor:'#FCBA41'}]}></View>
@@ -101,13 +102,14 @@ const styles = StyleSheet.create({
   },
   bigbtn:{
     display:'flex',
-    flexDirection:'row'
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center'
   },
   tips:{
     color:'#000',
     fontSize:16,
-    textAlign:'center',
-    lineHeight:40,
+    textAlign:'center'
   },
   btn1:{
     position:'absolute',

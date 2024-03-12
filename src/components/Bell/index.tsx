@@ -16,7 +16,7 @@ import { navigate } from '../../config/routs/NavigationContainer';
   console.log('消息铃铛'+ isMsg);
 
   return (
-    <TouchableOpacity style={styles.loadMore} onPress={() => navigate('SocializingStacker')}>
+    <TouchableOpacity style={styles.loadMore} onPress={() => navigate('MainMess')}>
         {/* notification      floatbuttonimg*/}
         {/* <View style={porp.isMsg? styles.hidden:styles.chu}>
             <Image source={require('../../assets/images/notification.png')} style={styles.img} />
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',
     padding:2,
     borderRadius:20,
-    elevation: 20, // 适配android的
+    elevation: 4, // 适配android的
     shadowOffset: { width: 2, height: 2 }, // 以下4项适配ios
     shadowColor: 'black',
     shadowOpacity: .9,

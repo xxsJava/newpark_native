@@ -1,18 +1,21 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-02-20 15:10:26
+ * @LastEditTime: 2024-02-22 17:39:07
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
 import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
-import React from 'react';
+import React,{useState} from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
 import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import HTML from 'react-native-render-html';
+import Video from 'react-native-video';
+import text from '../../socializing/text';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -26,8 +29,25 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
     postsId: item.tid,
     likeType: 1
   }
+  // const [isPlay,setisPlay] = useState(false);
+  // const [time,etTime] = useState();
+  const loadStart = () => {
+      console.log('视频正在加载！');
+      
+  };
+  const setDuration = () =>{
+    console.log('视频加载完毕');
+    
+  }
+  const onEnd = () => {
+    console.log('视频播放完毕');
+  }
+  const videoError = () => {
+    console.log('视频播放失败');
+  }
 
   const postLikePress = async (porp:any) => {
+   
       const postLikeUp = await postLike(postLikeParam);
       console.log('点赞返回',postLikeUp)
       if(postLikeUp.data) {
@@ -41,17 +61,24 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
     // }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
+  const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> ';
+    // const ceshi = ' <Video source={{ uri: "https://www.runoob.com/try/demo_source/mov_bbb.mp4" }} style={{ width: 300, height: 200 }} controls={true} />'
+    // <audio src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></audio>
 
   return (
     <Card style={styles.cardSty}>
       <Card.Content style={styles.cardTitle}>
         <View style={styles.titleLeft}>
           <View>
-            <Avatar.Image
-              style={styles.avaSty}
-              size={44}
-              source={{ uri: item.upath }} />
-            <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
+            <TouchableOpacity onPress={()=>{console.log('点击--头像')}}>
+              <Avatar.Image
+                style={styles.avaSty}
+                size={44}
+                source={{ uri: item.upath }} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.touchaOp} onPress={() =>{ console.log('点击--关注用户')}}>
+              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
+            </TouchableOpacity>
           </View>
           <View style={styles.titleView}>
             <Text allowFontScaling={false} style={styles.titleStyle}>{item.unikname}</Text>
@@ -59,7 +86,6 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           </View>
         </View>
         <View style={styles.rightSty}>
-        
           <Menu
             style={{position:'relative',top:-30,bottom:0}}
             placement='bottom right'
@@ -67,32 +93,53 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
               return (
                   <IconButton
                   { ...triggerProps }
-                  style={styles.rightButton}
+                  // style={styles.rightButton}
                   icon="dots-horizontal"
                   />
               )
             }}
           >
-            <MenuItem key="Report" textValue="Report">
+            <MenuItem key="Report" textValue="Report" onPress={() => {console.log('举报');}}>
               <MenuItemLabel size="sm">举报</MenuItemLabel>
             </MenuItem>
-            <MenuItem key="Blacklist" textValue="Community">
+            <MenuItem key="Blacklist" textValue="Community" onPress={() => {console.log('拉入黑名单');}}>
               <MenuItemLabel size="sm">拉入黑名单</MenuItemLabel>
             </MenuItem>
           </Menu>
         </View>
       </Card.Content>
-      <TouchableOpacity activeOpacity={0.9} key={item.tid} onPress={() => navigate('PostDetailsRoute', { item })}>
+      {/* 页面传参的方式 */}
+      {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
+      <TouchableOpacity activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
-          <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
+          {/* <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}> */}
             {/* <WebView source={{ html: item.tcontext }}></WebView> */}
-          </View>
+          {/* </View> */}
           <View style={styles.cover} >
-            <Text style={styles.converText}>
-              点击查看更多内容......
-            </Text>
-          </View>
+            {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
+              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} 
+                  // onPress={() => {setSound(!sound)}} paused={sound}
+                  ref='player'
+                  // rate={isPlay?1:0}                  // 控制暂停/播放，0 代表暂停paused, 1代表播放normal.
+                  volume={1.0}                      // 声音的放大倍数大倍数，0 代表没有声音，就是静音muted, 1 代表正常音量 normal，更大的数字表示放大的倍数
+                  muted={true}                    // true代表静音，默认为false.
+                  paused={false}                  // true代表暂停，默认为false
+                  resizeMode="contain"           // 视频的自适应伸缩铺放行为，contain、stretch、cover
+                  repeat={true}                // 是否重复播放
+                  playInBackground={true}     // 当app转到后台运行的时候，播放是否暂停
+                  playWhenInactive={false}     // [iOS] Video continues to play when control or notification center are shown. 仅适用于IOS
+                  onLoadStart={loadStart}      // 当视频开始加载时的回调函数
+                  onLoad={setDuration}         // 当视频加载完毕时的回调函数
+                  // onProgress={setTime}         // 进度控制，每250ms调用一次，以获取视频播放的进度
+                  onEnd={onEnd}                // 当视频播放完毕后的回调函数
+                  onError={videoError}        //  当视频播放失败后的回调函数
+                  controls={true}               //显示控制按钮
+              />
+              {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
+              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
+              <HTML source={{ html: ceshi}} contentWidth={200}/> */}
+            </View>
         </Card.Content>
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
@@ -152,7 +199,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
               <View style={styles.commentAreaItem}>
                 <Avatar.Image size={32} source={{ uri: porp.upath }} />
                 <View style={styles.commentAreaName}>
-                  <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>{porp.unikname}：</Text>
+                  <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>{porp.unikname}:</Text>
                   <Text allowFontScaling={false} style={styles.commentAreaNameRight}>{porp.comContent}</Text>
                 </View>
                 <TouchableOpacity
@@ -172,16 +219,16 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         })}
       </View>
       <View style={styles.leaveWordView}>
-        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} />
+        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')}/>
         <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
       </View>
     </Card>
   );
 };
-
+export default postsOrdinary;
 const styles = StyleSheet.create({
   backColor: {
-    shadowOpacity: 0,
+    shadowOpacity: 0
   },
   cardSty: {
     marginBottom: -3, 
@@ -223,19 +270,12 @@ const styles = StyleSheet.create({
   avatarIcon:{
     width:20,
     height:20,
-    position:'absolute',
-    top:22,
-    left:27,
-    zIndex:10
+    
   },
   rightSty: {
     marginTop:-15,
     marginRight:-15,
   
-  }
-  ,
-  rightButton:{
-    
   },
   titleSty: {
     fontWeight: 'bold',
@@ -245,8 +285,6 @@ const styles = StyleSheet.create({
   buttonDz: {borderWidth: 0},
   context: {
     fontSize: 15,
-    // fontWeight: 'bold',
-    // color: '#6A1B9A',
     color:'#000',
     marginTop:10,
     paddingHorizontal:10
@@ -370,16 +408,39 @@ const styles = StyleSheet.create({
     })
   },
   cover:{
-    height: 110, 
     width: windowWidth,
-    // backgroundColor:'#FABA3C',
-    position:'absolute',
-    opacity:0.4,
-    bottom:5
+    // position:'absolute',
+    opacity:0.9,
+    // bottom:5,
+    display:'flex',
+    alignItems:'center',
+    // justifyContent:'center',
+    padding:20,
+    paddingBottom:0,
+    flexDirection:'row',
+    flexWrap:'wrap'
   },
   converText:{
     color:'#000',
     textAlign:'center',
     lineHeight:110
+  },
+  postimg:{
+    width:'80%',
+    height:'60%'
+  },
+  touchaOp:{
+    opacity:0.9,
+    position:'absolute',
+    top:22,
+    left:27,
+    zIndex:10
+  },
+  cardd:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'stretch',
+    justifyContent:'flex-start'
+    
   }
 });

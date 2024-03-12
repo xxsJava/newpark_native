@@ -5,11 +5,11 @@
  * @FilePath: \newpark_native\src\components\Home\SortType\index.tsx
  * @Description: desc
  */
-import React, {useState} from 'react';
-import StylesALL from '../../../styles';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, { useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icons from 'react-native-vector-icons/Ionicons';
-import {useTranslation, Trans} from 'react-i18next';
+import StylesALL from '../../../styles';
 
 /**
  * 代码描述: home页 排序导航布局

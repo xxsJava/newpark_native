@@ -5,19 +5,26 @@
  */
 
 import React from "react";
+import { Trans } from 'react-i18next';
 import { Dimensions, Image, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { IconButton } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
-
+import { Appbar, Icon } from 'react-native-paper';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ClockInView = () => {
+const ClockInView = ({ navigation }:any) => {
     return(
         <SafeAreaView style={styles.parentView}>
-            <View style={styles.headView}>
-                <IconButton size={22} iconColor='#000' icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></IconButton>
-            </View>
+            {/* <View style={styles.headView}>
+                <IconButton size={22} iconColor='#000' icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('CommunityChannelRoute')}></IconButton>
+            </View> */}
+            <Appbar.Header>
+                <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigation.goBack()} />
+                <Text allowFontScaling={false} style={styles.derTexthea}>
+                    <Trans>打卡</Trans>
+                </Text>
+            </Appbar.Header>
             <View style={styles.contentView}>
                 <ScrollView style={styles.scrollStyle}>
                     <View style={styles.avatarView}>
@@ -79,6 +86,7 @@ const ClockInView = () => {
                     </View>
                 </ScrollView>
             </View>
+          
         </SafeAreaView>
     )
 }
@@ -86,6 +94,13 @@ const ClockInView = () => {
 export default ClockInView;
 
 const styles = StyleSheet.create({
+    derTexthea:{
+        width: '78%',
+        fontSize: 17,
+        color: '#000',
+        lineHeight: 45,
+        textAlign: 'center',
+    },
     parentView:{
         width:windowWidth,
         height:windowHeight,

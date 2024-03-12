@@ -1,10 +1,11 @@
+import { CircleIcon, HStack, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel } from '@gluestack-ui/themed';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Trans } from 'react-i18next';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
-import { Appbar, RadioButton } from 'react-native-paper';
-import { navigate } from '../../../../config/routs/NavigationContainer';
+import { Appbar } from 'react-native-paper';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -34,56 +35,42 @@ const itemData = [
   },
 ];
 const CollectionView = () => {
-  const [radioValue, setRadioValue] = React.useState('radio1');
+  const [radioValue, setRadioValue] = React.useState('All');
+  const navigatetions = useNavigation();
+
   return (
     <View style={styles.parentLevel}>
       <Appbar.Header style={styles.headerStyle}>
         <Appbar.Action
           icon={require('../../../../assets/images/chevron-left.png')}
-          onPress={() => navigate('MineStacker')}
+          onPress={() => {navigatetions.goBack()}}
         />
         <Text allowFontScaling={false} style={styles.headerText}>
           <Trans>navigationBar.title10</Trans>
         </Text>
       </Appbar.Header>
-      <RadioButton.Group onValueChange={newValue => setRadioValue(newValue)} value={radioValue}>
-            <View style={styles.radioGroup}>
-                <View style={styles.radioView1}>
-                    <RadioButton color='#ffb700' uncheckedColor='#999' value="radio1" />
-                    <Text allowFontScaling={false} style={styles.radioText}>全部</Text>
-                </View>
-                <View style={styles.radioView1}>
-                    <RadioButton color='#ffb700' uncheckedColor='#999' value="radio2" />
-                    <Text allowFontScaling={false} style={styles.radioText}>消息</Text>
-                </View>
-                <View style={styles.radioView1}>
-                    <RadioButton color='#ffb700' uncheckedColor='#999' value="radio3" />
-                    <Text allowFontScaling={false} style={styles.radioText}>商品</Text>
-                </View>
-                <View style={styles.radioView1}>
-                    <RadioButton color='#ffb700' uncheckedColor='#999' value="radio4" />
-                    <Text allowFontScaling={false} style={styles.radioText}>帖子</Text>
-                </View>
-            </View>
-      </RadioButton.Group>
-      {/* <View style={styles.radioView}>
-        <Radio.Group style={styles.radioGroup} name="myRadioGroup" accessibilityLabel="favorite number" value={value}>
-          <View style={styles.radioRow}>
-            <Radio shadow={2} value="1" colorScheme="yellow" size="sm" my="1">
-              全部
-            </Radio>
-            <Radio shadow={2} value="2" colorScheme="yellow" color={'#faba3c'} size="sm" my="1">
-              消息
-            </Radio>
-            <Radio shadow={2} value="3" colorScheme="yellow" size="sm" my="1">
-              商品
-            </Radio>
-            <Radio shadow={2} value="4" colorScheme="yellow" size="sm" my="1">
-              帖子
-            </Radio>
-          </View>
-        </Radio.Group>
-      </View> */}
+      <View style={styles.readioGroups}>
+        <RadioGroup value={radioValue} onChange={setRadioValue}>
+        <HStack space="2xl">
+          <Radio value="All" size="sm" isInvalid={false} isDisabled={false}>
+            <RadioIndicator mr="$2"><RadioIcon as={CircleIcon} /></RadioIndicator>
+              <RadioLabel>全部</RadioLabel>
+          </Radio>
+          <Radio value="Msg" size="sm" isInvalid={false} isDisabled={false}>
+            <RadioIndicator mr="$2"><RadioIcon as={CircleIcon} /></RadioIndicator>
+              <RadioLabel>消息</RadioLabel>
+          </Radio>
+          <Radio value="Commodity" size="sm" isInvalid={false} isDisabled={false}>
+            <RadioIndicator mr="$2"><RadioIcon as={CircleIcon} /></RadioIndicator>
+              <RadioLabel>商品</RadioLabel>
+          </Radio>
+          <Radio value="Posts" size="sm" isInvalid={false} isDisabled={false}>
+            <RadioIndicator mr="$2"><RadioIcon as={CircleIcon} /></RadioIndicator>
+              <RadioLabel>帖子</RadioLabel>
+          </Radio>
+          </HStack>
+        </RadioGroup>
+      </View>
       <View style={styles.listView}>
         <View style={styles.optionStyle}>
           {itemData.map(item => {
@@ -145,40 +132,6 @@ const styles = StyleSheet.create({
     color: '#FFF',
     lineHeight: 45,
     textAlign: 'center',
-  },
-  radioView: {
-    width: windowWidth,
-    height: 50,
-    paddingTop: 10,
-  },
-  radioGroup:{
-    paddingTop: 10,
-    flexDirection:'row',
-    justifyContent:'space-around',
-    ...Platform.select({
-        ios:{
-            justifyContent:'space-evenly'
-        }
-    })
-  },
-  radioView1:{
-    flexDirection:'row',
-    justifyContent:'center'
-  },
-  radioText:{
-    fontSize:14,
-    color:'#000',
-    lineHeight:34,
-    ...Platform.select({
-        ios:{
-            fontSize:16
-        }
-    })
-  },
-  radioRow: {
-    width: windowWidth,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
   },
   radioStyle: {
     color: '#FABA3C',
@@ -260,4 +213,8 @@ const styles = StyleSheet.create({
   timeText: {
     color: '#808080',
   },
+  readioGroups:{
+    marginLeft: windowWidth/6 + 15,
+    marginTop: 10
+  }
 });

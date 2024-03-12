@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-01-11 11:25:29
+ * @LastEditTime: 2024-03-06 10:31:22
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 import { Image, Text, View } from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
-import BellView from '../../components/Bell';
 import { navigate } from '../../config/routs/NavigationContainer';
 import ContactsModul from './components/ContactsModul';
 import MessageModule from './components/MessageModule';
@@ -118,7 +117,7 @@ const SocializingView = () => {
         </View>
         <View style={[styles.moreModule,more?null:{display:'none'}]}>
          
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
                 <View style={styles.itemImageView}>
                   <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')}></Image>
                 </View>
@@ -126,7 +125,7 @@ const SocializingView = () => {
                   <Text allowFontScaling={false} style={styles.itemText}>添加牛友</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('Addcomm')}>
                 <View style={styles.itemImageView}>
                   <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')}></Image>
                 </View>
@@ -142,7 +141,7 @@ const SocializingView = () => {
                   <Text allowFontScaling={false} style={styles.itemText}>创建社区</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('Apply')}>
                 <View style={styles.itemImageView}>
                   <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')}></Image>
                 </View>
@@ -154,9 +153,6 @@ const SocializingView = () => {
         <TouchableOpacity style={[styles.maskLayer,more?null:{display:'none'}]} onPress={() => handleMorePress(more)}>
        
         </TouchableOpacity>
-        <View style={styles.bell}>
-            <BellView></BellView>
-        </View>
       </SafeAreaView>
   )
 }

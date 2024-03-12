@@ -18,6 +18,7 @@ import { postListType,postLikeParam, postCommentsData } from './types'
  * 帖子列表api
  * @returns
  */
+
 export const postList = (data:postListType): Promise<IResponse> => {
   return request.get({
     url: '/posts/postsApi',

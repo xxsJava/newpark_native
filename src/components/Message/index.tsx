@@ -11,15 +11,10 @@ import Alipay from '@uiw/react-native-alipay';
 import notifee, { AndroidImportance, AndroidStyle, AuthorizationStatus, EventType, RepeatFrequency, TimestampTrigger, TriggerType } from '@notifee/react-native';
 // import { getNotification } from '../../api/notificationApi';
 import { getNotification } from '../../api/NotificationApi';
-
-
-
-
 Alipay.setAlipaySandbox(true);
 
 async function checkNotificationPermission(channelId?: undefined | string) {
   const settings = await notifee.getNotificationSettings();
-
   if (settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) {
     console.log('通知权限已授权');
   } else if (settings.authorizationStatus == AuthorizationStatus.DENIED) {
@@ -28,7 +23,6 @@ async function checkNotificationPermission(channelId?: undefined | string) {
     console.log('通知权限已授权------>',openMsg);
   }
 }
-
 //本地通知
 async function onDisplayNotification(body:any) {
   // Request permissions (required for iOS)
@@ -58,9 +52,4 @@ async function onDisplayNotification(body:any) {
   });
 
 }
-
-
-
-
-
 export default onDisplayNotification;

@@ -16,7 +16,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
@@ -185,18 +186,17 @@ const DetailsView = () => {
         </View>
       </View>
       {/*  这个是模态框*/}
-      <View style={{ position: 'absolute', bottom: 0, width: windowWidth }}>
+      <TouchableWithoutFeedback style={{ position: 'absolute', bottom: 0, width: windowWidth,height:windowHeight,backgroundColor:'red',flex:1}} 
+      >
         <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert("模态框关闭了.");
-            setModalVisible(!modalVisible);
-          }}
-        >
+            setModalVisible(false)
+          }}>
           <View style={{position:'absolute',zIndex:999}}>
-            <TouchableOpacity style={styles.waiM} onPress={() =>{setModalVisible(false);}}>
+            <TouchableOpacity style={styles.waiM}  onPress={() =>{setModalVisible(false); console.log('dianjilaa');}}>
           <View style={styles.imageStyle} ></View>
             <View style={styles.detailsStyle}>
               <Text allowFontScaling={false} style={styles.titleStyle}>填写订单</Text>
@@ -260,7 +260,7 @@ const DetailsView = () => {
             </TouchableOpacity>
           </View>
         </Modal>
-      </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
@@ -450,7 +450,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.5,
       },
       android: {
-        elevation: 11,
+        elevation: 2,
         marginTop: 10,
       },
     }),
@@ -665,14 +665,15 @@ parenTitle:{
     marginTop:10,
 },
 paymentContent:{
-    width:'98%',
+    width:'90%',
     height:150,
     marginHorizontal:'1%',
     paddingVertical:5,
     paddingHorizontal:20,
     backgroundColor:'#FFF',
-    borderTopLeftRadius:12,
-    borderTopRightRadius:12,
+    // borderTopLeftRadius:12,
+    // borderTopRightRadius:12,
+    borderRadius:12,
     ...Platform.select({
         ios: {
           shadowColor: '#ccc',
@@ -682,7 +683,7 @@ paymentContent:{
           marginTop: 6,
         },
         android: {
-          elevation: 7,
+          elevation: 2,
           marginTop: 6,
           
         },

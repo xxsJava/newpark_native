@@ -16,6 +16,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ReleasePost = () => {
+    
     return(
         <View style={styles.parentView}>
             <Appbar.Header style={styles.headerStyle}>
