@@ -124,7 +124,7 @@ export const BommonTab = () => {
 const styles = StyleSheet.create({
   tabPub:{
     position:'absolute',
-    bottom:18,
+    bottom: Platform.OS === 'ios'? 50:18,
     left:windowWidth/2-32,
     borderWidth:2,
     borderColor: '#F8B032',
