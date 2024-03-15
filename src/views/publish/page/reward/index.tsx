@@ -20,7 +20,6 @@ const windowHeight = Dimensions.get('window').height;
 
 const RewardView = () => {
     return (
-
         <SafeAreaView style={styles.parentView}>
             <View style={styles.headView}>
                 <IconButton size={22} iconColor='#fff' icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></IconButton>
@@ -31,7 +30,7 @@ const RewardView = () => {
                         <View style={styles.contentView}>
                         <ScrollView  keyboardShouldPersistTaps='never'>
                             <View style={styles.contenStyle}>
-                                <Avatar.Image size={80} style={styles.avatarStyle} source={require('../../../../assets/images/defaultheader.png')}></Avatar.Image>
+                                <Avatar.Image size={80} style={styles.avatarStyle} source={require('../../../../assets/images/defaultheader.png')} accessibilityLabel='头像'></Avatar.Image>
                                 <View style={styles.cardView}>
                                     <LinearGradinet colors={['rgba(157, 104, 189,1)', 'rgba(157, 104, 189,0.6)', 'rgba(252, 251, 251,1)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.titleStyle}>
                                         <Text allowFontScaling={false} style={styles.titleText}>
@@ -40,7 +39,7 @@ const RewardView = () => {
                                     </LinearGradinet>
                                     <View style={styles.inputView}>
                                         <View style={styles.inputImageView}>
-                                            <Image style={styles.inputImage} source={require('../../../../assets/images/alimom/frame1.png')}></Image>
+                                            <Image style={styles.inputImage} source={require('../../../../assets/images/alimom/frame1.png')} accessibilityLabel='图片'></Image>
                                         </View>
                                         <View style={styles.inputContent}>
                                             <Text allowFontScaling={false} style={styles.inputText}>标题</Text>
@@ -51,12 +50,12 @@ const RewardView = () => {
                                     </View>
                                     <View style={styles.bountyView}>
                                         <View style={styles.bountyIconView}>
-                                            <Image style={styles.bountyIcon} source={require('../../../../assets/images/money_icon1.png')}></Image>
+                                            <Image style={styles.bountyIcon} source={require('../../../../assets/images/money_icon1.png')} accessibilityLabel='图片'></Image>
                                             <Text allowFontScaling={false} style={styles.bountyText}>赏金</Text>
                                         </View>
                                         <View style={styles.bountyNumView}>
                                             <TextInput allowFontScaling={false} selectionColor='#FABA3C' style={styles.bountyInput}></TextInput>
-                                            <Image style={styles.bountyNumIcon} source={require('../../../../assets/images/moneyBag.png')}></Image>
+                                            <Image style={styles.bountyNumIcon} source={require('../../../../assets/images/moneyBag.png')} accessibilityLabel='图片'></Image>
                                         </View>
                                         <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => console.log('点击发布')}>发布悬赏</Button>
                                     </View>
@@ -66,15 +65,10 @@ const RewardView = () => {
                         </View>
                     </KeyboardAvoidingView>
                 </View>
-           
-        
         </SafeAreaView>
-
     )
 }
-
 export default RewardView;
-
 const styles = StyleSheet.create({
     reheight: {
         width: windowWidth,

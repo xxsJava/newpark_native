@@ -11,3 +11,4 @@ export type PostsType ={
     schoolId:number,
     TPubTimeSort:string
 }
+

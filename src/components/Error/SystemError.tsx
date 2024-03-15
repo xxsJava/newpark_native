@@ -31,6 +31,7 @@ const DisplayAnImage = () => {
             <Image
                 style={styles.logo}
                 source={require('../../assets/images/static/系统错误.png')}
+                accessibilityLabel='图片'
             />
             <View
                 style={{

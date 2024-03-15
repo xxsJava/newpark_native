@@ -91,7 +91,7 @@ const ForgetPass = ({ navigation }:any) => {
       <View style={styles.searchBar}>
         <View style={styles.searchBarLeft}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={require('../../../assets/images/go_left_arrow.png')} />
+            <Image source={require('../../../assets/images/go_left_arrow.png')} accessibilityLabel='图片'/>
           </TouchableOpacity>
         </View>
         <View style={styles.searchBarMiddle}>
@@ -99,6 +99,7 @@ const ForgetPass = ({ navigation }:any) => {
             <Image
               style={styles.topImg}
               source={require('../../../assets/images/search.png')}
+              accessibilityLabel='图片'
             />
             <TextInput
               allowFontScaling={false}
@@ -217,6 +218,7 @@ const ForgetPass = ({ navigation }:any) => {
                       <Image
                         style={styles.itemImage}
                         source={require('../../../assets/images/alimom/R-C.jpg')}
+                        accessibilityLabel='图片'
                       />
                     </View>
                     <View style={styles.itemModelRight}>
@@ -225,6 +227,7 @@ const ForgetPass = ({ navigation }:any) => {
                         <Image
                           style={styles.itemModelIcon}
                           source={require('../../../assets/images/hotfuckicon.png')}
+                          accessibilityLabel='图片'
                         />
                         <Text allowFontScaling={false} style={styles.itemTopText2}>热度150</Text>
                       </View>

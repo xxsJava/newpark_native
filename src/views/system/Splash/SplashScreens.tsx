@@ -43,7 +43,9 @@ const Splashs= () => {
         <ImageBackground
           source={require('../../../assets/images/loginBG.png')}
           resizeMode="cover"
-          style={styles.img}>
+          style={styles.img}
+          accessibilityLabel='图片'
+          >
           <SafeAreaView style={{flex: 1}}>
             <View style={styles.nav}>
               <TouchableOpacity
@@ -61,6 +63,7 @@ const Splashs= () => {
                 <Image
                   style={styles.tinyLogo}
                   source={require('../../../assets/images/logo.png')}
+                  accessibilityLabel='图片'
                 />
               </Animatable.View>
             </View>

@@ -58,6 +58,7 @@ function MessageList(props: { items: any; receiver: any }) {
               ]}
               size={34}
               source={{ uri: item.senderFaceUrl }}
+              accessibilityLabel='图片'
             />
             <View
               style={[
@@ -87,6 +88,7 @@ function MessageList(props: { items: any; receiver: any }) {
                   item.messageImage ? null : {display: 'none'},
                 ]}
                 source={item.messageImage}
+                accessibilityLabel='图片'
               /> */}
             </View>
             <Avatar.Image
@@ -96,6 +98,7 @@ function MessageList(props: { items: any; receiver: any }) {
               ]}
               size={34}
               source={item.avatar}
+              accessibilityLabel='头像'
             />
           </View>
           {/* <Avatar.Image
@@ -105,6 +108,7 @@ function MessageList(props: { items: any; receiver: any }) {
             ]}
             size={34}
             source={item.avatar}
+            accessibilityLabel='图片'
           /> */}
 
         </View>
@@ -235,7 +239,7 @@ function MessageList(props: { items: any; receiver: any }) {
         <Appbar.BackAction onPress={() => navigate('SocializingStacker')} />
         <View style={styles.avatarView}>
           <View style={styles.avatarStyle}>
-            <Avatar.Image size={34} source={{ uri: headImg }} />
+            <Avatar.Image size={34} source={{ uri: headImg }} accessibilityLabel='图片'/>
             <View style={styles.stateStyle} />
           </View>
           <Text style={styles.avatarText}>{headName}</Text>

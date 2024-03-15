@@ -33,7 +33,7 @@ const RewardDetails = ({route}:any) => {
                         <View style={styles.informationView}>
                             <View style={styles.avatarView}>
                                 <View style={styles.avatarStyle}></View>
-                                <Image style={styles.vipImage} source={require('../../../../assets/images/alimom/V1.png')}></Image>
+                                <Image style={styles.vipImage} source={require('../../../../assets/images/alimom/V1.png')} accessibilityLabel='图片'></Image>
                             </View>
                             <View style={styles.nameView}>
                                 <Text allowFontScaling={false} style={styles.nameText}>小学牛</Text>
@@ -57,11 +57,11 @@ const RewardDetails = ({route}:any) => {
                         <View style={styles.detailsView}>
                             <View style={styles.detailsTop}>
                                 <View style={styles.addressTitle}>
-                                    <Image style={styles.addressImage}  source={require('../../../../assets/images/alimom/fk.png')}></Image>
+                                    <Image style={styles.addressImage}  source={require('../../../../assets/images/alimom/fk.png')} accessibilityLabel='图片'></Image>
                                     <Text allowFontScaling={false} style={styles.addressText}>悬赏地址</Text>
                                 </View>
                                 <View style={styles.addressTitle}>
-                                    <Image style={styles.addressImage}  source={require('../../../../assets/images/location_icon.png')}></Image>
+                                    <Image style={styles.addressImage}  source={require('../../../../assets/images/location_icon.png')} accessibilityLabel='图片'></Image>
                                     <Text allowFontScaling={false} style={styles.addressText}>送达地址</Text>
                                 </View>
                             </View>

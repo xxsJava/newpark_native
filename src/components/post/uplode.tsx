@@ -10,7 +10,7 @@ const Uplode = () => {
   return (
     <ScrollView style={styles.box}>
       <View style={styles.ava}>
-        <Avatar.Image size={100} source={require('../../assets/images/tup/dn.png')} />
+        <Avatar.Image size={100} source={require('../../assets/images/tup/dn.png')} accessibilityLabel='头像'/>
       </View>
       <View style={styles.boxs}>
         <View style={styles.cardView}>
@@ -21,7 +21,7 @@ const Uplode = () => {
           </LinearGradinet>
           <View style={styles.inputView}>
             <View>
-              <Image style={styles.inputImage} source={require('../../assets/images/alimom/frame1.png')}></Image>
+              <Image style={styles.inputImage} source={require('../../assets/images/alimom/frame1.png')} accessibilityLabel='图片'></Image>
             </View>
             <View>
               <Text allowFontScaling={false} style={styles.inputText}>标题</Text>
@@ -32,12 +32,12 @@ const Uplode = () => {
           </View>
           <View>
             <View style={styles.bountyIconView}>
-              <Image style={styles.bountyIcon} source={require('../../assets/images/money_icon1.png')}></Image>
+              <Image style={styles.bountyIcon} source={require('../../assets/images/money_icon1.png')} accessibilityLabel='图片'></Image>
               <Text allowFontScaling={false} style={styles.bountyText}>赏金</Text>
             </View>
             <View style={styles.bountyNumView}>
               <TextInput allowFontScaling={false} selectionColor='#FABA3C' style={styles.bountyInput}></TextInput>
-              <Image style={styles.bountyNumIcon} source={require('../../assets/images/moneyBag.png')}></Image>
+              <Image style={styles.bountyNumIcon} source={require('../../assets/images/moneyBag.png')} accessibilityLabel='图片'></Image>
             </View>
             <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => console.log('点击发布')}>发布悬赏</Button>
           </View>

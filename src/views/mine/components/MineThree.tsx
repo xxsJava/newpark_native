@@ -200,14 +200,14 @@ const MineVIew = () => {
                     </View >
                     <View style={styles.headT}>
                       <View >
-                        <Image source={require('../../../assets/images/tup/ppy.png')} style={styles.boxAvatar}></Image>
+                        <Image source={require('../../../assets/images/tup/ppy.png')} style={styles.boxAvatar} accessibilityLabel='图片'></Image>
                       </View>
                       <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: '-10%' }}>
-                        <Image source={require('../../../assets/images/tup/jia.png')} style={styles.jia}></Image>
+                        <Image source={require('../../../assets/images/tup/jia.png')} style={styles.jia} accessibilityLabel='图片'></Image>
                       </View>
                       <View style={styles.heng}>
                         <Text style={{ color: 'black' }}>{userName}</Text>
-                        <Image source={require('../../../assets/images/alimom/V1.png')} style={[styles.avatarnImage, { marginTop: 2 }]}></Image>
+                        <Image source={require('../../../assets/images/alimom/V1.png')} style={[styles.avatarnImage, { marginTop: 2 }]} accessibilityLabel='图片'></Image>
                       </View>
                     </View>
                   </View>
@@ -245,7 +245,7 @@ const MineVIew = () => {
                     return <View key={item.index}>
                       <View >
                         <View style={styles.box}>
-                          <Image source={item.img} style={styles.listimg}></Image>
+                          <Image source={item.img} style={styles.listimg} accessibilityLabel='图片'></Image>
                           <View>
                             <Text style={styles.listTit}>{item.title}</Text>
                           </View>
@@ -263,7 +263,7 @@ const MineVIew = () => {
                       <View style={[item.type == '商品' ? styles.xian : styles.hidd, styles.litBox]} >
                         {/* <View> */}
                         <Text style={styles.title}>{item.title}</Text>
-                        <Image source={item.img} style={styles.spImg}></Image>
+                        <Image source={item.img} style={styles.spImg} accessibilityLabel='图片'></Image>
                         <View style={styles.hengpic}>
                           <Text style={styles.price}> {item.price}</Text>
                           <Text style={styles.unit}>元/个</Text>
@@ -296,7 +296,7 @@ const MineVIew = () => {
                   {list3.map(item => {
                     return <TouchableOpacity style={styles.list3Box}>
                       <View>
-                        <Image source={item.img} style={styles.tzimg}></Image>
+                        <Image source={item.img} style={styles.tzimg} accessibilityLabel='图片'></Image>
                       </View>
                       <View style={styles.right}>
                         <Text style={styles.fonBlac} selectable={true}>{item.title}</Text>

@@ -10,7 +10,7 @@ import React from 'react';
 import {
   GestureHandlerRootView
 } from 'react-native-gesture-handler';
-import { postsOrdinary } from '../components';
+import  postsOrdinary  from '../components';
 
 //帖子列表遍历
 export const postsList = ({item, index, separators}:any) => {

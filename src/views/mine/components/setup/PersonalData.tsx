@@ -15,7 +15,7 @@ const PersonalDataView = () => {
         <View style={styles.parentView}>
            <View style={styles.heng}>
                 <Text style={styles.h3}>头像</Text>
-                <Image source={require('../../../../assets/images/tup/xy2.png')} style={styles.headImg}></Image>
+                <Image source={require('../../../../assets/images/tup/xy2.png')} style={styles.headImg} accessibilityLabel='图片'></Image>
            </View>
            <View style={styles.hengz}>
                 <Text style={styles.h3}>名字</Text>

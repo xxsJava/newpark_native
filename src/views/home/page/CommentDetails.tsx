@@ -51,7 +51,7 @@ const CommentDetails = ({commenData}: any) => {
                     <View style={styles.itemStyle} key={item.comId}>
                         <View style={styles.commentAvatarView}>
                             <View style={styles.itemAvatar}>
-                                <Avatar.Image size={56} source={{uri:item.upath}}></Avatar.Image>
+                                <Avatar.Image size={56} source={{uri:item.upath}} accessibilityLabel='头像'></Avatar.Image>
                             </View>
                             <View style={styles.itemNameView}>
                                 <Text allowFontScaling={false} style={styles.itemName}>{item.unikname}</Text>

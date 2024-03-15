@@ -69,12 +69,12 @@ const Photo = () => {
         <View style={styles.imageListView}>
             {imgList.map((item:any) =>{
                 return(
-                    <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}}/>
+                    <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}} accessibilityLabel='图片'/>
                 )
                 })
             }
             <TouchableHighlight style={[styles.photoView,imgList.length > 3?{display:'none'}:null]} underlayColor="#ddd" onPress={() => handleClick()}>
-                <Image style={styles.photoImage} source={require('../../../../assets/images/takepicforheader.png')}></Image>
+                <Image style={styles.photoImage} source={require('../../../../assets/images/takepicforheader.png')} accessibilityLabel='图片'></Image>
             </TouchableHighlight>
             {/* <Image style={{width:100,height:100}} source={{uri:'file:///Users/newpark/Library/Developer/CoreSimulator/Devices/12A11679-B024-4E1D-91F8-CE033A5E6E61/data/Containers/Data/Application/1FC816F5-0E54-4D78-81D3-708B2F510A5F/tmp/FEA68057-E426-4FC7-94A1-B4333A508A5A.jpg'}}></Image> */}
         </View>
@@ -112,7 +112,7 @@ const PublishProducts = () => {
                 <View style={styles.priceView}>
                     <Text allowFontScaling={false} style={styles.priceText}>定价</Text>
                     <TextInput allowFontScaling={false} value={moneyVal} selectionColor='#FABA3C' keyboardType='numeric' style={styles.priceInput} onChangeText={chkPrice}></TextInput>
-                    <Image style={styles.priceIcon} source={require('../../../../assets/images/money_icon1.png')}></Image>
+                    <Image style={styles.priceIcon} source={require('../../../../assets/images/money_icon1.png')} accessibilityLabel='图片'></Image>
                 </View>
                 <View style={styles.optionView}>
                     <Text allowFontScaling={false} style={styles.optionTitle}>送货方式</Text>
@@ -120,7 +120,7 @@ const PublishProducts = () => {
                         return(
                             <TouchableOpacity style={styles.itemStyle} key={item.index} onPress={() => modeSelect(item.index)}>
                                 <Text style={styles.itemText}>{item.text}</Text>
-                                <Image style={[styles.itemIcon,modeVal === item.index?null:{display:'none'}]} source={require('../../../../assets/images/alimom/correct_icon.png')}></Image>
+                                <Image style={[styles.itemIcon,modeVal === item.index?null:{display:'none'}]} source={require('../../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片'></Image>
                             </TouchableOpacity>
                         )
                     })}

@@ -12,7 +12,10 @@ import {
     Platform
 } from 'react-native';
 import { navigate } from '../../../../config/routs/NavigationContainer';
-import MultiLevelPicker from './SanJiLiand'
+
+import RNPickerSelect from 'react-native-picker-select';
+import { province, city, region } from '../../data/Area'
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const AddNewAddress = () => {
@@ -20,6 +23,30 @@ const AddNewAddress = () => {
     const [valueName, onChangevalueName] = React.useState('');
     const [valuePhone, onChangevaluePhone] = React.useState('');
     const [valueAddre, onChangevalueAddre] = React.useState('');
+
+    // 三级联动的
+    const [selectedLevel1, setSelectedLevel1] = useState(null);
+    const [selectedLevel2, setSelectedLevel2] = useState(null);
+    const [selectedLevel3, setSelectedLevel3] = useState(null);
+    const level1Items = province;
+    const level2Items = city;
+    const level3Items = region;
+    const firSelect = (value: any) => {
+        setSelectedLevel1(value);
+        console.log(value, '选择省');
+
+    };
+    const secSelect = (value: any) => {
+        setSelectedLevel2(value);
+        console.log(value, '选择市');
+
+    };
+    const endSelect = (value: any) => {
+        setSelectedLevel3(value);
+        console.log(value, '选择区');
+
+    };
+
     return (
         <SafeAreaView>
             <KeyboardAvoidingView
@@ -51,9 +78,31 @@ const AddNewAddress = () => {
                     </View>
                     <View style={styles.litBox}>
                         <Text style={styles.dec}>地区</Text>
-                       <View style={styles.areas}>
-                        <MultiLevelPicker />
-                       </View>
+                        <View style={styles.areas}>
+
+                            <View>
+                                <RNPickerSelect
+                                    onValueChange={(value) => firSelect(value)}
+                                    items={level1Items}
+                                    placeholder={{ label: '请选择省', value: null }} // 设置占位符
+                                />
+                                {selectedLevel1 && (
+                                    <RNPickerSelect
+                                        onValueChange={(value) => secSelect(value)}
+                                        items={level2Items[selectedLevel1]}
+                                        placeholder={{ label: '请选择市', value: null }} // 设置占位符
+                                    />
+                                )}
+                                {selectedLevel2 && (
+                                    <RNPickerSelect
+                                        onValueChange={(value) => endSelect(value)}
+                                        items={level3Items[selectedLevel2]}
+                                        placeholder={{ label: '请选择区', value: null }} // 设置占位符
+                                    />
+                                )}
+                            </View>
+
+                        </View>
                     </View>
                     <View style={styles.litBox}>
                         <Text style={styles.dec}>地址</Text>
@@ -64,10 +113,10 @@ const AddNewAddress = () => {
                             placeholder='请输入详细收货人地址，例如:4号楼218'
                         />
                     </View>
-                    <Button mode="contained" onPress={() => navigate('ThreeJiContent')} style={styles.btn} labelStyle={styles.btnFont}>
+                    <Button mode="contained" onPress={() => navigate('SanJiLiand')} style={styles.btn} labelStyle={styles.btnFont}>
                         新增收货地址
                     </Button>
-                    <MultiLevelPicker />
+                   
                 </View>
             </KeyboardAvoidingView>
 
@@ -89,9 +138,9 @@ const styles = StyleSheet.create({
         height: 51,
         paddingHorizontal: 18,
         borderColor: 'gray',
-        borderWidth: 1,
+        borderWidth: .3,
         backgroundColor: '#fff',
-        marginVertical: 3
+        marginVertical: 0
     },
     inpVal: {
         color: 'black',
@@ -126,10 +175,13 @@ const styles = StyleSheet.create({
         height: 60,
         lineHeight: 30
     },
-    areas:{
-        width:170,
-        height:50,
-        zIndex:20,
-        
-    }
+    areas: {
+        width: 170,
+        height: 50,
+        zIndex: 20,
+
+    },
+    // box:{
+    //     width:windowWidth * 0.4
+    //   }
 })

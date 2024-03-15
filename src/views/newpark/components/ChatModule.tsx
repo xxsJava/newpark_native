@@ -63,6 +63,7 @@ const glideData = [{
 ]
 
 const ChatModule = () => {
+  const [isPlay,setisPlay] = React.useState(false);
   const [tabVal, setTab] = React.useState('tab1');
   // 聊天室切换
   const handleTabPress = (tab: string) => {
@@ -72,7 +73,7 @@ const ChatModule = () => {
   return (
     <View style={styles.scrollStyle}>
       <View style={styles.topStyle}>
-        <Image style={styles.topImg} source={require('../../../assets/images/search.png')}></Image>
+        <Image style={styles.topImg} source={require('../../../assets/images/search.png')} accessibilityLabel='图片'></Image>
         <TextInput allowFontScaling={false} style={styles.inputStyle} value={'搜索您感兴趣的聊天室'}>
         </TextInput>
       </View>
@@ -82,7 +83,7 @@ const ChatModule = () => {
             return (
               <TouchableOpacity style={styles.optionItem} key={item.index} onPress={()=>{console.log(item.name);} }
               >
-                <Image source={item.icon} style={styles.iconList}></Image>
+                <Image source={item.icon} style={styles.iconList} accessibilityLabel='图片'></Image>
                 <Text allowFontScaling={false} style={styles.optionText}>
                   <Trans>{item.name}</Trans>
                 </Text>
@@ -94,7 +95,7 @@ const ChatModule = () => {
           {optionData2.map(item => {
             return (
               <View style={styles.optionItem} key={item.index}>
-                <Image source={item.icon} style={styles.iconList}></Image>
+                <Image source={item.icon} style={styles.iconList} accessibilityLabel='图片'></Image>
                 <Text allowFontScaling={false} style={styles.optionText}>
                   <Trans>{item.name}</Trans>
                 </Text>
@@ -105,8 +106,6 @@ const ChatModule = () => {
       </View>
       <View style={styles.glideStyle}>
       </View>
-
-
       <View style={styles.glideStyle}>
         <View style={styles.glideHead}>
           <View style={styles.glideHeadList}>
@@ -148,7 +147,7 @@ const ChatModule = () => {
                 <View style={styles.glideItemMiddle}>
                   <Text allowFontScaling={false} style={styles.glideItemText1}>{item.title}</Text>
                   <View style={styles.glideItemTextBg}>
-                    <Image style={styles.glideItemIcon} source={require('../../../assets/images/tabs_4_on.png')}></Image>
+                    <Image style={styles.glideItemIcon} source={require('../../../assets/images/tabs_4_on.png')} accessibilityLabel='图片'></Image>
                     <Text allowFontScaling={false} style={styles.glideItemText2}>{item.num}</Text>
                   </View>
                 </View>
@@ -164,7 +163,7 @@ const ChatModule = () => {
       </View>
     </View>
   )
-}
+};
 export default ChatModule;
 const styles = StyleSheet.create({
   scrollStyle: {

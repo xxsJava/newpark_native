@@ -201,7 +201,7 @@ const PostDetails = ({ route }: any) => {
           <View style={styles.postView}>
             <View style={styles.postStyle}>
               <View style={styles.avatarView}>
-                <Avatar.Image size={65} source={{ uri: data.upath }} />
+                <Avatar.Image size={65} source={{ uri: data.upath }} accessibilityLabel='图片'/>
               </View>
               <View style={styles.avatarConent}>
                 <View style={styles.nameView}>
@@ -246,7 +246,7 @@ const PostDetails = ({ route }: any) => {
                 <TouchableOpacity onPress={()=>{
                 setIsVisible(true);
               }}>
-                  <Image style={{width:200,height:'100%',resizeMode: 'stretch'}} source={{uri:'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png'}} />
+                  <Image style={{width:200,height:'100%',resizeMode: 'stretch'}} source={{uri:'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png'}} accessibilityLabel='图片'/>
                   </TouchableOpacity>
                 </View>
               <Modal visible={isVisible} transparent={true}>

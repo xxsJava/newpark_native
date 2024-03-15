@@ -5,7 +5,7 @@
  */
 
 import request from '../../../config/axios';
-import {rewardListType} from './types'
+import {rewardListType,rewardPublishType} from './types'
 
 
 /**
@@ -18,3 +18,15 @@ export const rewardListApi = (data:rewardListType): Promise<IResponse> => {
       params: data
     });
   };
+
+  /**
+ * 悬赏发布api
+ * @returns
+ */
+
+export const rewardPublishApi = (data:rewardPublishType): Promise<IResponse> => {
+  return request.post({
+    url: '/reward/rewardApi',
+    params: data
+  });
+};

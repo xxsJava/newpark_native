@@ -340,7 +340,7 @@ const ProductView = () => {
                     style={styles.commodityItem}
                     key={item.pid}
                     onPress={() => navigate('DetailsRoute')}>
-                    <Image style={styles.commodityImage} source={{ uri: item.pims }} />
+                    <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片'/>
                     <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
                     <View style={styles.priceView}>
                       <View style={styles.priceStyle}>

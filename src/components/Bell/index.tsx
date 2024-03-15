@@ -22,7 +22,7 @@ import { navigate } from '../../config/routs/NavigationContainer';
             <Image source={require('../../assets/images/notification.png')} style={styles.img} />
         </View> */}
        <View style={styles.chu}>
-            <Image source={require('../../assets/images/floatbuttonimg.png')} style={styles.img1}></Image>
+            <Image source={require('../../assets/images/floatbuttonimg.png')} style={styles.img1} accessibilityLabel='铃铛'></Image>
        </View>
        <View style={styles.tipBox}>
         <Text style={styles.tip}>{isMsg}</Text>

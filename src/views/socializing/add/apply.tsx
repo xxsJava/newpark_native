@@ -50,6 +50,7 @@ const ReqApp = () => {
                                         <Image
                                             style={[styles.tinyLogo, { width: windowWidth * 0.14 }]}
                                             source={item.avatar}
+                                            accessibilityLabel='图片'
                                         />
                                     </View>
                                     <View style={[styles.heng, { width: windowWidth * 0.67, borderBottomWidth: 1, borderColor: '#ccc', justifyContent: 'space-between', marginHorizontal: 20, alignItems: 'center' }]}>

@@ -29,6 +29,7 @@ const MenusComponents = (params?: any) => {
               ? require('../../../assets/images/3.0x/niuniu_icon.png')
               : require('../../../assets/images/3.0x/fuckniuniu.png')
           }
+          accessibilityLabel='图片'
         />
       </View>
     </View>

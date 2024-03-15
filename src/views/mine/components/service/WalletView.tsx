@@ -35,7 +35,7 @@ export default class WalletView extends Component {
                             <View style={styles.cardContent}>
                                 <Text allowFontScaling={false} style={styles.cardText1}>新园豆</Text>
                                 <Text allowFontScaling={false} style={styles.cardText2}>¥{BALANCE}</Text>
-                                <Image source={require('../../../../assets/images/tup/能量豆.png')} style={styles.bean}></Image>
+                                <Image source={require('../../../../assets/images/tup/能量豆.png')} style={styles.bean} accessibilityLabel='能量豆'></Image>
                             </View>
                             <View style={styles.cardButtonView}>
                                 <View style={styles.cardButtonIos}>

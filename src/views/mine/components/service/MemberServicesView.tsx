@@ -41,7 +41,7 @@ export default class MemberServicesView extends Component {
                         </View>
                         <LinearGradinet colors={['rgba(99, 28, 136,1)','rgba(250, 185, 60,0.9)']} start={{x: 0, y: 0}} end={{x: 0, y: 1}} style={styles.personalDataView}>
                             <View style={styles.avatarView}>
-                                <Avatar.Image size={68} source={require('../../../../assets/images/defaultheader.png')}></Avatar.Image>
+                                <Avatar.Image size={68} source={require('../../../../assets/images/defaultheader.png')} accessibilityLabel='头像'></Avatar.Image>
                             </View>
                             <View style={styles.dataView}>
                                 <Text allowFontScaling={false} style={styles.dataName}>昵称：O泡果奶</Text>
@@ -51,7 +51,7 @@ export default class MemberServicesView extends Component {
                                 <AnimatedCircularProgress fill={78} size={66} width={3.5} rotation={180} tintColor='#FA59DF' backgroundColor='rgba(136, 136, 136,0.2)' ></AnimatedCircularProgress>
                                 <Text allowFontScaling={false} style={styles.progressValue}>1421/10000</Text>
                                 <View style={styles.gradeBg}>
-                                    <Image style={styles.gradeImage} source={require('../../../../assets/images/alimom/V1.png')}></Image>
+                                    <Image style={styles.gradeImage} source={require('../../../../assets/images/alimom/V1.png')} accessibilityLabel='图片'></Image>
                                 </View>
                             </View>
                         </LinearGradinet>

@@ -42,7 +42,7 @@ const PunchCardScreen = () => {
                 </CalendarList>
                 <TouchableHighlight onPress={onPress}>
                     <View style={styles.button}>
-                    <Image source={require('../../../../assets/images/tup/fanhui.png')} style={styles.back} ></Image>
+                    <Image source={require('../../../../assets/images/tup/fanhui.png')} style={styles.back} accessibilityLabel='图片'></Image>
                         <Text style={styles.backFont}>返回</Text>
                     </View>
                 </TouchableHighlight>
@@ -55,8 +55,6 @@ const PunchCardScreen = () => {
                 </TouchableOpacity>
                 {punchTime && <Text style={styles.punchTime}>上次打卡时间：{punchTime}</Text>}
             </View>
-
-
         </View>
     );
 };

@@ -54,6 +54,7 @@ const CommunityModule = () => {
                     <Image
                       style={styles.imgStyle}
                       source={item.icon}
+                      accessibilityLabel='图片'
                     />
                   </View>
                   <View style={styles.itemMiddle}>
@@ -62,6 +63,7 @@ const CommunityModule = () => {
                       <Image
                         style={styles.middleImage}
                         source={require('../../../assets/images/2.0x/hotfuckicon.png')}
+                        accessibilityLabel='图片'
                       />
                       <Text allowFontScaling={false} style={styles.middleEnd}>热度{item.sum}</Text>
                     </View>

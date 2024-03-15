@@ -64,6 +64,7 @@ const HomeNav = () => {
         <Image
           style={styles.searchNavImg}
           source={require('../../assets/images/search.png')}
+          accessibilityLabel='图片'
         />
         {/* <TextInput
           style={styles.searchNavInput}
@@ -83,6 +84,7 @@ const HomeNav = () => {
         <Image
           style={styles.tinyLogo}
           source={require('../../assets/images/3.0x/goods_collect.png')}
+          accessibilityLabel='图片'
         />
       </TouchableOpacity>
     </Appbar.Header>

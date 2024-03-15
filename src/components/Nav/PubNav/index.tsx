@@ -21,6 +21,7 @@ const PubNav = (desc:string) => {
           <Image
             style={styles.tinyLogo}
             source={require('../../../assets/images/3.0x/go_left_arrow.png')}
+            accessibilityLabel='图片'
           />
         </TouchableOpacity>
       </View>

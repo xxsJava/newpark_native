@@ -57,7 +57,6 @@ const MultiLevelPicker = () => {
 export default MultiLevelPicker;
 const styles = StyleSheet.create({
   box:{
-    backgroundColor:'aqua',
     width:windowWidth * 0.4
   }
 })

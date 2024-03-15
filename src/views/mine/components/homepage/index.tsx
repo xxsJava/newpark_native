@@ -166,6 +166,7 @@ const HomePageView = () => {
                             style={styles.communitImage}
                             blurRadius={7}
                             source={item.bg}
+                            accessibilityLabel='背景图'
                           />
                         </View>
                         <View style={styles.communitItemBottom}>
@@ -179,7 +180,7 @@ const HomePageView = () => {
                           </View>
                         </View>
                         <View style={styles.communitAvatar}>
-                          <Image style={styles.communitAvatarImage} source={item.tx}></Image>
+                          <Image style={styles.communitAvatarImage} source={item.tx} accessibilityLabel='头像'></Image>
                         </View>
                       </TouchableOpacity>
                     )
@@ -209,7 +210,7 @@ const HomePageView = () => {
                       <TouchableOpacity
                         onPress={() => navigate('MyOrderRoute',{type:item.type})}
                         style={styles.orderRoute}>
-                        <Image style={styles.itemImage} source={item.icon} />
+                        <Image style={styles.itemImage} source={item.icon} accessibilityLabel='图片'/>
                         <Text allowFontScaling={false} style={styles.itemText}>
                           <Trans>{item.text}</Trans>
                         </Text>
@@ -241,7 +242,7 @@ const HomePageView = () => {
                       <TouchableOpacity
                         onPress={() => navigate(item.route,{type:'type1'})}
                         style={styles.orderRoute}>
-                        <Image style={styles.itemImages} source={item.icon} />
+                        <Image style={styles.itemImages} source={item.icon} accessibilityLabel='图片'/>
                         <Text allowFontScaling={false} style={styles.serviceText}>
                           <Trans>{item.text}</Trans>
                         </Text>
@@ -249,7 +250,7 @@ const HomePageView = () => {
                       <TouchableOpacity
                       onPress={() => navigate(item.route)}
                       style={styles.orderRoute}>
-                      <Image style={styles.itemImages} source={item.icon} />
+                      <Image style={styles.itemImages} source={item.icon} accessibilityLabel='图片'/>
                       <Text allowFontScaling={false} style={styles.serviceText}>
                         <Trans>{item.text}</Trans>
                       </Text>
@@ -265,7 +266,7 @@ const HomePageView = () => {
                       <TouchableOpacity
                         onPress={() => navigate(item.route)}
                         style={styles.orderRoute}>
-                        <Image style={styles.itemImages} source={item.icon} />
+                        <Image style={styles.itemImages} source={item.icon} accessibilityLabel='图片'/>
                         <Text allowFontScaling={false} style={styles.serviceText}>
                           <Trans>{item.text}</Trans>
                         </Text>

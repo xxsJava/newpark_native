@@ -6,8 +6,10 @@
  * @Description: desc
  */
 import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
-import React,{useState} from 'react';
-import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+// import React,{useState} from 'react';
+import * as React from 'react';
+import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View ,
+  TouchableWithoutFeedback,TouchableHighlight} from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
 import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
@@ -20,24 +22,25 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 //普通帖子组件
-export const postsOrdinary = (item: any, index: any, separators: any) => {
-  // const [upvoteVal,onUpvoteSet] = React.useState(false)
+// const postsOrdinary = (item: any, index: any, separators: any) => {
+  function postsOrdinary  (item: any) {
+    // const [isPlay,setIsPlay] = React.useState(false);
+    let isPlay = false;
+  // const [upvoteVal,setUpvoteSet] = React.useState(false)
   let upvoteVal = false;
-  const postLikeParam:postLikeParam ={
+  const postLikeParam:postLikeParam = {
     likeTime: 1396189015737,
     comId: 0,
     postsId: item.tid,
     likeType: 1
-  }
-  // const [isPlay,setisPlay] = useState(false);
+  };
+  
   // const [time,etTime] = useState();
   const loadStart = () => {
       console.log('视频正在加载！');
-      
   };
-  const setDuration = () =>{
+  const setDuration = () => {
     console.log('视频加载完毕');
-    
   }
   const onEnd = () => {
     console.log('视频播放完毕');
@@ -54,16 +57,15 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         upvoteVal = true
         item.tlikeCount = item.tlikeCount + 1 ;
       }
-    // if(porp == 1) {
-    //   upvoteVal = true
-    // } else {
-    //   upvoteVal = false
-    // }
+    if(porp == 1) {
+      upvoteVal = true
+    } else {
+      upvoteVal = false
+    }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
   const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> ';
-    // const ceshi = ' <Video source={{ uri: "https://www.runoob.com/try/demo_source/mov_bbb.mp4" }} style={{ width: 300, height: 200 }} controls={true} />'
-    // <audio src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></audio>
+   
 
   return (
     <Card style={styles.cardSty}>
@@ -77,7 +79,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
                 source={{ uri: item.upath }} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchaOp} onPress={() =>{ console.log('点击--关注用户')}}>
-              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
+              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')} accessibilityLabel='图片'></Image>
             </TouchableOpacity>
           </View>
           <View style={styles.titleView}>
@@ -117,14 +119,18 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
             {/* <WebView source={{ html: item.tcontext }}></WebView> */}
           {/* </View> */}
           <View style={styles.cover} >
-            {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
-              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} 
-                  // onPress={() => {setSound(!sound)}} paused={sound}
+            {
+              isPlay ? (
+                <Video 
+                  source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} 
+                  style={{ width: 160, height: 100 }} 
+                  onPress={() => {isPlay = !isPlay }}
+                  //  paused={sound}
                   ref='player'
                   // rate={isPlay?1:0}                  // 控制暂停/播放，0 代表暂停paused, 1代表播放normal.
                   volume={1.0}                      // 声音的放大倍数大倍数，0 代表没有声音，就是静音muted, 1 代表正常音量 normal，更大的数字表示放大的倍数
                   muted={true}                    // true代表静音，默认为false.
-                  paused={false}                  // true代表暂停，默认为false
+                  paused={isPlay}                  // true代表暂停，默认为false
                   resizeMode="contain"           // 视频的自适应伸缩铺放行为，contain、stretch、cover
                   repeat={true}                // 是否重复播放
                   playInBackground={true}     // 当app转到后台运行的时候，播放是否暂停
@@ -134,8 +140,18 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
                   // onProgress={setTime}         // 进度控制，每250ms调用一次，以获取视频播放的进度
                   onEnd={onEnd}                // 当视频播放完毕后的回调函数
                   onError={videoError}        //  当视频播放失败后的回调函数
-                  controls={true}               //显示控制按钮
+                  controls={true}               //显示控制按钮 
               />
+              ) : (
+                
+                <TouchableHighlight onPress={() => {isPlay = true ;console.log(isPlay,'isplay的值');
+                 }}>
+                    <Image source={require('../../../assets/images/tup/2.png')} style={{width:300,height:200}} accessibilityLabel='图片'/>
+                </TouchableHighlight>
+              )
+            }
+            {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
+             
               {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
               <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
               <HTML source={{ html: ceshi}} contentWidth={200}/> */}
@@ -173,12 +189,12 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           </TouchableOpacity>
         </View>
         <View style={styles.interactionRight}>
-          <Button
+          {/* <Button
             icon={upvoteVal ? require('../../../assets/images/3.0x/like_block.png') : require('../../../assets/images/3.0x/like.png')}
             style={styles.buttonDz}
             onPress={() => postLikePress(1)}>
             {item.tlikeCount}
-          </Button>
+          </Button> */}
           <TouchableOpacity
             onPress={() => {
               console.log('评论');
@@ -219,7 +235,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         })}
       </View>
       <View style={styles.leaveWordView}>
-        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')}/>
+        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'/>
         <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
       </View>
     </Card>

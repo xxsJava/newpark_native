@@ -52,7 +52,7 @@ const LabelViwe = () => {
                         {labelData.map(item => {
                             return(
                                 <TouchableOpacity style={[styles.labelView,labelVal == item.index?styles.labelSelected:null]} key={item.index} onPress={() => labelOnPrass(item.index)}>
-                                    <Image style={styles.labelImage} source={require('../../../../assets/images/alimom/tab.png')}></Image>
+                                    <Image style={styles.labelImage} source={require('../../../../assets/images/alimom/tab.png')} accessibilityLabel='图片'></Image>
                                     <Text allowFontScaling={false} style={styles.labelText}>{item.text}</Text>
                                 </TouchableOpacity>
                             )

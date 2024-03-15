@@ -22,7 +22,7 @@ function QuestList() {
             <View>
                 <Text style={styles.queTit}>请问您想问这些问题吗～</Text>
                 <ScrollView style={styles.tit}>
-                    <Image source={require('../../../../assets/images/tup/yiwen.png')} style={styles.wanttu}/>
+                    <Image source={require('../../../../assets/images/tup/yiwen.png')} style={styles.wanttu} accessibilityLabel='图片'/>
                     <Text style={styles.wantreq}>
                         猜您想问
                     </Text>
@@ -33,7 +33,7 @@ function QuestList() {
                     return (
                     <TouchableOpacity key={item.index} style={styles.litlist} activeOpacity={0.4}>
                        <Text> {item.title}</Text>
-                        <Image style={styles.listimage} source={require('../../../../assets/images/chevron-right.png')} />
+                        <Image style={styles.listimage} source={require('../../../../assets/images/chevron-right.png')} accessibilityLabel='图片'/>
                     </TouchableOpacity>
                 )})
             }
@@ -127,7 +127,7 @@ const Onlineservice = ({ navigation }: any) => {
                         <Trans>navigationBar.title26</Trans>
                     </Text>
                     <TouchableOpacity>
-                        <Image style={styles.headerImage} source={require('../../../../assets/images/tup/shezhi.png')}></Image>
+                        <Image style={styles.headerImage} source={require('../../../../assets/images/tup/shezhi.png')} accessibilityLabel='图片'></Image>
                     </TouchableOpacity>
                 </Appbar.Header>
 

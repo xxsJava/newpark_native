@@ -31,6 +31,7 @@ const DisplayAnImage = () => {
             <Image
                 style={styles.logo}
                 source={require('../../assets/images/static/暂时没有收藏.png')}
+                accessibilityLabel='图片'
             />
             <View
                 style={{

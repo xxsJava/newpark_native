@@ -201,6 +201,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
             <Image
               style={styles.img}
               source={require('../../assets/images/logo.png')}
+              accessibilityLabel='图片'
             />
           </View>
           {/* 手机号登录 */}
@@ -336,11 +337,12 @@ const LoginView: React.FC<LoginScreenProps> = () => {
             <View style={styles.wx}>
               <Image
                 source={require('../../assets/images/2.0x/weixin_icon.png')}
+                accessibilityLabel='图片'
               />
               <Text style={{ color: '#fff' }}>微信登录</Text>
             </View>
             <TouchableOpacity onPress={() => setVisible(true)} style={styles.heng1}>
-              <Image source={require('../../assets/images/tup/tongyi.png')} style={styles.icon}></Image>
+              <Image source={require('../../assets/images/tup/tongyi.png')} style={styles.icon} accessibilityLabel='图片'></Image>
               <Text>我已同意并阅读</Text>
               <Text style={{ color: 'blue' }}>服务条款</Text>
             </TouchableOpacity>

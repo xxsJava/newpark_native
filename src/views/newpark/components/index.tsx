@@ -64,7 +64,7 @@ const TabNav = () => {
             </View>
           </View>
           <View style={tabVal === 'tab1' ? styles.tabMore : styles.scrollShow}>
-            <Image source={require('../../../assets/images/search_in_circle.png')}></Image>
+            <Image source={require('../../../assets/images/search_in_circle.png')} accessibilityLabel='图片'></Image>
           </View>
         </View>
       </View>

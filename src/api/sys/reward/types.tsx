@@ -9,3 +9,14 @@ export type rewardListType = {
     pageNo:number,
     pageSize:number
 }
+// 悬赏发布api参数
+export type rewardPublishType = { 
+    endTime:number,
+    rdesc:string,
+    rid:number,
+    rimgs:string,
+    rmoney:number,
+    rtitle:string,
+    startTime:number,
+    uid:number
+}

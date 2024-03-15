@@ -40,18 +40,22 @@ const BeginOne = () => {
           <Image
             source={require('../..//assets/images/tup/a1.jpg')}
             style={styles.bannerImage}
+            accessibilityLabel='指引图1'
           />
           <Image
             source={require('../..//assets/images/tup/a2.jpg')}
             style={styles.bannerImage}
+            accessibilityLabel='指引图2'
           />
           <Image
             source={require('../..//assets/images/tup/a3.jpg')}
             style={styles.bannerImage}
+            accessibilityLabel='指引图3'
           />
           <Image
             source={require('../..//assets/images/tup/a4.jpg')}
             style={styles.bannerImage}
+            accessibilityLabel='指引图4'
           />
         </Swiper>
         <View style={styles.btn}>
