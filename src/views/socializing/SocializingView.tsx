@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-03-06 10:31:22
+ * @LastEditTime: 2024-03-12 17:16:48
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -116,7 +116,6 @@ const SocializingView = () => {
           <ContactsModul></ContactsModul>
         </View>
         <View style={[styles.moreModule,more?null:{display:'none'}]}>
-         
               <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
                 <View style={styles.itemImageView}>
                   <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片'></Image>
@@ -146,6 +145,7 @@ const SocializingView = () => {
                   <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片'></Image>
                 </View>
                 <View style={styles.itemTextView}>
+                  <Text style={styles.hytb}>1</Text>
                   <Text allowFontScaling={false} style={styles.itemText}>好友申请</Text>
                 </View>
               </TouchableOpacity>
@@ -324,6 +324,20 @@ const styles = StyleSheet.create({
     position:'absolute',
     bottom:0,
     right:0
+  },
+  hytb:{
+    position:'absolute',
+    fontSize:12,
+    backgroundColor:'red',
+    color:'#fff',
+    textAlign:'center',
+    lineHeight:15,
+    fontWeight: 'bold',
+    borderRadius:10,
+    paddingTop:1,
+    paddingLeft:5,
+    paddingRight:5,
+    paddingBottom:1
   }
 });
 function tabClick(porps: any, string: any) {
