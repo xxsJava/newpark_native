@@ -8,7 +8,8 @@ import {
   Text, ModalBody, Input, InputField, ModalFooter, HStack, ButtonIcon, Link, ArrowLeftIcon, View, Image,
   Textarea, TextareaInput, Select, SelectTrigger, SelectInput, SelectPortal, SelectBackdrop,
   SelectDragIndicatorWrapper, SelectContent, SelectIcon, SelectItem, SelectDragIndicator,
-  ChevronDownIcon
+  ChevronDownIcon,
+  onChange
 } from "@gluestack-ui/themed";
 import { navigate } from '../../../../config/routs/NavigationContainer';
 // import { Image } from "react-native-animatable";
@@ -39,7 +40,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const rewardType: rewardListType = {
   pageNo: 1,
-  pageSize: 5,
+  pageSize: 20,
 };
 
 const ListView = () => {
@@ -49,11 +50,15 @@ const ListView = () => {
   const [showModal3, setShowModal3] = useState(false);
   const [title, setTitle] = useState(null);
   const [des, setDes] = useState(undefined);
-  const [monrew, setMonrew] = useState(undefined)
+  const [monrew, setMonrew] = useState(undefined);
+  const [times1,setTimes1] = useState(0);
   console.log(des, '描述一下', title, '标题', monrew, '赏金');
   const times = Date.now();
   console.log(times, '我是时间');
-
+  const handleSelect = (val:any) =>{
+    setTimes1(val)
+    console.log(times1,'每次改变的时候我是时间');
+  }
   const rewardPublishData: rewardPublishType = {
     endTime: times,
     rdesc: des,
@@ -63,14 +68,14 @@ const ListView = () => {
     rtitle: title,
     startTime: times
   }
+  console.log(rewardPublishData,'发布悬赏输入的数据');
+  
   const getPubRew = async () => {
     const rePublish = await rewardPublishApi(rewardPublishData)
-    console.log(rePublish);
-
+    console.log(rePublish,'这里是我发布的悬赏');
+    
   }
-
   // 悬赏预览
-
   const [rewardData, rewardDataChange] = React.useState([]);
   // const rewardData = RewardApi()
   // console.log('悬赏浏览获取',rewardData)
@@ -78,7 +83,7 @@ const ListView = () => {
     // console.log('悬赏token',tokenStr)
     const rewardList = await rewardListApi(rewardType);
     console.log('帮忙圈', rewardList);
-    rewardDataChange(rewardList.data)
+    rewardDataChange(rewardList.data.reverse())
   };
   React.useEffect(() => {
     RewardApi();
@@ -89,7 +94,6 @@ const ListView = () => {
     <View style={styles.parentLevel}>
       <ScrollView style={styles.scrollStyle}>
         <View style={styles.listStyle}>
-
           {rewardData.map((item: any) => {
             return (
               <View style={styles.itemStyle} key={item.rid}>
@@ -109,7 +113,6 @@ const ListView = () => {
                     ellipsizeMode="tail">
                     {item.rtitle}
                   </Text>
-
                 </View>
                 <View style={styles.detailsView}>
                   <View style={styles.moneyView}>
@@ -213,26 +216,26 @@ const ListView = () => {
               </View>
             </View>
             <View style={styles.heng}>
-              <Image source={require('../../../../assets/images/money_icon1.png')} style={{ width: 20, height: 20 }} accessibilityLabel='赏金'/>
+              <Image source={require('../../../../assets/images/money_icon1.png')} style={{ width: 20, height: 20 }} accessibilityLabel='赏金' />
               <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000', marginLeft: 8 }}>
                 赏金
               </Text>
             </View>
             <Input size="md" bgColor="#FAE6CE" variant="underlined" alignItems="center" style={{ height: 50 }}>
               <InputField placeholder="请输入赏金" value={monrew} onChangeText={(e: any) => { setMonrew(e) }} textAlign="center" />
-              <Text style={{fontSize:19,fontWeight:'bold',marginRight:8}}>元</Text>
-              <Image source={require('../../../../assets/images/moneyBag.png')} style={{ width: 32, height: 32,marginRight:4}} accessibilityLabel='赏金'/>
+              <Text style={{ fontSize: 19, fontWeight: 'bold', marginRight: 8 }}>元</Text>
+              <Image source={require('../../../../assets/images/moneyBag.png')} style={{ width: 32, height: 32, marginRight: 4 }} accessibilityLabel='赏金' />
             </Input>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
               <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000', marginLeft: 8 }}>
                 截止时间
               </Text>
-              <Select style={{ width: windowWidth * 0.6 }} >
+              <Select style={{ width: windowWidth * 0.6 }}  onValueChange={handleSelect}>
                 <SelectTrigger variant="rounded" size="md" >
-                  <SelectInput placeholder="请选择" textAlign="center" marginTop={9} onChange={() => {
-                    console.log('3333333。。。。。。。');
-                  }} />
-                  <Image source={require('../../../../assets/images/chevron-right.png')} style={{ width: 22, height: 22, marginRight: 20 }} />
+                  {/* setTimes1 */}
+                  <SelectInput placeholder="请选择" textAlign="center" marginTop={9} 
+                  />
+                  <Image source={require('../../../../assets/images/chevron-right.png')} style={{ width: 22, height: 22, marginRight: 20 }} accessibilityLabel='箭头'/>
                 </SelectTrigger>
                 <SelectPortal>
                   <SelectBackdrop />
@@ -265,9 +268,11 @@ const ListView = () => {
             </View>
             <VStack space='lg' w='$full'>
               <Button
-                onPress={() => {
-                  setShowModal2(true);
-                }}
+                // onPress={() => {
+                //   // setShowModal2(true);
+                //   getPubRew()
+                // }}
+                onPress={() => {getPubRew()}}
                 style={{ backgroundColor: '#FDAA00', borderRadius: 10, marginTop: 20, height: 46, justifyContent: 'center' }}
 
               >
