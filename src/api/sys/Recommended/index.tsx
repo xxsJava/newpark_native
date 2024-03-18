@@ -16,10 +16,9 @@ import {productType,productpType} from './types';
 export const productApi = (data: productType): Promise<IResponse> => {
   return request.get({
     url: '/product/productApi',
-    data,
+    params: data
   });
 };
-
 /**
  * 交易圈的商品
  * 发布商品
