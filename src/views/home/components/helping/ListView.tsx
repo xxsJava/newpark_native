@@ -87,6 +87,8 @@ const Module = ({ item }) => (
 </View>
 );
 const ListView = () => {
+  const [allData,setAllData] = useState([]);
+
   var [conu, setConu] = useState(1)
   const rewardType: rewardListType = {
   pageNo: conu,
@@ -134,7 +136,8 @@ const ListView = () => {
     const rewardList = await rewardListApi(arr);
     console.log('帮忙圈', rewardList);
     var tips = rewardData.concat(rewardList.data).reverse();
-    console.log(tips,'...............');
+    setAllData(tips);
+    console.log(allData,'...............');
     
     rewardDataChange(tips)
   };
@@ -370,9 +373,7 @@ const styles = StyleSheet.create({
   modalBox: {
     height: windowHeight * 0.8,
     position: 'absolute',
-    bottom: -130,
-    // justifyContent:'flex-end',
-    // alignItems:'flex-end'
+    bottom: -130
   },
   contentView: {
     width: windowWidth - 4,

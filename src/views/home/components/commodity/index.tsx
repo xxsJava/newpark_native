@@ -101,80 +101,21 @@ const commodityData = [
   },
 ];
 const ProductView = () => {
-  const text = [
-    {
-      "uid": 10001,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10006,
-      "pname": " 第一个我是测试用的",
-      "pdesc": "好用就完事",
-      "pprice": 6999.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 10,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  },
-  {
-      "uid": 10001,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10005,
-      "pname": "菠萝手机2",
-      "pdesc": "好用就完事",
-      "pprice": 2999.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  },
-  {
-      "uid": 10000,
-      "pimgs": "[https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638260645130725.jpg,https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638260645130725.jpg]",
-      "pid": 10000,
-      "pname": "菠萝手机",
-      "pdesc": "好用就完事",
-      "pprice": 1499.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png"
-  },
-  {
-      "uid": 10000,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10004,
-      "pname": "菠萝手机1",
-      "pdesc": "好用就完事",
-      "pprice": 1399.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png"
-  },
-  {
-      "uid": 10001,
-      "pimgs": "http://dummyimage.com/400x400",
-      "pid": 1730496824367566848,
-      "pname": "小金豆 9999",
-      "pdesc": "存着当彩礼都可以",
-      "pprice": 650.0,
-      "pother": "个人收藏",
-      "pstatus": "AUDIT",
-      "ppubTime": 1617934158955,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  }
-  ];
-  
+  const [listData, setListData] = React.useState([]);
 
-  const [listData, setListData] = React.useState(text);
+  const [pageNo,setpageNo] = React.useState(1);
+  const [pageSize,setpageSize] = React.useState(12);
+  const [priceSort,setpriceSort] = React.useState("DESC");
+  const [PStatus,setPStatus] = React.useState("AUDIT");
+  const [timeSort,settimeSort] = React.useState("DESC");
 
   const postLikePress = async () => {
-    
     const product:productType = {
-      pageNo: 1,
-      pageSize: 5,
-      priceSort: "DESC",
-      PStatus: "AUDIT",
-      timeSort: "DESC",
+      pageNo:pageNo,
+      pageSize:pageSize,
+      priceSort:priceSort,
+      PStatus:PStatus,
+      timeSort:timeSort
     };
     const product2:productpType = {
       pname : '熊大',
@@ -189,21 +130,39 @@ const ProductView = () => {
     const productData2:any = await productApip(product2);
 
     const productData = await productApi(product);
-
+    
+   
     console.log('在这里', productData.data);
     console.log('打印试试', productData2);
-    
+    for (var i = 0; i < productData.data.length; i++) {
+      // 修改时间
+      var ele = '';
+      console.log(productData.data[i].pimgs.split(',')[0],'===================');
+      
+      if(productData.data[i].pimgs.split(',')[1]) {
+        productData.data[i].pims = productData.data[i].pimgs.split(',')[0].split('[')[1]
+      }else {
+        productData.data[i].pims =  productData.data[i].pimgs 
+      }
+      
+      console.log('houhouhou///////',productData.data[i].pims,'分割',productData.data[i].pimgs);
+      const date = new Date( productData.data[i].ppubTime * 1000)
+      productData.data[i].times =  formatDate(date, 'yyyy/MM/dd')
+      // 修改数组里面的图片
+    }
+    setListData(productData.data)
   }
   React.useEffect(() => {
     for (var i = 0; i < listData.length; i++) {
+      // 修改时间
       var ele = '';
       listData[i].pims = listData[i].pimgs.split(',')[0].split('[')[1]
-      // console.log('houhouhou',listData[i].pims,'分割',listData[i].pimgs);
+      console.log('houhouhou///////',listData[i].pims,'分割',listData[i].pimgs);
       const date = new Date( listData[i].ppubTime * 1000)
-      // listData[i].times =  formatDate(date, 'yyyy/MM/dd hh:mm:ss')
       listData[i].times =  formatDate(date, 'yyyy/MM/dd')
-      // console.log('hahhaha',listData[i].times);
-      
+      // 修改数组里面的图片
+     
+
     }
     setListData(listData)
     console.log('测试');
@@ -211,9 +170,8 @@ const ProductView = () => {
     console.log('在这里开始里面', listData);
 
   }, []); // 只在组件挂载时调用一次
-
-  // setListData(text1)
-  console.log('在这里开始外面', listData);
+  // console.log(listData[1],'在这里开始外面', listData[1].pims,listData[0].pimgs);
+ 
   return (
     <View style={styles.safeAreaStyle}>
       <Appbar.Header style={styles.headerStyle}>
@@ -255,14 +213,15 @@ const ProductView = () => {
         <ScrollView style={styles.scrollStyle}>
           <View style={styles.commoditylist}>
             {
-              /* {listData ? */
               listData.map(item => {
                 return (
                   <TouchableOpacity
                     style={styles.commodityItem}
                     key={item.pid}
                     onPress={() => navigate('DetailsRoute')}>
+                      {/* source={{ uri: item.pims }}  */}
                     <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片'/>
+                    {/* <Image source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg'}} style={styles.commodityImage}></Image> */}
                     <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
                     <View style={styles.priceView}>
                       <View style={styles.priceStyle}>

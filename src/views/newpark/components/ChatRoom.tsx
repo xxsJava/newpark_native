@@ -19,7 +19,7 @@ const ChatRoom = () => {
 
     const [chat, setChat] = React.useState('');
     const [imghead, setImghead] = useState(null)
-    // 如果没有选择就默认给这个值
+    // 如果没有选择就默认给这个图片
     var upath = 'https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg'
 
     const changeHeader = () => {
@@ -35,7 +35,7 @@ const ChatRoom = () => {
                 }
 
             }
-            console.log(upath, 'upath');
+            console.log(upath, 'upath111');
         });
     }
     return (

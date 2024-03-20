@@ -22,12 +22,11 @@ export const productApi = (data: productType): Promise<IResponse> => {
 /**
  * 交易圈的商品
  * 发布商品
- * @param 
+ * @body
  * @returns
  */
 export const productApip = (data: productpType): Promise<IResponse> => {
   return request.post({
-    url: '/product/productApi',
-    data,
+    url: '/product/productApi',data,
   });
 };

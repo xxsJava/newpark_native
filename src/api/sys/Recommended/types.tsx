@@ -14,13 +14,13 @@ export type productType ={
 };
 // 发布商品
 export type productpType ={ 
-    pdesc:string,
-    pimgs:string,
     pname:string,
-    pother:string,
+    pdesc: string,
     pprice:number,
-    ppubTime:number,
-    pstatus:string,
+    pimgs:string,
+    pstatus: string,
+    ppubTime: number,
+    upath:string
 }
 // // 编辑商品
 // export type productpType ={ 

@@ -3,14 +3,15 @@
  * 作者:cxr
  * 修改时间:2023/12/05 9:17:11
  */
-
 import React from "react";
 import { Trans } from 'react-i18next';
 import { Dimensions, Image, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { launchImageLibrary } from 'react-native-image-picker';
 import { Appbar, Button } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { navigate } from '../../../../config/routs/NavigationContainer';
-
+import {productApip} from '../../../../api/sys/Recommended/index';
+import {productpType} from '../../../../api/sys/Recommended/types'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -26,19 +27,7 @@ const modeList = [{
 }]
 
 const Photo = () => {
-    // const [imgs, setImgs] = useState([])
-    const [imgList, setimgList]:any = React.useState([])
-
-    // const addPhoto = () => {
-    //     launchImageLibrary({
-    //         mediaType: "photo", // 'photo' or 'video' or 'mixed'
-    //         includeBase64: false,
-    //         selectionLimit: 0,// 1为一张，0不限制数量
-    //     }, (res) => {
-    //         setimgList(res);
-    //         console.log('上传图片',res)
-    //     })
-    // }
+    const [imgList, setimgList]:any = React.useState([]);
     const handleClick= async()=>{
         launchImageLibrary(
           {
@@ -49,27 +38,29 @@ const Photo = () => {
             maxHeight: 1000,
           },
           async res => {
-            // setimgList(res)
-            // console.log('返回数据',res)
-            // console.log('返回数据',res.assets)
-            // console.log('赋值',imgList)
-            // setimgList(res.assets)
             let curFiles:any = res.assets;
-            let result
+            let result;
             for(var i = 0; i < curFiles.length; i++){
               console.log(curFiles[i]);
               result=curFiles[i]
               await setimgList([...imgList,curFiles[i]])
             }   
-            console.log('imgList',imgList)
+            console.log('imgList11',imgList)
             }
         )
     }
+    // console.log(imgList,'========');
+    const open = async() => {
+        await AsyncStorage.setItem('imgList',imgList);
+        // console.log(imgList,'========');
+        console.log(99999999);
+    }
+   open()
     return (
         <View style={styles.imageListView}>
             {imgList.map((item:any) =>{
                 return(
-                    <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}} accessibilityLabel='图片'/>
+                    <Image key={item.uri} style={styles.photoListStyle} source={{uri:item.uri}} accessibilityLabel='图片'/>
                 )
                 })
             }
@@ -81,17 +72,55 @@ const Photo = () => {
     );
 }
 const PublishProducts = () => {
-
-    const [modeVal,modeSelect] = React.useState(1)
-    const [moneyVal,moneyNumChange] = React.useState('')
-    const chkPrice = (text: string) => { //方法1
+    // 传递用户默认头像
+    const [avas,setAva] = React.useState('https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg')
+    const [name,setName]  = React.useState('');
+    const [desc,setDesc] = React.useState('');
+    const [imgs,setImgs] = React.useState([]);
+    const [other,setOther] = React.useState('送货上门');
+    const [modeVal,modeSelect] = React.useState(1);
+    const [moneyVal,moneyNumChange] = React.useState(undefined);
+    
+    const chkPrice = (text: string) => { 
+        //方法1
         // 只允许输入数字和小数点
         let newText = text.replace(/[^\d\.]/g, '');
         // 只允许输入一个小数点
         if (newText.split('.').length > 2) {
-            newText = newText.substring(0, newText.lastIndexOf('.'));
+            newText = newText.substring(0, newText.lastIndexOf('.')); 
+        };
+        const tip = Number(newText)
+        moneyNumChange(tip)
+    }
+    const submit = async() => {
+         var ava = await AsyncStorage.getItem('ava');
+        //  console.log(ava,'我是用户头像');
+        if(ava) {
+            setAva(ava)
         }
-        moneyNumChange(newText)
+        const times = new Date().getTime();
+        
+        const data:productpType = {
+            pname:name,
+            pdesc: desc,
+            pprice:moneyVal,
+            // pimgs:imgs,
+            pimgs:"file:///data/user/0/com.newpark_native/cache/rn_image_picker_lib_temp_847def00-895b-4316-8475-9a7fc5a09c12.jpg",
+            pstatus:'FORSALE',
+            ppubTime: times,
+            upath:avas,
+            pother:other
+        }
+        // 调取接口
+       const info =await productApip(data);
+       console.log(data);
+       
+        console.log(info,'我是调取接口点击发布的');
+       
+    }
+    const handleDataFromChild = (data:any) =>{
+        setImgs(data)
+        console.log('最终的效果图片',imgs);
     }
     return (
         <View style={styles.parentView}>
@@ -103,11 +132,17 @@ const PublishProducts = () => {
             </Appbar.Header>
             <View style={styles.contentView}>
                 <View style={styles.inputView}>
-                    <TextInput allowFontScaling={false} maxLength={15} selectionColor='#FABA3C' placeholder='请输入商品名称' style={styles.nameInput}></TextInput>
+                    <Text style={styles.h4}>商品名称 : </Text>
+                    <TextInput allowFontScaling={false} maxLength={15} selectionColor='#FABA3C' placeholder='请输入商品名称' style={styles.nameInput} value={name} onChangeText={text => {setName(text)
+                    }}></TextInput>
                 </View>
                 <View style={styles.inputView}>
-                    <TextInput allowFontScaling={false} maxLength={600} selectionColor='#FABA3C' placeholder='请输入商品描述' multiline={true} numberOfLines={8} style={styles.describeInput}></TextInput>
-                    <Photo></Photo>
+                <Text style={styles.h4}>商品描述 : </Text>
+                    <TextInput allowFontScaling={false} maxLength={600} selectionColor='#FABA3C' placeholder='请输入商品描述' multiline={true} numberOfLines={8} style={styles.describeInput} value={desc} onChangeText={text => {setDesc(text)
+                    }}></TextInput>
+                </View>
+                <View>
+                    <Photo onSendData={handleDataFromChild}></Photo>
                 </View>
                 <View style={styles.priceView}>
                     <Text allowFontScaling={false} style={styles.priceText}>定价</Text>
@@ -118,20 +153,19 @@ const PublishProducts = () => {
                     <Text allowFontScaling={false} style={styles.optionTitle}>送货方式</Text>
                     {modeList.map(item => {
                         return(
-                            <TouchableOpacity style={styles.itemStyle} key={item.index} onPress={() => modeSelect(item.index)}>
+                            <TouchableOpacity style={styles.itemStyle} key={item.index} onPress={() => {modeSelect(item.index); setOther(item.text);
+                            }}>
                                 <Text style={styles.itemText}>{item.text}</Text>
                                 <Image style={[styles.itemIcon,modeVal === item.index?null:{display:'none'}]} source={require('../../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片'></Image>
                             </TouchableOpacity>
                         )
                     })}
                 </View>
-                <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => console.log('点击发布')}>发布</Button>
+                <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={()=>submit()}>发布</Button>
             </View>
-
         </View>
     )
 }
-
 export default PublishProducts;
 
 const styles = StyleSheet.create({
@@ -159,6 +193,8 @@ const styles = StyleSheet.create({
     inputView:{
         borderColor:'#ccc',
         borderBottomWidth:1,
+        flexDirection:'row',
+        alignItems:'center'
     },
     nameInput:{
         height:45,
@@ -172,8 +208,14 @@ const styles = StyleSheet.create({
             },
             android:{
                 textAlignVertical:'top',
+
             }
         })
+    },
+    h4:{
+        fontSize:14,
+        fontWeight:'bold',
+        color:'black'
     },
     priceView:{
         height:60,
@@ -243,9 +285,10 @@ const styles = StyleSheet.create({
         backgroundColor:'#FABA3C'
     },
     buttonText:{
-        fontSize:17,
+        fontSize:18,
         color:'#fff',
-        lineHeight:30
+        lineHeight:30,
+        fontWeight:'bold'
     },
     imageListView:{
         marginVertical:8,
