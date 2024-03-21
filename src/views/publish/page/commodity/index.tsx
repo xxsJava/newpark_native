@@ -45,17 +45,18 @@ const Photo = () => {
               result=curFiles[i]
               await setimgList([...imgList,curFiles[i]])
             }   
-            console.log('imgList11',imgList)
+           
             }
         )
+        console.log('imgList11',imgList)
+        sendImg()
     }
-    // console.log(imgList,'========');
-    const open = async() => {
-        await AsyncStorage.setItem('imgList',imgList);
-        // console.log(imgList,'========');
-        console.log(99999999);
+    console.log('imgList22',imgList);
+    const sendImg = async() => {
+        await AsyncStorage.setItem('img',imgList);
+        console.log(imgList,'这个是我传过去的图片');
+        
     }
-   open()
     return (
         <View style={styles.imageListView}>
             {imgList.map((item:any) =>{
@@ -93,6 +94,9 @@ const PublishProducts = () => {
         moneyNumChange(tip)
     }
     const submit = async() => {
+        const img = AsyncStorage.getItem('img');
+        console.log(img,'自己相册里传过来的图片');
+        
          var ava = await AsyncStorage.getItem('ava');
         //  console.log(ava,'我是用户头像');
         if(ava) {

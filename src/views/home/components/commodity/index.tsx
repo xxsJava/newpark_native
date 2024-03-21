@@ -12,7 +12,9 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  FlatList,
+  Alert
 } from 'react-native';
 import { Appbar, Avatar, Icon } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -100,10 +102,41 @@ const commodityData = [
     name: 'o泡果奶',
   },
 ];
+
+const List = ({item}) => (
+  <View style={styles.commoditylist}>
+        <TouchableOpacity
+          style={styles.commodityItem}
+          onPress={() => navigate('DetailsRoute')}>
+            {/* source={{ uri: item.pims }}  */}
+          <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像"/>
+          <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
+          <View style={styles.priceView}>
+            <View style={styles.priceStyle}>
+              <Icon
+                size={22}
+                color="#fa3d3c"
+                source={require('../../../../assets/images/coins-icon.png')}
+              />
+              <Text allowFontScaling={false} style={styles.priceNum}>{item.pprice}</Text>
+            </View>
+            <Text allowFontScaling={false} style={styles.priceTime}>{item.times}</Text>
+          </View>
+          <View style={styles.publisherView}>
+            <Avatar.Image
+              style={styles.publisherAvatar}
+              size={32}
+              source={{ uri: item.upath }}
+            />
+            <Text allowFontScaling={false} style={styles.publisherText}>{item.name}</Text>
+          </View>
+        </TouchableOpacity>
+</View>
+)
 const ProductView = () => {
   const [listData, setListData] = React.useState([]);
-
-  const [pageNo,setpageNo] = React.useState(1);
+  const listData1 = [];
+  var [pageNo,setpageNo] = React.useState(1);
   const [pageSize,setpageSize] = React.useState(12);
   const [priceSort,setpriceSort] = React.useState("DESC");
   const [PStatus,setPStatus] = React.useState("AUDIT");
@@ -138,7 +171,6 @@ const ProductView = () => {
       // 修改时间
       var ele = '';
       console.log(productData.data[i].pimgs.split(',')[0],'===================');
-      
       if(productData.data[i].pimgs.split(',')[1]) {
         productData.data[i].pims = productData.data[i].pimgs.split(',')[0].split('[')[1]
       }else {
@@ -170,8 +202,38 @@ const ProductView = () => {
     console.log('在这里开始里面', listData);
 
   }, []); // 只在组件挂载时调用一次
-  // console.log(listData[1],'在这里开始外面', listData[1].pims,listData[0].pimgs);
- 
+  const onload = async() => {
+    // Alert.alert('已经到底部了') 
+    setpageNo(pageNo += 1)
+    console.log(pageNo,'pageNo');
+    const addData = await productApi({
+      pageNo:pageNo,
+      pageSize:pageSize,
+      priceSort:priceSort,
+      PStatus:PStatus,
+      timeSort:timeSort
+    });
+    console.log(addData,'我是下拉刷新的值，找我++++');
+    for (var i = 0; i < addData.data.length; i++) {
+      // 修改时间
+      var ele = '';
+      console.log(addData.data[i].pimgs.split(',')[0],'===================');
+      if(addData.data[i].pimgs.split(',')[1]) {
+        addData.data[i].pims = addData.data[i].pimgs.split(',')[0].split('[')[1]
+      }else {
+        addData.data[i].pims =  addData.data[i].pimgs 
+      }
+      
+      console.log('houhouhou///////',addData.data[i].pims,'分割',addData.data[i].pimgs);
+      const date = new Date( addData.data[i].ppubTime * 1000)
+      addData.data[i].times =  formatDate(date, 'yyyy/MM/dd')
+      // 修改数组里面的图片
+    }
+    const newlist = listData.concat(addData.data)
+    
+    
+    setListData(newlist)  
+  }
   return (
     <View style={styles.safeAreaStyle}>
       <Appbar.Header style={styles.headerStyle}>
@@ -210,49 +272,21 @@ const ProductView = () => {
         })}
       </View>
       <View style={styles.scrollView}>
-        <ScrollView style={styles.scrollStyle}>
-          <View style={styles.commoditylist}>
-            {
-              listData.map(item => {
-                return (
-                  <TouchableOpacity
-                    style={styles.commodityItem}
-                    key={item.pid}
-                    onPress={() => navigate('DetailsRoute')}>
-                      {/* source={{ uri: item.pims }}  */}
-                    <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像"/>
-                    {/* <Image source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg'}} style={styles.commodityImage}></Image> */}
-                    <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
-                    <View style={styles.priceView}>
-                      <View style={styles.priceStyle}>
-                        <Icon
-                          size={22}
-                          color="#fa3d3c"
-                          source={require('../../../../assets/images/coins-icon.png')}
-                        />
-                        <Text allowFontScaling={false} style={styles.priceNum}>{item.pprice}</Text>
-                      </View>
-                      <Text allowFontScaling={false} style={styles.priceTime}>{item.times}</Text>
-                    </View>
-                    <View style={styles.publisherView}>
-                      <Avatar.Image
-                        style={styles.publisherAvatar}
-                        size={32}
-                        source={{ uri: item.upath }}
-                      />
-                      <Text allowFontScaling={false} style={styles.publisherText}>{item.name}</Text>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })
-              /* :
-              <View style={styles.zhong}>
-                <Text style={{ fontSize: 18, color: 'black', marginBottom: 20 }}>暂时没有商品.....</Text>
-                <Text>去其他地方看看吧！</Text>
-              </View> */
-            }
-          </View>
-        </ScrollView>
+        <FlatList
+        data={listData}
+        renderItem={({item}) => <List item={item} />}
+        keyExtractor={item => item.pid}
+        ListEmptyComponent={
+          <View style={styles.zhong}>
+          <Text style={{ fontSize: 18, color: 'black', marginBottom: 20 }}>暂时没有商品.....</Text>
+          <Text>去其他地方看看吧！</Text>
+        </View> 
+        }
+        onEndReachedThreshold={0.1}
+        onEndReached={
+          () => {onload()}
+        }
+      />
       </View>
     </View>
   );
@@ -320,7 +354,7 @@ const styles = StyleSheet.create({
     color: '#888',
   },
   commodityItem: {
-    width: '50%',
+    width: '100%',
     height: 320,
     marginBottom: 15,
     paddingHorizontal: '2%',
