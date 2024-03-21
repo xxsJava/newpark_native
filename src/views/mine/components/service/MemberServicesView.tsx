@@ -51,7 +51,7 @@ export default class MemberServicesView extends Component {
                                 <AnimatedCircularProgress fill={78} size={66} width={3.5} rotation={180} tintColor='#FA59DF' backgroundColor='rgba(136, 136, 136,0.2)' ></AnimatedCircularProgress>
                                 <Text allowFontScaling={false} style={styles.progressValue}>1421/10000</Text>
                                 <View style={styles.gradeBg}>
-                                    <Image style={styles.gradeImage} source={require('../../../../assets/images/alimom/V1.png')} accessibilityLabel='图片'></Image>
+                                    <Image style={styles.gradeImage} source={require('../../../../assets/images/alimom/V1.png')} accessibilityLabel='图片' alt="头像"></Image>
                                 </View>
                             </View>
                         </LinearGradinet>

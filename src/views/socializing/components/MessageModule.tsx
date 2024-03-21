@@ -109,6 +109,7 @@ const ListIndex: React.FC = () => {
               uri: item.stateMsg === 2 ? item.faceURL==''?'https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png':item.faceURL : item.senderFaceUrl,
             }}
             accessibilityLabel='图片'
+            alt="头像"
           />
         </View>
       </View>

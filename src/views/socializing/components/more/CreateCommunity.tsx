@@ -27,7 +27,7 @@ const CreateCommunity = () => {
                 <ScrollView style={styles.scrollStyle}>
                     <View style={styles.avatarView}>
                         <View style={styles.avatarStyle}>
-                            <Image style={styles.avatarImage} source={require('../../../../assets/images/takepicforheader.png')} accessibilityLabel='图片'></Image>
+                            <Image style={styles.avatarImage} source={require('../../../../assets/images/takepicforheader.png')} accessibilityLabel='图片' alt="头像"></Image>
                         </View>
                         <Text allowFontScaling={false} style={styles.avatarText}>设置社区头像</Text>
                     </View>

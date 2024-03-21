@@ -128,13 +128,14 @@ const Registered = () => {
                         style={styles.avatarImage}
                         source={{ uri: item.uri }}
                         accessibilityLabel='图片'
+                        alt="头像"
                       />
                     </View>
                   )
                 })
                 // }
               ) : (
-                <Image source={require('../../../../assets/images/3.0x/chat_takephoto.png')} style={{ width: 100, height: 100, borderRadius: 100 }} accessibilityLabel='图片'/>
+                <Image source={require('../../../../assets/images/3.0x/chat_takephoto.png')} style={{ width: 100, height: 100, borderRadius: 100 }} accessibilityLabel='图片' alt="头像"/>
               )
               }
 

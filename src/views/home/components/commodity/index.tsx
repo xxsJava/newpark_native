@@ -220,7 +220,7 @@ const ProductView = () => {
                     key={item.pid}
                     onPress={() => navigate('DetailsRoute')}>
                       {/* source={{ uri: item.pims }}  */}
-                    <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片'/>
+                    <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像"/>
                     {/* <Image source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg'}} style={styles.commodityImage}></Image> */}
                     <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
                     <View style={styles.priceView}>

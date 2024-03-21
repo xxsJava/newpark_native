@@ -101,6 +101,7 @@ const Addcomm = () => {
                                             style={styles.itemImage}
                                             source={require('../../../assets/images/tup/ly.png')}
                                             accessibilityLabel='图片'
+                                            alt="头像"
                                         />
                                     </View>
                                     <View style={styles.itemModelRight}>
@@ -110,6 +111,7 @@ const Addcomm = () => {
                                                 style={styles.itemModelIcon}
                                                 source={require('../../../assets/images/hotfuckicon.png')}
                                                 accessibilityLabel='图片'
+                                                alt="头像"
                                             />
                                             <Text allowFontScaling={false} style={styles.itemTopText2}>热度1501</Text>
                                         </View>

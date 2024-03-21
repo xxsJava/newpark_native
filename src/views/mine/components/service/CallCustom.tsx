@@ -60,7 +60,7 @@ const CallCustom = ({ navigation }: any) => {
                 </View>
                 <Text style={styles.h2}>新园客服</Text>
                 {/* <image  /> */}
-                <Image source={require('../../../../assets/images/tup/gengduo.png')} style={styles.iconStyle} accessibilityLabel='图片'/>
+                <Image source={require('../../../../assets/images/tup/gengduo.png')} style={styles.iconStyle} accessibilityLabel='图片' alt="头像"/>
             </Appbar.Header>
             <ScrollView style={styles.shangxia}
              contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between', flexDirection: 'column' }}
@@ -76,7 +76,7 @@ const CallCustom = ({ navigation }: any) => {
                     </View>
                     <View style={styles.tit}>
                         <View style={styles.littit}>
-                            <Image source={require('../../../../assets/images/tup/bangzhu.png')} style={styles.questimg} accessibilityLabel='图片'/>
+                            <Image source={require('../../../../assets/images/tup/bangzhu.png')} style={styles.questimg} accessibilityLabel='图片' alt="头像"/>
                             <View>
                                 <Text style={styles.titText}>猜您想问</Text>
                             </View>
@@ -88,7 +88,7 @@ const CallCustom = ({ navigation }: any) => {
                                         setValue(item.main)
                                     }}>
                                         <Text style={styles.fonblac}>{item.main}</Text>
-                                        <Image source={require('../../../../assets/images/chevron-right.png')} style={styles.questimg} accessibilityLabel='图片'></Image>
+                                        <Image source={require('../../../../assets/images/chevron-right.png')} style={styles.questimg} accessibilityLabel='图片' alt="头像"></Image>
                                     </TouchableOpacity>
                                 )
                             })}
@@ -116,16 +116,16 @@ const CallCustom = ({ navigation }: any) => {
                         }
                     </View>
                     <View style={styles.mainbox}>
-                        <Image source={require('../../../../assets/images/tup/yuyinqiehuan.png')} style={styles.yuyin} accessibilityLabel='图片'/>
+                        <Image source={require('../../../../assets/images/tup/yuyinqiehuan.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
                         <TextInput
                             style={styles.inptext}
                             onChangeText={text => onChangeText(text)}
                             value={value}
                             placeholder='请输入您要咨询的内容吧～'
                         />
-                        <Image source={require('../../../../assets/images/tup/biaoqing.png')} style={styles.yuyin} accessibilityLabel='图片'/>
+                        <Image source={require('../../../../assets/images/tup/biaoqing.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
                         <View style={value=='' ? styles.xian:styles.hidd}>
-                            <Image source={require('../../../../assets/images/tup/zengjiatianjiajiahao.png')} style={styles.yuyin} accessibilityLabel='图片'/>
+                            <Image source={require('../../../../assets/images/tup/zengjiatianjiajiahao.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
                         </View>
                         <View style={value== '' ? styles.hidd:styles.xian}>
                             <TouchableOpacity style={styles.sendSty} onPress={() =>{

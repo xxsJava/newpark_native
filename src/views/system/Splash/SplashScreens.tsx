@@ -45,6 +45,7 @@ const Splashs= () => {
           resizeMode="cover"
           style={styles.img}
           accessibilityLabel='图片'
+          alt="头像"
           >
           <SafeAreaView style={{flex: 1}}>
             <View style={styles.nav}>
@@ -64,6 +65,7 @@ const Splashs= () => {
                   style={styles.tinyLogo}
                   source={require('../../../assets/images/logo.png')}
                   accessibilityLabel='图片'
+                  alt="头像"
                 />
               </Animatable.View>
             </View>

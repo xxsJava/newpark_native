@@ -30,7 +30,7 @@ const ClickZoom = () => {
           }}
         >
           {/* 点击放大的内容 */}
-          <Image source={require('../../../../assets/images/tup/cd6.png')} accessibilityLabel='图片'></Image>
+          <Image source={require('../../../../assets/images/tup/cd6.png')} accessibilityLabel='图片' alt="头像"></Image>
         </Animated.View>
       </TouchableOpacity>
 
@@ -42,7 +42,7 @@ const ClickZoom = () => {
           }}
         >
           {/* 点击缩小的内容 */}
-          <Image source={require('../../../../assets/images/tup/cd5.png')} accessibilityLabel='图片'></Image>
+          <Image source={require('../../../../assets/images/tup/cd5.png')} accessibilityLabel='图片' alt="头像"></Image>
         </Animated.View>
       </TouchableOpacity>
     </View>

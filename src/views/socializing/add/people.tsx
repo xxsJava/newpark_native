@@ -33,7 +33,7 @@ const AddPeople = () => {
                         <TouchableOpacity onPress={() => {
                             setIsVisible(true);
                         }}>
-                            <Image style={{ width: 20, height: 20, resizeMode: 'stretch' }} source={{ uri: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png' }} accessibilityLabel='图片' />
+                            <Image style={{ width: 20, height: 20, resizeMode: 'stretch' }} source={{ uri: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png' }} accessibilityLabel='图片' alt="头像"/>
                         </TouchableOpacity>
                     </View>
                     <Modal visible={isVisible} transparent={true}>

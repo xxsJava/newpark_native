@@ -49,12 +49,13 @@ const ChatRoom = () => {
                                     source={{ uri: item.uri }}
                                     style={styles.ava}
                                     accessibilityLabel='图片'
+                                    alt="头像"
                                 />
                             </View>
                         )
                     })
                 ) : (
-                    <Image source={require('../../../assets/images/3.0x/chat_takephoto.png')} style={styles.ava} accessibilityLabel='图片'/>
+                    <Image source={require('../../../assets/images/3.0x/chat_takephoto.png')} style={styles.ava} accessibilityLabel='图片' alt="头像"/>
                 )
                 }
             </TouchableOpacity>

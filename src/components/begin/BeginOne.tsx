@@ -41,21 +41,25 @@ const BeginOne = () => {
             source={require('../..//assets/images/tup/a1.jpg')}
             style={styles.bannerImage}
             accessibilityLabel='指引图1'
+            alt="头像"
           />
           <Image
             source={require('../..//assets/images/tup/a2.jpg')}
             style={styles.bannerImage}
             accessibilityLabel='指引图2'
+            alt="头像"
           />
           <Image
             source={require('../..//assets/images/tup/a3.jpg')}
             style={styles.bannerImage}
             accessibilityLabel='指引图3'
+            alt="头像"
           />
           <Image
             source={require('../..//assets/images/tup/a4.jpg')}
             style={styles.bannerImage}
             accessibilityLabel='指引图4'
+            alt="头像"
           />
         </Swiper>
         <View style={styles.btn}>

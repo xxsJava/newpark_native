@@ -96,7 +96,7 @@ export const BommonTab = () => {
       </Tab.Navigator>
       <View style={styles.tabPub}>
         <TouchableOpacity onPress={() => { setIsVisible(!isVisible) }}>
-          <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片'/>
+          <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片' alt="头像"/>
         </TouchableOpacity>
         {
           isVisible ?

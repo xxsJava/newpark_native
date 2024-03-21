@@ -26,10 +26,10 @@ const ReleasePost = () => {
                 </Text>
             </Appbar.Header>
             <View style={styles.syncView}>
-                <Image style={styles.syncImage} source={require('../../../../assets/images/3.0x/circle_icon.png')} accessibilityLabel='图片'></Image>
+                <Image style={styles.syncImage} source={require('../../../../assets/images/3.0x/circle_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                 <Text allowFontScaling={false} style={styles.syncText}>同步到牛圈</Text>
                 <View style={styles.syncIconView}>
-                    <Image style={styles.syncIcon1} source={require('../../../../assets/images/alimom/loading1.png')} accessibilityLabel='图片'></Image>
+                    <Image style={styles.syncIcon1} source={require('../../../../assets/images/alimom/loading1.png')} accessibilityLabel='图片' alt="头像"></Image>
                     <Text allowFontScaling={false} style={styles.syncIconText}>python</Text>
                     <Text allowFontScaling={false} style={styles.syncIcon2}>
                         <Entypo size={15} name="chevron-thin-right"></Entypo>

@@ -72,7 +72,7 @@ const ColumnType = () => {
                     : styles.selectedBorder,
                 ]}
                 onPress={() => onSelected(item.index)}>
-                <Image style={styles.navigationItemImage} source={item.icon} accessibilityLabel='图片'/>
+                <Image style={styles.navigationItemImage} source={item.icon} accessibilityLabel='图片' alt="头像"/>
                 <Text allowFontScaling={false} style={styles.navigationItemText}>
                   <Trans>{item.text}</Trans>
                 </Text>

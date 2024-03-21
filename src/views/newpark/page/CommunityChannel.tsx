@@ -88,7 +88,7 @@ const CommunityChannel = ({ navigation }:any) => {
                     <Trans>navigationBar.title21</Trans>
                 </Text>
                 <TouchableOpacity>
-                    <Image style={styles.headerImage} source={require('../../../assets/images/search_in_circle.png')} accessibilityLabel='图片'></Image>
+                    <Image style={styles.headerImage} source={require('../../../assets/images/search_in_circle.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </TouchableOpacity>
             </Appbar.Header>
             <View style={styles.scrollView}>
@@ -117,9 +117,9 @@ const CommunityChannel = ({ navigation }:any) => {
                                         <View style={item.type == 2?styles.itemContent:{display:'none'}}>
                                             <Text allowFontScaling={false} style={styles.itemContentText}>{item.text}</Text>
                                             <View style={styles.itemImageView}>
-                                                <Image style={styles.itemImage} source={item.image} accessibilityLabel='图片'></Image>
-                                                <Image style={styles.itemImage} source={item.image} accessibilityLabel='图片'></Image>
-                                                <Image style={styles.itemImage} source={item.image} accessibilityLabel='图片'></Image>
+                                                <Image style={styles.itemImage} source={item.image} accessibilityLabel='图片' alt="头像"></Image>
+                                                <Image style={styles.itemImage} source={item.image} accessibilityLabel='图片' alt="头像"></Image>
+                                                <Image style={styles.itemImage} source={item.image} accessibilityLabel='图片' alt="头像"></Image>
                                             </View>
                                         </View>
                                         <View style={item.type == 2?styles.itemTabView:{display:'none'}}>
@@ -151,7 +151,7 @@ const CommunityChannel = ({ navigation }:any) => {
                                 {functionListData.map(item => {
                                     return (
                                         <TouchableOpacity key={item.index} style={styles.functionItem} activeOpacity={0.9} onPress={() => navigate(item.path)}>
-                                            <Image source={item.image} style={styles.functionImage} accessibilityLabel='图片'></Image>
+                                            <Image source={item.image} style={styles.functionImage} accessibilityLabel='图片' alt="头像"></Image>
                                             <Text allowFontScaling={false} style={styles.functionText}>{item.text}</Text>
                                         </TouchableOpacity>
                                     )
@@ -161,7 +161,7 @@ const CommunityChannel = ({ navigation }:any) => {
                     </View>
                 </ScrollView>
                 <TouchableOpacity style={styles.extendView} activeOpacity={0.5}>
-                    <Image style={styles.extenImage} source={require('../../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片'></Image>
+                    <Image style={styles.extenImage} source={require('../../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </TouchableOpacity>
             </View>
         </View>

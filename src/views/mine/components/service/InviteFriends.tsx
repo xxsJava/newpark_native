@@ -62,7 +62,7 @@ const MyComponent = () => {
                                 return (
                                     <TouchableOpacity key={item.index} style={styles.mtlist} onPress={() =>{console.log(item.text);
                                     }}>
-                                        <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 68 } : null]} accessibilityLabel='图片'></Image>
+                                        <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 68 } : null]} accessibilityLabel='图片' alt="头像"></Image>
                                         <View style={styles.zi}>
                                             <Text style={styles.h4}>{item.text}</Text>
                                         </View>
@@ -77,10 +77,10 @@ const MyComponent = () => {
             <ScrollView style={styles.parentbg}>
                 <View style={[styles.heng, styles.title]}>
                     <Text style={styles.h1}>抢新园红包啦～</Text>
-                    <Image source={require('../../../../assets/images/tup/能量豆.png')} style={styles.iconBean} accessibilityLabel='图片'></Image>
+                    <Image source={require('../../../../assets/images/tup/能量豆.png')} style={styles.iconBean} accessibilityLabel='图片' alt="头像"></Image>
                 </View>
                 <View style={styles.zhong}>
-                    <ImageBackground source={require('../../../../assets/images/tup/yqh.jpg')} style={styles.xf} accessibilityLabel='背景'>
+                    <ImageBackground source={require('../../../../assets/images/tup/yqh.jpg')} style={styles.xf} accessibilityLabel='背景' alt="头像">
                         <View style={styles.xfont}>
                             <View style={styles.heng1}>
                                 <Text style={styles.h6}>每成功邀请一位好友</Text>
@@ -105,7 +105,7 @@ const MyComponent = () => {
                         {list1.map(item => {
                             return (
                                 <View key={item.index} style={styles.list1Box}>
-                                    <Image source={item.img} style={styles.list1Icon} accessibilityLabel='图片'></Image>
+                                    <Image source={item.img} style={styles.list1Icon} accessibilityLabel='图片' alt="头像"></Image>
                                     <Text style={styles.h4}>{item.text}</Text>
                                 </View>
                             )
