@@ -26,7 +26,6 @@ export const rewardListApi = (data:rewardListType): Promise<IResponse> => {
 
 export const rewardPublishApi = (data:rewardPublishType): Promise<IResponse> => {
   return request.post({
-    url: '/reward/rewardApi',
-    params: data
+    url: '/reward/rewardApi', data
   });
 };
