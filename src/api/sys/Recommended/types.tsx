@@ -20,7 +20,8 @@ export type productpType ={
     pimgs:string,
     pstatus: string,
     ppubTime: number,
-    upath:string
+    upath:string,
+    pother:string
 }
 // // 编辑商品
 // export type productpType ={ 

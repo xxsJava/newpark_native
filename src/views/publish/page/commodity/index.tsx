@@ -80,7 +80,7 @@ const PublishProducts = () => {
     const [imgs,setImgs] = React.useState([]);
     const [other,setOther] = React.useState('送货上门');
     const [modeVal,modeSelect] = React.useState(1);
-    const [moneyVal,moneyNumChange] = React.useState(undefined);
+    const [moneyVal,moneyNumChange] = React.useState(0);
     
     const chkPrice = (text: string) => { 
         //方法1

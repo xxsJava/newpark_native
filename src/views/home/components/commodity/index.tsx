@@ -107,7 +107,7 @@ const List = ({item}) => (
   <View style={styles.commoditylist}>
         <TouchableOpacity
           style={styles.commodityItem}
-          onPress={() => navigate('DetailsRoute')}>
+          onPress={() => navigate('DetailsRoute',item)}>
             {/* source={{ uri: item.pims }}  */}
           <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像"/>
           <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>

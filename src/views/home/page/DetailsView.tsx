@@ -27,7 +27,9 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const DetailsView = () => {
+const DetailsView = ({item:any}) => {
+  console.log(item,'我是跳转过来的item');
+  
   const [tabVal, setTab] = useState('tab1');
   const setTabPress = (tab: string) => {
     setTab(tab);

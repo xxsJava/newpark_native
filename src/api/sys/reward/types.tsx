@@ -13,10 +13,7 @@ export type rewardListType = {
 export type rewardPublishType = { 
     endTime:number,
     rdesc:string,
-    rid:number,
-    rimgs:string,
     rmoney:number,
     rtitle:string,
-    startTime:number,
-    uid:number
+    startTime:number
 }

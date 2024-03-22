@@ -99,9 +99,9 @@ const ListView = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
-  const [title, setTitle] = useState(null);
-  const [des, setDes] = useState(undefined);
-  const [monrew, setMonrew] = useState(undefined);
+  const [title, setTitle] = useState('');
+  const [des, setDes] = useState('');
+  const [monrew, setMonrew] = useState(0);
   const [times1,setTimes1] = useState(0);
   console.log(des, '描述一下', title, '标题', monrew, '赏金');
   const times = Date.now();
@@ -113,8 +113,6 @@ const ListView = () => {
   const rewardPublishData: rewardPublishType = {
     endTime: times,
     rdesc: des,
-    // rid:number,
-    // rimgs:string,
     rmoney: monrew,
     rtitle: title,
     startTime: times
