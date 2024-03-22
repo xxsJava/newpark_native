@@ -579,6 +579,7 @@ const Black: React.FC = () => {
         style={styles.avatarStyle}
         source={item.ava}
         accessibilityLabel='图片'
+        alt="头像"
       />
       </View>
       <View style={styles.itemRight}>

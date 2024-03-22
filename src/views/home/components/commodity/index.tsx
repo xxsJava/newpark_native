@@ -12,7 +12,9 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  FlatList,
+  Alert
 } from 'react-native';
 import { Appbar, Avatar, Icon } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -100,150 +102,54 @@ const commodityData = [
     name: 'o泡果奶',
   },
 ];
-const ProductView = () => {
-  const text = [
-    {
-      "uid": 10001,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10006,
-      "pname": " 第一个我是测试用的",
-      "pdesc": "好用就完事",
-      "pprice": 6999.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 10,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  },
-  {
-      "uid": 10001,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10005,
-      "pname": "菠萝手机2",
-      "pdesc": "好用就完事",
-      "pprice": 2999.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  },
-  {
-      "uid": 10000,
-      "pimgs": "[https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638260645130725.jpg,https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638260645130725.jpg]",
-      "pid": 10000,
-      "pname": "菠萝手机",
-      "pdesc": "好用就完事",
-      "pprice": 1499.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png"
-  },
-  {
-      "uid": 10000,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10004,
-      "pname": "菠萝手机1",
-      "pdesc": "好用就完事",
-      "pprice": 1399.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png"
-  },
-  {
-      "uid": 10001,
-      "pimgs": "http://dummyimage.com/400x400",
-      "pid": 1730496824367566848,
-      "pname": "小金豆 9999",
-      "pdesc": "存着当彩礼都可以",
-      "pprice": 650.0,
-      "pother": "个人收藏",
-      "pstatus": "AUDIT",
-      "ppubTime": 1617934158955,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  }
-  ];
-  const text1 = [
-    {
-      "uid": 10001,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10006,
-      "pname": "菠萝手机2",
-      "pdesc": "好用就完事",
-      "pprice": 6999.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 10,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  },
-  {
-      "uid": 10001,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10005,
-      "pname": "菠萝手机2",
-      "pdesc": "好用就完事",
-      "pprice": 2999.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  },
-  {
-      "uid": 10000,
-      "pimgs": "[https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638260645130725.jpg,https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1638260645130725.jpg]",
-      "pid": 10000,
-      "pname": "菠萝手机",
-      "pdesc": "好用就完事",
-      "pprice": 1499.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png"
-  },
-  {
-      "uid": 10000,
-      "pimgs": "[https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]",
-      "pid": 10004,
-      "pname": "菠萝手机1",
-      "pdesc": "好用就完事",
-      "pprice": 1399.99,
-      "pother": "菠萝手机干就完了",
-      "pstatus": "AUDIT",
-      "ppubTime": 1701329364,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png"
-  },
-  {
-      "uid": 10001,
-      "pimgs": "http://dummyimage.com/400x400",
-      "pid": 1730496824367566848,
-      "pname": "小金豆 9999",
-      "pdesc": "存着当彩礼都可以",
-      "pprice": 650.0,
-      "pother": "个人收藏",
-      "pstatus": "AUDIT",
-      "ppubTime": 1617934158955,
-      "upath": "https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg"
-  }
-  ]
 
-  const [listData, setListData] = React.useState(text);
+const List = ({item}) => (
+  <View style={styles.commoditylist}>
+        <TouchableOpacity
+          style={styles.commodityItem}
+          onPress={() => navigate('DetailsRoute')}>
+            {/* source={{ uri: item.pims }}  */}
+          <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像"/>
+          <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
+          <View style={styles.priceView}>
+            <View style={styles.priceStyle}>
+              <Icon
+                size={22}
+                color="#fa3d3c"
+                source={require('../../../../assets/images/coins-icon.png')}
+              />
+              <Text allowFontScaling={false} style={styles.priceNum}>{item.pprice}</Text>
+            </View>
+            <Text allowFontScaling={false} style={styles.priceTime}>{item.times}</Text>
+          </View>
+          <View style={styles.publisherView}>
+            <Avatar.Image
+              style={styles.publisherAvatar}
+              size={32}
+              source={{ uri: item.upath }}
+            />
+            <Text allowFontScaling={false} style={styles.publisherText}>{item.name}</Text>
+          </View>
+        </TouchableOpacity>
+</View>
+)
+const ProductView = () => {
+  const [listData, setListData] = React.useState([]);
+  const listData1 = [];
+  var [pageNo,setpageNo] = React.useState(1);
+  const [pageSize,setpageSize] = React.useState(12);
+  const [priceSort,setpriceSort] = React.useState("DESC");
+  const [PStatus,setPStatus] = React.useState("AUDIT");
+  const [timeSort,settimeSort] = React.useState("DESC");
 
   const postLikePress = async () => {
-    
     const product:productType = {
-      pageNo: 1,
-      pageSize: 5,
-      priceSort: "DESC",
-      PStatus: "AUDIT",
-      timeSort: "DESC",
+      pageNo:pageNo,
+      pageSize:pageSize,
+      priceSort:priceSort,
+      PStatus:PStatus,
+      timeSort:timeSort
     };
-
-    const hdz2 = {
-      pageNo: 1,
-      pageSize: 5,
-      schoolId: 1764,
-      TPubTimeSort:'ASC'
-    }
     const product2:productpType = {
       pname : '熊大',
       pdesc : '我是介绍',
@@ -257,41 +163,77 @@ const ProductView = () => {
     const productData2:any = await productApip(product2);
 
     const productData = await productApi(product);
-
-    // const hdz1:any = await postList(hdz2)
-
-    console.log('在这里', productData);
+    
+   
+    console.log('在这里', productData.data);
     console.log('打印试试', productData2);
-    console.log(hdz1,'houhouhou');
-    
-    
-    if (productData.code == 200) {
-      console.log('调取接口成功');
-      // setListData(text1)
-      console.log(productData.data);
-      // setListData(productData.data)
+    for (var i = 0; i < productData.data.length; i++) {
+      // 修改时间
+      var ele = '';
+      console.log(productData.data[i].pimgs.split(',')[0],'===================');
+      if(productData.data[i].pimgs.split(',')[1]) {
+        productData.data[i].pims = productData.data[i].pimgs.split(',')[0].split('[')[1]
+      }else {
+        productData.data[i].pims =  productData.data[i].pimgs 
+      }
+      
+      console.log('houhouhou///////',productData.data[i].pims,'分割',productData.data[i].pimgs);
+      const date = new Date( productData.data[i].ppubTime * 1000)
+      productData.data[i].times =  formatDate(date, 'yyyy/MM/dd')
+      // 修改数组里面的图片
     }
+    setListData(productData.data)
   }
   React.useEffect(() => {
-    for (var i = 0; i < text1.length; i++) {
+    for (var i = 0; i < listData.length; i++) {
+      // 修改时间
       var ele = '';
-      text1[i].pims = text1[i].pimgs.split(',')[0].split('[')[1]
-      // console.log('houhouhou',text1[i].pims,'分割',text1[i].pimgs);
-      const date = new Date( text1[i].ppubTime * 1000)
-      // text1[i].times =  formatDate(date, 'yyyy/MM/dd hh:mm:ss')
-      text1[i].times =  formatDate(date, 'yyyy/MM/dd')
-      // console.log('hahhaha',text1[i].times);
-      
+      listData[i].pims = listData[i].pimgs.split(',')[0].split('[')[1]
+      console.log('houhouhou///////',listData[i].pims,'分割',listData[i].pimgs);
+      const date = new Date( listData[i].ppubTime * 1000)
+      listData[i].times =  formatDate(date, 'yyyy/MM/dd')
+      // 修改数组里面的图片
+     
+
     }
-    setListData(text1)
+    setListData(listData)
     console.log('测试');
     postLikePress();
     console.log('在这里开始里面', listData);
 
   }, []); // 只在组件挂载时调用一次
-
-  // setListData(text1)
-  console.log('在这里开始外面', listData);
+  const onload = async() => {
+    // Alert.alert('已经到底部了') 
+    setpageNo(pageNo += 1)
+    console.log(pageNo,'pageNo');
+    const addData = await productApi({
+      pageNo:pageNo,
+      pageSize:pageSize,
+      priceSort:priceSort,
+      PStatus:PStatus,
+      timeSort:timeSort
+    });
+    console.log(addData,'我是下拉刷新的值，找我++++');
+    for (var i = 0; i < addData.data.length; i++) {
+      // 修改时间
+      var ele = '';
+      console.log(addData.data[i].pimgs.split(',')[0],'===================');
+      if(addData.data[i].pimgs.split(',')[1]) {
+        addData.data[i].pims = addData.data[i].pimgs.split(',')[0].split('[')[1]
+      }else {
+        addData.data[i].pims =  addData.data[i].pimgs 
+      }
+      
+      console.log('houhouhou///////',addData.data[i].pims,'分割',addData.data[i].pimgs);
+      const date = new Date( addData.data[i].ppubTime * 1000)
+      addData.data[i].times =  formatDate(date, 'yyyy/MM/dd')
+      // 修改数组里面的图片
+    }
+    const newlist = listData.concat(addData.data)
+    
+    
+    setListData(newlist)  
+  }
   return (
     <View style={styles.safeAreaStyle}>
       <Appbar.Header style={styles.headerStyle}>
@@ -330,48 +272,21 @@ const ProductView = () => {
         })}
       </View>
       <View style={styles.scrollView}>
-        <ScrollView style={styles.scrollStyle}>
-          <View style={styles.commoditylist}>
-            {
-              /* {listData ? */
-              listData.map(item => {
-                return (
-                  <TouchableOpacity
-                    style={styles.commodityItem}
-                    key={item.pid}
-                    onPress={() => navigate('DetailsRoute')}>
-                    <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片'/>
-                    <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
-                    <View style={styles.priceView}>
-                      <View style={styles.priceStyle}>
-                        <Icon
-                          size={22}
-                          color="#fa3d3c"
-                          source={require('../../../../assets/images/coins-icon.png')}
-                        />
-                        <Text allowFontScaling={false} style={styles.priceNum}>{item.pprice}</Text>
-                      </View>
-                      <Text allowFontScaling={false} style={styles.priceTime}>{item.times}</Text>
-                    </View>
-                    <View style={styles.publisherView}>
-                      <Avatar.Image
-                        style={styles.publisherAvatar}
-                        size={32}
-                        source={{ uri: item.upath }}
-                      />
-                      <Text allowFontScaling={false} style={styles.publisherText}>{item.name}</Text>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })
-              /* :
-              <View style={styles.zhong}>
-                <Text style={{ fontSize: 18, color: 'black', marginBottom: 20 }}>暂时没有商品.....</Text>
-                <Text>去其他地方看看吧！</Text>
-              </View> */
-            }
-          </View>
-        </ScrollView>
+        <FlatList
+        data={listData}
+        renderItem={({item}) => <List item={item} />}
+        keyExtractor={item => item.pid}
+        ListEmptyComponent={
+          <View style={styles.zhong}>
+          <Text style={{ fontSize: 18, color: 'black', marginBottom: 20 }}>暂时没有商品.....</Text>
+          <Text>去其他地方看看吧！</Text>
+        </View> 
+        }
+        onEndReachedThreshold={0.1}
+        onEndReached={
+          () => {onload()}
+        }
+      />
       </View>
     </View>
   );
@@ -439,7 +354,7 @@ const styles = StyleSheet.create({
     color: '#888',
   },
   commodityItem: {
-    width: '50%',
+    width: '100%',
     height: 320,
     marginBottom: 15,
     paddingHorizontal: '2%',

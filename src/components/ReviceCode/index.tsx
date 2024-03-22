@@ -16,7 +16,7 @@ const ReviceCode = () => {
        <View style={styles.parentBox}>
             <View style={styles.heng}>
                 <Text style={styles.h5}>您的好友赠送您:</Text>
-                <Image source={require('../../assets/images/tup/tyd.png')} style={styles.tyh} accessibilityLabel='图片'></Image>
+                <Image source={require('../../assets/images/tup/tyd.png')} style={styles.tyh} accessibilityLabel='图片' alt="头像"></Image>
             </View>
             <View style={{justifyContent:'center',
         alignItems:'center'}}>
@@ -27,7 +27,7 @@ const ReviceCode = () => {
             </View>
             <TouchableOpacity style={styles.btn} onPress={() =>freeGet()}>
                 <Text style={styles.h6}>免费领取</Text>
-                <Image source={require('../../assets/images/tup/能量豆.png')} style={styles.beanIcon} accessibilityLabel='图片'></Image>
+                <Image source={require('../../assets/images/tup/能量豆.png')} style={styles.beanIcon} accessibilityLabel='图片' alt="头像"></Image>
             </TouchableOpacity>
             <View style={styles.bigBox}>
                 <Text style={styles.h3}>新园豆是什么？</Text>

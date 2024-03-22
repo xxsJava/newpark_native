@@ -64,21 +64,25 @@ const DetailsView = () => {
                 source={require('../../../assets/images/banner1.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
+                alt="头像"
               />
               <Image
                 source={require('../../../assets/images/banner2.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
+                alt="头像"
               />
               <Image
                 source={require('../../../assets/images/banner3.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
+                alt="头像"
               />
               <Image
                 source={require('../../../assets/images/banner4.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
+                alt="头像"
               />
             </Swiper>
           </View>
@@ -137,6 +141,7 @@ const DetailsView = () => {
                   ]}
                   source={require('../../../assets/images/3.0x/collect.png')}
                   accessibilityLabel='图片'
+                  alt="头像"
                 />
                 <Image
                   style={[
@@ -145,6 +150,7 @@ const DetailsView = () => {
                   ]}
                   source={require('../../../assets/images/3.0x/goods_collect.png')}
                   accessibilityLabel='图片'
+                  alt="头像"
                 />
               </TouchableOpacity>
               <Text allowFontScaling={false} style={styles.controlLeftText}>收藏</Text>
@@ -166,6 +172,7 @@ const DetailsView = () => {
                   ]}
                   source={require('../../../assets/images/3.0x/goods_say.png')}
                   accessibilityLabel='图片'
+                  alt="头像"
                 />
               </TouchableOpacity>
               <Text allowFontScaling={false} style={styles.controlLeftText}>留言</Text>
@@ -232,7 +239,7 @@ const DetailsView = () => {
                   <View style={styles.commodityInformation}>
                     <Text allowFontScaling={false} style={styles.commodityTitle}>商品信息</Text>
                     <View style={styles.commodityContent}>
-                      <Image style={styles.commodityImage} source={require('../../../assets/images/alimom/R-C.jpg')} accessibilityLabel='图片'></Image>
+                      <Image style={styles.commodityImage} source={require('../../../assets/images/alimom/R-C.jpg')} accessibilityLabel='图片' alt="头像"></Image>
                       <View style={styles.commodityTextView}>
                         <Text allowFontScaling={false} style={styles.commodityName}>商品名称</Text>
                         <Text allowFontScaling={false} style={styles.commodityDescribe}>商品描述。。。。</Text>
@@ -245,14 +252,14 @@ const DetailsView = () => {
                     <Text allowFontScaling={false} style={styles.parenTitle}>支付方式</Text>
                     <View style={styles.paymentContent}>
                       <TouchableOpacity style={[styles.paymentItem, { borderColor: '#999', borderBottomWidth: 1 }]} onPress={() => onSelectedPress('selected1')} activeOpacity={1}>
-                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/wxzf_icon.png')} accessibilityLabel='图片'></Image>
+                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/wxzf_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                         <Text allowFontScaling={false} style={styles.paymentText}>微信支付</Text>
-                        <Image style={[styles.paymentIcon, selectedVal == 'selected1' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片'></Image>
+                        <Image style={[styles.paymentIcon, selectedVal == 'selected1' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                       </TouchableOpacity>
                       <TouchableOpacity style={styles.paymentItem} onPress={() => onSelectedPress('selected2')} activeOpacity={1}>
-                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/zfb_icon.png')} accessibilityLabel='图片'></Image>
+                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/zfb_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                         <Text allowFontScaling={false} style={styles.paymentText}>支付宝支付</Text>
-                        <Image style={[styles.paymentIcon, selectedVal == 'selected2' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片'></Image>
+                        <Image style={[styles.paymentIcon, selectedVal == 'selected2' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                       </TouchableOpacity>
                     </View>
                   </View>

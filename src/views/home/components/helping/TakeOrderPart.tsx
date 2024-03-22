@@ -17,7 +17,7 @@ const TakeOrderPart = ({ navigation }:any) => {
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigation.goBack()}></Appbar.Action>
                 <TouchableOpacity style={{marginRight:10}}>
-                    <Image source={require('../../../../assets/images/order_kefu.png')} accessibilityLabel='图片'></Image>
+                    <Image source={require('../../../../assets/images/order_kefu.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </TouchableOpacity>
             </Appbar.Header>
             <ScrollView style={styles.scrollStyle}>
@@ -25,7 +25,7 @@ const TakeOrderPart = ({ navigation }:any) => {
                     <View style={styles.mapView}></View>
                     <View style={styles.orderAvatarView}>
                         <View style={styles.avatarView}>
-                           <Avatar.Image size={60} source={require('../../../../assets/images/avatar-nan.png')} accessibilityLabel='图片'></Avatar.Image>
+                           <Avatar.Image size={60} source={require('../../../../assets/images/avatar-nan.png')} accessibilityLabel='图片' alt="头像"></Avatar.Image>
                         </View>
                         <View style={styles.avatarTextView}>
                             <Text allowFontScaling={false} style={styles.avatarName}>我是老六</Text>
@@ -35,13 +35,13 @@ const TakeOrderPart = ({ navigation }:any) => {
                     <View style={styles.itemView}>
                         <Text allowFontScaling={false} style={styles.itemLabel}>悬赏金额:</Text>
                         <Text allowFontScaling={false} style={[styles.itemContent,styles.itemColor]}>20.0</Text>
-                        <Image style={styles.itemIcon} source={require('../../../../assets/images/yuan_icon.png')} accessibilityLabel='图片'></Image>
+                        <Image style={styles.itemIcon} source={require('../../../../assets/images/yuan_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                     </View>
                     <View style={styles.itemView}>
                         <Text allowFontScaling={false} style={styles.itemLabel}>联系电话:</Text>
                         <Text allowFontScaling={false} style={styles.itemContent}>12345678901</Text>
                         <TouchableOpacity activeOpacity={0.5}>
-                            <Image style={styles.itemIcon} source={require('../../../../assets/images/phone_icon.png')} accessibilityLabel='图片'></Image>
+                            <Image style={styles.itemIcon} source={require('../../../../assets/images/phone_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.remarksView}>
@@ -50,14 +50,14 @@ const TakeOrderPart = ({ navigation }:any) => {
                     </View>
                     <View style={styles.releaseAvatarView}>
                         <View style={styles.avatarView}>
-                           <Avatar.Image size={60} source={require('../../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'></Avatar.Image>
+                           <Avatar.Image size={60} source={require('../../../../assets/images/avatar-nv.png')} accessibilityLabel='图片' alt="头像"></Avatar.Image>
                         </View>
                         <View style={styles.avatarTextView}>
                             <Text allowFontScaling={false} style={styles.avatarName}>联系发布人</Text>
                             <Text allowFontScaling={false} style={styles.avatarSchool}>张三</Text>
                         </View>
                         <TouchableOpacity activeOpacity={0.5}>
-                            <Image style={[styles.itemIcon,{marginTop:30}]} source={require('../../../../assets/images/phone_icon.png')} accessibilityLabel='图片'></Image>
+                            <Image style={[styles.itemIcon,{marginTop:30}]} source={require('../../../../assets/images/phone_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                         </TouchableOpacity>
                     </View>
                 </View>

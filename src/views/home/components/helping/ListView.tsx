@@ -16,7 +16,7 @@ import { navigate } from '../../../../config/routs/NavigationContainer';
 import { rewardListApi } from '../../../../api/sys/reward';
 import { rewardListType } from '../../../../api/sys/reward/types';
 import { dateToMsgTime } from '../../../../components/Rests/TconTime';
-
+import {Alert, FlatList} from 'react-native'
 // 模态框引入的文件
 import React, { useState } from 'react';
 import {
@@ -38,12 +38,63 @@ import { rewardPublishType } from '../../../../api/sys/reward/types'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const rewardType: rewardListType = {
-  pageNo: 1,
-  pageSize: 20,
-};
+const Module = ({ item }) => (
+  <View style={styles.itemStyle} key={item.rid}>
+  <View style={styles.avatarView}>
+    <Image
+        style={styles.avatarStyle}
+        source={{
+          uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg',
+        }}
+        accessibilityLabel='头像'
+        alt="头像"
+      />
 
+    <View style={styles.stateStyle} />
+    <Text allowFontScaling={false} style={styles.timeStyle}>
+      {dateToMsgTime(item.startTime - item.endTime)}
+    </Text>
+  </View>
+  <View style={styles.textView}>
+    <Text
+      allowFontScaling={false}
+      style={styles.textStyle1}
+      numberOfLines={1}
+      ellipsizeMode="tail">
+      {item.rtitle}
+    </Text>
+  </View>
+  <View style={styles.detailsView}>
+    <View style={styles.moneyView}>
+      <View style={styles.moneyIcon}>
+        <Icon
+          color="#FABA3C"
+          size={34}
+          source={require('../../../../assets/images/coins-icon.png')}
+        />
+      </View>
+      <Text allowFontScaling={false} style={styles.moneySum}>
+        {item.rmoney}
+      </Text>
+    </View>
+    <Button
+      style={styles.buttonStyle}
+      labelStyle={styles.buttonText}
+      // 页面传参的方法
+      onPress={() => navigate('RewardDetailsRoute', { item })}>
+      查看详情
+    </Button>
+  </View>
+</View>
+);
 const ListView = () => {
+  const [allData,setAllData] = useState([]);
+
+  var [conu, setConu] = useState(1)
+  const rewardType: rewardListType = {
+  pageNo: conu,
+  pageSize: 9,
+  };
   // 悬赏发布
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -77,67 +128,70 @@ const ListView = () => {
   }
   // 悬赏预览
   const [rewardData, rewardDataChange] = React.useState([]);
-  // const rewardData = RewardApi()
+  const [refreshing, setRefreshing] = useState(false);
   // console.log('悬赏浏览获取',rewardData)
-  const RewardApi = async () => {
+  const RewardApi = async (arr:rewardListType) => {
     // console.log('悬赏token',tokenStr)
-    const rewardList = await rewardListApi(rewardType);
+    console.log('执行了下拉刷新。。。。。');
+    console.log(rewardType);
+    const rewardList = await rewardListApi(arr);
+    if(rewardList.data.length == 0) {
+      setConu(2)
+    }
     console.log('帮忙圈', rewardList);
-    rewardDataChange(rewardList.data.reverse())
+    var tips = rewardData.concat(rewardList.data).reverse();
+    setAllData(tips);
+    console.log(allData,'...............');
+    
+    rewardDataChange(tips)
   };
   React.useEffect(() => {
-    RewardApi();
+    RewardApi(
+     { pageNo: conu,
+      pageSize: 9 }
+    );
   }, []); // 只在组件挂载时调用一次
   console.log('悬赏浏览获取', rewardData);
+  setTimeout(()=> {
+    setRefreshing(false);
+  },1000)
   const [modalVisible, setModalVisible] = useState(false);
+  const onload = () => {
+  
+    setConu(conu ++);
+    const data = RewardApi(
+      { pageNo: conu,
+        pageSize: 5 
+      })
+      console.log(data,'wozaizheli=========');
+      
+  };
+  const onRefresh = React.useCallback(() => {
+    console.log('下拉刷新。。。。。。。');
+    setRefreshing(true);
+    setConu(conu ++);
+    RewardApi(
+      { pageNo: conu,
+        pageSize: 5 
+      })
+    console.log(conu,'看看每次打印的数据是否不同'); 
+  },[]);
   return (
     <View style={styles.parentLevel}>
       <ScrollView style={styles.scrollStyle}>
         <View style={styles.listStyle}>
-          {rewardData.map((item: any) => {
-            return (
-              <View style={styles.itemStyle} key={item.rid}>
-                <View style={styles.avatarView}>
-                  <View style={styles.avatarStyle} />
-                  <View style={styles.stateStyle} />
-                  <Text allowFontScaling={false} style={styles.timeStyle}>
-                    {dateToMsgTime(item.startTime - item.endTime)}
-                  </Text>
-
-                </View>
-                <View style={styles.textView}>
-                  <Text
-                    allowFontScaling={false}
-                    style={styles.textStyle1}
-                    numberOfLines={1}
-                    ellipsizeMode="tail">
-                    {item.rtitle}
-                  </Text>
-                </View>
-                <View style={styles.detailsView}>
-                  <View style={styles.moneyView}>
-                    <View style={styles.moneyIcon}>
-                      <Icon
-                        color="#FABA3C"
-                        size={34}
-                        source={require('../../../../assets/images/coins-icon.png')}
-                      />
-                    </View>
-                    <Text allowFontScaling={false} style={styles.moneySum}>
-                      {item.rmoney}
-                    </Text>
-                  </View>
-                  <Button
-                    style={styles.buttonStyle}
-                    labelStyle={styles.buttonText}
-                    // 页面传参的方法
-                    onPress={() => navigate('RewardDetailsRoute', { item })}>
-                    查看详情
-                  </Button>
-                </View>
-              </View>
-            );
-          })}
+      <FlatList
+        data={rewardData}
+        renderItem={({item}) => <Module item={item} />}
+        keyExtractor={item => item.rid}
+        // onRefresh={onRefresh}
+        onRefresh={ onRefresh}
+        refreshing={refreshing}
+        onEndReachedThreshold={0.1}
+        onEndReached={() => {
+          onload()
+        }}
+      />
         </View>
       </ScrollView>
       <TouchableOpacity
@@ -147,6 +201,7 @@ const ListView = () => {
           style={styles.addStyle}
           source={require('../../../../assets/images/3.0x/add_btn.png')}
           accessibilityLabel='发布悬赏'
+          alt="头像"
         />
       </TouchableOpacity>
 
@@ -168,6 +223,7 @@ const ListView = () => {
                 style={styles.avatarStyle1}
                 source={require('../../../../assets/images/defaultheader.png')}
                 accessibilityLabel='头像'
+                alt="头像"
               />
             </VStack>
           </ModalHeader>
@@ -191,6 +247,7 @@ const ListView = () => {
                 style={styles.inputImage}
                 source={require('../../../../assets/images/alimom/frame1.png')}
                 accessibilityLabel='标题'
+                alt="头像"
               />
               <View>
                 <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000' }}>
@@ -216,7 +273,7 @@ const ListView = () => {
               </View>
             </View>
             <View style={styles.heng}>
-              <Image source={require('../../../../assets/images/money_icon1.png')} style={{ width: 20, height: 20 }} accessibilityLabel='赏金' />
+              <Image source={require('../../../../assets/images/money_icon1.png')} style={{ width: 20, height: 20 }} accessibilityLabel='赏金' alt="头像"/>
               <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000', marginLeft: 8 }}>
                 赏金
               </Text>
@@ -224,7 +281,7 @@ const ListView = () => {
             <Input size="md" bgColor="#FAE6CE" variant="underlined" alignItems="center" style={{ height: 50 }}>
               <InputField placeholder="请输入赏金" value={monrew} onChangeText={(e: any) => { setMonrew(e) }} textAlign="center" />
               <Text style={{ fontSize: 19, fontWeight: 'bold', marginRight: 8 }}>元</Text>
-              <Image source={require('../../../../assets/images/moneyBag.png')} style={{ width: 32, height: 32, marginRight: 4 }} accessibilityLabel='赏金' />
+              <Image source={require('../../../../assets/images/moneyBag.png')} style={{ width: 32, height: 32, marginRight: 4 }} accessibilityLabel='赏金' alt="头像"/>
             </Input>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
               <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000', marginLeft: 8 }}>
@@ -235,7 +292,7 @@ const ListView = () => {
                   {/* setTimes1 */}
                   <SelectInput placeholder="请选择" textAlign="center" marginTop={9} 
                   />
-                  <Image source={require('../../../../assets/images/chevron-right.png')} style={{ width: 22, height: 22, marginRight: 20 }} accessibilityLabel='箭头'/>
+                  <Image source={require('../../../../assets/images/chevron-right.png')} style={{ width: 22, height: 22, marginRight: 20 }} accessibilityLabel='箭头' alt="头像"/>
                 </SelectTrigger>
                 <SelectPortal>
                   <SelectBackdrop />
@@ -335,9 +392,7 @@ const styles = StyleSheet.create({
   modalBox: {
     height: windowHeight * 0.8,
     position: 'absolute',
-    bottom: -130,
-    // justifyContent:'flex-end',
-    // alignItems:'flex-end'
+    bottom: -130
   },
   contentView: {
     width: windowWidth - 4,
@@ -511,8 +566,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   avatarStyle: {
-    width: 64,
-    height: 64,
+    width: 59,
+    height: 59,
     top: 20,
     left: 10,
     borderRadius: 32,

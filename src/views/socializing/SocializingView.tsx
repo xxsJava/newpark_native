@@ -118,7 +118,7 @@ const SocializingView = () => {
         <View style={[styles.moreModule,more?null:{display:'none'}]}>
               <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
                 <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片'></Image>
+                  <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </View>
                 <View style={styles.itemTextView}>
                   <Text allowFontScaling={false} style={styles.itemText}>添加牛友</Text>
@@ -126,7 +126,7 @@ const SocializingView = () => {
               </TouchableOpacity>
               <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('Addcomm')}>
                 <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')} accessibilityLabel='图片'></Image>
+                  <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </View>
                 <View style={styles.itemTextView}>
                   <Text allowFontScaling={false} style={styles.itemText}>加入社区</Text>
@@ -134,7 +134,7 @@ const SocializingView = () => {
               </TouchableOpacity>
               <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
                 <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={require('../../assets/images/tup/wanle.png')} accessibilityLabel='图片'></Image>
+                  <Image style={styles.itemImage} source={require('../../assets/images/tup/wanle.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </View>
                 <View style={styles.itemTextView}>
                   <Text allowFontScaling={false} style={styles.itemText}>创建社区</Text>
@@ -142,7 +142,7 @@ const SocializingView = () => {
               </TouchableOpacity>
               <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('Apply')}>
                 <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片'></Image>
+                  <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </View>
                 <View style={styles.itemTextView}>
                   <Text style={styles.hytb}>1</Text>

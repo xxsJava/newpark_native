@@ -21,6 +21,7 @@ const DisplayAnImage = () => {
         style={styles.logo}
         source={require('../../assets/images/static/空空如也.png')}
         accessibilityLabel='图片'
+        alt="头像"
       />
       <View
         style={{

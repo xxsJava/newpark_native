@@ -32,6 +32,7 @@ const DisplayAnImage = () => {
                 style={styles.logo}
                 source={require('../../assets/images/static/写下你的看法.png')}
                 accessibilityLabel='图片'
+                alt="头像"
             />
             <View
                 style={{

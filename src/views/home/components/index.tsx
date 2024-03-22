@@ -75,7 +75,7 @@ const windowHeight = Dimensions.get('window').height;
                 source={{ uri: item.upath }} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchaOp} onPress={() =>{ console.log('点击--关注用户')}}>
-              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')} accessibilityLabel='图片'></Image>
+              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')} accessibilityLabel='图片' alt="头像"></Image>
             </TouchableOpacity>
           </View>
           <View style={styles.titleView}>
@@ -200,7 +200,7 @@ const windowHeight = Dimensions.get('window').height;
         })}
       </View>
       <View style={styles.leaveWordView}>
-        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'/>
+        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片' alt="头像"/>
         <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
       </View>
     </Card>

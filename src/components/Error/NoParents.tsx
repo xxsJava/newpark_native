@@ -33,6 +33,7 @@ const DisplayAnImage = () => {
                 style={styles.logo}
                 source={require('../../assets/images/static/联系管理员.png')}
                 accessibilityLabel='图片'
+                alt="头像"
             />
             <View
                 style={{

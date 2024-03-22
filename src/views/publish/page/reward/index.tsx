@@ -39,7 +39,7 @@ const RewardView = () => {
                                     </LinearGradinet>
                                     <View style={styles.inputView}>
                                         <View style={styles.inputImageView}>
-                                            <Image style={styles.inputImage} source={require('../../../../assets/images/alimom/frame1.png')} accessibilityLabel='图片'></Image>
+                                            <Image style={styles.inputImage} source={require('../../../../assets/images/alimom/frame1.png')} accessibilityLabel='图片' alt="头像"></Image>
                                         </View>
                                         <View style={styles.inputContent}>
                                             <Text allowFontScaling={false} style={styles.inputText}>标题</Text>
@@ -50,12 +50,12 @@ const RewardView = () => {
                                     </View>
                                     <View style={styles.bountyView}>
                                         <View style={styles.bountyIconView}>
-                                            <Image style={styles.bountyIcon} source={require('../../../../assets/images/money_icon1.png')} accessibilityLabel='图片'></Image>
+                                            <Image style={styles.bountyIcon} source={require('../../../../assets/images/money_icon1.png')} accessibilityLabel='图片' alt="头像"></Image>
                                             <Text allowFontScaling={false} style={styles.bountyText}>赏金</Text>
                                         </View>
                                         <View style={styles.bountyNumView}>
                                             <TextInput allowFontScaling={false} selectionColor='#FABA3C' style={styles.bountyInput}></TextInput>
-                                            <Image style={styles.bountyNumIcon} source={require('../../../../assets/images/moneyBag.png')} accessibilityLabel='图片'></Image>
+                                            <Image style={styles.bountyNumIcon} source={require('../../../../assets/images/moneyBag.png')} accessibilityLabel='图片' alt="头像"></Image>
                                         </View>
                                         <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => console.log('点击发布')}>发布悬赏</Button>
                                     </View>

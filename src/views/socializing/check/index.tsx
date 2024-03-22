@@ -59,6 +59,7 @@ function MessageList(props: { items: any; receiver: any }) {
               size={34}
               source={{ uri: item.senderFaceUrl }}
               accessibilityLabel='图片'
+              alt="头像"
             />
             <View
               style={[
@@ -89,6 +90,7 @@ function MessageList(props: { items: any; receiver: any }) {
                 ]}
                 source={item.messageImage}
                 accessibilityLabel='图片'
+                alt="头像"
               /> */}
             </View>
             <Avatar.Image

@@ -40,14 +40,14 @@ const Gender: React.FC<RegisteredScreenProps> = () => {
             </Appbar.Header>
             <View style={styles.sexView}>
                 <TouchableOpacity activeOpacity={0.8} style={[styles.sexItem, styles.sexBottom]} onPress={() => confirmOnPress('sex0')}>
-                    <Image style={styles.sexImage} source={require('../../../../assets/gif/sex1.gif')} accessibilityLabel='图片'></Image>
-                    <Image style={[styles.sexIcon, styles.sexIcon0]} source={require('../../../../assets/images/alimom/sex_icon0.png')} accessibilityLabel='图片'></Image>
-                    <Image style={[styles.confirmIcon, confirmVal == 'sex0' ? null : { display: 'none' }]} source={require('../../../../assets/images/alimom/confirm_icon.png')} accessibilityLabel='图片'></Image>
+                    <Image style={styles.sexImage} source={require('../../../../assets/gif/sex1.gif')} accessibilityLabel='图片' alt="头像"></Image>
+                    <Image style={[styles.sexIcon, styles.sexIcon0]} source={require('../../../../assets/images/alimom/sex_icon0.png')} accessibilityLabel='图片' alt="头像"></Image>
+                    <Image style={[styles.confirmIcon, confirmVal == 'sex0' ? null : { display: 'none' }]} source={require('../../../../assets/images/alimom/confirm_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8} style={styles.sexItem} onPress={() => confirmOnPress('sex1')}>
-                    <Image style={styles.sexImage} source={require('../../../../assets/gif/sex0.gif')} accessibilityLabel='图片'></Image>
-                    <Image style={[styles.sexIcon, styles.sexIcon1]} source={require('../../../../assets/images/alimom/sex_icon1.png')} accessibilityLabel='图片'></Image>
-                    <Image style={[styles.confirmIcon, confirmVal == 'sex1' ? null : { display: 'none' }]} source={require('../../../../assets/images/alimom/confirm_icon.png')} accessibilityLabel='图片'></Image>
+                    <Image style={styles.sexImage} source={require('../../../../assets/gif/sex0.gif')} accessibilityLabel='图片' alt="头像"></Image>
+                    <Image style={[styles.sexIcon, styles.sexIcon1]} source={require('../../../../assets/images/alimom/sex_icon1.png')} accessibilityLabel='图片' alt="头像"></Image>
+                    <Image style={[styles.confirmIcon, confirmVal == 'sex1' ? null : { display: 'none' }]} source={require('../../../../assets/images/alimom/confirm_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </TouchableOpacity>
             </View>
             <View style={styles.btn}>

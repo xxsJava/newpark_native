@@ -42,7 +42,7 @@ const PunchCardScreen = () => {
                 </CalendarList>
                 <TouchableHighlight onPress={onPress}>
                     <View style={styles.button}>
-                    <Image source={require('../../../../assets/images/tup/fanhui.png')} style={styles.back} accessibilityLabel='图片'></Image>
+                    <Image source={require('../../../../assets/images/tup/fanhui.png')} style={styles.back} accessibilityLabel='图片' alt="头像"></Image>
                         <Text style={styles.backFont}>返回</Text>
                     </View>
                 </TouchableHighlight>
