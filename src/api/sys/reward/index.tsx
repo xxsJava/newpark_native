@@ -1,3 +1,4 @@
+
 /**
  * 代码描述: 悬赏功能api
  * 作者:cxr
@@ -5,7 +6,7 @@
  */
 
 import request from '../../../config/axios';
-import {rewardListType,rewardPublishType} from './types'
+import { rewardListType, rewardPublishType } from './types';
 
 
 /**
@@ -27,6 +28,6 @@ export const rewardListApi = (data:rewardListType): Promise<IResponse> => {
 // body传参
 export const rewardPublishApi = (data:rewardPublishType): Promise<IResponse> => {
   return request.post({
-    url: '/reward/rewardApi',data
+    url: '/reward/rewardApi', data
   });
 };
