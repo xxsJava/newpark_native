@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 import { navigate } from '../../../config/routs/NavigationContainer';
-
+import { getUseList } from '../../../api/imApi/index'
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
 type DataSection = {title: string; data: DataItem[]};
@@ -28,7 +28,25 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
+  const data = {
+    pagination: {
+      pageNumber: 1,
+      showNumber: 100
+    }
+  }
+
+  const listData = async () => {
+    const ListDataAPI = await getUseList(data);
+    console.log('ListDataAPI 在这里',ListDataAPI)
+}
+
+React.useEffect(() => {
+  console.log('11============');
   
+  listData()
+}, []); // 只在组件挂载时调用一次
+
+
   //索引条
   return (
     <View style={styles.indexBarStyle}>

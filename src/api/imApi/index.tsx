@@ -5,7 +5,7 @@
 * 创建时间:2024/01/04 16:06:58
 */
 import request from '../../config/axios';
-
+// import {dataList} from './type';
 /**
  * 获取OpenIm配置
  */
@@ -34,4 +34,10 @@ export const sendMsg = (params:any): Promise<IResponse> =>{
         url: '/api/msg/send_msg',
         data: params
     });
+}
+
+export const getUseList = (data:any): Promise<IResponse> =>{
+        return request.post({
+            url:'/user/get_users',data
+        })
 }

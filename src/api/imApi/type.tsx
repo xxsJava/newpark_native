@@ -1,3 +1,4 @@
+import { number, object } from "prop-types";
 import { Platform } from "react-native";
 
 /*
@@ -62,3 +63,9 @@ export const MsgInfoSendJson:MsgInfoSend = {
     content: ''
   }
 }
+
+// export const dataList =  {
+//     pagination: object,
+//     pageNumber: number,
+//     showNumber: number
+// }

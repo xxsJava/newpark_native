@@ -137,5 +137,4 @@ const styles = StyleSheet.create({
     left:80
   }
 });
-
 export default App;

@@ -45,7 +45,7 @@ const  HelpCircleView = () => {
                 </Text>
             </Appbar.Header>
             <View style={styles.typeView}>
-                <Text allowFontScaling={false} style={styles.typeTitle}>排序方式</Text>
+                <Text allowFontScaling={false} style={styles.typeTitle}>排序方式11</Text>
                 <View style={styles.typeRight}>
                     <Text allowFontScaling={false} style={styles.typeText}>时间排序</Text>
                     <Entypo style={styles.typeIcon} size={16} name='chevron-thin-right'></Entypo>
