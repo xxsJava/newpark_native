@@ -31,3 +31,7 @@ export const rewardPublishApi = (data:rewardPublishType): Promise<IResponse> => 
     url: '/reward/rewardApi', data
   });
 };
+  /**
+ * 单条条件浏览悬赏api
+ * @returns
+ */

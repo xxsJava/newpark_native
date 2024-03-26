@@ -88,6 +88,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
     const loginAPI = await loginApi(usrData);
     OpenIMConfig.userID = loginAPI.data.uId;
+
     console.log('OPENIMCONFIG------------->',OpenIMConfig);
 
     //用户不存在自动注册
@@ -106,7 +107,8 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     } else if (loginAPI.code === 200) {
       //用户token存本地
       Storage.set('usr-token', loginAPI.data.usrToken);
-      
+      // 本地存储存uId
+      Storage.set('usr-uId',loginAPI.data.uId)
       const openIMRes = await getOpenIMConfig(OpenIMConfig);
       console.log('获取到Open-IM-token1---->', openIMRes.data.token);
       Storage.set('openim-token',openIMRes.data.token);

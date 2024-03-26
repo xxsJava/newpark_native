@@ -158,18 +158,17 @@ const MineVIew = () => {
 
   return (
     <>
-      {/* <Appbar.Header style={styles.appbarStyle}> */}
-      <Appbar.BackAction onPress={() => navigate('MineStacker')} />
-      {/* </Appbar.Header> */}
+     <View style={{flexDirection:'row'}}>
+     <Appbar.BackAction onPress={() => navigate('MineStacker')} />
+      <View style={{justifyContent:'center',alignItems:'flex-end'}}>
+        <Text style={{fontSize:16,color:'#000',fontWeight:'bold'}}>个人页面</Text>
+      </View>
+     </View>
       <SafeAreaView style={styles.safeStyle}>
         <View>
           <ScrollView style={styles.bgTop}>
             <View >
-              {/* <ImageBackground
-              style={styles.bgImage}
-              blurRadius={7}
-              source={require('../../../assets/images/tup/xrk.png')}
-            > */}
+             
               <View style={[styles.heng, styles.boxnNav]}>
                 <View style={styles.heng}>
                   {
@@ -268,8 +267,6 @@ const MineVIew = () => {
                           <Text style={styles.price}> {item.price}</Text>
                           <Text style={styles.unit}>元/个</Text>
                         </View>
-
-                        {/* </View> */}
                       </View>
                       <View style={[item.type == '悬赏' ? styles.xian : styles.hidd, styles.litBoxBZ]}>
                         {/* <View style={styles.litBoxBZ}> */}
@@ -287,7 +284,6 @@ const MineVIew = () => {
                         <Text style={styles.fontY}>{item.type}</Text>
                       </View>
                     </View>
-                    // </View>
                   }
                   )
                   }

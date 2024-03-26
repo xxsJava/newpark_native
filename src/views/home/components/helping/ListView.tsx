@@ -12,7 +12,6 @@ import {
   onChange
 } from "@gluestack-ui/themed";
 import { navigate } from '../../../../config/routs/NavigationContainer';
-// import { Image } from "react-native-animatable";
 import { rewardListApi } from '../../../../api/sys/reward';
 import { rewardListType } from '../../../../api/sys/reward/types';
 import { dateToMsgTime } from '../../../../components/Rests/TconTime';
@@ -22,7 +21,6 @@ import React, { useState } from 'react';
 import {
   Dimensions,
   Platform,
-  ScrollView,
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
@@ -35,7 +33,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Module = ({ item }) => (
-  <View style={styles.itemStyle} key={item.rid + item.uid}>
+  <View style={styles.itemStyle} key={item.index}>
     <View style={styles.avatarView}>
       <Image
         style={styles.avatarStyle}
@@ -83,7 +81,14 @@ const Module = ({ item }) => (
     </View>
   </View>
 );
-const ListView = () => {
+const ListView = (data:boolean) => {
+  if(data) {
+    console.log('正序');
+    
+  }else {
+    console.log('倒序');
+    
+  }
   const [allData, setAllData] = useState([]);
   var [conu, setConu] = useState(1);
   // 悬赏发布
@@ -117,14 +122,18 @@ const ListView = () => {
   // 悬赏预览
   const [rewardData, rewardDataChange] = React.useState([]);
   const [refreshing, setRefreshing] = useState(false);
+
   const RewardApi = async (arr: rewardListType) => {
     const rewardList = await rewardListApi(arr);
-    var tips = rewardData.concat(rewardList.data);
+    console.log(rewardList,'---------------------');
+    
+    var tips = allData.concat(rewardList.data);
     console.log(tips, '我是每次列表的值==========');
     setAllData(tips);
   };
 
   React.useEffect(() => {
+    // Alert.alert('一开始')
     // 首先执行这个渲染页面
     RewardApi({
       pageNo: 1,
@@ -133,30 +142,36 @@ const ListView = () => {
   }, []); // 只在组件挂载时调用一次
 
   const onload = async () => {
-    Alert.alert('加载中11.....')
-    setConu(conu++);
+    // Alert.alert('加载中11.....')
+    setConu(conu += 1);
     const rewardList = await rewardListApi(
-      {pageNo: conu,
-      pageSize: 9}
+      {
+        pageNo: conu,
+        pageSize: 9
+      }
     );
-    var tips = rewardData.concat(rewardList.data);
-    console.log(tips, '我是每次列表的值==========');
+    var tips = allData.concat(rewardList.data);
+    console.log(tips, '我是每次列表的值==========',conu);
     setAllData(tips);
   };
 
-  const onRefresh = async() => {
+  const onRefresh = async () => {
+    
     setRefreshing(false);
+    setConu(conu == 1);
     const rewardList = await rewardListApi(
-      {pageNo: conu,
-      pageSize: 9}
+      {
+        pageNo: conu,
+        pageSize: 9
+      }
     );
     var tips = rewardData.concat(rewardList.data);
-    console.log(tips, '我是每次列表的值==========');
+    console.log(tips, '我是每次列表的值==========',conu)
     setAllData(tips);
   }
   return (
     <View style={styles.parentLevel}>
-      <ScrollView style={styles.scrollStyle}>
+      {/* <ScrollView style={styles.scrollStyle}> */}
         <View style={styles.listStyle}>
           <FlatList
             data={allData}
@@ -166,8 +181,8 @@ const ListView = () => {
                 <Text>没有发布悬赏，请稍后再来看看吧！</Text>
               </View>
             }
-            keyExtractor={(item) => item.rid + item.uid}
-            // onRefresh={onRefresh}
+            keyExtractor={(item) => item.rid}
+            onRefresh={onRefresh}
             refreshing={refreshing}
             onEndReachedThreshold={0.01}
             onEndReached={() => {
@@ -175,7 +190,7 @@ const ListView = () => {
             }}
           />
         </View>
-      </ScrollView>
+      {/* </ScrollView> */}
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => setModalVisible(true)}>
@@ -311,7 +326,6 @@ const ListView = () => {
                 // }}
                 onPress={() => { getPubRew() }}
                 style={{ backgroundColor: '#FDAA00', borderRadius: 10, marginTop: 20, height: 46, justifyContent: 'center' }}
-
               >
                 <ButtonText>发布悬赏</ButtonText>
               </Button>
@@ -320,7 +334,6 @@ const ListView = () => {
             </VStack>
           </ModalBody>
           <ModalFooter borderTopWidth='$0' >
-
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -454,13 +467,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  bountyView: {},
   bountyIconView: {
     height: 30,
     paddingLeft: 20,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    // backgroundColor:'red'
+    justifyContent: 'flex-start'
   },
   bountyIcon: {
     width: 22,
@@ -538,7 +549,7 @@ const styles = StyleSheet.create({
   },
   listStyle: {
     marginTop: 0,
-    paddingBottom:20
+    paddingBottom: 20
   },
   itemStyle: {
     width: windowWidth,
