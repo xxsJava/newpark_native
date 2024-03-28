@@ -17,3 +17,7 @@ export type rewardPublishType = {
     rtitle:string,
     startTime:number
 }
+// 单条条件浏览悬赏API
+export type rewardOneApiType = {
+    uid:number
+}

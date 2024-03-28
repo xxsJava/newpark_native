@@ -130,12 +130,12 @@ export default class SetUp extends Component {
                                     <Entypo style={styles.itemIcon} color='#000' size={16} name="chevron-thin-right"></Entypo>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => reguser()}>
+                            {/* <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => reguser()}>
                                 <Text allowFontScaling={false} style={styles.itemText}>注册用户</Text>
                                 <View style={styles.itemIconView}>
                                     <Entypo style={styles.itemIcon} color='#000' size={16} name="chevron-thin-right"></Entypo>
                                 </View>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                             <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => logOut()}>
                                 <Text allowFontScaling={false} style={[styles.itemText, { color: 'red' }]}>退出登录</Text>
                                 <View style={styles.itemIconView}>
