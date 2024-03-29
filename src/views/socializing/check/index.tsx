@@ -236,7 +236,6 @@ function MessageList(props: { items: any; receiver: any }) {
 
   return (
     <>
-      {/* <StatusBar barStyle="dark-content"/> */}
       <Appbar.Header style={styles.appbarStyle}>
         <Appbar.BackAction onPress={() => navigate('SocializingStacker')} />
         <View style={styles.avatarView}>
@@ -255,13 +254,6 @@ function MessageList(props: { items: any; receiver: any }) {
       </Appbar.Header>
       <KeyboardAvoidingView behavior="position" enabled>
         <SafeAreaView style={styles.mainContent}>
-          {/* <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={text => setReceiver(text)}
-                    placeholder={'聊天人姓名'}
-                    value={s}
-                    onSubmitEditing={sendDo}
-                /> */}
                 <ScrollView  
                     ref={scrollViewRef}
                     onContentSizeChange={handleContentSizeChange}
@@ -407,15 +399,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -20,
     color: '#666',
-    // fontWeight: 'bold',
-    marginLeft: 'auto',
-    // // 改动
-    // minWidth:80,
-    // overflow:'hidden'
-  },
-  chatTimeStamp: {
-    marginLeft: 10,
-    fontSize: 12,
+    marginLeft: 'auto'
   },
   avatarView: {
     width: '70%',
@@ -456,7 +440,6 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
         shadowRadius: 3.5,
-        // marginBottom:-30,
       },
       android: {
         elevation: 10,
@@ -496,6 +479,3 @@ const styles = StyleSheet.create({
   },
 });
 
-// function setData(newArr: any[]) {
-//   throw new Error('Function not implemented.');
-// }

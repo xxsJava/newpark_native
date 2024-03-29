@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
   },
   nav: {
     flex: 0.1,
-    // backgroundColor: '#fff',
     marginTop: Platform.OS === 'ios'?'0%':'10%'
   },
   navTime: {
@@ -155,7 +154,6 @@ const styles = StyleSheet.create({
   },
   footer: {
     width: '100%',
-    // backgroundColor: '#fff',
     position: 'absolute',
     bottom: '4%',
   },

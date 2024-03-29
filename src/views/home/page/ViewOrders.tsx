@@ -97,9 +97,6 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'auto'
     },
-    stepBarView:{
-        height:50
-    },
     personalView:{
         height:90,
         borderWidth:1,
@@ -111,15 +108,13 @@ const styles = StyleSheet.create({
         width:'25%',
         height:90,
         alignItems:'center',
-        paddingVertical:12,
-        // backgroundColor:'red'
+        paddingVertical:12
     },
     personalRight:{
         width:'70%',
         height:90,
         paddingRight:20,
-        paddingVertical:20,
-        // backgroundColor:'green'
+        paddingVertical:20
     },
     personalName:{
         fontSize:16,

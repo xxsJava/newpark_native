@@ -72,7 +72,7 @@ const CollectionView = () => {
         </RadioGroup>
       </View>
       <View style={styles.listView}>
-        <View style={styles.optionStyle}>
+        <View>
           {itemData.map(item => {
             return (
               <View style={styles.optionItem} key={item.index}>
@@ -133,23 +133,17 @@ const styles = StyleSheet.create({
     lineHeight: 45,
     textAlign: 'center',
   },
-  radioStyle: {
-    color: '#FABA3C',
-  },
   listView: {
     width: windowWidth,
     height: windowHeight - 50,
     paddingTop: 15,
     paddingHorizontal: 10,
   },
-  optionStyle: {},
   optionItem: {
     width: windowWidth - 20,
     height: 120,
     borderRadius: 12,
     backgroundColor: '#FFF',
-    // borderWidth:0.5,
-    // borderColor:"#999",
     ...Platform.select({
       ios: {
         marginBottom: 12,

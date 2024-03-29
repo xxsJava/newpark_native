@@ -179,9 +179,7 @@ const styles = StyleSheet.create({
         marginLeft: 12
     },
     tit: {
-        flexDirection: 'column',
-
-
+        flexDirection: 'column'
     },
     list1litbox: {
         flexDirection: 'row',
@@ -209,7 +207,7 @@ const styles = StyleSheet.create({
     fonblac: {
         color: 'black'
     },
-    wait: {
+    wait:{
         backgroundColor: '#FFF2D9',
         width: '80%',
         borderRadius: 20,
@@ -236,7 +234,6 @@ const styles = StyleSheet.create({
     },
     list2text: {
         fontSize: 10
-
     },
     yuyin: {
         width: 33,

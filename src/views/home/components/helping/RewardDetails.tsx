@@ -16,6 +16,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const RewardDetails = ({route}:any) => {
+    console.log(route,'这个是跳转过来的数据-----');
     const data = route.params.item
     console.log('data数据',data)
     return(

@@ -156,11 +156,6 @@ const styles = StyleSheet.create({
         width: windowWidth,
         height: windowHeight,
     },
-    headerText: {
-        width: windowWidth,
-        height: 45,
-        backgroundColor: '#ffb700',
-    },
     derTexthea: {
         width: '80%',
         fontSize: 17,

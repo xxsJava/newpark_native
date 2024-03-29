@@ -64,12 +64,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    searchText: {
-        lineHeight: 40,
-        fontSize: 16,
-        color: '#ccc',
-        marginLeft: 3
-    },
     heng: {
         display: 'flex',
         flexDirection: 'row',

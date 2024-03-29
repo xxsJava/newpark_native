@@ -127,7 +127,6 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
         width: '80%',
-        // height: '80%',
         borderRadius: 30,
         marginTop: -50,
         marginLeft: '10%',
@@ -147,27 +146,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         alignItems: 'flex-end'
     },
-    chatName: {
-        height: 20,
-        minWidth: 0,
-        minHeight: 20,
-        fontSize: 14,
-        backgroundColor: '#fff'
-
-    },
     switchs: {
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 20
-    },
-    chatdesc: {
-        width: '80%',
-        marginLeft: '10%',
-        height: 20,
-        backgroundColor: '#E5E5E5',
-        fontSize: 14,
-        marginTop: 30,
-
-
     }
 })

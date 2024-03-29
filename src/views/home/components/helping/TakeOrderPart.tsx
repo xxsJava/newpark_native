@@ -50,7 +50,7 @@ const TakeOrderPart = ({ navigation }:any) => {
                     </View>
                     <View style={styles.releaseAvatarView}>
                         <View style={styles.avatarView}>
-                           <Avatar.Image size={60} source={require('../../../../assets/images/avatar-nv.png')} accessibilityLabel='图片' alt="头像"></Avatar.Image>
+                           <Avatar.Image size={60} source={require('../../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'></Avatar.Image>
                         </View>
                         <View style={styles.avatarTextView}>
                             <Text allowFontScaling={false} style={styles.avatarName}>联系发布人</Text>
@@ -183,8 +183,7 @@ const styles = StyleSheet.create({
         fontSize:13,
         color:'#000',
         paddingVertical:5,
-        paddingHorizontal:40,
-        // backgroundColor:'pink'
+        paddingHorizontal:40
     },
     releaseAvatarView:{
         width:windowWidth,

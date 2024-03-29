@@ -745,10 +745,6 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  separator: {
-    borderBottomColor: '#bbb',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
   listItem: {
     width: windowWidth,
     height: 80,
@@ -788,19 +784,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-  itemLabelBg: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
   labelText: {
     fontSize: 12,
     color: '#000',
     lineHeight: 15,
     marginLeft: 4,
-  },
-  labelIcon: {},
+  }
 });

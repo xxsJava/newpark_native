@@ -143,6 +143,7 @@ const Post = ({ item }) => (
           <Image
             style={{ width: 20, height: 20 }}
             source={require('../../../assets/images/Favorite.png')}
+            alt='喜欢'
           />
           <Text>{item.tlikeCount}</Text>
         </View>
@@ -151,6 +152,7 @@ const Post = ({ item }) => (
           <Image
             style={{ width: 20, height: 20 }}
             source={require('../../../assets/images/tup/zhuanfa.png')}
+            alt='转发'
           />
           <Text>{item.tforwardCount}</Text>
         </View>
@@ -159,6 +161,7 @@ const Post = ({ item }) => (
           <Image
             style={{ width: 20, height: 20 }}
             source={require('../../../assets/images/tup/pinglun.png')}
+            alt='评论'
           />
           <Text>{item.tcomCount}</Text>
         </View>
@@ -167,6 +170,7 @@ const Post = ({ item }) => (
           <Image
             style={{ width: 20, height: 20 }}
             source={require('../../../assets/images/tup/liulan.png')}
+            alt='浏览'
           />
           <Text>{item.tbrowseCount}</Text>
         </View>
@@ -548,7 +552,5 @@ const styles = StyleSheet.create({
     width:windowWidth,
 
   }
-
-
 })
 

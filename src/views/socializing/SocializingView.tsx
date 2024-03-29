@@ -212,7 +212,6 @@ const styles = StyleSheet.create({
     paddingVertical:5,
     paddingHorizontal:7,
     position:'absolute',
-    // backgroundColor:'#414040',
     backgroundColor:'#fff',
     borderRadius:10,
     zIndex:99,
@@ -259,7 +258,6 @@ const styles = StyleSheet.create({
     top:-3,
     right:28,
     borderRadius: 9,
-    // borderWidth: 1.5,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',
@@ -271,7 +269,6 @@ const styles = StyleSheet.create({
     top:-4,
     right:20,
     borderRadius: 9,
-    // borderWidth: 1.5,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',
@@ -303,27 +300,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000000',
   },
-  viewStyle: {
-    backgroundColor: '#ccc',
-  },
-  textStyle: {
-    textAlign: 'center',
-    color: '#fff',
-    fontWeight: '700',
-    fontSize: 16,
-  },
   maskLayer:{
     width:windowWidth,
     height:windowHeight,
     top:0,
     position:'absolute',
-    zIndex:80,
-    // backgroundColor:'red'
-  },
-  bell:{
-    position:'absolute',
-    bottom:0,
-    right:0
+    zIndex:80
   },
   hytb:{
     position:'absolute',

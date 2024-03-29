@@ -343,8 +343,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 12,
         borderTopRightRadius: 12,
         justifyContent: 'center',
-        alignItems: 'center',
-        // backgroundColor:'#000'
+        alignItems: 'center'
     },
     communitItemBottom: {
         width: 130,

@@ -250,10 +250,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: 'auto',
     },
-    chatTimeStamp: {
-        marginLeft: 10,
-        fontSize: 12,
-    },
     avatarView:{
         width:'70%',
         flexDirection:'row',
@@ -475,5 +471,5 @@ const styles = StyleSheet.create({
         fontSize:15,
         color:'#FFF',
         lineHeight:17
-    },
+    }
 })

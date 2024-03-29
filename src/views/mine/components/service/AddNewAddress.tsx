@@ -180,8 +180,5 @@ const styles = StyleSheet.create({
         height: 50,
         zIndex: 20,
 
-    },
-    // box:{
-    //     width:windowWidth * 0.4
-    //   }
+    }
 })

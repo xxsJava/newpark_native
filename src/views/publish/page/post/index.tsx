@@ -101,8 +101,7 @@ const styles = StyleSheet.create({
     syncIconView:{
         width:'40%',
         flexDirection:'row',
-        justifyContent:'flex-end',
-        // backgroundColor:'green'
+        justifyContent:'flex-end'
     },
     syncIcon1:{
         width:35,
@@ -131,24 +130,19 @@ const styles = StyleSheet.create({
             android:{
                 height:windowHeight-120,
             }
-        }),
-        // backgroundColor:'red'
-    },
-    textInput:{
-
+        })
     },
     contenInput:{
         width:windowWidth,
         paddingVertical:10,
         paddingHorizontal:15,
         textAlignVertical:'top',
-        // backgroundColor:'red',
         ...Platform.select({
             ios:{
                 height:windowHeight-340,
             },
             android:{
-                // height:windowHeight-260,
+    
             }
         })
     },

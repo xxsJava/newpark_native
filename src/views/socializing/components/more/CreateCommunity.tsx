@@ -114,8 +114,7 @@ const styles = StyleSheet.create({
         width:windowWidth,
         height:160,
         paddingTop:35,
-        alignItems:'center',
-        // backgroundColor:'pink'
+        alignItems:'center'
     },
     avatarStyle:{
         width:80,
@@ -146,19 +145,16 @@ const styles = StyleSheet.create({
         fontSize:15,
         color:'#000',
         fontWeight:'bold',
-        lineHeight:55,
-        // backgroundColor:'purple'
+        lineHeight:55
     },
     itemRightText:{
         fontSize:14,
         color:'#bbb',
-        lineHeight:55,
-        // backgroundColor:'orange'
+        lineHeight:55
     },
     itemInput:{
         width:'70%',
         textAlignVertical:'center'
-        // backgroundColor:'green'
     },
     itemRight:{
         flexDirection:'row',

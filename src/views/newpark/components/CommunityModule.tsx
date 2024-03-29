@@ -46,7 +46,7 @@ const listData = [
 const CommunityModule = () => {
     return(
         <ScrollView style={styles.scrollStyle}>
-          <View style={styles.listStyle}>
+          <View>
             {listData.map(item => {
               return (
                 <TouchableOpacity style={styles.itemStyle} key={item.index} activeOpacity={0.8} onPress={() => navigate('CommunityChannelRoute')}>
@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
           },
         }),
       },
-    listStyle: {},
   itemStyle: {
     height: 102,
     marginBottom: 20,

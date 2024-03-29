@@ -263,7 +263,6 @@ const PostDetails = ({ route }: any) => {
               </Text>
               <View style={styles.heartView}>
                 <TouchableOpacity
-                  style={styles.heartIcon}
                   onPress={() => onSelectPress(1)}>
                   <Icon
                     size={24}
@@ -277,7 +276,6 @@ const PostDetails = ({ route }: any) => {
               </View>
               <View style={styles.heartView}>
                 <TouchableOpacity
-                  style={styles.heartIcon}
                   onPress={() => onSelectPress(3)}>
                   <Icon
                     size={24}
@@ -291,7 +289,6 @@ const PostDetails = ({ route }: any) => {
               </View>
               <View style={styles.heartView}>
                 <TouchableOpacity
-                  style={styles.heartIcon}
                   onPress={() => postLikePress()}>
                   <Icon
                     size={24}
@@ -535,7 +532,6 @@ const styles = StyleSheet.create({
     lineHeight: 50,
     paddingLeft: 20,
   },
-  heartIcon: {},
   heartView: {
     width: '17%',
     alignItems: 'center',
@@ -544,8 +540,7 @@ const styles = StyleSheet.create({
   },
   heartText: {
     fontSize: 15,
-    color: '#ddd',
-    // lineHeight:50,
+    color: '#ddd'
   },
   postComment: {
     width: windowWidth,
@@ -567,7 +562,6 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     paddingLeft: 20,
   },
-
   listStyle: {
     width: windowWidth,
     paddingTop: 5,
@@ -616,8 +610,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
     paddingBottom: 10,
     borderBottomWidth: 1,
-    borderColor: '#aaa',
-    // backgroundColor:'red'
+    borderColor: '#aaa'
   },
   itemContentText: {
     fontSize: 15,
@@ -644,13 +637,11 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: '500',
   },
-
   commentBottom: {
     width: windowWidth,
     backgroundColor: '#FFF',
     flexDirection: 'row',
     paddingHorizontal: 25,
-    // padding: 24,
     position: 'absolute',
     bottom: 0,
     zIndex: 40,
@@ -664,7 +655,6 @@ const styles = StyleSheet.create({
         shadowRadius: 2.5,
       },
       android: {
-        // height: 70,
         elevation: 8,
       },
     }),
@@ -697,14 +687,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F7FA',
     ...Platform.select({}),
   },
-  bottomIconView: {
-    paddingTop: 15,
-    marginLeft: 10,
-  },
-  bottomIcon: {
-    width: 32,
-    height: 32,
-  },
   CommentBox: {
     position: 'absolute',
     width: windowWidth,
@@ -712,5 +694,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     zIndex: 20,
     opacity: 0.3,
-  },
+  }
 });
