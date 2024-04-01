@@ -33,3 +33,9 @@ export type productpType ={
 //     ppubTime:number,
 //     pstatus:string,
 // }
+// 社区查看API
+// recommLookType
+export type recommLookType = {
+    pageNo:number,
+    pageSize:number
+}

@@ -73,7 +73,7 @@ const data: DataSection[] = [
     title: 'A',
     data: [
       {
-        name: '牛友名称',
+        name: '牛友名称11',
         labelText: '牛友',
         color: 1,
         lableType: 1,

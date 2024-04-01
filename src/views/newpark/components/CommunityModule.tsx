@@ -1,121 +1,122 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
-  Image,
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
+  FlatList,
   TouchableOpacity,
-  View
+  Text
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import { navigate } from '../../../config/routs/NavigationContainer';
-
+import { recommLook } from '../../../api/sys/Recommended/index';
+import { recommLookType } from '../../../api/sys/Recommended/types';
+import { Image, View } from 'react-native-animatable';
+import { color } from '@rneui/base';
+// import Text from '../../socializing/text';
+import DateTimeUtils from '../../../utils/DateTimeUtils'
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const listData = [
-    {
-      index: 1,
-      title: '一起学Java',
-      sum: '150',
-      slogan: 'n个牛友在xxx',
-      bgShow: false,
-      icon: require('../../../assets/images/alimom/java.png'),
-    },
-    {
-      index: 2,
-      title: '一起玩耍',
-      sum: '150',
-      slogan: 'n个牛友在xxx',
-      bgShow: false,
-      icon: require('../../../assets/images/alimom/R-C.jpg'),
-    },
-    {
-      index: 3,
-      title: '女神在哪',
-      sum: '4.5w',
-      slogan: 'n个牛友在xxx',
-      bgShow: false,
-      icon: require('../../../assets/images/3.0x/chatroomicon01.png'),
-    },
-  ];
+  {
+    index: 1,
+    title: '一起学Java',
+    sum: '150',
+    slogan: 'n个牛友在xxx',
+    bgShow: false,
+    icon: require('../../../assets/images/alimom/java.png'),
+  },
+  {
+    index: 2,
+    title: '一起玩耍',
+    sum: '150',
+    slogan: 'n个牛友在xxx',
+    bgShow: false,
+    icon: require('../../../assets/images/alimom/R-C.jpg'),
+  },
+  {
+    index: 3,
+    title: '女神在哪',
+    sum: '4.5w',
+    slogan: 'n个牛友在xxx',
+    bgShow: false,
+    icon: require('../../../assets/images/3.0x/chatroomicon01.png'),
+  },
+];
 
 const CommunityModule = () => {
-    return(
-        <ScrollView style={styles.scrollStyle}>
-          <View>
-            {listData.map(item => {
-              return (
-                <TouchableOpacity style={styles.itemStyle} key={item.index} activeOpacity={0.8} onPress={() => navigate('CommunityChannelRoute')}>
-                  <View style={styles.itemLeft}>
-                    <Image
-                      style={styles.imgStyle}
-                      source={item.icon}
-                      accessibilityLabel='图片'
-                      alt="头像"
-                    />
-                  </View>
-                  <View style={styles.itemMiddle}>
-                    <View style={styles.middleStyle}>
-                      <Text allowFontScaling={false} style={styles.middleStart}>{item.title}</Text>
-                      <Image
-                        style={styles.middleImage}
-                        source={require('../../../assets/images/2.0x/hotfuckicon.png')}
-                        accessibilityLabel='图片'
-                        alt="头像"
-                      />
-                      <Text allowFontScaling={false} style={styles.middleEnd}>热度{item.sum}</Text>
-                    </View>
-                    <View style={styles.middleBottom}>
-                      {/* <LinearGradinet
-                        colors={[
-                          'rgba(233,231,255,0.9)',
-                          'rgba(233,231,255,0)',
-                        ]}
-                        start={{x: 0, y: 0}}
-                        end={{x: 0, y: 1}}
-                        style={styles.bottomBg}>
-                          
-                        <Text allowFontScaling={false} style={styles.bottomText}>{item.slogan}</Text>
-                      </LinearGradinet> */}
-
-                      {/* <Avatar bgColor='$amber600' size="sm" borderRadius="$full" >
-                        <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
-                      </Avatar> */}
-                    </View>
-                  </View>
-                  <View style={styles.itemRight}>
-                    <Feather
-                      name="chevron-right"
-                      size={30}
-                      style={styles.rightIcon}
-                    />
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </ScrollView>
+  const [selectedId, setSelectedId] = useState();
+  const [recommList, setRecommList] = React.useState([]);
+  const data: recommLookType = {
+    pageNo: 1,
+    pageSize: 5
+  };
+  const renders = async () => {
+    const dataList = await recommLook(data);
+    setRecommList(dataList.data);
+    console.log(recommList, '这个是社区查看Api的------');
+  }
+  React.useEffect(() => {
+    renders()
+  }, []);
+  const Item = ({ item, onpress, backgroundColor, textColor }) => (
+    <TouchableOpacity onPress={onpress} style={[styles.item, { backgroundColor }]} >
+      <Image source={{ uri: item.comPath }} style={item.comPath ? { width: 90, height: 90 } : { display: 'none' }}></Image>
+      <View>
+        <Text style={{color:'#000',fontSize:23,textAlign:'center',fontWeight:'bold'}}>{item.comName}</Text>
+        <Text style={{textAlign:'left',color:'#F8B032',margin:3,fontSize:12}}>{item.comLabel}</Text>
+        <Text style={{textAlign:'center',margin:3,color:'#000',fontSize:16}}>{item.comDesc}</Text>
+        <Text>{DateTimeUtils.formattedDateTime(item.comCreTime).split(' ')[0]}</Text>
+      </View>
+      <View style={styles.itemRight}>
+        <Feather
+          name="chevron-right"
+          size={30}
+          style={styles.rightIcon}
+        />
+      </View>
+    </TouchableOpacity>
+  )
+  const commItem = ({ item }: any) => {
+    const backgroundColor = item.comId === selectedId ? '#e8ecff' : '#F9FAFF';
+    const color = item.comId === selectedId ? 'green' : 'blue';
+    return (
+      <Item
+        item={item}
+        onpress={() => { setSelectedId(item.comId); navigate('CommunityChannelRoute', item) }}
+        backgroundColor={backgroundColor}
+        textColor={color}
+      />
     )
+  }
+  return (
+    <ScrollView style={styles.scrollStyle}>
+      <FlatList
+        data={recommList}
+        renderItem={commItem}
+        keyExtractor={item => item.comId}
+      />
+    </ScrollView>
+  )
 }
 export default CommunityModule;
 
 const styles = StyleSheet.create({
-    scrollStyle: {
-        width: windowWidth,
-        height: windowHeight - 80,
-        ...Platform.select({
-          ios: {
-            paddingHorizontal: 17,
-          },
-          android: {
-            paddingHorizontal: 16,
-          },
-        }),
+  scrollStyle: {
+    width: windowWidth,
+    height: windowHeight - 80,
+    ...Platform.select({
+      ios: {
+        paddingHorizontal: 17,
       },
+      android: {
+        paddingHorizontal: 16,
+      },
+    }),
+  },
   itemStyle: {
     height: 102,
     marginBottom: 20,
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
       ios: {
         width: windowWidth - 34,
         shadowColor: '#999', //设置阴影色
-        shadowOffset: {width: 0, height: 0}, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
+        shadowOffset: { width: 0, height: 0 }, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
         shadowOpacity: 1,
         shadowRadius: 0.2, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
   imgStyle: {
     width: 100,
     height: 100,
-    borderRadius:8
+    borderRadius: 8
   },
   middleStyle: {
     width: 225,
@@ -199,6 +200,14 @@ const styles = StyleSheet.create({
   },
   rightIcon: {
     lineHeight: 100,
-    color: '#000',
+    color: '#000'
+  },
+  item: {
+    backgroundColor: 'red',
+    padding: 12,
+    flexDirection: 'row',
+    marginTop: 12,
+    justifyContent:'space-between',
+    alignItems:'center'
   }
 })

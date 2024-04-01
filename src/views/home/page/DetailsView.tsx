@@ -26,8 +26,8 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const DetailsView = ({item}:any) => {
-  console.log(item,'我是跳转过来的item');
+const DetailsView = ({data}:any) => {
+  console.log(data,'我是跳转过来的item');
   const [tabVal, setTab] = useState('tab1');
   const setTabPress = (tab: string) => {
     setTab(tab);
@@ -63,25 +63,25 @@ const DetailsView = ({item}:any) => {
                 source={require('../../../assets/images/banner1.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
-                alt="头像"
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner2.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
-                alt="头像"
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner3.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
-                alt="头像"
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner4.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
-                alt="头像"
+                alt="轮播图"
               />
             </Swiper>
           </View>

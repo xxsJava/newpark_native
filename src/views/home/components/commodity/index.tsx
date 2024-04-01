@@ -25,7 +25,6 @@ import formatDate from './formatDate';
 import DateTimeUtils from '../../../../utils/DateTimeUtils'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
 const typeData = [
   {
     index: 1,
@@ -36,14 +35,13 @@ const typeData = [
     text: '新发布'
   }
 ];
-
 const List = ({ item }:any) => (
   <View style={styles.commoditylist}>
     <TouchableOpacity
       style={styles.commodityItem}
-      onPress={() => {navigate('DetailsRoute', { item }); console.log('item在这里----',item);
+      onPress={() => {navigate('DetailsRoute', { data:item }); console.log('item在这里----',item);
     }}>
-      <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像" />
+      <Image style={item.pims? styles.commodityImage : {}} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像" />
       <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
       <View style={styles.priceView}>
         <View style={styles.priceStyle}>
@@ -83,7 +81,6 @@ const ProductView = () => {
       PStatus: PStatus,
       timeSort: timeSort
     };
-
     const productData = await productApi(product);
     console.log('在这里', productData.data);
     for (var i = 0; i < productData.data.length; i++) {
@@ -94,11 +91,7 @@ const ProductView = () => {
       } else {
         productData.data[i].pims = productData.data[i].pimgs
       }
-
-      console.log('houhouhou///////', productData.data[i].pims, '分割', productData.data[i].pimgs);
-      const date = new Date(productData.data[i].ppubTime * 1000)
-      productData.data[i].times = formatDate(date, 'yyyy/MM/dd')
-      // 修改数组里面的图片
+      console.log(productData.data[i].pims, '分割', productData.data[i].pimgs);
     }
     setListData(productData.data)
   }
@@ -112,9 +105,7 @@ const ProductView = () => {
       } else {
         addData.data[i].pims = addData.data[i].pimgs
       }
-      console.log('houhouhou///////', addData.data[i].pims, '分割', addData.data[i].pimgs);
-      const date = new Date(addData.data[i].ppubTime * 1000)
-      addData.data[i].times = formatDate(date, 'yyyy/MM/dd')
+      console.log(addData.data[i].pims, '分割', addData.data[i].pimgs);
       // 修改数组里面的图片
     }
     return addData;
@@ -245,7 +236,6 @@ const styles = StyleSheet.create({
   commoditylist: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // justifyContent: 'space-around',
     justifyContent: 'flex-start',
     alignItems: 'center'
   },
@@ -279,7 +269,7 @@ const styles = StyleSheet.create({
   },
   commodityItem: {
     width: '100%',
-    height: 320,
+    // height: 320,
     marginBottom: 15,
     paddingHorizontal: '2%',
   },
