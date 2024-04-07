@@ -24,7 +24,7 @@ const config: {
   base_url: {
     // 开发环境接口前缀
     // base: 'https://www.newpark.sougouhihg.top',
-    base: Platform.OS === 'android'?'https://www.newpark.sougouhihg.top':'http://www.newpark.sougouhihg.top',
+    base: Platform.OS === 'android'?'http://www.newpark.sougouhihg.top':'https://www.newpark.sougouhihg.top',
     // 打包开发环境接口前缀
     dev: 'http://192.168.13.1:60001/',
 
@@ -53,3 +53,4 @@ const config: {
 }
 
 export { config }
+
