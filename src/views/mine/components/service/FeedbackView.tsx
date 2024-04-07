@@ -149,7 +149,7 @@ export default class FeedbackView extends Component {
                         })
                     } */}
                 </View>
-                <View style={styles.buttonView}>
+                <View>
                     <TouchableOpacity style={styles.buttonIos}>
                         <Text allowFontScaling={false} style={styles.buttonText}>提交</Text>
                     </TouchableOpacity>
@@ -199,15 +199,6 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-around'
     },
-    checkColor:{
-        borderColor:'#FFB300',
-        // backgroundColor:'#FFB300'
-    },
-    checkStyle:{
-        width:50,
-        height:30,
-        backgroundColor:'pink'
-    },
     checkIcon:{
         width:20,
         height:20
@@ -219,9 +210,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFF',
         marginTop:5,
         marginHorizontal:10,
-        paddingTop:10,
-        // paddingHorizontal:10
-
+        paddingTop:10
     },
     lineStyle:{
         height:2,
@@ -231,8 +220,7 @@ const styles = StyleSheet.create({
     },
     titleInput:{
         fontSize:16,
-        paddingHorizontal:20,
-        // backgroundColor:'gold'
+        paddingHorizontal:20
     },
     textAreaView:{
         paddingHorizontal:15,
@@ -240,7 +228,6 @@ const styles = StyleSheet.create({
     },
     textAreaStyle:{
         textAlignVertical: 'top',
-        // backgroundColor:'plum',
         ...Platform.select({
             ios:{
                 height:180,
@@ -257,9 +244,6 @@ const styles = StyleSheet.create({
         backgroundColor:"#FFF",
         borderRadius:2,
         padding:10,
-    },
-    buttonView:{
-
     },
     imageListView:{
         flexDirection:'row',

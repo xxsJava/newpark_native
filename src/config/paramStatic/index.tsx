@@ -7,12 +7,6 @@
  */
 import RNFS from 'react-native-fs';
 import DateTimeUtils from '../../utils/DateTimeUtils';
-/**
- * 代码描述:
- * 作者: xxs
- * 创建时间:2024/01/09 11:46:02
- */
-
 export let FROMA_DATE_DIR = DateTimeUtils.formattedDateTime(
   DateTimeUtils.timestamps(),
   'yyyy-MM-DD',

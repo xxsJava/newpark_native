@@ -74,6 +74,5 @@ const styles = StyleSheet.create({
         borderColor:'#BBBBBB',
         paddingHorizontal:5,
         paddingVertical:20
-    }
-   
+    } 
 })

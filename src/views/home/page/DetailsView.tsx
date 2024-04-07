@@ -7,7 +7,6 @@
 import React, { useState } from 'react';
 import { Trans } from 'react-i18next';
 import {
-  Alert,
   Dimensions,
   Image,
   Modal,
@@ -27,9 +26,8 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const DetailsView = ({item:any}) => {
-  console.log(item,'我是跳转过来的item');
-  
+const DetailsView = ({data}:any) => {
+  console.log(data,'我是跳转过来的item');
   const [tabVal, setTab] = useState('tab1');
   const setTabPress = (tab: string) => {
     setTab(tab);
@@ -55,7 +53,6 @@ const DetailsView = ({item:any}) => {
               style={styles.swiperStyle}
               height={300}
               loop={true}
-            
               horizontal={true}
               autoplay={true}
               autoplayTimeout={5}
@@ -66,25 +63,25 @@ const DetailsView = ({item:any}) => {
                 source={require('../../../assets/images/banner1.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
-                alt="头像"
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner2.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
-                alt="头像"
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner3.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
-                alt="头像"
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner4.jpg')}
                 style={styles.bannerImage}
                 accessibilityLabel='图片'
-                alt="头像"
+                alt="轮播图"
               />
             </Swiper>
           </View>
@@ -189,7 +186,6 @@ const DetailsView = ({item:any}) => {
               onPress={() => console.log('点击聊一聊')}>
               <Text allowFontScaling={false}>聊一聊</Text>
             </Button>
-
             <Button
               style={styles.controlRightButton}
               labelStyle={styles.controlButtonText}
@@ -204,8 +200,7 @@ const DetailsView = ({item:any}) => {
         </View>
       </View>
       {/*  这个是模态框*/}
-      <TouchableWithoutFeedback style={{ position: 'absolute', bottom: 0, width: windowWidth,height:windowHeight,backgroundColor:'red',flex:1}} 
-      >
+      <TouchableWithoutFeedback style={{ position: 'absolute', bottom: 0, width: windowWidth,height:windowHeight,backgroundColor:'red',flex:1}} >
         <Modal
           animationType="slide"
           transparent={true}
@@ -286,18 +281,6 @@ const DetailsView = ({item:any}) => {
 export default DetailsView;
 
 const styles = StyleSheet.create({
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    position: 'absolute'
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
   parentView: {
     width: windowWidth,
     height: windowHeight,
@@ -545,21 +528,6 @@ titleStyle:{
     textAlign:'center',
     lineHeight:40
 },
-// scrollView:{
-//     width:'100%',
-//     height:windowHeight-320,
-//     ...Platform.select({
-//         ios:{
-//             height:windowHeight-410,
-//         },
-//         android:{
-//             height:windowHeight-320,
-//         }
-//     })
-// },
-// scrollStyle:{
-//     flex:1,
-// },
 personalData:{
     borderBottomWidth:1,
     borderColor:'#aaa'
@@ -651,11 +619,6 @@ commodityTextView:{
     height:105,
     paddingLeft:10,
 },
-// commodityName:{
-//     fontSize:18,
-//     color:'#000',
-//     lineHeight:25
-// },
 commodityDescribe:{
     fontSize:15,
     color:'#000',
@@ -673,8 +636,7 @@ commodityNum:{
     textAlign:'right',
 },
 paymentView:{
-    height:250,
-    // backgroundColor:'orange'
+    height:250
 },
 parenTitle:{
     fontSize:17,
@@ -689,8 +651,6 @@ paymentContent:{
     paddingVertical:5,
     paddingHorizontal:20,
     backgroundColor:'#FFF',
-    // borderTopLeftRadius:12,
-    // borderTopRightRadius:12,
     borderRadius:12,
     ...Platform.select({
         ios: {
@@ -758,8 +718,7 @@ bottomNum:{
     width:'40%',
     fontSize:22,
     color:'#EC3656',
-    lineHeight:50,
-    // backgroundColor:'red'
+    lineHeight:50
 },
 bottomButton:{
     width:'45%',

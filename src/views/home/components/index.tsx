@@ -221,13 +221,6 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between'
   },
-  cardRadius:{
-    borderRadius:8
-  },
-  subSty: {
-    fontSize: 10,
-    color: '#999',
-  },
   titleLeft:{
     flexDirection:'row',
     justifyContent:'flex-start'
@@ -390,25 +383,13 @@ const styles = StyleSheet.create({
   },
   cover:{
     width: windowWidth,
-    // position:'absolute',
     opacity:0.9,
-    // bottom:5,
     display:'flex',
     alignItems:'center',
-    // justifyContent:'center',
     padding:20,
     paddingBottom:0,
     flexDirection:'row',
     flexWrap:'wrap'
-  },
-  converText:{
-    color:'#000',
-    textAlign:'center',
-    lineHeight:110
-  },
-  postimg:{
-    width:'80%',
-    height:'60%'
   },
   touchaOp:{
     opacity:0.9,
@@ -422,6 +403,5 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'stretch',
     justifyContent:'flex-start'
-    
   }
 });

@@ -8,13 +8,11 @@ import {
   Dimensions,
   Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  FlatList,
-  Alert
+  FlatList
 } from 'react-native';
 import { Appbar, Avatar, Icon } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -24,7 +22,7 @@ import { productApi, productApip } from '../../../../api/sys/Recommended/index';
 import { productType, productpType } from '../../../../api/sys/Recommended/types';
 // import text from '../../../socializing/text';
 import formatDate from './formatDate';
-// import { any } from 'prop-types';
+import DateTimeUtils from '../../../../utils/DateTimeUtils'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const typeData = [
@@ -34,17 +32,16 @@ const typeData = [
   },
   {
     index: 2,
-    text: '新发布',
-  },
+    text: '新发布'
+  }
 ];
-
-const List = ({ item }) => (
+const List = ({ item }:any) => (
   <View style={styles.commoditylist}>
     <TouchableOpacity
       style={styles.commodityItem}
-      onPress={() => navigate('DetailsRoute', item)}>
-      {/* source={{ uri: item.pims }}  */}
-      <Image style={styles.commodityImage} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像" />
+      onPress={() => {navigate('DetailsRoute', { data:item }); console.log('item在这里----',item);
+    }}>
+      <Image style={item.pims? styles.commodityImage : {}} source={{ uri: item.pims }} accessibilityLabel='图片' alt="头像" />
       <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
       <View style={styles.priceView}>
         <View style={styles.priceStyle}>
@@ -84,23 +81,8 @@ const ProductView = () => {
       PStatus: PStatus,
       timeSort: timeSort
     };
-    const product2: productpType = {
-      pname: '熊大',
-      pdesc: '我是介绍',
-      pprice: 88,
-      pother: '我是其他',
-      pimgs: 'http://dummyimage.com/400x400',
-      pstatus: 'AUDIT',
-      ppubTime: 236623991581
-    }
-
-    const productData2: any = await productApip(product2);
-
     const productData = await productApi(product);
-
-
     console.log('在这里', productData.data);
-    console.log('打印试试', productData2);
     for (var i = 0; i < productData.data.length; i++) {
       // 修改时间
       console.log(productData.data[i].pimgs.split(',')[0], '===================');
@@ -109,15 +91,11 @@ const ProductView = () => {
       } else {
         productData.data[i].pims = productData.data[i].pimgs
       }
-
-      console.log('houhouhou///////', productData.data[i].pims, '分割', productData.data[i].pimgs);
-      const date = new Date(productData.data[i].ppubTime * 1000)
-      productData.data[i].times = formatDate(date, 'yyyy/MM/dd')
-      // 修改数组里面的图片
+      console.log(productData.data[i].pims, '分割', productData.data[i].pimgs);
     }
     setListData(productData.data)
   }
-  const changeOn = (addData:any) =>{
+  const changeOn = (addData: any) => {
     // 这个是对拿到的数据进行修改
     for (var i = 0; i < addData.data.length; i++) {
       // 修改时间
@@ -127,9 +105,7 @@ const ProductView = () => {
       } else {
         addData.data[i].pims = addData.data[i].pimgs
       }
-      console.log('houhouhou///////', addData.data[i].pims, '分割', addData.data[i].pimgs);
-      const date = new Date(addData.data[i].ppubTime * 1000)
-      addData.data[i].times = formatDate(date, 'yyyy/MM/dd')
+      console.log(addData.data[i].pims, '分割', addData.data[i].pimgs);
       // 修改数组里面的图片
     }
     return addData;
@@ -140,19 +116,14 @@ const ProductView = () => {
         // 修改时间
         listData[i].pims = listData[i].pimgs.split(',')[0].split('[')[1]
         console.log('houhouhou///////', listData[i].pims, '分割', listData[i].pimgs);
-        const date = new Date(listData[i].ppubTime * 1000)
-        listData[i].times = formatDate(date, 'yyyy/MM/dd')
-        // 修改数组里面的图片
       }
     }
-    setListData(listData)
-    console.log('测试');
+    setListData(listData);
     postLikePress();
     console.log('在这里开始里面', listData);
 
   }, []); // 只在组件挂载时调用一次
   const onload = async () => {
-    // Alert.alert('已经到底部了')
     setpageNo(pageNo += 1)
     console.log(pageNo, 'pageNo');
     const addData = await productApi({
@@ -167,8 +138,8 @@ const ProductView = () => {
     const newlist = listData.concat(newAdddata.data);
     setListData(newlist)
   }
-  const onrefresh = async() => {
-    setpageNo(pageNo= 1)
+  const onrefresh = async () => {
+    setpageNo(pageNo = 1)
     const addData = await productApi({
       pageNo: pageNo,
       pageSize: pageSize,
@@ -213,7 +184,6 @@ const ProductView = () => {
                   source={require('../../../../assets/images/triangle-down.png')}
                 />
               </View>
-              {/* <Entypo size={14} color='#000' name='chevron-thin-down' /> */}
             </View>
           );
         })}
@@ -263,14 +233,9 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  scrollStyle: {
-    flex: 1,
-    marginTop: 15,
-  },
   commoditylist: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // justifyContent: 'space-around',
     justifyContent: 'flex-start',
     alignItems: 'center'
   },
@@ -304,7 +269,7 @@ const styles = StyleSheet.create({
   },
   commodityItem: {
     width: '100%',
-    height: 320,
+    // height: 320,
     marginBottom: 15,
     paddingHorizontal: '2%',
   },

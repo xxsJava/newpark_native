@@ -273,8 +273,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: windowWidth,
         flexWrap: 'wrap',
-        height:160,
-        // paddingTop:12
+        height:160
     },
     zhong: {
         width: windowWidth,
@@ -284,8 +283,6 @@ const styles = StyleSheet.create({
     },
     mtlist: {
         width: 120,
-        // height:110,
-        // backgroundColor:'pink',
         display:'flex',
         justifyContent:'center',
         alignItems:'center'

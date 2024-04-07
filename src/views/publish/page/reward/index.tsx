@@ -38,17 +38,17 @@ const RewardView = () => {
                                         </Text>
                                     </LinearGradinet>
                                     <View style={styles.inputView}>
-                                        <View style={styles.inputImageView}>
+                                        <View>
                                             <Image style={styles.inputImage} source={require('../../../../assets/images/alimom/frame1.png')} accessibilityLabel='图片' alt="头像"></Image>
                                         </View>
-                                        <View style={styles.inputContent}>
+                                        <View>
                                             <Text allowFontScaling={false} style={styles.inputText}>标题</Text>
                                             <TextInput allowFontScaling={false} selectionColor='#FABA3C' placeholder='请输入' style={styles.inputTitle}></TextInput>
                                             <Text allowFontScaling={false} style={styles.inputText}>描述</Text>
                                             <TextInput allowFontScaling={false} selectionColor='#FABA3C' placeholder='请输入' multiline={true} numberOfLines={4} style={styles.inputDescribe}></TextInput>
                                         </View>
                                     </View>
-                                    <View style={styles.bountyView}>
+                                    <View>
                                         <View style={styles.bountyIconView}>
                                             <Image style={styles.bountyIcon} source={require('../../../../assets/images/money_icon1.png')} accessibilityLabel='图片' alt="头像"></Image>
                                             <Text allowFontScaling={false} style={styles.bountyText}>赏金</Text>
@@ -146,17 +146,11 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginHorizontal: 20,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
-        // backgroundColor:'red'
-    },
-    inputImageView: {
-
+        justifyContent: 'flex-start'
     },
     inputImage: {
         width: 25,
         height: 100
-    },
-    inputContent: {
     },
     inputText: {
         fontSize: 15,
@@ -185,15 +179,11 @@ const styles = StyleSheet.create({
             }
         })
     },
-    bountyView: {
-        // backgroundColor:'red'
-    },
     bountyIconView: {
         height: 30,
         paddingLeft: 20,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
-        // backgroundColor:'red'
+        justifyContent: 'flex-start'
     },
     bountyIcon: {
         width: 22,
@@ -243,12 +233,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         lineHeight: 24
     }
-    // bountyNum:{
-    //     width:'100%',
-    //     fontSize:17,
-    //     color:'#000',
-    //     fontWeight:'bold',
-    //     lineHeight:60,
-    //     textAlign:'center'
-    // },
 })

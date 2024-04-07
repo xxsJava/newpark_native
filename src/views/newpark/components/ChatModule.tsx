@@ -302,15 +302,13 @@ const styles = StyleSheet.create({
     width: 180,
     paddingTop: 20,
     paddingBottom: 20,
-    paddingLeft: 10,
-    // backgroundColor:'green'
+    paddingLeft: 10
   },
   glideItemRight: {
     width: 120,
     height: 90,
     paddingRight: 15,
-    paddingTop: 29,
-    // backgroundColor:'#000'
+    paddingTop: 29
   },
   glidePortrait: {
     width: 60,

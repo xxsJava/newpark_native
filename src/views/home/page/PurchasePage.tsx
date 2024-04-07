@@ -98,11 +98,6 @@ const styles = StyleSheet.create({
         height: 45,
         backgroundColor:'#26C78C'
     },
-    headerImage:{
-        width:25,
-        height:25,
-        marginRight:20
-    },
     imageStyle:{
         width:windowWidth,
         height:180,
@@ -257,8 +252,7 @@ const styles = StyleSheet.create({
         textAlign:'right',
     },
     paymentView:{
-        height:250,
-        // backgroundColor:'orange'
+        height:250
     },
     parenTitle:{
         fontSize:17,
@@ -334,15 +328,13 @@ const styles = StyleSheet.create({
     bottomIcon:{
         width:'12%',
         paddingLeft:15,
-        paddingTop:8,
-        // backgroundColor:'green'
+        paddingTop:8
     },
     bottomNum:{
         width:'40%',
         fontSize:22,
         color:'#EC3656',
-        lineHeight:50,
-        // backgroundColor:'red'
+        lineHeight:50
     },
     bottomButton:{
         width:'45%',
@@ -357,5 +349,4 @@ const styles = StyleSheet.create({
         color:'#FFF',
         lineHeight:22,
     }
-    
 })

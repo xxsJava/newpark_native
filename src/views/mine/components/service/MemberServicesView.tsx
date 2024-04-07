@@ -171,8 +171,7 @@ const styles = StyleSheet.create({
     buttonView:{
         width:'100%',
         height:80,
-        paddingTop:15,
-        // backgroundColor:'green'
+        paddingTop:15
     },
     buttonStyle:{
         width:'90%',
@@ -180,7 +179,6 @@ const styles = StyleSheet.create({
         marginHorizontal:'5%',
         borderRadius:22,
         backgroundColor:'#FBBA3D'
-
     },
     buttonText:{
         fontSize:19,
@@ -196,7 +194,7 @@ const styles = StyleSheet.create({
     avatarView:{
         width:'25%',
         alignItems:'center',
-        paddingTop:25,
+        paddingTop:25
     },
     dataView:{
         width:'47%',

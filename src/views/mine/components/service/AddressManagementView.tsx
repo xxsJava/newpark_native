@@ -232,8 +232,7 @@ const styles = StyleSheet.create({
     },
     contentIcon:{
         width:'10%',
-        alignItems:'center',
-        // backgroundColor:'red'
+        alignItems:'center'
     },
     iconStyle:{
         marginTop:-5

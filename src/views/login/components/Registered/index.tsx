@@ -313,8 +313,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
       },
       android: {
-        elevation: 23,
-        // marginTop: 10,
+        elevation: 23
       },
     }),
   },
@@ -350,8 +349,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   describeView: {
-    height: 160,
-    // backgroundColor:'green'
+    height: 160
   },
   describeInput: {
     borderWidth: 1,
@@ -382,8 +380,7 @@ const styles = StyleSheet.create({
     lineHeight: 24
   },
   container: {
-    flex: 1,
-    // marginTop:-70
+    flex: 1
   }
 });
 

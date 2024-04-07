@@ -158,17 +158,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    searchText: {
-        lineHeight: 40,
-        fontSize: 16,
-        color: '#ccc',
-        marginLeft: 3
-    },
-    heng: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center'
-    },
     search: {
         height: 40,
         borderColor: 'gray',
@@ -213,8 +202,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     scrollStyle: {
-        flex: 1,
-        // marginBottom:120
+        flex: 1
     },
     itemView: {
         width: windowWidth - 10,

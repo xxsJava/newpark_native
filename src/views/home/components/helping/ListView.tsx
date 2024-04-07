@@ -15,7 +15,8 @@ import { navigate } from '../../../../config/routs/NavigationContainer';
 import { rewardListApi } from '../../../../api/sys/reward';
 import { rewardListType } from '../../../../api/sys/reward/types';
 import { dateToMsgTime } from '../../../../components/Rests/TconTime';
-import { Alert, FlatList } from 'react-native'
+import { Alert, FlatList } from 'react-native';
+import DateTimeUtils from '../../../../utils/DateTimeUtils'
 // 模态框引入的文件
 import React, { useState } from 'react';
 import {
@@ -45,8 +46,7 @@ const Module = ({ item }) => (
       />
       <View style={styles.stateStyle} />
       <Text allowFontScaling={false} style={styles.timeStyle}>
-        {dateToMsgTime(item.startTime - item.endTime)}
-        {/* {dateToMsgTime(item.startTime)} */}
+        {DateTimeUtils.formattedDateTime(item.endTime).split(' ')[0]}
       </Text>
     </View>
     <View style={styles.textView}>
@@ -81,14 +81,9 @@ const Module = ({ item }) => (
     </View>
   </View>
 );
-const ListView = (data:boolean) => {
-  if(data) {
-    console.log('正序');
-    
-  }else {
-    console.log('倒序');
-    
-  }
+const ListView = (data:any) => {
+
+  var order = data.data;
   const [allData, setAllData] = useState([]);
   var [conu, setConu] = useState(1);
   // 悬赏发布
@@ -99,7 +94,6 @@ const ListView = (data:boolean) => {
   const [des, setDes] = useState('');
   const [monrew, setMonrew] = useState(0);
   const [times1, setTimes1] = useState(0);
-  console.log(des, '描述一下', title, '标题', monrew, '赏金');
   const times = Date.now();
   console.log(times, '我是时间');
   const handleSelect = (val: any) => {
@@ -174,6 +168,8 @@ const ListView = (data:boolean) => {
       {/* <ScrollView style={styles.scrollStyle}> */}
         <View style={styles.listStyle}>
           <FlatList
+          initialNumToRender={6}
+          inverted={order}
             data={allData}
             renderItem={({ item }) => <Module item={item} />}
             ListEmptyComponent={
@@ -219,7 +215,7 @@ const ListView = (data:boolean) => {
                 style={styles.avatarStyle1}
                 source={require('../../../../assets/images/defaultheader.png')}
                 accessibilityLabel='头像'
-                alt="头像"
+                
               />
             </VStack>
           </ModalHeader>
@@ -386,142 +382,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1
   },
-  // 加入的模态框样式
-  modalBox: {
-    height: windowHeight * 0.8,
-    position: 'absolute',
-    bottom: -130
-  },
-  contentView: {
-    width: windowWidth - 4,
-    marginHorizontal: 2,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    backgroundColor: '#FABA3C',
-    ...Platform.select({
-      android: {
-        height: '100%',
-      },
-      ios: {
-        height: '64%',
-      },
-    }),
-  },
-  contenStyle: {
-    width: '100%',
-    height: '100%',
-    position: 'relative',
-  },
-  cardView: {
-    width: '94%',
-    marginTop: '20%',
-    marginHorizontal: '3%',
-    paddingTop: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    backgroundColor: '#fff',
-    zIndex: -10,
-    ...Platform.select({
-      ios: {
-        height: 520,
-      },
-      android: {
-        height: 500,
-      },
-    }),
-  },
-  inputView: {
-    height: 210,
-    marginTop: 15,
-    marginHorizontal: 20,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    // backgroundColor:'red'
-  },
-  inputImageView: {},
-  inputContent: {},
-  inputText: {
-    fontSize: 15,
-    color: '#000',
-    lineHeight: 20,
-  },
-  inputTitle: {
-    width: windowWidth - 100,
-    height: 50,
-    marginTop: 5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 4,
-    backgroundColor: '#F6F6F6',
-  },
-  inputDescribe: {
-    width: windowWidth - 100,
-    borderRadius: 5,
-    marginTop: 5,
-    paddingHorizontal: 10,
-    textAlignVertical: 'top',
-    backgroundColor: '#F6F6F6',
-    ...Platform.select({
-      ios: {
-        height: 90,
-      },
-    }),
-  },
-  bountyIconView: {
-    height: 30,
-    paddingLeft: 20,
-    flexDirection: 'row',
-    justifyContent: 'flex-start'
-  },
-  bountyIcon: {
-    width: 22,
-    height: 22,
-    marginTop: 4,
-    marginRight: 10,
-  },
-  bountyText: {
-    fontSize: 15,
-    color: '#000',
-    fontWeight: 'bold',
-    lineHeight: 30,
-  },
-  bountyNumView: {
-    height: 60,
-    position: 'relative',
-    backgroundColor: '#FFEFD7',
-  },
-  bountyInput: {
-    width: '100%',
-    height: 60,
-    fontSize: 17,
-    color: '#000',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-  },
-  bountyNumIcon: {
-    top: 17,
-    right: 20,
-    width: 25,
-    height: 25,
-    position: 'absolute',
-    zIndex: 10,
-  },
-  buttonStyle1: {
-    width: '90%',
-    height: 43,
-    borderRadius: 8,
-    marginTop: 10,
-    marginHorizontal: '5%',
-    backgroundColor: '#F8B032',
-  },
-  buttonText1: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: 'bold',
-    lineHeight: 24,
-  },
-
   // 模态框样式到此结束
   parentLevel: {
     width: windowWidth,
@@ -596,12 +456,10 @@ const styles = StyleSheet.create({
   },
   textView: {
     width: '52%',
-    paddingTop: 20,
-    // backgroundColor:'orange'
+    paddingTop: 20
   },
   detailsView: {
     width: '26%',
-    // paddingTop:10,
     paddingRight: 5,
   },
   textStyle1: {
@@ -612,15 +470,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 55,
     marginHorizontal: '12%',
-  },
-  textStyle2: {
-    width: '80%',
-    height: 20,
-    fontSize: 13,
-    color: '#bbb',
-    textAlign: 'center',
-    lineHeight: 20,
-    marginHorizontal: '10%',
   },
   moneyView: {
     height: 40,
@@ -649,25 +498,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     lineHeight: 20,
   },
-  waiM: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    width: windowWidth,
-    height: windowHeight,
-  },
   heng: {
     flexDirection: 'row',
-    // justifyContent:'center',
     alignItems: 'center'
   },
   avatarStyle1: {
-    // position: 'absolute',
-    // top: 10,
-    // left: 150,
-    // zIndex: 999,
     margin: "auto",
     width: '100%'
   },
@@ -691,5 +526,5 @@ const styles = StyleSheet.create({
     height: 110,
     marginTop: 10,
     marginRight: 3
-  },
+  }
 });

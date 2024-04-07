@@ -11,4 +11,7 @@ export type PostsType ={
     schoolId:number,
     TPubTimeSort:string
 }
-
+// 帖子条件查询单条Api
+export type postsOneApiType = {
+    usrId:number
+}

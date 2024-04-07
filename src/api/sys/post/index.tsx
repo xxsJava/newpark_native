@@ -6,7 +6,7 @@
  */
  
 import request from '../../../config/axios';
-import {PostsType} from './types';
+import {PostsType,postsOneApiType} from './types';
 
 /**
  * 登录api
@@ -19,4 +19,13 @@ export const postApi = (data: PostsType): Promise<IResponse> => {
     data,
   });
 };
-
+  /**
+ * 帖子条件查询单条api
+ * body传参
+ * @returns
+ */
+  export const postsOneApi = (data:postsOneApiType): Promise<IResponse> => {
+    return request.get({
+      url:'/posts/postsOneApi',data
+    })
+  }

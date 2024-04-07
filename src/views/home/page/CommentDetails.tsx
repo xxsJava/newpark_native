@@ -51,7 +51,7 @@ const CommentDetails = ({commenData}: any) => {
                     <View style={styles.itemStyle} key={item.comId}>
                         <View style={styles.commentAvatarView}>
                             <View style={styles.itemAvatar}>
-                                <Avatar.Image size={56} source={{uri:item.upath}} accessibilityLabel='头像' alt="头像"></Avatar.Image>
+                                <Avatar.Image size={56} source={{uri:item.upath}} accessibilityLabel='头像'></Avatar.Image>
                             </View>
                             <View style={styles.itemNameView}>
                                 <Text allowFontScaling={false} style={styles.itemName}>{item.unikname}</Text>
@@ -88,10 +88,6 @@ export default CommentDetails;
 
 
 const styles = StyleSheet.create({
-    listStyle:{
-        width:windowWidth,
-        paddingTop:5,
-    },
     itemStyle:{
         width:windowWidth-50,
         height:'auto',
@@ -136,8 +132,7 @@ const styles = StyleSheet.create({
         marginRight:15,
         paddingBottom:10,
         borderBottomWidth:1,
-        borderColor:'#aaa',
-        // backgroundColor:'red'
+        borderColor:'#aaa'
     },
     itemContentText:{
         fontSize:15,

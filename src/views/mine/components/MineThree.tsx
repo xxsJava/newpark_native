@@ -2,6 +2,7 @@ import * as React from 'react';
 import LinearGradinet from 'react-native-linear-gradient';
 import { navigate } from '../../../config/routs/NavigationContainer';
 import { Appbar, Avatar, IconButton } from 'react-native-paper';
+import DateTimeUtils from '../../../utils/DateTimeUtils'
 import {
   Button,
   Dimensions,
@@ -12,12 +13,25 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  FlatList
 } from 'react-native';
+import { WebView } from 'react-native-webview';
+import HTMLView from 'react-native-htmlview'
+// 发布悬赏的接口
+import { rewardOneApi } from '../../../api/sys/reward/index';
+import { rewardOneApiType } from '../../../api/sys/reward/types';
+// 帖子的接口
+import { postsOneApi } from '../../../api/sys/post/index';
+import { postsOneApiType } from '../../../api/sys/post/types';
+import Storage from '../../../utils/AsyncStorageUtils';
+import { set } from '@gluestack-style/react';
+import { color } from '@rneui/base';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 const list1 = [
   {
     index: 1,
@@ -61,72 +75,7 @@ const list1 = [
     title: '交易达人',
     text: '您已完成5场交易'
   },
-]
-const list2 = [
-  {
-    index: 1,
-    type: '商品',
-    img: require('../../../assets/images/tup/cd.png'),
-    title: '未开封的毛绒白猫',
-    price: '500'
-  },
-  {
-    index: 2,
-    type: '商品',
-    img: require('../../../assets/images/tup/erji.jpg'),
-    title: '全新耳机',
-    price: '600'
-  },
-  {
-    index: 3,
-    type: '商品',
-    img: require('../../../assets/images/tup/xy4.png'),
-    title: '吃饭搭子',
-    price: '0.01'
-  },
-  {
-    index: 4,
-    type: '悬赏',
-    text: '去学校东门买六根烤肠，不要辣，多抹点酱！！！',
-    title: '去校门口买个烤肠',
-    price: '2.5'
-  },
 ];
-const list3 = [
-  {
-    index: 1,
-    img: require('../../../assets/images/tup/xy1.png'),
-    title: '我是一个标题',
-    main: '部分内容',
-    autor: '咖啡牛',
-    time: '2023年12月11日'
-  },
-  {
-    index: 1,
-    img: require('../../../assets/images/tup/xy2.png'),
-    title: '我是一个标题',
-    main: '部分内容',
-    autor: '咖啡牛',
-    time: '2023年12月11日'
-  },
-  {
-    index: 1,
-    img: require('../../../assets/images/tup/xy3.png'),
-    title: '我是一个标题',
-    main: '部分内容',
-    autor: '咖啡牛',
-    time: '2023年12月11日'
-  },
-  {
-    index: 1,
-    img: require('../../../assets/images/tup/xy4.png'),
-    title: '我是一个标题',
-    main: '部分内容',
-    autor: '咖啡牛',
-    time: '2023年12月11日'
-  },
-
-]
 const leftList = [
   {
     index: 1,
@@ -141,39 +90,146 @@ const leftList = [
 ];
 const rightList = [
   {
-    index: 1,
+    index: 3,
     num: 0,
     text: '关注的圈'
   },
   {
-    index: 2,
+    index: 4,
     num: 0,
     text: '发帖'
   },
 ]
 const userName = 'O泡果奶'
 const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
+
+// 悬赏的模板
+const Reward = ({ item }) => (
+  <TouchableOpacity style={styles.xsPart}>
+    <Text style={{textAlign:'center',fontSize:18,color:'#000'}}>{item.rtitle}</Text>
+    <View style={{alignItems:'center'}}>
+      <Text style={{textAlign:'center',margin:8}}>{item.rdesc}</Text>
+      <Image
+        style={item.rimgs ? {width:100,height:100,alignItems:'center'}:{display:'none'}}
+        source={{
+          uri: item.rimgs,
+        }}
+      />
+     <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%',alignItems:'flex-end'}}>
+      <Image source={{uri:item.upath}} style={{width:40,height:40,borderRadius:90}}></Image>
+     <Text style={{color:'red'}}><Text style={{color:'#000',fontWeight:'bold',fontSize:20}}>{item.rmoney}</Text> 元</Text>
+     <Text style={{color:'#000'}}>{DateTimeUtils.formattedDateTime(item.endTime).split(' ')[0]}</Text>
+    
+     </View>
+    </View>
+  </TouchableOpacity>
+)
+// 帖子的模板
+const Post = ({ item }) => (
+  <TouchableOpacity style={styles.list3Box}>
+    <View style={{ width: '100%', alignItems: 'center' }}>
+      <Text style={styles.fonBlac} selectable={true}>{item.ttitle}</Text>
+    </View>
+    <HTMLView value={item.tcontext} style={styles.postMain}></HTMLView>
+    <View style={styles.heng}>
+      <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginLeft: 3 }}>
+        {/* 用户的名字 */}
+        <Text>{item.tauthorId}张三</Text>
+        <Text style={styles.tzTime}>{DateTimeUtils.formattedDateTime(item.tlastTime).split(' ')[0]}</Text>
+      </View>
+      <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+        {/* 帖子被点赞数量 */}
+        <View style={{ alignItems: 'center', margin: 3 }}>
+          <Image
+            style={{ width: 20, height: 20 }}
+            source={require('../../../assets/images/Favorite.png')}
+            alt='喜欢'
+          />
+          <Text>{item.tlikeCount}</Text>
+        </View>
+        {/* 帖子转发数量 */}
+        <View style={{ alignItems: 'center', margin: 3 }}>
+          <Image
+            style={{ width: 20, height: 20 }}
+            source={require('../../../assets/images/tup/zhuanfa.png')}
+            alt='转发'
+          />
+          <Text>{item.tforwardCount}</Text>
+        </View>
+        {/* 帖子被评论数量 */}
+        <View style={{ alignItems: 'center', margin: 3 }}>
+          <Image
+            style={{ width: 20, height: 20 }}
+            source={require('../../../assets/images/tup/pinglun.png')}
+            alt='评论'
+          />
+          <Text>{item.tcomCount}</Text>
+        </View>
+        {/* 帖子浏览数量 */}
+        <View style={{ alignItems: 'center', margin: 3 }}>
+          <Image
+            style={{ width: 20, height: 20 }}
+            source={require('../../../assets/images/tup/liulan.png')}
+            alt='浏览'
+          />
+          <Text>{item.tbrowseCount}</Text>
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+);
 const MineVIew = () => {
-  const [tabVal, onTabPress] = React.useState(1)
+  const htmls = '我可以换行<br/>  <img src="../../../assets/images/add_reward.png" alt="示例图片">'
+  const [tabVal, onTabPress] = React.useState(1);
+  const [uId, setuId] = React.useState(0);
+  // 帖子的数据
+  const [postlist, setPostlist] = React.useState([]);
+  // 悬赏的数据
+  const [reward, setReward] = React.useState([]);
+  // 获取存储的uId
+  const getStoData = async () => {
+    var uid = await Storage.get('usr-uId');
+    console.log(typeof uid, '--------');
+    uid = Number(uid);
+    setuId(uid);
+    // 帖子的
+    const data1: postsOneApiType = {
+      usrId: uId
+    };
+    const postData = await postsOneApi(data1);
+    setPostlist(postData.data);
+    console.log(postlist, '帖子获得的数据', uId);
+
+    // 悬赏的
+    const data2: rewardOneApiType = {
+      uid: uId
+    };
+    const rewardData = await rewardOneApi(data2);
+    setReward(rewardData.data);
+    console.log(reward,'这个是悬赏的数据。。。。。。。。');
+  }
+
+  React.useEffect(() => {
+    getStoData()
+  }, []); // 只在组件挂载时调用一次
+
 
   return (
     <>
-     <View style={{flexDirection:'row'}}>
-     <Appbar.BackAction onPress={() => navigate('MineStacker')} />
-      <View style={{justifyContent:'center',alignItems:'flex-end'}}>
-        <Text style={{fontSize:16,color:'#000',fontWeight:'bold'}}>个人页面</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <Appbar.BackAction onPress={() => navigate('MineStacker')} />
+        <View style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
+          <Text style={{ fontSize: 16, color: '#000', fontWeight: 'bold' }}>个人页面</Text>
+        </View>
       </View>
-     </View>
-      <SafeAreaView style={styles.safeStyle}>
+      <SafeAreaView style={styles.safeStyle} > 
         <View>
-          <ScrollView style={styles.bgTop}>
-            <View >
-             
+            <View>
               <View style={[styles.heng, styles.boxnNav]}>
                 <View style={styles.heng}>
                   {
                     leftList.map(item => {
-                      return <View >
+                      return <View key={item.index}>
                         <View style={styles.litt1}>
                           <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{item.num}</Text>
                           <Text style={{ fontSize: 16, color: 'black' }}> {item.text}</Text>
@@ -224,21 +280,20 @@ const MineVIew = () => {
                   }
                 </View>
               </View>
-              {/* </ImageBackground> */}
             </View>
             <View style={styles.bottBox}>
               <TouchableOpacity onPress={() => onTabPress(1)}>
                 <Text allowFontScaling={false} style={[styles.tabText, tabVal == 1 ? styles.tabColor : null]}>帖子</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => onTabPress(2)}>
-                <Text allowFontScaling={false} style={[styles.tabText, tabVal == 2 ? styles.tabColor : null]}>悬赏/商品</Text>
+                <Text allowFontScaling={false} style={[styles.tabText, tabVal == 2 ? styles.tabColor : null]}>悬赏</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => onTabPress(3)}>
                 <Text allowFontScaling={false} style={[styles.tabText, tabVal == 3 ? styles.tabColor : null]}>成就</Text>
               </TouchableOpacity>
             </View>
-            <View style={{ backgroundColor: '#fff' }}>
-              <View style={styles.nullf}>
+            <View style={{ backgroundColor: '#fff',marginTop:-90}}>
+              <ScrollView style={styles.nullf} horizontal={true} alwaysBounceVertical={true} showsVerticalScrollIndicator={true}>
                 <View style={[styles.heng, tabVal == 3 ? styles.xian : styles.hidd]}>
                   {list1.map(item => {
                     return <View key={item.index}>
@@ -256,59 +311,21 @@ const MineVIew = () => {
                     </View>
                   })}
                 </View>
-                <View style={[styles.heng, tabVal == 2 ? styles.xian : styles.hidd]}>
-                  {list2.map(item => {
-                    return <View key={item.index}>
-                      <View style={[item.type == '商品' ? styles.xian : styles.hidd, styles.litBox]} >
-                        {/* <View> */}
-                        <Text style={styles.title}>{item.title}</Text>
-                        <Image source={item.img} style={styles.spImg} accessibilityLabel='图片' alt="头像"></Image>
-                        <View style={styles.hengpic}>
-                          <Text style={styles.price}> {item.price}</Text>
-                          <Text style={styles.unit}>元/个</Text>
-                        </View>
-                      </View>
-                      <View style={[item.type == '悬赏' ? styles.xian : styles.hidd, styles.litBoxBZ]}>
-                        {/* <View style={styles.litBoxBZ}> */}
-                        <Text style={styles.title} selectable={true}>{item.title}</Text>
-                        <View style={styles.hengbz}>
-                          <Text>备注:</Text>
-                          <Text style={styles.unit}>{item.text}</Text>
-                        </View>
-                        <View style={styles.hengpic}>
-                          <Text style={styles.price}>{item.price}</Text>
-                          <Text style={styles.unit}>元/次</Text>
-                        </View>
-                      </View>
-                      <View style={(item.index % 2) == 0 ? styles.greenX : styles.greenY}>
-                        <Text style={styles.fontY}>{item.type}</Text>
-                      </View>
-                    </View>
-                  }
-                  )
-                  }
-                </View>
-                <View style={[styles.hengtz, tabVal == 1 ? styles.xian : styles.hidd]}>
-                  {list3.map(item => {
-                    return <TouchableOpacity style={styles.list3Box}>
-                      <View>
-                        <Image source={item.img} style={styles.tzimg} accessibilityLabel='图片' alt="头像"></Image>
-                      </View>
-                      <View style={styles.right}>
-                        <Text style={styles.fonBlac} selectable={true}>{item.title}</Text>
-                        <Text style={styles.ge}>{item.main}</Text>
-                        <View style={styles.heng}>
-                          <Text>{item.autor}</Text>
-                          <Text style={styles.tzTime}>{item.time}</Text>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                  })
-                  }
-                </View>
-              </View>
+                <FlatList
+                    style={[styles.hengxs, tabVal == 2 ? styles.xian : styles.hidd]}
+                    data={reward}
+                    renderItem={({ item }) => <Reward item={item} />}
+                    keyExtractor={item => item.rid}
+                  />
+
+                  <FlatList
+                    style={tabVal == 1 ? styles.xian : styles.hidd}
+                    data={postlist}
+                    renderItem={({ item }) => <Post item={item} />}
+                    keyExtractor={item => item.tid}
+                  />
+              </ScrollView>
             </View>
-          </ScrollView>
         </View>
       </SafeAreaView>
     </>
@@ -329,13 +346,7 @@ const styles = StyleSheet.create({
   },
   nullf: {
     zIndex: 9999,
-    // position:'absolute',
-    // bottom:0,
-    // right:0,
-    backgroundColor: '#FBF2F7',
-    height: 600,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    height: 430,
     padding: 16,
     flexDirection: 'row',
     flexWrap: 'wrap'
@@ -355,15 +366,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 16,
     backgroundColor: '#fff',
-    paddingTop: 100,
-    marginTop: -60
-  },
-  nullk: {
-    height: 50
+    height:140,
+    width:windowWidth
   },
   safeStyle: {
     width: windowWidth,
-    height: windowHeight,
     backgroundColor: '#F8B032',
     ...Platform.select({
       ios: {
@@ -371,38 +378,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  parentLevel: {
-    width: windowWidth,
-    ...Platform.select({
-      ios: {
-        height: windowHeight - 120,
-      },
-      android: {
-        height: windowHeight - 45,
-      }
-    })
-  },
-  scrollStyle: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  bgBox: {
-    width: windowWidth,
-    height: 140,
-    alignItems: 'flex-end',
-    paddingTop: 15,
-    backgroundColor: '#F8B032',
-    zIndex: -10,
-    position: 'relative',
-  },
-  boxIcon: {
-    marginRight: 15,
-  },
   boxnNav: {
     width: windowWidth,
     height: 100,
     borderRadius: 50,
-    marginTop: 140,
+    marginTop: 60,
     backgroundColor: '#FFFFFF',
     zIndex: 10,
     paddingHorizontal: 10,
@@ -419,18 +399,6 @@ const styles = StyleSheet.create({
         elevation: 3,
       },
     }),
-  },
-  boxItem: {
-    flex: 1,
-    height: 100,
-    alignItems: 'center',
-    paddingTop: 20,
-  },
-  navTab3: {
-    display: 'none',
-  },
-  navTabColor: {
-    color: '#dbdbdb',
   },
   boxAvatar: {
     width: 100,
@@ -449,60 +417,18 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  boxAvatarParent: {
-    width: 100,
-    height: 100,
-    zIndex: 20,
-    alignItems: 'center',
-    position: 'absolute',
-    top: 40,
-    right: windowWidth / 2.6,
-  },
-  avatarnText: {
-    color: '#000',
-    fontSize: 15,
-  },
-  avatarView: {
-    paddingTop: 16,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
   avatarnImage: {
     width: 15,
     height: 15
   },
-  uidFrame: {
-    width: 130,
-    height: 80,
-    borderBottomWidth: 1,
-    borderBottomColor: '#FFFFFF',
-    // position: 'absolute',
-    // top: -57,
-    // right: windowWidth / 4.5,
-    // zIndex: 99,
-  },
   uidBg: {
     width: 120,
     marginTop: 50
-    // position: 'absolute',
-    // top: 50,
-    // paddingLeft: 2
   },
   uidBgJb: {
     height: 30,
     borderRadius: 8,
     width: 120
-  },
-  uidText: {
-    color: '#FFFFFF',
-    fontSize: 17,
-    lineHeight: 30,
-    paddingLeft: 6,
-  },
-  bell: {
-    position: 'absolute',
-    bottom: 56,
-    right: 1
   },
   listimg: {
     width: 60,
@@ -532,48 +458,17 @@ const styles = StyleSheet.create({
     display: 'flex',
 
   },
-  spImg: {
-    width: 100,
-    height: 70
-  },
   heng: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems:'center'
   },
   heng1: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexWrap:'nowrap',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  hengtz: {
-    flexDirection: 'column'
-  },
-  hengbz: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    width: 130,
-  },
-  hengpic: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 8,
-    marginLeft: 8
-  },
-  litBox: {
-    backgroundColor: '#fff',
-    margin: 13,
-    paddingVertical: 20,
-    paddingHorizontal: 28,
-    borderRadius: 20
-  },
-  litBoxBZ: {
-    backgroundColor: '#fff',
-    margin: 13,
-    paddingVertical: 14,
-    paddingHorizontal: 18,
-    borderRadius: 20
   },
   title: {
     fontSize: 13,
@@ -587,67 +482,39 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold'
   },
-  unit: {
-    fontSize: 15,
-    color: 'black',
-    marginLeft: 6
-  },
-  greenY: {
-    backgroundColor: '#F5A30B',
-    width: 40,
-    height: 40,
-    borderRadius: 30,
-    position: 'absolute',
-    left: 0,
-    top: 0
-  },
-  greenX: {
-    backgroundColor: '#F5A30B',
-    width: 40,
-    height: 40,
-    borderRadius: 30,
-    position: 'absolute',
-    right: 0,
-    top: 0
-  },
-  fontY: {
-    color: '#fff',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    lineHeight: 40
-  },
   list3Box: {
-    backgroundColor: '#fff',
     borderRadius: 20,
     borderWidth: 1,
-    flexDirection: 'row',
-    padding: 20,
-    justifyContent: 'space-between',
-    width: '86%',
+    padding: 10,
+    width: '93%',
     margin: 8,
     ...Platform.select({
       ios: {
         shadowColor: '#999', //设置阴影色
         shadowOffset: { width: 0, height: 0 }, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
         shadowOpacity: 1,
-        shadowRadius: 3.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
+        shadowRadius: 1.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
       android: {
-        elevation: 3,
+        elevation: 0,
       },
     }),
   },
-  tzimg: {
-    width: 60,
-    height: 60,
-    marginTop: 8
+  xsPart:{
+    borderColor:'#000',
+    borderWidth:1,
+    margin:9,
+    padding:12,
+    width:'87%',
+    borderRadius:12
   },
   right: {
     marginLeft: 20
   },
   fonBlac: {
     color: 'black',
-    fontSize: 16
+    fontSize: 16,
+    fontWeight: 'bold'
   },
   ge: {
     marginVertical: 8
@@ -655,18 +522,6 @@ const styles = StyleSheet.create({
   tzTime: {
     fontSize: 12,
     marginLeft: 6
-  },
-  imgTx: {
-    width: 100,
-    height: 100
-  },
-  bgTop: {
-    backgroundColor: '#F8B032',
-
-  },
-  headBox: {
-    width: windowWidth,
-    backgroundColor: '#fff'
   },
   jia: {
     width: 20,
@@ -689,32 +544,13 @@ const styles = StyleSheet.create({
     borderBottomColor: '#fff',
     width: 130
   },
-  bgImage: {
-    zIndex: -3,
-    width: windowWidth
+  postMain: {
+    paddingTop: 20,
+    alignItems: 'center'
   },
-  appbarStyle: {
-    borderWidth: 0,
-    backgroundColor: '#FFF'
-  },
-  avatarStyle: {
-    position: 'relative'
-  },
-  stateStyle: {
-    width: 12,
-    height: 12,
-    top: 22,
-    right: -3,
-    borderRadius: 6,
-    backgroundColor: '#26c78c',
-    position: 'absolute'
-  },
-  avatarText: {
-    color: '#000',
-    lineHeight: 34,
-    marginLeft: 10
-  },
+  hengxs:{
+    width:windowWidth,
 
-
+  }
 })
 

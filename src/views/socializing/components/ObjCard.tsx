@@ -230,8 +230,7 @@ const styles = StyleSheet.create({
         shadowOpacity: .3,
         shadowRadius: 2,
         backgroundColor: '#fff',
-        marginTop: 20,
-
+        marginTop: 20
     },
     boxStylemin1: {
         justifyContent: 'center',
