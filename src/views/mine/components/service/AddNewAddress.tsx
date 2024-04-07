@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { Button } from 'react-native-paper';
 import {
-    StyleSheet,
-    View,
-    SafeAreaView,
-    Text,
-    Alert,
-    TextInput,
-    KeyboardAvoidingView,
     Dimensions,
-    Platform
+    KeyboardAvoidingView,
+    Platform,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    TextInput,
+    View
 } from 'react-native';
+import { Button } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
-import RNPickerSelect from 'react-native-picker-select';
-import { province, city, region } from '../../data/Area'
+// import RNPickerSelect from 'react-native-picker-select';
+import { city, province, region } from '../../data/Area';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -81,7 +80,7 @@ const AddNewAddress = () => {
                         <View style={styles.areas}>
 
                             <View>
-                                <RNPickerSelect
+                                {/* <RNPickerSelect
                                     onValueChange={(value) => firSelect(value)}
                                     items={level1Items}
                                     placeholder={{ label: '请选择省', value: null }} // 设置占位符
@@ -99,7 +98,7 @@ const AddNewAddress = () => {
                                         items={level3Items[selectedLevel2]}
                                         placeholder={{ label: '请选择区', value: null }} // 设置占位符
                                     />
-                                )}
+                                )} */}
                             </View>
 
                         </View>

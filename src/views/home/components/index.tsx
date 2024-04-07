@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-03-12 15:15:36
+ * @LastEditTime: 2024-04-07 14:44:57
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -9,9 +9,11 @@ import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
 import React from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
+import WebView from 'react-native-webview';
 import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
+import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -108,19 +110,12 @@ const windowHeight = Dimensions.get('window').height;
       </Card.Content>
       {/* 页面传参的方式 */}
       {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
-      <TouchableOpacity activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
+      <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
-          {/* <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}> */}
-            {/* <WebView source={{ html: item.tcontext }}></WebView> */}
-          {/* </View> */}
-          <View style={styles.cover} >
-            {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
-              
-              {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <HTML source={{ html: ceshi}} contentWidth={200}/> */}
-            </View>
+          <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
+            <WebView source={{ html: item.tcontext }}></WebView>
+          </View>
         </Card.Content>
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
@@ -200,7 +195,7 @@ const windowHeight = Dimensions.get('window').height;
         })}
       </View>
       <View style={styles.leaveWordView}>
-        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片' alt="头像"/>
+        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'/>
         <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
       </View>
     </Card>
