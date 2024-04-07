@@ -24,9 +24,7 @@ import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
 import { postComments, postLike } from '../../../api/sys/home';
 import { postCommentsData, postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
-import WebViews from '../../../components/WebView/WebViewCompent';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import webview from '../../../config/webview';
 import CommentDetails from './CommentDetails';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -201,7 +199,7 @@ const PostDetails = ({ route }: any) => {
           <View style={styles.postView}>
             <View style={styles.postStyle}>
               <View style={styles.avatarView}>
-                <Avatar.Image size={65} source={{ uri: data.upath }} />
+                <Avatar.Image size={65} source={{ uri: data.upath }} accessibilityLabel='图片' />
               </View>
               <View style={styles.avatarConent}>
                 <View style={styles.nameView}>
@@ -237,16 +235,16 @@ const PostDetails = ({ route }: any) => {
               </Text>
 
               {/* 音乐 */}
-              <WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={120}/>
+              {/* <WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={120}/> */}
               {/* 视频 */}
-              <WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} /> 
+              {/* <WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} />  */}
               
               {/* 图片开始 */}
                 <View style={{width:windowWidth,height:200,}}>
                 <TouchableOpacity onPress={()=>{
                 setIsVisible(true);
               }}>
-                  <Image style={{width:200,height:'100%',resizeMode: 'stretch'}} source={{uri:'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png'}} />
+                  <Image style={{width:200,height:'100%',resizeMode: 'stretch'}} source={{uri:'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png'}} accessibilityLabel='图片' alt="头像"/>
                   </TouchableOpacity>
                 </View>
               <Modal visible={isVisible} transparent={true}>
@@ -263,7 +261,6 @@ const PostDetails = ({ route }: any) => {
               </Text>
               <View style={styles.heartView}>
                 <TouchableOpacity
-                  style={styles.heartIcon}
                   onPress={() => onSelectPress(1)}>
                   <Icon
                     size={24}
@@ -277,7 +274,6 @@ const PostDetails = ({ route }: any) => {
               </View>
               <View style={styles.heartView}>
                 <TouchableOpacity
-                  style={styles.heartIcon}
                   onPress={() => onSelectPress(3)}>
                   <Icon
                     size={24}
@@ -291,7 +287,6 @@ const PostDetails = ({ route }: any) => {
               </View>
               <View style={styles.heartView}>
                 <TouchableOpacity
-                  style={styles.heartIcon}
                   onPress={() => postLikePress()}>
                   <Icon
                     size={24}
@@ -535,7 +530,6 @@ const styles = StyleSheet.create({
     lineHeight: 50,
     paddingLeft: 20,
   },
-  heartIcon: {},
   heartView: {
     width: '17%',
     alignItems: 'center',
@@ -544,8 +538,7 @@ const styles = StyleSheet.create({
   },
   heartText: {
     fontSize: 15,
-    color: '#ddd',
-    // lineHeight:50,
+    color: '#ddd'
   },
   postComment: {
     width: windowWidth,
@@ -567,7 +560,6 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     paddingLeft: 20,
   },
-
   listStyle: {
     width: windowWidth,
     paddingTop: 5,
@@ -616,8 +608,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
     paddingBottom: 10,
     borderBottomWidth: 1,
-    borderColor: '#aaa',
-    // backgroundColor:'red'
+    borderColor: '#aaa'
   },
   itemContentText: {
     fontSize: 15,
@@ -644,13 +635,11 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: '500',
   },
-
   commentBottom: {
     width: windowWidth,
     backgroundColor: '#FFF',
     flexDirection: 'row',
     paddingHorizontal: 25,
-    // padding: 24,
     position: 'absolute',
     bottom: 0,
     zIndex: 40,
@@ -664,7 +653,6 @@ const styles = StyleSheet.create({
         shadowRadius: 2.5,
       },
       android: {
-        // height: 70,
         elevation: 8,
       },
     }),
@@ -697,14 +685,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F7FA',
     ...Platform.select({}),
   },
-  bottomIconView: {
-    paddingTop: 15,
-    marginLeft: 10,
-  },
-  bottomIcon: {
-    width: 32,
-    height: 32,
-  },
   CommentBox: {
     position: 'absolute',
     width: windowWidth,
@@ -712,5 +692,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     zIndex: 20,
     opacity: 0.3,
-  },
+  }
 });

@@ -1,50 +1,51 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-02-22 17:39:07
+ * @LastEditTime: 2024-04-07 14:44:57
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
 import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
-import React,{useState} from 'react';
+import React from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
+import WebView from 'react-native-webview';
 import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import HTML from 'react-native-render-html';
-import Video from 'react-native-video';
-import text from '../../socializing/text';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 //普通帖子组件
-export const postsOrdinary = (item: any, index: any, separators: any) => {
-  // const [upvoteVal,onUpvoteSet] = React.useState(false)
+// const postsOrdinary = (item: any, index: any, separators: any) => {
+  function postsOrdinary  (item: any) {
+    // const [isPlay,setIsPlay] = React.useState(false);
+    let isPlay = false;
+  // const [upvoteVal,setUpvoteSet] = React.useState(false)
   let upvoteVal = false;
-  const postLikeParam:postLikeParam ={
+  const postLikeParam:postLikeParam = {
     likeTime: 1396189015737,
     comId: 0,
     postsId: item.tid,
     likeType: 1
-  }
-  // const [isPlay,setisPlay] = useState(false);
-  // const [time,etTime] = useState();
-  const loadStart = () => {
-      console.log('视频正在加载！');
-      
   };
-  const setDuration = () =>{
-    console.log('视频加载完毕');
+  
+  // const [time,etTime] = useState();
+  // const loadStart = () => {
+  //     console.log('视频正在加载！');
+      
+  // };
+  // const setDuration = () =>{
+  //   console.log('视频加载完毕');
     
-  }
-  const onEnd = () => {
-    console.log('视频播放完毕');
-  }
-  const videoError = () => {
-    console.log('视频播放失败');
-  }
+  // }
+  // const onEnd = () => {
+  //   console.log('视频播放完毕');
+  // }
+  // const videoError = () => {
+  //   console.log('视频播放失败');
+  // }
 
   const postLikePress = async (porp:any) => {
    
@@ -54,16 +55,15 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         upvoteVal = true
         item.tlikeCount = item.tlikeCount + 1 ;
       }
-    // if(porp == 1) {
-    //   upvoteVal = true
-    // } else {
-    //   upvoteVal = false
-    // }
+    if(porp == 1) {
+      upvoteVal = true
+    } else {
+      upvoteVal = false
+    }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
   const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> ';
-    // const ceshi = ' <Video source={{ uri: "https://www.runoob.com/try/demo_source/mov_bbb.mp4" }} style={{ width: 300, height: 200 }} controls={true} />'
-    // <audio src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></audio>
+   
 
   return (
     <Card style={styles.cardSty}>
@@ -77,7 +77,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
                 source={{ uri: item.upath }} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchaOp} onPress={() =>{ console.log('点击--关注用户')}}>
-              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')}></Image>
+              <Image style={styles.avatarIcon} source={require('../../../assets/images/plus-sign.png')} accessibilityLabel='图片' alt="头像"></Image>
             </TouchableOpacity>
           </View>
           <View style={styles.titleView}>
@@ -110,36 +110,12 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
       </Card.Content>
       {/* 页面传参的方式 */}
       {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
-      <TouchableOpacity activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
+      <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
-          {/* <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}> */}
-            {/* <WebView source={{ html: item.tcontext }}></WebView> */}
-          {/* </View> */}
-          <View style={styles.cover} >
-            {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
-              {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} 
-                  // onPress={() => {setSound(!sound)}} paused={sound}
-                  ref='player'
-                  // rate={isPlay?1:0}                  // 控制暂停/播放，0 代表暂停paused, 1代表播放normal.
-                  volume={1.0}                      // 声音的放大倍数大倍数，0 代表没有声音，就是静音muted, 1 代表正常音量 normal，更大的数字表示放大的倍数
-                  muted={true}                    // true代表静音，默认为false.
-                  paused={false}                  // true代表暂停，默认为false
-                  resizeMode="contain"           // 视频的自适应伸缩铺放行为，contain、stretch、cover
-                  repeat={true}                // 是否重复播放
-                  playInBackground={true}     // 当app转到后台运行的时候，播放是否暂停
-                  playWhenInactive={false}     // [iOS] Video continues to play when control or notification center are shown. 仅适用于IOS
-                  onLoadStart={loadStart}      // 当视频开始加载时的回调函数
-                  onLoad={setDuration}         // 当视频加载完毕时的回调函数
-                  // onProgress={setTime}         // 进度控制，每250ms调用一次，以获取视频播放的进度
-                  onEnd={onEnd}                // 当视频播放完毕后的回调函数
-                  onError={videoError}        //  当视频播放失败后的回调函数
-                  controls={true}               //显示控制按钮
-              /> */}
-              {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <HTML source={{ html: ceshi}} contentWidth={200}/> */}
-            </View>
+          <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
+            <WebView source={{ html: item.tcontext }}></WebView>
+          </View>
         </Card.Content>
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
@@ -173,12 +149,12 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           </TouchableOpacity>
         </View>
         <View style={styles.interactionRight}>
-          <Button
+          {/* <Button
             icon={upvoteVal ? require('../../../assets/images/3.0x/like_block.png') : require('../../../assets/images/3.0x/like.png')}
             style={styles.buttonDz}
             onPress={() => postLikePress(1)}>
             {item.tlikeCount}
-          </Button>
+          </Button> */}
           <TouchableOpacity
             onPress={() => {
               console.log('评论');
@@ -219,7 +195,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
         })}
       </View>
       <View style={styles.leaveWordView}>
-        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')}/>
+        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'/>
         <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
       </View>
     </Card>
@@ -239,13 +215,6 @@ const styles = StyleSheet.create({
   cardTitle:{
     flexDirection:'row',
     justifyContent:'space-between'
-  },
-  cardRadius:{
-    borderRadius:8
-  },
-  subSty: {
-    fontSize: 10,
-    color: '#999',
   },
   titleLeft:{
     flexDirection:'row',
@@ -409,25 +378,13 @@ const styles = StyleSheet.create({
   },
   cover:{
     width: windowWidth,
-    // position:'absolute',
     opacity:0.9,
-    // bottom:5,
     display:'flex',
     alignItems:'center',
-    // justifyContent:'center',
     padding:20,
     paddingBottom:0,
     flexDirection:'row',
     flexWrap:'wrap'
-  },
-  converText:{
-    color:'#000',
-    textAlign:'center',
-    lineHeight:110
-  },
-  postimg:{
-    width:'80%',
-    height:'60%'
   },
   touchaOp:{
     opacity:0.9,
@@ -441,6 +398,5 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'stretch',
     justifyContent:'flex-start'
-    
   }
 });

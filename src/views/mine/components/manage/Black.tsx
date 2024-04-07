@@ -578,6 +578,8 @@ const Black: React.FC = () => {
         <Image
         style={styles.avatarStyle}
         source={item.ava}
+        accessibilityLabel='图片'
+        alt="头像"
       />
       </View>
       <View style={styles.itemRight}>
@@ -708,8 +710,6 @@ export default Black;
 
 const styles = StyleSheet.create({
   indexBarStyle: {
-    // position: 'absolute',
-    // bottom: 0,
     zIndex: 1,
     right: 5,
     position:'absolute',
@@ -725,7 +725,6 @@ const styles = StyleSheet.create({
     }),
   },
   itemBar: {
-    
     ...Platform.select({
       ios: {
         paddingBottom: 2,
@@ -734,10 +733,6 @@ const styles = StyleSheet.create({
         padding: 0,
       },
     }),
-  },
-  separator: {
-    borderBottomColor: '#bbb',
-    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   listItem: {
     width: windowWidth,
@@ -779,19 +774,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-  itemLabelBg: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
   labelText: {
     fontSize: 12,
     color: '#000',
     lineHeight: 15,
     marginLeft: 4,
-  },
-  labelIcon: {},
+  }
 });

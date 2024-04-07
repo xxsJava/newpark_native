@@ -80,7 +80,7 @@ export default class MineVIew extends Component {
                 <View style={styles.boxAvatarParent}>
                   {/* 这个是我的里的头像 */}
                   <TouchableOpacity style={styles.boxAvatar}  onPress={() =>navigate('MineThree')}>
-                    <Image source={require('../../assets/images/tup/ppy.png')} style={styles.imgTx}></Image>
+                    <Image source={require('../../assets/images/tup/ppy.png')} style={styles.imgTx} accessibilityLabel='图片' alt="头像"></Image>
                   </TouchableOpacity>
                   <View style={styles.avatarView}>
                     <Text allowFontScaling={false} style={styles.avatarnText}>
@@ -90,6 +90,8 @@ export default class MineVIew extends Component {
                     <Image
                       style={styles.avatarnImage}
                       source={require('../../assets/images/alimom/V1.png')}
+                      accessibilityLabel='图片'
+                      alt="头像"
                     />
                   </View>
                   <View style={styles.uidFrame} 
@@ -118,6 +120,7 @@ export default class MineVIew extends Component {
             title="测试收到验证码页面"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
+            alt="头像"
           /> */}
           </ScrollView>
         </View>

@@ -48,7 +48,7 @@ const PurchasePage = () => {
                         <View style={styles.commodityInformation}>
                             <Text allowFontScaling={false} style={styles.commodityTitle}>商品信息</Text>
                             <View style={styles.commodityContent}>
-                                <Image style={styles.commodityImage} source={require('../../../assets/images/alimom/R-C.jpg')}></Image>
+                                <Image style={styles.commodityImage} source={require('../../../assets/images/alimom/R-C.jpg')} accessibilityLabel='图片' alt="头像"></Image>
                                 <View style={styles.commodityTextView}>
                                     <Text allowFontScaling={false} style={styles.commodityName}>商品名称</Text>
                                     <Text allowFontScaling={false} style={styles.commodityDescribe}>商品描述。。。。</Text>
@@ -61,14 +61,14 @@ const PurchasePage = () => {
                             <Text allowFontScaling={false} style={styles.parenTitle}>支付方式</Text>
                             <View style={styles.paymentContent}>
                                 <TouchableOpacity style={[styles.paymentItem,{borderColor:'#999',borderBottomWidth:1}]} onPress={() => onSelectedPress('selected1')} activeOpacity={1}>
-                                    <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/wxzf_icon.png')}></Image>
+                                    <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/wxzf_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                                     <Text allowFontScaling={false} style={styles.paymentText}>微信支付</Text>
-                                    <Image style={[styles.paymentIcon,selectedVal == 'selected1'?null:{display:'none'}]} source={require('../../../assets/images/alimom/correct_icon.png')}></Image>
+                                    <Image style={[styles.paymentIcon,selectedVal == 'selected1'?null:{display:'none'}]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.paymentItem} onPress={() => onSelectedPress('selected2')} activeOpacity={1}>
-                                    <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/zfb_icon.png')}></Image>
+                                    <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/zfb_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                                     <Text allowFontScaling={false} style={styles.paymentText}>支付宝支付</Text>
-                                    <Image style={[styles.paymentIcon,selectedVal == 'selected2'?null:{display:'none'}]} source={require('../../../assets/images/alimom/correct_icon.png')}></Image>
+                                    <Image style={[styles.paymentIcon,selectedVal == 'selected2'?null:{display:'none'}]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -97,11 +97,6 @@ const styles = StyleSheet.create({
         width: windowWidth,
         height: 45,
         backgroundColor:'#26C78C'
-    },
-    headerImage:{
-        width:25,
-        height:25,
-        marginRight:20
     },
     imageStyle:{
         width:windowWidth,
@@ -257,8 +252,7 @@ const styles = StyleSheet.create({
         textAlign:'right',
     },
     paymentView:{
-        height:250,
-        // backgroundColor:'orange'
+        height:250
     },
     parenTitle:{
         fontSize:17,
@@ -334,15 +328,13 @@ const styles = StyleSheet.create({
     bottomIcon:{
         width:'12%',
         paddingLeft:15,
-        paddingTop:8,
-        // backgroundColor:'green'
+        paddingTop:8
     },
     bottomNum:{
         width:'40%',
         fontSize:22,
         color:'#EC3656',
-        lineHeight:50,
-        // backgroundColor:'red'
+        lineHeight:50
     },
     bottomButton:{
         width:'45%',
@@ -357,5 +349,4 @@ const styles = StyleSheet.create({
         color:'#FFF',
         lineHeight:22,
     }
-    
 })

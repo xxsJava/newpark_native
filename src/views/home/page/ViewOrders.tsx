@@ -19,7 +19,7 @@ const ViewOrders = () => {
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../assets/images/chevron-left.png')} onPress={() => navigate('HelpCircleRoute')}/>
                 <Appbar.Content title="" />
-                <Image style={styles.headerImage} source={require('../../../assets/images/order_kefu.png')}></Image>
+                <Image style={styles.headerImage} source={require('../../../assets/images/order_kefu.png')} accessibilityLabel='图片' alt="头像"></Image>
                 {/* <Appbar.Action icon={require('../../../assets/images/order_kefu.png')} onPress={() => {}} /> */}
             </Appbar.Header>
             <ScrollView style={styles.scrollStyle}>
@@ -27,7 +27,7 @@ const ViewOrders = () => {
                     <StepBar></StepBar>
                     <View style={styles.personalView}>
                         <View style={styles.personalLeft}>
-                            <Avatar.Image size={65} source={require('../../../assets/images/defaultheader.png')}></Avatar.Image>
+                            <Avatar.Image size={65} source={require('../../../assets/images/defaultheader.png')} accessibilityLabel='头像'></Avatar.Image>
                         </View>
                         <View style={styles.personalRight}>
                             <Text allowFontScaling={false} style={styles.personalName}>o泡果奶</Text>
@@ -41,7 +41,7 @@ const ViewOrders = () => {
                     <View style={styles.itemView}>
                         <Text allowFontScaling={false} style={styles.itemLabel}>悬赏金额:</Text>
                         <Text allowFontScaling={false} style={styles.itemContent}>20.0</Text>
-                        <Image style={styles.moneyIcon} source={require('../../../assets/images/yuan_icon.png')}></Image>
+                        <Image style={styles.moneyIcon} source={require('../../../assets/images/yuan_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                     </View>
                     <View style={styles.itemView}>
                         <Text allowFontScaling={false} style={styles.itemLabel}>联系电话:</Text>
@@ -53,13 +53,13 @@ const ViewOrders = () => {
                     </View>
                     <View style={styles.recipientView}>
                         <View style={styles.personalLeft}>
-                            <Avatar.Image size={65} source={require('../../../assets/images/defaultheader.png')}></Avatar.Image>
+                            <Avatar.Image size={65} source={require('../../../assets/images/defaultheader.png')} accessibilityLabel='图片'></Avatar.Image>
                         </View>
                         <View style={[styles.personalRight,{width:'60%'}]}>
                             <Text allowFontScaling={false} style={styles.personalName}>接单人</Text>
                             <Text allowFontScaling={false} style={styles.personalSchool}>张三</Text>
                         </View>
-                        <Image style={styles.recipientIcon} source={require('../../../assets/images/phone_icon.png')}></Image>
+                        <Image style={styles.recipientIcon} source={require('../../../assets/images/phone_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                     </View>
                     <View style={styles.buttonView}>
                         <Button labelStyle={styles.buttonText} style={styles.buttonStyle} onPress={() => console.log('点击取消订大')}>取消订单</Button>
@@ -97,9 +97,6 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'auto'
     },
-    stepBarView:{
-        height:50
-    },
     personalView:{
         height:90,
         borderWidth:1,
@@ -111,15 +108,13 @@ const styles = StyleSheet.create({
         width:'25%',
         height:90,
         alignItems:'center',
-        paddingVertical:12,
-        // backgroundColor:'red'
+        paddingVertical:12
     },
     personalRight:{
         width:'70%',
         height:90,
         paddingRight:20,
-        paddingVertical:20,
-        // backgroundColor:'green'
+        paddingVertical:20
     },
     personalName:{
         fontSize:16,

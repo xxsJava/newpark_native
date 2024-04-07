@@ -100,6 +100,8 @@ const Addcomm = () => {
                                         <Image
                                             style={styles.itemImage}
                                             source={require('../../../assets/images/tup/ly.png')}
+                                            accessibilityLabel='图片'
+                                            alt="头像"
                                         />
                                     </View>
                                     <View style={styles.itemModelRight}>
@@ -108,6 +110,8 @@ const Addcomm = () => {
                                             <Image
                                                 style={styles.itemModelIcon}
                                                 source={require('../../../assets/images/hotfuckicon.png')}
+                                                accessibilityLabel='图片'
+                                                alt="头像"
                                             />
                                             <Text allowFontScaling={false} style={styles.itemTopText2}>热度1501</Text>
                                         </View>
@@ -150,17 +154,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 20,
         backgroundColor: '#fff',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center'
-    },
-    searchText: {
-        lineHeight: 40,
-        fontSize: 16,
-        color: '#ccc',
-        marginLeft: 3
-    },
-    heng: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center'
@@ -209,8 +202,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     scrollStyle: {
-        flex: 1,
-        // marginBottom:120
+        flex: 1
     },
     itemView: {
         width: windowWidth - 10,

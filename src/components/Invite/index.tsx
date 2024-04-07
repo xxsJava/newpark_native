@@ -48,7 +48,7 @@ const Invite = (props:any) => {
                     return (
                         <TouchableOpacity key={item.index} style={styles.mtlist} onPress={() =>{console.log(item.text);
                         }}>
-                            <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 78 } : null]}></Image>
+                            <Image source={item.img} style={[styles.mtImg, item.text == '新浪微博' ? { width: 78 } : null]} accessibilityLabel='图片' alt="头像"></Image>
                             <View style={styles.zi}>
                                 <Text style={styles.h4}>{item.text}</Text>
                             </View>

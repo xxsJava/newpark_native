@@ -64,7 +64,7 @@ const TabNav = () => {
             </View>
           </View>
           <View style={tabVal === 'tab1' ? styles.tabMore : styles.scrollShow}>
-            <Image source={require('../../../assets/images/search_in_circle.png')}></Image>
+            <Image source={require('../../../assets/images/search_in_circle.png')} accessibilityLabel='图片' alt="头像"></Image>
           </View>
         </View>
       </View>
@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
     top: -2,
     right: 7,
     borderRadius: 9,
-    // borderWidth: 1.5,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',

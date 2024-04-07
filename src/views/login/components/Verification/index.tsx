@@ -236,8 +236,7 @@ const styles = StyleSheet.create({
     color: '#C6C6C6',
   },
   verify: {
-    height: '20%',
-    // backgroundColor:'#666'
+    height: '20%'
   },
   intextInputStyle: {
     width: 400,
@@ -262,8 +261,7 @@ const styles = StyleSheet.create({
   },
   verifyText: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    // backgroundColor:'red'
+    justifyContent: 'center'
   },
   verifTextTime: {
     textAlign: 'center',

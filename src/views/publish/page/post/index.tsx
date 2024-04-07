@@ -26,10 +26,10 @@ const ReleasePost = () => {
                 </Text>
             </Appbar.Header>
             <View style={styles.syncView}>
-                <Image style={styles.syncImage} source={require('../../../../assets/images/3.0x/circle_icon.png')}></Image>
+                <Image style={styles.syncImage} source={require('../../../../assets/images/3.0x/circle_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                 <Text allowFontScaling={false} style={styles.syncText}>同步到牛圈</Text>
                 <View style={styles.syncIconView}>
-                    <Image style={styles.syncIcon1} source={require('../../../../assets/images/alimom/loading1.png')}></Image>
+                    <Image style={styles.syncIcon1} source={require('../../../../assets/images/alimom/loading1.png')} accessibilityLabel='图片' alt="头像"></Image>
                     <Text allowFontScaling={false} style={styles.syncIconText}>python</Text>
                     <Text allowFontScaling={false} style={styles.syncIcon2}>
                         <Entypo size={15} name="chevron-thin-right"></Entypo>
@@ -101,8 +101,7 @@ const styles = StyleSheet.create({
     syncIconView:{
         width:'40%',
         flexDirection:'row',
-        justifyContent:'flex-end',
-        // backgroundColor:'green'
+        justifyContent:'flex-end'
     },
     syncIcon1:{
         width:35,
@@ -131,24 +130,19 @@ const styles = StyleSheet.create({
             android:{
                 height:windowHeight-120,
             }
-        }),
-        // backgroundColor:'red'
-    },
-    textInput:{
-
+        })
     },
     contenInput:{
         width:windowWidth,
         paddingVertical:10,
         paddingHorizontal:15,
         textAlignVertical:'top',
-        // backgroundColor:'red',
         ...Platform.select({
             ios:{
                 height:windowHeight-340,
             },
             android:{
-                // height:windowHeight-260,
+    
             }
         })
     },

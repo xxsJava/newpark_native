@@ -3,252 +3,373 @@
  * 作者:cxr
  * 创建时间:2023/12/11 09:10:11
  */
-
-// import React from "react";
-// import { View,Text,StyleSheet,Dimensions,ScrollView,Platform,TouchableOpacity } from "react-native";
-// import { Button,Icon } from 'react-native-paper';
+import {
+  Modal, ButtonText, ModalBackdrop, ModalContent, VStack, ModalHeader, Heading,
+  Text, ModalBody, Input, InputField, ModalFooter, HStack, ButtonIcon, Link, ArrowLeftIcon, View, Image,
+  Textarea, TextareaInput, Select, SelectTrigger, SelectInput, SelectPortal, SelectBackdrop,
+  SelectDragIndicatorWrapper, SelectContent, SelectIcon, SelectItem, SelectDragIndicator,
+  ChevronDownIcon,
+  onChange
+} from "@gluestack-ui/themed";
 import { navigate } from '../../../../config/routs/NavigationContainer';
-// import { Image } from "react-native-animatable";
 import { rewardListApi } from '../../../../api/sys/reward';
 import { rewardListType } from '../../../../api/sys/reward/types';
 import { dateToMsgTime } from '../../../../components/Rests/TconTime';
-
+import { Alert, FlatList } from 'react-native';
+import DateTimeUtils from '../../../../utils/DateTimeUtils'
 // 模态框引入的文件
 import React, { useState } from 'react';
 import {
   Dimensions,
-  Image,
-  KeyboardAvoidingView,
-  Modal,
   Platform,
-  ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
+  TouchableOpacity
 } from 'react-native';
 import LinearGradinet from 'react-native-linear-gradient';
-import { Avatar, Button, Icon } from 'react-native-paper';
+import { Avatar, Icon, Button } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
-
+import { rewardPublishApi } from '../../../../api/sys/reward/index'
+import { rewardPublishType } from '../../../../api/sys/reward/types'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const rewardType: rewardListType = {
-  pageNo: 1,
-  pageSize: 5,
-};
+const Module = ({ item }) => (
+  <View style={styles.itemStyle} key={item.index}>
+    <View style={styles.avatarView}>
+      <Image
+        style={styles.avatarStyle}
+        source={{
+          uri: 'http://dummyimage.com/400x400',
+        }}
+        accessibilityLabel='头像'
+        alt="头像"
+      />
+      <View style={styles.stateStyle} />
+      <Text allowFontScaling={false} style={styles.timeStyle}>
+        {DateTimeUtils.formattedDateTime(item.endTime).split(' ')[0]}
+      </Text>
+    </View>
+    <View style={styles.textView}>
+      <Text
+        allowFontScaling={false}
+        style={styles.textStyle1}
+        numberOfLines={1}
+        ellipsizeMode="tail">
+        {item.rtitle}
+      </Text>
+    </View>
+    <View style={styles.detailsView}>
+      <View style={styles.moneyView}>
+        <View style={styles.moneyIcon}>
+          <Icon
+            color="#FABA3C"
+            size={34}
+            source={require('../../../../assets/images/coins-icon.png')}
+          />
+        </View>
+        <Text allowFontScaling={false} style={styles.moneySum}>
+          {item.rmoney}
+        </Text>
+      </View>
+      <Button
+        style={styles.buttonStyle}
+        labelStyle={styles.buttonText}
+        // 页面传参的方法
+        onPress={() => navigate('RewardDetailsRoute', { item })}>
+        查看详情
+      </Button>
+    </View>
+  </View>
+);
+const ListView = (data:any) => {
 
-const listData = [
-  {
-    index: 1,
-    text: '去校门口拿个快递在一楼',
-    school: '湖南长沙理工大学',
-    time: '刚刚',
-    sum: '1.50',
-  },
-  {
-    index: 2,
-    text: '商店买瓶水去西边操场',
-    school: '湖南长沙理工大学',
-    time: '刚刚',
-    sum: '2.86',
-  },
-  {
-    index: 3,
-    text: '图书馆借本书去实验室一楼',
-    school: '湖南长沙理工大学',
-    time: '刚刚',
-    sum: '2.99',
-  },
-  {
-    index: 4,
-    text: '帮骑电动车去充电，车在F楼',
-    school: '湖南长沙理工大学',
-    time: '刚刚',
-    sum: '20.00',
-  },
-];
-
-const ListView = () => {
-  const [rewardData, rewardDataChange] = React.useState([]);
-  // const rewardData = RewardApi()
-  // console.log('悬赏浏览获取',rewardData)
-  const RewardApi = async () => {
-    // console.log('悬赏token',tokenStr)
-
-    const rewardList = await rewardListApi(rewardType);
-  };
-  React.useEffect(() => {
-    RewardApi();
-  }, []); // 只在组件挂载时调用一次
-  console.log('悬赏浏览获取', rewardData);
+  var order = data.data;
+  const [allData, setAllData] = useState([]);
+  var [conu, setConu] = useState(1);
+  // 悬赏发布
   const [modalVisible, setModalVisible] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+  const [showModal3, setShowModal3] = useState(false);
+  const [title, setTitle] = useState('');
+  const [des, setDes] = useState('');
+  const [monrew, setMonrew] = useState(0);
+  const [times1, setTimes1] = useState(0);
+  const times = Date.now();
+  console.log(times, '我是时间');
+  const handleSelect = (val: any) => {
+    setTimes1(val)
+    console.log(times1, '每次改变的时候我是时间');
+  }
+  const rewardPublishData: rewardPublishType = {
+    endTime: times,
+    rdesc: des,
+    rmoney: monrew,
+    rtitle: title,
+    startTime: times
+  }
+  console.log(rewardPublishData, '发布悬赏输入的数据');
+
+  const getPubRew = async () => {
+    const rePublish = await rewardPublishApi(rewardPublishData)
+    console.log(rePublish, '这里是我发布的悬赏');
+  }
+  // 悬赏预览
+  const [rewardData, rewardDataChange] = React.useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const RewardApi = async (arr: rewardListType) => {
+    const rewardList = await rewardListApi(arr);
+    console.log(rewardList,'---------------------');
+    
+    var tips = allData.concat(rewardList.data);
+    console.log(tips, '我是每次列表的值==========');
+    setAllData(tips);
+  };
+
+  React.useEffect(() => {
+    // Alert.alert('一开始')
+    // 首先执行这个渲染页面
+    RewardApi({
+      pageNo: 1,
+      pageSize: 9
+    });
+  }, []); // 只在组件挂载时调用一次
+
+  const onload = async () => {
+    // Alert.alert('加载中11.....')
+    setConu(conu += 1);
+    const rewardList = await rewardListApi(
+      {
+        pageNo: conu,
+        pageSize: 9
+      }
+    );
+    var tips = allData.concat(rewardList.data);
+    console.log(tips, '我是每次列表的值==========',conu);
+    setAllData(tips);
+  };
+
+  const onRefresh = async () => {
+    
+    setRefreshing(false);
+    setConu(conu == 1);
+    const rewardList = await rewardListApi(
+      {
+        pageNo: conu,
+        pageSize: 9
+      }
+    );
+    var tips = rewardData.concat(rewardList.data);
+    console.log(tips, '我是每次列表的值==========',conu)
+    setAllData(tips);
+  }
   return (
     <View style={styles.parentLevel}>
-      <ScrollView style={styles.scrollStyle}>
+      {/* <ScrollView style={styles.scrollStyle}> */}
         <View style={styles.listStyle}>
-          {rewardData.map((item:any) => {
-            return (
-              <View style={styles.itemStyle} key={item.rid}>
-                <View style={styles.avatarView}>
-                  <View style={styles.avatarStyle} />
-                  <View style={styles.stateStyle} />
-                  <Text allowFontScaling={false} style={styles.timeStyle}>
-                    {dateToMsgTime(item.startTime - item.endTime)}
-                  </Text>
-                </View>
-                <View style={styles.textView}>
-                  <Text
-                    allowFontScaling={false}
-                    style={styles.textStyle1}
-                    numberOfLines={1}
-                    ellipsizeMode="tail">
-                    {item.rtitle}
-                  </Text>
-                  {/* <Text allowFontScaling={false} style={styles.textStyle2}>{item.school}</Text> */}
-                </View>
-                <View style={styles.detailsView}>
-                  <View style={styles.moneyView}>
-                    <View style={styles.moneyIcon}>
-                      <Icon
-                        color="#FABA3C"
-                        size={34}
-                        source={require('../../../../assets/images/coins-icon.png')}
-                      />
-                    </View>
-                    <Text allowFontScaling={false} style={styles.moneySum}>
-                      {item.rmoney}
-                    </Text>
-                  </View>
-                  <Button
-                    style={styles.buttonStyle}
-                    labelStyle={styles.buttonText}
-                    onPress={() => navigate('RewardDetailsRoute', {item})}>
-                    查看详情
-                  </Button>
-                </View>
+          <FlatList
+          initialNumToRender={6}
+          inverted={order}
+            data={allData}
+            renderItem={({ item }) => <Module item={item} />}
+            ListEmptyComponent={
+              <View style={styles.midd}>
+                <Text>没有发布悬赏，请稍后再来看看吧！</Text>
               </View>
-            );
-          })}
+            }
+            keyExtractor={(item) => item.rid}
+            onRefresh={onRefresh}
+            refreshing={refreshing}
+            onEndReachedThreshold={0.01}
+            onEndReached={() => {
+              onload()
+            }}
+          />
         </View>
-      </ScrollView>
+      {/* </ScrollView> */}
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => setModalVisible(!modalVisible)}>
+        onPress={() => setModalVisible(true)}>
         <Image
           style={styles.addStyle}
           source={require('../../../../assets/images/3.0x/add_btn.png')}
+          accessibilityLabel='发布悬赏'
+          alt="头像"
         />
       </TouchableOpacity>
-
       {/* 加入的模态框 */}
-      {/* <TouchableOpacity onPress={() =>setModalVisible(true)}></TouchableOpacity> */}
+      {/* 第一个模态框 */}
       <Modal
-        animationType="slide"
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
+        isOpen={modalVisible}
+        onClose={() => {
+          setModalVisible(false);
         }}
-        transparent={true}>
-        <TouchableOpacity
-          style={styles.waiM}
-          onPress={() => {
-            setModalVisible(false);
-          }}>
-          {/* <TouchableOpacity onPress={() =>setModalVisible(true)}></TouchableOpacity> */}
-          <KeyboardAvoidingView
-            behavior="padding"
-            enabled
-            keyboardVerticalOffset={20}
-            style={styles.modalBox}>
-            {/* <ScrollView></ScrollView> */}
-            <ScrollView style={styles.contentView}>
-              <View style={styles.contenStyle}>
-                <Avatar.Image
-                  size={80}
-                  style={styles.avatarStyle1}
-                  source={require('../../../../assets/images/defaultheader.png')}
-                />
-                <View style={styles.cardView}>
-                  <LinearGradinet
-                    colors={[
-                      'rgba(157, 104, 189,1)',
-                      'rgba(157, 104, 189,0.6)',
-                      'rgba(252, 251, 251,1)',
-                    ]}
-                    start={{x: 0, y: 0}}
-                    end={{x: 1, y: 0}}
-                    style={styles.titleStyle}>
-                    <Text allowFontScaling={false} style={styles.titleText}>
-                      发布悬赏{' '}
-                      <Entypo size={20} color="#F8B032" name="triangle-right" />
-                    </Text>
-                  </LinearGradinet>
-                  <View style={styles.inputView}>
-                    <View style={styles.inputImageView}>
-                      <Image
-                        style={styles.inputImage}
-                        source={require('../../../../assets/images/alimom/frame1.png')}
-                      />
-                    </View>
-                    <View style={styles.inputContent}>
-                      <Text allowFontScaling={false} style={styles.inputText}>
-                        标题
-                      </Text>
-                      <TextInput
-                        allowFontScaling={false}
-                        selectionColor="#FABA3C"
-                        placeholder="请输入"
-                        style={styles.inputTitle}
-                      />
-                      <Text allowFontScaling={false} style={styles.inputText}>
-                        描述
-                      </Text>
-                      <TextInput
-                        allowFontScaling={false}
-                        selectionColor="#FABA3C"
-                        placeholder="请输入"
-                        multiline={true}
-                        numberOfLines={4}
-                        style={styles.inputDescribe}
-                      />
-                    </View>
-                  </View>
-                  <View style={styles.bountyView}>
-                    <View style={styles.bountyIconView}>
-                      <Image
-                        style={styles.bountyIcon}
-                        source={require('../../../../assets/images/money_icon1.png')}
-                      />
-                      <Text allowFontScaling={false} style={styles.bountyText}>
-                        赏金
-                      </Text>
-                    </View>
-                    <View style={styles.bountyNumView}>
-                      <TextInput
-                        allowFontScaling={false}
-                        selectionColor="#FABA3C"
-                        style={styles.bountyInput}
-                      />
-                      <Image
-                        style={styles.bountyNumIcon}
-                        source={require('../../../../assets/images/moneyBag.png')}
-                      />
-                    </View>
-                    <Button
-                      style={styles.buttonStyle1}
-                      labelStyle={styles.buttonText1}
-                      onPress={() => console.log('点击发布')}>
-                      发布悬赏
-                    </Button>
-                  </View>
-                </View>
+        size="lg"
+      >
+        <ModalBackdrop />
+        <ModalContent style={{ backgroundColor: '#FABA3C', borderRadius: 20 }}>
+          <ModalHeader borderBottomWidth='$0' justifyContent="center" marginBottom={-30} zIndex={20}>
+            <VStack space='sm'>
+              <Avatar.Image
+                size={80}
+                style={styles.avatarStyle1}
+                source={require('../../../../assets/images/defaultheader.png')}
+                accessibilityLabel='头像'
+                
+              />
+            </VStack>
+          </ModalHeader>
+          <ModalBody style={{ backgroundColor: '#fff', padding: 10, borderRadius: 20, paddingTop: 20 }}>
+            <LinearGradinet
+              colors={[
+                'rgba(157, 104, 189,1)',
+                'rgba(157, 104, 189,0.6)',
+                'rgba(252, 251, 251,1)',
+              ]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.titleStyle}>
+              <Text allowFontScaling={false} style={styles.titleText}>
+                发布悬赏{' '}
+                <Entypo size={20} color="#F8B032" name="triangle-right" />
+              </Text>
+            </LinearGradinet>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                style={styles.inputImage}
+                source={require('../../../../assets/images/alimom/frame1.png')}
+                accessibilityLabel='标题'
+                alt="头像"
+              />
+              <View>
+                <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000' }}>
+                  标题
+                </Text>
+                <Input size="md">
+                  <InputField placeholder="请输入标题" value={title} style={{ marginBottom: -4, width: '80%' }} onChangeText={(e: any) => { setTitle(e) }} />
+                </Input>
+                {/* 描述 */}
+                <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000' }}>
+                  描述
+                </Text>
+                <Textarea
+                  size="md"
+                  isReadOnly={false}
+                  isInvalid={true}
+                  isDisabled={false}
+                  w="$64"
+                  h={129}
+                >
+                  <TextareaInput placeholder="请输入描述" value={des} onChangeText={(e: any) => { setDes(e) }} />
+                </Textarea>
               </View>
-            </ScrollView>
-          </KeyboardAvoidingView>
-        </TouchableOpacity>
+            </View>
+            <View style={styles.heng}>
+              <Image source={require('../../../../assets/images/money_icon1.png')} style={{ width: 20, height: 20 }} accessibilityLabel='赏金' alt="头像" />
+              <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000', marginLeft: 8 }}>
+                赏金
+              </Text>
+            </View>
+            <Input size="md" bgColor="#FAE6CE" variant="underlined" alignItems="center" style={{ height: 50 }}>
+              <InputField placeholder="请输入赏金" value={monrew} onChangeText={(e: any) => { setMonrew(e) }} textAlign="center" />
+              <Text style={{ fontSize: 19, fontWeight: 'bold', marginRight: 8 }}>元</Text>
+              <Image source={require('../../../../assets/images/moneyBag.png')} style={{ width: 32, height: 32, marginRight: 4 }} accessibilityLabel='赏金' alt="头像" />
+            </Input>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
+              <Text size="md" style={{ marginVertical: 10, fontWeight: 'bold', color: '#000', marginLeft: 8 }}>
+                截止时间
+              </Text>
+              <Select style={{ width: windowWidth * 0.6 }} onValueChange={handleSelect}>
+                <SelectTrigger variant="rounded" size="md" >
+                  {/* setTimes1 */}
+                  <SelectInput placeholder="请选择" textAlign="center" marginTop={9}
+                  />
+                  <Image source={require('../../../../assets/images/chevron-right.png')} style={{ width: 22, height: 22, marginRight: 20 }} accessibilityLabel='箭头' alt="头像" />
+                </SelectTrigger>
+                <SelectPortal>
+                  <SelectBackdrop />
+                  <SelectContent>
+                    <SelectDragIndicatorWrapper>
+                      <SelectDragIndicator />
+                    </SelectDragIndicatorWrapper>
+                    <SelectItem label="半个小时" value="1800000" />
+                    <SelectItem label="两个小时" value="7200000" />
+                    <SelectItem
+                      label="一天"
+                      value="86400000"
+                    />
+                    <SelectItem
+                      label="一周"
+                      value="604800000"
+                    />
+                    <SelectItem
+                      label="一个月"
+                      value="2592000000"
+                    />
+                    <SelectItem
+                      label="三个月"
+                      value="7776000000"
+                    />
+                  </SelectContent>
+                </SelectPortal>
+              </Select>
+            </View>
+            <VStack space='lg' w='$full'>
+              <Button
+                // onPress={() => {
+                //   // setShowModal2(true);
+                //   getPubRew()
+                // }}
+                onPress={() => { getPubRew() }}
+                style={{ backgroundColor: '#FDAA00', borderRadius: 10, marginTop: 20, height: 46, justifyContent: 'center' }}
+              >
+                <ButtonText>发布悬赏</ButtonText>
+              </Button>
+              <HStack>
+              </HStack>
+            </VStack>
+          </ModalBody>
+          <ModalFooter borderTopWidth='$0' >
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      {/* 发布正确显示的模态框 */}
+      <Modal
+        isOpen={showModal2}
+        onClose={() => {
+          setShowModal2(false);
+        }}
+      >
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader borderBottomWidth='$0'>
+            <VStack space='sm'>
+              <Heading size='lg'>发布悬赏</Heading>
+            </VStack>
+          </ModalHeader>
+          <ModalBody contentContainerStyle={{ alignItems: 'center', marginBottom: 20 }}>
+            <Text size='sm'>恭喜你，悬赏发布成功！</Text>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      {/* 发布错误显示的模态框 */}
+      <Modal
+        isOpen={showModal3}
+        onClose={() => {
+          setShowModal2(false);
+        }}
+      >
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader borderBottomWidth='$0'>
+            <VStack space='sm'>
+              <Heading size='lg'>发布悬赏</Heading>
+            </VStack>
+          </ModalHeader>
+          <ModalBody contentContainerStyle={{ alignItems: 'center', marginBottom: 20 }}>
+            <Text size='sm'>没有发布成功，再试一次吧！</Text>
+          </ModalBody>
+        </ModalContent>
       </Modal>
     </View>
   );
@@ -256,168 +377,11 @@ const ListView = () => {
 export default ListView;
 
 const styles = StyleSheet.create({
-  // 加入的模态框样式
-  modalBox: {
-    height: windowHeight * 0.8,
-    position: 'absolute',
-    bottom: -130,
-    // justifyContent:'flex-end',
-    // alignItems:'flex-end'
+  midd: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1
   },
-  contentView: {
-    width: windowWidth - 4,
-    marginHorizontal: 2,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    backgroundColor: '#FABA3C',
-    ...Platform.select({
-      android: {
-        height: '100%',
-      },
-      ios: {
-        height: '64%',
-      },
-    }),
-  },
-  contenStyle: {
-    width: '100%',
-    height: '100%',
-    position: 'relative',
-  },
-  avatarStyle1: {
-    position: 'absolute',
-    top: 10,
-    left: 150,
-    zIndex: 999,
-  },
-  cardView: {
-    width: '94%',
-    marginTop: '20%',
-    marginHorizontal: '3%',
-    paddingTop: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    backgroundColor: '#fff',
-    zIndex: -10,
-    ...Platform.select({
-      ios: {
-        height: 520,
-      },
-      android: {
-        height: 500,
-      },
-    }),
-  },
-  titleStyle: {
-    height: 50,
-    paddingLeft: 17,
-    borderRadius: 10,
-    marginHorizontal: 20,
-  },
-  titleText: {
-    fontSize: 19,
-    color: '#fff',
-    fontWeight: 'bold',
-    lineHeight: 50,
-  },
-  inputView: {
-    height: 210,
-    marginTop: 15,
-    marginHorizontal: 20,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    // backgroundColor:'red'
-  },
-  inputImageView: {},
-  inputImage: {
-    width: 25,
-    height: 100,
-  },
-  inputContent: {},
-  inputText: {
-    fontSize: 15,
-    color: '#000',
-    lineHeight: 20,
-  },
-  inputTitle: {
-    width: windowWidth - 100,
-    height: 50,
-    marginTop: 5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 4,
-    backgroundColor: '#F6F6F6',
-  },
-  inputDescribe: {
-    width: windowWidth - 100,
-    borderRadius: 5,
-    marginTop: 5,
-    paddingHorizontal: 10,
-    textAlignVertical: 'top',
-    backgroundColor: '#F6F6F6',
-    ...Platform.select({
-      ios: {
-        height: 90,
-      },
-    }),
-  },
-  bountyView: {},
-  bountyIconView: {
-    height: 30,
-    paddingLeft: 20,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    // backgroundColor:'red'
-  },
-  bountyIcon: {
-    width: 22,
-    height: 22,
-    marginTop: 4,
-    marginRight: 10,
-  },
-  bountyText: {
-    fontSize: 15,
-    color: '#000',
-    fontWeight: 'bold',
-    lineHeight: 30,
-  },
-  bountyNumView: {
-    height: 60,
-    position: 'relative',
-    backgroundColor: '#FFEFD7',
-  },
-  bountyInput: {
-    width: '100%',
-    height: 60,
-    fontSize: 17,
-    color: '#000',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-  },
-  bountyNumIcon: {
-    top: 17,
-    right: 20,
-    width: 25,
-    height: 25,
-    position: 'absolute',
-    zIndex: 10,
-  },
-  buttonStyle1: {
-    width: '90%',
-    height: 43,
-    borderRadius: 8,
-    marginTop: 10,
-    marginHorizontal: '5%',
-    backgroundColor: '#F8B032',
-  },
-  buttonText1: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: 'bold',
-    lineHeight: 24,
-  },
-
   // 模态框样式到此结束
   parentLevel: {
     width: windowWidth,
@@ -444,8 +408,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listStyle: {
-    marginTop: 10,
-    paddingBottom: 20,
+    marginTop: 0,
+    paddingBottom: 20
   },
   itemStyle: {
     width: windowWidth,
@@ -458,8 +422,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   avatarStyle: {
-    width: 64,
-    height: 64,
+    width: 59,
+    height: 59,
     top: 20,
     left: 10,
     borderRadius: 32,
@@ -492,12 +456,10 @@ const styles = StyleSheet.create({
   },
   textView: {
     width: '52%',
-    paddingTop: 20,
-    // backgroundColor:'orange'
+    paddingTop: 20
   },
   detailsView: {
     width: '26%',
-    // paddingTop:10,
     paddingRight: 5,
   },
   textStyle1: {
@@ -508,15 +470,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 55,
     marginHorizontal: '12%',
-  },
-  textStyle2: {
-    width: '80%',
-    height: 20,
-    fontSize: 13,
-    color: '#bbb',
-    textAlign: 'center',
-    lineHeight: 20,
-    marginHorizontal: '10%',
   },
   moneyView: {
     height: 40,
@@ -545,13 +498,33 @@ const styles = StyleSheet.create({
     color: '#fff',
     lineHeight: 20,
   },
-  waiM: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    width: windowWidth,
-    height: windowHeight,
+  heng: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
+  avatarStyle1: {
+    margin: "auto",
+    width: '100%'
+  },
+  titleStyle: {
+    height: 50,
+    paddingLeft: 17,
+    borderRadius: 10,
+    // marginHorizontal: 20,
+    marginTop: 20,
+
+  },
+  titleText: {
+    fontSize: 19,
+    color: '#fff',
+    fontWeight: 'bold',
+    lineHeight: 50,
+
+  },
+  inputImage: {
+    width: 25,
+    height: 110,
+    marginTop: 10,
+    marginRight: 3
+  }
 });

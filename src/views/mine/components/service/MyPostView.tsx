@@ -170,8 +170,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 12,
         marginTop: 6,
         borderRadius: 12,
-        // borderTopLeftRadius:12,
-        // borderBottomLeftRadius:12,
         backgroundColor: '#FFF',
         flexDirection: 'row',
         justifyContent: 'flex-start',

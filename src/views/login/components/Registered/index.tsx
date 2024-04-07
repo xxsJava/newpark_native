@@ -36,6 +36,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 const Registered = () => {
   var upath = ''
+  const [ava,setAva] = useState('');
   const [imghead, setImghead] = useState(null)
   const animationRef = useRef<LottieView>(null);
   // 昵称
@@ -68,8 +69,8 @@ const Registered = () => {
 
 
 
-      console.log(upath, 'upath');
-      // await AsyncStorage.setItem('upath', upath);
+      console.log(upath, 'upath222');
+      setAva(upath)
       // console.log(imghead,'imghead');
 
 
@@ -96,6 +97,8 @@ const Registered = () => {
         { cancelable: false }
       ))
     }
+    await AsyncStorage.setItem('ava',ava);
+    await AsyncStorage.setItem('upath', upath);
     await AsyncStorage.setItem('unikname', nameVal);
     await AsyncStorage.setItem('description', describeVal);
     await AsyncStorage.setItem('pass', passwordVal);
@@ -124,13 +127,15 @@ const Registered = () => {
                       <Image
                         style={styles.avatarImage}
                         source={{ uri: item.uri }}
+                        accessibilityLabel='图片'
+                        alt="头像"
                       />
                     </View>
                   )
                 })
                 // }
               ) : (
-                <Image source={require('../../../../assets/images/3.0x/chat_takephoto.png')} style={{ width: 100, height: 100, borderRadius: 100 }} />
+                <Image source={require('../../../../assets/images/3.0x/chat_takephoto.png')} style={{ width: 100, height: 100, borderRadius: 100 }} accessibilityLabel='图片' alt="头像"/>
               )
               }
 
@@ -308,8 +313,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
       },
       android: {
-        elevation: 23,
-        // marginTop: 10,
+        elevation: 23
       },
     }),
   },
@@ -345,8 +349,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   describeView: {
-    height: 160,
-    // backgroundColor:'green'
+    height: 160
   },
   describeInput: {
     borderWidth: 1,
@@ -377,8 +380,7 @@ const styles = StyleSheet.create({
     lineHeight: 24
   },
   container: {
-    flex: 1,
-    // marginTop:-70
+    flex: 1
   }
 });
 

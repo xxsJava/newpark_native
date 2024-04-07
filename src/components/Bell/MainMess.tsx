@@ -41,7 +41,7 @@ const MainMess = () => {
                         <Card>
                         <Card.Title>{item.name}</Card.Title>
                         <View style={styles.heng}>
-                             <Card.Image source={item.ava} style={styles.ava}/>
+                             <Card.Image source={item.ava} style={styles.ava} accessibilityLabel='图片' alt="头像"/>
                             <View style={styles.chat}>
                              <Text style={styles.zi}>{item.mes}</Text>
                             </View>

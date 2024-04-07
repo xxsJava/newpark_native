@@ -5,7 +5,7 @@
  * @Description: 推荐页面
  */
 import request from '../../../config/axios';
-import {productType,productpType} from './types';
+import {productType,productpType,recommLookType} from './types';
 
 /**
  * 交易圈的商品
@@ -16,19 +16,24 @@ import {productType,productpType} from './types';
 export const productApi = (data: productType): Promise<IResponse> => {
   return request.get({
     url: '/product/productApi',
-    data,
+    params: data
   });
 };
-
 /**
  * 交易圈的商品
  * 发布商品
- * @param 
+ * @body
  * @returns
  */
 export const productApip = (data: productpType): Promise<IResponse> => {
   return request.post({
-    url: '/product/productApi',
-    data,
+    url: '/product/productApi',data,
   });
 };
+// 社区查看ApI
+export const recommLook = (data:recommLookType):Promise<IResponse> => {
+  return request.get({
+    url:'/v1/comFindBy',
+    params: data
+  })
+}

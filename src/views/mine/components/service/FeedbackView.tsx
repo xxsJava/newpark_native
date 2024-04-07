@@ -73,12 +73,12 @@ const Photo = () => {
         <View style={styles.imageListView}>
             {imgList.map((item:any) =>{
                 return(
-                    <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}}/>
+                    <Image key={item.url} style={styles.photoListStyle} source={{uri:item.uri}} accessibilityLabel='图片' alt="头像"/>
                 )
                 })
             }
             <TouchableHighlight style={styles.photoView} underlayColor="#ddd" onPress={() => handleClick()}>
-                <Image style={styles.photoImage} source={require('../../../../assets/images/chat_page_photo.png')}></Image>
+                <Image style={styles.photoImage} source={require('../../../../assets/images/chat_page_photo.png')} accessibilityLabel='图片' alt="头像"></Image>
             </TouchableHighlight>
             {/* <Image style={{width:100,height:100}} source={{uri:'file:///Users/newpark/Library/Developer/CoreSimulator/Devices/12A11679-B024-4E1D-91F8-CE033A5E6E61/data/Containers/Data/Application/1FC816F5-0E54-4D78-81D3-708B2F510A5F/tmp/FEA68057-E426-4FC7-94A1-B4333A508A5A.jpg'}}></Image> */}
         </View>
@@ -143,13 +143,13 @@ export default class FeedbackView extends Component {
                         imgs.map((item, index) => {
                         return (
                         <View key={index}>
-                            <Image style={{ width: 50, height: 50 }} source={{ uri: item.uri }}></Image>
+                            <Image style={{ width: 50, height: 50 }} source={{ uri: item.uri }} accessibilityLabel='图片' alt="头像"></Image>
                         </View>
                         )
                         })
                     } */}
                 </View>
-                <View style={styles.buttonView}>
+                <View>
                     <TouchableOpacity style={styles.buttonIos}>
                         <Text allowFontScaling={false} style={styles.buttonText}>提交</Text>
                     </TouchableOpacity>
@@ -199,15 +199,6 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-around'
     },
-    checkColor:{
-        borderColor:'#FFB300',
-        // backgroundColor:'#FFB300'
-    },
-    checkStyle:{
-        width:50,
-        height:30,
-        backgroundColor:'pink'
-    },
     checkIcon:{
         width:20,
         height:20
@@ -219,9 +210,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFF',
         marginTop:5,
         marginHorizontal:10,
-        paddingTop:10,
-        // paddingHorizontal:10
-
+        paddingTop:10
     },
     lineStyle:{
         height:2,
@@ -231,8 +220,7 @@ const styles = StyleSheet.create({
     },
     titleInput:{
         fontSize:16,
-        paddingHorizontal:20,
-        // backgroundColor:'gold'
+        paddingHorizontal:20
     },
     textAreaView:{
         paddingHorizontal:15,
@@ -240,7 +228,6 @@ const styles = StyleSheet.create({
     },
     textAreaStyle:{
         textAlignVertical: 'top',
-        // backgroundColor:'plum',
         ...Platform.select({
             ios:{
                 height:180,
@@ -257,9 +244,6 @@ const styles = StyleSheet.create({
         backgroundColor:"#FFF",
         borderRadius:2,
         padding:10,
-    },
-    buttonView:{
-
     },
     imageListView:{
         flexDirection:'row',

@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 import { navigate } from '../../../config/routs/NavigationContainer';
-
+import { getUseList } from '../../../api/imApi/index'
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
 type DataSection = {title: string; data: DataItem[]};
@@ -28,7 +28,25 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
+  const data = {
+    pagination: {
+      pageNumber: 1,
+      showNumber: 100
+    }
+  }
+
+  const listData = async () => {
+    const ListDataAPI = await getUseList(data);
+    console.log('ListDataAPI 在这里',ListDataAPI)
+}
+
+React.useEffect(() => {
+  console.log('11============');
   
+  listData()
+}, []); // 只在组件挂载时调用一次
+
+
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -55,7 +73,7 @@ const data: DataSection[] = [
     title: 'A',
     data: [
       {
-        name: '牛友名称',
+        name: '牛友名称11',
         labelText: '牛友',
         color: 1,
         lableType: 1,
@@ -727,10 +745,6 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  separator: {
-    borderBottomColor: '#bbb',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
   listItem: {
     width: windowWidth,
     height: 80,
@@ -770,19 +784,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-  itemLabelBg: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
   labelText: {
     fontSize: 12,
     color: '#000',
     lineHeight: 15,
     marginLeft: 4,
-  },
-  labelIcon: {},
+  }
 });

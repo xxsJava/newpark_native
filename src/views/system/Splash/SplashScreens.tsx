@@ -43,7 +43,10 @@ const Splashs= () => {
         <ImageBackground
           source={require('../../../assets/images/loginBG.png')}
           resizeMode="cover"
-          style={styles.img}>
+          style={styles.img}
+          accessibilityLabel='图片'
+          alt="头像"
+          >
           <SafeAreaView style={{flex: 1}}>
             <View style={styles.nav}>
               <TouchableOpacity
@@ -61,6 +64,8 @@ const Splashs= () => {
                 <Image
                   style={styles.tinyLogo}
                   source={require('../../../assets/images/logo.png')}
+                  accessibilityLabel='图片'
+                  alt="头像"
                 />
               </Animatable.View>
             </View>
@@ -110,7 +115,6 @@ const styles = StyleSheet.create({
   },
   nav: {
     flex: 0.1,
-    // backgroundColor: '#fff',
     marginTop: Platform.OS === 'ios'?'0%':'10%'
   },
   navTime: {
@@ -150,7 +154,6 @@ const styles = StyleSheet.create({
   },
   footer: {
     width: '100%',
-    // backgroundColor: '#fff',
     position: 'absolute',
     bottom: '4%',
   },

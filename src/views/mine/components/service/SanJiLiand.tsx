@@ -1,7 +1,14 @@
+/*
+ * @Author: xxs
+ * @Date: 2024-03-16 17:00:12
+ * @LastEditTime: 2024-04-07 13:44:10
+ * @FilePath: \newpark_native\src\views\mine\components\service\SanJiLiand.tsx
+ * @Description: desc
+ */
 import React, { useState } from 'react';
-import RNPickerSelect from 'react-native-picker-select';
-import { View,StyleSheet,Dimensions} from 'react-native';
-import {province,city,region} from '../../data/Area'
+// import RNPickerSelect from 'react-native-picker-select';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import { city, province, region } from '../../data/Area';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const MultiLevelPicker = () => {
@@ -31,7 +38,7 @@ const MultiLevelPicker = () => {
   };
   return (
     <View style={styles.box}>
-      <RNPickerSelect
+      {/* <RNPickerSelect
         onValueChange={(value) => firSelect(value)}
         items={level1Items}
         placeholder={{ label: '请选择省', value: null }} // 设置占位符
@@ -49,7 +56,7 @@ const MultiLevelPicker = () => {
           items={level3Items[selectedLevel2]}
           placeholder={{ label: '请选择区', value: null }} // 设置占位符
         />
-      )}
+      )} */}
     </View>
   );
 };
@@ -57,7 +64,6 @@ const MultiLevelPicker = () => {
 export default MultiLevelPicker;
 const styles = StyleSheet.create({
   box:{
-    backgroundColor:'aqua',
     width:windowWidth * 0.4
   }
 })

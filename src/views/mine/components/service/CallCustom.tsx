@@ -60,7 +60,7 @@ const CallCustom = ({ navigation }: any) => {
                 </View>
                 <Text style={styles.h2}>新园客服</Text>
                 {/* <image  /> */}
-                <Image source={require('../../../../assets/images/tup/gengduo.png')} style={styles.iconStyle} />
+                <Image source={require('../../../../assets/images/tup/gengduo.png')} style={styles.iconStyle} accessibilityLabel='图片' alt="头像"/>
             </Appbar.Header>
             <ScrollView style={styles.shangxia}
              contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between', flexDirection: 'column' }}
@@ -76,7 +76,7 @@ const CallCustom = ({ navigation }: any) => {
                     </View>
                     <View style={styles.tit}>
                         <View style={styles.littit}>
-                            <Image source={require('../../../../assets/images/tup/bangzhu.png')} style={styles.questimg} />
+                            <Image source={require('../../../../assets/images/tup/bangzhu.png')} style={styles.questimg} accessibilityLabel='图片' alt="头像"/>
                             <View>
                                 <Text style={styles.titText}>猜您想问</Text>
                             </View>
@@ -88,7 +88,7 @@ const CallCustom = ({ navigation }: any) => {
                                         setValue(item.main)
                                     }}>
                                         <Text style={styles.fonblac}>{item.main}</Text>
-                                        <Image source={require('../../../../assets/images/chevron-right.png')} style={styles.questimg}></Image>
+                                        <Image source={require('../../../../assets/images/chevron-right.png')} style={styles.questimg} accessibilityLabel='图片' alt="头像"></Image>
                                     </TouchableOpacity>
                                 )
                             })}
@@ -116,32 +116,28 @@ const CallCustom = ({ navigation }: any) => {
                         }
                     </View>
                     <View style={styles.mainbox}>
-                        <Image source={require('../../../../assets/images/tup/yuyinqiehuan.png')} style={styles.yuyin} />
+                        <Image source={require('../../../../assets/images/tup/yuyinqiehuan.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
                         <TextInput
                             style={styles.inptext}
                             onChangeText={text => onChangeText(text)}
                             value={value}
                             placeholder='请输入您要咨询的内容吧～'
                         />
-                        <Image source={require('../../../../assets/images/tup/biaoqing.png')} style={styles.yuyin} />
+                        <Image source={require('../../../../assets/images/tup/biaoqing.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
                         <View style={value=='' ? styles.xian:styles.hidd}>
-                            <Image source={require('../../../../assets/images/tup/zengjiatianjiajiahao.png')} style={styles.yuyin} />
+                            <Image source={require('../../../../assets/images/tup/zengjiatianjiajiahao.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
                         </View>
                         <View style={value== '' ? styles.hidd:styles.xian}>
                             <TouchableOpacity style={styles.sendSty} onPress={() =>{
                                 console.log(value);
-                                
                             }}>
                                 <Text style={styles.sendtext}>发送</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </KeyboardAvoidingView>
-                
-            </ScrollView>
-            
+            </ScrollView>    
         </SafeAreaView>
-        
     )
 }
 export default CallCustom;
@@ -183,9 +179,7 @@ const styles = StyleSheet.create({
         marginLeft: 12
     },
     tit: {
-        flexDirection: 'column',
-
-
+        flexDirection: 'column'
     },
     list1litbox: {
         flexDirection: 'row',
@@ -213,7 +207,7 @@ const styles = StyleSheet.create({
     fonblac: {
         color: 'black'
     },
-    wait: {
+    wait:{
         backgroundColor: '#FFF2D9',
         width: '80%',
         borderRadius: 20,
@@ -240,7 +234,6 @@ const styles = StyleSheet.create({
     },
     list2text: {
         fontSize: 10
-
     },
     yuyin: {
         width: 33,

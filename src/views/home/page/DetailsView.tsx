@@ -7,7 +7,6 @@
 import React, { useState } from 'react';
 import { Trans } from 'react-i18next';
 import {
-  Alert,
   Dimensions,
   Image,
   Modal,
@@ -27,7 +26,8 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const DetailsView = () => {
+const DetailsView = ({data}:any) => {
+  console.log(data,'我是跳转过来的item');
   const [tabVal, setTab] = useState('tab1');
   const setTabPress = (tab: string) => {
     setTab(tab);
@@ -53,7 +53,6 @@ const DetailsView = () => {
               style={styles.swiperStyle}
               height={300}
               loop={true}
-            
               horizontal={true}
               autoplay={true}
               autoplayTimeout={5}
@@ -63,18 +62,26 @@ const DetailsView = () => {
               <Image
                 source={require('../../../assets/images/banner1.jpg')}
                 style={styles.bannerImage}
+                accessibilityLabel='图片'
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner2.jpg')}
                 style={styles.bannerImage}
+                accessibilityLabel='图片'
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner3.jpg')}
                 style={styles.bannerImage}
+                accessibilityLabel='图片'
+                alt="轮播图"
               />
               <Image
                 source={require('../../../assets/images/banner4.jpg')}
                 style={styles.bannerImage}
+                accessibilityLabel='图片'
+                alt="轮播图"
               />
             </Swiper>
           </View>
@@ -86,6 +93,7 @@ const DetailsView = () => {
                 <Avatar.Image
                   size={56}
                   source={require('../../../assets/images/defaultheader.png')}
+                  accessibilityLabel='图片'
                 />
                 <Text allowFontScaling={false} style={styles.personalName}>o泡果奶</Text>
               </View>
@@ -131,6 +139,8 @@ const DetailsView = () => {
                     tabVal == 'tab1' ? { display: 'none' } : null,
                   ]}
                   source={require('../../../assets/images/3.0x/collect.png')}
+                  accessibilityLabel='图片'
+                  alt="头像"
                 />
                 <Image
                   style={[
@@ -138,6 +148,8 @@ const DetailsView = () => {
                     tabVal == 'tab1' ? null : { display: 'none' },
                   ]}
                   source={require('../../../assets/images/3.0x/goods_collect.png')}
+                  accessibilityLabel='图片'
+                  alt="头像"
                 />
               </TouchableOpacity>
               <Text allowFontScaling={false} style={styles.controlLeftText}>收藏</Text>
@@ -150,6 +162,7 @@ const DetailsView = () => {
                     tabVal == 'tab2' ? { display: 'none' } : null,
                   ]}
                   source={require('../../../assets/images/3.0x/comment_new1.png')}
+                  accessibilityLabel='图片'
                 />
                 <Image
                   style={[
@@ -157,6 +170,8 @@ const DetailsView = () => {
                     tabVal == 'tab2' ? null : { display: 'none' },
                   ]}
                   source={require('../../../assets/images/3.0x/goods_say.png')}
+                  accessibilityLabel='图片'
+                  alt="头像"
                 />
               </TouchableOpacity>
               <Text allowFontScaling={false} style={styles.controlLeftText}>留言</Text>
@@ -171,7 +186,6 @@ const DetailsView = () => {
               onPress={() => console.log('点击聊一聊')}>
               <Text allowFontScaling={false}>聊一聊</Text>
             </Button>
-
             <Button
               style={styles.controlRightButton}
               labelStyle={styles.controlButtonText}
@@ -186,8 +200,7 @@ const DetailsView = () => {
         </View>
       </View>
       {/*  这个是模态框*/}
-      <TouchableWithoutFeedback style={{ position: 'absolute', bottom: 0, width: windowWidth,height:windowHeight,backgroundColor:'red',flex:1}} 
-      >
+      <TouchableWithoutFeedback style={{ position: 'absolute', bottom: 0, width: windowWidth,height:windowHeight,backgroundColor:'red',flex:1}} >
         <Modal
           animationType="slide"
           transparent={true}
@@ -223,7 +236,7 @@ const DetailsView = () => {
                   <View style={styles.commodityInformation}>
                     <Text allowFontScaling={false} style={styles.commodityTitle}>商品信息</Text>
                     <View style={styles.commodityContent}>
-                      <Image style={styles.commodityImage} source={require('../../../assets/images/alimom/R-C.jpg')}></Image>
+                      <Image style={styles.commodityImage} source={require('../../../assets/images/alimom/R-C.jpg')} accessibilityLabel='图片' alt="头像"></Image>
                       <View style={styles.commodityTextView}>
                         <Text allowFontScaling={false} style={styles.commodityName}>商品名称</Text>
                         <Text allowFontScaling={false} style={styles.commodityDescribe}>商品描述。。。。</Text>
@@ -236,14 +249,14 @@ const DetailsView = () => {
                     <Text allowFontScaling={false} style={styles.parenTitle}>支付方式</Text>
                     <View style={styles.paymentContent}>
                       <TouchableOpacity style={[styles.paymentItem, { borderColor: '#999', borderBottomWidth: 1 }]} onPress={() => onSelectedPress('selected1')} activeOpacity={1}>
-                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/wxzf_icon.png')}></Image>
+                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/wxzf_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                         <Text allowFontScaling={false} style={styles.paymentText}>微信支付</Text>
-                        <Image style={[styles.paymentIcon, selectedVal == 'selected1' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')}></Image>
+                        <Image style={[styles.paymentIcon, selectedVal == 'selected1' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                       </TouchableOpacity>
                       <TouchableOpacity style={styles.paymentItem} onPress={() => onSelectedPress('selected2')} activeOpacity={1}>
-                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/zfb_icon.png')}></Image>
+                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/zfb_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                         <Text allowFontScaling={false} style={styles.paymentText}>支付宝支付</Text>
-                        <Image style={[styles.paymentIcon, selectedVal == 'selected2' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')}></Image>
+                        <Image style={[styles.paymentIcon, selectedVal == 'selected2' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -268,18 +281,6 @@ const DetailsView = () => {
 export default DetailsView;
 
 const styles = StyleSheet.create({
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    position: 'absolute'
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
   parentView: {
     width: windowWidth,
     height: windowHeight,
@@ -527,21 +528,6 @@ titleStyle:{
     textAlign:'center',
     lineHeight:40
 },
-// scrollView:{
-//     width:'100%',
-//     height:windowHeight-320,
-//     ...Platform.select({
-//         ios:{
-//             height:windowHeight-410,
-//         },
-//         android:{
-//             height:windowHeight-320,
-//         }
-//     })
-// },
-// scrollStyle:{
-//     flex:1,
-// },
 personalData:{
     borderBottomWidth:1,
     borderColor:'#aaa'
@@ -633,11 +619,6 @@ commodityTextView:{
     height:105,
     paddingLeft:10,
 },
-// commodityName:{
-//     fontSize:18,
-//     color:'#000',
-//     lineHeight:25
-// },
 commodityDescribe:{
     fontSize:15,
     color:'#000',
@@ -655,8 +636,7 @@ commodityNum:{
     textAlign:'right',
 },
 paymentView:{
-    height:250,
-    // backgroundColor:'orange'
+    height:250
 },
 parenTitle:{
     fontSize:17,
@@ -671,8 +651,6 @@ paymentContent:{
     paddingVertical:5,
     paddingHorizontal:20,
     backgroundColor:'#FFF',
-    // borderTopLeftRadius:12,
-    // borderTopRightRadius:12,
     borderRadius:12,
     ...Platform.select({
         ios: {
@@ -740,8 +718,7 @@ bottomNum:{
     width:'40%',
     fontSize:22,
     color:'#EC3656',
-    lineHeight:50,
-    // backgroundColor:'red'
+    lineHeight:50
 },
 bottomButton:{
     width:'45%',

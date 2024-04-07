@@ -166,7 +166,7 @@ interface listType {
 const List = ({ data }:{data:listType}) => {
     return (
         <TouchableOpacity style={styles.cards}>
-            <Image source={data.img} style={styles.icon} />
+            <Image source={data.img} style={styles.icon} accessibilityLabel='图片' alt="头像"/>
             <View style={styles.rightList}>
                 <Text style={styles.h5}>名称 : {data.name}</Text>
                 <View style={styles.desc}>

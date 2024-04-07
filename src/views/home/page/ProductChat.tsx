@@ -35,13 +35,13 @@ function MessageList(props: { items: any; receiver: any; }) {
 }, index: React.Key | null | undefined) => {
             return (
                 <View key={index} style={receiver == item.name ? styles.chatReceiver : styles.chatMessage}>
-                    <Avatar.Image style={[styles.avatarImage1,receiver == item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
+                    <Avatar.Image style={[styles.avatarImage1,receiver == item.name ? {display:'none'}:null]} size={34} source={item.avatar} accessibilityLabel='图片'></Avatar.Image>
                     <View style={[styles.textStyle,receiver == item.name ? styles.textReceiver : null]}>
                         <Text allowFontScaling={false} style={[styles.chatNameReceiver,receiver == item.name ? {display:'none'}:null]}>{item.name}</Text>
                         <Text allowFontScaling={false} style={[styles.messageText,receiver == item.name?styles.messageReceiver:null,item.message ? null : {display:'none'}]}>{item.message}</Text>
-                        <Image style={[styles.messageImage,item.messageImage ? null : {display:'none'}]} source={item.messageImage} />
+                        <Image style={[styles.messageImage,item.messageImage ? null : {display:'none'}]} source={item.messageImage} accessibilityLabel='图片' alt="头像"/>
                     </View>
-                    <Avatar.Image style={[styles.avatarImage2,receiver != item.name ? {display:'none'}:null]} size={34} source={item.avatar}></Avatar.Image>
+                    <Avatar.Image style={[styles.avatarImage2,receiver != item.name ? {display:'none'}:null]} size={34} source={item.avatar} accessibilityLabel='图片' alt="头像"></Avatar.Image>
                 </View>
             );
         },
@@ -57,7 +57,7 @@ const ModuleView = () => {
             <LinearGradinet colors={['rgba(250,186,60,0.5)','rgba(250,186,60,0.2)','rgba(250,186,60,0)']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.itemBg}>
                 <View style={styles.itemTop}>
                     <View style={styles.itemAvatar}>
-                        <Avatar.Image size={45} source={require('../../../assets/images/avatar-nv.png')}></Avatar.Image> 
+                        <Avatar.Image size={45} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片' alt="头像"></Avatar.Image> 
                     </View>
                     <View style={styles.itemName}>
                         <View style={styles.itemNameTop}>
@@ -68,7 +68,7 @@ const ModuleView = () => {
                     </View>
                     <View style={styles.itemMoney}>
                         <TouchableOpacity style={styles.itemMoneyButton}>
-                            <Image style={styles.itemNameImage} source={require('../../../assets/images/money_bag.png')}></Image>
+                            <Image style={styles.itemNameImage} source={require('../../../assets/images/money_bag.png')} accessibilityLabel='图片' alt="头像"></Image>
                             <Text allowFontScaling={false} style={styles.itemMoneyText}>20.0</Text>
                         </TouchableOpacity>
                     </View>
@@ -125,7 +125,7 @@ const ProductChat = () => {
                 <Appbar.BackAction onPress={() => navigate('HelpCircleRoute')} />
                 <View style={styles.avatarView}>
                     <View style={styles.avatarStyle}>
-                        <Avatar.Image size={34} source={require('../../../assets/images/avatar-nv.png')}></Avatar.Image>
+                        <Avatar.Image size={34} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='头像'></Avatar.Image>
                         <View style={styles.stateStyle}></View>
                     </View>
                     <Text allowFontScaling={false} style={styles.avatarText}>O泡果奶</Text>
@@ -249,10 +249,6 @@ const styles = StyleSheet.create({
         color:'#000',
         fontWeight: 'bold',
         marginLeft: 'auto',
-    },
-    chatTimeStamp: {
-        marginLeft: 10,
-        fontSize: 12,
     },
     avatarView:{
         width:'70%',
@@ -475,5 +471,5 @@ const styles = StyleSheet.create({
         fontSize:15,
         color:'#FFF',
         lineHeight:17
-    },
+    }
 })

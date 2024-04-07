@@ -90,14 +90,14 @@ export default class ObjCard<T> extends Component{
                 <View>
                     <TouchableOpacity style={styles.avatarStyle}>
                         <View style={styles.info}>
-                            <Avatar.Image size={46} source={require('../../../assets/images/avatar-nv.png')}></Avatar.Image>
+                            <Avatar.Image size={46} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='头像'></Avatar.Image>
                             <Text style={styles.h2}> SDK18_6699</Text>
                         </View>
-                        <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} />
+                        <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} accessibilityLabel='图片' alt="头像"/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.boxStyle}>
                         <Text style={styles.h6}>搜索聊天记录</Text>
-                        <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} />
+                        <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} accessibilityLabel='图片' alt="头像"/>
                     </TouchableOpacity>
                     <View style={styles.boxmin}>
                         {this.switchList.map((item: switchListType) => {
@@ -126,19 +126,18 @@ export default class ObjCard<T> extends Component{
                     </View>
                     <TouchableOpacity style={styles.boxStyle}>
                         <Text style={styles.h6r}>清空聊天记录</Text>
-                        <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} />
+                        <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} accessibilityLabel='图片' alt="头像"/>
                     </TouchableOpacity>
                     <View style={styles.boxmin}>
                         <TouchableOpacity style={styles.boxStylemin1} onPress={() => navigate('CheckRoute',{id:'123',type:1})}>
-                            <Image source={require('../../../assets/images/tup/qunfaxinxi.png')} style={styles.rightIcon} />
+                            <Image source={require('../../../assets/images/tup/qunfaxinxi.png')} style={styles.rightIcon} accessibilityLabel='图片' alt="头像"/>
                             <Text style={styles.h7}>发消息</Text>
                         </TouchableOpacity>
                         {/* <TouchableOpacity style={styles.boxStylemin2}>
-                            <Image source={require('../../../assets/images/tup/shipintonghua.png')} style={styles.rightIcon} />
+                            <Image source={require('../../../assets/images/tup/shipintonghua.png')} style={styles.rightIcon} accessibilityLabel='图片' alt="头像"/>
                             <Text style={styles.h7}>音视频通话</Text>
                         </TouchableOpacity> */}
                     </View>
-                        
                 </View>
             </SafeAreaView>
         )
@@ -231,8 +230,7 @@ const styles = StyleSheet.create({
         shadowOpacity: .3,
         shadowRadius: 2,
         backgroundColor: '#fff',
-        marginTop: 20,
-
+        marginTop: 20
     },
     boxStylemin1: {
         justifyContent: 'center',

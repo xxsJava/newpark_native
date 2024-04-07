@@ -108,6 +108,8 @@ const ListIndex: React.FC = () => {
               //https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png
               uri: item.stateMsg === 2 ? item.faceURL==''?'https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png':item.faceURL : item.senderFaceUrl,
             }}
+            accessibilityLabel='图片'
+            alt="头像"
           />
         </View>
       </View>
@@ -148,30 +150,6 @@ const ListIndex: React.FC = () => {
 export default ListIndex;
 
 const styles = StyleSheet.create({
-  indexBarStyle: {
-    position: 'absolute',
-    bottom: 0,
-    zIndex: 1,
-    right: 5,
-    ...Platform.select({
-      ios: {
-        top: 0,
-      },
-      android: {
-        top: -30,
-      },
-    }),
-  },
-  itemBar: {
-    ...Platform.select({
-      ios: {
-        paddingBottom: 2,
-      },
-      android: {
-        padding: 0,
-      },
-    }),
-  },
   listItem: {
     width: windowWidth,
     height: 90,
@@ -198,7 +176,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderColor: '#999',
-    // borderWidth: 1,
     borderRadius: 30,
   },
   itemName: {
@@ -211,20 +188,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-  itemLabelBg: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
   labelText: {
     fontSize: 12,
     color: '#999',
     lineHeight: 15,
   },
-  labelIcon: {},
   avatar: {
     width: 60,
     height: 60,

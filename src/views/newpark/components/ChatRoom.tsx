@@ -19,7 +19,7 @@ const ChatRoom = () => {
 
     const [chat, setChat] = React.useState('');
     const [imghead, setImghead] = useState(null)
-    // 如果没有选择就默认给这个值
+    // 如果没有选择就默认给这个图片
     var upath = 'https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg'
 
     const changeHeader = () => {
@@ -35,7 +35,7 @@ const ChatRoom = () => {
                 }
 
             }
-            console.log(upath, 'upath');
+            console.log(upath, 'upath111');
         });
     }
     return (
@@ -48,12 +48,14 @@ const ChatRoom = () => {
                                 <Image
                                     source={{ uri: item.uri }}
                                     style={styles.ava}
+                                    accessibilityLabel='图片'
+                                    alt="头像"
                                 />
                             </View>
                         )
                     })
                 ) : (
-                    <Image source={require('../../../assets/images/3.0x/chat_takephoto.png')} style={styles.ava} />
+                    <Image source={require('../../../assets/images/3.0x/chat_takephoto.png')} style={styles.ava} accessibilityLabel='图片' alt="头像"/>
                 )
                 }
             </TouchableOpacity>
@@ -125,7 +127,6 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
         width: '80%',
-        // height: '80%',
         borderRadius: 30,
         marginTop: -50,
         marginLeft: '10%',
@@ -145,27 +146,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         alignItems: 'flex-end'
     },
-    chatName: {
-        height: 20,
-        minWidth: 0,
-        minHeight: 20,
-        fontSize: 14,
-        backgroundColor: '#fff'
-
-    },
     switchs: {
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 20
-    },
-    chatdesc: {
-        width: '80%',
-        marginLeft: '10%',
-        height: 20,
-        backgroundColor: '#E5E5E5',
-        fontSize: 14,
-        marginTop: 30,
-
-
     }
 })

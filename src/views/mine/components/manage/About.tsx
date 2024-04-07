@@ -19,7 +19,7 @@ const About = () => {
     return (
         <SafeAreaView>
             <View>
-                <Image style={styles.bjt} source={require('../../../../assets/images/tup/bgt.jpg')}></Image>
+                <Image style={styles.bjt} source={require('../../../../assets/images/tup/bgt.jpg')} accessibilityLabel='图片' alt="头像"></Image>
                 <View style={styles.zhong}>
                     <Text style={styles.tit}>恭喜你发现这款宝藏软件!</Text>
                 </View>
@@ -30,6 +30,8 @@ const About = () => {
                             <Image
                                 style={styles.ava}
                                 source={require('../../../../assets/images/tup/xn.png')}
+                                accessibilityLabel='图片'
+                                alt="头像"
                             />
                             <View style={styles.ans}>
                                 <Text style={styles.text}>那这款软件有什么作用捏？</Text>
@@ -42,6 +44,8 @@ const About = () => {
                             <Image
                                 style={styles.ava}
                                 source={require('../../../../assets/images/logo.png')}
+                                accessibilityLabel='图片'
+                                alt="头像"
                             />
                         </Animatable.View>
 
@@ -49,6 +53,8 @@ const About = () => {
                             <Image
                                 style={styles.ava}
                                 source={require('../../../../assets/images/tup/l1.png')}
+                                accessibilityLabel='图片'
+                                alt="头像"
                             />
                             <View style={styles.ans}>
                                 <Text style={styles.text}>我能用它干什么？</Text>
@@ -61,6 +67,8 @@ const About = () => {
                             <Image
                                 style={styles.ava}
                                 source={require('../../../../assets/images/logo.png')}
+                                accessibilityLabel='图片'
+                                alt="头像"
                             />
                         </Animatable.View>
                     </View>

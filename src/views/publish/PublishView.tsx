@@ -86,9 +86,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0
   },
-  // fadingText: {
-  //   fontSize: 28
-  // },
   buttonRow: {
     flexBasis: 100,
     justifyContent: 'space-evenly',
@@ -137,5 +134,4 @@ const styles = StyleSheet.create({
     left:80
   }
 });
-
 export default App;
