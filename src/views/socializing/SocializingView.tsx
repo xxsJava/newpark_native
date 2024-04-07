@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import {
   Dimensions,
+  Platform,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
@@ -206,7 +207,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   moreModule:{
-    top:50,
+    top:Platform.OS==='ios'?110:50,
     right:18,
     width:160,
     height:165,

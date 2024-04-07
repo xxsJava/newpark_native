@@ -118,7 +118,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
           {/* </View> */}
           <View style={styles.cover} >
             {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
-              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} 
+              {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} 
                   // onPress={() => {setSound(!sound)}} paused={sound}
                   ref='player'
                   // rate={isPlay?1:0}                  // 控制暂停/播放，0 代表暂停paused, 1代表播放normal.
@@ -135,7 +135,7 @@ export const postsOrdinary = (item: any, index: any, separators: any) => {
                   onEnd={onEnd}                // 当视频播放完毕后的回调函数
                   onError={videoError}        //  当视频播放失败后的回调函数
                   controls={true}               //显示控制按钮
-              />
+              /> */}
               {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
               <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
               <HTML source={{ html: ceshi}} contentWidth={200}/> */}

@@ -32,9 +32,9 @@ RCT_EXPORT_METHOD(initSDK){
   //初始化IM
   NSLog(@"OpenIM初始化----->%@",documentPath);
 //  NSLog(@"OpenIM初始化----->");
-  OIMInitConfig *config = [OIMInitConfig new];
-  config.apiAddr = @"http://www.newpark.sougouhihg.top:10002/";
-  config.wsAddr = @"ws://www.newpark.sougouhihg.top:10001";
+  OIMInitConfig *config = [OIMInitConfig new];   
+  config.apiAddr = @"https://www.newpark.sougouhihg.top/im_api";
+  config.wsAddr = @"ws://www.newpark.sougouhihg.top/im_msg_gateway";
   config.dataDir = documentPath;
 
   BOOL success = [OIMManager.manager initSDKWithConfig:config

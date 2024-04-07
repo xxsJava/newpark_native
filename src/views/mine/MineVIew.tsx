@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
     //     height: 180,
     //   },
     // }),
+    backgroundColor: '#F8B032',
   },
   parentLevel: {
     width: windowWidth,
