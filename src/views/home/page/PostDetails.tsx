@@ -26,6 +26,8 @@ import { postCommentsData, postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
 import CommentDetails from './CommentDetails';
+import WebViews from '../../../components/WebView/WebViewCompent';
+import webview from '../../../config/webview';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -235,9 +237,9 @@ const PostDetails = ({ route }: any) => {
               </Text>
 
               {/* 音乐 */}
-              {/* <WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={120}/> */}
+              <WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={120}/>
               {/* 视频 */}
-              {/* <WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} />  */}
+              <WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} /> 
               
               {/* 图片开始 */}
                 <View style={{width:windowWidth,height:200,}}>
