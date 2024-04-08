@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-09 11:26:21
- * @LastEditTime: 2024-01-26 10:22:39
+ * @LastEditTime: 2024-04-08 18:17:57
  * @FilePath: \newpark_native\src\config\axios\index.ts
  * @Description: desc
  */
@@ -34,6 +34,9 @@ const request = async (option: any) => {
       'operationID' : operationID 
       ,
       'token' : openIMToken
+      ,
+      'Content-type': 'Application/json',
+      Accept: 'Application/json',
     }
   })
 }
