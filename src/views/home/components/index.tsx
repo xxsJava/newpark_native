@@ -14,10 +14,12 @@ import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+import { navigate } from '../../../config/routs/NavigationContainer';
+import HTMLView from 'react-native-htmlview'
 
 //普通帖子组件
-// const postsOrdinary = (item: any, index: any, separators: any) => {
-  function postsOrdinary  (item: any) {
+const postsOrdinary = (item: any, index: any, separators: any) => {
+  // function postsOrdinary  (item: any) {
     // const [isPlay,setIsPlay] = React.useState(false);
     let isPlay = false;
   // const [upvoteVal,setUpvoteSet] = React.useState(false)
@@ -46,7 +48,6 @@ const windowHeight = Dimensions.get('window').height;
   // }
 
   const postLikePress = async (porp:any) => {
-   
       const postLikeUp = await postLike(postLikeParam);
       console.log('点赞返回',postLikeUp)
       if(postLikeUp.data) {
@@ -61,8 +62,6 @@ const windowHeight = Dimensions.get('window').height;
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
   const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> ';
-   
-
   return (
     <Card style={styles.cardSty}>
       <Card.Content style={styles.cardTitle}>
@@ -107,13 +106,14 @@ const windowHeight = Dimensions.get('window').height;
         </View>
       </Card.Content>
       {/* 页面传参的方式 */}
-      {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
-      <TouchableOpacity activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
+      <TouchableOpacity activeOpacity={0.9} key={item.tid}  style={styles.cardd} onPress={() => navigate('PostDetailsRoute', { item })}>
         <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
-          {/* <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}> */}
-            {/* <WebView source={{ html: item.tcontext }}></WebView> */}
-          {/* </View> */}
+          <View style={{ width: windowWidth * 0.85, marginHorizontal: 10,borderWidth:1,borderRadius:30,justifyContent:'center'}}>
+    
+            <HTMLView value={item.tcontext} style={styles.postMain}></HTMLView>
+
+          </View>
           <View style={styles.cover} >
             {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
               
@@ -403,5 +403,10 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'stretch',
     justifyContent:'flex-start'
+  },
+  postMain:{
+    width:windowWidth,
+    justifyContent:'center',
+    alignItems:'center'
   }
 });

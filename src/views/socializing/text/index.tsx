@@ -15,6 +15,7 @@ export default () => {
                 <Text>占位</Text>
                 <Text>占位</Text>
                 <Text>占位</Text>
+                
             </PopUp>
         </>
     )

@@ -105,8 +105,7 @@ const ColumnType = () => {
 
 const styles = StyleSheet.create({
   typeStyle: {
-    width: windowWidth,
-    // height:60
+    width: windowWidth
   },
   modalAll:{
     marginTop:5,
@@ -159,7 +158,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     marginTop: 5,
-    marginRight: 5,
+    marginRight: 5
   },
   navigationItemText: {
     fontSize: 16,

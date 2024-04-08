@@ -11,9 +11,8 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 import { postList } from '../../api/sys/home';
 import { postListType } from '../../api/sys/home/types';
 import { LsitRecommend } from './Lists';
+import Text from '../../views/socializing/text';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 //菜单组件数据
 const menusData = [
@@ -51,9 +50,9 @@ const HomeComponents = () => {
 
   return (
     <>
-      {/* <ColumnType></ColumnType> */}
       <View style={styles.postsList}>
         <LsitRecommend message={postListData} />
+        
       </View>
     </>
   )
@@ -62,40 +61,6 @@ const HomeComponents = () => {
 export default HomeComponents;
 
 const styles = StyleSheet.create({
-  styleAll: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    margin: 5,
-  },
-  scrollStyle:{
-    width:windowWidth,
-    height:windowHeight - 60
-  },
-  wd: {
-    width: '40%',
-    height: 80,
-    borderRadius: 5,
-    marginLeft: '4%',
-    marginRight: '4%',
-    shadowOpacity: 0,
-    elevation: 0,
-  },
-  back: {
-    backgroundColor: '#24C78C',
-  },
-  back1: {
-    backgroundColor: '#008ACC',
-  },
-  menuTabNav: {
-    width: '98%',
-    height: 40,
-    backgroundColor: '#FFF',
-    elevation: 5,
-    marginLeft: '1%',
-    borderRadius: 3,
-    position: 'relative',
-    flexDirection: 'row',
-  },
   postsList: {
     flex: 1,
     width: '98%',
