@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-29 20:43:34
- * @LastEditTime: 2024-02-19 17:57:52
+ * @LastEditTime: 2024-04-08 17:22:09
  * @FilePath: \newpark_native\src\config\routs-config\index.tsx
  * @Description: 路由表
  *  component 组件
@@ -44,7 +44,7 @@ export default {
     //发布
     Publish: {
       component: PublishStacker,
-      label: 'homeTab.publish',
+      label: '',
       SelectedIcon: '',
       UnSelectedIcon: '',
     },

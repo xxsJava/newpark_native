@@ -1,17 +1,16 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2024-02-19 11:14:40
+ * @LastEditTime: 2024-04-08 16:05:03
  * @FilePath: \newpark_native\src\components\Home\index.tsx
  * @Description: Home 页菜单
  */
 
 import React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { postList } from '../../api/sys/home';
 import { postListType } from '../../api/sys/home/types';
 import { LsitRecommend } from './Lists';
-import Text from '../../views/socializing/text';
 
 
 //菜单组件数据

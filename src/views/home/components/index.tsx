@@ -16,7 +16,6 @@ import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-import HTMLView from 'react-native-htmlview'
 
 //普通帖子组件
 const postsOrdinary = (item: any, index: any, separators: any) => {
@@ -99,7 +98,7 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
           <View style={{ height: 300, width: windowWidth }}>
             <WebView source={{ html: '<!DOCTYPE html><html><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"><title></title></head><body>'+item.tcontext+'</body>' }}></WebView>
           </View>
-        </Card.Content> */}
+        </Card.Content>
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
       <Card.Content style={styles.backColor}>

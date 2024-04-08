@@ -35,7 +35,7 @@ import { rewardListType } from '../../../../api/sys/reward/types';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import DateTimeUtils from '../../../../utils/DateTimeUtils';
 // 模态框引入的文件
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   Platform,
@@ -56,7 +56,7 @@ const Module = ({ item }) => (
       <Image
         style={styles.avatarStyle}
         source={{
-          uri: 'http://dummyimage.com/400x400',
+          uri: item.upath,
         }}
         accessibilityLabel='头像'
         alt="头像"
@@ -136,34 +136,35 @@ const ListView = (data:any) => {
 
   const RewardApi = async (arr: rewardListType) => {
     const rewardList = await rewardListApi(arr);
-    console.log(rewardList,'---------------------');
-    
-    var tips = allData.concat(rewardList.data);
-    console.log(tips, '我是每次列表的值==========');
-    setAllData(tips);
+    setAllData(rewardList.data);
   };
 
-  React.useEffect(() => {
-    // Alert.alert('一开始')
-    // 首先执行这个渲染页面
+  const rewardInitData = () => {
+    //初始悬赏显示
     RewardApi({
       pageNo: 1,
-      pageSize: 9
+      pageSize: 5
     });
-  }, []); // 只在组件挂载时调用一次
+    
+  }
+  // rewardInitData();
+
+  useEffect(() => {
+    rewardInitData();
+  },[])
 
   const onload = async () => {
     // Alert.alert('加载中11.....')
-    setConu(conu += 1);
-    const rewardList = await rewardListApi(
-      {
-        pageNo: conu,
-        pageSize: 9
-      }
-    );
-    var tips = allData.concat(rewardList.data);
-    console.log(tips, '我是每次列表的值==========',conu);
-    setAllData(tips);
+    // setConu(conu += 1);
+    // const rewardList = await rewardListApi(
+    //   {
+    //     pageNo: conu,
+    //     pageSize: 9
+    //   }
+    // );
+    // var tips = allData.concat(rewardList.data);
+    // console.log(tips, '我是每次列表的值==========',conu);
+    // setAllData(tips);
   };
 
   const onRefresh = async () => {
