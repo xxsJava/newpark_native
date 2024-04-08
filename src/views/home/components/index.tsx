@@ -30,22 +30,6 @@ const windowHeight = Dimensions.get('window').height;
     postsId: item.tid,
     likeType: 1
   };
-  
-  // const [time,etTime] = useState();
-  // const loadStart = () => {
-  //     console.log('视频正在加载！');
-      
-  // };
-  // const setDuration = () =>{
-  //   console.log('视频加载完毕');
-    
-  // }
-  // const onEnd = () => {
-  //   console.log('视频播放完毕');
-  // }
-  // const videoError = () => {
-  //   console.log('视频播放失败');
-  // }
 
   const postLikePress = async (porp:any) => {
    
@@ -62,8 +46,6 @@ const windowHeight = Dimensions.get('window').height;
     }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
-  const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> ';
-   
 
   return (
     <Card style={styles.cardSty}>
@@ -112,8 +94,8 @@ const windowHeight = Dimensions.get('window').height;
       {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
       <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
-          <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
-          <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
+          {/* <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text> */}
+          <View style={{ height: 300, width: windowWidth }}>
             <WebView source={{ html: item.tcontext }}></WebView>
           </View>
         </Card.Content>
