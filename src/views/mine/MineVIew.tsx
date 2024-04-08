@@ -10,6 +10,8 @@ import { Trans } from 'react-i18next';
 import LinearGradinet from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { navigate } from '../../config/routs/NavigationContainer';
+import { personInfoStat } from '../../api/sys/usr';
+
 // 1
 import {
   Dimensions,
@@ -24,12 +26,37 @@ import {
 } from 'react-native';
 import BellView from '../../components/Bell';
 import HomePageView from './components/homepage';
+// import { personInfoStat } from '../../api/sys/usr';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
 export default class MineVIew extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      followCount: null,
+      fansCount: null,
+      communityCount: null,
+      postCount: null
+    };
+  }
+
+  componentDidMount(): void {
+    this.personList();
+  }
+  personList = async () => {
+    const data = await personInfoStat();
+    console.log(data, '这些是个人资料部分1------');
+    this.setState({
+      followCount: data.data.followCount,
+      fansCount: data.data.fansCount,
+      communityCount: data.data.communityCount,
+      postCount: data.data.postCount
+    })
+  }
   render() {
     return (
       <SafeAreaView style={styles.safeStyle}>
@@ -43,18 +70,17 @@ export default class MineVIew extends Component {
                     size={30}
                     color="white"
                     style={styles.boxIcon}
-                    
                   />
                 </TouchableOpacity>
                 <View style={styles.boxnNav}>
                   <View style={styles.boxItem}>
-                    <Text allowFontScaling={false} style={styles.dataColor}>0</Text>
+                    <Text allowFontScaling={false} style={styles.dataColor}>{this.state.followCount}</Text>
                     <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab1</Trans>
                     </Text>
                   </View>
                   <View style={styles.boxItem}>
-                    <Text allowFontScaling={false} style={styles.dataColor}>0</Text>
+                    <Text allowFontScaling={false} style={styles.dataColor}>{this.state.fansCount}</Text>
                     <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab2</Trans>
                     </Text>
@@ -65,13 +91,13 @@ export default class MineVIew extends Component {
                     </Text>
                   </View>
                   <View style={styles.boxItem}>
-                    <Text allowFontScaling={false} style={styles.dataColor}> 0</Text>
+                    <Text allowFontScaling={false} style={styles.dataColor}>{this.state.communityCount}</Text>
                     <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab4</Trans>
                     </Text>
                   </View>
                   <View style={styles.boxItem} >
-                    <Text allowFontScaling={false} style={styles.dataColor}>0</Text>
+                    <Text allowFontScaling={false} style={styles.dataColor}>{this.state.postCount}</Text>
                     <Text allowFontScaling={false} style={styles.navTabColor}>
                       <Trans>mineNav.navTab5</Trans>
                     </Text>
@@ -79,7 +105,7 @@ export default class MineVIew extends Component {
                 </View>
                 <View style={styles.boxAvatarParent}>
                   {/* 这个是我的里的头像 */}
-                  <TouchableOpacity style={styles.boxAvatar}  onPress={() =>navigate('MineThree')}>
+                  <TouchableOpacity style={styles.boxAvatar} onPress={() => navigate('MineThree')}>
                     <Image source={require('../../assets/images/tup/ppy.png')} style={styles.imgTx} accessibilityLabel='图片' alt="头像"></Image>
                   </TouchableOpacity>
                   <View style={styles.avatarView}>
@@ -94,7 +120,7 @@ export default class MineVIew extends Component {
                       alt="头像"
                     />
                   </View>
-                  <View style={styles.uidFrame} 
+                  <View style={styles.uidFrame}
                   >
                     <View style={styles.uidBg}>
                       <LinearGradinet
@@ -102,8 +128,8 @@ export default class MineVIew extends Component {
                           'rgba(247, 27, 147,0.90)',
                           'rgba(247, 27, 147,0.20)',
                         ]}
-                        start={{x: 0, y: 0}}
-                        end={{x: 1, y: 0}}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
                         style={styles.uidBgJb}>
                         <Text allowFontScaling={false} style={styles.uidText} selectable={true}>UID:0996241</Text>
                       </LinearGradinet>
@@ -111,10 +137,11 @@ export default class MineVIew extends Component {
                   </View>
                 </View>
               </View>
-            
+
             </View>
             {/* <PersonalDataView></PersonalDataView> */}
             <HomePageView />
+
             {/* <Button
             onPress={() => navigate('ReviceCode')}
             title="测试收到验证码页面"
@@ -126,7 +153,7 @@ export default class MineVIew extends Component {
         </View>
 
       </SafeAreaView>
-      
+
     );
   }
 }
@@ -146,16 +173,16 @@ const styles = StyleSheet.create({
   parentLevel: {
     width: windowWidth,
     ...Platform.select({
-      ios:{
+      ios: {
         height: windowHeight - 120,
       },
-      android:{
+      android: {
         height: windowHeight - 45,
       }
     })
   },
   scrollStyle: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#f2f2f2',
   },
   bgBox: {
@@ -183,7 +210,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#999', //设置阴影色
-        shadowOffset: {width: 0, height: 0}, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
+        shadowOffset: { width: 0, height: 0 }, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
         shadowOpacity: 1,
         shadowRadius: 2.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
@@ -203,8 +230,8 @@ const styles = StyleSheet.create({
   },
   navTabColor: {
     // color: '#dbdbdb',
-    fontSize:15,
-    color:'black'
+    fontSize: 15,
+    color: 'black'
   },
   boxAvatar: {
     width: 100,
@@ -214,7 +241,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#999', //设置阴影色
-        shadowOffset: {width: 0, height: 0}, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
+        shadowOffset: { width: 0, height: 0 }, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
         shadowOpacity: 1,
         shadowRadius: 3.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
       },
@@ -271,20 +298,20 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     paddingLeft: 6,
   },
-  bell:{
-    position:'absolute',
-    bottom:56,
-    right:1
+  bell: {
+    position: 'absolute',
+    bottom: 56,
+    right: 1
   },
-  imgTx:{
-    width:100,
-    height:100,
+  imgTx: {
+    width: 100,
+    height: 100,
     // textAlign:'center'
   },
-  dataColor:{
-    color:'black',
-    fontWeight:'bold',
-    fontSize:18,
-    marginBottom:6
+  dataColor: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 6
   }
 });

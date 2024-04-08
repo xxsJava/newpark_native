@@ -32,7 +32,7 @@ const optionData1 = [{
   index: 4,
   name: 'newPatkOption.optionName4',
   icon: require('../../../assets/images/chatroomicon04.png')
-}]
+}];
 const optionData2 = [{
   index: 1,
   name: 'newPatkOption.optionName5',
@@ -81,7 +81,8 @@ const ChatModule = () => {
         <View style={styles.optionList}>
           {optionData1.map(item => {
             return (
-              <TouchableOpacity style={styles.optionItem} key={item.index} onPress={()=>{console.log(item.name);} }
+              // 
+              <TouchableOpacity style={styles.optionItem} key={item.index} onPress={()=>navigate('ChatHome',item)}
               >
                 <Image source={item.icon} style={styles.iconList} accessibilityLabel='图片' alt="头像"></Image>
                 <Text allowFontScaling={false} style={styles.optionText}>

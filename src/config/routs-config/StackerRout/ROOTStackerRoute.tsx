@@ -5,6 +5,7 @@
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
+import ChatHome from '../../../views/newpark/components/chatHome'
 import ReviceCode from '../../../components/ReviceCode';
 import { BommonTab } from '../../../routes/stacker';
 import StylesALL from '../../../styles';
@@ -203,6 +204,13 @@ export default {
     options:{
       title:'收到验证码',
       headerShown: false,
+    }
+  },
+  ChatHome:{
+    component:ChatHome,
+    options:{
+      title:'聊天室列表',
+      // headerShown: false,
     }
   },
   // BeginFour:{

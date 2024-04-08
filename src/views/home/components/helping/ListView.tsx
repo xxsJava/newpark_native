@@ -412,11 +412,12 @@ const styles = StyleSheet.create({
         height: windowHeight - 100,
       },
     }),
+    zIndex:-2
   },
   addStyle: {
     width: 60,
     height: 60,
-    bottom: 30,
+    bottom:-20,
     right: 20,
     position: 'absolute',
     zIndex: 10,

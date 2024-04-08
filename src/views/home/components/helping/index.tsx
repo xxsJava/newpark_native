@@ -24,6 +24,9 @@ const HelpCircleView = () => {
     const [sequ, setSequ] = React.useState(true);
     // 这个是正序
     const [order, setOrder] = React.useState(false);
+    const [times, setTimes] = React.useState(false);
+    const [cx,setcx] = React.useState(false);
+    const [alls,setAlls] = React.useState('quanguo');
     return (
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
@@ -35,19 +38,48 @@ const HelpCircleView = () => {
                     <Trans>navigationBar.title16</Trans>
                 </Text>
             </Appbar.Header>
-            <View style={{ width: windowWidth, justifyContent: 'space-between', backgroundColor: '#fff' }}>
-                <TouchableOpacity onPress={() => setOrder(!order)} style={{ flexDirection: 'row', margin: 12 }}>
-                    <View style={order ? { justifyContent: 'center' } : { display: 'none' }}>
-                        <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold', marginRight: 4 }}>正序</Text>
-                    </View>
-                    <View style={order ? { display: 'none' } : { justifyContent: 'center' }}>
-                        <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold', marginRight: 4 }}>倒序</Text>
-                    </View>
-                    <View>
-                        <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 15, height: 15 }}></Image>
-                        <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 15, height: 15 }}></Image>
-                    </View>
-                </TouchableOpacity>
+            <View style={{ backgroundColor: '#fff', width: windowWidth, }}>
+                <View style={{ width: '60%', justifyContent: 'space-between', flexDirection: 'row', marginLeft: 20 }}>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', position: 'relative' }} onPress={() => {
+                        setcx(!cx); console.log(alls, '这个是价格');
+                    }}>
+                        <Text allowFontScaling={false} style={styles.typeText}>综合</Text>
+                        <Entypo size={14} color="#000" name="chevron-thin-down" />
+                        <View style={[styles.xlk,cx ? {display:'flex'} : {display:'none'}]}>
+                            <TouchableOpacity onPress={() =>{setAlls('quanguo'); console.log(alls,'这个是选的范围');
+                            }} style={[styles.option,{marginTop:18,zIndex:999}]}>
+                                <Text>全国</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => {setAlls('benxiao'); console.log(alls,'这个是选的范围');
+                            }} style={styles.option}>
+                                <Text>本校</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        setOrder(!order); console.log(order, '这个是价格');
+                    }} style={{ flexDirection: 'row', margin: 12 }}>
+                        <View style={{ justifyContent: 'center' }}>
+                            <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold', marginRight: 4 }}>价格</Text>
+                        </View>
+                        <View>
+                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 15, height: 15 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 15, height: 15 }}></Image>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => {
+                        setTimes(!times); console.log(times, '这个是新发布');
+                    }} style={{ flexDirection: 'row', margin: 12 }}>
+                        <View style={{ justifyContent: 'center' }}>
+                            <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold', marginRight: 4 }}>新发布</Text>
+                        </View>
+                        <View>
+                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 15, height: 15 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 15, height: 15 }}></Image>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
             <ListView data={order}></ListView>
         </View>
@@ -58,7 +90,7 @@ const styles = StyleSheet.create({
     parentLevel: {
         width: windowWidth,
         height: windowHeight,
-        flex:1
+        flex: 1
     },
     headerStyle: {
         // height: 55,
@@ -69,5 +101,22 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#FFF',
         textAlign: 'center',
+    },
+    typeText: {
+        color: '#000',
+        fontSize: 14,
+        lineHeight: 40,
+        marginRight: 5,
+    },
+    xlk: {
+        position: 'absolute',
+        bottom: -60,
+        left: -12,
+        zIndex: 99
+    },
+    option:{
+        backgroundColor:'#fff',
+        padding:8,
+        paddingHorizontal:18
     }
 })

@@ -30,7 +30,6 @@ const loginVal = async () => {
   
   const tokenStr = await Storage.get('usr-token');
   console.log('获取到用户token', tokenStr);
-
   if (tokenStr == null || tokenStr == undefined) {
     isLoginFlag = false;
     return;

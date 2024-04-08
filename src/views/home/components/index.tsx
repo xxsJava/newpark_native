@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-08 11:13:44
+ * @LastEditTime: 2024-04-08 16:00:14
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -16,10 +16,11 @@ import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+import HTMLView from 'react-native-htmlview'
 
 //普通帖子组件
-// const postsOrdinary = (item: any, index: any, separators: any) => {
-  function postsOrdinary  (item: any) {
+const postsOrdinary = (item: any, index: any, separators: any) => {
+  // function postsOrdinary  (item: any) {
     // const [isPlay,setIsPlay] = React.useState(false);
     let isPlay = false;
   // const [upvoteVal,setUpvoteSet] = React.useState(false)
@@ -32,7 +33,6 @@ const windowHeight = Dimensions.get('window').height;
   };
 
   const postLikePress = async (porp:any) => {
-   
       const postLikeUp = await postLike(postLikeParam);
       console.log('点赞返回',postLikeUp)
       if(postLikeUp.data) {
@@ -99,7 +99,7 @@ const windowHeight = Dimensions.get('window').height;
           <View style={{ height: 300, width: windowWidth }}>
             <WebView source={{ html: '<!DOCTYPE html><html><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"><title></title></head><body>'+item.tcontext+'</body>' }}></WebView>
           </View>
-        </Card.Content>
+        </Card.Content> */}
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
       <Card.Content style={styles.backColor}>
@@ -380,5 +380,10 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'stretch',
     justifyContent:'flex-start'
+  },
+  postMain:{
+    width:windowWidth,
+    justifyContent:'center',
+    alignItems:'center'
   }
 });

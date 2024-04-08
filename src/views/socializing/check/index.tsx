@@ -15,7 +15,9 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import { Appbar, Avatar, IconButton } from 'react-native-paper';
 import { sendMsg } from '../../../api/imApi';
@@ -263,6 +265,11 @@ function MessageList(props: { items: any; receiver: any }) {
                     <MessageList items={items} receiver={receiver} />
                 </ScrollView>
                 <View style={styles.sendColumn}>
+
+                 <View style={{flexDirection:'row',marginBottom:10,alignItems:'center'}}>
+                 <TouchableOpacity>
+                    <Image source={require('../../../assets/images/tup/yuyin.png')} style={{width:34,height:34,marginRight:10}}></Image>
+                  </TouchableOpacity>
                     <View style={styles.inputBox}>
                         <TextInput
                             style={value == '' ? styles.sendColumnInputnull : styles.sendColumnInput}
@@ -276,11 +283,33 @@ function MessageList(props: { items: any; receiver: any }) {
                         />
                         <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => sendMessage()}></IconButton>
                     </View>
+                    <Image source={require('../../../assets/images/tup/biaoqing-2.png')} style={{width:34,height:34,marginLeft:6}}></Image>
+                    <Image source={require('../../../assets/images/tup/tianjia.png')} style={{width:34,height:34,marginLeft:6}}></Image>
+                 </View>
                     <View style={styles.controlStrip}>
-                        <IconButton style={styles.controlIcon} icon={require('../../../assets/images/speech-icon.png')} onPress={() => console.log('点击语音')}></IconButton>
-                        <IconButton style={styles.controlIcon} icon={require('../../../assets/images/expression-icon.png')} onPress={() => console.log('点击表情')}></IconButton>
-                        <IconButton style={styles.controlIcon} icon={require('../../../assets/images/picture-icon.png')} onPress={() => console.log('点击图片')}></IconButton>
-                        <IconButton style={styles.controlIcon} icon={require('../../../assets/images/camera-icon.png')} onPress={() => console.log('点击相机')}></IconButton>
+                       <TouchableOpacity onPress={() => console.log('点击相册')} style={styles.zhong}>
+                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/xiangce.png')} size={35}></IconButton>
+                          <Text>相册</Text>
+                       </TouchableOpacity>
+                       <TouchableOpacity onPress={() => console.log('点击拍摄')} style={styles.zhong}>
+                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/paishe.png')} size={35}></IconButton>
+                          <Text>拍摄</Text>
+                       </TouchableOpacity>
+                       <TouchableOpacity onPress={() => console.log('点击文件')} style={styles.zhong}>
+                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/wenjian.png')} size={35}></IconButton>
+                          <Text>文件</Text>
+                       </TouchableOpacity>
+                       <TouchableOpacity onPress={() => console.log('点击名片')} style={styles.zhong}>
+                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/mp.png')} size={35}></IconButton>
+                          <Text>名片</Text>
+                       </TouchableOpacity>
+                    </View>
+                    <View style={{padding:20,justifyContent:'center',alignItems:'flex-start'}}>
+                      <TouchableOpacity onPress={() => console.log('点击位置')} style={{justifyContent:'flex-start',alignItems:'center'}}>
+                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/weizhi.png')} size={35}></IconButton>
+                          
+                          <Text style={{textAlign:'center'}}>位置</Text>
+                       </TouchableOpacity>
                     </View>
                 </View>
                 
@@ -429,11 +458,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   sendColumn: {
-    height: 130,
+    // height: 230,
+    // flexDirection:'row',
     marginTop: 13,
     paddingTop: 15,
     paddingHorizontal: 15,
-    backgroundColor: '#FFF',
+    backgroundColor: '#F1F2F6',
     ...Platform.select({
       ios: {
         shadowColor: '#ccc',
@@ -448,20 +478,21 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     position: 'relative',
+    flex:3
   },
   sendColumnInput: {
-    width: '80%',
+    width: '100%',
     // height:40,
-    borderRadius: 20,
+    // borderRadius: 20,
     paddingHorizontal: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff'
   },
   sendColumnInputnull: {
     width: '100%',
     height: 40,
-    borderRadius: 20,
+    // borderRadius: 20,
     paddingHorizontal: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff'
   },
   inputBoxIcon: {
     position: 'absolute',
@@ -473,9 +504,18 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    flexWrap:'wrap',
+    backgroundColor:'#F1F2F6'
   },
   controlIcon: {
-    flex: 1,
+    width:60,
+    height:60,
+    backgroundColor:'#fff',
+
   },
+  zhong:{
+    alignItems:'center',
+    justifyContent:'center'
+  }
 });
 
