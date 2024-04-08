@@ -24,10 +24,10 @@ import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
 import { postComments, postLike } from '../../../api/sys/home';
 import { postCommentsData, postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
-import WebViews from '../../../components/WebView/WebViewCompent';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import webview from '../../../config/webview';
 import CommentDetails from './CommentDetails';
+import WebViews from '../../../components/WebView/WebViewCompent';
+import webview from '../../../config/webview';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -201,7 +201,7 @@ const PostDetails = ({ route }: any) => {
           <View style={styles.postView}>
             <View style={styles.postStyle}>
               <View style={styles.avatarView}>
-                <Avatar.Image size={65} source={{ uri: data.upath }} accessibilityLabel='图片' alt="头像"/>
+                <Avatar.Image size={65} source={{ uri: data.upath }} accessibilityLabel='图片' />
               </View>
               <View style={styles.avatarConent}>
                 <View style={styles.nameView}>
