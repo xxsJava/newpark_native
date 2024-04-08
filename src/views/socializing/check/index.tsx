@@ -233,7 +233,7 @@ function MessageList(props: { items: any; receiver: any }) {
       scrollViewRef.current.scrollToEnd({ animated: false });
     }
   };
-
+    const [show,setShow] = React.useState(false);
 // 到这里结束
 
   return (
@@ -265,7 +265,6 @@ function MessageList(props: { items: any; receiver: any }) {
                     <MessageList items={items} receiver={receiver} />
                 </ScrollView>
                 <View style={styles.sendColumn}>
-
                  <View style={{flexDirection:'row',marginBottom:10,alignItems:'center'}}>
                  <TouchableOpacity>
                     <Image source={require('../../../assets/images/tup/yuyin.png')} style={{width:34,height:34,marginRight:10}}></Image>
@@ -274,19 +273,26 @@ function MessageList(props: { items: any; receiver: any }) {
                         <TextInput
                             style={value == '' ? styles.sendColumnInputnull : styles.sendColumnInput}
                             multiline={true}
-                            numberOfLines={2}
+                            numberOfLines={1}
                             allowFontScaling={true}
                             onChangeText={text => onChangeText(text)}
                             placeholder={'开始聊天吧'}
                             value={value}
                             onSubmitEditing={sendDo}
+                            onFocus={() =>{setShow(false)}}
                         />
-                        <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => sendMessage()}></IconButton>
+                        {/* <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => sendMessage()}></IconButton> */}
                     </View>
                     <Image source={require('../../../assets/images/tup/biaoqing-2.png')} style={{width:34,height:34,marginLeft:6}}></Image>
-                    <Image source={require('../../../assets/images/tup/tianjia.png')} style={{width:34,height:34,marginLeft:6}}></Image>
+                    <TouchableOpacity style={value ? {backgroundColor:'green',padding:8,borderRadius:8,paddingHorizontal:12,marginLeft:5} : {display:'none'}} onPress={() => sendMessage()}>
+                      <Text style={{color:'#fff',fontWeight:'bold',textAlign:'center'}}>发送</Text>
+                   </TouchableOpacity>
+                   <TouchableOpacity onPress={() => {setShow(!show)}} style={value ? {display:'none'} : {display:'flex'}}>
+                      <Image source={require('../../../assets/images/tup/tianjia.png')} style={{width:34,height:34,marginLeft:6}}></Image>
+                   </TouchableOpacity>
                  </View>
-                    <View style={styles.controlStrip}>
+                   <View style={show? {display:'flex'} : {display:'none'}}>
+                   <View style={styles.controlStrip}>
                        <TouchableOpacity onPress={() => console.log('点击相册')} style={styles.zhong}>
                           <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/xiangce.png')} size={35}></IconButton>
                           <Text>相册</Text>
@@ -304,40 +310,19 @@ function MessageList(props: { items: any; receiver: any }) {
                           <Text>名片</Text>
                        </TouchableOpacity>
                     </View>
-                    <View style={{padding:20,justifyContent:'center',alignItems:'flex-start'}}>
+                    <View style={{padding:20,justifyContent:'center',alignItems:'flex-start',paddingBottom:0}}>
                       <TouchableOpacity onPress={() => console.log('点击位置')} style={{justifyContent:'flex-start',alignItems:'center'}}>
                           <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/weizhi.png')} size={35}></IconButton>
-                          
                           <Text style={{textAlign:'center'}}>位置</Text>
                        </TouchableOpacity>
                     </View>
+                   </View>
                 </View>
-                
-
-                {/* <ImageView
-                    images={images}
-                    imageIndex={0}
-                    isVisible={true}
-                    renderFooter={(currentImage:any) => (<View><Text>My footer</Text></View>)}
-                /> */}
-                {/* <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={text => onChangeText(text)}
-                    placeholder={'开始聊天吧'}
-                    value={value}
-                    onSubmitEditing={sendDo}
-                />
-                <Button
-                    onPress={sendDo}
-                    title="发送"
-                    color="#841584"
-                /> */}
             </SafeAreaView>
         </ KeyboardAvoidingView>
         </>
     )
 }
-
 export default CheckView;
 
 const styles = StyleSheet.create({
@@ -350,15 +335,17 @@ const styles = StyleSheet.create({
         height: windowHeight - 80,
       },
       android: {
-        height: windowHeight - 60,
+        height: windowHeight * 0.93,
       },
     }),
+    
   },
   chatBody: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#FFF',
+    backgroundColor: '#d8e4e8',
     marginTop: 10,
+    position:'relative'
   },
   chatMessage: {
     marginVertical: 10,
@@ -379,11 +366,11 @@ const styles = StyleSheet.create({
         shadowColor: '#ccc',
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
-        shadowRadius: 3.5,
+        shadowRadius: 3,
       },
       android: {
         padding: 8,
-        elevation: 7,
+        elevation: 2,
       },
     }),
   },
@@ -461,6 +448,7 @@ const styles = StyleSheet.create({
     // height: 230,
     // flexDirection:'row',
     marginTop: 13,
+    paddingBottom:15,
     paddingTop: 15,
     paddingHorizontal: 15,
     backgroundColor: '#F1F2F6',
@@ -475,6 +463,11 @@ const styles = StyleSheet.create({
         elevation: 10,
       },
     }),
+    position:'absolute',
+    bottom:0,
+    left:0,
+    width:windowWidth,
+    
   },
   inputBox: {
     position: 'relative',

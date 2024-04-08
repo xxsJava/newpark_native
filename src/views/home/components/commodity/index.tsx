@@ -25,16 +25,6 @@ import formatDate from './formatDate';
 import DateTimeUtils from '../../../../utils/DateTimeUtils'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const typeData = [
-  {
-    index: 1,
-    text: '价格',
-  },
-  {
-    index: 2,
-    text: '新发布'
-  }
-];
 const List = ({ item }:any) => (
   <View style={styles.commoditylist}>
     <TouchableOpacity
@@ -167,32 +157,34 @@ const ProductView = () => {
       </Appbar.Header>
       
       <View style={{ backgroundColor: '#fff', width: windowWidth, }}>
-                <View style={{ width: '60%', justifyContent: 'space-between', flexDirection: 'row', marginLeft: 20 }}>
+                <View style={{ width: '60%', justifyContent: 'space-between', flexDirection: 'row', marginLeft: 20,alignItems:'center'}}>
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', position: 'relative' }} onPress={() => {
                         setcx(!cx); console.log(alls, '这个是价格');
-                    }}>
+                    }}
+                    activeOpacity={0.9}
+                    >
                         <Text allowFontScaling={false} style={styles.typeText}>综合</Text>
-                        <Entypo size={14} color="#000" name="chevron-thin-down" />
+                        <Entypo size={13} color="#000" name="chevron-thin-down" />
                         <View style={[styles.xlk,cx ? {display:'flex'} : {display:'none'}]}>
                             <TouchableOpacity onPress={() =>{setAlls('quanguo'); console.log(alls,'这个是选的范围');
-                            }} style={[styles.option,{marginTop:18,zIndex:999}]}>
+                            }} style={styles.option}  activeOpacity={0.9}>
                                 <Text style={styles.h2}>全国</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => {setAlls('benxiao'); console.log(alls,'这个是选的范围');
-                            }} style={styles.option}>
+                            }} style={styles.option}  activeOpacity={0.9}>
                                 <Text style={styles.h2}>本校</Text>
                             </TouchableOpacity>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         setOrder(!order); console.log(order, '这个是价格');
-                    }} style={{ flexDirection: 'row', margin: 12 }}>
+                    }} style={{ flexDirection: 'row', margin: 12, alignItems:'center'}}>
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold', marginRight: 6 }}>价格</Text>
+                            <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 6 }}>价格</Text>
                         </View>
                         <View>
-                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 15, height: 15 }}></Image>
-                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 15, height: 15 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 10, height: 10 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 10, height: 10 }}></Image>
                         </View>
                     </TouchableOpacity>
 
@@ -200,11 +192,11 @@ const ProductView = () => {
                         setTimes(!times); console.log(times, '这个是新发布');
                     }} style={{ flexDirection: 'row', margin: 12 }}>
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold', marginRight: 6 }}>新发布</Text>
+                            <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 6 }}>新发布</Text>
                         </View>
                         <View>
-                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 15, height: 15 }}></Image>
-                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 15, height: 15 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 10, height: 10}}></Image>
+                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 10, height: 10}}></Image>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -283,7 +275,7 @@ const styles = StyleSheet.create({
   },
   typeText: {
     color: '#000',
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 40,
     marginRight: 5,
     fontWeight:'bold'
@@ -378,7 +370,7 @@ option:{
     paddingHorizontal:18
 },
 h2:{
-  fontSize:16,
+  fontSize:12,
   color:'#000'
 }
 });

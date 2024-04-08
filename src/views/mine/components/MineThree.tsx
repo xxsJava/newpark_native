@@ -4,7 +4,6 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 import { Appbar, Avatar, IconButton } from 'react-native-paper';
 import DateTimeUtils from '../../../utils/DateTimeUtils'
 import {
-  Button,
   Dimensions,
   Image,
   Platform,
@@ -26,10 +25,6 @@ import { rewardOneApiType } from '../../../api/sys/reward/types';
 import { postsOneApi } from '../../../api/sys/post/index';
 import { postsOneApiType } from '../../../api/sys/post/types';
 import Storage from '../../../utils/AsyncStorageUtils';
-import { set } from '@gluestack-style/react';
-import { color } from '@rneui/base';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-// import {red} from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -78,35 +73,11 @@ const list1 = [
   },
 ];
 
-const leftList = [
-  {
-    index: 1,
-    // num: followCount,
-    text: '关注的人'
-  },
-  {
-    index: 2,
-    // num: fansCount,
-    text: '粉丝'
-  }
-];
-const rightList = [
-  {
-    index: 3,
-    num: 0,
-    text: '关注的圈'
-  },
-  {
-    index: 4,
-    num: 0,
-    text: '发帖'
-  },
-]
 const userName = 'O泡果奶'
 const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
 
 // 悬赏的模板
-const Reward = ({ item }) => (
+const Reward = ({ item }:any) => (
   <TouchableOpacity style={styles.xsPart}>
     <Text style={{ textAlign: 'center', fontSize: 18, color: '#000' }}>{item.rtitle}</Text>
     <View style={{ alignItems: 'center' }}>
@@ -127,7 +98,7 @@ const Reward = ({ item }) => (
   </TouchableOpacity>
 )
 // 帖子的模板
-const Post = ({ item }) => (
+const Post = ({ item }:any) => (
   <TouchableOpacity style={styles.list3Box}>
     <View style={{ width: '100%', alignItems: 'center' }}>
       <Text style={styles.fonBlac} selectable={true}>{item.ttitle}</Text>
@@ -400,7 +371,8 @@ const styles = StyleSheet.create({
     zIndex: 10,
     paddingHorizontal: 10,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent:'space-between',
+    flexWrap:'nowrap',
     ...Platform.select({
       ios: {
         shadowColor: '#999', //设置阴影色
@@ -472,12 +444,14 @@ const styles = StyleSheet.create({
 
   },
   heng: {
+    // width:'40%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center'
   },
   heng1: {
+    // width:'20%',
     flexDirection: 'row',
     flexWrap: 'nowrap',
     justifyContent: 'center',
@@ -558,7 +532,7 @@ const styles = StyleSheet.create({
     width: 130
   },
   postMain: {
-    paddingTop: 20,
+    // paddingTop: 20,
     alignItems: 'center'
   },
   hengxs: {
