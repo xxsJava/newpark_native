@@ -124,13 +124,14 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
               <HTML source={{ html: ceshi}} contentWidth={200}/> */}
             </View>
       {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
-      <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
+      {/* <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}> */}
         {/* <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
           <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
             <WebView source={{ html: item.tcontext }}></WebView>
           </View>
         </Card.Content> */}
+        </Card.Content>
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
       <Card.Content style={styles.backColor}>
