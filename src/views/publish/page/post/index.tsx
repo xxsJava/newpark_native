@@ -7,9 +7,7 @@
 import React from "react";
 import { Trans } from 'react-i18next';
 import { Dimensions, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { Image } from "react-native-animatable";
 import { Appbar, IconButton } from 'react-native-paper';
-import Entypo from 'react-native-vector-icons/Entypo';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
@@ -25,20 +23,10 @@ const ReleasePost = () => {
                     <Trans>navigationBar.title23</Trans>
                 </Text>
             </Appbar.Header>
-            <View style={styles.syncView}>
-                <Image style={styles.syncImage} source={require('../../../../assets/images/3.0x/circle_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
-                <Text allowFontScaling={false} style={styles.syncText}>同步到牛圈</Text>
-                <View style={styles.syncIconView}>
-                    <Image style={styles.syncIcon1} source={require('../../../../assets/images/alimom/loading1.png')} accessibilityLabel='图片' alt="头像"></Image>
-                    <Text allowFontScaling={false} style={styles.syncIconText}>python</Text>
-                    <Text allowFontScaling={false} style={styles.syncIcon2}>
-                        <Entypo size={15} name="chevron-thin-right"></Entypo>
-                    </Text>
-                </View>
-            </View>
             <View style={styles.contentView}>
                 <TextInput allowFontScaling={false} selectionColor='#FABA3C' placeholder='正文' multiline={true} numberOfLines={24} style={styles.contenInput}></TextInput>
-                <View style={styles.bottomView}>
+            </View>
+            <View style={styles.bottomView}>
                     <View style={styles.tagView}>
                         <TouchableOpacity>
                             <Text allowFontScaling={false} style={styles.tagStyle}>#添加话题</Text>
@@ -51,7 +39,6 @@ const ReleasePost = () => {
                         <IconButton size={29} iconColor="#000" icon={require('../../../../assets/images/3.0x/chat_page_face.png')} onPress={() => console.log('添加表情')}></IconButton>
                     </View>
                 </View>
-            </View>
         </View>
     )
 }
@@ -122,7 +109,7 @@ const styles = StyleSheet.create({
     },
     contentView:{
         width:windowWidth,
-        position:'relative',
+        position: 'relative',
         ...Platform.select({
             ios:{
                 height:windowHeight-170,

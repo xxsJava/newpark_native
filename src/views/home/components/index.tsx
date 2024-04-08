@@ -16,11 +16,10 @@ import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-import HTMLView from 'react-native-htmlview'
 
 //普通帖子组件
-const postsOrdinary = (item: any, index: any, separators: any) => {
-  // function postsOrdinary  (item: any) {
+// const postsOrdinary = (item: any, index: any, separators: any) => {
+  function postsOrdinary  (item: any) {
     // const [isPlay,setIsPlay] = React.useState(false);
     let isPlay = false;
   // const [upvoteVal,setUpvoteSet] = React.useState(false)
@@ -49,6 +48,7 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
   // }
 
   const postLikePress = async (porp:any) => {
+   
       const postLikeUp = await postLike(postLikeParam);
       console.log('点赞返回',postLikeUp)
       if(postLikeUp.data) {
@@ -62,7 +62,9 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
     }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
-  
+  const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> ';
+   
+
   return (
     <Card style={styles.cardSty}>
       <Card.Content style={styles.cardTitle}>
@@ -111,26 +113,9 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
       <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
           <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
-          <View style={{  height: 120,width: windowWidth }}>
-    
-          <WebView source={{ html: item.tcontext }}></WebView>
-
-          </View>
-          <View style={styles.cover} >
-            {/* <Video source={require('../../../assets/mp4/study.mp4')} style={{ width: 160, height: 200 }} /> */}
-              
-              {/* <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <Video source={{uri:'https://www.runoob.com/try/demo_source/mov_bbb.mp4'}} style={{ width: 160, height: 100 }} />
-              <HTML source={{ html: ceshi}} contentWidth={200}/> */}
-            </View>
-      {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
-      {/* <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}> */}
-        {/* <Card.Content style={styles.backColor}>
-          <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
           <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
             <WebView source={{ html: item.tcontext }}></WebView>
           </View>
-        </Card.Content> */}
         </Card.Content>
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
@@ -413,10 +398,5 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'stretch',
     justifyContent:'flex-start'
-  },
-  postMain:{
-    width:windowWidth,
-    justifyContent:'center',
-    alignItems:'center'
   }
 });

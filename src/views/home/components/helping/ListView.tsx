@@ -4,19 +4,36 @@
  * 创建时间:2023/12/11 09:10:11
  */
 import {
-  Modal, ButtonText, ModalBackdrop, ModalContent, VStack, ModalHeader, Heading,
-  Text, ModalBody, Input, InputField, ModalFooter, HStack, ButtonIcon, Link, ArrowLeftIcon, View, Image,
-  Textarea, TextareaInput, Select, SelectTrigger, SelectInput, SelectPortal, SelectBackdrop,
-  SelectDragIndicatorWrapper, SelectContent, SelectIcon, SelectItem, SelectDragIndicator,
-  ChevronDownIcon,
-  onChange
+  ButtonText,
+  HStack,
+  Heading,
+  Image,
+  Input, InputField,
+  Modal,
+  ModalBackdrop,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
+  Text,
+  Textarea, TextareaInput,
+  VStack,
+  View
 } from "@gluestack-ui/themed";
-import { navigate } from '../../../../config/routs/NavigationContainer';
+import { FlatList } from 'react-native';
 import { rewardListApi } from '../../../../api/sys/reward';
 import { rewardListType } from '../../../../api/sys/reward/types';
-import { dateToMsgTime } from '../../../../components/Rests/TconTime';
-import { Alert, FlatList } from 'react-native';
-import DateTimeUtils from '../../../../utils/DateTimeUtils'
+import { navigate } from '../../../../config/routs/NavigationContainer';
+import DateTimeUtils from '../../../../utils/DateTimeUtils';
 // 模态框引入的文件
 import React, { useState } from 'react';
 import {
@@ -26,10 +43,10 @@ import {
   TouchableOpacity
 } from 'react-native';
 import LinearGradinet from 'react-native-linear-gradient';
-import { Avatar, Icon, Button } from 'react-native-paper';
+import { Avatar, Button, Icon } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { rewardPublishApi } from '../../../../api/sys/reward/index'
-import { rewardPublishType } from '../../../../api/sys/reward/types'
+import { rewardPublishApi } from '../../../../api/sys/reward/index';
+import { rewardPublishType } from '../../../../api/sys/reward/types';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -152,7 +169,7 @@ const ListView = (data:any) => {
   const onRefresh = async () => {
     
     setRefreshing(false);
-    setConu(conu == 1);
+    // setConu(conu == 1);
     const rewardList = await rewardListApi(
       {
         pageNo: conu,
@@ -177,7 +194,7 @@ const ListView = (data:any) => {
                 <Text>没有发布悬赏，请稍后再来看看吧！</Text>
               </View>
             }
-            keyExtractor={(item) => item.rid}
+            // keyExtractor={(item) => item.rid}
             onRefresh={onRefresh}
             refreshing={refreshing}
             onEndReachedThreshold={0.01}
