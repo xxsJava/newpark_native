@@ -44,15 +44,15 @@ const HelpCircleView = () => {
                         setcx(!cx); console.log(alls, '这个是价格');
                     }}>
                         <Text allowFontScaling={false} style={styles.typeText}>综合</Text>
-                        <Entypo size={14} color="#000" name="chevron-thin-down" />
+                        <Entypo size={13} color="#000" name="chevron-thin-down" />
                         <View style={[styles.xlk,cx ? {display:'flex'} : {display:'none'}]}>
                             <TouchableOpacity onPress={() =>{setAlls('quanguo'); console.log(alls,'这个是选的范围');
                             }} style={[styles.option,{marginTop:18,zIndex:999}]}>
-                                <Text>全国</Text>
+                                <Text style={styles.h2}>全国</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => {setAlls('benxiao'); console.log(alls,'这个是选的范围');
                             }} style={styles.option}>
-                                <Text>本校</Text>
+                                <Text style={styles.h2}>本校</Text>
                             </TouchableOpacity>
                         </View>
                     </TouchableOpacity>
@@ -60,11 +60,11 @@ const HelpCircleView = () => {
                         setOrder(!order); console.log(order, '这个是价格');
                     }} style={{ flexDirection: 'row', margin: 12 }}>
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold', marginRight: 4 }}>价格</Text>
+                            <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 4 }}>价格</Text>
                         </View>
                         <View>
-                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 15, height: 15 }}></Image>
-                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 15, height: 15 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 10, height: 10 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 10, height: 10 }}></Image>
                         </View>
                     </TouchableOpacity>
 
@@ -72,11 +72,11 @@ const HelpCircleView = () => {
                         setTimes(!times); console.log(times, '这个是新发布');
                     }} style={{ flexDirection: 'row', margin: 12 }}>
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={{ color: '#000', fontSize: 15, fontWeight: 'bold', marginRight: 4 }}>新发布</Text>
+                            <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 4 }}>新发布</Text>
                         </View>
                         <View>
-                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 15, height: 15 }}></Image>
-                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 15, height: 15 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-up.png')} style={{ width: 10, height: 10 }}></Image>
+                            <Image source={require('../../../../assets/images/triangle-down.png')} style={{ width: 10, height: 10 }}></Image>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -118,5 +118,9 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff',
         padding:8,
         paddingHorizontal:18
+    },
+    h2:{
+        fontSize:12,
+        color:'#000'
     }
 })

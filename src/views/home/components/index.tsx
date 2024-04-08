@@ -1,13 +1,13 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-08 16:00:14
+ * @LastEditTime: 2024-04-07 14:44:57
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
 import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
 import React from 'react';
-import { Dimensions, Image, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
 import WebView from 'react-native-webview';
 import { postLike } from '../../../api/sys/home';
@@ -18,8 +18,8 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 //普通帖子组件
-const postsOrdinary = (item: any, index: any, separators: any) => {
-  // function postsOrdinary  (item: any) {
+// const postsOrdinary = (item: any, index: any, separators: any) => {
+  function postsOrdinary  (item: any) {
     // const [isPlay,setIsPlay] = React.useState(false);
     let isPlay = false;
   // const [upvoteVal,setUpvoteSet] = React.useState(false)
@@ -30,8 +30,25 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
     postsId: item.tid,
     likeType: 1
   };
+  
+  // const [time,etTime] = useState();
+  // const loadStart = () => {
+  //     console.log('视频正在加载！');
+      
+  // };
+  // const setDuration = () =>{
+  //   console.log('视频加载完毕');
+    
+  // }
+  // const onEnd = () => {
+  //   console.log('视频播放完毕');
+  // }
+  // const videoError = () => {
+  //   console.log('视频播放失败');
+  // }
 
   const postLikePress = async (porp:any) => {
+   
       const postLikeUp = await postLike(postLikeParam);
       console.log('点赞返回',postLikeUp)
       if(postLikeUp.data) {
@@ -45,7 +62,8 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
     }
     console.log('upvoteVal',upvoteVal,'tlikeCount',item.tlikeCount)
   }
-
+  const ceshi =' <video src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" controls></video> ';
+   
 
   return (
     <Card style={styles.cardSty}>
@@ -94,14 +112,15 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
       {/* onPress={() => navigate('PostDetailsRoute', { item })} */}
       <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
-          {/* <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text> */}
-          <View style={{ height: 300, width: windowWidth }}>
-            <WebView source={{ html: '<!DOCTYPE html><html><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"><title></title></head><body>'+item.tcontext+'</body>' }}></WebView>
+          <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text>
+          <View style={{ height: 120, width: windowWidth, marginHorizontal: 10 }}>
+            <WebView source={{ html: item.tcontext }}></WebView>
           </View>
         </Card.Content>
       </TouchableOpacity>
       {/* <Card.Cover style={styles.contentImg} source={require('../../../assets/images/alimom/R-C.jpg')} /> */}
       <Card.Content style={styles.backColor}>
+        {/* <Text style={styles.context}>#情感#个人#官方#颜值#语录</Text> */}
         <View style={styles.labelList}>
           {item.labs.map((emit: any) => {
             return (
@@ -175,10 +194,10 @@ const postsOrdinary = (item: any, index: any, separators: any) => {
           );
         })}
       </View>
-      {/* <View style={styles.leaveWordView}>
+      <View style={styles.leaveWordView}>
         <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'/>
         <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
-      </View> */}
+      </View>
     </Card>
   );
 };
@@ -379,10 +398,5 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'stretch',
     justifyContent:'flex-start'
-  },
-  postMain:{
-    width:windowWidth,
-    justifyContent:'center',
-    alignItems:'center'
   }
 });
