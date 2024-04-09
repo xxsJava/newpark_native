@@ -286,6 +286,7 @@ const MineVIew = () => {
                         <Image source={item.img} style={styles.listimg} accessibilityLabel='图片' alt="头像"></Image>
                         <View>
                           <Text style={styles.listTit}>{item.title}</Text>
+                          
                         </View>
                         <View style={styles.textBox}>
                           <Text style={styles.listText}>{item.text}</Text>

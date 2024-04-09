@@ -5,6 +5,7 @@
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
+import GroupChat from '../../../views/socializing/check/GroupChat';
 import ChatHome from '../../../views/newpark/components/chatHome'
 import ReviceCode from '../../../components/ReviceCode';
 import { BommonTab } from '../../../routes/stacker';
@@ -94,8 +95,14 @@ export default {
   ChatRoom:{
     component: ChatRoom,
      options: {
-      // headerShown: false,
     title: '创建聊天室',
+     },
+  },
+  GroupChat:{
+    component: GroupChat,
+     options: {
+      headerShown: false,
+    title: '群聊页面',
      },
   },
   Black: {
@@ -163,7 +170,6 @@ export default {
   SanJiLiand:{
     component: SanJiLiand,
      options: {
-    //   headerShown: false,
     title: '三级联动测试版',
      },
   },
@@ -177,7 +183,6 @@ export default {
     component: Verification,
     options: {
       title: '短信验证',
-      // headerTitleAlign: 'center',
       headerTitleStyle: StylesALL.navText,
       headerStyle: StylesALL.BGCOLOR,
     },
@@ -209,17 +214,9 @@ export default {
   ChatHome:{
     component:ChatHome,
     options:{
-      title:'聊天室列表',
-      // headerShown: false,
+      title:'聊天室列表'
     }
   },
-  // BeginFour:{
-  //   component:BeginFour,
-  //   options:{
-  //     title:'引导页4',
-  //     headerShown: false,
-  //   }
-  // },
   PersonalData:{
     component:PersonalData,
     options:{
@@ -318,7 +315,6 @@ export default {
     component: CollectionView,
     options: {
       title: '我的收藏',
-      // headerLeft:require('../../../assets/images/search_in_circle.png')
       headerShown: false,
     },
   },

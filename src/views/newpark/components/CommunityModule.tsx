@@ -40,9 +40,13 @@ const CommunityModule = () => {
     <TouchableOpacity onPress={onpress} style={[styles.item, { backgroundColor }]} >
       <Image source={{ uri: item.comPath }} style={item.comPath ? { width: 90, height: 90 } : { display: 'none' }}></Image>
       <View>
-        <Text style={{color:'#000',fontSize:18,textAlign:'center',fontWeight:'bold'}}>{item.comName}</Text>
+       <View style={{flexDirection:'row',alignItems:'center'}}>
+       <Text style={{color:'#000',fontSize:16,textAlign:'center',fontWeight:'bold'}}>{item.comName}</Text>
+       <Image source={require('../../../assets/images/tup/remen.png')} style={{width:30,height:30,marginLeft:6}}></Image>
+       <Text style={{fontSize:12,color:'#F8B032',marginLeft:6}}>热度150</Text>
+       </View>
         {/* <Text style={{textAlign:'left',color:'#F8B032',margin:3,fontSize:12,backgroundColor:'#fff'}}>{item.comLabel}</Text> */}
-        <View style={[styles.zhong,{marginTop:20}]}>
+        <View style={[styles.zhong,{marginTop:8}]}>
         {
           item.comLabel.split('#').map((val: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined):any => {
             return <View style={[{backgroundColor:'#b0e8b7'},val? {padding:2,borderRadius:12,paddingHorizontal:6} : {display:'none'}]} key={val}>
@@ -50,6 +54,12 @@ const CommunityModule = () => {
             </View>
           })
         }
+        </View>
+        <View style={[styles.zhong,{marginTop:8}]}>
+          <Image source={require('../../../assets/images/tup/cd6.png')} style={{width:20,height:20}}></Image>
+          <Image source={require('../../../assets/images/tup/cd6.png')} style={{width:20,height:20}}></Image>
+          <Image source={require('../../../assets/images/tup/cd6.png')} style={{width:20,height:20}}></Image>
+          <Text style={{fontSize:11,marginLeft:12}}>1位牛友正在讨论</Text>
         </View>
         {/* <Text style={{textAlign:'center',margin:3,color:'#000',fontSize:16}}>{item.comDesc}</Text> */}
         {/* <Text>{DateTimeUtils.formattedDateTime(item.comCreTime).split(' ')[0]}</Text> */}
