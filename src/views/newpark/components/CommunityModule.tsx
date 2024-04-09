@@ -20,32 +20,6 @@ import DateTimeUtils from '../../../utils/DateTimeUtils'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const listData = [
-  {
-    index: 1,
-    title: '一起学Java',
-    sum: '150',
-    slogan: 'n个牛友在xxx',
-    bgShow: false,
-    icon: require('../../../assets/images/alimom/java.png'),
-  },
-  {
-    index: 2,
-    title: '一起玩耍',
-    sum: '150',
-    slogan: 'n个牛友在xxx',
-    bgShow: false,
-    icon: require('../../../assets/images/alimom/R-C.jpg'),
-  },
-  {
-    index: 3,
-    title: '女神在哪',
-    sum: '4.5w',
-    slogan: 'n个牛友在xxx',
-    bgShow: false,
-    icon: require('../../../assets/images/3.0x/chatroomicon01.png'),
-  },
-];
 
 const CommunityModule = () => {
   const [selectedId, setSelectedId] = useState();
@@ -62,14 +36,23 @@ const CommunityModule = () => {
   React.useEffect(() => {
     renders()
   }, []);
-  const Item = ({ item, onpress, backgroundColor, textColor }) => (
+  const Item = ({ item, onpress, backgroundColor, textColor }:any) => (
     <TouchableOpacity onPress={onpress} style={[styles.item, { backgroundColor }]} >
       <Image source={{ uri: item.comPath }} style={item.comPath ? { width: 90, height: 90 } : { display: 'none' }}></Image>
       <View>
-        <Text style={{color:'#000',fontSize:23,textAlign:'center',fontWeight:'bold'}}>{item.comName}</Text>
-        <Text style={{textAlign:'left',color:'#F8B032',margin:3,fontSize:12}}>{item.comLabel}</Text>
-        <Text style={{textAlign:'center',margin:3,color:'#000',fontSize:16}}>{item.comDesc}</Text>
-        <Text>{DateTimeUtils.formattedDateTime(item.comCreTime).split(' ')[0]}</Text>
+        <Text style={{color:'#000',fontSize:18,textAlign:'center',fontWeight:'bold'}}>{item.comName}</Text>
+        {/* <Text style={{textAlign:'left',color:'#F8B032',margin:3,fontSize:12,backgroundColor:'#fff'}}>{item.comLabel}</Text> */}
+        <View style={[styles.zhong,{marginTop:20}]}>
+        {
+          item.comLabel.split('#').map((val: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined):any => {
+            return <View style={[{backgroundColor:'#b0e8b7'},val? {padding:2,borderRadius:12,paddingHorizontal:6} : {display:'none'}]} key={val}>
+                  <Text style={{color:'#e8b0e2',fontSize:12}}>#{val}</Text>
+            </View>
+          })
+        }
+        </View>
+        {/* <Text style={{textAlign:'center',margin:3,color:'#000',fontSize:16}}>{item.comDesc}</Text> */}
+        {/* <Text>{DateTimeUtils.formattedDateTime(item.comCreTime).split(' ')[0]}</Text> */}
       </View>
       <View style={styles.itemRight}>
         <Feather
@@ -209,5 +192,10 @@ const styles = StyleSheet.create({
     marginTop: 12,
     justifyContent:'space-between',
     alignItems:'center'
+  },
+  zhong:{
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection:'row'
   }
 })
