@@ -7,7 +7,7 @@
  */
 import React, { useEffect } from 'react';
 import { Trans } from 'react-i18next';
-import { Dimensions, FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View,ScrollView } from 'react-native';
+import { Dimensions, FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
@@ -23,14 +23,14 @@ const data1 = [
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '全部订单小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！',
-        time:'2024.6.12'
+        time: '2024.6.12'
     },
     {
         index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '全部订单小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！',
-        time:'2024.6.12'
+        time: '2024.6.12'
     },
     {
         index: '3',
@@ -40,6 +40,24 @@ const data1 = [
     },
     {
         index: '4',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '全部订单小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '5',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '全部订单小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '6',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '全部订单小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '7',
         img: require('../../../../assets/images/tup/xy1.png'),
         name: '全部订单小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
@@ -49,25 +67,43 @@ const data2 = [
     {
         index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待付款小黄鸭',
+        name: '发布小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待付款小黄鸭',
+        name: '发布小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待付款小黄鸭',
+        name: '发布小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
-        index:'4',
+        index: '4',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待付款小黄鸭',
+        name: '发布小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '5',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '发布小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '6',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '发布小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '7',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '发布小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
 ];
@@ -75,25 +111,43 @@ const data3 = [
     {
         index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待收货小黄鸭',
+        name: '购买小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待收货小黄鸭',
+        name: '购买小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待收货小黄鸭',
+        name: '购买小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '4',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待收货小黄鸭',
+        name: '购买小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎!'
+    },
+    {
+        index: '5',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '购买小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎!'
+    },
+    {
+        index: '6',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '购买小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎!'
+    },
+    {
+        index: '7',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '购买小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎!'
     },
 
@@ -102,25 +156,43 @@ const data4 = [
     {
         index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待评价小黄鸭',
+        name: '出售小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待评价小黄鸭',
+        name: '出售小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待评价小黄鸭',
+        name: '出售小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '4',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '待评价小黄鸭',
+        name: '出售小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '5',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '出售小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '6',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '出售小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '7',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '出售小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
 ]
@@ -128,52 +200,85 @@ const data5 = [
     {
         index: '1',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '已取消小黄鸭',
+        name: '售后小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '2',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '已取消小黄鸭',
+        name: '售后小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '3',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '已取消小黄鸭',
+        name: '售后小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '4',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '已取消小黄鸭',
+        name: '售后小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
     {
         index: '5',
         img: require('../../../../assets/images/tup/xy1.png'),
-        name: '已取消小黄鸭',
+        name: '售后小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '6',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '售后小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '7',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '售后小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+    {
+        index: '8',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '售后小黄鸭',
         desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
     },
 
+    {
+        index: '9',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '售后小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+
+    {
+        index: '10',
+        img: require('../../../../assets/images/tup/xy1.png'),
+        name: '售后小黄鸭',
+        desc: '送你一只小黄鸭，洗澡完了嘎嘎嘎！'
+    },
+
+
 ]
 interface listType {
-    index:string,
-    img:any,
-    name:string,
-    desc:string
+    index: string,
+    img: any,
+    name: string,
+    desc: string
 }
-const List = ({ data }:{data:listType}) => {
+const List = ({ data }: { data: listType }) => {
     return (
         <TouchableOpacity style={styles.cards}>
-            <Image source={data.img} style={styles.icon} accessibilityLabel='图片' alt="头像"/>
+            <Image source={data.img} style={styles.icon} accessibilityLabel='图片' alt="头像" />
             <View style={styles.rightList}>
                 <Text style={styles.h5}>名称 : {data.name}</Text>
                 <View style={styles.desc}>
                     <Text style={styles.h6}>描述 : </Text>
-                   <View style={{marginLeft:40}}>
+                    <View style={{ marginLeft: 40 }}>
                         <Text style={styles.h6}>{data.desc}</Text>
-                   </View>
+                    </View>
                 </View>
             </View>
         </TouchableOpacity>
@@ -187,7 +292,7 @@ const MyOrderView = ({ route }: any) => {
         // 触发事件
         onTypePress(type)
     }, []);
-    const renderItem = ({ item }:{item:listType}) => (
+    const renderItem = ({ item }: { item: listType }) => (
         <List data={item} />
     );
     return (
@@ -203,54 +308,57 @@ const MyOrderView = ({ route }: any) => {
                     <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type1' ? styles.typeTextSelected : null]}>全部订单</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={typeVal == 'type2' ? styles.typeItem : null} onPress={() => onTypePress('type2')}>
-                    <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type2' ? styles.typeTextSelected : null]}>待付款</Text>
+                    <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type2' ? styles.typeTextSelected : null]}>发布</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={typeVal == 'type3' ? styles.typeItem : null} onPress={() => onTypePress('type3')}>
-                    <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type3' ? styles.typeTextSelected : null]}>待收货</Text>
+                    <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type3' ? styles.typeTextSelected : null]}>购买</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={typeVal == 'type4' ? styles.typeItem : null} onPress={() => onTypePress('type4')}>
-                    <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type4' ? styles.typeTextSelected : null]}>待评价</Text>
+                    <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type4' ? styles.typeTextSelected : null]}>出售</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={typeVal == 'type5' ? styles.typeItem : null} onPress={() => onTypePress('type5')}>
-                    <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type5' ? styles.typeTextSelected : null]}>已取消</Text>
+                    <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type5' ? styles.typeTextSelected : null]}>售后</Text>
                 </TouchableOpacity>
             </View>
             <View>
-                <View style={typeVal == 'type1' ? null : { display: 'none' }}>
+                <View style={typeVal == 'type1' ? {marginBottom:120} : { display: 'none' }}>
                     <FlatList data={data1}
                         renderItem={renderItem}
                         keyExtractor={(item) => item.index}>
 
                     </FlatList>
                 </View>
-                <View style={typeVal == 'type2' ? null : { display: 'none' }}>
-                <FlatList data={data2}
+                <View style={typeVal == 'type2' ? {marginBottom:120} : { display: 'none' }}>
+                    <FlatList data={data2}
                         renderItem={renderItem}
-                        // keyExtractor={(item) => item.index}
-                        >
-                </FlatList>
+                    // keyExtractor={(item) => item.index}
+                    >
+                    </FlatList>
                 </View>
-                <View style={typeVal == 'type3' ? null : { display: 'none' }}>
-                <FlatList data={data3}
+                <View style={typeVal == 'type3' ? {marginBottom:120} : { display: 'none' }}>
+                    <FlatList data={data3}
                         renderItem={renderItem}
-                        // keyExtractor={(item) => item.index}
-                        >
-                </FlatList>
+                    // keyExtractor={(item) => item.index}
+                    >
+                    </FlatList>
                 </View>
-                <View style={typeVal == 'type4' ? null : { display: 'none' }}>
-                <FlatList data={data4}
+                <ScrollView style={typeVal == 'type4' ? {marginBottom:120} : { display: 'none' }}>
+                    <FlatList data={data4}
                         renderItem={renderItem}
-                        // keyExtractor={(item) => item.index}
+                    // keyExtractor={(item) => item.index}
+                    >
+                    </FlatList>
+                </ScrollView>
+                <ScrollView style={typeVal == 'type5' ? {marginBottom:120} : { display: 'none' }}>
+               
+                        <FlatList 
+                            data={data5}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.index.toString()}
                         >
-                </FlatList>
-                </View>
-                <View style={typeVal == 'type5' ? null : { display: 'none' }}>
-                <FlatList data={data5}
-                        renderItem={renderItem}
-                        // keyExtractor={(item) => item.index}
-                        >
-                </FlatList>
-                </View>
+                        </FlatList>
+                  
+                </ScrollView>
             </View>
         </View>
     )
@@ -309,9 +417,9 @@ const styles = StyleSheet.create({
     icon: {
         width: 60,
         height: 60,
-        borderWidth:1,
-        borderColor:'#ccc',
-        padding:6
+        borderWidth: 1,
+        borderColor: '#ccc',
+        padding: 6
     },
     cards: {
         width: windowWidth,
@@ -319,36 +427,36 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 25,
         paddingVertical: 12,
-        alignItems:'center',
+        alignItems: 'center',
         ...Platform.select({
             ios: {
                 marginBottom: 14,
                 shadowColor: '#DDD', //设置阴影色
-                shadowOffset: {width: 0, height: 3}, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
+                shadowOffset: { width: 0, height: 3 }, //设置阴影偏移,该值会设置整个阴影的偏移，width可以看做x,height可以看做y,x向右为正，y向下为正
                 shadowOpacity: 1,
                 shadowRadius: 3.5, //设置阴影模糊半径,该值设置整个阴影的半径，默认的效果就是View的四周都有阴影
-              },
-              android: {
+            },
+            android: {
                 elevation: 6,
                 marginBottom: 12,
-              },
+            },
         })
     },
     h5: {
         color: 'black',
         fontSize: 16
     },
-    h6:{
-        color:'#666',
-        fontSize:14
+    h6: {
+        color: '#666',
+        fontSize: 14
     },
-    desc:{
-        marginTop:8,
-        width:160,
-        flexWrap:'nowrap'
+    desc: {
+        marginTop: 8,
+        width: 160,
+        flexWrap: 'nowrap'
     },
-    rightList:{
-        width:'60%',
-        justifyContent:'center'
+    rightList: {
+        width: '60%',
+        justifyContent: 'center'
     }
 })

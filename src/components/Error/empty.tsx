@@ -4,13 +4,14 @@ import { View, Image, StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // flexDirection:'column'
   },
   logo: {
-    width: 226,
-    height: 228,
+    width: 160,
+    height: 128,
   },
 });
 
@@ -25,18 +26,19 @@ const DisplayAnImage = () => {
       />
       <View
         style={{
-          flexDirection: "row",
-          padding: 10
+          flexDirection:'column',
+          padding: 10,
+          height:90,
+          justifyContent:'center',
+         alignItems:'center'
         }}
       >
-        <Text allowFontScaling={false} style={{ margin: "auto", width: 120,fontSize: 18, color:'#DAD8E0' }}>暂时没有数据</Text>
+        <Text allowFontScaling={false} style={{fontSize: 14, color:'#000',textAlign:'center' }}>暂时没有数据</Text>
+        <Text allowFontScaling={false} style={{fontSize: 14, color:'#000',textAlign:'center' }}>快去寻找所需要的数据吧！</Text>
       </View>
       <View>
-        <Text allowFontScaling={false} style={{ width: 140,fontSize: 13, color:'#CDCFDC' }}>快去寻找所需要的数据</Text>
-      </View>
-      <View style = {{ position: 'absolute', bottom: 15}}>
-        <Text allowFontScaling={false} style={{ width: 180,fontSize: 13, color:'#CDCFDC' }}>山东新园建业科技有限公司</Text>
-      </View>
+        <Text allowFontScaling={false} style={{ width: 180,fontSize: 12, color:'#CDCFDC' ,textAlign:'center'}}>山东新园建业科技有限公司</Text>
+      </View> 
     </View>
   );
 }

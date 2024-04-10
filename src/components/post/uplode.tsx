@@ -16,7 +16,7 @@ const Uplode = () => {
         <View style={styles.cardView}>
           <LinearGradinet colors={['rgba(157, 104, 189,1)', 'rgba(157, 104, 189,0.6)', 'rgba(252, 251, 251,1)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.titleStyle}>
             <Text allowFontScaling={false} style={styles.titleText}>
-              发布悬赏 <Entypo size={20} color='#F8B032' name='triangle-right'></Entypo>
+              发布悬赏<Entypo size={20} color='#F8B032' name='triangle-right'></Entypo>
             </Text>
           </LinearGradinet>
           <View style={styles.inputView}>

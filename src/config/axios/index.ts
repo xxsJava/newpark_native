@@ -34,9 +34,6 @@ const request = async (option: any) => {
       'operationID' : operationID 
       ,
       'token' : openIMToken
-      ,
-      'Content-type': 'Application/json',
-      Accept: 'Application/json',
     }
   })
 }

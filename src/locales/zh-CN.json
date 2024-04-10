@@ -35,11 +35,11 @@
         "navTab5":"发帖"
     },
     "minOrder":{
-        "orderName":"我的订单",
+        "orderName":"交易",
         "orderMore":"全部订单",
-        "orderOption1":"待付款",
-        "orderOption2":"待收货",
-        "orderOption3":"待评价",
+        "orderOption1":"发布",
+        "orderOption2":"购买",
+        "orderOption3":"出售",
         "orderOption4":"售后"
     },
     "minService":{

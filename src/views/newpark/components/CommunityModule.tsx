@@ -13,7 +13,7 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 import { recommLook } from '../../../api/sys/Recommended/index';
 import { recommLookType } from '../../../api/sys/Recommended/types';
 import { Image, View } from 'react-native-animatable';
-import { color } from '@rneui/base';
+
 // import Text from '../../socializing/text';
 import DateTimeUtils from '../../../utils/DateTimeUtils'
 

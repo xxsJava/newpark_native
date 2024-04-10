@@ -1,9 +1,9 @@
 /*
  * @Author: xxs
- * @Date: 2023-11-07 10:30:52
- * @LastEditTime: 2024-01-23 18:07:04
+ * @Date: 2023-10-24 17:48:22
+ * @LastEditTime: 2023-11-01 15:16:51
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
- * @Description: desc
+ * @Description: 登录控制器
  */
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
@@ -13,13 +13,6 @@ import LoginStacker from '../../../routes/stacker/Login';
 import Storage from '../../../utils/AsyncStorageUtils';
 import DateTimeUtils from '../../../utils/DateTimeUtils';
 
-/*
- * @Author: xxs
- * @Date: 2023-10-24 17:48:22
- * @LastEditTime: 2023-11-01 15:16:51
- * @FilePath: \newpark_native\src\views\login\controller\index.tsx
- * @Description: 登录控制器
- */
 console.log('进入登录控制器');
 
 const Stack = createNativeStackNavigator();
