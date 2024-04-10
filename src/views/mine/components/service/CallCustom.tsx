@@ -1,12 +1,17 @@
 import React from 'react';
-import { Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
 // import DashLine from 'rn-dashline';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const CallCustom = ({ navigation }: any) => {
     // const [tabVal, setTab] = useState('tab1');
     // const handleTabPress = (tab: string) => {
     //   console.log('Tab状态' + tab);
     //   setTab(tab);
+
     const list1 = [
         {
             index: 1,
@@ -48,61 +53,68 @@ const CallCustom = ({ navigation }: any) => {
         }
     ]
     var [value, onChangeText] = React.useState('');
-    function setValue(item:string) {
+    function setValue(item: string) {
         onChangeText(item)
     }
+    const [comShow, setComshow] = React.useState(false);
+    const comBack = () => {
+        console.log('弹出模态框');
+        setComshow(true);
+        navigation.goBack()
+    };
+
     return (
         <SafeAreaView >
             <Appbar.Header style={styles.appbarStyle}>
                 <View style={styles.heng}>
-                    <Appbar.BackAction onPress={() => navigation.goBack()} />
+                    <Appbar.BackAction onPress={() => comBack()} />
                     <Text style={styles.h6}>返回</Text>
                 </View>
                 <Text style={styles.h2}>新园客服</Text>
                 {/* <image  /> */}
-                <Image source={require('../../../../assets/images/tup/gengduo.png')} style={styles.iconStyle} accessibilityLabel='图片' alt="头像"/>
+                <Image source={require('../../../../assets/images/tup/gengduo.png')} style={styles.iconStyle} accessibilityLabel='图片' alt="头像" />
             </Appbar.Header>
             <ScrollView style={styles.shangxia}
-             contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between', flexDirection: 'column' }}
-             
+                contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between', flexDirection: 'column' }}
+
             >
                 <View style={styles.topStyle}>
-                <View style={styles.list1box}>
-                    <View style={styles.padd}>
-                        <Text>请问您想问这些问题吗～</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        {/* <DashLine style={{ flex: 1, margin: 5 }} lineWidth={1} /> */}
-                    </View>
-                    <View style={styles.tit}>
-                        <View style={styles.littit}>
-                            <Image source={require('../../../../assets/images/tup/bangzhu.png')} style={styles.questimg} accessibilityLabel='图片' alt="头像"/>
+                    <View style={styles.list1box}>
+                        <View style={styles.padd}>
+                            <Text>请问您想问这些问题吗～</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            {/* <DashLine style={{ flex: 1, margin: 5 }} lineWidth={1} /> */}
+                        </View>
+                        <View style={styles.tit}>
+                            <View style={styles.littit}>
+                                <Image source={require('../../../../assets/images/tup/bangzhu.png')} style={styles.questimg} accessibilityLabel='图片' alt="头像" />
+                                <View>
+                                    <Text style={styles.titText}>猜您想问</Text>
+                                </View>
+                            </View>
                             <View>
-                                <Text style={styles.titText}>猜您想问</Text>
+                                {list1.map(item => {
+                                    return (
+                                        <TouchableOpacity style={styles.list1litbox} onPress={() => {
+                                            setValue(item.main)
+                                        }}>
+                                            <Text style={styles.fonblac}>{item.main}</Text>
+                                            <Image source={require('../../../../assets/images/chevron-right.png')} style={styles.questimg} accessibilityLabel='图片' alt="头像"></Image>
+                                        </TouchableOpacity>
+                                    )
+                                })}
                             </View>
                         </View>
-                        <View>
-                            {list1.map(item => {
-                                return (
-                                    <TouchableOpacity style={styles.list1litbox} onPress={()=>{
-                                        setValue(item.main)
-                                    }}>
-                                        <Text style={styles.fonblac}>{item.main}</Text>
-                                        <Image source={require('../../../../assets/images/chevron-right.png')} style={styles.questimg} accessibilityLabel='图片' alt="头像"></Image>
-                                    </TouchableOpacity>
-                                )
-                            })}
-                        </View>
+                    </View>
+                    <View style={styles.wait}>
+                        <Text style={styles.waittit}>正在转接中，人工客服马上为您服务～</Text>
                     </View>
                 </View>
-                <View style={styles.wait}>
-                    <Text style={styles.waittit}>正在转接中，人工客服马上为您服务～</Text>
-                </View>
-                </View>
                 <KeyboardAvoidingView style={styles.bottomstyle}
-                     behavior={Platform.OS == "ios" ? "padding" : "height"}
-                     keyboardVerticalOffset={2}
-                     
+                    behavior={Platform.OS == "ios" ? "padding" : "height"}
+                    keyboardVerticalOffset={2}
+
                 >
                     <View style={styles.litlist}>
                         {
@@ -116,19 +128,19 @@ const CallCustom = ({ navigation }: any) => {
                         }
                     </View>
                     <View style={styles.mainbox}>
-                        <Image source={require('../../../../assets/images/tup/yuyinqiehuan.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
+                        <Image source={require('../../../../assets/images/tup/yuyinqiehuan.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像" />
                         <TextInput
                             style={styles.inptext}
                             onChangeText={text => onChangeText(text)}
                             value={value}
                             placeholder='请输入您要咨询的内容吧～'
                         />
-                        <Image source={require('../../../../assets/images/tup/biaoqing.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
-                        <View style={value=='' ? styles.xian:styles.hidd}>
-                            <Image source={require('../../../../assets/images/tup/zengjiatianjiajiahao.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像"/>
+                        <Image source={require('../../../../assets/images/tup/biaoqing.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像" />
+                        <View style={value == '' ? styles.xian : styles.hidd}>
+                            <Image source={require('../../../../assets/images/tup/zengjiatianjiajiahao.png')} style={styles.yuyin} accessibilityLabel='图片' alt="头像" />
                         </View>
-                        <View style={value== '' ? styles.hidd:styles.xian}>
-                            <TouchableOpacity style={styles.sendSty} onPress={() =>{
+                        <View style={value == '' ? styles.hidd : styles.xian}>
+                            <TouchableOpacity style={styles.sendSty} onPress={() => {
                                 console.log(value);
                             }}>
                                 <Text style={styles.sendtext}>发送</Text>
@@ -136,7 +148,18 @@ const CallCustom = ({ navigation }: any) => {
                         </View>
                     </View>
                 </KeyboardAvoidingView>
-            </ScrollView>    
+            </ScrollView>
+            {/* <View> */}
+                <View style={styles.mtkm}></View>
+                <View style={styles.mtk}>
+                    <View style={styles.litmtk}>
+                        <Text style={{ textAlign: 'center', fontSize: 16, color: '#000',fontWeight:'bold',marginTop:9}}>给新园APP评分</Text>
+                         <Text style={{textAlign:'center'}}>
+                            如果你喜欢新园应用APP,就给我们一个好评吧！我们会为你的鼓励而继续努力。
+                         </Text>
+                    </View>
+                </View>
+            {/* </View> */}
         </SafeAreaView>
     )
 }
@@ -185,7 +208,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 10,
-        marginHorizontal:14
+        marginHorizontal: 14
     },
     list1box: {
         backgroundColor: '#fff',
@@ -195,19 +218,19 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginTop: 30,
         paddingVertical: 20,
-        marginLeft:8
+        marginLeft: 8
     },
     littit: {
         flexDirection: 'row',
-        paddingHorizontal:14
+        paddingHorizontal: 14
     },
-    padd:{
-        paddingHorizontal:14
+    padd: {
+        paddingHorizontal: 14
     },
     fonblac: {
         color: 'black'
     },
-    wait:{
+    wait: {
         backgroundColor: '#FFF2D9',
         width: '80%',
         borderRadius: 20,
@@ -222,7 +245,7 @@ const styles = StyleSheet.create({
     litlist: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal:3
+        marginHorizontal: 3
     },
     litbg: {
         backgroundColor: '#FBF5EB',
@@ -240,48 +263,71 @@ const styles = StyleSheet.create({
         height: 33
     },
     inptext: {
-        height: 34, 
-        width:230,
-        borderColor: 'gray', 
+        height: 34,
+        width: 230,
+        borderColor: 'gray',
         borderWidth: 1,
-        borderRadius:20,
-        fontSize:11,
-        paddingHorizontal:18
+        borderRadius: 20,
+        fontSize: 11,
+        paddingHorizontal: 18
     },
-    mainbox:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        padding:4,
-        marginTop:8,
-        height:66
+    mainbox: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 4,
+        marginTop: 8,
+        height: 66
     },
-    bottomstyle:{
-       flex:1,
-       justifyContent:'flex-end',
-       height:99
+    bottomstyle: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        height: 99
     },
-    shangxia:{
-        height:'93%'
+    shangxia: {
+        height: '93%'
     },
-    topStyle:{
-        flex:1,
-        justifyContent:'flex-start'
+    topStyle: {
+        flex: 1,
+        justifyContent: 'flex-start'
     },
-    sendSty:{
-        backgroundColor:'#399024',
-        borderRadius:8,
-        paddingHorizontal:13,
-        paddingVertical:8
+    sendSty: {
+        backgroundColor: '#399024',
+        borderRadius: 8,
+        paddingHorizontal: 13,
+        paddingVertical: 8
     },
-    sendtext:{
-        color:'#fff',
-        fontWeight:'bold'
+    sendtext: {
+        color: '#fff',
+        fontWeight: 'bold'
     },
-    hidd:{
-        display:'none'
+    hidd: {
+        display: 'none'
     },
-    xian:{
-       display:'flex'
+    xian: {
+        display: 'flex'
+    },
+    mtk: {
+        position: 'absolute',
+        width: windowWidth,
+        height: windowHeight,
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 99
+    },
+    litmtk: {
+        backgroundColor: '#fff',
+        width: '80%',
+        height: '60%',
+        padding: 12,
+        borderWidth: 0,
+        borderRadius: 20
+    },
+    mtkm: {
+        position: 'absolute',
+        width: windowWidth,
+        height: windowHeight,
+        backgroundColor: '#000',
+        opacity: 0.1
     }
 })
 

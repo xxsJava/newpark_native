@@ -9,7 +9,7 @@ import { Dimensions, StyleSheet, Text, View } from "react-native";
 const windowWidth = Dimensions.get('window').width
 
 const StepBar = () => {
-    const [stepVal] = React.useState(2)
+    const [stepVal] = React.useState(2);
     return(
         <View style={styles.stepBarView1}>
             <View style={styles.stepBarItem}>
@@ -24,6 +24,7 @@ const StepBar = () => {
                     <View style={[styles.stepBarIcon,stepVal >= 2?styles.stepBarColor1:null]}></View>
                     <View style={[styles.stepBarLine,stepVal >= 3?styles.stepBarColor2:null]}></View>
                 </View>
+                
                 <Text allowFontScaling={false} style={[styles.stepBarText,{left:-16}]}>进行中</Text>
             </View>
             <View style={styles.stepBarItem}>

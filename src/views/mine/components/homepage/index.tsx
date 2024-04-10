@@ -38,7 +38,7 @@ const orderData = [
     {
       index: 4,
       route: 'AfterSalesRoute',
-      type:'',
+      type:'type5',
       text: 'minOrder.orderOption4',
       icon: require('../../../../assets/images/alimom/sh.png'),
     },

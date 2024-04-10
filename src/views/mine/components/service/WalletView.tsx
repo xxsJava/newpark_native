@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,useState } from 'react';
 import { Trans } from 'react-i18next';
 import { Dimensions, Image, Platform, StyleSheet, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-animatable';
@@ -6,6 +6,7 @@ import LinearGradinet from 'react-native-linear-gradient';
 import { Appbar } from 'react-native-paper';
 // import { Button } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
+import DisplayAnImage from '../../../../components/Error/empty';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -14,10 +15,19 @@ const buttonClick = () =>{
     console.log('我被点击了!')
 }
 let BALANCE:number = 0.00;
-let textSelected = '1'
 
 export default class WalletView extends Component {
+  constructor({props}:any) {
+    super(props);
+    this.state = {
+      income: true
+    };
+  }
     render () {
+    console.log('点击了',this.state.income);
+    
+      
+      // const [income,setIncome] = React.useState(true);
         return (
             <View style={styles.parentView}>
               <Appbar.Header style={styles.headerStyle}>
@@ -52,16 +62,26 @@ export default class WalletView extends Component {
                         </LinearGradinet>
                     </View>
                     <View style={styles.tabView}>
-                        <View style={styles.tabItem}>
-                            <Text allowFontScaling={false} style={textSelected === '1'?styles.tabTextSelected:styles.tabItemText}>收入</Text>
-                        </View>
-                        <View style={styles.tabItem}>
-                            <Text allowFontScaling={false} style={textSelected === '2'?styles.tabTextSelected:styles.tabItemText}>支出</Text>
-                        </View>
+                        <TouchableOpacity style={styles.tabItem} onPress={()=>{
+                          this.setState({
+                            income:true
+                          })
+                        }}>
+                            <Text allowFontScaling={false} style={this.state.income ? styles.tabTextSelected:styles.tabItemText}>收入</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.tabItem} onPress={()=>{
+                           this.setState({
+                            income:false
+                          })
+                        }}
+                        >
+                            <Text allowFontScaling={false} style={this.state.income ? styles.tabItemText:styles.tabTextSelected}>支出</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
-                <View>
-                    <Text allowFontScaling={false}>暂无收入</Text>
+                <View style={{alignItems:'center'}}>
+                    {/* <Text allowFontScaling={false}>暂无收入</Text> */}
+                    <DisplayAnImage/>
                 </View>
             </View>
         )

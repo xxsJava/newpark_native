@@ -44,7 +44,6 @@ export const BommonTab = () => {
     })
 
   }, [])
-
   return (
     <>
       <Tab.Navigator

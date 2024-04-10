@@ -6,11 +6,12 @@
 
 import React from "react";
 import { Trans } from 'react-i18next';
-import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View,TextInput } from "react-native";
 import { Appbar, Button, Icon } from 'react-native-paper';
 import { dateToMsgTime } from "../../../../components/Rests/TconTime";
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import StepBar from '../StepBar';
+import DateTimeUtils from '../../../../utils/DateTimeUtils';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -56,40 +57,16 @@ const RewardDetails = ({route}:any) => {
                             </View>
                         </View>
                         <View style={styles.detailsView}>
-                            <View style={styles.detailsTop}>
-                                <View style={styles.addressTitle}>
-                                    <Image style={styles.addressImage}  source={require('../../../../assets/images/alimom/fk.png')} accessibilityLabel='图片' alt="头像"></Image>
-                                    <Text allowFontScaling={false} style={styles.addressText}>悬赏地址</Text>
-                                </View>
-                                <View style={styles.addressTitle}>
-                                    <Image style={styles.addressImage}  source={require('../../../../assets/images/location_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
-                                    <Text allowFontScaling={false} style={styles.addressText}>送达地址</Text>
-                                </View>
-                            </View>
-                            <View style={styles.addressView}>
-                                <TouchableOpacity activeOpacity={0.5}>
-                                    <Text allowFontScaling={false} style={styles.addressText1}>点击查看悬赏地址</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity activeOpacity={0.5}>
-                                    <Text allowFontScaling={false} style={styles.addressText1}>点击查看送达地址</Text>
-                                </TouchableOpacity>
-                            </View>
                             <View style={styles.remarksView}>
                                 <Text allowFontScaling={false} style={styles.remarksTitle}>备注</Text>
-                                <Text style={styles.remarksText}>{data.rdesc?data.rdesc:'小件/取件码/接单可查看具体信息'}</Text>
-                                {/* <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false}></TextInput> */}
+                                {/* <Text style={styles.remarksText}>{data.rdesc?data.rdesc:'小件/取件码/接单可查看具体信息'}</Text> */}
+                                <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false} keyboardAppearance='dark' multiline={true}></TextInput>
                             </View>
                             <View style={[styles.remarksView,{marginTop:5}]}>
                                 <Text allowFontScaling={false} style={styles.remarksTitle}>完成时限</Text>
-                                <Text style={styles.remarksText}>半个小时后</Text>
+                                <Text style={styles.remarksText}>{DateTimeUtils.formattedDateTime(data.endTime)}</Text>
                                 {/* <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='半个小时后' autoCorrect={false}></TextInput> */}
                             </View>
-                        </View>
-                        <View style={styles.takingOrders}>
-                            <Text allowFontScaling={false} style={styles.takingOrdersText1}>接单人信息:</Text>
-                            <TouchableOpacity activeOpacity={0.5} onPress={() =>{}}>
-                                <Text allowFontScaling={false} style={styles.takingOrdersText2}>点击查看</Text>
-                            </TouchableOpacity>
                         </View>
                         <View style={styles.lineView}>
                             <View style={styles.lineStyle}></View>
@@ -101,9 +78,12 @@ const RewardDetails = ({route}:any) => {
                         </View>
                         <Text allowFontScaling={false} style={styles.schollText}>湖南长沙理工大学</Text>
                     </View>
-                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('TakeOrderPartRoute')}>联系接单人</Button>
                 </ScrollView>
             </View>
+            <View style={styles.gd}>
+            {/* ProductChat    TakeOrderPartRoute */}
+                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('ProductChatRoute')}>联系接单人</Button>
+                    </View>
         </View>
     )
 }
@@ -248,11 +228,12 @@ const styles = StyleSheet.create({
     },
     detailsView:{
         width:windowWidth-30,
-        height:280,
+        // height:280,
         marginTop:20,
         marginHorizontal:15,
         borderRadius:10,
-        backgroundColor:'#F1F1F1'
+        backgroundColor:'#F1F1F1',
+        paddingVertical:8
     },
     detailsTop:{
         width:'100%',
@@ -292,28 +273,32 @@ const styles = StyleSheet.create({
     },
     remarksView:{
         width:'100%',
-        height:70,
+        // height:70,
         marginTop:20,
         paddingHorizontal:25,
         // backgroundColor:'pink'
     },
     remarksTitle:{
-        fontSize:14,
+        fontSize:16,
         color:'#000',
         fontWeight:'bold',
-        lineHeight:25
+        lineHeight:25,
+        
     },
     remarksInput:{
-        height:40,
+        // height:40,
         paddingHorizontal:10,
-        // backgroundColor:'yellow'
+        backgroundColor:'#fff',
+        color:'#000',
+        borderRadius:0
     },
     remarksText:{
-        height:40,
+        // height:40,
         fontSize:15,
-        color:'#aaa',
-        lineHeight:40,
-        paddingHorizontal:10,
+        color:'#000',
+        // lineHeight:40,
+        // paddingHorizontal:10,
+
     },
     takingOrders:{
         width:windowWidth-30,
@@ -341,7 +326,7 @@ const styles = StyleSheet.create({
     },
     lineView:{
         width:windowWidth,
-        height:40,
+        height:20,
         marginTop:20,
         paddingHorizontal:40,
         flexDirection:'row',
@@ -353,14 +338,14 @@ const styles = StyleSheet.create({
         height:1,
         borderColor:'#bbb',
         borderBottomWidth:1,
-        marginTop:20,
+        marginTop:10,
         marginHorizontal:15
     },
     lineText:{
         fontSize:14,
         color:'#000',
         fontWeight:'bold',
-        lineHeight:40
+        lineHeight:20
     },
     stepBarView:{
         marginTop:30
@@ -380,12 +365,20 @@ const styles = StyleSheet.create({
         marginTop:40,
         marginBottom:20,
         marginHorizontal:'15%',
-        backgroundColor:'#FABA3C'
+        backgroundColor:'#FABA3C',
+        position:'absolute',
+        bottom:10
     },
     buttonText:{
         fontSize:16,
         color:'#fff',
         fontWeight:'bold',
         lineHeight:25
+    },
+    gd:{
+        position:'absolute',
+        width:windowWidth,
+        height:windowHeight,
+        // backgroundColor:'red'
     }
 })

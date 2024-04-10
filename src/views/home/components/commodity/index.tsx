@@ -204,9 +204,12 @@ const ProductView = () => {
 
       <View style={styles.scrollView}>
         <FlatList
+        horizontal={false}
+         numColumns={2}
+          // style={{flexWrap:'nowrap'}}
           data={listData}
           renderItem={({ item }) => <List item={item} />}
-          keyExtractor={item => item.pid}
+          // keyExtractor={item => item.pid}
           ListEmptyComponent={
             <View style={styles.zhong}>
               <Text style={{ fontSize: 18, color: 'black', marginBottom: 20 }}>暂时没有商品.....</Text>
@@ -219,6 +222,8 @@ const ProductView = () => {
           }
           onRefresh={onrefresh}
           refreshing={refreshing}
+          keyExtractor={(item, index) => index.toString()}
+
         />
       </View>
     </View>
@@ -246,13 +251,15 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height - 90,
       },
     }),
-    zIndex:-2
+    zIndex:-2,
+    flexWrap:'nowrap'
   },
   commoditylist: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    alignItems: 'center'
+    // flexWrap: 'wrap',
+    // justifyContent: 'flex-start',
+    alignItems: 'center',
+    width:'50%'
   },
   headerText: {
     width: '80%',
