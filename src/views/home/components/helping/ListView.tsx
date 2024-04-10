@@ -205,7 +205,8 @@ const ListView = (data:any) => {
           />
         </View>
       {/* </ScrollView> */}
-      <TouchableOpacity
+     <View style={{position:'absolute',bottom:20,right:20}}>
+     <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => setModalVisible(true)}>
         <Image
@@ -215,6 +216,7 @@ const ListView = (data:any) => {
           alt="头像"
         />
       </TouchableOpacity>
+     </View>
       {/* 加入的模态框 */}
       {/* 第一个模态框 */}
       <Modal
@@ -418,9 +420,9 @@ const styles = StyleSheet.create({
   addStyle: {
     width: 60,
     height: 60,
-    bottom:-20,
-    right: 20,
-    position: 'absolute',
+    // bottom:-20,
+    // right: 20,
+    // position: 'absolute',
     zIndex: 10,
   },
   scrollStyle: {

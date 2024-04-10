@@ -139,7 +139,6 @@ function MessageList(props: { items: any; receiver: any }) {
   // const [data,setData]:any = useState([]);
   const [headName, setHeadName] = useState('');
   const [headImg, setHeadImg] = useState('');
-  const [msg, setMsg]: any = useState({});
   const [msgId,setMsgId] = useState('');
   let timer; //计时器
   useEffect(() => {
@@ -239,7 +238,7 @@ function MessageList(props: { items: any; receiver: any }) {
   return (
     <>
       <Appbar.Header style={styles.appbarStyle}>
-        <Appbar.BackAction onPress={() => navigate('SocializingStacker')} />
+        <Appbar.BackAction onPress={() => navigate('ObjCard')} />
         <View style={styles.avatarView}>
           <View style={styles.avatarStyle}>
             <Avatar.Image size={34} source={{ uri: headImg }} accessibilityLabel='图片'/>

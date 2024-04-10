@@ -214,7 +214,7 @@ const MineVIew = () => {
         <View>
           <View>
             <View style={[styles.heng, styles.boxnNav]}>
-              <View style={styles.heng}>
+              <View style={styles.hengl}>
                 <View style={styles.litt1}>
                   <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{followCount}</Text>
                   <Text style={{ fontSize: 16, color: 'black' }}>关注的人</Text>
@@ -224,7 +224,7 @@ const MineVIew = () => {
                   <Text style={{ fontSize: 16, color: 'black' }}> 粉丝 </Text>
                 </View>
               </View>
-              <View>
+              <View style={styles.hengz}>
                 <View>
                   <View style={styles.uid}>
                     <LinearGradinet
@@ -253,7 +253,7 @@ const MineVIew = () => {
                   </View>
                 </View>
               </View>
-              <View style={styles.heng1}>
+              <View style={styles.hengl}>
                 <View style={styles.litt}>
                   <Text style={{ fontSize: 18, color: 'black', fontWeight: 'bold' }}>{communityCount}</Text>
                   <Text style={{ fontSize: 16, color: 'black' }}>关注的圈</Text>
@@ -286,6 +286,7 @@ const MineVIew = () => {
                         <Image source={item.img} style={styles.listimg} accessibilityLabel='图片' alt="头像"></Image>
                         <View>
                           <Text style={styles.listTit}>{item.title}</Text>
+                          
                         </View>
                         <View style={styles.textBox}>
                           <Text style={styles.listText}>{item.text}</Text>
@@ -440,21 +441,21 @@ const styles = StyleSheet.create({
     display: 'none'
   },
   xian: {
-    display: 'flex',
-
+    display: 'flex'
   },
   heng: {
     // width:'40%',
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexWrap:'nowrap',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    
   },
   heng1: {
     // width:'20%',
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center'
   },
   title: {
@@ -473,7 +474,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
     padding: 10,
-    width: '93%',
+    width: windowWidth * 0.9,
     margin: 8,
     ...Platform.select({
       ios: {
@@ -538,6 +539,20 @@ const styles = StyleSheet.create({
   hengxs: {
     width: windowWidth,
 
+  },
+  hengl:{
+    width:'35%',
+    flexDirection: 'row',
+    flexWrap:'nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  hengz:{
+    width:'26%',
+    flexDirection: 'row',
+    flexWrap:'nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 })
 
