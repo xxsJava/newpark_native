@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   Image,
@@ -25,8 +25,10 @@ import { initDataDir } from '../../config/storagePermissionStatus';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import ClausePopup from '../../views/login/components/ClausePopup';
 import { forgetPass } from './controller';
+import NetInfo from '@react-native-community/netinfo';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 
 const LoginView: React.FC<LoginScreenProps> = () => {
   const [visible, setVisible] = useState(false);
@@ -53,8 +55,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   };
 
   const onLogin = async () => {
+
     setLoad(true);
-    console.log('登录点击');
+    console.log('登录点击4');
+    const networkState = await NetInfo.fetch();
+    console.log('当前网络状态:'+ networkState.isConnected);
     // navigate('LoginHome')
     // setrecode(!recode)
     console.log('输入框数据' + phone + '-' + pass);
@@ -87,7 +92,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     }
 
     const loginAPI = await loginApi(usrData);
-    
+    console.log('---->'+loginAPI);
     OpenIMConfig.userID = loginAPI.data.uId;
 
     console.log('OPENIMCONFIG------------->',OpenIMConfig);
