@@ -26,7 +26,11 @@ export const PATH_URL = base_url.base
 const service: AxiosInstance = axios.create({
   baseURL: PATH_URL, // api 的 base_url
   timeout: config.request_timeout // 请求超时时间
+  // ,httpsAgent:new https.Agent({
+  //   rejectUnauthorized:false
+  // })
 })
+
 
 // request拦截器
 service.interceptors.request.use(
@@ -81,7 +85,7 @@ service.interceptors.response.use(
     }
   },
   (error: AxiosError) => {
-    console.log('response err' + error) // for debug
+    console.log('响应错误---->' + error) // for debug
     console.log(error.message)
     return Promise.reject(error)
   }

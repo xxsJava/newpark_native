@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { View } from 'react-native-animatable';
-import { Card , Text} from '@rneui/themed';
+// import { Card , Text} from '@rneui/themed';
 import {
     Dimensions,
     StyleSheet,
@@ -36,7 +36,7 @@ const MainMess = () => {
     return (
         <View>
            
-                {Message.map(item => {
+                {/* {Message.map(item => {
                     return(
                         <Card>
                         <Card.Title>{item.name}</Card.Title>
@@ -50,7 +50,7 @@ const MainMess = () => {
                      </Card>
                     )
                    
-                })}
+                })} */}
                
        
         </View>
