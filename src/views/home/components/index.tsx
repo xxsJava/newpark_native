@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-07 14:44:57
+ * @LastEditTime: 2024-04-10 17:27:03
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -96,7 +96,7 @@ const windowHeight = Dimensions.get('window').height;
       <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
           {/* <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text> */}
-          <View style={{ height: 300, width: windowWidth }}>
+          <View style={{ height: 350, width: windowWidth }}>
             <WebView source={{ html: item.tcontext }}></WebView>
           </View>
         </Card.Content>
