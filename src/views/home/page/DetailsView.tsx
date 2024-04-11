@@ -26,18 +26,32 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const DetailsView = ({data}:any) => {
-  console.log(data,'我是跳转过来的item');
+const DetailsView = ({ data }: any) => {
+  console.log(data, '我是跳转过来的item');
   const [tabVal, setTab] = useState('tab1');
   const setTabPress = (tab: string) => {
     setTab(tab);
     console.log('点击切换', tab);
   };
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedVal,onSelectedPress] = React.useState('selected1')
+  const [selectedVal, onSelectedPress] = React.useState('selected1');
+  const [paymethWx, setPaymethWx] = React.useState(true);
+  const [showmt, setShowmt] = React.useState(true);
   return (
     <View style={styles.parentView}>
-      <Appbar.Header style={styles.headerStyle}>
+      <TouchableOpacity style={showmt ? { width: windowWidth, height: windowHeight, position: 'absolute', top: 0, left: 0, backgroundColor: '#000', zIndex: 99, opacity: 0.1 } : { display: 'none' }} onPress={() => { setShowmt(false) }}></TouchableOpacity>
+      <View style={showmt ? { position: 'absolute', top: '45%', left: '20%', width: '60%', height: '23%', backgroundColor: '#ccc', zIndex: 99, paddingHorizontal: 20, borderRadius: 20 } : { display: 'none' }}>
+        <Text style={{ textAlign: 'center', color: '#000', marginVertical: 12 }}>支付方式</Text>
+        <TouchableOpacity style={{ backgroundColor: '#fff', padding: 8, flexDirection: 'row', justifyContent: 'space-between', borderRadius: 4, alignItems: 'center' }} onPress={() => { setPaymethWx(true); setShowmt(false) }}>
+          <Image source={require('../../../assets/images/tup/weixin.png')} style={{ width: 30, height: 26 }}></Image>
+          <Text style={{ color: '#000', fontSize: 16 }}>微信支付</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{ backgroundColor: '#fff', padding: 8, flexDirection: 'row', justifyContent: 'space-between', borderRadius: 4, marginTop: '6%', alignItems: 'center' }} onPress={() => { setPaymethWx(false); setShowmt(false) }}>
+          <Image source={require('../../../assets/images/tup/zhifubaozhifu.png')} style={{ width: 30, height: 26 }}></Image>
+          <Text style={{ color: '#000', fontSize: 16 }}>支付宝支付</Text>
+        </TouchableOpacity>
+      </View>
+      <Appbar.Header style={[styles.headerStyle, { zIndex: -2 }]}>
         <Appbar.Action
           icon={require('../../../assets/images/chevron-left.png')}
           onPress={() => navigate('ProductRoute')}
@@ -47,10 +61,9 @@ const DetailsView = ({data}:any) => {
         </Text>
       </Appbar.Header>
       <View style={styles.scrollView}>
-        <ScrollView style={styles.scrollStyle} alwaysBounceVertical={true}>
+        <ScrollView alwaysBounceVertical={true}>
           <View style={styles.swiperView}>
             <Swiper
-              style={styles.swiperStyle}
               height={300}
               loop={true}
               horizontal={true}
@@ -200,80 +213,98 @@ const DetailsView = ({data}:any) => {
         </View>
       </View>
       {/*  这个是模态框*/}
-      <TouchableWithoutFeedback style={{ position: 'absolute', bottom: 0, width: windowWidth,height:windowHeight,backgroundColor:'red',flex:1}} >
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(false)
-          }}>
-          <View style={{position:'absolute',zIndex:999}}>
-            <TouchableOpacity style={styles.waiM}  onPress={() =>{setModalVisible(false); console.log('dianjilaa');}}>
-          <View style={styles.imageStyle} ></View>
-            <View style={styles.detailsStyle}>
-              <Text allowFontScaling={false} style={styles.titleStyle}>填写订单</Text>
-              <View style={styles.scrollView}>
-                <ScrollView style={styles.scrollStyle}>
-                  <View style={styles.personalData}>
-                    <Text allowFontScaling={false} style={styles.addressLabel}>收货地址</Text>
-                    <View style={styles.addressView}>
-                      <View style={styles.addressContent}>
-                        <Text allowFontScaling={false} style={styles.addressTitle}>省市县街道</Text>
-                        <Text allowFontScaling={false} style={styles.addressText}>详细地址。。。</Text>
-                        <View style={styles.addressStyle}>
-                          <Text allowFontScaling={false} style={styles.addressName}>张三</Text>
-                          <Text allowFontScaling={false} style={styles.addressPhone}>123****6789</Text>
-                          <Text allowFontScaling={false} style={[styles.addressTab, styles.tabColor1]}>默认</Text>
-                          <Text allowFontScaling={false} style={[styles.addressTab, styles.tabColor2]}>家</Text>
-                        </View>
-                      </View>
-                      <View style={styles.addressIcon}>
-                        <IconButton style={styles.addressImage} size={23} icon={require('../../../assets/images/edit_icon.png')} onPress={() => console.log('点击编辑')}></IconButton>
-                      </View>
-                    </View>
-                  </View>
-                  <View style={styles.commodityInformation}>
-                    <Text allowFontScaling={false} style={styles.commodityTitle}>商品信息</Text>
-                    <View style={styles.commodityContent}>
-                      <Image style={styles.commodityImage} source={require('../../../assets/images/alimom/R-C.jpg')} accessibilityLabel='图片' alt="头像"></Image>
-                      <View style={styles.commodityTextView}>
-                        <Text allowFontScaling={false} style={styles.commodityName}>商品名称</Text>
-                        <Text allowFontScaling={false} style={styles.commodityDescribe}>商品描述。。。。</Text>
-                        <Text allowFontScaling={false} style={styles.describeStyle}>描述..</Text>
-                      </View>
-                      <Text allowFontScaling={false} style={styles.commodityNum}>数量:1</Text>
-                    </View>
-                  </View>
-                  <View style={styles.paymentView}>
-                    <Text allowFontScaling={false} style={styles.parenTitle}>支付方式</Text>
-                    <View style={styles.paymentContent}>
-                      <TouchableOpacity style={[styles.paymentItem, { borderColor: '#999', borderBottomWidth: 1 }]} onPress={() => onSelectedPress('selected1')} activeOpacity={1}>
-                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/wxzf_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
-                        <Text allowFontScaling={false} style={styles.paymentText}>微信支付</Text>
-                        <Image style={[styles.paymentIcon, selectedVal == 'selected1' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.paymentItem} onPress={() => onSelectedPress('selected2')} activeOpacity={1}>
-                        <Image style={styles.paymentImage} source={require('../../../assets/images/3.0x/zfb_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
-                        <Text allowFontScaling={false} style={styles.paymentText}>支付宝支付</Text>
-                        <Image style={[styles.paymentIcon, selectedVal == 'selected2' ? null : { display: 'none' }]} source={require('../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </ScrollView>
+      <TouchableOpacity onPress={() => setModalVisible(false)} style={modalVisible ? { position: 'absolute', top: 0, left: 0, width: windowWidth, height: windowHeight, backgroundColor: '#000', opacity: 0.3 } : { display: 'none' }}></TouchableOpacity>
+      <View style={modalVisible ? { width: windowWidth, height: windowHeight * 0.6, backgroundColor: '#E5E5E5', position: 'absolute', bottom: 0, borderTopLeftRadius: 16, borderTopRightRadius: 16, padding: 12 } : { display: 'none' }}>
+        <View style={{ width: '100%' }}>
+          <Text style={{ fontSize: 16, color: '#000', textAlign: 'center', fontWeight: 'bold' }}>确认订单</Text>
+        </View>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fff', padding: 12, borderRadius: 12, marginBottom: 12 }}>
+          <Image source={require('../../../assets/images/tup/dizhi.png')} style={{ width: 30, height: 30 }}></Image>
+          <View>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ backgroundColor: '#F8B032', padding: 2, paddingHorizontal: 5 }}>
+                <Text style={{ color: '#fff', fontSize: 10 }}>默认</Text>
               </View>
+              <Text style={{ fontSize: 11, marginLeft: 8 }}>北京市北京市海淀区紫竹院街道</Text>
             </View>
-            <View style={styles.bottomView}>
-              <View style={styles.bottomIcon}>
-                <Icon size={36} color="#FABA3C" source={require('../../../assets/images/coins-icon.png')}></Icon>
-              </View>
-              <Text allowFontScaling={false} style={styles.bottomNum}>880.<Text allowFontScaling={false} style={{ fontSize: 14 }}>00</Text></Text>
-              <Button style={styles.bottomButton} labelStyle={styles.bottomButtonText} onPress={() => console.log('提交订单')}>提交订单</Button>
+            <Text style={{ color: '#000', fontSize: 18, fontWeight: 'bold' }}>龙锦苑四区西门23号楼4单元102左</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={{ color: '#000', fontSize: 15 }}>张大大</Text>
+              <Text style={{ color: '#000', fontSize: 14, marginLeft: 5 }}>1319385890</Text>
             </View>
-            </TouchableOpacity>
           </View>
-        </Modal>
-      </TouchableWithoutFeedback>
+          <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 23, height: 23 }}></Image>
+        </View>
+        <ScrollView style={{paddingBottom:90,marginBottom:60}}>
+          <View style={{ backgroundColor: "#fff", padding: 16 }}>
+            <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
+              <Text style={{ color: '#333', fontSize: 12 }}>春天怎么还不来</Text>
+              <View style={{ backgroundColor: '#cfffe2', padding: 2, paddingHorizontal: 9 }}>
+                <Text style={{ color: 'green', fontWeight: 'bold', fontSize: 12 }}>待支付</Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: 'row', padding: '2%', width: '70%', justifyContent: 'space-between' }}>
+              <View style={{ padding: 9, borderWidth: 1, borderColor: '#ccc', marginRight: 8 }}>
+                <Image source={require('../../../assets/images/tup/57c35c612fb4bf9ae2922aa0d88688b.jpg')} style={{ width: 80, height: 80 }} />
+              </View>
+              <View>
+                <Text numberOfLines={3}>
+                  医用口罩。四层加厚版，预防新型冠状病毒，家人必备，给家里人一份心安!医用口罩。四层加厚版，预防新型冠状病毒，家人必备，给家里人一份心安!
+                </Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Text style={{ color: 'red', fontSize: 14 }}>¥</Text>
+                  <View style={{ marginLeft: 6 }}>
+                    <Text style={{ color: 'red', fontSize: 16, fontWeight: 'bold' }}>88.00</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.xian}></View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text>价格</Text>
+              <Text style={{ color: '#000', fontSize: 14 }}>¥ <Text>500</Text></Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 12 }}>
+              <Text>运费</Text>
+              <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 14 }}>¥ <Text>20</Text></Text>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text>共计</Text>
+              <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 16 }}>¥ <Text>520</Text></Text>
+            </View>
+            <View style={{ marginTop: 20, backgroundColor: '#fff' }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Text>支付方式</Text>
+                <TouchableOpacity onPress={() => setShowmt(true)}>
+                  <View style={paymethWx ? { flexDirection: 'row', alignItems: 'center' } : { display: 'none' }}>
+                    <Image source={require('../../../assets/images/tup/weixin.png')} style={{ width: 23, height: 20 }}></Image>
+                    <Text>微信</Text>
+                    <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 16, height: 16 }}></Image>
+                  </View>
+                  <View style={paymethWx ? { display: 'none' } : { flexDirection: 'row', alignItems: 'center' }}>
+                    <Image source={require('../../../assets/images/tup/zhifubaozhifu.png')} style={{ width: 23, height: 20 }}></Image>
+                    <Text>支付宝</Text>
+                    <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 16, height: 16 }}></Image>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </ScrollView>
+        <View style={{backgroundColor:'#ccc',position:'absolute',bottom:0,width:windowWidth,height:60}}>
+         <View style={{flexDirection:'row',backgroundColor:'#fff',padding:8,justifyContent:'space-between'}}>
+           <View style={{flexDirection:'row',alignItems:'center'}}>
+            <Text style={{color:'#000',fontSize:14}}>共计:</Text>
+            <Text style={{color:'#000'}}> ¥ <Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>520.00</Text></Text>
+           </View>
+           <TouchableOpacity style={{backgroundColor:'#E20416',padding:10,paddingHorizontal:35,borderRadius:90}}>
+            <Text style={{color:'#fff',fontWeight:'bold',fontSize:18}}>立即支付</Text>
+           </TouchableOpacity>
+          </View>
+         </View>
+      </View>
+
     </View>
   );
 };
@@ -307,17 +338,13 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  scrollStyle: {
-    flex: 1,
-  },
   swiperView: {
     width: windowWidth,
     height: 300,
   },
-  swiperStyle: {},
   paginationStyle: {
     bottom: 0,
-    left:-280
+    left: -280
   },
   bannerImage: {
     width: windowWidth,
@@ -505,245 +532,10 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     fontSize: 14,
   },
-  detailsStyle:{
-    width:windowWidth,
-    borderTopLeftRadius:16,
-    borderTopRightRadius:16,
-    paddingHorizontal:12,
-    backgroundColor:'#FFF',
-    // backgroundColor:'red',
-    ...Platform.select({
-        ios:{
-            height:windowHeight-340,
-        },
-        android:{
-            height:windowHeight-280,
-        }
-    })
-},
-titleStyle:{
-    fontSize:17,
-    color:'#000',
-    fontWeight:'600',
-    textAlign:'center',
-    lineHeight:40
-},
-personalData:{
-    borderBottomWidth:1,
-    borderColor:'#aaa'
-},
-addressLabel:{
-    fontSize:17,
-    color:'#000',
-    lineHeight:35
-},
-addressView:{
-    height:90,
-    flexDirection:'row',
-    justifyContent:'space-between'
-},
-addressContent:{
-    width:'85%',
-},
-addressIcon:{
-    width:'15%',
-    paddingLeft:10
-},
-addressImage:{
-    marginTop:10,
-},
-addressTitle:{
-    fontSize:14,
-    color:'#aaa',
-    lineHeight:20,
-},
-addressText:{
-    fontSize:17,
-    color:'#000',
-    lineHeight:30
-},
-addressStyle:{
-    height:30,
-    flexDirection:'row',
-    justifyContent:'flex-start'
-},
-addressName:{
-    width:75,
-    fontSize:16,
-    color:'#000',
-    lineHeight:30,
-},
-addressPhone:{
-    width:130,
-    fontSize:16,
-    color:'#000',
-    lineHeight:30
-},
-addressTab:{
-    width:50,
-    height:20,
-    fontSize:15,
-    color:'#FFF',
-    lineHeight:20,
-    marginTop:5,
-    marginHorizontal:5,
-    textAlign:'center',
-},
-tabColor1:{
-    backgroundColor:'red'
-},
-tabColor2:{
-    backgroundColor:'#00CB87'
-},
-commodityInformation:{
-    width:'90%',
-    height:135,
-    marginBottom:8
-},
-commodityTitle:{
-    fontSize:17,
-    color:'#000',
-    lineHeight:40
-},
-commodityContent:{
-    flexDirection:'row',
-    justifyContent:'flex-start'
-},
-commodityImage:{
-    width:105,
-    height:105,
-    borderRadius:12
-},
-commodityTextView:{
-    width:'52%',
-    height:105,
-    paddingLeft:10,
-},
-commodityDescribe:{
-    fontSize:15,
-    color:'#000',
-    lineHeight:40
-},
-describeStyle:{
-    color:'#000'
-},
-commodityNum:{
-    width:'21%',
-    height:105,
-    fontSize:14,
-    color:'#000',
-    paddingTop:80,
-    textAlign:'right',
-},
-paymentView:{
-    height:250
-},
-parenTitle:{
-    fontSize:17,
-    color:'#000',
-    lineHeight:35,
-    marginTop:10,
-},
-paymentContent:{
-    width:'90%',
-    height:150,
-    marginHorizontal:'1%',
-    paddingVertical:5,
-    paddingHorizontal:20,
-    backgroundColor:'#FFF',
-    borderRadius:12,
-    ...Platform.select({
-        ios: {
-          shadowColor: '#ccc',
-          shadowOffset: {width: 0, height: 0},
-          shadowOpacity: 1,
-          shadowRadius: 3.5,
-          marginTop: 6,
-        },
-        android: {
-          elevation: 2,
-          marginTop: 6,
-          
-        },
-    }),
-
-},
-paymentItem:{
-    height:70,
-    position:'relative',
-    flexDirection:"row",
-    justifyContent:'flex-start',
-},
-paymentImage:{
-    width:40,
-    height:40,
-    marginVertical:15
-},
-paymentText:{
-    fontSize:16,
-    color:'#000',
-    lineHeight:60,
-    paddingHorizontal:20
-},
-paymentIcon:{
-    width:25,
-    height:25,
-    position:'absolute',
-    top:22,
-    right:10
-},
-bottomView:{
-    width:'100%',
-    borderWidth:1,
-    borderColor:'#bbb',
-    backgroundColor:'#FFF',
-    flexDirection:'row',
-    justifyContent:'flex-start',
-    ...Platform.select({
-        ios:{
-            height:75,
-        },
-        android:{
-            height:60,
-        }
-    })
-},
-bottomIcon:{
-    width:'12%',
-    paddingLeft:15,
-    paddingTop:8,
-    // backgroundColor:'green'
-},
-bottomNum:{
-    width:'40%',
-    fontSize:22,
-    color:'#EC3656',
-    lineHeight:50
-},
-bottomButton:{
-    width:'45%',
-    height:40,
-    borderRadius:20,
-    marginLeft:5,
-    marginVertical:7,
-    backgroundColor:'#FABA3C'
-},
-bottomButtonText:{
-    fontSize:17,
-    color:'#FFF',
-    lineHeight:22,
-},
-imageStyle:{
-  width:windowWidth,
-  height:200,
-},
-waiM:{
-  position:'absolute',
-  top:0,
-  bottom:0,
-  left:0,
-  right:0,
-  width:windowWidth,
-  height:windowHeight
-}
+  xian: {
+    height: 0.4,
+    backgroundColor: '#333',
+    width: '100%',
+    marginVertical: 6
+  }
 });

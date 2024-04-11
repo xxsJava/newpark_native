@@ -63,6 +63,7 @@ export default class AddressManagementView extends Component {
                     <Text allowFontScaling={false} style={styles.headerText}>
                         <Trans>navigationBar.title11</Trans>
                     </Text>
+                    
                 </Appbar.Header>
                 <View style={styles.scrollStyle}>
                     <ScrollView style={styles.listStyle}>
@@ -240,7 +241,7 @@ const styles = StyleSheet.create({
     buttonView:{
         width:'100%',
         height:30,
-        marginBottom:20
+        marginBottom:10
     },
     buttonStyle:{
         width:'90%',

@@ -52,7 +52,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const Module = ({ item }) => (
   <View style={styles.itemStyle} key={item.index}>
-    <View style={styles.avatarView}>
+    {/* <View style={styles.avatarView}>
       <Image
         style={styles.avatarStyle}
         source={{
@@ -95,10 +95,51 @@ const Module = ({ item }) => (
         onPress={() => navigate('RewardDetailsRoute', { item })}>
         查看详情
       </Button>
+    </View> */}
+    <View style={{width:'100% - 8',padding:12,marginHorizontal:4,backgroundColor:'#fff',borderTopLeftRadius:16,borderTopRightRadius:16}}>
+      <View style={{ width:'100%',flexDirection:'row',justifyContent:'space-between',marginBottom:10}}>
+        <Text style={{color:'red',fontSize:17}}>¥<Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>3.2</Text></Text>
+        <Text style={{color:'red',fontSize:16}}>12:30前送达</Text>
+      </View>
+      <View>
+        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+          <View style={{flexDirection:'row'}}>
+            <View style={{backgroundColor:'#2A86FA',borderRadius:20,padding:8,width:34,height:34,alignItems:'center',justifyContent:'center'}}>
+              <Text style={{color:'#fff',lineHeight:20}}>取</Text>
+            </View>
+            <View>
+              <Text style={{color:'#000',fontSize:20,fontWeight:'bold'}}>黄焖鸡米饭</Text>
+              <Text style={{color:'#000',fontSize:14}}>(第三饭堂)</Text>
+            </View>
+          </View>
+          <View>
+            <Text style={{color:'#000',fontSize:16,fontWeight:'bold'}}>1.2KM</Text>
+          </View>
+        </View>
+        <View>
+          <Image source={require('../../../../assets/images/tup/xiangxia.png')} style={{width:30,height:30,marginVertical:8}}></Image>
+        </View>
+        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+          <View style={{flexDirection:'row'}}>
+            <View style={{backgroundColor:'#F58243',borderRadius:20,padding:8,width:34,height:34,alignItems:'center',justifyContent:'center'}}>
+              <Text style={{color:'#fff',lineHeight:20}}>送</Text>
+            </View>
+            <View>
+              <Text style={{color:'#000',fontSize:20,fontWeight:'bold'}}>广州工商学院北三A606</Text>
+            </View>
+          </View>
+          <View>
+            <Text style={{color:'#000',fontSize:16,fontWeight:'bold'}}>856m</Text>
+          </View>
+        </View>
+      </View>
     </View>
+    <TouchableOpacity style={{backgroundColor:'#F58243',width:windowWidth-8,marginHorizontal:4,borderBottomLeftRadius:16,borderBottomRightRadius:16}} onPress={()=>navigate('RewardDetailsRoute', { item })}>
+      <Text style={{color:'#fff',fontSize:20,textAlign:'center',padding:12}}>接单</Text>
+    </TouchableOpacity>
   </View>
 );
-const ListView = (data:any) => {
+const ListView = (data: any) => {
 
   var order = data.data;
   const [allData, setAllData] = useState([]);
@@ -145,13 +186,13 @@ const ListView = (data:any) => {
       pageNo: 1,
       pageSize: 5
     });
-    
+
   }
   // rewardInitData();
 
   useEffect(() => {
     rewardInitData();
-  },[])
+  }, [])
 
   const onload = async () => {
     // Alert.alert('加载中11.....')
@@ -168,7 +209,7 @@ const ListView = (data:any) => {
   };
 
   const onRefresh = async () => {
-    
+
     setRefreshing(false);
     // setConu(conu == 1);
     const rewardList = await rewardListApi(
@@ -178,45 +219,45 @@ const ListView = (data:any) => {
       }
     );
     var tips = rewardData.concat(rewardList.data);
-    console.log(tips, '我是每次列表的值==========',conu)
+    console.log(tips, '我是每次列表的值==========', conu)
     setAllData(tips);
   }
   return (
     <View style={styles.parentLevel}>
       {/* <ScrollView style={styles.scrollStyle}> */}
-        <View style={styles.listStyle}>
-          <FlatList
+      <View style={styles.listStyle}>
+        <FlatList
           initialNumToRender={6}
           inverted={order}
-            data={allData}
-            renderItem={({ item }) => <Module item={item} />}
-            ListEmptyComponent={
-              <View style={styles.midd}>
-                <Text>没有发布悬赏，请稍后再来看看吧！</Text>
-              </View>
-            }
-            // keyExtractor={(item) => item.rid}
-            onRefresh={onRefresh}
-            refreshing={refreshing}
-            onEndReachedThreshold={0.01}
-            onEndReached={() => {
-              onload()
-            }}
-          />
-        </View>
-      {/* </ScrollView> */}
-     <View style={{position:'absolute',bottom:20,right:20}}>
-     <TouchableOpacity
-        activeOpacity={0.7}
-        onPress={() => setModalVisible(true)}>
-        <Image
-          style={styles.addStyle}
-          source={require('../../../../assets/images/3.0x/add_btn.png')}
-          accessibilityLabel='发布悬赏'
-          alt="头像"
+          data={allData}
+          renderItem={({ item }) => <Module item={item} />}
+          ListEmptyComponent={
+            <View style={styles.midd}>
+              <Text>没有发布悬赏，请稍后再来看看吧！</Text>
+            </View>
+          }
+          // keyExtractor={(item) => item.rid}
+          onRefresh={onRefresh}
+          refreshing={refreshing}
+          onEndReachedThreshold={0.01}
+          onEndReached={() => {
+            onload()
+          }}
         />
-      </TouchableOpacity>
-     </View>
+      </View>
+      {/* </ScrollView> */}
+      <View style={{ position: 'absolute', bottom: 20, right: 20 }}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => setModalVisible(true)}>
+          <Image
+            style={styles.addStyle}
+            source={require('../../../../assets/images/3.0x/add_btn.png')}
+            accessibilityLabel='发布悬赏'
+            alt="头像"
+          />
+        </TouchableOpacity>
+      </View>
       {/* 加入的模态框 */}
       {/* 第一个模态框 */}
       <Modal
@@ -235,7 +276,7 @@ const ListView = (data:any) => {
                 style={styles.avatarStyle1}
                 source={require('../../../../assets/images/defaultheader.png')}
                 accessibilityLabel='头像'
-                
+
               />
             </VStack>
           </ModalHeader>
@@ -415,7 +456,7 @@ const styles = StyleSheet.create({
         height: windowHeight - 100,
       },
     }),
-    zIndex:-2
+    zIndex: -2
   },
   addStyle: {
     width: 60,
@@ -434,13 +475,7 @@ const styles = StyleSheet.create({
   },
   itemStyle: {
     width: windowWidth,
-    height: 105,
-    borderColor: '#bbb',
-    borderBottomWidth: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    marginTop: 12
   },
   avatarStyle: {
     width: 59,
