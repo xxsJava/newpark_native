@@ -36,7 +36,7 @@ const DetailsView = ({ data }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedVal, onSelectedPress] = React.useState('selected1');
   const [paymethWx, setPaymethWx] = React.useState(true);
-  const [showmt, setShowmt] = React.useState(true);
+  const [showmt, setShowmt] = React.useState(false);
   return (
     <View style={styles.parentView}>
       <TouchableOpacity style={showmt ? { width: windowWidth, height: windowHeight, position: 'absolute', top: 0, left: 0, backgroundColor: '#000', zIndex: 99, opacity: 0.1 } : { display: 'none' }} onPress={() => { setShowmt(false) }}></TouchableOpacity>

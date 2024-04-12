@@ -60,9 +60,18 @@ const CallCustom = ({ navigation }: any) => {
     const comBack = () => {
         console.log('弹出模态框');
         setComshow(true);
-        navigation.goBack()
+        // navigation.goBack()
     };
-
+    const [rating, setRating] = React.useState(5);
+    const handleStartRating = ( index ) => {
+        setRating(index + 1);
+        console.log(index+1,'星星的点击');
+       
+    };
+    console.log(rating,'写在外面的');
+    
+    const [starmt, setStarmt] = React.useState(false);
+    const [ridicule,setRidicule] = React.useState(false);
     return (
         <SafeAreaView >
             <Appbar.Header style={styles.appbarStyle}>
@@ -149,20 +158,85 @@ const CallCustom = ({ navigation }: any) => {
                     </View>
                 </KeyboardAvoidingView>
             </ScrollView>
-            {/* <View> */}
-                <View style={styles.mtkm}></View>
-                <View style={styles.mtk}>
-                    <View style={styles.litmtk}>
-                        <Text style={{ textAlign: 'center', fontSize: 16, color: '#000',fontWeight:'bold',marginTop:9}}>给新园APP评分</Text>
-                         <Text style={{textAlign:'center'}}>
-                            如果你喜欢新园应用APP,就给我们一个好评吧！我们会为你的鼓励而继续努力。
-                         </Text>
-                    </View>
+
+            {/* 实现吐槽的模态框 */}
+            <TouchableOpacity style={ridicule ? { position: 'absolute', width: windowWidth, height: windowHeight, top: 0, left: 0, backgroundColor: '#000', opacity: 0.1 ,zIndex:999} : { display: 'none' }} onPress={() => setRidicule(false)}></TouchableOpacity>
+           {/* <View style={ridicule ? {width:windowWidth,height:windowHeight,alignItems:'center',justifyContent:'center'}:{display:'none'}}> */}
+           <View style={ridicule ?{ position: 'absolute' ,width:'70%',backgroundColor:'#fff',top:'40%',left:'15%',padding:12,borderRadius:8,zIndex:9999,height:'40%'}:{display:'none'}}>
+               <TouchableOpacity onPress={() => { setRidicule(false)}}>
+                    <Image source={require('../../../../assets/images/tup/guanbi.png')} style={{width:20,height:20,position:'absolute',top:0,right:0}}></Image>
+               </TouchableOpacity>
+                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                    <View style={styles.xiant}></View>
+                    <Text style={{padding:12,fontSize:12}}>您对本次服务满意吗</Text>
+                    <View style={styles.xiant}></View>
                 </View>
-            {/* </View> */}
+                <ScrollView style={{height:'70%'}}>
+                    <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='可以给个建议吗...' autoCorrect={false} multiline={true}></TextInput>
+                </ScrollView>
+            </View>
+           {/* </View> */}
+            {/* 实现用户评分的模态框 */}
+            <TouchableOpacity style={starmt ? { position: 'absolute', width: windowWidth, height: windowHeight, top: 0, left: 0, backgroundColor: '#000', opacity: 0.1 ,zIndex:999} : { display: 'none' }} onPress={() => setStarmt(false)}></TouchableOpacity>
+            <View style={starmt ?{ position: 'absolute' ,width:'70%',height:'20%',backgroundColor:'#fff',top:'40%',left:'15%',padding:12,borderRadius:8,zIndex:999}:{display:'none'}}>
+               <TouchableOpacity onPress={() => { setStarmt(false)}}>
+                    <Image source={require('../../../../assets/images/tup/guanbi.png')} style={{width:20,height:20,position:'absolute',top:0,right:0}}></Image>
+               </TouchableOpacity>
+                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                    <View style={styles.xiant}></View>
+                    <Text style={{padding:12,fontSize:12}}>您对本次服务满意吗</Text>
+                    <View style={styles.xiant}></View>
+                </View>
+            <View style={{flexDirection:'row'}}>
+                {
+                    [...Array(5)].map((star,index) => (
+                        // <Text onPress={() => handleStartRating(index)} key={index} style={[styles.star, { color: rating > index ? 'yellow' : 'grey' }]}>
+                            
+                        // </Text>
+                       <TouchableOpacity key={index}  onPress={() => handleStartRating(index)}>
+                        <Image source={require('../../../../assets/images/tup/xingxing.png')} style={[styles.star,  rating > index ? {}:{display:'none'}]} ></Image>
+                        <Image source={require('../../../../assets/images/tup/xingxing-2.png')} style={[styles.star,  rating > index ? {display:'none'}:{}]}></Image>
+                        </TouchableOpacity>
+
+                    )
+
+                    )
+                }
+               
+            </View>
+            <View style={{width:'100%',marginTop:20}}>
+                    <Text style={rating == 1 ? {color:'#000',textAlign:'center'}: {display:'none'}}>很不满</Text>
+                    <Text style={rating == 2 ? {color:'#000',textAlign:'center'}: {display:'none'}}>不满</Text>
+                    <Text style={rating == 3 ? {color:'#000',textAlign:'center'}: {display:'none'}}>一般</Text>
+                    <Text style={rating == 4 ? {color:'#000',textAlign:'center'}: {display:'none'}}>满意</Text>
+                    <Text style={rating == 5? {color:'#000',textAlign:'center'}: {display:'none'}}>很满意</Text>
+                </View>
+            </View>
+
+            <View style={comShow ? styles.mtkm : { display: 'none' }}></View>
+            <View style={comShow ? styles.mtk : { display: 'none' }}>
+                <View style={styles.litmtk}>
+                    <View style={{ marginVertical: 20 }}>
+                        <Text style={{ textAlign: 'center', fontSize: 18, color: '#000', fontWeight: 'bold' }}>给新园APP评分</Text>
+                    </View>
+                    <Text style={{ textAlign: 'left', color: '#000', lineHeight: 30 }}>
+                        如果你喜欢新园应用APP,就给我们一个好评吧！我们会为你的鼓励而继续努力。
+                    </Text>
+                    <TouchableOpacity style={styles.btn} onPress={() => setStarmt(true)}>
+                        <Text style={{ color: '#fff', textAlign: 'center', fontSize: 15, fontWeight: 'bold' }}>去五星好评</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btn} onPress={() => setRidicule(true)}>
+                        <Text style={{ color: '#fff', textAlign: 'center', fontSize: 15, fontWeight: 'bold' }}>我要吐槽</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => { setComshow(false); navigation.goBack() }}>
+                        <Text style={{ textAlign: 'center', textDecorationLine: 'underline', marginTop: 20 }}>下次再说</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </SafeAreaView>
     )
 }
+
 export default CallCustom;
 const styles = StyleSheet.create({
     appbarStyle: {
@@ -317,10 +391,11 @@ const styles = StyleSheet.create({
     litmtk: {
         backgroundColor: '#fff',
         width: '80%',
-        height: '60%',
+        // height: '60%',
         padding: 12,
         borderWidth: 0,
-        borderRadius: 20
+        borderRadius: 20,
+        alignItems: 'center'
     },
     mtkm: {
         position: 'absolute',
@@ -328,6 +403,33 @@ const styles = StyleSheet.create({
         height: windowHeight,
         backgroundColor: '#000',
         opacity: 0.1
-    }
+    },
+    btn: {
+        backgroundColor: '#F5A30B',
+        width: '80%',
+        padding: 12,
+        margin: 12,
+        borderRadius: 8
+    },
+    star: {
+        marginRight: 5,
+        marginLeft: 5,
+        width: 39,
+        height: 39
+    },
+    xiant:{
+        height:0.6,
+        width:'20%',
+        backgroundColor:'#ccc'
+    },
+    remarksInput:{
+        // height:40,
+        paddingHorizontal:10,
+        backgroundColor:'#fff',
+        color:'#000',
+        borderRadius:0
+    },
+
 })
+
 
