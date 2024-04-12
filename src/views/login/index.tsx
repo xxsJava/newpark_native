@@ -1,4 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { Toast, useToast } from '@gluestack-ui/themed';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import NetInfo from '@react-native-community/netinfo';
+import React, { useState } from 'react';
+import { Trans } from 'react-i18next';
 import {
   Dimensions,
   Image,
@@ -11,21 +15,18 @@ import {
 import * as Animatable from 'react-native-animatable';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, TextInput } from 'react-native-paper';
-import { LoginScreenProps } from '../../config/routs';
-import Storage from '../../utils/AsyncStorageUtils';
-import { Toast, useToast } from '@gluestack-ui/themed';
-import { Trans } from 'react-i18next';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getClientConfig, getOpenIMConfig } from '../../api/imApi';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
+import ToastCompent from '../../components/Toast';
 import OpenIMConfig from '../../config/im/OpenIMConfig';
+import { LoginScreenProps } from '../../config/routs';
 import { navigate } from '../../config/routs/NavigationContainer';
 import { initDataDir } from '../../config/storagePermissionStatus';
 import IMSDKRN from '../../plugins/IMSDKRN';
+import Storage from '../../utils/AsyncStorageUtils';
 import ClausePopup from '../../views/login/components/ClausePopup';
 import { forgetPass } from './controller';
-import NetInfo from '@react-native-community/netinfo';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -67,25 +68,13 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       if (phone.length == 0) {
         toast.show({
           placement: 'bottom',
-          render: () => {
-            return (
-              <Toast action="attention" variant="solid">
-                <Text allowFontScaling={false}>手机号为空</Text>
-              </Toast>
-            )
-          },
+          render: () => ToastCompent('手机号为空'),
         });
         return;
       }
       toast.show({
         placement: 'bottom',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>手机号有误</Text>
-            </Toast>
-          )
-        },
+        render: () =>ToastCompent('手机号有误'),
       });
       setLoad(false);
       return;
@@ -93,7 +82,9 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
     const loginAPI = await loginApi(usrData);
     console.log('---->'+loginAPI);
-    OpenIMConfig.userID = loginAPI.data.uId;
+    
+    const uId = loginAPI.data.uId;
+    OpenIMConfig.userID = uId;
 
     console.log('OPENIMCONFIG------------->',OpenIMConfig);
 
@@ -101,56 +92,36 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     if (loginAPI.code === 1114) {
       toast.show({
         placement: 'bottom',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>验证码发送，请注意查收</Text>
-            </Toast>
-          )
-        },
+        render: () => ToastCompent('验证码发送，请注意查收'),
       });
       navigate('Registered');
     } else if (loginAPI.code === 200) {
       //用户token存本地
-      // Storage.set('usr-token', loginAPI.data.usrToken);
       Storage.set('usr-token', loginAPI.data.usrToken);
-      // 本地存储存uId
-      Storage.set('usr-uId',loginAPI.data.uId);
+
       const openIMRes = await getOpenIMConfig(OpenIMConfig);
       console.log('获取到Open-IM-token1---->', openIMRes.data.token);
       Storage.set('openim-token',openIMRes.data.token);
       //oepnIm 登录
       // console.log(IMSDKRN);
-      IMSDKRN.login(loginAPI.data.uId, openIMRes.data.token);
+      IMSDKRN.login(uId, openIMRes.data.token);
       
       const imAuth = await getClientConfig();
       Storage.set('im-auth',imAuth.data.token);
       //用户uid存本地
-      Storage.set('uid', loginAPI.data.uId);
+      Storage.set('uid', uId);
       //android获取设备权限
-      initDataDir(loginAPI.data.uId);
+      initDataDir(uId);
       
       toast.show({
         placement: 'top',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>登录成功，可享受功能</Text>
-            </Toast>
-          )
-        },
+        render: () => ToastCompent('登录成功,开始享受快乐人生'),
       });
     } else if (loginAPI.code === 1110) {
       setLoad(true);
       toast.show({
         placement: 'top',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>账号有误</Text>
-            </Toast>
-          )
-        },
+        render: () => ToastCompent('账号有误'),
       });
       return false;
     }
@@ -163,13 +134,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     if (phone.length != 11) {
       toast.show({
         placement: 'top',
-        render: () => {
-          return (
-            <Toast action="attention" variant="solid">
-              <Text allowFontScaling={false}>请输入手机号</Text>
-            </Toast>
-          )
-        },
+        render: () =>ToastCompent('请输入手机号'),
       });
       return;
     }
@@ -178,13 +143,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     console.log(smsLoginAPI);
     toast.show({
       placement: 'top',
-      render: () => {
-        return (
-          <Toast action="attention" variant="solid">
-            <Text allowFontScaling={false}>{smsLoginAPI.msg}</Text>
-          </Toast>
-        )
-      },
+      render: () => ToastCompent(smsLoginAPI.msg),
     });
     await AsyncStorage.setItem('uphone', phone);
    //发送验证码
@@ -525,4 +484,3 @@ const styles = StyleSheet.create({
   }
 
 });
-

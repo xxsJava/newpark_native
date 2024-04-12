@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Trans } from 'react-i18next';
-import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View, Alert, Modal, TouchableHighlight, Button, } from "react-native";
+import { Dimensions, Modal, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { Appbar } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { loginOutApi } from "../../../../api/sys/lgoin";
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width
@@ -34,8 +35,10 @@ const reguser = () => {
 
 };
 // 退出登录
-const logOut = () => {
-
+const logOut = async () => {
+    const logOutApi = await loginOutApi();
+    console.log(logOutApi);
+    navigate("LoginStacker");
 };
 
 export default class SetUp extends Component {

@@ -1,14 +1,17 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-24 17:48:22
- * @LastEditTime: 2023-11-01 15:16:51
+ * @LastEditTime: 2024-04-12 10:49:26
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
  * @Description: 登录控制器
  */
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import { getOpenIMConfig } from '../../../api/imApi';
 import { loginTokenApi } from '../../../api/sys/lgoin';
+import OpenIMConfig from '../../../config/im/OpenIMConfig';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import IMSDKRN from '../../../plugins/IMSDKRN';
 import LoginStacker from '../../../routes/stacker/Login';
 import Storage from '../../../utils/AsyncStorageUtils';
 import DateTimeUtils from '../../../utils/DateTimeUtils';
@@ -34,7 +37,17 @@ const loginVal = async () => {
     console.log(loginTokenAPI.data);
   
     //更新用户token
-    Storage.set('usr-token', loginTokenAPI.data.usrToken);
+    Storage.set('usr-token', loginTokenAPI.data);
+    const uId:any = await Storage.get('usr-uId');
+    OpenIMConfig.userID = uId;
+    //OpenIM 连接
+    console.log('------------------->连接OpenIm');
+    const openIMRes = await getOpenIMConfig(OpenIMConfig);
+    console.log('------------------->',openIMRes);
+    Storage.set('openim-token',openIMRes.data.token);
+    //oepnIm 登录
+    
+    IMSDKRN.login(uId, openIMRes.data.token);
     isLoginFlag = true;
     return;
   }

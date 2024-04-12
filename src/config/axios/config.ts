@@ -1,9 +1,8 @@
-import { Platform } from "react-native"
 
 /*
  * @Author: xxs
  * @Date: 2023-10-09 11:26:21
- * @LastEditTime: 2024-01-08 14:11:40
+ * @LastEditTime: 2024-04-12 09:30:32
  * @FilePath: \newpark_native\src\config\axios\config.ts
  * @Description: desc
  */
@@ -24,7 +23,7 @@ const config: {
   base_url: {
     // 开发环境接口前缀
     // base: 'https://www.newpark.sougouhihg.top',
-    base: Platform.OS === 'android'?'http://www.newpark.sougouhihg.top':'https://www.newpark.sougouhihg.top',
+    base: 'https://www.newpark.sougouhihg.top',
     // 打包开发环境接口前缀
     dev: 'http://192.168.13.1:60001/',
 
