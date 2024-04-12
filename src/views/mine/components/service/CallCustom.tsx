@@ -161,7 +161,6 @@ const CallCustom = ({ navigation }: any) => {
 
             {/* 实现吐槽的模态框 */}
             <TouchableOpacity style={ridicule ? { position: 'absolute', width: windowWidth, height: windowHeight, top: 0, left: 0, backgroundColor: '#000', opacity: 0.1 ,zIndex:999} : { display: 'none' }} onPress={() => setRidicule(false)}></TouchableOpacity>
-           {/* <View style={ridicule ? {width:windowWidth,height:windowHeight,alignItems:'center',justifyContent:'center'}:{display:'none'}}> */}
            <View style={ridicule ?{ position: 'absolute' ,width:'70%',backgroundColor:'#fff',top:'40%',left:'15%',padding:12,borderRadius:8,zIndex:9999,height:'40%'}:{display:'none'}}>
                <TouchableOpacity onPress={() => { setRidicule(false)}}>
                     <Image source={require('../../../../assets/images/tup/guanbi.png')} style={{width:20,height:20,position:'absolute',top:0,right:0}}></Image>
@@ -175,7 +174,6 @@ const CallCustom = ({ navigation }: any) => {
                     <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='可以给个建议吗...' autoCorrect={false} multiline={true}></TextInput>
                 </ScrollView>
             </View>
-           {/* </View> */}
             {/* 实现用户评分的模态框 */}
             <TouchableOpacity style={starmt ? { position: 'absolute', width: windowWidth, height: windowHeight, top: 0, left: 0, backgroundColor: '#000', opacity: 0.1 ,zIndex:999} : { display: 'none' }} onPress={() => setStarmt(false)}></TouchableOpacity>
             <View style={starmt ?{ position: 'absolute' ,width:'70%',height:'20%',backgroundColor:'#fff',top:'40%',left:'15%',padding:12,borderRadius:8,zIndex:999}:{display:'none'}}>
