@@ -107,7 +107,7 @@ const ListIndex: React.FC = () => {
             style={styles.avatar}
             source={{
               //https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png
-              uri: item.stateMsg === 2 ? item.faceURL==''?'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP-C.jpg?Expires=1712946346&OSSAccessKeyId=TMP.3KjgnTB2voXmQJjemb3di9yNrRKAXXW5x9jmJqsTV9HJvky8AVjkoT4bvL3ePhbYRbBpWZKmCtCR7UjvZVnN4JeksSCNSb&Signature=rzWWVfKVI%2BURFk3JRzz5tIHv6DU%3D':item.faceURL : item.senderFaceUrl,
+              uri: item.stateMsg === 2 ? item.faceURL==''?'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP-C.jpg':item.faceURL : item.senderFaceUrl,
             }}
             accessibilityLabel='图片'
             alt="头像"

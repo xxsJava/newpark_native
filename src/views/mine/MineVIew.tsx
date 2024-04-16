@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2024-03-06 10:31:01
+ * @LastEditTime: 2024-04-15 10:40:46
  * @FilePath: \newpark_native\src\views\mine\MineVIew.tsx
  * @Description: Home 页菜单
  */
@@ -142,13 +142,6 @@ export default class MineVIew extends Component {
             {/* <PersonalDataView></PersonalDataView> */}
             <HomePageView />
 
-            {/* <Button
-            onPress={() => navigate('ReviceCode')}
-            title="测试收到验证码页面"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-            alt="头像"
-          /> */}
           </ScrollView>
         </View>
 

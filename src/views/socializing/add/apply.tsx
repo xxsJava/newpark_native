@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { View } from 'react-native-animatable';
-import { Searchbar } from 'react-native-paper';
 // import Text from '../text';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -30,13 +29,6 @@ const ReqApp = () => {
     return (
 
         <View style={{ paddingHorizontal: 20 }}>
-            <Searchbar
-                placeholder="通过用户ID号搜索添加"
-                onChangeText={setSearchQuery}
-                value={searchQuery}
-                style={styles.search}
-                inputStyle={styles.searchinput}
-            />
             <View>
                 <View style={{ marginVertical: 20, backgroundColor: '#F8F8F8', padding: 10 }}>
                     <Text style={styles.newReq}>新的好友请求</Text>
