@@ -23,6 +23,7 @@ export const getGroupsInfo = (data:any): Promise<IResponse> =>{
     });
 }
 
+
 export const getClientConfig = (): Promise<IResponse> => {
     return request.post({
         url: '/v1/getClientConfig'

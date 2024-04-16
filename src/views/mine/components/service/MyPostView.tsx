@@ -3,10 +3,11 @@ import { Trans } from 'react-i18next';
 import { Dimensions, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
+import {postsOneApi} from '../../../../api/sys/post';
 
 const listData = [{
     index: 1,
-    title: '我是一个标题',
+    title: '我是一个标题111',
     content: '部分内容',
     name: '咖啡牛',
     time: '2023年12月11日'

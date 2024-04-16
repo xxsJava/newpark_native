@@ -5,6 +5,9 @@
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
+
+import LeaderBoard from '../../../views/mine/components/homepage/LeaderBoard';
+import MoreView from '../../../views/mine/components/homepage/MoreView';
 import GroupChat from '../../../views/socializing/check/GroupChat';
 import ChatHome from '../../../views/newpark/components/chatHome'
 import ReviceCode from '../../../components/ReviceCode';
@@ -88,9 +91,20 @@ export default {
   AddNewAddress:{
     component: AddNewAddress,
      options: {
-    //   headerShown: false,
     title: '新增收货地址',
      },
+  },
+  LeaderBoards:{
+    component:LeaderBoard,
+    options:{
+      title:'排行榜'
+    }
+  },
+  MoreViews:{
+    component:MoreView,
+    options:{
+      title:'更多'
+    }
   },
   ChatRoom:{
     component: ChatRoom,

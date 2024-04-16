@@ -13,5 +13,7 @@ export type PostsType ={
 }
 // 帖子条件查询单条Api
 export type postsOneApiType = {
-    usrId:number
+    usrId:number,
+    pageNo:number,
+    pageSize:number
 }

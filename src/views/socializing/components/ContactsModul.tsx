@@ -45,8 +45,6 @@ React.useEffect(() => {
   
   listData()
 }, []); // 只在组件挂载时调用一次
-
-
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -713,7 +711,6 @@ const ListIndex: React.FC = () => {
         }}
         stickySectionHeadersEnabled={true}
       />
-     
     </View>
   );
 };

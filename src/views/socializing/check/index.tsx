@@ -238,7 +238,7 @@ function MessageList(props: { items: any; receiver: any }) {
   return (
     <>
       <Appbar.Header style={styles.appbarStyle}>
-        <Appbar.BackAction onPress={() => navigate('ObjCard')} />
+        <Appbar.BackAction onPress={() => navigate('SocializingStacker')} />
         <View style={styles.avatarView}>
           <View style={styles.avatarStyle}>
             <Avatar.Image size={34} source={{ uri: headImg }} accessibilityLabel='图片'/>
@@ -250,6 +250,7 @@ function MessageList(props: { items: any; receiver: any }) {
           icon="dots-vertical"
           onPress={() => {
             console.log('三点');
+            navigate('ObjCard')
           }}
         />
       </Appbar.Header>
