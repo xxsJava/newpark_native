@@ -45,9 +45,10 @@ const ListIndex: React.FC = () => {
       res.data.map(async (key: any, index: number) => {
         let path: string[] = key.path.split('/');
         let pathDir = FILE_PATH + uId+'/'+ FROMA_DATE_DIR +'/' +path[path.length - 2] +'/' +path[path.length - 1];
+        // console.log('数据文件地址------->',pathDir);
         if (await isFile(pathDir)) {
           readFileData(pathDir).then(res1 => {
-            // console.log('文件读取--->',res1);
+            console.log('文件读取--->',res1);
             for (let i = res1.length - 1; i >= 0; i--) {
               console.log(uId + '---' + res1[i].sendID);
               if (Number(uId) === Number(res1[i].sendID)) {
@@ -106,7 +107,7 @@ const ListIndex: React.FC = () => {
             style={styles.avatar}
             source={{
               //https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png
-              uri: item.stateMsg === 2 ? item.faceURL==''?'https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png':item.faceURL : item.senderFaceUrl,
+              uri: item.stateMsg === 2 ? item.faceURL==''?'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP-C.jpg':item.faceURL : item.senderFaceUrl,
             }}
             accessibilityLabel='图片'
             alt="头像"

@@ -46,7 +46,7 @@ export default class SetUp extends Component {
         modalVisible: false
     };
 
-    setModalVisible = (visible) => {
+    setModalVisible = (visible: boolean) => {
         this.setState({ modalVisible: visible });
     }
     render() {

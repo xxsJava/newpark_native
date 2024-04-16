@@ -1,3 +1,4 @@
+
 import RNFS from 'react-native-fs';
 
 /**
@@ -51,7 +52,7 @@ export const readFileData = async (filePath: string) => {
     const jsonData = JSON.parse(fileContent);
     return jsonData;
   } catch (error) {
-    // console.error('Error reading the JSON file:', error);
+    console.error('Error reading the JSON file:', error);
     return null;
   }
 };

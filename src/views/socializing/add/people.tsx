@@ -1,48 +1,55 @@
+/*
+ * @Author: xxs
+ * @Date: 2024-04-07 11:50:17
+ * @LastEditTime: 2024-04-16 10:32:34
+ * @FilePath: \newpark_native\src\views\socializing\add\people.tsx
+ * @Description: desc
+ */
 /**
  * 代码描述: 添加牛友
  * 作者:zhn
  * 修改时间:2024/2/22 16:10:11
  */
+import { Input, InputField, InputIcon, InputSlot, SearchIcon } from '@gluestack-ui/themed';
 import React, { useState } from 'react';
-import { Searchbar } from 'react-native-paper';
-import { Button, Image, View, TouchableOpacity, Text, StyleSheet, Dimensions, Modal, TextInput } from 'react-native';
-import ImageViewer from 'react-native-image-zoom-viewer';
-import { navigate } from '../../../config/routs/NavigationContainer';
-import { Icon, MD3Colors } from 'react-native-paper';
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const wxh = 'xxs096788';
+
+
+
 const AddPeople = () => {
     const [isVisible, setIsVisible] = useState(false);
-    const [value, onChangeText] = React.useState('');
+    const [onText,setText] = useState('');
+    
+    const onChangeTextInput = (text:string) =>{
+        setText(text);
+        setIsVisible(text.length > 0);
+    }
+
     return (
         <View>
-            <View style={styles.searchGrid}>
-               
-                <Searchbar
+            <View style={styles.searchGrid}>       
+                <Input style={styles.searchInput}>
+                <InputSlot pl='$3'>
+                    <InputIcon as={SearchIcon}/>
+                </InputSlot>
+                <InputField
                     placeholder="账号/手机号"
-                    onChangeText={onChangeText}
-                    value={value}
-                    style={styles.searchBox}
-                    inputStyle={{textAlign:'center',marginTop:-6}}
+                    onChangeText={onChangeTextInput}
                 />
-                <View style={styles.heng}>
-                    <Text style={{ textAlign: 'center', fontSize: 16, marginBottom: 12 }}>我的微信号：{wxh}</Text>
-                    {/* 看一下怎么使图片放大 */}
-                    <View style={{ marginLeft: 6 }}>
-                        <TouchableOpacity onPress={() => {
-                            setIsVisible(true);
-                        }}>
-                            <Image style={{ width: 20, height: 20, resizeMode: 'stretch' }} source={{ uri: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png' }} accessibilityLabel='图片' alt="头像"/>
-                        </TouchableOpacity>
-                    </View>
-                    <Modal visible={isVisible} transparent={true}>
-                        <ImageViewer enableSwipeDown imageUrls={[{ url: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png' }]} onClick={() => {
-                            setIsVisible(false);
-                        }} 
-                        ></ImageViewer>
-                    </Modal>
+                </Input>
+            </View>
+            <TouchableOpacity style={{display: isVisible?'':'none'}}>
+                <View style={styles.searchContent}>
+                    <Text style={styles.searchText}>
+                        查找‘{onText}’相关用户
+                    </Text>
                 </View>
+            </TouchableOpacity>
+            
+            <View>
+                
             </View>
         </View>
     )
@@ -50,34 +57,24 @@ const AddPeople = () => {
 const styles = StyleSheet.create({
     searchGrid: {
         width: windowWidth,
-        height: 60,
+        height: 70,
         paddingHorizontal: 10,
+        marginTop: 10
     },
-    searchBox: {
-        width: windowWidth - 20,
-        height: 40,
-        borderRadius: 40,
-        alignItems: 'center',
-        marginVertical: 20,
-        backgroundColor: '#fff',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center'
+    searchInput:{
+        borderRadius: 20
     },
-    heng: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center'
+    searchContent:{
+        backgroundColor: '#FFF',
+        height:40
     },
-    search: {
-        height: 40,
-        borderColor: 'gray',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 16,
+    searchText:{
+        lineHeight: 40,
+        color: '#000',
+        paddingLeft: 10
     },
-    icon: {
-        width: 20,
-        height: 20
+    hideContent:{
+        display:'none'
     }
 })
 export default AddPeople;

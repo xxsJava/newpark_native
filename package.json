@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "bundle-android": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output release_ios/main.jsbundle --assets-dest release_ios/",
+    "bundle-android": "cd android && ./gradlew assembleRelease",
     "bundle-ios": "react-native bundle --entry-file='index.js' --bundle-output='./release_ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {

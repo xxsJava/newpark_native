@@ -4,15 +4,12 @@ import {
   Image,
   Platform,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
 import { Text } from 'react-native-animatable';
-import LinearGradinet from 'react-native-linear-gradient';
-import Entypo from 'react-native-vector-icons/Entypo';
 // import {navigate} from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
@@ -104,7 +101,7 @@ const ForgetPass = ({ navigation }:any) => {
             />
             <TextInput
               allowFontScaling={false}
-              placeholder='搜索您感兴趣的/社区/帖子/UID'
+              placeholder='输入关键字搜索'
               style={styles.inputStyle}
               onChangeText={text => onChangeText(text)}
               value={inputValue}
@@ -117,145 +114,7 @@ const ForgetPass = ({ navigation }:any) => {
       </View>
       <View style={styles.contentModule}>
         <View style={styles.typeStyle}>
-          <TouchableOpacity style={styles.typeItem}>
-            <Text allowFontScaling={false} style={styles.typeItemText}>排序方式</Text>
-            <Entypo style={styles.typeItemIcon} name="chevron-thin-down" color="#888" size={14} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.typeItem}>
-            <Text allowFontScaling={false} style={styles.typeItemText}>类型分类</Text>
-            <Entypo style={styles.typeItemIcon} name="chevron-thin-down" color="#888" size={14} />
-          </TouchableOpacity>
-          {/* <View style={styles.typeItem}>
-            <Select
-              shadow={2}
-              selectedValue={service}
-              minWidth="120"
-              accessibilityLabel="Choose Service"
-              placeholder=""
-              _light={{
-                bg: '#FFF',
-                borderWidth: 0,
-                fontSize: 13,
-                _hover: {
-                  bg: '#FFF',
-                },
-                _focus: {
-                  bg: '#FFF:alpha.70',
-                },
-              }}
-              _dark={{
-                bg: '#FFF',
-                _hover: {
-                  bg: 'coolGray.900',
-                },
-                _focus: {
-                  bg: 'coolGray.900:alpha.70',
-                },
-              }}
-              onValueChange={itemValue => setService(itemValue)}>
-              <Select.Item shadow={2} label="按时间" value="time" />
-              <Select.Item shadow={2} label="按热度" value="heat" />
-            </Select>
-          </View>
-          <View style={styles.typeItem}>
-            <Select
-              shadow={2}
-              selectedValue={service}
-              minWidth="120"
-              accessibilityLabel="Choose Service"
-              placeholder="类型分类"
-              _selectedItem={{
-                bg: 'teal.600',
-                endIcon: (
-                  <Entypo name="chevron-thin-down" color="#888" size={15} />
-                ),
-              }}
-              _light={{
-                bg: '#FFF',
-                borderWidth: 0,
-                fontSize: 13,
-                _hover: {
-                  bg: '#FFF',
-                  borderWidth: 0,
-                },
-                _focus: {
-                  bg: '#FFF:alpha.70',
-                },
-              }}
-              _dark={{
-                bg: '#FFF',
-                _hover: {
-                  bg: '#FFF',
-                },
-                _focus: {
-                  bg: '#FFF:alpha.70',
-                },
-              }}
-              onValueChange={itemValue => setService(itemValue)}>
-              <Select.Item shadow={2} label="社区" value="community" />
-              <Select.Item shadow={2} label="帖子" value="post" />
-              <Select.Item shadow={2} label="UID" value="uid" />
-            </Select>
-          </View> */}
-        </View>
-        <View style={styles.listStyle}>
-          <ScrollView style={styles.scrollStyle} alwaysBounceVertical={true}>
-            {listData.map(item => {
-              return (
-                <View style={styles.itemView} key={item.index}>
-                  <View style={styles.itemHeard}>
-                    <Text allowFontScaling={false} style={styles.itemHeardLeft}>相关社区</Text>
-                    <Text allowFontScaling={false} style={styles.itemHeardRight}>
-                      查看更多
-                      <Entypo
-                        name="chevron-thin-right"
-                        color="#888"
-                        size={15}
-                      />
-                    </Text>
-                  </View>
-                  <View style={styles.itemModel}>
-                    <View style={styles.itemModelLeft}>
-                      <Image
-                        style={styles.itemImage}
-                        source={require('../../../assets/images/alimom/R-C.jpg')}
-                        accessibilityLabel='图片'
-                        alt="头像"
-                      />
-                    </View>
-                    <View style={styles.itemModelRight}>
-                      <View style={styles.itemModelRightTop}>
-                        <Text allowFontScaling={false} style={styles.itemTopText1}>一起学java</Text>
-                        <Image
-                          style={styles.itemModelIcon}
-                          source={require('../../../assets/images/hotfuckicon.png')}
-                          accessibilityLabel='图片'
-                          alt="头像"
-                        />
-                        <Text allowFontScaling={false} style={styles.itemTopText2}>热度150</Text>
-                      </View>
-                      <View style={styles.itemModelRightBottom}>
-                        <View style={styles.itemModelBottom}>
-                          <LinearGradinet
-                            colors={[
-                              'rgba(233,231,255,0.9)',
-                              'rgba(233,231,255,0)',
-                            ]}
-                            start={{x: 0, y: 0}}
-                            end={{x: 0, y: 1}}
-                            style={styles.itemModelbottomBg}>
-                            <Text allowFontScaling={false} style={styles.itemModelbottomText}>
-                              n个牛友在xxx
-                            </Text>
-                          </LinearGradinet>
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              );
-            })}
-          </ScrollView>
+      
         </View>
       </View>
     </SafeAreaView>
