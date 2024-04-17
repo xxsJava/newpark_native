@@ -55,6 +55,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const PostDetails = ({ route }: any) => {
   console.log('postsId', route.params.item.tid);
+
   const commentsData: postCommentsData = {
     pageNo: 1,
     pageSize: 5,
@@ -237,24 +238,24 @@ const PostDetails = ({ route }: any) => {
               </Text>
 
               {/* 音乐 */}
-              <WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={120}/>
+              <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={120} />
               {/* 视频 */}
-              <WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} /> 
-              
+              <WebViews uri={webview.ROOT_URL + webview.API.VIDEO} h={300} />
+
               {/* 图片开始 */}
-                <View style={{width:windowWidth,height:200,}}>
-                <TouchableOpacity onPress={()=>{
-                setIsVisible(true);
-              }}>
-                  <Image style={{width:200,height:'100%',resizeMode: 'stretch'}} source={{uri:'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png'}} accessibilityLabel='图片' alt="头像"/>
-                  </TouchableOpacity>
-                </View>
+              <View style={{ width: windowWidth, height: 200, }}>
+                <TouchableOpacity onPress={() => {
+                  setIsVisible(true);
+                }}>
+                  <Image style={{ width: 200, height: '100%', resizeMode: 'stretch' }} source={{ uri: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png' }} accessibilityLabel='图片' alt="头像" />
+                </TouchableOpacity>
+              </View>
               <Modal visible={isVisible} transparent={true}>
-                <ImageViewer enableSwipeDown  imageUrls={[{url:'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png'}]} onClick={()=>{
+                <ImageViewer enableSwipeDown imageUrls={[{ url: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png' }]} onClick={() => {
                   setIsVisible(false);
                 }}></ImageViewer>
               </Modal>
-                {/* 图片介绍 */}
+              {/* 图片介绍 */}
               {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
             </View>
             <View style={styles.postBottom}>
@@ -348,9 +349,9 @@ const PostDetails = ({ route }: any) => {
           </View>
         </ScrollView>
       </View>
-
-    </View><View
-      style={styles.commentBottom}>
+    </View>
+      <View
+        style={styles.commentBottom}>
         <TouchableOpacity
           activeOpacity={1}
           style={[styles.commentInput, editable ? { display: 'none' } : null]}
@@ -373,9 +374,11 @@ const PostDetails = ({ route }: any) => {
           style={styles.commentInputImage}
           icon={require('../../../assets/images/send-icon.png')}
           onPress={() => console.log('点击发送')} />
-      </View><TouchableOpacity
+      </View>
+      <TouchableOpacity
         style={[styles.CommentBox, editable ? null : { display: 'none' }]}
-        onPress={() => inputPress(0)} /></>
+        onPress={() => inputPress(0)} />
+    </>
   );
 };
 

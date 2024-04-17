@@ -191,12 +191,12 @@ const HomePageView = () => {
                     <Trans>minOrder.orderName</Trans>
                   </Text>
                 </View>
-                <View style={styles.titleFlex}>
+                <TouchableOpacity style={styles.titleFlex} onPress={() =>navigate('MyOrderRoute',{type:'type1'})}>
                   <Text allowFontScaling={false} style={styles.titleText2}>
                     <Trans>minOrder.orderMore</Trans>
                     <Feather name="chevron-right" size={18} color="#dbdbdb" />
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
               <View style={styles.orderList}>
                 {orderData.map(item => {

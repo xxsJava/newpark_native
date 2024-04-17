@@ -270,7 +270,7 @@ interface listType {
 }
 const List = ({ data }: { data: listType }) => {
     return (
-        <TouchableOpacity style={styles.cards}>
+        <TouchableOpacity style={styles.cards} onPress={() => navigate('OrderDetails',{item:data})}>
             <Image source={data.img} style={styles.icon} accessibilityLabel='图片' alt="头像" />
             <View style={styles.rightList}>
                 <Text style={styles.h5}>名称 : {data.name}</Text>
