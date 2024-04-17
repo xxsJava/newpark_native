@@ -6,6 +6,7 @@
  * @Description: desc
  */
 
+import PeopleList from '../../../views/socializing/add/PeopleList';
 import LeaderBoard from '../../../views/mine/components/homepage/LeaderBoard';
 import MoreView from '../../../views/mine/components/homepage/MoreView';
 import GroupChat from '../../../views/socializing/check/GroupChat';
@@ -98,6 +99,13 @@ export default {
     component:LeaderBoard,
     options:{
       title:'排行榜'
+    }
+  },
+  PeopleList:{
+    component:PeopleList,
+    options:{
+      title:'添加牛友——牛友列表',
+      // headerShown: false,
     }
   },
   MoreViews:{
