@@ -80,7 +80,7 @@ const PeopleList = ({ route }: any) => {
                     <View style={{ backgroundColor: '#fff', width: '100%', height: 300, borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }}>
                         <View style={{ flexDirection: 'row', marginTop: -30 }}>
                             <View >
-                                {/* <Image source={personInfo.ava} style={{ width: 80, height: 80, marginHorizontal: 12 }}></Image> */}
+                                <Image source={personInfo.ava} style={{ width: 80, height: 80, marginHorizontal: 12 }}></Image>
                             </View>
                             <View style={{ marginLeft: 8 }}>
                                 <Text style={{ color: '#fff', fontSize: 23 }}>{personInfo.name}</Text>
@@ -102,7 +102,7 @@ const PeopleList = ({ route }: any) => {
                             </View>
                         </View>
                         <View style={{position:'absolute',bottom:16,width:'100%',left:0,alignItems:'center'}}>
-                            <TouchableOpacity style={{backgroundColor:'#0089FF',width:'60%',padding:10,borderRadius:90}}>
+                            <TouchableOpacity style={{backgroundColor:'#0089FF',width:'60%',padding:10,borderRadius:90}} onPress={()=>{navigate('VerificationInfo',{item:personInfo});setShowmtk(false)}}>
                                 <Text style={{color:'#fff',fontSize:18,textAlign:'center',fontWeight:'bold'}}>添加好友</Text>
                             </TouchableOpacity>
                         </View>

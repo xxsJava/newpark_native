@@ -1,18 +1,31 @@
+/**
+ * 代码描述: 商品详情页面 
+ * 作者:zhn
+ * 创建时间:2024/04/17 13:58:11
+ */
+
 import React,{useState} from "react";
-import { View,Dimensions, StyleSheet ,Text,Image} from "react-native";
+import { View,Dimensions, StyleSheet ,Text,Image,TouchableOpacity} from "react-native";
 import Router from "../../../../config/routs/lib/routs";
+import { navigate } from "../../../../config/routs/NavigationContainer";
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const OrderDetails = (item) =>{
-    // const tupian = [https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg,https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/3a2467e4-b2a5-47d1-9b77-35c3f4d5f588.jpg]
+    
 
     console.log(item.route.params.item);
     const data = item.route.params.item;
     return (
         <View style={styles.container}>
+            <View style={{backgroundColor:'#fff',height:40,width:windowWidth}}>
+                {/* <TouchableOpacity onPress={() => navigate('MyOrderRoute')}>
+                    <Image source={require('../../../../assets/images/chevron-left.png')} style={{width:25,height:25}}></Image>
+                </TouchableOpacity> */}
+                <Text style={{fontSize:21,color:'#000',textAlign:'center',lineHeight:40}}>已签收</Text>
+            </View>
            <Image source={data.img} style={{width:60,height:60}}></Image>
         </View>
     )
