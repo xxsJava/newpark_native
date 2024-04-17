@@ -1,11 +1,11 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-10 17:27:03
+ * @LastEditTime: 2024-04-17 10:29:21
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
-import { Menu, MenuItem, MenuItemLabel,Icon,ThreeDotsIcon } from '@gluestack-ui/themed';
+import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
 import React from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
@@ -13,7 +13,9 @@ import WebView from 'react-native-webview';
 import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
+import WebViews from '../../../components/WebView/WebViewCompent';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import webview from '../../../config/webview';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -78,7 +80,6 @@ const windowHeight = Dimensions.get('window').height;
                   // style={styles.rightButton}
                   icon="dots-horizontal"
                   />
-                  
               )
             }}
           >
@@ -96,8 +97,10 @@ const windowHeight = Dimensions.get('window').height;
       <TouchableOpacity onPress={() => navigate('PostDetailsRoute', { item })} activeOpacity={0.9} key={item.tid}  style={styles.cardd}>
         <Card.Content style={styles.backColor}>
           {/* <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text> */}
-          <View style={{ height: 350, width: windowWidth }}>
-            <WebView source={{ html: item.tcontext }}></WebView>
+          <View style={{ width: windowWidth }}>
+            <WebView style={{height:200}} source={{ html: item.tcontext }}></WebView>
+            { item.ttype == 1?<WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={120}/>:''}
+            { item.ttype == 2?<WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} />:''}
           </View>
         </Card.Content>
       </TouchableOpacity>
