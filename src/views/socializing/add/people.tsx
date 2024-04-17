@@ -1,10 +1,4 @@
-/*
- * @Author: xxs
- * @Date: 2024-04-07 11:50:17
- * @LastEditTime: 2024-04-16 10:32:34
- * @FilePath: \newpark_native\src\views\socializing\add\people.tsx
- * @Description: desc
- */
+
 /**
  * 代码描述: 添加牛友
  * 作者:zhn
@@ -15,8 +9,6 @@ import React, { useState } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-
 
 const AddPeople = () => {
     const [isVisible, setIsVisible] = useState(false);
