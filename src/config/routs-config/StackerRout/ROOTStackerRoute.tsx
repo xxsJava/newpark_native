@@ -6,6 +6,7 @@
  * @Description: desc
  */
 
+import OrderDetails from '../../../views/mine/components/service/OrderDetails';
 import PeopleList from '../../../views/socializing/add/PeopleList';
 import LeaderBoard from '../../../views/mine/components/homepage/LeaderBoard';
 import MoreView from '../../../views/mine/components/homepage/MoreView';
@@ -169,6 +170,12 @@ export default {
    //   headerShown: false,
    title: '好友申请',
     },
+  },
+  OrderDetails:{
+    component:OrderDetails,
+    options:{
+      title:'商品详情页'
+    }
   },
   AddPeople:{
     component: AddPeople,
