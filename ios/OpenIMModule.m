@@ -157,7 +157,7 @@ RCT_EXPORT_METHOD(logout){
 // 返回的数组为支持的事件名列表
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer",@"onTest",@"onErrorLogin"];
+  return @[@"onSuccessLogin",@"onErrorLogin",@"onRecvNewMessage",@"onConnectFailed",@"onConnectServer",@"onErrorLogin"];
 }
 
 
