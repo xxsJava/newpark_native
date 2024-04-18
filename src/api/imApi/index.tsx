@@ -18,10 +18,11 @@ export const getOpenIMConfig = (data:any): Promise<IResponse>=>{
 
 export const getGroupsInfo = (data:any): Promise<IResponse> =>{
     return request.post({
-        url: '/v1/groupGetGroupsInfo',
-        data: data
+        url: '/api/group/get_groups_info',
+        data: {"groupIDs":data}
     });
 }
+
 
 export const getClientConfig = (): Promise<IResponse> => {
     return request.post({

@@ -270,7 +270,7 @@ interface listType {
 }
 const List = ({ data }: { data: listType }) => {
     return (
-        <TouchableOpacity style={styles.cards}>
+        <View style={styles.cards} >
             <Image source={data.img} style={styles.icon} accessibilityLabel='图片' alt="头像" />
             <View style={styles.rightList}>
                 <Text style={styles.h5}>名称 : {data.name}</Text>
@@ -281,7 +281,15 @@ const List = ({ data }: { data: listType }) => {
                     </View>
                 </View>
             </View>
-        </TouchableOpacity>
+            <View style={{ justifyContent:'space-evenly',height:80}}>
+                <TouchableOpacity style={{width:90,backgroundColor:'#0089FB',paddingVertical:5}} onPress={() => navigate('OrderDetails',{item:data})}>
+                    <Text style={{color:'#fff',textAlign:'center'}}>商品详情</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigate('DetailsRoute',{item:data})} style={{width:90,backgroundColor:'#FF7B34',paddingVertical:5}}>
+                    <Text style={{color:'#fff',textAlign:'center'}}>再次购买</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
     )
 }
 const MyOrderView = ({ route }: any) => {
@@ -457,6 +465,8 @@ const styles = StyleSheet.create({
     },
     rightList: {
         width: '60%',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems:'center'
+    
     }
 })

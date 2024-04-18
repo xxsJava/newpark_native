@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 09:29:33
- * @LastEditTime: 2023-10-25 17:36:01
+ * @LastEditTime: 2024-04-15 10:24:54
  * @FilePath: \newpark_native\src\components\Nav\index.tsx
  * @Description: 顶部tab 导航文件
  */
@@ -73,7 +73,7 @@ const HomeNav = () => {
           value={inputValue}
         /> */}
         <TouchableOpacity activeOpacity={0.6} style={styles.searchNavInput} onPress={() => navigate('SearchView')}>
-          <Text allowFontScaling={false} style={styles.searchNavInputText}>请输入需要搜索的/帖子/UID/群聊/商品</Text>
+          <Text allowFontScaling={false} style={styles.searchNavInputText}>输入关键字搜索</Text>
         </TouchableOpacity>
       </View>
 

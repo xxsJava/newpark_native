@@ -1,8 +1,9 @@
 /**
- * 代码描述: 商品详情页 快快来买模块详情页
+ * 代码描述: 商品详情 快快来买模块详情
  * 作者:cxr
  * 创建时间:2023/11/14 14:58:11
  */
+
 
 import React, { useState } from 'react';
 import { Trans } from 'react-i18next';
@@ -26,8 +27,10 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const DetailsView = ({ data }: any) => {
-  console.log(data, '我是跳转过来的item');
+const DetailsView = (item) => {
+  console.log(item.route.params.item);
+    const datass = item.route.params.item;
+  // console.log(data, '我是跳转过来的item');
   const [tabVal, setTab] = useState('tab1');
   const setTabPress = (tab: string) => {
     setTab(tab);
@@ -51,7 +54,7 @@ const DetailsView = ({ data }: any) => {
           <Text style={{ color: '#000', fontSize: 16 }}>支付宝支付</Text>
         </TouchableOpacity>
       </View>
-      <Appbar.Header style={[styles.headerStyle, { zIndex: -2 }]}>
+      {/* <Appbar.Header style={[styles.headerStyle, { zIndex: -2 }]}>
         <Appbar.Action
           icon={require('../../../assets/images/chevron-left.png')}
           onPress={() => navigate('ProductRoute')}
@@ -59,7 +62,7 @@ const DetailsView = ({ data }: any) => {
         <Text allowFontScaling={false} style={styles.headerText}>
           <Trans>navigationBar.title14</Trans>
         </Text>
-      </Appbar.Header>
+      </Appbar.Header> */}
       <View style={styles.scrollView}>
         <ScrollView alwaysBounceVertical={true}>
           <View style={styles.swiperView}>

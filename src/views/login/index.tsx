@@ -1,4 +1,4 @@
-import { Toast, useToast } from '@gluestack-ui/themed';
+import { useToast } from '@gluestack-ui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import React, { useState } from 'react';
@@ -31,6 +31,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
+
 const LoginView: React.FC<LoginScreenProps> = () => {
   const [visible, setVisible] = useState(false);
   const toast = useToast();
@@ -44,6 +45,13 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   const [recode, setrecode] = useState(true);
   const [load, setLoad] = useState(false);
 
+  const toasts = (directional:any,text:string) => {
+    toast.show({
+      placement: directional,
+      render: () => ToastCompent(text),
+    });
+  }
+
   const usrData: UserLoginType = {
     uPhone: phone,
     uEmail: '',
@@ -56,44 +64,28 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   };
 
   const onLogin = async () => {
-
     setLoad(true);
-    console.log('登录点击4');
     const networkState = await NetInfo.fetch();
-    console.log('当前网络状态:'+ networkState.isConnected);
-    // navigate('LoginHome')
-    // setrecode(!recode)
-    console.log('输入框数据' + phone + '-' + pass);
+    console.log('当前网络状态--------------->'+ networkState.isConnected);
+
     if (phone.length != 11) {
       if (phone.length == 0) {
-        toast.show({
-          placement: 'bottom',
-          render: () => ToastCompent('手机号为空'),
-        });
+        toasts('bottom','手机号为空');
         return;
       }
-      toast.show({
-        placement: 'bottom',
-        render: () =>ToastCompent('手机号有误'),
-      });
+
+      toasts('bottom','手机号有误');
       setLoad(false);
       return;
     }
 
     const loginAPI = await loginApi(usrData);
-    console.log('---->'+loginAPI);
-    
     const uId = loginAPI.data.uId;
     OpenIMConfig.userID = uId;
 
-    console.log('OPENIMCONFIG------------->',OpenIMConfig);
-
     //用户不存在自动注册
     if (loginAPI.code === 1114) {
-      toast.show({
-        placement: 'bottom',
-        render: () => ToastCompent('验证码发送，请注意查收'),
-      });
+      toasts('bottom','验证码发送，请注意查收');
       navigate('Registered');
     } else if (loginAPI.code === 200) {
       //用户token存本地
@@ -103,26 +95,18 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       console.log('获取到Open-IM-token1---->', openIMRes.data.token);
       Storage.set('openim-token',openIMRes.data.token);
       //oepnIm 登录
-      // console.log(IMSDKRN);
       IMSDKRN.login(uId, openIMRes.data.token);
-      
       const imAuth = await getClientConfig();
       Storage.set('im-auth',imAuth.data.token);
       //用户uid存本地
       Storage.set('uid', uId);
       //android获取设备权限
       initDataDir(uId);
-      
-      toast.show({
-        placement: 'top',
-        render: () => ToastCompent('登录成功,开始享受快乐人生'),
-      });
+
+      toasts('top','登录成功,开始享受快乐人生');
     } else if (loginAPI.code === 1110) {
       setLoad(true);
-      toast.show({
-        placement: 'top',
-        render: () => ToastCompent('账号有误'),
-      });
+      toasts('top','账号有误');
       return false;
     }
     setLoad(false);
@@ -132,19 +116,13 @@ const LoginView: React.FC<LoginScreenProps> = () => {
 
   const smsVerIf = async () => {
     if (phone.length != 11) {
-      toast.show({
-        placement: 'top',
-        render: () =>ToastCompent('请输入手机号'),
-      });
+      toasts('top','请输入手机号');
       return;
     }
     Storage.set('usr-phone', phone);
     const smsLoginAPI = await smsLoginApi(smsLogin);
     console.log(smsLoginAPI);
-    toast.show({
-      placement: 'top',
-      render: () => ToastCompent(smsLoginAPI.msg),
-    });
+    toasts('top',smsLoginAPI.msg);
     await AsyncStorage.setItem('uphone', phone);
    //发送验证码
     navigate('Verification');

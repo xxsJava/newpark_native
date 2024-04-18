@@ -44,7 +44,7 @@ const moreList = [{
   image:require('../../assets/images/tup/saoyisao.png'),
   text:'好友申请',
   path:'CreateCommunityRoute'
-},
+}
 ]
 
 const SocializingView = () => {
@@ -110,7 +110,6 @@ const SocializingView = () => {
           </View>
         </View>
         <View style={tabVal === 'tab1'?styles.tabContent:styles.tabContentShow}>
-          {/* <MessageModule></MessageModule> */}
           <MessageModule></MessageModule>
         </View>
         <View style={tabVal === 'tab2'?styles.tabContent:styles.tabContentShow}>
@@ -151,12 +150,11 @@ const SocializingView = () => {
                 </View>
               </TouchableOpacity>
         </View>
-        <TouchableOpacity style={[styles.maskLayer,more?null:{display:'none'}]} onPress={() => handleMorePress(more)}>
+        <TouchableOpacity style={[styles.maskLayer,more? {}:{display:'none'}]} onPress={() => handleMorePress(more)}>
         </TouchableOpacity>
       </SafeAreaView>
   )
 }
-
 export default SocializingView;
 
 

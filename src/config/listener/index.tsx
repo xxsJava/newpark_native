@@ -1,6 +1,5 @@
 import { DeviceEventEmitter, NativeEventEmitter, Platform } from 'react-native';
 import { getGroupsInfo } from '../../api/imApi';
-import { useCounter } from '../../hooks/state';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import Storage from '../../utils/AsyncStorageUtils';
 import { isFile, readFileData, writeFileData } from '../../utils/FilesUtiles';
@@ -8,7 +7,7 @@ import { FILE_PATH, GROUP_MSG_DIR, INDEX_MSG_DIR, PRITIVE_MSG_DIR } from '../par
 /*
  * @Author: xxs
  * @Date: 2024-01-04 09:28:14
- * @LastEditTime: 2024-02-22 14:16:48
+ * @LastEditTime: 2024-04-12 17:09:15
  * @FilePath: \newpark_native\src\config\listener\index.tsx
  * @Description: desc
  */
@@ -66,7 +65,7 @@ export const initListener = () => {
           const newObj: any = {};
           console.log('............ 群聊数据已写入 ..............');
           console.log('获取圈ID------>', msg.groupID);
-          let stringArray: string[] = [];
+          const stringArray: string[] = [];
           stringArray.push(msg.groupID);
           console.log('群组数据1----->', stringArray);
           const groupInfo = await getGroupsInfo(stringArray);

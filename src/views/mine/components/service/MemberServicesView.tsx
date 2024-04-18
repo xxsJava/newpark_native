@@ -44,7 +44,7 @@ export default class MemberServicesView extends Component {
                                 <Avatar.Image size={68} source={require('../../../../assets/images/defaultheader.png')} accessibilityLabel='头像'></Avatar.Image>
                             </View>
                             <View style={styles.dataView}>
-                                <Text allowFontScaling={false} style={styles.dataName}>昵称：O泡果奶</Text>
+                                <Text allowFontScaling={false} style={styles.dataName}>昵称:O泡果奶</Text>
                                 <Text allowFontScaling={false} style={styles.dataText}>UID:123456789011111</Text>
                             </View>
                             <View style={styles.gradeView}>

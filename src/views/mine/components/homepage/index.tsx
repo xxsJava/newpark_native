@@ -50,12 +50,6 @@ const orderData = [
       text: 'minService.serviceOption1',
       icon: require('../../../../assets/images/alimom/pay.png'),
     },
-    // {
-    //   index: 2,
-    //   route: 'MyOrderRoute',
-    //   text: 'minService.serviceOption2',
-    //   icon: require('../../../../assets/images/alimom/order.png'),
-    // },
     {
       index: 2,
       route: 'MyPostRoute',
@@ -197,12 +191,12 @@ const HomePageView = () => {
                     <Trans>minOrder.orderName</Trans>
                   </Text>
                 </View>
-                <View style={styles.titleFlex}>
+                <TouchableOpacity style={styles.titleFlex} onPress={() =>navigate('MyOrderRoute',{type:'type1'})}>
                   <Text allowFontScaling={false} style={styles.titleText2}>
                     <Trans>minOrder.orderMore</Trans>
                     <Feather name="chevron-right" size={18} color="#dbdbdb" />
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
               <View style={styles.orderList}>
                 {orderData.map(item => {
@@ -228,12 +222,12 @@ const HomePageView = () => {
                     <Trans>minService.serviceName</Trans>
                   </Text>
                 </View>
-                <View style={styles.titleFlex}>
+                <TouchableOpacity style={styles.titleFlex} onPress={() => {navigate('MoreViews')}}>
                   <Text allowFontScaling={false} style={styles.titleText2}>
                     <Trans>minService.serviceMore</Trans>
                     <Feather name="chevron-right" size={18} color="#dbdbdb" />
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
               <View style={styles.orderList}>
                 {serviceData1.map(item => {

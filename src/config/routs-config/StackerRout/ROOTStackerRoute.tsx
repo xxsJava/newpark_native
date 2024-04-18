@@ -5,6 +5,12 @@
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
+
+import VerificationInfo from '../../../views/socializing/add/VerificationInfo';
+import OrderDetails from '../../../views/mine/components/service/OrderDetails';
+import PeopleList from '../../../views/socializing/add/PeopleList';
+import LeaderBoard from '../../../views/mine/components/homepage/LeaderBoard';
+import MoreView from '../../../views/mine/components/homepage/MoreView';
 import GroupChat from '../../../views/socializing/check/GroupChat';
 import ChatHome from '../../../views/newpark/components/chatHome'
 import ReviceCode from '../../../components/ReviceCode';
@@ -88,9 +94,34 @@ export default {
   AddNewAddress:{
     component: AddNewAddress,
      options: {
-    //   headerShown: false,
     title: '新增收货地址',
      },
+  },
+  VerificationInfo:{
+    component:VerificationInfo,
+    options:{
+        title:'申请添加朋友',
+        headerTitleAlign: 'center'
+    }
+  },
+  LeaderBoards:{
+    component:LeaderBoard,
+    options:{
+      title:'排行榜'
+    }
+  },
+  PeopleList:{
+    component:PeopleList,
+    options:{
+      title:'添加牛友——牛友列表',
+      // headerShown: false,
+    }
+  },
+  MoreViews:{
+    component:MoreView,
+    options:{
+      title:'更多'
+    }
   },
   ChatRoom:{
     component: ChatRoom,
@@ -147,6 +178,12 @@ export default {
    //   headerShown: false,
    title: '好友申请',
     },
+  },
+  OrderDetails:{
+    component:OrderDetails,
+    options:{
+      title:'商品详情页'
+    }
   },
   AddPeople:{
     component: AddPeople,
@@ -384,7 +421,7 @@ export default {
     component:DetailsView,
     options:{
       title:'商品详情',
-      headerShown:false
+      // headerShown:false
     }
   },
   ProductChatRoute:{
