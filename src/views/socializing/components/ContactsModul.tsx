@@ -67,500 +67,500 @@ React.useEffect(() => {
 
 
 const data: DataSection[] = [
-  {
-    title: 'A',
-    data: [
-      {
-        name: '牛友名称11',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'B',
-    data: [
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-    ],
-  },
-  {
-    title: 'C',
-    data: [
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'D',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'E',
-    data: [
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-    ],
-  },
-  {
-    title: 'F',
-    data: [
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'G',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'H',
-    data: [
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-    ],
-  },
-  {
-    title: 'I',
-    data: [
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'J',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'K',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'L',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'M',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'N',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'O',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'P',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'Q',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'R',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'S',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'T',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'U',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'V',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'W',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'X',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'Y',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'Z',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
+  // {
+  //   title: 'A',
+  //   data: [
+  //     {
+  //       name: '牛友名称11',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'B',
+  //   data: [
+  //     {
+  //       name: '聊天室名称',
+  //       labelText: '123',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: true,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'C',
+  //   data: [
+  //     {
+  //       name: '社区频道名称',
+  //       labelText: '#打卡',
+  //       color: 3,
+  //       lableType: 2,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '社区频道名称',
+  //       labelText: '#打卡',
+  //       color: 3,
+  //       lableType: 2,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'D',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'E',
+  //   data: [
+  //     {
+  //       name: '聊天室名称',
+  //       labelText: '123',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: true,
+  //     },
+  //     {
+  //       name: '聊天室名称',
+  //       labelText: '123',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: true,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'F',
+  //   data: [
+  //     {
+  //       name: '社区频道名称',
+  //       labelText: '#打卡',
+  //       color: 3,
+  //       lableType: 2,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '社区频道名称',
+  //       labelText: '#打卡',
+  //       color: 3,
+  //       lableType: 2,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'G',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'H',
+  //   data: [
+  //     {
+  //       name: '聊天室名称',
+  //       labelText: '123',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: true,
+  //     },
+  //     {
+  //       name: '聊天室名称',
+  //       labelText: '123',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: true,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'I',
+  //   data: [
+  //     {
+  //       name: '社区频道名称',
+  //       labelText: '#打卡',
+  //       color: 3,
+  //       lableType: 2,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '社区频道名称',
+  //       labelText: '#打卡',
+  //       color: 3,
+  //       lableType: 2,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'J',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 1,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'K',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'L',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'M',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'N',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'O',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'P',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Q',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'R',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'S',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'T',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'U',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'V',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'W',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'X',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Y',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Z',
+  //   data: [
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //     {
+  //       name: '牛友名称',
+  //       labelText: '牛友',
+  //       color: 2,
+  //       lableType: 1,
+  //       icon: false,
+  //     },
+  //   ],
+  // },
 
   // 更多的数据...
 ];
