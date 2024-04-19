@@ -212,15 +212,14 @@ const GroupChat = () => {
                     <View>
                         <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold', marginLeft: 12 }}>佛系小草莓(99)</Text>
                     </View>
-                    {/* <Text style={styles.avatarText}>{headName}</Text> */}
                 </View>
-               <TouchableOpacity onPress={() => {console.log('跳转到搜索页面')}}>
-                    <Image source={require('../../../assets/images/tup/fangdajing.png')} style={{width:30,height:30}}></Image>
-               </TouchableOpacity>
+                <TouchableOpacity onPress={() => { console.log('跳转到搜索页面') }}>
+                    <Image source={require('../../../assets/images/tup/fangdajing.png')} style={{ width: 30, height: 30 }}></Image>
+                </TouchableOpacity>
                 <Appbar.Action
                     icon="dots-vertical"
                     onPress={() => {
-                        console.log('三点');
+                        navigate('GroupMessage')
                     }}
                 />
             </Appbar.Header>

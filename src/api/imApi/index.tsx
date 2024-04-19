@@ -37,8 +37,9 @@ export const sendMsg = (params:any): Promise<IResponse> =>{
     });
 }
 
-export const getUseList = (data:any): Promise<IResponse> =>{
+export const getUseList = (params:any): Promise<IResponse> =>{
         return request.post({
-            url:'/user/get_users',data
+            url:'/api/user/get_users',
+            data:params
         })
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView, Dimensions, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Dimensions, Image, TouchableOpacity,TextInput } from "react-native";
 import { navigate } from "../../../config/routs/NavigationContainer";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -14,9 +14,9 @@ const PeopleList = ({ route }: any) => {
         }
     ];
     const [showmtk, setShowmtk] = React.useState(false);
-    const [personInfo, setpersonInfo] = React.useState({"ava": 27, "index": 1, "inter": ["旅行", "美食", "吃穿", "美妆"], "isboy": true, "name": "xxs", "tel": "5175689259"});
+    const [personInfo, setpersonInfo] = React.useState({ "ava": 27, "index": 1, "inter": ["旅行", "美食", "吃穿", "美妆"], "isboy": true, "name": "xxs", "tel": "5175689259" });
     console.log(personInfo, '要添加的个人信息');
-
+    const [value,onChangeText] = React.useState();
     return (
         <View style={styles.container}>
             <ScrollView style={{ height: windowHeight - 130 }}>
@@ -74,7 +74,7 @@ const PeopleList = ({ route }: any) => {
             </View>
             {/* 模态框显示 */}
             <View style={showmtk ? { position: 'absolute' } : { display: 'none' }}>
-                <TouchableOpacity style={{ width: windowWidth, height: windowHeight, backgroundColor: '#000', opacity: 0.3, position: 'absolute' }} onPress={() => {setShowmtk(false)}}></TouchableOpacity>
+                <TouchableOpacity style={{ width: windowWidth, height: windowHeight, backgroundColor: '#000', opacity: 0.3, position: 'absolute' }} onPress={() => { setShowmtk(false) }}></TouchableOpacity>
                 <View style={{ width: windowWidth * 0.9, marginLeft: windowWidth * 0.05, position: 'absolute', zIndex: 99999, marginTop: (windowHeight - 500) / 2 }}>
                     <Image source={require('../../../assets/images/tup/891713317829_.pic.jpg')} style={{ width: '100%', height: 160, borderTopLeftRadius: 12, borderTopRightRadius: 12 }}></Image>
                     <View style={{ backgroundColor: '#fff', width: '100%', height: 300, borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }}>
@@ -91,19 +91,31 @@ const PeopleList = ({ route }: any) => {
                             </View>
                         </View>
                         <View style={{ padding: 12 }}>
-                            <Text style={{fontSize:17,fontWeight:'bold',paddingVertical:8}}>个人信息</Text>
+                            <Text style={{ fontSize: 17, fontWeight: 'bold', paddingVertical: 8 }}>个人信息</Text>
                             <View>
-                                <View style={{ borderBottomWidth: 0.4, flexDirection: 'row' ,paddingVertical:12,height:48}}>
-                                    <Text style={{fontSize:17}}>昵称</Text>
-                                   <View style={{paddingLeft:30}}>
-                                   <Text style={{color:'#000',fontSize:20}}>{personInfo.name}</Text>
-                                   </View>
+                                <View style={{ borderBottomWidth: 0.4, flexDirection: 'row', paddingVertical: 12, height: 48 }}>
+                                    <Text style={{ fontSize: 17 }}>昵称</Text>
+                                    <View style={{ paddingLeft: 30 }}>
+                                        <Text style={{ color: '#000', fontSize: 20 }}>{personInfo.name}</Text>
+                                    </View>
+                                </View>
+                                <View>
+                                    <TextInput
+                                        autoCapitalize='none'
+                                        placeholder="请输入申请语"
+                                        onChangeText={text => onChangeText(text)}
+                                        value={value}
+                                        enablesReturnKeyAutomatically={true}
+                                        multiline={true}
+                                        numberOfLines={4}
+                                        style={{ height: 120, borderColor: 'gray', borderWidth: 0.4, backgroundColor: '#eee', marginTop: 20, width: '80%', marginLeft: '10%', textAlignVertical: 'top' }}
+                                    />
                                 </View>
                             </View>
                         </View>
-                        <View style={{position:'absolute',bottom:16,width:'100%',left:0,alignItems:'center'}}>
-                            <TouchableOpacity style={{backgroundColor:'#0089FF',width:'60%',padding:10,borderRadius:90}} onPress={()=>{navigate('VerificationInfo',{item:personInfo});setShowmtk(false)}}>
-                                <Text style={{color:'#fff',fontSize:18,textAlign:'center',fontWeight:'bold'}}>添加好友</Text>
+                        <View style={{ position: 'absolute', bottom: 16, width: '100%', left: 0, alignItems: 'center' }}>
+                            <TouchableOpacity style={{ backgroundColor: '#0089FF', width: '60%', padding: 10, borderRadius: 90 }} onPress={() => { navigate('VerificationInfo', { item: personInfo }); setShowmtk(false) }}>
+                                <Text style={{ color: '#fff', fontSize: 18, textAlign: 'center', fontWeight: 'bold' }}>添加好友</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

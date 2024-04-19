@@ -6,6 +6,7 @@
  * @Description: desc
  */
 
+import GroupMessage from '../../../views/socializing/check/GroupMessage';
 import VerificationInfo from '../../../views/socializing/add/VerificationInfo';
 import OrderDetails from '../../../views/mine/components/service/OrderDetails';
 import PeopleList from '../../../views/socializing/add/PeopleList';
@@ -121,6 +122,12 @@ export default {
     component:MoreView,
     options:{
       title:'更多'
+    }
+  },
+  GroupMessage:{
+    component:GroupMessage,
+    options:{
+      title:'群聊信息'
     }
   },
   ChatRoom:{

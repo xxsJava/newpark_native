@@ -12,10 +12,16 @@ import {
   View
 } from 'react-native';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import { getUseList } from '../../../api/imApi/index'
+import { getUseList } from '../../../api/imApi/index';
+// import { pinyin } from 'pinyin';
+
+
+
+import { contextListJson } from '../../../api/imApi/type';
+import { log } from 'console';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
-type DataSection = {title: string; data: DataItem[]};
+type DataSection = { title: string; data: DataItem[] };
 type AlphabetIndexProps = {
   sections: DataSection[];
   onSectionSelect: (index: number) => void;
@@ -28,23 +34,41 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
-  const data = {
-    pagination: {
-      pageNumber: 1,
-      showNumber: 100
-    }
-  }
-
+  // 联系人列表
+  const [ListData1, setListData] = React.useState();
   const listData = async () => {
-    const ListDataAPI = await getUseList(data);
-    console.log('ListDataAPI 在这里',ListDataAPI)
-}
 
-React.useEffect(() => {
-  console.log('11============');
-  
-  listData()
-}, []); // 只在组件挂载时调用一次
+  // const pinyinArray = pinyin('张', { style: pinyin.STYLE_NORMAL });
+    console.log(pinyinArray);
+    
+    const contentsJson = contextListJson;
+    const ListDataAPI = await getUseList(contentsJson);
+    const list = ListDataAPI.data.users;
+    console.log('ListDataAPI 在这里', list);
+
+    let groupArray = list.reduce((result, currentValue) => {
+      console.log(result,'这个是结果');
+      
+      let firstLetter = currentValue.nickname.charAt(0);
+      console.log(currentValue.nickname,firstLetter,'firstLetter');
+      
+      if (!result[firstLetter]) {
+        result[firstLetter] = {
+          title: firstLetter,
+          data: []
+        };
+      }
+      result[firstLetter].data.push(currentValue);
+      return result;
+    }, {});
+    // 转换结果为数组形式
+    let resultArray:DataSection[] = Object.values(groupArray);
+    console.log('这是转化后的值', resultArray);
+    // setListData(resultArray);
+  }
+  React.useEffect(() => {
+    listData()
+  }, []); // 只在组件挂载时调用一次
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -54,9 +78,10 @@ React.useEffect(() => {
             key={index}
             onPress={() => onSectionSelect(index)}
             style={styles.itemBar}>
-            <Text style={{color: '#008fe4', fontSize: 10}}>
+            <Text style={{ color: '#008fe4', fontSize: 10 }}>
               {section.title}
             </Text>
+
           </TouchableOpacity>
         ))}
       </View>
@@ -574,7 +599,7 @@ const ListIndex: React.FC = () => {
     null,
   );
 
-  const renderItem = ({item}: {item: DataItem}) => (
+  const renderItem = ({ item }: { item: DataItem }) => (
     <TouchableOpacity
       onPress={() => navigate('ObjCard')}
       style={[
@@ -584,8 +609,8 @@ const ListIndex: React.FC = () => {
             item.color === 1
               ? '#FABA3C'
               : item.color === 2
-              ? '#6A1B9A'
-              : '#26C78C',
+                ? '#6A1B9A'
+                : '#26C78C',
         },
       ]}>
       <View style={styles.itemLeft}>
@@ -600,9 +625,9 @@ const ListIndex: React.FC = () => {
     </TouchableOpacity>
   );
 
-  const renderSectionHeader = ({section}: {section: DataSection}) => (
-    <View style={{backgroundColor: '#f4f4f4', padding: 4, height: 32}}>
-      <Text style={{fontWeight: 'bold'}}>{section.title}</Text>
+  const renderSectionHeader = ({ section }: { section: DataSection }) => (
+    <View style={{ backgroundColor: '#f4f4f4', padding: 4, height: 32 }}>
+      <Text style={{ fontWeight: 'bold' }}>{section.title}</Text>
     </View>
   );
 
@@ -623,7 +648,7 @@ const ListIndex: React.FC = () => {
     let nodeNum = 0;
     // console.log('计算高度', data.length);
     for (let i = data.length - 1; i >= 0; i--) {
-      nodeNum += data[i].data.length * ITEM_HEIGHT + (32 + 8*(data[i].data.length-1));
+      nodeNum += data[i].data.length * ITEM_HEIGHT + (32 + 8 * (data[i].data.length - 1));
       // console.log(data[i].title+'------>',data[i].data.length)
     }
     return nodeNum;
@@ -631,21 +656,21 @@ const ListIndex: React.FC = () => {
 
   // 这里是滚动到指定位置
   const handleSectionSelect = (index: number) => {
-    
+
     setSelectedSectionIndex(index);
 
     //一个分组的高度
     // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + (索引下标+偏移值)
     let nodeSum = pre(index);
-    console.log('子元素数量------>',nodeSum);
+    console.log('子元素数量------>', nodeSum);
     const itemHeight =
-      (ITEM_HEIGHT * nodeSum + 32 + 8*(nodeSum-1)) + ((index-1) * 16);
-    console.log('分组高度----->',itemHeight);
+      (ITEM_HEIGHT * nodeSum + 32 + 8 * (nodeSum - 1)) + ((index - 1) * 16);
+    console.log('分组高度----->', itemHeight);
     //总高度
     // (item * 每个分组子元素的数量 + 标题 + 间隙 ) * 分组数量
     // const itemSum = (ITEM_HEIGHT * data[index].data.length + 40) * data.length;
     const itemSum = _getHigth();
-    console.log('总高度---->',itemSum);
+    console.log('总高度---->', itemSum);
     console.log('滚动到的位置----->', itemSum - itemHeight);
     toast.show({
       placement: 'bottom',
@@ -665,7 +690,7 @@ const ListIndex: React.FC = () => {
         itemIndex: 0,
         //偏移高度
         // 具体滚动
-        viewOffset: itemSum - (itemHeight)+12,
+        viewOffset: itemSum - (itemHeight) + 12,
       });
     }
   };
@@ -697,11 +722,13 @@ const ListIndex: React.FC = () => {
     console.log(pre(1)); //13
   };
   return (
-    <View style={{flex: 1, marginTop: 10}}>
+    <View style={{ flex: 1, marginTop: 10 }}>
       <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
       <SectionList
         ref={sectionListRef}
         sections={data}
+
+        // 这里
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
         getItemLayout={_ItemLayout}

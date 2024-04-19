@@ -26,6 +26,17 @@ const OrderDetails = (item) =>{
                 </TouchableOpacity> */}
                 <Text style={{fontSize:21,color:'#000',textAlign:'center',lineHeight:40}}>已签收</Text>
             </View>
+            <View>
+                <View style={styles.dizhi}>
+                    <Image source={require('../../../../assets/images/tup/daisonghuodingdan-bian.png')} style={{width:30,height:30}}></Image>
+                    <View>
+
+                    </View>
+                </View>
+                <View style={styles.dizhi}>
+                    <Image source={require('../../../../assets/images/tup/shouhuodizhi.png')} style={{width:30,height:30}}></Image>
+                </View>
+            </View>
            <Image source={data.img} style={{width:60,height:60}}></Image>
         </View>
     )
@@ -34,6 +45,15 @@ export default OrderDetails;
 const styles = StyleSheet.create({
     container:{
         width:windowWidth,
-        height:windowHeight
+        height:windowHeight,
+        backgroundColor:'#fff'
+    },
+    dizhi:{
+        height:60,
+        // backgroundColor:'aqua',
+        alignItems:'center',
+        flexDirection:'row',
+        padding:12,
+        borderBottomWidth:0.3
     }
 })

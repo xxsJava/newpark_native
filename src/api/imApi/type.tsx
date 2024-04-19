@@ -64,8 +64,18 @@ export const MsgInfoSendJson:MsgInfoSend = {
   }
 }
 
-// export const dataList =  {
-//     pagination: object,
-//     pageNumber: number,
-//     showNumber: number
-// }
+ type pagination =  {
+  pageNumber: number;
+    showNumber: number
+}
+
+export type ContextList = {
+  pagination:pagination
+} 
+
+export const contextListJson:ContextList = {
+  pagination:{
+    pageNumber:1,
+    showNumber:100
+  }
+}
