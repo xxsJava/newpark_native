@@ -133,9 +133,9 @@ export const initListener = () => {
     console.log('服务链接监听---------->', resp);
   });
 
-  DeviceEvent.addListener('onTest', resp => {
-    console.log('接收ios消息---------->', resp);
-  });
+  // DeviceEvent.addListener('onTest', resp => {
+  //   console.log('接收ios消息---------->', resp);
+  // });
 
   DeviceEvent.addListener('onErrorLogin', resp => {
     console.log('接收ios消息---------->', resp);

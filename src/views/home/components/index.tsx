@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-17 10:29:21
+ * @LastEditTime: 2024-04-17 16:31:19
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -98,8 +98,8 @@ const windowHeight = Dimensions.get('window').height;
         <Card.Content style={styles.backColor}>
           {/* <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text> */}
           <View style={{ width: windowWidth }}>
-            <WebView style={{height:200}} source={{ html: item.tcontext }}></WebView>
-            { item.ttype == 1?<WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={120}/>:''}
+            { item.ttype == 0?<WebView style={{height:200}} source={{ html: item.tcontext }}></WebView>:''}
+            { item.ttype == 1?<WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={150}/>:''}
             { item.ttype == 2?<WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} />:''}
           </View>
         </Card.Content>
