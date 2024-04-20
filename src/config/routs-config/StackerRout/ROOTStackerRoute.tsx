@@ -7,7 +7,6 @@
  */
 
 import GroupMessage from '../../../views/socializing/check/GroupMessage';
-import VerificationInfo from '../../../views/socializing/add/VerificationInfo';
 import OrderDetails from '../../../views/mine/components/service/OrderDetails';
 import PeopleList from '../../../views/socializing/add/PeopleList';
 import LeaderBoard from '../../../views/mine/components/homepage/LeaderBoard';
@@ -97,13 +96,6 @@ export default {
      options: {
     title: '新增收货地址',
      },
-  },
-  VerificationInfo:{
-    component:VerificationInfo,
-    options:{
-        title:'申请添加朋友',
-        headerTitleAlign: 'center'
-    }
   },
   LeaderBoards:{
     component:LeaderBoard,
