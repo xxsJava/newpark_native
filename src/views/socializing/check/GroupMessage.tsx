@@ -7,7 +7,7 @@ const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const GroupMessage = () => {
-    const [show, setShow] = React.useState(true);
+    const [show, setShow] = React.useState(false);
     const [topSession, setTopSession] = React.useState(false);
     const [messDis, setMessDis] = React.useState(false);
     const [blankgag, setBlankgag] = React.useState(false);
