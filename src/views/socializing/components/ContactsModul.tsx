@@ -16,11 +16,20 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { getFriendList, getUseList } from '../../../api/imApi/index';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import { getUseList } from '../../../api/imApi/index';
-import {PinyinUtil} from '../../../config/routs-config/StackerRout/pinyin'
-import { contextListJson } from '../../../api/imApi/type';
+// 出现冲突地方一
+// import { getUseList } from '../../../api/imApi/index';
+import {PinyinUtil} from '../../../config/routs-config/StackerRout/pinyin';
+// 出现冲突地方二
+// import { contextListJson } from '../../../api/imApi/type';
 
+// import { pinyin } from 'pinyin';
+
+
+
+import { contextListJson } from '../../../api/imApi/type';
+import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
 type DataSection = { title: string; data: DataItem[] };
@@ -37,6 +46,60 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
     null,
   );
 
+  // 联系人列表
+  const [ListData1, setListData] = React.useState();
+
+  const friendList = async () => {
+    const uId = await Storage.get('usr-uId');
+    const params = {
+      "userID": uId,
+      "pagination": {
+        "pageNumber": 1,
+        "showNumber": 50
+      }
+    };
+    const friendLists = await getFriendList(params);
+
+    console.log('参数--------->',uId);
+    console.log('好友数据----------->',friendLists)
+    
+  }
+
+  const listData = async () => {
+
+  // const pinyinArray = pinyin('张', { style: pinyin.STYLE_NORMAL });
+    // console.log(pinyinArray);
+    
+    const contentsJson = contextListJson;
+    const ListDataAPI = await getUseList(contentsJson);
+    const list = ListDataAPI.data.users;
+    console.log('ListDataAPI 在这里', list);
+
+    let groupArray = list.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
+      console.log(result,'这个是结果');
+      
+      let firstLetter = currentValue.nickname.charAt(0);
+      console.log(currentValue.nickname,firstLetter,'firstLetter');
+      
+      if (!result[firstLetter]) {
+        result[firstLetter] = {
+          title: firstLetter,
+          data: []
+        };
+      }
+      result[firstLetter].data.push(currentValue);
+      return result;
+    }, {});
+    // 转换结果为数组形式
+    let resultArray:DataSection[] = Object.values(groupArray);
+    console.log('这是转化后的值', resultArray);
+    // setListData(resultArray);
+  }
+
+  React.useEffect(() => {
+    listData();
+    friendList();
+  }, []); // 只在组件挂载时调用一次
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -59,6 +122,21 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
 };
 
 // const data:DataSection[] = resultArray;
+
+const data: DataSection[] = [
+  {
+    title: 'A',
+    data: [
+      {
+        name: '牛友名称11',
+        labelText: '牛友',
+        color: 1,
+        lableType: 1,
+        icon: false,
+      }
+    ],
+  },
+];
 
 const ListIndex: React.FC = () => {
   const toast = useToast();
