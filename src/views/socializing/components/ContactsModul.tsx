@@ -1,4 +1,9 @@
-// import {useToast} from 'native-base';
+/*
+ * @Author: zhn
+ * @Date: 2024-4-20 17:44:34
+ * @FilePath: src/views/socializing/components/ContactsModul.tsx
+ * @Description: 社交的联系人页面
+ */
 import { Toast, useToast } from '@gluestack-ui/themed';
 import React, { useRef, useState } from 'react';
 import {
@@ -13,12 +18,9 @@ import {
 } from 'react-native';
 import { navigate } from '../../../config/routs/NavigationContainer';
 import { getUseList } from '../../../api/imApi/index';
-// import { pinyin } from 'pinyin';
-
-
-
+import {PinyinUtil} from '../../../config/routs-config/StackerRout/pinyin'
 import { contextListJson } from '../../../api/imApi/type';
-import { log } from 'console';
+
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
 type DataSection = { title: string; data: DataItem[] };
@@ -34,41 +36,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
-  // 联系人列表
-  const [ListData1, setListData] = React.useState();
-  const listData = async () => {
 
-  // const pinyinArray = pinyin('张', { style: pinyin.STYLE_NORMAL });
-    // console.log(pinyinArray);
-    
-    const contentsJson = contextListJson;
-    const ListDataAPI = await getUseList(contentsJson);
-    const list = ListDataAPI.data.users;
-    console.log('ListDataAPI 在这里', list);
-
-    let groupArray = list.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
-      console.log(result,'这个是结果');
-      
-      let firstLetter = currentValue.nickname.charAt(0);
-      console.log(currentValue.nickname,firstLetter,'firstLetter');
-      
-      if (!result[firstLetter]) {
-        result[firstLetter] = {
-          title: firstLetter,
-          data: []
-        };
-      }
-      result[firstLetter].data.push(currentValue);
-      return result;
-    }, {});
-    // 转换结果为数组形式
-    let resultArray:DataSection[] = Object.values(groupArray);
-    console.log('这是转化后的值', resultArray);
-    // setListData(resultArray);
-  }
-  React.useEffect(() => {
-    listData()
-  }, []); // 只在组件挂载时调用一次
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -90,505 +58,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   );
 };
 
-
-const data: DataSection[] = [
-  {
-    title: 'A',
-    data: [
-      {
-        name: '牛友名称11',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'B',
-    data: [
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-    ],
-  },
-  {
-    title: 'C',
-    data: [
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'D',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'E',
-    data: [
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-    ],
-  },
-  {
-    title: 'F',
-    data: [
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'G',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'H',
-    data: [
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-      {
-        name: '聊天室名称',
-        labelText: '123',
-        color: 2,
-        lableType: 1,
-        icon: true,
-      },
-    ],
-  },
-  {
-    title: 'I',
-    data: [
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-      {
-        name: '社区频道名称',
-        labelText: '#打卡',
-        color: 3,
-        lableType: 2,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'J',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'K',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'L',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'M',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'N',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'O',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'P',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'Q',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'R',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'S',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'T',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'U',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'V',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'W',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'X',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'Y',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-  {
-    title: 'Z',
-    data: [
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-      {
-        name: '牛友名称',
-        labelText: '牛友',
-        color: 2,
-        lableType: 1,
-        icon: false,
-      },
-    ],
-  },
-
-  // 更多的数据...
-];
+// const data:DataSection[] = resultArray;
 
 const ListIndex: React.FC = () => {
   const toast = useToast();
@@ -613,12 +83,13 @@ const ListIndex: React.FC = () => {
                 : '#26C78C',
         },
       ]}>
+
       <View style={styles.itemLeft}>
         <View style={styles.avatarStyle} />
       </View>
       <View style={styles.itemRight}>
         <Text style={styles.itemName}>
-          {item.name}
+          {item.nickname}
         </Text>
         <View style={styles.itemLabelStyle} />
       </View>
@@ -638,7 +109,7 @@ const ListIndex: React.FC = () => {
   const pre = (num: number) => {
     let pre = 0;
     for (let i = 0; i < num; i++) {
-      pre += data[i].data.length;
+      pre += peopData[i].data.length;
     }
     return pre;
   };
@@ -647,8 +118,8 @@ const ListIndex: React.FC = () => {
   const _getHigth = () => {
     let nodeNum = 0;
     // console.log('计算高度', data.length);
-    for (let i = data.length - 1; i >= 0; i--) {
-      nodeNum += data[i].data.length * ITEM_HEIGHT + (32 + 8 * (data[i].data.length - 1));
+    for (let i = peopData.length - 1; i >= 0; i--) {
+      nodeNum += peopData[i].data.length * ITEM_HEIGHT + (32 + 8 * (peopData[i].data.length - 1));
       // console.log(data[i].title+'------>',data[i].data.length)
     }
     return nodeNum;
@@ -677,7 +148,7 @@ const ListIndex: React.FC = () => {
       render: () => {
         return (
           <Toast action="attention" variant="solid">
-            <Text allowFontScaling={false}>{data[index].title}</Text>
+            <Text allowFontScaling={false}>{peopData[index].title}</Text>
           </Toast>
         )
       },
@@ -712,27 +183,74 @@ const ListIndex: React.FC = () => {
   // 这里是获取子元素的数量
   const num = (str: string) => {
     // 遍历排好序的数据，获取每一个字母的位置
-    for (var i = 0; i < data.length; i++) {
-      if (str == data[i].title) {
-        console.log(str + ':' + data[i].data.length);
+    for (var i = 0; i < peopData.length; i++) {
+      if (str == peopData[i].title) {
+        console.log(str + ':' + peopData[i].peopData.length);
       }
     }
     // console.log(sum() , '一共有这些子元素');
     console.log(pre(1)); //13
   };
+// 
+  const [peopData,setPeopleData] = React.useState([]);
+
+// 展示列表
+const listData = async () => {
+
+    const contentsJson = contextListJson;
+    const ListDataAPI = await getUseList(contentsJson);
+    const list = ListDataAPI.data.users;
+    console.log('ListDataAPI 在这里', list);
+  
+    let groupArray = list.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
+      console.log(result, '这个是结果');
+      // toUpperCase()
+      currentValue.nickname = currentValue.nickname.toUpperCase();
+      const firstLetter = PinyinUtil.getFirstLetter(currentValue.nickname.charAt(0));
+  
+      console.log(currentValue.nickname, firstLetter, 'firstLetter');
+  
+      if (!result[firstLetter]) {
+        result[firstLetter] = {
+          title: firstLetter,
+          data: []
+        };
+      }
+      
+      result[firstLetter].data.push(currentValue);
+      console.log(result[firstLetter].data,'-----------');
+      return result;
+    }, {});
+   
+    // 转换结果为数组形式
+    let resultArray: DataSection[] = Object.values(groupArray);
+    // 根据对象的name属性进行升序排序
+    resultArray.sort((a, b) => (a.title > b.title) ? 1 : -1);
+    setPeopleData(resultArray)
+    console.log('这是转化后的值', resultArray);
+    // for (let i = 0; i < resultArray.length; i++) {
+    //   resultArray[i].title.sort();
+    //   console.log(resultArray[i].title.sort(),'---------');
+      
+    // }
+  
+  }
+  React.useEffect(() => {
+    listData();
+  }, []); // 只在组件挂载时调用一次
+
   return (
     <View style={{ flex: 1, marginTop: 10 }}>
-      {/* <TouchableOpacity></TouchableOpacity> */}
-      <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
+      {/* 这个是索引条 */}
+      <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
       <SectionList
         ref={sectionListRef}
-        sections={data}
+        sections={peopData}
         // 这里
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
         getItemLayout={_ItemLayout}
         keyExtractor={(item, index) => {
-          // console.log(item)
           return index.toString();
         }}
         stickySectionHeadersEnabled={true}
