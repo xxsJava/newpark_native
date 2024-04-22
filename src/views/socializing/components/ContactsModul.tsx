@@ -56,14 +56,14 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const listData = async () => {
 
   // const pinyinArray = pinyin('张', { style: pinyin.STYLE_NORMAL });
-  //   console.log(pinyinArray);
+    // console.log(pinyinArray);
     
     const contentsJson = contextListJson;
     const ListDataAPI = await getUseList(contentsJson);
     const list = ListDataAPI.data.users;
     console.log('ListDataAPI 在这里', list);
 
-    let groupArray = list.reduce((result, currentValue) => {
+    let groupArray = list.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
       console.log(result,'这个是结果');
       
       let firstLetter = currentValue.nickname.charAt(0);
@@ -217,7 +217,6 @@ const ListIndex: React.FC = () => {
         )
       },
     });
-
     if (sectionListRef.current) {
       sectionListRef.current.scrollToLocation({
         animated: true,
@@ -258,11 +257,11 @@ const ListIndex: React.FC = () => {
   };
   return (
     <View style={{ flex: 1, marginTop: 10 }}>
+      {/* <TouchableOpacity></TouchableOpacity> */}
       <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
       <SectionList
         ref={sectionListRef}
         sections={data}
-
         // 这里
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}

@@ -35,7 +35,7 @@ const ChatRoom = () => {
                 }
 
             }
-            console.log(upath, 'upath111');
+            console.log(upath, 'upath');
         });
     }
     return (

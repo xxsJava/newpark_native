@@ -29,7 +29,6 @@ const ListIndex: React.FC = () => {
       console.log('消息页面接收消息1------>', msg);
       timeOutInitMsg();
     });
-
     return () => {
       // 在组件卸载时移除监听
       listener.remove();
