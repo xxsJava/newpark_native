@@ -111,9 +111,9 @@ const SocializingView = () => {
       </View>
       <View style={tabVal === 'tab1' ? styles.tabContent : styles.tabContentShow}>
         <MessageModule></MessageModule>
-        <View style={{ backgroundColor: 'aqua' }}>
+        <TouchableOpacity style={{ backgroundColor: 'aqua' }} onPress={()=>navigate('schoolData')}>
           <Text>333fjor</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={tabVal === 'tab2' ? styles.tabContent : styles.tabContentShow}>
         <ContactsModul></ContactsModul>

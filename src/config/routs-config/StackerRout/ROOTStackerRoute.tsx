@@ -5,7 +5,8 @@
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
-
+// 测试选择学校
+import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
 import GroupMessage from '../../../views/socializing/check/GroupMessage';
 import OrderDetails from '../../../views/mine/components/service/OrderDetails';
 import PeopleList from '../../../views/socializing/add/PeopleList';
@@ -89,6 +90,14 @@ export default {
     component: LoginView,
     options: {
       headerShown: false,
+    },
+  },
+  // 这个是测试选择学校用的
+  schoolData:{
+    component: schoolData,
+    options: {
+      headerShown: true,
+      title:'学校选择'
     },
   },
   AddNewAddress:{
