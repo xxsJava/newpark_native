@@ -13,7 +13,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import LinearGradinet from 'react-native-linear-gradient';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const wxh = 'xxs096788';
+// const wxh = 'xxs096788';
 const listData = [
     
     {

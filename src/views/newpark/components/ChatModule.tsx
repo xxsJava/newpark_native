@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import {
   Dimensions,
@@ -12,44 +13,13 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { getChatRoomFindALL } from '../../../api/sys/newpark';
+import { Pages } from '../../../api/sys/newpark/types';
 import { navigate } from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const optionData1 = [{
-  index: 1,
-  name: 'newPatkOption.optionName1',
-  icon: require('../../../assets/images/chatroomicon01.png')
-}, {
-  index: 2,
-  name: 'newPatkOption.optionName2',
-  icon: require('../../../assets/images/chatroomicon02.png')
-}, {
-  index: 3,
-  name: 'newPatkOption.optionName3',
-  icon: require('../../../assets/images/chatroomicon03.png')
-}, {
-  index: 4,
-  name: 'newPatkOption.optionName4',
-  icon: require('../../../assets/images/chatroomicon04.png')
-}];
-const optionData2 = [{
-  index: 1,
-  name: 'newPatkOption.optionName5',
-  icon: require('../../../assets/images/chatroomicon05.png')
-}, {
-  index: 2,
-  name: 'newPatkOption.optionName6',
-  icon: require('../../../assets/images/chatroomicon06.png')
-}, {
-  index: 3,
-  name: 'newPatkOption.optionName7',
-  icon: require('../../../assets/images/chatroomicon07.png')
-}, {
-  index: 4,
-  name: 'newPatkOption.optionName8',
-  icon: require('../../../assets/images/chatroomicon08.png')
-}]
+
 const glideData = [{
   index: 1,
   title: '某秘密聊天室1',
@@ -63,8 +33,29 @@ const glideData = [{
 ]
 
 const ChatModule = () => {
+
   const [isPlay,setisPlay] = React.useState(false);
   const [tabVal, setTab] = React.useState('tab1');
+  const [chatRoomData,setChatRooms] = useState([{}]);
+
+  const chatRoomFindALLs = async () => {
+
+    const pages:Pages = {
+      pageNo: 1,
+      pageSize: 8
+    }
+    const chatRooms = await getChatRoomFindALL(pages);
+    setChatRooms(chatRooms.data);
+  }
+  
+  useEffect(() => {
+    chatRoomFindALLs();
+  }, []);
+  
+  useEffect(() => {
+    console.log('热门聊天室分类--------->', chatRoomData);
+  }, [chatRoomData]);
+
   // 聊天室切换
   const handleTabPress = (tab: string) => {
     console.log('Tab状态' + tab);
@@ -79,28 +70,16 @@ const ChatModule = () => {
       </View>
       <View style={styles.optionStyle}>
         <View style={styles.optionList}>
-          {optionData1.map(item => {
+          {chatRoomData.map(item => {
             return (
               // 
-              <TouchableOpacity style={styles.optionItem} key={item.index} onPress={()=>navigate('ChatHome',item)}
+              <TouchableOpacity style={styles.optionItem} key={item.chatId} onPress={()=>navigate('ChatHome',item)}
               >
-                <Image source={item.icon} style={styles.iconList} accessibilityLabel='图片' alt="头像"></Image>
+                <Image source={{uri:item.chatImg}} style={styles.iconList} accessibilityLabel='图片' alt="网络问题"></Image>
                 <Text allowFontScaling={false} style={styles.optionText}>
-                  <Trans>{item.name}</Trans>
+                  <Trans>{item.chatTitle}</Trans>
                 </Text>
               </TouchableOpacity>
-            )
-          })}
-        </View>
-        <View style={styles.optionList}>
-          {optionData2.map(item => {
-            return (
-              <View style={styles.optionItem} key={item.index}>
-                <Image source={item.icon} style={styles.iconList} accessibilityLabel='图片' alt="头像"></Image>
-                <Text allowFontScaling={false} style={styles.optionText}>
-                  <Trans>{item.name}</Trans>
-                </Text>
-              </View>
             )
           })}
         </View>
@@ -209,22 +188,17 @@ const styles = StyleSheet.create({
     }),
   },
   optionStyle: {
-    ...Platform.select({
-      ios: {
-        width: windowWidth - 36,
-      },
-      android: {
-        width: windowWidth - 32,
-      },
-    }),
+    width:'100%',
     height: 160,
   },
   optionList: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   optionItem: {
-    flex: 1,
+    width:'25%',
+    // flex: 1,
     height: 60,
     color: '#000',
     alignItems: 'center',
