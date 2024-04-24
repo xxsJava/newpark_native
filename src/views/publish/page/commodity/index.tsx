@@ -5,7 +5,7 @@
  */
 import React from "react";
 import { Trans } from 'react-i18next';
-import { Dimensions, Image, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { Alert, Dimensions, Image, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { launchImageLibrary } from 'react-native-image-picker';
 import { Appbar, Button } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -94,11 +94,12 @@ const PublishProducts = () => {
         moneyNumChange(tip)
     }
     const submit = async() => {
+        if(name== "") {
+            Alert.alert('请输入商品名称')
+        }else{}
         const img = AsyncStorage.getItem('img');
         console.log(img,'自己相册里传过来的图片');
-        
          var ava = await AsyncStorage.getItem('ava');
-        //  console.log(ava,'我是用户头像');
         if(ava) {
             setAva(ava)
         }
@@ -108,7 +109,6 @@ const PublishProducts = () => {
             pname:name,
             pdesc: desc,
             pprice:moneyVal,
-            // pimgs:imgs,
             pimgs:"file:///data/user/0/com.newpark_native/cache/rn_image_picker_lib_temp_847def00-895b-4316-8475-9a7fc5a09c12.jpg",
             pstatus:'FORSALE',
             ppubTime: times,
@@ -116,11 +116,9 @@ const PublishProducts = () => {
             pother:other
         }
         // 调取接口
-       const info =await productApip(data);
-       console.log(data);
-       
+        const info =await productApip(data);
+        console.log(data);
         console.log(info,'我是调取接口点击发布的');
-       
     }
     const handleDataFromChild = (data:any) =>{
         setImgs(data)
@@ -198,7 +196,8 @@ const styles = StyleSheet.create({
         borderColor:'#ccc',
         borderBottomWidth:1,
         flexDirection:'row',
-        alignItems:'center'
+        // alignItems:'center'
+
     },
     nameInput:{
         height:45,

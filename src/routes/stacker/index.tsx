@@ -95,49 +95,62 @@ export const BommonTab = () => {
       </Tab.Navigator>
       <View style={styles.tabPub}>
         <TouchableOpacity onPress={() => { setIsVisible(!isVisible) }}>
-          <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片' alt="头像"/>
+          <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片' alt="头像" />
         </TouchableOpacity>
         {
           isVisible ?
-            <View>
+            <View style={{ justifyContent: 'space-between', paddingVertical: 30, paddingHorizontal: 10, width: 340, position: 'absolute', bottom: 63, left: -140, flexDirection: 'row', backgroundColor: '#fff', borderTopLeftRadius: 60, borderTopRightRadius: 60,borderWidth:1 }}>
               <TouchableOpacity onPress={() => navigate('ClockInViewRoute')}>
-                <Animatable.View style={[styles.aniNav1, { display: 'flex', flexDirection: 'row' }]} animation='fadeInLeftBig'>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { marginRight: 6, marginTop: 8 }]}>打卡</Text>
+                <Animatable.View animation='fadeInLeftBig' >
+                  <View style={styles.zhong}>
+                    <Image source={require('../../assets/images/tup/daka.png')} style={{ width: 30, height: 30 }}></Image>
+                    <View>
+                      <Text style={[styles.nav1Text, { marginRight: 6, marginTop: 8 }]}>打卡</Text>
+                    </View>
                   </View>
-                  <View style={[styles.nav1, { backgroundColor: '#26C78C', }]}></View>
                 </Animatable.View>
               </TouchableOpacity>
+
               <TouchableOpacity onPress={() => navigate('PubGood')}>
-                <Animatable.View style={[styles.aniNav3, { display: 'flex', flexDirection: 'row' }]} animation='fadeInLeftBig'>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { marginRight: 3, marginTop: 8 }]}>发布商品</Text>
+                <Animatable.View animation='fadeInLeftBig'>
+                  <View style={styles.zhong}>
+                  <Image source={require('../../assets/images/tup/SHfabushangpin.png')} style={{ width: 30, height: 30 }}></Image>
+                  <View>
+                    <Text style={[styles.nav1Text, { marginRight: 6, marginTop: 8 }]}>发布商品</Text>
                   </View>
-                  <View style={[styles.nav1, { backgroundColor: '#C6C6C6', }]}></View>
+                  </View>
                 </Animatable.View>
               </TouchableOpacity>
+
               <TouchableOpacity onPress={() => navigate('ChatRoom')}>
-                <Animatable.View style={styles.aniNav4} animation='fadeInLeftBig' >
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20, width: 80, marginLeft:'-50%'}}>
-                    <Text style={[styles.nav1Text, { padding: 5,fontSize:12}]}>创建聊天室</Text>
+                <Animatable.View animation='fadeInLeftBig'>
+                  <View style={styles.zhong}>
+                  <Image source={require('../../assets/images/tup/dibuxiaoxiweixuanzhong.png')} style={{ width: 30, height: 30 }}></Image>
+                  <View>
+                    <Text style={[styles.nav1Text, { marginRight: 6, marginTop: 8 }]}>创建聊天室</Text>
                   </View>
-                  <View style={[styles.nav1, { backgroundColor: '#FB4886', }]}></View>
-                </Animatable.View>
-              </TouchableOpacity>
-              {/* <TouchableOpacity  onPress={()=>navigate('Uplode')}> */}
-              <TouchableOpacity onPress={() => navigate('ReleasePost')}>
-                <Animatable.View style={[styles.aniNav5, { display: 'flex', flexDirection: 'row' }]} animation='fadeInRightBig'>
-                  <View style={[styles.nav1, { backgroundColor: '#90C486', }]}></View>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { marginTop: 10 }]}>发布帖子</Text>
                   </View>
                 </Animatable.View>
               </TouchableOpacity>
+
               <TouchableOpacity onPress={() => navigate('Uplode')}>
-                <Animatable.View style={[styles.aniNav2, { display: 'flex', flexDirection: 'row' }]} animation='fadeInRightBig'>
-                  <View style={[styles.nav1, { backgroundColor: '#FBBA3F' }]}></View>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { lineHeight: 44 }]}>发布悬赏</Text>
+                <Animatable.View animation='fadeInLeftBig'>
+                  <View style={styles.zhong}>
+                  <Image source={require('../../assets/images/tup/fabutiezi.png')} style={{ width: 30, height: 30 }}></Image>
+                  <View>
+                    <Text style={[styles.nav1Text, { marginRight: 6, marginTop: 8 }]}>发布帖子</Text>
+                  </View>
+                  </View>
+                </Animatable.View>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigate('Uplode')}>
+                <Animatable.View animation='fadeInLeftBig'>
+                  <View style={styles.zhong}>
+                  <Image source={require('../../assets/images/tup/fabuxuanshangmdpi.png')} style={{ width: 30, height: 30 }}></Image>
+                  <View>
+                    <Text style={[styles.nav1Text, { marginRight: 6, marginTop: 8 }]}>发布悬赏</Text>
+                  </View>
                   </View>
                 </Animatable.View>
               </TouchableOpacity>
@@ -146,20 +159,20 @@ export const BommonTab = () => {
         }
       </View>
 
-        <View style={styles.ld}>
-          <BellView />
-        </View>
-      
+      <View style={styles.ld}>
+        <BellView />
+      </View>
+
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  tabPub:{
-    position:'absolute',
-    bottom: Platform.OS === 'ios'? 50:18,
-    left:windowWidth/2-32,
-    borderWidth:2,
+  tabPub: {
+    position: 'absolute',
+    bottom: Platform.OS === 'ios' ? 50 : 18,
+    left: windowWidth / 2 - 32,
+    borderWidth: 2,
     borderColor: '#F8B032',
     width: 64,
     height: 64,
@@ -171,16 +184,16 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44
   },
-  nav1: {
-    width: 42,
-    height: 42,
-    borderRadius: 50
-  },
-  aniNav1: {
-    position: 'absolute',
-    right: windowWidth / 4 - 10,
-    bottom: 30
-  },
+  // nav1: {
+  //   width: 42,
+  //   height: 42,
+  //   borderRadius: 50
+  // },
+  // aniNav1: {
+  //   position: 'absolute',
+  //   right: windowWidth / 4 - 10,
+  //   bottom: 30
+  // },
   aniNav3: {
     position: 'absolute',
     right: windowWidth / 4 - 34,
@@ -200,7 +213,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     textAlign: 'center',
     fontSize: 14,
-    color: '#FFB700',
+    color: '#000',
     fontWeight: 'bold'
   },
   aniNav2: {
@@ -208,8 +221,12 @@ const styles = StyleSheet.create({
     left: windowWidth / 4,
     bottom: 30
   },
-  ld:{
-    position:'relative',
+  ld: {
+    position: 'relative',
     bottom: '8%'
+  },
+  zhong: {
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

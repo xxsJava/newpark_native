@@ -1,10 +1,18 @@
 import * as React from 'react';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { View } from 'react-native-animatable';
-// import Text from '../text';
+import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const ReqApp = () => {
+const ReqApp = (item:any) => {
+    // const [status,setStatus] = React.useState('无')
+    const res = item.route.params;
+    console.log(res,'新的好友请求传过来的');
+
+    if(item){
+        // setStatus('通过')
+    }
+
     const [searchQuery, setSearchQuery] = React.useState('');
     const listPeople = [
         {
@@ -12,39 +20,41 @@ const ReqApp = () => {
             name: '联系人1',
             agree: true,
             index: 0,
-            validation:'hello'
+            validation: 'hello'
         },
         {
             avatar: require('../../../assets/images/tup/l2.png'),
             name: '联系人2',
             agree: false,
             index: 1,
-            validation:''
+            validation: ''
         },
         {
             avatar: require('../../../assets/images/tup/ppy.png'),
             name: '联系人3',
             agree: false,
             index: 2,
-            validation:'加个好友吧'
+            validation: '加个好友吧'
         }
-    ]
+    ];
+    console.log(item.route,'====');
+    
     return (
-
-        <View style={{ paddingHorizontal: 20 }}>
-            <View>
+        <View style={{ width: windowWidth, height: windowHeight }}>
+            <View style={{ backgroundColor: '#fff' }}>
                 <View style={{ marginVertical: 20, backgroundColor: '#F8F8F8', padding: 10 }}>
                     <Text style={styles.newReq}>新的好友请求</Text>
                 </View>
                 <View>
                     {
                         listPeople.map(item => {
+                            // const [res,setRes] = React.useState(undefined);
                             return (
                                 <TouchableOpacity key={item.index} style={{ backgroundColor: '#fff', padding: 7, borderBottomWidth: 1, borderColor: '#ccc', }}>
                                     <View style={styles.heng}>
                                         <View >
                                             <Image
-                                                style={[styles.tinyLogo, { width: windowWidth * 0.14 }]}
+                                                style={styles.tinyLogo}
                                                 source={item.avatar}
                                                 accessibilityLabel='图片'
                                                 alt="头像"
@@ -53,25 +63,22 @@ const ReqApp = () => {
                                         <View style={[styles.heng, { width: windowWidth * 0.67, justifyContent: 'space-between', marginHorizontal: 20, alignItems: 'center' }]}>
                                             <View>
                                                 <Text style={styles.name}>{item.name}</Text>
-                                                <Text>申请添加您为好友</Text>
+                                                <Text style={{ color: '#000',fontSize:12 }}> {item.validation}</Text>
                                             </View>
                                             <View style={styles.heng}>
-                                                <TouchableOpacity style={styles.boxAgg} onPress={() => { console.log(item.index + '点击了' + '同意') }}>
-                                                    <Text style={styles.textAgg}>同意</Text>
+                                                {/*  */}
+                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}}  style={res != '通过' && res != '拒绝' ? [styles.boxAgg,{borderWidth:1,borderColor:'#4C8ACD',borderRadius:3}]:{display:'none'}}>
+                                                    <Text style={[styles.textAgg,{color:'#4C8ACD'}]}>接受</Text>
                                                 </TouchableOpacity>
-
-                                                <TouchableOpacity style={styles.boxRef} onPress={() => { console.log(item.index + '点击了' + '拒绝') }}>
-                                                    <Text style={styles.textRef}>拒绝</Text>
+                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}}  style={res == '通过'? [styles.boxAgg,{borderWidth:0}] : {display:'none'}}>
+                                                    <Text style={styles.textAgg}>打招呼</Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}} style={res == '拒绝'? [styles.boxAgg,{borderWidth:0}] : {display:'none'}}>
+                                                    <Text style={[styles.textAgg,{color:'#999'}]}>未通过</Text>
                                                 </TouchableOpacity>
                                             </View>
                                         </View>
-
                                     </View>
-                                    <View style={[{marginLeft:25,marginTop:8},styles.heng]}>
-                                        <Text style={{fontSize:14}}>验证消息:</Text>
-                                        <Text style={{color:'#000'}}> {item.validation}</Text>
-                                    </View>
-
                                 </TouchableOpacity>
                             )
                         })
@@ -93,22 +100,22 @@ const styles = StyleSheet.create({
         color: '#000'
     },
     newReq: {
-        fontSize: 20,
-        fontWeight: 'bold'
+        fontSize: 13,
+        fontWeight: 'bold',
+        marginLeft: 16
     },
     boxAgg: {
-        borderWidth: 4,
-        borderColor: 'green',
-        width: 50,
-        height: 30,
-        marginRight: 8
+        borderWidth: 1,
+        borderColor: '#4C8ACD',
+        borderRadius:3
     },
     textAgg: {
         textAlign: 'center',
-        color: 'green',
+        color: '#333',
         lineHeight: 25,
-        fontSize: 15,
-        fontWeight: 'bold'
+        fontSize: 12,
+        marginHorizontal:12,
+        fontWeight:'bold'
     },
     boxRef: {
         borderWidth: 4,
@@ -126,12 +133,14 @@ const styles = StyleSheet.create({
     name: {
         color: 'black',
         lineHeight: 20,
-        fontSize: 15
+        fontSize: 13,
+        marginBottom:3
     },
     tinyLogo: {
-        width: 50,
-        height: 50,
-        marginBottom: 10
+        width:windowWidth * 0.16,
+        height: windowHeight * 0.05,
+        marginBottom: 10,
+        borderRadius:90
     },
     heng: {
         display: 'flex',

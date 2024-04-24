@@ -24,8 +24,6 @@ import {PinyinUtil} from '../../../config/routs-config/StackerRout/pinyin';
 // 出现冲突地方二
 // import { contextListJson } from '../../../api/imApi/type';
 
-// import { pinyin } from 'pinyin';
-
 
 
 import { contextListJson } from '../../../api/imApi/type';
@@ -66,9 +64,6 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   }
 
   const listData = async () => {
-
-  // const pinyinArray = pinyin('张', { style: pinyin.STYLE_NORMAL });
-    // console.log(pinyinArray);
     
     const contentsJson = contextListJson;
     const ListDataAPI = await getUseList(contentsJson);
@@ -120,23 +115,6 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
     </View>
   );
 };
-
-// const data:DataSection[] = resultArray;
-
-const data: DataSection[] = [
-  {
-    title: 'A',
-    data: [
-      {
-        name: '牛友名称11',
-        labelText: '牛友',
-        color: 1,
-        lableType: 1,
-        icon: false,
-      }
-    ],
-  },
-];
 
 const ListIndex: React.FC = () => {
   const toast = useToast();

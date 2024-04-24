@@ -461,9 +461,6 @@ const styles = StyleSheet.create({
   addStyle: {
     width: 60,
     height: 60,
-    // bottom:-20,
-    // right: 20,
-    // position: 'absolute',
     zIndex: 10,
   },
   scrollStyle: {
@@ -566,7 +563,6 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 17,
     borderRadius: 10,
-    // marginHorizontal: 20,
     marginTop: 20,
 
   },

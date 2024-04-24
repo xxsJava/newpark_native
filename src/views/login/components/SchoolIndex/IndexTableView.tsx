@@ -18,18 +18,8 @@ import {
 } from 'react-native';
 import { getFriendList, getUseList } from '../../../../api/imApi/index';
 import { navigate } from '../../../../config/routs/NavigationContainer';
-// 出现冲突地方一
-// import { getUseList } from '../../../api/imApi/index';
 import {PinyinUtil} from '../../../../config/routs-config/StackerRout/pinyin';
-// 出现冲突地方二
-// import { contextListJson } from '../../../api/imApi/type';
 import {selSchoolApi} from '../../../../api/sys/reg/index';
-import {selectSchoolType} from '../../../../api/sys/reg/types';
-// import { pinyin } from 'pinyin';
-
-
-
-import { contextListJson } from '../../../../api/imApi/type';
 import Storage from '../../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -46,61 +36,6 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
-
-  // 联系人列表
-  const [ListData1, setListData] = React.useState();
-
-  const friendList = async () => {
-    const uId = await Storage.get('usr-uId');
-    const params = {
-      "userID": uId,
-      "pagination": {
-        "pageNumber": 1,
-        "showNumber": 50
-      }
-    };
-    const friendLists = await getFriendList(params);
-
-    console.log('参数--------->',uId);
-    console.log('好友数据----------->',friendLists)
-    
-  }
-
-  const listData = async () => {
-
-  // const pinyinArray = pinyin('张', { style: pinyin.STYLE_NORMAL });
-    // console.log(pinyinArray);
-    
-    const contentsJson = contextListJson;
-    const ListDataAPI = await getUseList(contentsJson);
-    const list = ListDataAPI.data.users;
-    console.log('ListDataAPI 在这里', list);
-
-    let groupArray = list.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
-      console.log(result,'这个是结果');
-      
-      let firstLetter = currentValue.nickname.charAt(0);
-      console.log(currentValue.nickname,firstLetter,'firstLetter');
-      
-      if (!result[firstLetter]) {
-        result[firstLetter] = {
-          title: firstLetter,
-          data: []
-        };
-      }
-      result[firstLetter].data.push(currentValue);
-      return result;
-    }, {});
-    // 转换结果为数组形式
-    let resultArray:DataSection[] = Object.values(groupArray);
-    console.log('这是转化后的值', resultArray);
-    // setListData(resultArray);
-  }
-
-  React.useEffect(() => {
-    listData();
-    friendList();
-  }, []); // 只在组件挂载时调用一次
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -122,10 +57,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   );
 };
 
-// const data:DataSection[] = resultArray;
-
-
-const schoolData: React.FC = () => {
+const SchoolData: React.FC = () => {
   const toast = useToast();
   //选中的索引值
   const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
@@ -136,7 +68,8 @@ const schoolData: React.FC = () => {
 
   const renderItem = ({ item }: { item: DataItem }) => (
     <TouchableOpacity
-      onPress={() => navigate('ObjCard')}
+      onPress={() => {console.log(item.schoolId);
+      }}
       style={[
         styles.listItem,
         {
@@ -170,7 +103,9 @@ const schoolData: React.FC = () => {
   const pre = (num: number) => {
     let pre = 0;
     for (let i = 0; i < num; i++) {
-      pre += peopData[i].data.length;
+      // console.log(peopData[i].data.length,'这个是'+ [i]);
+      
+      // pre += peopData[i].data.length;
     }
     return pre;
   };
@@ -190,7 +125,7 @@ const schoolData: React.FC = () => {
   const handleSectionSelect = (index: number) => {
 
     setSelectedSectionIndex(index);
-
+    console.log(index,'=====');
     //一个分组的高度
     // item * 子元素的数量 + 标题 + 间隙 * 索引条下标 + (索引下标+偏移值)
     let nodeSum = pre(index);
@@ -250,15 +185,15 @@ const schoolData: React.FC = () => {
       }
     }
     // console.log(sum() , '一共有这些子元素');
-    console.log(pre(1)); //13
+    console.log(pre(1),'这个是我的num数据'); //13
   };
-// 
+
   const [peopData,setPeopleData] = React.useState([]);
 
 // 展示列表
 const listData = async () => {
 
-    const contentsJson = contextListJson;
+    // const contentsJson = contextListJson;
     const param = {
       schoolCode:'',
       schoolName:''
@@ -288,26 +223,26 @@ const listData = async () => {
    
     // 转换结果为数组形式
     let resultArray: DataSection[] = Object.values(groupArray);
-    // // 根据对象的name属性进行升序排序
+  // 根据对象的name属性进行升序排序
     resultArray.sort((a, b) => (a.title > b.title) ? 1 : -1);
-    setPeopleData(resultArray)
-    // console.log('这是转化后的值', resultArray);
+    setPeopleData(resultArray);
     setrefsh(false)
     // for (let i = 0; i < resultArray.length; i++) {
     //   resultArray[i].title.sort();
     //   console.log(resultArray[i].title.sort(),'---------');
-      
     // }
   
   }
   React.useEffect(() => {
     listData();
+    num('江西师范大学')
   }, []); // 只在组件挂载时调用一次
   const [refsh,setrefsh] = useState(true);
   return (
     <View style={{ flex: 1, marginTop: 10 }}>
       {/* 这个是索引条 */}
       <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
+      <Text>99999</Text>
       <SectionList
         ref={sectionListRef}
         sections={peopData}
@@ -326,7 +261,7 @@ const listData = async () => {
   );
 };
 
-export default schoolData;
+export default SchoolData;
 
 const styles = StyleSheet.create({
   indexBarStyle: {
@@ -336,20 +271,20 @@ const styles = StyleSheet.create({
     right: 5,
     ...Platform.select({
       ios: {
-        top: 0,
+        top: 0
       },
       android: {
-        top: 10,
+        top: 10
       },
     }),
   },
   itemBar: {
     ...Platform.select({
       ios: {
-        paddingBottom: 2,
+        paddingBottom: 2
       },
       android: {
-        padding: 0,
+        padding: 0
       },
     }),
   },
@@ -360,42 +295,22 @@ const styles = StyleSheet.create({
     borderLeftWidth: 8,
     backgroundColor: '#FFF',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  itemLeft: {
-    width: 90,
-    height: 90,
-    alignItems: 'center',
-    paddingTop: 15,
-    paddingHorizontal: 5,
+    justifyContent: 'space-around'
   },
   itemRight: {
     width: windowWidth - 90,
     height: 90,
     paddingLeft: 5,
-    paddingTop: 35,
-  },
-  avatarStyle: {
-    width: 60,
-    height: 60,
-    borderColor: '#999',
-    borderWidth: 1,
-    borderRadius: 30,
+    paddingTop: 35
   },
   itemName: {
-    color: '#000',
+    color: '#000'
   },
   itemLabelStyle: {
     height: 40,
     marginTop: -2,
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  labelText: {
-    fontSize: 12,
-    color: '#000',
-    lineHeight: 15,
-    marginLeft: 4,
+    justifyContent: 'flex-start'
   }
 });

@@ -6,6 +6,7 @@
  * @Description: desc
  */
 // 测试选择学校
+import NewApply from '../../../views/socializing/add/NewApply';
 import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
 import GroupMessage from '../../../views/socializing/check/GroupMessage';
 import OrderDetails from '../../../views/mine/components/service/OrderDetails';
@@ -100,6 +101,13 @@ export default {
       title:'学校选择'
     },
   },
+  NewApply:{
+    component: NewApply,
+    options: {
+      title: '新的好友请求',
+      headerTitleAlign: 'center'
+    },
+  },
   AddNewAddress:{
     component: AddNewAddress,
      options: {
@@ -141,7 +149,7 @@ export default {
     component: GroupChat,
      options: {
       headerShown: false,
-    title: '群聊页面',
+      title: '群聊页面',
      },
   },
   Black: {
@@ -184,7 +192,7 @@ export default {
     component: Apply,
     options: {
    //   headerShown: false,
-   title: '好友申请',
+   title: '新的好友',
     },
   },
   OrderDetails:{
