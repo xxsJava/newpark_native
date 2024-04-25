@@ -4,9 +4,9 @@
  * 作者:zhn
  * 修改时间:2024/2/22 16:10:11
  */
-import { AddIcon, Button, ButtonIcon, ButtonText, CloseIcon, Heading, Icon, Input, InputField, InputIcon, InputSlot, Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, SearchIcon } from '@gluestack-ui/themed';
+import { AddIcon, Button, ButtonIcon, ButtonText, CloseIcon, Heading, Icon, Input, InputField, InputIcon, InputSlot, Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, SearchIcon, Toast, ToastDescription, useToast } from '@gluestack-ui/themed';
 import React, { useState } from 'react';
-import { Alert, Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { accountCheck, addFriend } from '../../../api/imApi';
 import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
@@ -22,15 +22,9 @@ const AddPeople = () => {
     const [writremark, setWritremark] = useState(true);
     const ref = React.useRef(null)
     const [context,setConText] = useState('');
+    const toast = useToast()
 
     const [onFriend,setFriend] = useState(false);
-    // 弹出提示框
-    const tipBox = () => {
-        Alert.alert(
-            '提示',
-            '已发送验证消息，请稍后！！！'
-        )
-    };
 
     //发送好友申请参数
     const friendParam:any = {
@@ -72,6 +66,21 @@ const AddPeople = () => {
         
         if(result.errCode == 0){
             console.log('已发送好友申请');
+            toast.show({
+                placement: "top",
+                render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                        <Toast nativeID={toastId} action="success" variant="solid">
+                            <ToastDescription>
+                                已发送好友申请
+                            </ToastDescription>
+                        </Toast>
+                    )
+                }
+            })    
+            setShowmtk(false);
+            setFriend(false);
         }
     }
 
