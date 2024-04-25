@@ -225,6 +225,9 @@ const ProductView = () => {
           keyExtractor={(item, index) => index.toString()}
 
         />
+        <TouchableOpacity style={{width:90,height:90,backgroundColor:'aqua'}} onPress={()=>navigate('JiaoyiData')}>
+        <Text>测试flatList列表使用</Text>
+      </TouchableOpacity>
       </View>
     </View>
   );
