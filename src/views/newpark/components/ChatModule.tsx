@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 import {
   Dimensions,
@@ -12,11 +13,14 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { getChatRoomFindALL } from '../../../api/sys/newpark';
+import { Pages } from '../../../api/sys/newpark/types';
 import { navigate } from '../../../config/routs/NavigationContainer';
 import {chatRoom} from '../../../api/sys/team/index';
 import {chatRoomType} from '../../../api/sys/team/type';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 const glideData = [{
   index: 1,
   title: '某秘密聊天室1',
@@ -30,27 +34,35 @@ const glideData = [{
 ]
 
 const ChatModule = () => {
+
   const [isPlay,setisPlay] = React.useState(false);
   const [tabVal, setTab] = React.useState('tab1');
+  const [chatRoomData,setChatRooms] = useState([{}]);
+
+  const chatRoomFindALLs = async () => {
+
+    const pages:Pages = {
+      pageNo: 1,
+      pageSize: 8
+    }
+    const chatRooms = await getChatRoomFindALL(pages);
+    setChatRooms(chatRooms.data);
+  }
+  
+  useEffect(() => {
+    chatRoomFindALLs();
+  }, []);
+  
+  useEffect(() => {
+    console.log('热门聊天室分类--------->', chatRoomData);
+  }, [chatRoomData]);
+
   // 聊天室切换
   const handleTabPress = (tab: string) => {
     console.log('Tab状态' + tab);
     setTab(tab);
   };
   const [listRes,setlistRes] = React.useState([]);
-  const start = async() => {
-    const data1:chatRoomType = {
-      pageNo:2,
-      pageSize:4
-    }
-    const list1 = await chatRoom(data1);
-    const list1Data = list1.data;
-    console.log(list1Data,'这个是我获取到的数据');
-    setlistRes(list1Data)
-  };
-  React.useEffect(() => {
-    start()
-  },[])
   return (
     <View style={styles.scrollStyle}>
       <View style={styles.topStyle}>
@@ -60,31 +72,17 @@ const ChatModule = () => {
       </View>
       <View style={styles.optionStyle}>
         <View style={styles.optionList}>
-          {listRes.map(item => {
+          {chatRoomData.map(item => {
             return (
-              // 
-              <TouchableOpacity style={styles.optionItem} key={item.chatSort} onPress={()=>navigate('ChatHome',item)}
-              >
-                <Image source={{uri:item.chatImg}} style={styles.iconList} accessibilityLabel='图片' alt="头像"></Image>
+              <TouchableOpacity style={styles.optionItem} key={item.chatId} onPress={()=>navigate('ChatHome',item)} >
+                <Image source={{uri:item.chatImg}} style={styles.iconList} accessibilityLabel='图片' alt="网络问题"></Image>
                 <Text allowFontScaling={false} style={styles.optionText}>
                   <Trans>{item.chatTitle}</Trans>
                 </Text>
               </TouchableOpacity>
             )
           })}
-        </View>
-        {/* <View style={styles.optionList}>
-          {optionData2.map(item => {
-            return (
-              <View style={styles.optionItem} key={item.index}>
-                <Image source={item.icon} style={styles.iconList} accessibilityLabel='图片' alt="头像"></Image>
-                <Text allowFontScaling={false} style={styles.optionText}>
-                  <Trans>{item.name}</Trans>
-                </Text>
-              </View>
-            )
-          })}
-        </View> */}
+          </View>
       </View>
       <View style={styles.glideStyle}>
       </View>
@@ -134,7 +132,8 @@ const ChatModule = () => {
                   </View>
                 </View>
                 <View style={styles.glideItemRight}>
-                  <TouchableOpacity style={styles.glideButton} onPress={() => navigate('')}>
+                  {/* onPress={() => navigate('')} */}
+                  <TouchableOpacity style={styles.glideButton} >
                     <Text allowFontScaling={false} style={styles.buttonText}>前往聊天室</Text>
                   </TouchableOpacity>
                 </View>
@@ -190,14 +189,7 @@ const styles = StyleSheet.create({
     }),
   },
   optionStyle: {
-    ...Platform.select({
-      ios: {
-        width: windowWidth - 36,
-      },
-      android: {
-        width: windowWidth - 32,
-      },
-    }),
+    width:'100%',
     height: 160,
   },
   optionList: {
@@ -206,6 +198,10 @@ const styles = StyleSheet.create({
     flexWrap:'wrap'
   },
   optionItem: {
+    flexWrap: 'wrap',
+  },
+  optionItem: {
+    width:'25%',
     // flex: 1,
     height: 60,
     color: '#000',
