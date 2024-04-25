@@ -184,43 +184,6 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44
   },
-  // nav1: {
-  //   width: 42,
-  //   height: 42,
-  //   borderRadius: 50
-  // },
-  // aniNav1: {
-  //   position: 'absolute',
-  //   right: windowWidth / 4 - 10,
-  //   bottom: 30
-  // },
-  aniNav3: {
-    position: 'absolute',
-    right: windowWidth / 4 - 34,
-    bottom: 83
-  },
-  aniNav4: {
-    position: 'absolute',
-    right: 0,
-    bottom: 100
-  },
-  aniNav5: {
-    position: 'absolute',
-    right: windowWidth / 4 - 210,
-    bottom: 83
-  },
-  nav1Text: {
-    alignContent: 'center',
-    textAlign: 'center',
-    fontSize: 14,
-    color: '#000',
-    fontWeight: 'bold'
-  },
-  aniNav2: {
-    position: 'absolute',
-    left: windowWidth / 4,
-    bottom: 30
-  },
   ld: {
     position: 'relative',
     bottom: '8%'
@@ -228,5 +191,9 @@ const styles = StyleSheet.create({
   zhong: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  nav1Text:{
+    fontSize:13,
+    color:'#000'
   }
 });

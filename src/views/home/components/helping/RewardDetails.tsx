@@ -4,7 +4,7 @@
  * 创建时间:2023/12/11 14:54:11
  */
 
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Trans } from 'react-i18next';
 import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View,TextInput } from "react-native";
 import { Appbar, Button, Icon } from 'react-native-paper';
@@ -12,14 +12,22 @@ import { dateToMsgTime } from "../../../../components/Rests/TconTime";
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import StepBar from '../StepBar';
 import DateTimeUtils from '../../../../utils/DateTimeUtils';
+import { red } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const RewardDetails = ({route}:any) => {
+    const [standing,setStanding] = React.useState(2)
+    const [status,setStatus] = useState(2);
+    // setStatus(3);
     console.log(route,'这个是跳转过来的数据-----');
     const data = route.params.item
-    console.log('data数据',data)
+    console.log('data数据',data);
+    // 这个是为了看悬赏的状态测试的
+    React.useEffect(() => {
+        setStatus(1)
+    },[])
     return(
         <View style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
@@ -43,7 +51,9 @@ const RewardDetails = ({route}:any) => {
                             </View>
                             <View style={styles.statusView}>
                                 <View style={[styles.statusStyle,styles.statusColor1]}>
-                                    <Text allowFontScaling={false} style={styles.statusText}>未结算</Text>
+                                <Text allowFontScaling={false} style={status == 1 ? styles.statusText : {display:'none'}}>发布</Text>
+                                <Text allowFontScaling={false} style={status == 2 ? styles.statusText : {display:'none'}}>进行中</Text>
+                                <Text allowFontScaling={false} style={status == 3 ? styles.statusText : {display:'none'}}>完成</Text>
                                 </View>
                             </View>
                         </View>
@@ -56,34 +66,72 @@ const RewardDetails = ({route}:any) => {
                                 <Text allowFontScaling={false} style={styles.sumText}>2.<Text style={{fontSize:13}}>50</Text></Text>
                             </View>
                         </View>
-                        <View style={styles.detailsView}>
-                            <View style={styles.remarksView}>
-                                <Text allowFontScaling={false} style={styles.remarksTitle}>备注</Text>
-                                {/* <Text style={styles.remarksText}>{data.rdesc?data.rdesc:'小件/取件码/接单可查看具体信息'}</Text> */}
-                                <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='小件/取件码/接单可查看具体信息' autoCorrect={false} keyboardAppearance='dark' multiline={true}></TextInput>
+                        
+
+                       <View style={{padding:20,margin:12,backgroundColor:'#FABA3C',borderRadius:12}}>
+                       <View style={{backgroundColor:'#fff',borderRadius:12,}}>
+                       <View style={{justifyContent:'space-between',width:'100%',alignItems:'center',padding:8,flexDirection:'row'}}>
+                            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                                <View>
+                                    <Image source={require('../../../../assets/images/tup/ppy.png')} style={{width:45,height:45,borderRadius:90}}></Image>
+                                </View>
+                                <View style={{flexDirection:'column',marginLeft:8}}>
+                                    <View>
+                                        <Text>刘毅</Text>
+                                    </View>
+                                    <View style={{flexDirection:'row'}}>
+                                        <Text style={{fontSize:10}}>百夫长 ｜ 渚天府 </Text>
+                                        <Text style={{fontSize:10,marginLeft:4}}>采纳率</Text>
+                                        <Text style={{fontSize:10,color:'red',marginLeft:2}}>90%</Text>
+                                    </View>
+                                </View>
                             </View>
-                            <View style={[styles.remarksView,{marginTop:5}]}>
-                                <Text allowFontScaling={false} style={styles.remarksTitle}>完成时限</Text>
-                                <Text style={styles.remarksText}>{DateTimeUtils.formattedDateTime(data.endTime)}</Text>
-                                {/* <TextInput allowFontScaling={false} style={styles.remarksInput} selectionColor='#FABA3C' placeholder='半个小时后' autoCorrect={false}></TextInput> */}
+                            <View style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
+                                <View>
+                                    <Text style={{color:'red',fontSize:16}}>¥50</Text>
+                                </View>
+                                <View>
+                                    <Text style={{color:'red',fontSize:13}}>悬赏金额</Text>
+                                </View>
                             </View>
                         </View>
-                        <View style={styles.lineView}>
-                            <View style={styles.lineStyle}></View>
-                            <Text allowFontScaling={false} style={styles.lineText}>订单状态</Text>
-                            <View style={styles.lineStyle}></View>
+                        <View style={{padding:12}}>
+                                <Text style={{fontSize:13,padding:4}}>
+                                    什么是白狼府  什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府
+                                    什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府
+                                    什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府
+                                    什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府 什么是白狼府
+                                </Text>
+                                <View style={{flexDirection:'row'}}>
+                                    <View style={{backgroundColor:'#eee',padding:3,borderRadius:3,marginHorizontal:6}}>
+                                        <Text style={{color:'#999',fontSize:11}}>#国家#</Text>
+                                    </View>
+                                    <View style={{backgroundColor:'#eee',padding:3,borderRadius:3,marginHorizontal:6}}>
+                                        <Text style={{color:'#999',fontSize:11}}>#人才#</Text>
+                                    </View>
+                                    <View style={{backgroundColor:'#eee',padding:3,borderRadius:3,marginHorizontal:6}}>
+                                        <Text style={{color:'#999',fontSize:11}}>#采购#</Text>
+                                    </View>
+                                </View>
                         </View>
-                        <View style={styles.stepBarView}>
-                            <StepBar></StepBar>
-                        </View>
+                       </View>
+                       </View>
+                       
                         <Text allowFontScaling={false} style={styles.schollText}>湖南长沙理工大学</Text>
                     </View>
                 </ScrollView>
             </View>
-            <View style={styles.gd}>
-            {/* ProductChat    TakeOrderPartRoute */}
-                    <Button style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('ProductChatRoute')}>联系接单人</Button>
+            <View style={{width:windowWidth,alignItems:"center",justifyContent:'center',height:200}}>
+                    <Button style={standing == 1 ? styles.buttonStyle : {display:'none'}} labelStyle={styles.buttonText} onPress={() => navigate('ProductChatRoute')}>联系发单人</Button>
+                    <View style={standing == 2 ? {flexDirection:'row'}: {display:'none'}}>
+                        <TouchableOpacity style={{height:40,width:'35%',backgroundColor:'#fff',borderTopLeftRadius:30,borderBottomLeftRadius:30}}>
+                            <Text style={{color:'red',textAlign:'center',lineHeight:40,fontWeight:'bold',fontSize:15}}>撤销任务</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{height:40,width:'35%',backgroundColor:'red',borderTopRightRadius:30,borderBottomEndRadius:30}}>
+                            <Text style={{color:'#fff',textAlign:'center',lineHeight:40,fontWeight:'bold',fontSize:15}}>分享</Text>
+                        </TouchableOpacity>
                     </View>
+            </View>
         </View>
     )
 }
@@ -111,10 +159,10 @@ const styles = StyleSheet.create({
         width:windowWidth,
         ...Platform.select({
             ios:{
-                height:windowHeight-90,
+                height:windowHeight-200,
             },
             android:{
-                height:windowHeight-75,
+                height:windowHeight-200,
             }
         })
     },
@@ -133,15 +181,13 @@ const styles = StyleSheet.create({
         width:windowWidth,
         height:90,
         flexDirection:'row',
-        justifyContent:'space-between',
-        // backgroundColor:'green'
+        justifyContent:'space-between'
     },
     avatarView:{
         width:'22%',
         height:90,
         position:'relative',
-        alignItems:'center',
-        // backgroundColor:'yellow'
+        alignItems:'center'
     },
     avatarStyle:{
         width:66,
@@ -190,9 +236,6 @@ const styles = StyleSheet.create({
     statusColor1:{
         backgroundColor:'#F67C8F'
     },
-    statusColor2:{
-        backgroundColor:'#76D7AD'
-    },
     statusText:{
         fontSize:17,
         color:'#fff',
@@ -204,8 +247,7 @@ const styles = StyleSheet.create({
         height:50,
         paddingHorizontal:20,
         flexDirection:'row',
-        justifyContent:'space-between',
-        // backgroundColor:'green'
+        justifyContent:'space-between'
     },
     contcentText1:{
         fontSize:16,
@@ -226,130 +268,6 @@ const styles = StyleSheet.create({
         color:'#ED405E',
         lineHeight:50
     },
-    detailsView:{
-        width:windowWidth-30,
-        // height:280,
-        marginTop:20,
-        marginHorizontal:15,
-        borderRadius:10,
-        backgroundColor:'#F1F1F1',
-        paddingVertical:8
-    },
-    detailsTop:{
-        width:'100%',
-        height:50,
-        marginTop:20,
-        paddingHorizontal:30,
-        // backgroundColor:'red',
-        flexDirection:'row',
-        justifyContent:'space-between'
-    },
-    addressTitle:{
-        flexDirection:'row',
-        justifyContent:'flex-start'
-    },
-    addressImage:{
-        width:26,
-        height:26,
-        marginTop:10
-    },
-    addressText:{
-        fontSize:14,
-        color:'#000',
-        lineHeight:50
-    },
-    addressView:{
-        height:30,
-        paddingHorizontal:25,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        // backgroundColor:'red'
-    },
-    addressText1:{
-        fontSize:14,
-        color:'#008ACC',
-        lineHeight:30,
-        textDecorationLine: 'underline'
-    },
-    remarksView:{
-        width:'100%',
-        // height:70,
-        marginTop:20,
-        paddingHorizontal:25,
-        // backgroundColor:'pink'
-    },
-    remarksTitle:{
-        fontSize:16,
-        color:'#000',
-        fontWeight:'bold',
-        lineHeight:25,
-        
-    },
-    remarksInput:{
-        // height:40,
-        paddingHorizontal:10,
-        backgroundColor:'#fff',
-        color:'#000',
-        borderRadius:0
-    },
-    remarksText:{
-        // height:40,
-        fontSize:15,
-        color:'#000',
-        // lineHeight:40,
-        // paddingHorizontal:10,
-
-    },
-    takingOrders:{
-        width:windowWidth-30,
-        height:50,
-        marginTop:15,
-        marginHorizontal:15,
-        borderColor:'#5CD1A1',
-        borderLeftWidth:2,
-        // backgroundColor:'pink',
-        flexDirection:'row',
-        justifyContent:'flex-start'
-    },
-    takingOrdersText1:{
-        fontSize:16,
-        color:'#000',
-        lineHeight:50,
-        marginLeft:15
-    },
-    takingOrdersText2:{
-        fontSize:14,
-        color:'#008ACC',
-        lineHeight:50,
-        marginLeft:15,
-        textDecorationLine: 'underline'
-    },
-    lineView:{
-        width:windowWidth,
-        height:20,
-        marginTop:20,
-        paddingHorizontal:40,
-        flexDirection:'row',
-        justifyContent:'center',
-        // backgroundColor:'pink'
-    },
-    lineStyle:{
-        width:100,
-        height:1,
-        borderColor:'#bbb',
-        borderBottomWidth:1,
-        marginTop:10,
-        marginHorizontal:15
-    },
-    lineText:{
-        fontSize:14,
-        color:'#000',
-        fontWeight:'bold',
-        lineHeight:20
-    },
-    stepBarView:{
-        marginTop:30
-    },
     schollText:{
         fontSize:14,
         color:'#bbb',
@@ -365,20 +283,12 @@ const styles = StyleSheet.create({
         marginTop:40,
         marginBottom:20,
         marginHorizontal:'15%',
-        backgroundColor:'#FABA3C',
-        position:'absolute',
-        bottom:10
+        backgroundColor:'#FABA3C'
     },
     buttonText:{
         fontSize:16,
         color:'#fff',
         fontWeight:'bold',
         lineHeight:25
-    },
-    gd:{
-        position:'absolute',
-        width:windowWidth,
-        height:windowHeight,
-        // backgroundColor:'red'
     }
 })

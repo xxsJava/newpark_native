@@ -94,7 +94,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   React.useEffect(() => {
     listData();
     friendList();
-  }, []); // 只在组件挂载时调用一次
+  }); // 只在组件挂载时调用一次
   //索引条
   return (
     <View style={styles.indexBarStyle}>

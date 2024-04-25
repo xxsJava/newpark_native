@@ -68,6 +68,7 @@ const HelpCircleView = () => {
                         </View>
                     </TouchableOpacity>
 
+
                     <TouchableOpacity onPress={() => {
                         setTimes(!times); console.log(times, '这个是新发布');
                     }} style={{ flexDirection: 'row', margin: 12 }}>

@@ -13,43 +13,10 @@ import {
   View
 } from 'react-native';
 import { navigate } from '../../../config/routs/NavigationContainer';
-
+import {chatRoom} from '../../../api/sys/team/index';
+import {chatRoomType} from '../../../api/sys/team/type';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const optionData1 = [{
-  index: 1,
-  name: 'newPatkOption.optionName1',
-  icon: require('../../../assets/images/chatroomicon01.png')
-}, {
-  index: 2,
-  name: 'newPatkOption.optionName2',
-  icon: require('../../../assets/images/chatroomicon02.png')
-}, {
-  index: 3,
-  name: 'newPatkOption.optionName3',
-  icon: require('../../../assets/images/chatroomicon03.png')
-}, {
-  index: 4,
-  name: 'newPatkOption.optionName4',
-  icon: require('../../../assets/images/chatroomicon04.png')
-}];
-const optionData2 = [{
-  index: 1,
-  name: 'newPatkOption.optionName5',
-  icon: require('../../../assets/images/chatroomicon05.png')
-}, {
-  index: 2,
-  name: 'newPatkOption.optionName6',
-  icon: require('../../../assets/images/chatroomicon06.png')
-}, {
-  index: 3,
-  name: 'newPatkOption.optionName7',
-  icon: require('../../../assets/images/chatroomicon07.png')
-}, {
-  index: 4,
-  name: 'newPatkOption.optionName8',
-  icon: require('../../../assets/images/chatroomicon08.png')
-}]
 const glideData = [{
   index: 1,
   title: '某秘密聊天室1',
@@ -70,6 +37,20 @@ const ChatModule = () => {
     console.log('Tab状态' + tab);
     setTab(tab);
   };
+  const [listRes,setlistRes] = React.useState([]);
+  const start = async() => {
+    const data1:chatRoomType = {
+      pageNo:2,
+      pageSize:4
+    }
+    const list1 = await chatRoom(data1);
+    const list1Data = list1.data;
+    console.log(list1Data,'这个是我获取到的数据');
+    setlistRes(list1Data)
+  };
+  React.useEffect(() => {
+    start()
+  },[])
   return (
     <View style={styles.scrollStyle}>
       <View style={styles.topStyle}>
@@ -79,20 +60,20 @@ const ChatModule = () => {
       </View>
       <View style={styles.optionStyle}>
         <View style={styles.optionList}>
-          {optionData1.map(item => {
+          {listRes.map(item => {
             return (
               // 
-              <TouchableOpacity style={styles.optionItem} key={item.index} onPress={()=>navigate('ChatHome',item)}
+              <TouchableOpacity style={styles.optionItem} key={item.chatSort} onPress={()=>navigate('ChatHome',item)}
               >
-                <Image source={item.icon} style={styles.iconList} accessibilityLabel='图片' alt="头像"></Image>
+                <Image source={{uri:item.chatImg}} style={styles.iconList} accessibilityLabel='图片' alt="头像"></Image>
                 <Text allowFontScaling={false} style={styles.optionText}>
-                  <Trans>{item.name}</Trans>
+                  <Trans>{item.chatTitle}</Trans>
                 </Text>
               </TouchableOpacity>
             )
           })}
         </View>
-        <View style={styles.optionList}>
+        {/* <View style={styles.optionList}>
           {optionData2.map(item => {
             return (
               <View style={styles.optionItem} key={item.index}>
@@ -103,7 +84,7 @@ const ChatModule = () => {
               </View>
             )
           })}
-        </View>
+        </View> */}
       </View>
       <View style={styles.glideStyle}>
       </View>
@@ -221,14 +202,16 @@ const styles = StyleSheet.create({
   },
   optionList: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexWrap:'wrap'
   },
   optionItem: {
-    flex: 1,
+    // flex: 1,
     height: 60,
     color: '#000',
     alignItems: 'center',
-    marginBottom: 20
+    marginBottom: 20,
+    width:'25%'
   },
   iconList: {
     width: 35,
