@@ -63,7 +63,6 @@ export default class AddressManagementView extends Component {
                     <Text allowFontScaling={false} style={styles.headerText}>
                         <Trans>navigationBar.title11</Trans>
                     </Text>
-                    
                 </Appbar.Header>
                 <View style={styles.scrollStyle}>
                     <ScrollView style={styles.listStyle}>

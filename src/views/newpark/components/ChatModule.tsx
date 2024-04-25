@@ -16,7 +16,8 @@ import {
 import { getChatRoomFindALL } from '../../../api/sys/newpark';
 import { Pages } from '../../../api/sys/newpark/types';
 import { navigate } from '../../../config/routs/NavigationContainer';
-
+import {chatRoom} from '../../../api/sys/team/index';
+import {chatRoomType} from '../../../api/sys/team/type';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -61,6 +62,7 @@ const ChatModule = () => {
     console.log('Tab状态' + tab);
     setTab(tab);
   };
+  const [listRes,setlistRes] = React.useState([]);
   return (
     <View style={styles.scrollStyle}>
       <View style={styles.topStyle}>
@@ -72,9 +74,7 @@ const ChatModule = () => {
         <View style={styles.optionList}>
           {chatRoomData.map(item => {
             return (
-              // 
-              <TouchableOpacity style={styles.optionItem} key={item.chatId} onPress={()=>navigate('ChatHome',item)}
-              >
+              <TouchableOpacity style={styles.optionItem} key={item.chatId} onPress={()=>navigate('ChatHome',item)} >
                 <Image source={{uri:item.chatImg}} style={styles.iconList} accessibilityLabel='图片' alt="网络问题"></Image>
                 <Text allowFontScaling={false} style={styles.optionText}>
                   <Trans>{item.chatTitle}</Trans>
@@ -82,7 +82,7 @@ const ChatModule = () => {
               </TouchableOpacity>
             )
           })}
-        </View>
+          </View>
       </View>
       <View style={styles.glideStyle}>
       </View>
@@ -132,7 +132,8 @@ const ChatModule = () => {
                   </View>
                 </View>
                 <View style={styles.glideItemRight}>
-                  <TouchableOpacity style={styles.glideButton} onPress={() => navigate('')}>
+                  {/* onPress={() => navigate('')} */}
+                  <TouchableOpacity style={styles.glideButton} >
                     <Text allowFontScaling={false} style={styles.buttonText}>前往聊天室</Text>
                   </TouchableOpacity>
                 </View>
@@ -194,6 +195,9 @@ const styles = StyleSheet.create({
   optionList: {
     flexDirection: 'row',
     justifyContent: 'center',
+    flexWrap:'wrap'
+  },
+  optionItem: {
     flexWrap: 'wrap',
   },
   optionItem: {
@@ -202,7 +206,8 @@ const styles = StyleSheet.create({
     height: 60,
     color: '#000',
     alignItems: 'center',
-    marginBottom: 20
+    marginBottom: 20,
+    width:'25%'
   },
   iconList: {
     width: 35,
