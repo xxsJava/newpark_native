@@ -4,6 +4,7 @@ import { Avatar, Icon } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import { productApi } from '../../../../api/sys/Recommended/index';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { set } from '@gluestack-style/react';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -52,6 +53,8 @@ const JiaoyiData = () => {
     //   这个是上面选择数据排列方式的
     const [cx, setcx] = React.useState(false);
     const [alls, setAlls] = React.useState('quanguo');
+    const [area, setArea] = React.useState('综合');
+    const[cx2,setcx2] = React.useState(false);
 
     useEffect(() => {
         // 初始化时加载初始数据
@@ -63,7 +66,7 @@ const JiaoyiData = () => {
         const params1 = {
             pageNo: page,
             pageSize: 6,
-            priceSort: 'DESC',
+            priceSort: cx2 ? 'DESC':'ASC',
             PStatus: 'FORSALE',
             timeSort: 'DESC',
         }
@@ -89,12 +92,25 @@ const JiaoyiData = () => {
         setPage(1);
         fetchData();
         setRefreshing(false);
+    };
+    const xrPrice = async() => {
+        setPage(1);
+        setcx2(!cx2);
+        const params1 = {
+            pageNo: page,
+            pageSize: 6,
+            priceSort: cx2 ? 'DESC':'ASC',
+            PStatus: 'FORSALE',
+            timeSort: 'DESC',
+        }
+        const data1 = await productApi(params1);
+        setData(data1.data)
+        console.log(data1, '这个是');
+        console.log(cx2);
     }
     const renderFooter = () => {
         return loading ? (kong ? <View style={{ marginVertical: 20 }}><Text style={{ textAlign: 'center', color: '#000', fontSize: 16 }}>没有数据了,快去添加吧....</Text></View> : <ActivityIndicator size="large" color="#0000ff" />) : null;
     };
-
-
 
     return (
         <>
@@ -102,27 +118,27 @@ const JiaoyiData = () => {
             <View style={{ backgroundColor: '#fff', width: windowWidth, }}>
                 <View style={{ width: '60%', justifyContent: 'space-between', flexDirection: 'row', marginLeft: 20, alignItems: 'center' }}>
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', position: 'relative' }} onPress={() => {
-                        setcx(!cx); console.log(alls, '这个是学校');
+                        setcx(!cx); console.log(alls, '这个是地区');
                     }}
                         activeOpacity={0.9}
                     >
-                        <Text allowFontScaling={false} style={styles.typeText}>综合</Text>
+                        <Text allowFontScaling={false} style={styles.typeText}>{area}</Text>
                         <Entypo size={13} color="#000" name="chevron-thin-down" />
                         <View style={[styles.xlk, cx ? { display: 'flex' } : { display: 'none' }]}>
                             <TouchableOpacity onPress={() => {
-                                setAlls('quanguo'); console.log(alls, '这个是选的范围');
+                                setAlls('quanguo'); setArea('全国'); setcx(false); console.log(alls, '这个是选的范围');
                             }} style={styles.option} activeOpacity={0.9}>
                                 <Text style={styles.h2}>全国</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => {
-                                setAlls('benxiao'); console.log(alls, '这个是选的范围');
+                                setAlls('benxiao'); setArea('本校'); setcx(false); console.log(alls, '这个是选的范围');
                             }} style={styles.option} activeOpacity={0.9}>
                                 <Text style={styles.h2}>本校</Text>
                             </TouchableOpacity>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-
+                       xrPrice()
                     }} style={{ flexDirection: 'row', margin: 12, alignItems: 'center' }}>
                         <View style={{ justifyContent: 'center' }}>
                             <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 6 }}>价格</Text>
@@ -134,7 +150,7 @@ const JiaoyiData = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => {
-
+                        // setTimes(!times); console.log(times, '这个是新发布');
                     }} style={{ flexDirection: 'row', margin: 12 }}>
                         <View style={{ justifyContent: 'center' }}>
                             <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 6 }}>新发布</Text>
@@ -146,24 +162,26 @@ const JiaoyiData = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-
-            <FlatList
-                numColumns={2}
-                data={data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => <List item={item} />}
-                onEndReached={handleLoadMore}
-                onEndReachedThreshold={0.1}
-                ListFooterComponent={renderFooter}
-                onRefresh={handleStart}
-                refreshing={refreshing}
-                ListEmptyComponent={
-                    <View style={styles.zhong}>
-                        <Text style={{ fontSize: 18, color: 'black', marginBottom: 20 }}>暂时没有商品.....</Text>
-                        <Text>去其他地方看看吧！</Text>
-                    </View>
-                }
-            />
+            <View style={styles.scrollView}>
+                <FlatList
+                    style={{ zIndex: -2 }}
+                    numColumns={2}
+                    data={data}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => <List item={item} />}
+                    onEndReached={handleLoadMore}
+                    onEndReachedThreshold={0.1}
+                    ListFooterComponent={renderFooter}
+                    onRefresh={handleStart}
+                    refreshing={refreshing}
+                    ListEmptyComponent={
+                        <View style={styles.zhong}>
+                            <Text style={{ fontSize: 18, color: 'black', marginBottom: 20 }}>暂时没有商品.....</Text>
+                            <Text>去其他地方看看吧！</Text>
+                        </View>
+                    }
+                />
+            </View>
         </>
     );
 };
@@ -274,6 +292,19 @@ const styles = StyleSheet.create({
     h2: {
         fontSize: 12,
         color: '#000'
-    }
+    },
+    scrollView: {
+        width: Dimensions.get('window').width,
+        ...Platform.select({
+            ios: {
+                height: Dimensions.get('window').height - 160,
+            },
+            android: {
+                height: Dimensions.get('window').height - 90,
+            },
+        }),
+        zIndex: -2,
+        flexWrap: 'nowrap'
+    },
 
 })

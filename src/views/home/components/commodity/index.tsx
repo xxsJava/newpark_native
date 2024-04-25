@@ -200,7 +200,7 @@ const ProductView = () => {
                         </View>
                     </TouchableOpacity>
                 </View>
-            </View>
+      </View>
 
       <View style={styles.scrollView}>
         <FlatList
