@@ -362,10 +362,10 @@ const listData = async () => {
     {/* 这个是索引条 */}
     <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
     <ScrollView style={{ flex: 1, marginTop: 10 }}>
-      
+    <TouchableOpacity activeOpacity={0.9}>
       <View style={styles.headGroup}>
         <View style={styles.iconHead}>
-          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP-C.jpg'}}/>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png'}}/>
         </View>
         <View style={styles.bodyContent}>
           <Text style={styles.conText}>
@@ -376,10 +376,12 @@ const listData = async () => {
           <Feather name="chevron-right" size={20} color="#999" />
         </View>
       </View>
+    </TouchableOpacity>
 
+    <TouchableOpacity activeOpacity={0.9}>
       <View style={styles.headGroup}>
         <View style={styles.iconHead}>
-          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP-C.jpg'}}/>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png'}}/>
         </View>
         <View style={styles.bodyContent}>
           <Text style={styles.conText}>
@@ -390,10 +392,12 @@ const listData = async () => {
           <Feather name="chevron-right" size={20} color="#999" />
         </View>
       </View>
+    </TouchableOpacity>
 
+    <TouchableOpacity activeOpacity={0.9}>
       <View style={styles.headGroup}>
         <View style={styles.iconHead}>
-          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP-C.jpg'}}/>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png'}}/>
         </View>
         <View style={styles.bodyContent}>
           <Text style={styles.conText}>
@@ -404,7 +408,23 @@ const listData = async () => {
           <Feather name="chevron-right" size={20} color="#999" />
         </View>
       </View>
-
+    </TouchableOpacity>
+    
+    <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('Apply')}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdhy.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            新的好友
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
       <SectionList
         ref={sectionListRef}
         sections={peopData}

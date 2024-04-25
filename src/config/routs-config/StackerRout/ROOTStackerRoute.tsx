@@ -6,37 +6,7 @@
  * @Description: desc
  */
 // 测试选择学校
-import JiaoyiData from '../../../views/home/components/commodity/JiaoyiData';
-import NewApply from '../../../views/socializing/add/NewApply';
-import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
-import GroupMessage from '../../../views/socializing/check/GroupMessage';
-import OrderDetails from '../../../views/mine/components/service/OrderDetails';
-import PeopleList from '../../../views/socializing/add/PeopleList';
-import LeaderBoard from '../../../views/mine/components/homepage/LeaderBoard';
-import MoreView from '../../../views/mine/components/homepage/MoreView';
-import GroupChat from '../../../views/socializing/check/GroupChat';
-import ChatHome from '../../../views/newpark/components/chatHome'
-import ReviceCode from '../../../components/ReviceCode';
-import { BommonTab } from '../../../routes/stacker';
-import StylesALL from '../../../styles';
-import LoginView from '../../../views/login';
-import Gender from '../../../views/login/components/Gender/index';
-import InterestsHobbies from '../../../views/login/components/InterestsHobbies';
-import Registered from '../../../views/login/components/Registered';
-import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
-import Verification from '../../../views/login/components/Verification';
-import MineThree from '../../../views/mine/components/MineThree';
-import AfterSalesView from '../../../views/mine/components/oder/AfterSalesView';
-import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
-import PaymentView from '../../../views/mine/components/oder/PaymentView';
-import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
-import CallCustom from '../../../views/mine/components/service/CallCustom';
-import CustomerServiceView from '../../../views/mine/components/service/CustomerServiceView';
-import FeedbackView from '../../../views/mine/components/service/FeedbackView';
-import MemberServicesView from '../../../views/mine/components/service/MemberServicesView';
-import MyOrderView from '../../../views/mine/components/service/MyOrderView';
-import MyPostView from '../../../views/mine/components/service/MyPostView';
-import WalletView from '../../../views/mine/components/service/WalletView';
+import MainMess from '../../../components/Bell/MainMess';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
 import NoNews from '../../../components/Error/NoNews';
@@ -47,6 +17,7 @@ import ReviceCode from '../../../components/ReviceCode';
 import Uplode from '../../../components/post/uplode';
 import { BommonTab } from '../../../routes/stacker';
 import StylesALL from '../../../styles';
+import JiaoyiData from '../../../views/home/components/commodity/JiaoyiData';
 import ProductView from '../../../views/home/components/commodity/index';
 import RewardDetails from '../../../views/home/components/helping/RewardDetails';
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart';
