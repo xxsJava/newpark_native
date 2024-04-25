@@ -8,8 +8,10 @@ import { Toast, useToast } from '@gluestack-ui/themed';
 import React, { useRef, useState } from 'react';
 import {
   Dimensions,
+  Image,
   PanResponderInstance,
   Platform,
+  ScrollView,
   SectionList,
   StyleSheet,
   Text,
@@ -26,6 +28,7 @@ import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
 
 
 
+import Feather from 'react-native-vector-icons/Feather';
 import { contextListJson } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
@@ -97,6 +100,7 @@ const ListIndex: React.FC = () => {
   );
 
   const renderItem = ({ item }: { item: DataItem }) => (
+  
     <TouchableOpacity
       onPress={() => navigate('ObjCard')}
       style={[
@@ -219,7 +223,94 @@ const ListIndex: React.FC = () => {
     console.log(pre(1)); //13
   };
 // 
-  const [peopData,setPeopleData] = React.useState([]);
+  const [peopData,setPeopleData] = React.useState([
+    {
+        title: 'A',
+        data: [
+          {
+            nickname: '牛友名称11',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },
+          {
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },
+          {
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },
+        ],
+      },
+  ]);
 
 // 展示列表
 const listData = async () => {
@@ -267,9 +358,73 @@ const listData = async () => {
   }, []); // 只在组件挂载时调用一次
 
   return (
-    <View style={{ flex: 1, marginTop: 10 }}>
-      {/* 这个是索引条 */}
-      <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
+    <>
+    {/* 这个是索引条 */}
+    <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
+    <ScrollView style={{ flex: 1, marginTop: 10 }}>
+    <TouchableOpacity activeOpacity={0.9}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            我的群组
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
+
+    <TouchableOpacity activeOpacity={0.9}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            我的社区
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
+
+    <TouchableOpacity activeOpacity={0.9}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            新的群聊
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
+    
+    <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('Apply')}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdhy.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            新的好友
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
       <SectionList
         ref={sectionListRef}
         sections={peopData}
@@ -279,16 +434,45 @@ const listData = async () => {
         getItemLayout={_ItemLayout}
         keyExtractor={(item, index) => {
           return index.toString();
-        }}
-        stickySectionHeadersEnabled={true}
-      />
-    </View>
+        } }
+        stickySectionHeadersEnabled={true} />
+    </ScrollView></>
   );
 };
 
 export default ListIndex;
 
 const styles = StyleSheet.create({
+  headGroup:{
+    width:'100%',
+    height:60,
+    backgroundColor:'#fff',
+    flexDirection:'row',
+    paddingLeft:10,
+    paddingTop:3,
+    position:'relative'
+  },
+  iconHead:{
+    width:50,
+    height:50
+  },
+  headImg:{
+    width:50,
+    height:50
+  },
+  bodyContent:{
+    marginLeft:20
+  },
+  conText:{
+    color:'#000',
+    fontSize:18,
+    lineHeight:50
+  },
+  rightIcon:{
+    position:'absolute',
+    right:20,
+    top: 20
+  },
   indexBarStyle: {
     position: 'absolute',
     bottom: 0,
