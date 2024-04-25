@@ -178,6 +178,8 @@ const ListView = (data: any) => {
   const RewardApi = async (arr: rewardListType) => {
     const rewardList = await rewardListApi(arr);
     setAllData(rewardList.data);
+    console.log(allData,'这个是获取到的悬赏列表');
+    
   };
 
   const rewardInitData = () => {
@@ -188,7 +190,6 @@ const ListView = (data: any) => {
     });
 
   }
-  // rewardInitData();
 
   useEffect(() => {
     rewardInitData();

@@ -43,7 +43,7 @@ const HelpCircleView = () => {
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', position: 'relative' }} onPress={() => {
                         setcx(!cx); console.log(alls, '这个是价格');
                     }}>
-                        <Text allowFontScaling={false} style={styles.typeText}>综合</Text>
+                        {/* <Text allowFontScaling={false} style={styles.typeText}>综合11</Text>
                         <Entypo size={13} color="#000" name="chevron-thin-down" />
                         <View style={[styles.xlk,cx ? {display:'flex'} : {display:'none'}]}>
                             <TouchableOpacity onPress={() =>{setAlls('quanguo'); console.log(alls,'这个是选的范围');
@@ -54,7 +54,7 @@ const HelpCircleView = () => {
                             }} style={styles.option}>
                                 <Text style={styles.h2}>本校</Text>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         setOrder(!order); console.log(order, '这个是价格');
