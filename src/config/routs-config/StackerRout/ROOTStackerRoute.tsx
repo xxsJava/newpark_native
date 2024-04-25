@@ -6,6 +6,7 @@
  * @Description: desc
  */
 // 测试选择学校
+import JiaoyiData from '../../../views/home/components/commodity/JiaoyiData';
 import NewApply from '../../../views/socializing/add/NewApply';
 import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
 import GroupMessage from '../../../views/socializing/check/GroupMessage';
@@ -100,6 +101,13 @@ export default {
       headerShown: true,
       title:'学校选择'
     },
+  },
+  JiaoyiData:{
+    component:JiaoyiData,
+    options:{
+      headerShown: true,
+      title:'交易圈的数据列表'
+    }
   },
   NewApply:{
     component: NewApply,
