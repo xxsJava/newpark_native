@@ -29,9 +29,6 @@ import ClausePopup from '../../views/login/components/ClausePopup';
 import { forgetPass } from './controller';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-
-
 const LoginView: React.FC<LoginScreenProps> = () => {
   const [visible, setVisible] = useState(false);
   const toast = useToast();
