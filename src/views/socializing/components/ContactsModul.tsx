@@ -1,7 +1,7 @@
 /*
  * @Author: zhn
  * @Date: 2024-4-20 17:44:34
- * @FilePath: src/views/socializing/components/ContactsModul.tsx
+ * @FilePath: \newpark_native\src\views\socializing\components\ContactsModul.tsx
  * @Description: 社交的联系人页面
  */
 import { Toast, useToast } from '@gluestack-ui/themed';
@@ -20,7 +20,7 @@ import { getFriendList, getUseList } from '../../../api/imApi/index';
 import { navigate } from '../../../config/routs/NavigationContainer';
 // 出现冲突地方一
 // import { getUseList } from '../../../api/imApi/index';
-import {PinyinUtil} from '../../../config/routs-config/StackerRout/pinyin';
+import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
 // 出现冲突地方二
 // import { contextListJson } from '../../../api/imApi/type';
 
@@ -60,40 +60,10 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
 
     console.log('参数--------->',uId);
     console.log('好友数据----------->',friendLists)
-    
-  }
-
-  const listData = async () => {
-    
-    const contentsJson = contextListJson;
-    const ListDataAPI = await getUseList(contentsJson);
-    const list = ListDataAPI.data.users;
-    console.log('ListDataAPI 在这里', list);
-
-    let groupArray = list.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
-      console.log(result,'这个是结果');
-      
-      let firstLetter = currentValue.nickname.charAt(0);
-      console.log(currentValue.nickname,firstLetter,'firstLetter');
-      
-      if (!result[firstLetter]) {
-        result[firstLetter] = {
-          title: firstLetter,
-          data: []
-        };
-      }
-      result[firstLetter].data.push(currentValue);
-      return result;
-    }, {});
-    // 转换结果为数组形式
-    let resultArray:DataSection[] = Object.values(groupArray);
-    console.log('这是转化后的值', resultArray);
-    // setListData(resultArray);
   }
 
   React.useEffect(() => {
-    listData();
-    friendList();
+   friendList();
   }, []); // 只在组件挂载时调用一次
   //索引条
   return (
@@ -292,7 +262,7 @@ const listData = async () => {
   
   }
   React.useEffect(() => {
-    listData();
+    // listData();
   }, []); // 只在组件挂载时调用一次
 
   return (

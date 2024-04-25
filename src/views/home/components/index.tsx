@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-17 16:31:19
+ * @LastEditTime: 2024-04-24 16:21:42
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -180,10 +180,10 @@ const windowHeight = Dimensions.get('window').height;
           );
         })}
       </View>
-      <View style={styles.leaveWordView}>
+      {/* <View style={styles.leaveWordView}>
         <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'/>
         <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
-      </View>
+      </View> */}
     </Card>
   );
 };
