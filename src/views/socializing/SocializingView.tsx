@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-03-12 17:16:48
+ * @LastEditTime: 2024-04-25 16:13:01
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -12,6 +12,7 @@ import {
   Platform,
   SafeAreaView,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
 } from 'react-native';
 import { Image, Text, View } from 'react-native-animatable';
@@ -26,7 +27,7 @@ const windowHeight = Dimensions.get('window').height;
 const moreList = [{
   index: 1,
   image: require('../../assets/images/tup/tianjiahaoyou.png'),
-  text: '添加牛友',
+  text: '添加好友',
   path: null
 }, {
   index: 2,
@@ -102,11 +103,11 @@ const SocializingView = () => {
           </View>
         </View>
         <View style={styles.searchGrid}>
-          <TouchableOpacity onPress={() => navigate('SearchView')}>
+          {/* <TouchableOpacity onPress={() => navigate('SearchView')}> */}
             <View style={styles.searchBox}>
-              <Text allowFontScaling={false} style={styles.searchText}>搜索</Text>
+              <TextInput placeholder='搜索' placeholderTextColor={'#999'}  style={styles.searchText}></TextInput>
             </View>
-          </TouchableOpacity>
+          {/* </TouchableOpacity> */}
         </View>
       </View>
       <View style={tabVal === 'tab1' ? styles.tabContent : styles.tabContentShow}>
@@ -118,13 +119,14 @@ const SocializingView = () => {
       <View style={tabVal === 'tab2' ? styles.tabContent : styles.tabContentShow}>
         <ContactsModul></ContactsModul>
       </View>
+      
       <View style={[styles.moreModule, more ? null : { display: 'none' }]}>
         <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
           <View style={styles.itemImageView}>
             <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片' alt="头像"></Image>
           </View>
           <View style={styles.itemTextView}>
-            <Text allowFontScaling={false} style={styles.itemText}>添加牛友</Text>
+            <Text allowFontScaling={false} style={styles.itemText}>添加好友</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('Addcomm')}>
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
   tabContent: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-    paddingBottom: 20,
+    // paddingBottom: 20,
   },
   tabContentShow: {
     display: 'none'
@@ -287,7 +289,7 @@ const styles = StyleSheet.create({
   },
   searchGrid: {
     width: windowWidth,
-    height: 60,
+    height: 40,
     paddingHorizontal: 10,
   },
   searchBox: {

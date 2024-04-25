@@ -6,42 +6,17 @@
  * @Description: desc
  */
 // 测试选择学校
-import NewApply from '../../../views/socializing/add/NewApply';
-import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
-import GroupMessage from '../../../views/socializing/check/GroupMessage';
-import OrderDetails from '../../../views/mine/components/service/OrderDetails';
-import PeopleList from '../../../views/socializing/add/PeopleList';
-import LeaderBoard from '../../../views/mine/components/homepage/LeaderBoard';
-import MoreView from '../../../views/mine/components/homepage/MoreView';
-import GroupChat from '../../../views/socializing/check/GroupChat';
-import ChatHome from '../../../views/newpark/components/chatHome'
-import ReviceCode from '../../../components/ReviceCode';
-import { BommonTab } from '../../../routes/stacker';
-import StylesALL from '../../../styles';
-import LoginView from '../../../views/login';
-import Gender from '../../../views/login/components/Gender/index';
-import InterestsHobbies from '../../../views/login/components/InterestsHobbies';
-import Registered from '../../../views/login/components/Registered';
-import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
-import Verification from '../../../views/login/components/Verification';
-import MineThree from '../../../views/mine/components/MineThree';
-import AfterSalesView from '../../../views/mine/components/oder/AfterSalesView';
-import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
-import PaymentView from '../../../views/mine/components/oder/PaymentView';
-import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
-import CallCustom from '../../../views/mine/components/service/CallCustom';
-import CustomerServiceView from '../../../views/mine/components/service/CustomerServiceView';
-import FeedbackView from '../../../views/mine/components/service/FeedbackView';
-import MemberServicesView from '../../../views/mine/components/service/MemberServicesView';
-import MyOrderView from '../../../views/mine/components/service/MyOrderView';
-import MyPostView from '../../../views/mine/components/service/MyPostView';
-import WalletView from '../../../views/mine/components/service/WalletView';
+import MainMess from '../../../components/Bell/MainMess';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
 import NoNews from '../../../components/Error/NoNews';
 import NoParents from '../../../components/Error/NoParents';
 import SystemError from '../../../components/Error/SystemError';
 import Empty from '../../../components/Error/empty';
+import ReviceCode from '../../../components/ReviceCode';
+import Uplode from '../../../components/post/uplode';
+import { BommonTab } from '../../../routes/stacker';
+import StylesALL from '../../../styles';
 import ProductView from '../../../views/home/components/commodity/index';
 import RewardDetails from '../../../views/home/components/helping/RewardDetails';
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart';
@@ -51,34 +26,58 @@ import PostDetails from '../../../views/home/page/PostDetails';
 import ProductChat from '../../../views/home/page/ProductChat';
 import PurchasePage from '../../../views/home/page/PurchasePage';
 import ViewOrders from '../../../views/home/page/ViewOrders';
+import LoginView from '../../../views/login';
 import ForgetPass from '../../../views/login/components/ForgetPass';
+import Gender from '../../../views/login/components/Gender/index';
+import InterestsHobbies from '../../../views/login/components/InterestsHobbies';
+import Registered from '../../../views/login/components/Registered';
 import Test1 from '../../../views/login/components/Registered/test';
+import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
+import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
+import Verification from '../../../views/login/components/Verification';
+import MineThree from '../../../views/mine/components/MineThree';
+import LeaderBoard from '../../../views/mine/components/homepage/LeaderBoard';
+import MoreView from '../../../views/mine/components/homepage/MoreView';
+import About from '../../../views/mine/components/manage/About';
+import Black from '../../../views/mine/components/manage/Black';
+import AfterSalesView from '../../../views/mine/components/oder/AfterSalesView';
+import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
+import PaymentView from '../../../views/mine/components/oder/PaymentView';
+import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
 import AddNewAddress from '../../../views/mine/components/service/AddNewAddress';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
+import CallCustom from '../../../views/mine/components/service/CallCustom';
 import CollectionView from '../../../views/mine/components/service/CollectionView';
+import CustomerServiceView from '../../../views/mine/components/service/CustomerServiceView';
+import FeedbackView from '../../../views/mine/components/service/FeedbackView';
 import InviteFriends from '../../../views/mine/components/service/InviteFriends';
+import MemberServicesView from '../../../views/mine/components/service/MemberServicesView';
+import MyOrderView from '../../../views/mine/components/service/MyOrderView';
+import MyPostView from '../../../views/mine/components/service/MyPostView';
+import OrderDetails from '../../../views/mine/components/service/OrderDetails';
 import SanJiLiand from '../../../views/mine/components/service/SanJiLiand';
+import WalletView from '../../../views/mine/components/service/WalletView';
 import SetUp from '../../../views/mine/components/setup';
 import PersonalData from '../../../views/mine/components/setup/PersonalData';
+import ChatRoom from '../../../views/newpark/components/ChatRoom';
+import ChatHome from '../../../views/newpark/components/chatHome';
 import CommunityChannel from '../../../views/newpark/page/CommunityChannel';
 import ClockInView from '../../../views/publish/page/clockIn';
 import CheckRecord from '../../../views/publish/page/clockIn/CheckRecord';
-import PublishProducts from '../../../views/publish/page/commodity';
+import { default as PubGood, default as PublishProducts } from '../../../views/publish/page/commodity';
 import ReleasePost from '../../../views/publish/page/post';
 import RewardView from '../../../views/publish/page/reward';
+import NewApply from '../../../views/socializing/add/NewApply';
+import PeopleList from '../../../views/socializing/add/PeopleList';
+import Apply from '../../../views/socializing/add/apply';
+import Addcomm from '../../../views/socializing/add/community';
+import AddPeople from '../../../views/socializing/add/people';
+import GroupChat from '../../../views/socializing/check/GroupChat';
+import GroupMessage from '../../../views/socializing/check/GroupMessage';
 import CheckView from '../../../views/socializing/check/index';
 import ObjCard from '../../../views/socializing/components/ObjCard';
 import SearchView from '../../../views/socializing/components/SearchView';
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity';
-import Uplode from '../../../components/post/uplode';
-import AddPeople from '../../../views/socializing/add/people';
-import Addcomm from '../../../views/socializing/add/community';
-import Apply from '../../../views/socializing/add/apply'
-import PubGood from '../../../views/publish/page/commodity'
-import Black from '../../../views/mine/components/manage/Black';
-import About from '../../../views/mine/components/manage/About';
-import MainMess from '../../../components/Bell/MainMess';
-import ChatRoom from '../../../views/newpark/components/ChatRoom'
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -205,7 +204,7 @@ export default {
     component: AddPeople,
     options: {
    //   headerShown: false,
-   title: '添加牛友',
+   title: '添加好友',
     },
   },
   Addcomm:{

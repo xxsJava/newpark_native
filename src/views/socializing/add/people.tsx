@@ -4,107 +4,26 @@
  * 作者:zhn
  * 修改时间:2024/2/22 16:10:11
  */
-import { CloseIcon, Heading, Icon, Input, InputField, InputIcon, InputSlot, Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, SearchIcon } from '@gluestack-ui/themed';
+import { AddIcon, Button, ButtonIcon, ButtonText, CloseIcon, Heading, Icon, Input, InputField, InputIcon, InputSlot, Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, SearchIcon } from '@gluestack-ui/themed';
 import React, { useState } from 'react';
-import { Alert, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { accountCheck, addFriend } from '../../../api/imApi';
 import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
-// const list = [
-//     {
-//         index:1,
-//         name:'xxs',
-//         ava:require('../.../../../../assets/images/tup/ppy.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行','美食','吃穿','美妆']
-//     },
-//     {
-//         index:2,
-//         name:'eee',
-//         ava:require('../.../../../../assets/images/tup/ly.png'),
-//         tel:'5175689259',
-//         isboy:false,
-//         inter:[]
-//     },
-//     {
-//         index:3,
-//         name:'trf',
-//         ava:require('../.../../../../assets/images/tup/dg.jpg'),
-//         tel:'5175689259',
-//         isboy:false,
-//         inter:['旅行']
-//     },
-//     {
-//         index:4,
-//         name:'iuy',
-//         ava:require('../.../../../../assets/images/tup/hc.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:5,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:6,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:7,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:8,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:9,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:10,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-// ]
 const AddPeople = () => {
-    const [personInfo, setpersonInfo] = React.useState({ "ava": 27, "index": 1, "inter": ["旅行", "美食", "吃穿", "美妆"], "isboy": true, "name": "xxs", "tel": "5175689259", "birthday": "2024-03-03" });
-    const [value, onChangeText] = useState('');
-    const [remain, onChangeText1] = useState('');
+    
     // 模态框
     const [showmtk, setShowmtk] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [onText, setText] = useState('');
+    const [addNumber,setNumber] = useState('');
     const [writremark, setWritremark] = useState(true);
     const ref = React.useRef(null)
+    const [context,setConText] = useState('');
+
+    const [onFriend,setFriend] = useState(false);
     // 弹出提示框
     const tipBox = () => {
         Alert.alert(
@@ -121,26 +40,49 @@ const AddPeople = () => {
         "ex": ""
     }
 
-    const uIdArr = {
-        "checkUserIDs": ["123"]
+    const uIdArr:any = {
+        "checkUserIDs": []
     };
 
     //添加好友 1004 用户不存在
-    const addFriends = async () => {
+    const addFindFriends = async () => {
         
+        uIdArr.checkUserIDs.push(addNumber);
         const accountChecks = await accountCheck(uIdArr);
-        console.log('好友是否存在数据------->',accountChecks);
+        console.log('参数------->',uIdArr);
+        console.log('好友是否存在数据------->',accountChecks.data.results[0].accountStatus);
 
+        if(accountChecks.data.results[0].accountStatus == 'unregistered'){
+            setText('未找到相关的用户信息');
+            setIsVisible(true);
+            return;
+        }
+        setShowmtk(true);
+    }
+
+    const addFriends = async () => {
         const uId = await Storage.get('usr-uId');
         friendParam.fromUserID = uId;
-        friendParam.toUserID = onText;
-        
+        friendParam.toUserID = addNumber;
+        friendParam.reqMsg = context;
+
+        console.log('好友申请参数------>',friendParam);
+
         const result = await addFriend(friendParam);
+        
+        if(result.errCode == 0){
+            console.log('已发送好友申请');
+        }
     }
 
     const onChangeTextInput = (text: string) => {
-        setText(text);
+        setNumber(text);
+        setText('查找‘'+text+'’相关用户');
         setIsVisible(text.length > 0);
+    }
+
+    const onAddChangeText = (text:string) =>{
+        setConText(text);
     }
 
     return (
@@ -157,10 +99,10 @@ const AddPeople = () => {
                     />
                 </Input>
             </View>
-            <TouchableOpacity style={isVisible ? {} : { display: 'none' }} onPress={() => setShowmtk(true)}>
+            <TouchableOpacity style={isVisible ? {} : { display: 'none' }} onPress={addFindFriends}>
                 <View style={styles.searchContent}>
                     <Text style={styles.searchText}>
-                        查找‘{onText}’相关用户
+                        {onText}
                     </Text>
                 </View>
             </TouchableOpacity>
@@ -168,21 +110,71 @@ const AddPeople = () => {
             <Modal 
             isOpen={showmtk}
             onClose={() => {
-                setShowmtk(false)
+                setShowmtk(false);
+                setFriend(false);
             }}
             finalFocusRef={ref}>
                 <ModalBackdrop />
                 <ModalContent>
                     <ModalHeader>
-                    <Heading size="sm">用户详情信息</Heading>
+                    <Heading size="sm">{onFriend?'发送好友申请':'用户详情信息'}</Heading>
                         <ModalCloseButton>
                             <Icon as={CloseIcon} />
                         </ModalCloseButton>
                     </ModalHeader>
                 <ModalBody>
-                    
+                    {onFriend?<View style={styles.addContent}>
+                    <View>
+                        <Text style={context.length>0?styles.contentFonta:styles.contentFont}>{context.length>0?context:'请输入好友申请内容'}</Text>
+                    </View>
+                    <TextInput
+                        allowFontScaling={false}
+                        onChangeText={onAddChangeText}
+                        autoFocus={true}
+                        caretHidden={true}
+                        maxLength={20}
+                        style={{opacity:0}}
+                        />
+                    <Text style={styles.contentLen}>{context.length}/20</Text>
+                </View>:<View style={styles.addUsrInfo}>
+                        <View style={[styles.usrIcon]}>
+                            <Image style={styles.imgHead} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%281%29.jpg'}} />
+                        </View>
+                        <View style={[styles.headName]}>
+                            <Text style={styles.textFont}>
+                                小学牛
+                            </Text>
+                            <Text style={styles.addNum}>
+                                {addNumber}
+                            </Text>
+                        </View>
+                        <View style={styles.addBut}>
+                            <Button
+                            size="md"
+                            variant="solid"
+                            action="primary"
+                            isDisabled={false}
+                            isFocusVisible={false}
+                            onPress={()=>setFriend(true)}
+                            >
+                                <ButtonText>添加</ButtonText>
+                                <ButtonIcon as={AddIcon} />
+                            </Button>
+                        </View>
+                    </View>}
                 </ModalBody>
-                <ModalFooter />
+                <ModalFooter>
+                {onFriend?<Button
+                        size="md"
+                        variant="solid"
+                        action="primary"
+                        isDisabled={false}
+                        isFocusVisible={false}
+                        onPress={addFriends}
+                        >
+                    <ButtonText>发送申请</ButtonText>
+                    </Button>:''}
+                </ModalFooter>
                 </ModalContent>
             </Modal>
         </View>
@@ -209,6 +201,54 @@ const styles = StyleSheet.create({
     },
     hideContent: {
         display: 'none'
+    },
+    addUsrInfo:{
+        width:'100%',
+        position: 'relative',
+        flexDirection:'row',
+    },
+    usrIcon:{
+        width: 60,
+        height: 60,
+        borderWidth: 1,
+        // borderColor: 'red'
+    },
+    imgHead:{
+        width:60,
+        height: 60
+    },
+    headName:{
+        marginLeft: 10,
+        paddingTop: 10
+    },
+    textFont:{
+        color: '#000',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    addNum:{
+        color:'#666'
+    },
+    addBut:{
+        marginLeft: 30,
+        marginTop: 10
+    },
+    contentFont:{
+        color:'#999'
+    },
+    contentFonta:{
+        color:'#000'
+    }
+    ,
+    addContent:{
+        height:100,
+        position:'relative'
+    },
+    contentLen:{
+        color:'#000',
+        position:'absolute',
+        bottom:0,
+        right:10
     }
 })
 export default AddPeople;
