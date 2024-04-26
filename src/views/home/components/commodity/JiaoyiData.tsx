@@ -20,7 +20,7 @@ const List = ({ item }: any) => (
             onPress={() => {
                 navigate('DetailsRoute', { data: item }); console.log('item在这里----', item);
             }}>
-            <Image style={item.pimgs ? styles.commodityImage : {}} source={{ uri: item.upath }} accessibilityLabel='图片' alt="头像" />
+            <Image style={item.pimgs ? styles.commodityImage : {}} source={{ uri: item.pimgs.split(',')[0].split('[')[1] }} accessibilityLabel='图片' alt="头像" />
             <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
             <View style={styles.priceView}>
                 <View style={styles.priceStyle}>
@@ -107,9 +107,10 @@ const JiaoyiData = () => {
             timeSort: cx3 ? 'DESC' : 'ASC',
         }
         const data1 = await productApi(params1);
-        setData(data1.data)
-
+        setData(data1.data);
         setRefreshing(false);
+        console.log('这个是刷新下拉得到的数据',data);
+        
     };
     // 价格按钮的
     const xrPrice = async () => {
