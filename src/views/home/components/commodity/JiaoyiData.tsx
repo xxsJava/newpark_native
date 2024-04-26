@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, ActivityIndicator, Image, TouchableOpacity, Text, StyleSheet, Platform, Dimensions } from 'react-native';
-import { Avatar, Icon } from 'react-native-paper';
+import { Avatar, Icon, Appbar } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import { productApi } from '../../../../api/sys/Recommended/index';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { set } from '@gluestack-style/react';
+import { fileUp } from '../../../../api/sys/upload/index';
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -12,6 +14,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const List = ({ item }: any) => (
     <View style={styles.commoditylist}>
+
         <TouchableOpacity
             style={styles.commodityItem}
             onPress={() => {
@@ -54,7 +57,8 @@ const JiaoyiData = () => {
     const [cx, setcx] = React.useState(false);
     const [alls, setAlls] = React.useState('quanguo');
     const [area, setArea] = React.useState('综合');
-    const[cx2,setcx2] = React.useState(false);
+    const [cx2, setcx2] = React.useState(false);
+    const [cx3, setcx3] = React.useState(false);
 
     useEffect(() => {
         // 初始化时加载初始数据
@@ -66,17 +70,21 @@ const JiaoyiData = () => {
         const params1 = {
             pageNo: page,
             pageSize: 6,
-            priceSort: cx2 ? 'DESC':'ASC',
+            priceSort: cx2 ? 'DESC' : 'ASC',
             PStatus: 'FORSALE',
             timeSort: 'DESC',
         }
         const data1 = await productApi(params1);
+
         console.log(data1, '这个是');
         // setData(data1.data);
         if ((data1.data).length != 0) {
             setLoading(false);
             setPage(prevPage => prevPage + 1);
-            setData(prevData => prevData.concat(data1.data))
+            setData(prevData => prevData.concat(data1.data));
+            // for(var i = 0; i< data1.data)
+            // var files = data1.data.pimgs;
+
         } else {
             setKong(true)
         }
@@ -93,20 +101,37 @@ const JiaoyiData = () => {
         fetchData();
         setRefreshing(false);
     };
-    const xrPrice = async() => {
+    // 价格按钮的
+    const xrPrice = async () => {
         setPage(1);
         setcx2(!cx2);
         const params1 = {
             pageNo: page,
             pageSize: 6,
-            priceSort: cx2 ? 'DESC':'ASC',
+            priceSort: cx2 ? 'DESC' : 'ASC',
             PStatus: 'FORSALE',
-            timeSort: 'DESC',
+            timeSort: cx3 ? 'DESC' : 'ASC',
         }
         const data1 = await productApi(params1);
         setData(data1.data)
         console.log(data1, '这个是');
         console.log(cx2);
+    };
+    // 新发布按钮的
+    const xrTime = async () => {
+        setPage(1);
+        setcx3(!cx3);
+        const params1 = {
+            pageNo: page,
+            pageSize: 6,
+            priceSort: cx2 ? 'DESC' : 'ASC',
+            PStatus: 'FORSALE',
+            timeSort: cx3 ? 'DESC' : 'ASC',
+        }
+        const data1 = await productApi(params1);
+        setData(data1.data)
+        console.log(data1, '这个是');
+        console.log(cx3);
     }
     const renderFooter = () => {
         return loading ? (kong ? <View style={{ marginVertical: 20 }}><Text style={{ textAlign: 'center', color: '#000', fontSize: 16 }}>没有数据了,快去添加吧....</Text></View> : <ActivityIndicator size="large" color="#0000ff" />) : null;
@@ -114,7 +139,13 @@ const JiaoyiData = () => {
 
     return (
         <>
-
+            <Appbar.Header style={styles.headerStyle}>
+                <Appbar.Action
+                    icon={require('../../../../assets/images/chevron-left.png')}
+                    onPress={() => navigate('HomeStacker')}
+                />
+                <Text allowFontScaling={false} style={styles.headerText}>交易圈</Text>
+            </Appbar.Header>
             <View style={{ backgroundColor: '#fff', width: windowWidth, }}>
                 <View style={{ width: '60%', justifyContent: 'space-between', flexDirection: 'row', marginLeft: 20, alignItems: 'center' }}>
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', position: 'relative' }} onPress={() => {
@@ -138,7 +169,7 @@ const JiaoyiData = () => {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                       xrPrice()
+                        xrPrice()
                     }} style={{ flexDirection: 'row', margin: 12, alignItems: 'center' }}>
                         <View style={{ justifyContent: 'center' }}>
                             <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 6 }}>价格</Text>
@@ -150,7 +181,7 @@ const JiaoyiData = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => {
-                        // setTimes(!times); console.log(times, '这个是新发布');
+                        xrTime()
                     }} style={{ flexDirection: 'row', margin: 12 }}>
                         <View style={{ justifyContent: 'center' }}>
                             <Text style={{ fontSize: 13, fontWeight: 'bold', marginRight: 6 }}>新发布</Text>
@@ -305,6 +336,16 @@ const styles = StyleSheet.create({
         }),
         zIndex: -2,
         flexWrap: 'nowrap'
+    },
+    headerStyle: {
+        height: 45,
+        backgroundColor: '#faba3c',
+    },
+    headerText: {
+        width: '80%',
+        fontSize: 18,
+        color: '#FFF',
+        textAlign: 'center',
     },
 
 })

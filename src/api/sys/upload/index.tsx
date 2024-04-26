@@ -17,3 +17,14 @@ export const uploadApi = (data:uploadFileType): Promise<IResponse> => {
       url: '/uploadFile/filesApi', data
     });
   };
+
+/**
+ * 文件批量上传API
+ * body传参
+ * @returns
+ */
+export const fileUp = (data:any): Promise<IResponse> => {
+  return request.post({
+    url:'/uploadFile/filesApi',data
+  })
+}

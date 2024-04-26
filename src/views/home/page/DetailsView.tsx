@@ -207,7 +207,7 @@ const DetailsView = (item) => {
       </View>
       {/*  这个是模态框*/}
       <TouchableOpacity onPress={() => setModalVisible(false)} style={modalVisible ? { position: 'absolute', top: 0, left: 0, width: windowWidth, height: windowHeight, backgroundColor: '#000', opacity: 0.3 } : { display: 'none' }}></TouchableOpacity>
-      <View style={modalVisible ? { width: windowWidth, height: windowHeight * 0.6, backgroundColor: '#E5E5E5', position: 'absolute', bottom: 0, borderTopLeftRadius: 16, borderTopRightRadius: 16, padding: 12 } : { display: 'none' }}>
+      <View style={modalVisible ? { width: windowWidth, height: windowHeight * 0.74, backgroundColor: '#E5E5E5', position: 'absolute', bottom: 0, borderTopLeftRadius: 16, borderTopRightRadius: 16, padding: 12 } : { display: 'none' }}>
         <View style={{ width: '100%' }}>
           <Text style={{ fontSize: 16, color: '#000', textAlign: 'center', fontWeight: 'bold' }}>确认订单</Text>
         </View>
@@ -228,7 +228,7 @@ const DetailsView = (item) => {
           </View>
           <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 23, height: 23 }}></Image>
         </TouchableOpacity>
-        <ScrollView style={{ paddingBottom: 90, marginBottom: 60 }}>
+        <View style={{ paddingBottom: 90, marginBottom: 60 }}>
           <View style={{ backgroundColor: "#fff", padding: 16 }}>
             <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
               <Text style={{ color: '#333', fontSize: 12 }}>春天怎么还不来</Text>
@@ -294,7 +294,7 @@ const DetailsView = (item) => {
               </View>
             </View>
           </View>
-        </ScrollView>
+        </View>
         {/* <View style={{ backgroundColor: '#ccc', position: 'absolute', bottom: 0, width: windowWidth, height: 60 }}>
           <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 8, justifyContent: 'space-between' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>

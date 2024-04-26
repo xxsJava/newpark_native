@@ -93,7 +93,8 @@ const ColumnType = () => {
         <TouchableOpacity
           key={menusData[1].index}
           style={[styles.wd, styles.back1]}
-          onPress={() => navigate('ProductRoute')}>
+
+          onPress={() => navigate('JiaoyiData')}>
           <View>
             <MenusComponents props={menusData[1]} />
           </View>

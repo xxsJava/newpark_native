@@ -18,7 +18,6 @@ import Uplode from '../../../components/post/uplode';
 import { BommonTab } from '../../../routes/stacker';
 import StylesALL from '../../../styles';
 import JiaoyiData from '../../../views/home/components/commodity/JiaoyiData';
-import ProductView from '../../../views/home/components/commodity/index';
 import RewardDetails from '../../../views/home/components/helping/RewardDetails';
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart';
 import HelpCircleView from '../../../views/home/components/helping/index';
@@ -104,7 +103,7 @@ export default {
   JiaoyiData:{
     component:JiaoyiData,
     options:{
-      headerShown: true,
+      headerShown: false,
       title:'交易圈的数据列表'
     }
   },
@@ -423,13 +422,6 @@ export default {
     component:CheckView,
     options:{
       title:'消息聊天',
-      headerShown: false,
-    }
-  },
-  ProductRoute:{
-    component:ProductView,
-    options:{
-      title:'快快来买',
       headerShown: false,
     }
   },
