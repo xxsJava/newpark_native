@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2024-03-06 10:37:00
+ * @LastEditTime: 2024-04-26 16:29:12
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
@@ -9,15 +9,13 @@ import { useTranslation } from 'react-i18next';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, { useEffect, useState } from 'react';
-import * as Animatable from 'react-native-animatable';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { Image, Text } from '@gluestack-ui/themed';
-import { Dimensions, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image } from '@gluestack-ui/themed';
+import { Animated, Dimensions, Easing, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import BellView from '../../components/Bell';
 import { DeviceEvent } from '../../config/listener';
 import routsConfig from '../../config/routs-config';
-import { navigate } from '../../config/routs/NavigationContainer';
 import { useCounter } from '../../hooks/state';
 const windowWidth = Dimensions.get('window').width;
 // import { Stagger, useDisclose} from 'native-base';
@@ -31,9 +29,21 @@ const windowWidth = Dimensions.get('window').width;
 export const BommonTab = () => {
   const Tab = createBottomTabNavigator();
   const [isVisible, setIsVisible] = useState(false);
+  
   const { t } = useTranslation();
 
   const { corner, incrementsetCorner } = useCounter();
+
+  const animatedValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(animatedValue, {
+      toValue: 1,
+      duration: 2000,
+      easing: Easing.bezier(0.42, 0, 0.58, 1), // 使用贝塞尔曲线
+      useNativeDriver: true,
+    }).start();
+  },[animatedValue])
 
   useEffect(() => {
 
@@ -44,6 +54,17 @@ export const BommonTab = () => {
     })
 
   }, [])
+
+  const pubAnm = () =>{
+    console.log('点击加号');
+    setIsVisible(!isVisible);
+    Animated.timing(animatedValue, {
+      toValue: 1,
+      duration: 2000,
+      easing: Easing.bezier(0.42, 0, 0.58, 1), // 使用贝塞尔曲线
+      useNativeDriver: true,
+    }).start();
+  }
   return (
     <>
       <Tab.Navigator
@@ -93,73 +114,88 @@ export const BommonTab = () => {
           }
         })}
       </Tab.Navigator>
-      <View style={styles.tabPub}>
-        <TouchableOpacity onPress={() => { setIsVisible(!isVisible) }}>
-          <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片' alt="头像"/>
-        </TouchableOpacity>
-        {
-          isVisible ?
-            <View>
-              <TouchableOpacity onPress={() => navigate('ClockInViewRoute')}>
-                <Animatable.View style={[styles.aniNav1, { display: 'flex', flexDirection: 'row' }]} animation='fadeInLeftBig'>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { marginRight: 6, marginTop: 8 }]}>打卡</Text>
-                  </View>
-                  <View style={[styles.nav1, { backgroundColor: '#26C78C', }]}></View>
-                </Animatable.View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigate('PubGood')}>
-                <Animatable.View style={[styles.aniNav3, { display: 'flex', flexDirection: 'row' }]} animation='fadeInLeftBig'>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { marginRight: 3, marginTop: 8 }]}>发布商品</Text>
-                  </View>
-                  <View style={[styles.nav1, { backgroundColor: '#C6C6C6', }]}></View>
-                </Animatable.View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigate('ChatRoom')}>
-                <Animatable.View style={styles.aniNav4} animation='fadeInLeftBig' >
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20, width: 80, marginLeft:'-50%'}}>
-                    <Text style={[styles.nav1Text, { padding: 5,fontSize:12}]}>创建聊天室</Text>
-                  </View>
-                  <View style={[styles.nav1, { backgroundColor: '#FB4886', }]}></View>
-                </Animatable.View>
-              </TouchableOpacity>
-              {/* <TouchableOpacity  onPress={()=>navigate('Uplode')}> */}
-              <TouchableOpacity onPress={() => navigate('ReleasePost')}>
-                <Animatable.View style={[styles.aniNav5, { display: 'flex', flexDirection: 'row' }]} animation='fadeInRightBig'>
-                  <View style={[styles.nav1, { backgroundColor: '#90C486', }]}></View>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { marginTop: 10 }]}>发布帖子</Text>
-                  </View>
-                </Animatable.View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigate('Uplode')}>
-                <Animatable.View style={[styles.aniNav2, { display: 'flex', flexDirection: 'row' }]} animation='fadeInRightBig'>
-                  <View style={[styles.nav1, { backgroundColor: '#FBBA3F' }]}></View>
-                  <View style={{ backgroundColor: '#fff', borderRadius: 20 }}>
-                    <Text style={[styles.nav1Text, { lineHeight: 44 }]}>发布悬赏</Text>
-                  </View>
-                </Animatable.View>
-              </TouchableOpacity>
+<Animated.View
+          style={[
+            styles.container,
+            isVisible?{
+              transform: [
+                {
+                  translateY: animatedValue.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [200, -100], // 垂直方向上移动 100 个单位
+                  }),
+                },
+                {
+                  scale: animatedValue.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 1.2], // 缩放效果
+                  }),
+                },
+              ],
+            }:{display:'none'},
+          ]}
+      >
+          <View style={styles.content}>
+            <View style={styles.contentA}>
+              <View style={styles.closeIcon}>
+                <TouchableOpacity onPress={() => { setIsVisible(!isVisible) }}>
+                  <Image style={{width:'100%',height:'100%'}} source={require('../../assets/images/alimom/close_icon.png')} alt="网络异常"/>
+                </TouchableOpacity>
+              </View>
             </View>
-            : ''
-        }
+            <View style={styles.contentB}>
+              <View style={styles.funs}>
+                  <Image style={styles.conIcon} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/fbxs.png'}} alt="网络异常" />
+                  <Text style={styles.conFont}>
+                    发布悬赏
+                  </Text>
+              </View>
+              <View style={styles.funs}>
+                  <Image style={styles.conIcon} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/fbsp.png'}} alt="网络异常" />
+                  <Text style={styles.conFont}>
+                    发布商品
+                  </Text>
+              </View>
+              <View style={styles.funs}>
+                  <Image style={styles.conIcon} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/fbtz.png'}} alt="网络异常" />
+                  <Text style={styles.conFont}>
+                    发布帖子
+                  </Text>
+              </View>
+              <View style={styles.funs}>
+                  <Image style={styles.conIcon} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/dk.png'}} alt="网络异常" />
+                  <Text style={styles.conFont}>
+                    打卡
+                  </Text>
+              </View>
+            </View>
+          </View>
+        </Animated.View>
+
+        {/* 遮掩罩 */}
+        <TouchableOpacity style={[styles.bottomMain,isVisible?{}:{display:'none'}]} onPress={()=>setIsVisible(!isVisible)} activeOpacity={0.9}>
+          <View style={styles.bottomMain}></View>
+        </TouchableOpacity>
+
+      <View style={styles.tabPub}>
+        <TouchableOpacity onPress={pubAnm}>
+          <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片' alt="网络异常" />
+        </TouchableOpacity>
       </View>
 
-        <View style={styles.ld}>
-          <BellView />
-        </View>
-      
+      <View style={styles.ld}>
+        <BellView />
+      </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  tabPub:{
-    position:'absolute',
-    bottom: Platform.OS === 'ios'? 50:18,
-    left:windowWidth/2-32,
-    borderWidth:2,
+  tabPub: {
+    position: 'absolute',
+    bottom: Platform.OS === 'ios' ? 50 : 18,
+    left: windowWidth / 2 - 32,
+    borderWidth: 2,
     borderColor: '#F8B032',
     width: 64,
     height: 64,
@@ -171,45 +207,81 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44
   },
-  nav1: {
-    width: 42,
-    height: 42,
-    borderRadius: 50
-  },
-  aniNav1: {
-    position: 'absolute',
-    right: windowWidth / 4 - 10,
-    bottom: 30
-  },
-  aniNav3: {
-    position: 'absolute',
-    right: windowWidth / 4 - 34,
-    bottom: 83
-  },
-  aniNav4: {
-    position: 'absolute',
-    right: 0,
-    bottom: 100
-  },
-  aniNav5: {
-    position: 'absolute',
-    right: windowWidth / 4 - 210,
-    bottom: 83
-  },
-  nav1Text: {
-    alignContent: 'center',
-    textAlign: 'center',
-    fontSize: 14,
-    color: '#FFB700',
-    fontWeight: 'bold'
-  },
-  aniNav2: {
-    position: 'absolute',
-    left: windowWidth / 4,
-    bottom: 30
-  },
-  ld:{
-    position:'relative',
+  ld: {
+    position: 'relative',
     bottom: '8%'
+  },
+  zhong: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  nav1Text:{
+    fontSize:13,
+    color:'#000'
+  },
+  bottomMain:{
+    width:'100%',
+    height:'100%',
+    backgroundColor:'#000',
+    position:'absolute',
+    zIndex: 10,
+    bottom:0,
+    flex:1,
+    opacity:0.5
+  },container: {
+    zIndex: 11,
+    position:'absolute',
+    bottom: 0,
+    width:'100%',
+    height: '100%'
+  },
+  content: {
+    backgroundColor: 'white',
+    width:'100%',
+    height: '20%',
+    position: 'absolute',
+    bottom:-10,
+    borderTopLeftRadius:100,
+    borderTopRightRadius:100
+  },
+  contentA:{
+    // borderWidth:1,
+    position:'absolute',
+    bottom:15,
+    width:'100%',
+    height:'20%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  closeIcon:{
+    width:30,
+    height:30
+  },
+  contentB:{
+    // borderWidth:1,
+    position:'absolute',
+    bottom:'28%',
+    width:'100%',
+    height:'50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection:'row',
+  },
+  funs:{
+    width:65,
+    height:65,
+    // borderWidth:1,
+    marginLeft:10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  conFont:{
+    color:'#000',
+    fontSize:10,
+    fontWeight:'bold'
+  },
+  conIcon:{
+    width:40,
+    height:40
   }
 });

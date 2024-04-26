@@ -178,6 +178,8 @@ const ListView = (data: any) => {
   const RewardApi = async (arr: rewardListType) => {
     const rewardList = await rewardListApi(arr);
     setAllData(rewardList.data);
+    console.log(allData,'这个是获取到的悬赏列表');
+    
   };
 
   const rewardInitData = () => {
@@ -188,7 +190,6 @@ const ListView = (data: any) => {
     });
 
   }
-  // rewardInitData();
 
   useEffect(() => {
     rewardInitData();
@@ -461,9 +462,6 @@ const styles = StyleSheet.create({
   addStyle: {
     width: 60,
     height: 60,
-    // bottom:-20,
-    // right: 20,
-    // position: 'absolute',
     zIndex: 10,
   },
   scrollStyle: {
@@ -566,7 +564,6 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 17,
     borderRadius: 10,
-    // marginHorizontal: 20,
     marginTop: 20,
 
   },

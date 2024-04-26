@@ -9,7 +9,7 @@ import { Dimensions, StyleSheet, Text, View } from "react-native";
 const windowWidth = Dimensions.get('window').width
 
 const StepBar = () => {
-    const [stepVal] = React.useState(2);
+    const [stepVal] = React.useState(1);
     return(
         <View style={styles.stepBarView1}>
             <View style={styles.stepBarItem}>

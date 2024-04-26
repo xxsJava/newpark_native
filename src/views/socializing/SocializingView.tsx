@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-03-12 17:16:48
+ * @LastEditTime: 2024-04-25 16:13:01
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -12,6 +12,7 @@ import {
   Platform,
   SafeAreaView,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
 } from 'react-native';
 import { Image, Text, View } from 'react-native-animatable';
@@ -24,153 +25,158 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const moreList = [{
-  index:1,
-  image:require('../../assets/images/tup/tianjiahaoyou.png'),
-  text:'添加牛友',
-  path:null
-},{
-  index:2,
-  image:require('../../assets/images/tup/xieshangyizheng.png'),
-  text:'加入社区',
-  path:null
-},{
-  index:3,
-  image:require('../../assets/images/tup/wanle.png'),
-  text:'创建社区',
-  path:'CreateCommunityRoute'
+  index: 1,
+  image: require('../../assets/images/tup/tianjiahaoyou.png'),
+  text: '添加好友',
+  path: null
+}, {
+  index: 2,
+  image: require('../../assets/images/tup/xieshangyizheng.png'),
+  text: '加入社区',
+  path: null
+}, {
+  index: 3,
+  image: require('../../assets/images/tup/wanle.png'),
+  text: '创建社区',
+  path: 'CreateCommunityRoute'
 },
 {
-  index:4,
-  image:require('../../assets/images/tup/saoyisao.png'),
-  text:'好友申请',
-  path:'CreateCommunityRoute'
+  index: 4,
+  image: require('../../assets/images/tup/saoyisao.png'),
+  text: '好友申请',
+  path: 'CreateCommunityRoute'
 }
 ]
 
 const SocializingView = () => {
 
   const [tabVal, setTab] = useState('tab1');
-  const [more,setMore] = useState(false)
+  const [more, setMore] = useState(false)
 
   const handleTabPress = (tab: string) => {
     console.log('Tab状态' + tab);
     setTab(tab);
   };
 
-  const handleMorePress = (more:boolean) => {
+  const handleMorePress = (more: boolean) => {
     more ? setMore(false) : setMore(true)
   }
 
-  return(
+  return (
     <SafeAreaView style={styles.safeStyle}>
-        <View style={styles.headView}>
-          <View style={styles.headGrid}>
-            <View style={styles.tabGrid}>
-              <View style={styles.tabItem}>
-                <View style={tabVal === 'tab1'?styles.tabBg1:null} />
-                <TouchableOpacity onPress={() => handleTabPress('tab1')}>
-                  <Text
+      <View style={styles.headView}>
+        <View style={styles.headGrid}>
+          <View style={styles.tabGrid}>
+            <View style={styles.tabItem}>
+              <View style={tabVal === 'tab1' ? styles.tabBg1 : null} />
+              <TouchableOpacity onPress={() => handleTabPress('tab1')}>
+                <Text
                   allowFontScaling={false}
-                    style={
-                      tabVal === 'tab1'
-                        ? styles.selectedText
-                        : styles.selectedText1
-                    }>
-                    消息
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.tabItem}>
-                <View style={tabVal === 'tab2'?styles.tabBg2:null}></View>
-                <TouchableOpacity onPress={() => handleTabPress('tab2')}>
-                  <Text
-                  allowFontScaling={false}
-                    style={
-                      tabVal === 'tab2'
-                        ? styles.selectedText
-                        : styles.selectedText1
-                    }>
-                    联系人
-                  </Text>
-                  </TouchableOpacity>
-              </View>
+                  style={
+                    tabVal === 'tab1'
+                      ? styles.selectedText
+                      : styles.selectedText1
+                  }>
+                  消息
+                </Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.tabMore}>
-              <TouchableOpacity onPress={() => handleMorePress(more)}>
-                <Feather name="plus" size={32} color="#000000" />
+            <View style={styles.tabItem}>
+              <View style={tabVal === 'tab2' ? styles.tabBg2 : null}></View>
+              <TouchableOpacity onPress={() => handleTabPress('tab2')}>
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    tabVal === 'tab2'
+                      ? styles.selectedText
+                      : styles.selectedText1
+                  }>
+                  联系人
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.searchGrid}>
-            <TouchableOpacity onPress={() => navigate('SearchView')}>
-              <View style={styles.searchBox}>
-                <Text allowFontScaling={false} style={styles.searchText}>搜索</Text>
-              </View>
+          <View style={styles.tabMore}>
+            <TouchableOpacity onPress={() => handleMorePress(more)}>
+              <Feather name="plus" size={32} color="#000000" />
             </TouchableOpacity>
           </View>
         </View>
-        <View style={tabVal === 'tab1'?styles.tabContent:styles.tabContentShow}>
-          <MessageModule></MessageModule>
+        <View style={styles.searchGrid}>
+          {/* <TouchableOpacity onPress={() => navigate('SearchView')}> */}
+            <View style={styles.searchBox}>
+              <TextInput placeholder='搜索' placeholderTextColor={'#999'}  style={styles.searchText}></TextInput>
+            </View>
+          {/* </TouchableOpacity> */}
         </View>
-        <View style={tabVal === 'tab2'?styles.tabContent:styles.tabContentShow}>
-          <ContactsModul></ContactsModul>
-        </View>
-        <View style={[styles.moreModule,more?null:{display:'none'}]}>
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
-                <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片' alt="头像"></Image>
-                </View>
-                <View style={styles.itemTextView}>
-                  <Text allowFontScaling={false} style={styles.itemText}>添加牛友</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('Addcomm')}>
-                <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')} accessibilityLabel='图片' alt="头像"></Image>
-                </View>
-                <View style={styles.itemTextView}>
-                  <Text allowFontScaling={false} style={styles.itemText}>加入社区</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
-                <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={require('../../assets/images/tup/wanle.png')} accessibilityLabel='图片' alt="头像"></Image>
-                </View>
-                <View style={styles.itemTextView}>
-                  <Text allowFontScaling={false} style={styles.itemText}>创建社区</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.itemMore}  activeOpacity={0.5} onPress={() => navigate('Apply')}>
-                <View style={styles.itemImageView}>
-                  <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片' alt="头像"></Image>
-                </View>
-                <View style={styles.itemTextView}>
-                  <Text style={styles.hytb}>1</Text>
-                  <Text allowFontScaling={false} style={styles.itemText}>好友申请</Text>
-                </View>
-              </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={[styles.maskLayer,more? {}:{display:'none'}]} onPress={() => handleMorePress(more)}>
+      </View>
+      <View style={tabVal === 'tab1' ? styles.tabContent : styles.tabContentShow}>
+        <MessageModule></MessageModule>
+        <TouchableOpacity style={{ backgroundColor: 'aqua' }} onPress={()=>navigate('schoolData')}>
+          <Text>333fjor</Text>
         </TouchableOpacity>
-      </SafeAreaView>
+      </View>
+      <View style={tabVal === 'tab2' ? styles.tabContent : styles.tabContentShow}>
+        <ContactsModul></ContactsModul>
+      </View>
+      
+      <View style={[styles.moreModule, more ? null : { display: 'none' }]}>
+        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            <Text allowFontScaling={false} style={styles.itemText}>添加好友</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('Addcomm')}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            <Text allowFontScaling={false} style={styles.itemText}>加入社区</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/wanle.png')} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            <Text allowFontScaling={false} style={styles.itemText}>创建社区</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('Apply')}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            <Text style={styles.hytb}>1</Text>
+            <Text allowFontScaling={false} style={styles.itemText}>好友申请</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <TouchableOpacity style={[styles.maskLayer, more ? {} : { display: 'none' }]} onPress={() => handleMorePress(more)}>
+
+      </TouchableOpacity>
+    </SafeAreaView>
   )
 }
 export default SocializingView;
 
 
 const styles = StyleSheet.create({
-  tabContent:{
+  tabContent: {
     flex: 1,
-    backgroundColor:'#F5F5F5',
-    paddingBottom:20,
+    backgroundColor: '#F5F5F5',
+    // paddingBottom: 20,
   },
-  tabContentShow:{
-    display:'none'
+  tabContentShow: {
+    display: 'none'
   },
   safeStyle: {
     width: windowWidth,
-    height: windowHeight-40,
-    position:'relative',
+    height: windowHeight - 40,
+    position: 'relative',
     backgroundColor: '#FFFFFF',
   },
   headView: {
@@ -203,70 +209,70 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     alignItems: 'flex-end',
   },
-  moreModule:{
-    top:Platform.OS==='ios'?110:50,
-    right:18,
-    width:160,
-    height:165,
-    paddingVertical:5,
-    paddingHorizontal:7,
-    position:'absolute',
-    backgroundColor:'#fff',
-    borderRadius:10,
-    zIndex:99,
-     // 阴影的配置
-     elevation: 6, // 适配android的
-     shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
-     shadowColor: 'black',
-     shadowOpacity: .3,
-     shadowRadius: 2
+  moreModule: {
+    top: Platform.OS === 'ios' ? 110 : 50,
+    right: 18,
+    width: 160,
+    height: 165,
+    paddingVertical: 5,
+    paddingHorizontal: 7,
+    position: 'absolute',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    zIndex: 99,
+    // 阴影的配置
+    elevation: 6, // 适配android的
+    shadowOffset: { width: 0, height: 0 }, // 以下4项适配ios
+    shadowColor: 'black',
+    shadowOpacity: .3,
+    shadowRadius: 2
   },
-  itemMore:{
-    height:30,
-    marginBottom:12,
-    marginHorizontal:8,
-    paddingBottom:6,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    borderColor:'#bbb',
-    borderBottomWidth:1,
-    alignItems:'center'
+  itemMore: {
+    height: 30,
+    marginBottom: 12,
+    marginHorizontal: 8,
+    paddingBottom: 6,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderColor: '#bbb',
+    borderBottomWidth: 1,
+    alignItems: 'center'
   },
-  itemImageView:{
-    width:'40%',
-    alignItems:'center',
-    paddingTop:8,
+  itemImageView: {
+    width: '40%',
+    alignItems: 'center',
+    paddingTop: 8,
   },
-  itemImage:{
-    width:22,
-    height:22
+  itemImage: {
+    width: 22,
+    height: 22
   },
-  itemTextView:{
-    width:'60%'
+  itemTextView: {
+    width: '60%'
   },
-  itemText:{
-    fontSize:14,
-    color:'#000',
-    lineHeight:30,
-    textAlign:'center'
+  itemText: {
+    fontSize: 14,
+    color: '#000',
+    lineHeight: 30,
+    textAlign: 'center'
 
   },
   tabBg1: {
     width: 18,
     height: 18,
-    top:-3,
-    right:28,
+    top: -3,
+    right: 28,
     borderRadius: 9,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',
     zIndex: -10,
   },
-  tabBg2:{
+  tabBg2: {
     width: 18,
     height: 18,
-    top:-4,
-    right:20,
+    top: -4,
+    right: 20,
     borderRadius: 9,
     position: 'absolute',
     borderColor: '#DCDCDC',
@@ -283,7 +289,7 @@ const styles = StyleSheet.create({
   },
   searchGrid: {
     width: windowWidth,
-    height: 60,
+    height: 40,
     paddingHorizontal: 10,
   },
   searchBox: {
@@ -299,26 +305,26 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000000',
   },
-  maskLayer:{
-    width:windowWidth,
-    height:windowHeight,
-    top:0,
-    position:'absolute',
-    zIndex:80
+  maskLayer: {
+    width: windowWidth,
+    height: windowHeight,
+    top: 0,
+    position: 'absolute',
+    zIndex: 80
   },
-  hytb:{
-    position:'absolute',
-    fontSize:12,
-    backgroundColor:'red',
-    color:'#fff',
-    textAlign:'center',
-    lineHeight:15,
+  hytb: {
+    position: 'absolute',
+    fontSize: 12,
+    backgroundColor: 'red',
+    color: '#fff',
+    textAlign: 'center',
+    lineHeight: 15,
     fontWeight: 'bold',
-    borderRadius:10,
-    paddingTop:1,
-    paddingLeft:5,
-    paddingRight:5,
-    paddingBottom:1
+    borderRadius: 10,
+    paddingTop: 1,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingBottom: 1
   }
 });
 function tabClick(porps: any, string: any) {

@@ -92,22 +92,23 @@ const Reward = ({ item }:any) => (
         <Image source={{ uri: item.upath }} style={{ width: 40, height: 40, borderRadius: 90 }}></Image>
         <Text style={{ color: 'red' }}><Text style={{ color: '#000', fontWeight: 'bold', fontSize: 20 }}>{item.rmoney}</Text> 元</Text>
         <Text style={{ color: '#000' }}>{DateTimeUtils.formattedDateTime(item.endTime).split(' ')[0]}</Text>
-
       </View>
     </View>
   </TouchableOpacity>
 )
 // 帖子的模板
 const Post = ({ item }:any) => (
-  <TouchableOpacity style={styles.list3Box}>
+  <ScrollView style={styles.list3Box}>
     <View style={{ width: '100%', alignItems: 'center' }}>
       <Text style={styles.fonBlac} selectable={true}>{item.ttitle}</Text>
     </View>
-    <HTMLView value={item.tcontext} style={styles.postMain}></HTMLView>
+   <View style={styles.postMainB}>
+      <HTMLView value={item.tcontext} style={styles.postMain} resizeMode='conver'></HTMLView>
+   </View>
     <View style={styles.heng}>
       <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginLeft: 3 }}>
         {/* 用户的名字 */}
-        <Text>{item.tauthorId}张三</Text>
+        <Text>{item.tauthorId}张三11</Text>
         <Text style={styles.tzTime}>{DateTimeUtils.formattedDateTime(item.tlastTime).split(' ')[0]}</Text>
       </View>
       <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
@@ -149,7 +150,7 @@ const Post = ({ item }:any) => (
         </View>
       </View>
     </View>
-  </TouchableOpacity>
+  </ScrollView>
 );
 const MineVIew = () => {
   const [followCount, setFollowCount] = React.useState();
@@ -286,7 +287,6 @@ const MineVIew = () => {
                         <Image source={item.img} style={styles.listimg} accessibilityLabel='图片' alt="头像"></Image>
                         <View>
                           <Text style={styles.listTit}>{item.title}</Text>
-                          
                         </View>
                         <View style={styles.textBox}>
                           <Text style={styles.listText}>{item.text}</Text>
@@ -476,6 +476,8 @@ const styles = StyleSheet.create({
     padding: 10,
     width: windowWidth * 0.9,
     margin: 8,
+    // textAlign:'center',
+    // justifyContent:'center',
     ...Platform.select({
       ios: {
         shadowColor: '#999', //设置阴影色
@@ -530,15 +532,26 @@ const styles = StyleSheet.create({
   wire: {
     borderBottomWidth: 1,
     borderBottomColor: '#fff',
-    width: 130
+    width: 130,
+
   },
   postMain: {
-    // paddingTop: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent:'center',
+    width:'100%',
+    height:'150%',
+    textAlign:'center'
+  },
+  postMainB:{
+    width:'100%',
+    height:80,
+    position:'relative',
+    padding:8,
+    justifyContent:'center',
+    marginBottom:140
   },
   hengxs: {
-    width: windowWidth,
-
+    width: windowWidth
   },
   hengl:{
     width:'35%',

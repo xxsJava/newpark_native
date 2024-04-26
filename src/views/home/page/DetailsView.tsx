@@ -10,7 +10,6 @@ import { Trans } from 'react-i18next';
 import {
   Dimensions,
   Image,
-  Modal,
   Platform,
   ScrollView,
   StyleSheet,
@@ -29,7 +28,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const DetailsView = (item) => {
   console.log(item.route.params.item);
-    const datass = item.route.params.item;
+  const datass = item.route.params.item;
   // console.log(data, '我是跳转过来的item');
   const [tabVal, setTab] = useState('tab1');
   const setTabPress = (tab: string) => {
@@ -54,15 +53,6 @@ const DetailsView = (item) => {
           <Text style={{ color: '#000', fontSize: 16 }}>支付宝支付</Text>
         </TouchableOpacity>
       </View>
-      {/* <Appbar.Header style={[styles.headerStyle, { zIndex: -2 }]}>
-        <Appbar.Action
-          icon={require('../../../assets/images/chevron-left.png')}
-          onPress={() => navigate('ProductRoute')}
-        />
-        <Text allowFontScaling={false} style={styles.headerText}>
-          <Trans>navigationBar.title14</Trans>
-        </Text>
-      </Appbar.Header> */}
       <View style={styles.scrollView}>
         <ScrollView alwaysBounceVertical={true}>
           <View style={styles.swiperView}>
@@ -217,12 +207,11 @@ const DetailsView = (item) => {
       </View>
       {/*  这个是模态框*/}
       <TouchableOpacity onPress={() => setModalVisible(false)} style={modalVisible ? { position: 'absolute', top: 0, left: 0, width: windowWidth, height: windowHeight, backgroundColor: '#000', opacity: 0.3 } : { display: 'none' }}></TouchableOpacity>
-      <View style={modalVisible ? { width: windowWidth, height: windowHeight * 0.6, backgroundColor: '#E5E5E5', position: 'absolute', bottom: 0, borderTopLeftRadius: 16, borderTopRightRadius: 16, padding: 12 } : { display: 'none' }}>
+      <View style={modalVisible ? { width: windowWidth, height: windowHeight * 0.74, backgroundColor: '#E5E5E5', position: 'absolute', bottom: 0, borderTopLeftRadius: 16, borderTopRightRadius: 16, padding: 12 } : { display: 'none' }}>
         <View style={{ width: '100%' }}>
           <Text style={{ fontSize: 16, color: '#000', textAlign: 'center', fontWeight: 'bold' }}>确认订单</Text>
         </View>
-
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fff', padding: 12, borderRadius: 12, marginBottom: 12 }}>
+        <TouchableOpacity  style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fff', padding: 12, borderRadius: 12, marginBottom: 12 }} onPress={()=>navigate('AddressManagementRoute')}>
           <Image source={require('../../../assets/images/tup/dizhi.png')} style={{ width: 30, height: 30 }}></Image>
           <View>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -231,15 +220,15 @@ const DetailsView = (item) => {
               </View>
               <Text style={{ fontSize: 11, marginLeft: 8 }}>北京市北京市海淀区紫竹院街道</Text>
             </View>
-            <Text style={{ color: '#000', fontSize: 18, fontWeight: 'bold' }}>龙锦苑四区西门23号楼4单元102左</Text>
+            <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold' }}>龙锦苑四区西门23号楼4单元102左</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ color: '#000', fontSize: 15 }}>张大大</Text>
               <Text style={{ color: '#000', fontSize: 14, marginLeft: 5 }}>1319385890</Text>
             </View>
           </View>
           <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 23, height: 23 }}></Image>
-        </View>
-        <ScrollView style={{paddingBottom:90,marginBottom:60}}>
+        </TouchableOpacity>
+        <View style={{ paddingBottom: 90, marginBottom: 60 }}>
           <View style={{ backgroundColor: "#fff", padding: 16 }}>
             <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
               <Text style={{ color: '#333', fontSize: 12 }}>春天怎么还不来</Text>
@@ -292,22 +281,32 @@ const DetailsView = (item) => {
                   </View>
                 </TouchableOpacity>
               </View>
+              <View style={{ backgroundColor: '#fff', width: '100%', height: 60,marginTop:12}}>
+                <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 8, justifyContent:'space-between' }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={{ color: '#000', fontSize: 14 }}>共计:</Text>
+                    <Text style={{ color: '#000' }}> ¥ <Text style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>520.00</Text></Text>
+                  </View>
+                  <TouchableOpacity style={{ backgroundColor: '#E20416', padding: 10, paddingHorizontal: 35, borderRadius: 90 }}>
+                    <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>立即支付</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
           </View>
-        </ScrollView>
-        <View style={{backgroundColor:'#ccc',position:'absolute',bottom:0,width:windowWidth,height:60}}>
-         <View style={{flexDirection:'row',backgroundColor:'#fff',padding:8,justifyContent:'space-between'}}>
-           <View style={{flexDirection:'row',alignItems:'center'}}>
-            <Text style={{color:'#000',fontSize:14}}>共计:</Text>
-            <Text style={{color:'#000'}}> ¥ <Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>520.00</Text></Text>
-           </View>
-           <TouchableOpacity style={{backgroundColor:'#E20416',padding:10,paddingHorizontal:35,borderRadius:90}}>
-            <Text style={{color:'#fff',fontWeight:'bold',fontSize:18}}>立即支付</Text>
-           </TouchableOpacity>
+        </View>
+        {/* <View style={{ backgroundColor: '#ccc', position: 'absolute', bottom: 0, width: windowWidth, height: 60 }}>
+          <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 8, justifyContent: 'space-between' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={{ color: '#000', fontSize: 14 }}>共计:</Text>
+              <Text style={{ color: '#000' }}> ¥ <Text style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>520.00</Text></Text>
+            </View>
+            <TouchableOpacity style={{ backgroundColor: '#E20416', padding: 10, paddingHorizontal: 35, borderRadius: 90 }}>
+              <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>立即支付</Text>
+            </TouchableOpacity>
           </View>
-         </View>
+        </View> */}
       </View>
-
     </View>
   );
 };

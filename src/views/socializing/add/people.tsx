@@ -4,118 +4,96 @@
  * 作者:zhn
  * 修改时间:2024/2/22 16:10:11
  */
-import { Input, InputField, InputIcon, InputSlot, SearchIcon } from '@gluestack-ui/themed';
+import { AddIcon, Button, ButtonIcon, ButtonText, CloseIcon, Heading, Icon, Input, InputField, InputIcon, InputSlot, Modal, ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, SearchIcon, Toast, ToastDescription, useToast } from '@gluestack-ui/themed';
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, ScrollView,Alert } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { accountCheck, addFriend } from '../../../api/imApi';
+import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
-// const list = [
-//     {
-//         index:1,
-//         name:'xxs',
-//         ava:require('../.../../../../assets/images/tup/ppy.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行','美食','吃穿','美妆']
-//     },
-//     {
-//         index:2,
-//         name:'eee',
-//         ava:require('../.../../../../assets/images/tup/ly.png'),
-//         tel:'5175689259',
-//         isboy:false,
-//         inter:[]
-//     },
-//     {
-//         index:3,
-//         name:'trf',
-//         ava:require('../.../../../../assets/images/tup/dg.jpg'),
-//         tel:'5175689259',
-//         isboy:false,
-//         inter:['旅行']
-//     },
-//     {
-//         index:4,
-//         name:'iuy',
-//         ava:require('../.../../../../assets/images/tup/hc.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:5,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:6,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:7,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:8,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:9,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-//     {
-//         index:10,
-//         name:'ops',
-//         ava:require('../.../../../../assets/images/tup/jia.png'),
-//         tel:'5175689259',
-//         isboy:true,
-//         inter:['旅行']
-//     },
-// ]
 const AddPeople = () => {
-    const [personInfo, setpersonInfo] = React.useState({ "ava": 27, "index": 1, "inter": ["旅行", "美食", "吃穿", "美妆"], "isboy": true, "name": "xxs", "tel": "5175689259", "birthday": "2024-03-03" });
-    const [value, onChangeText] = useState('');
-    const [remain, onChangeText1] = useState('');
+    
     // 模态框
     const [showmtk, setShowmtk] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [onText, setText] = useState('');
+    const [addNumber,setNumber] = useState('');
     const [writremark, setWritremark] = useState(true);
-    // 弹出提示框
-    const tipBox = () => {
-        Alert.alert(
-            '提示',
-            '已发送验证消息，请稍后！！！'
-        )
+    const ref = React.useRef(null)
+    const [context,setConText] = useState('');
+    const toast = useToast()
+
+    const [onFriend,setFriend] = useState(false);
+
+    //发送好友申请参数
+    const friendParam:any = {
+        "fromUserID": "",
+        "toUserID": "11111113",
+        "reqMsg": "hello!",
+        "ex": ""
+    }
+
+    const uIdArr:any = {
+        "checkUserIDs": []
     };
 
+    //添加好友 1004 用户不存在
+    const addFindFriends = async () => {
+        
+        uIdArr.checkUserIDs.push(addNumber);
+        const accountChecks = await accountCheck(uIdArr);
+        console.log('参数------->',uIdArr);
+        console.log('好友是否存在数据------->',accountChecks.data.results[0].accountStatus);
+
+        if(accountChecks.data.results[0].accountStatus == 'unregistered'){
+            setText('未找到相关的用户信息');
+            setIsVisible(true);
+            return;
+        }
+        setShowmtk(true);
+    }
+
+    const addFriends = async () => {
+        const uId = await Storage.get('usr-uId');
+        friendParam.fromUserID = uId;
+        friendParam.toUserID = addNumber;
+        friendParam.reqMsg = context;
+
+        console.log('好友申请参数------>',friendParam);
+
+        const result = await addFriend(friendParam);
+        
+        if(result.errCode == 0){
+            console.log('已发送好友申请');
+            toast.show({
+                placement: "top",
+                render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                        <Toast nativeID={toastId} action="success" variant="solid">
+                            <ToastDescription>
+                                已发送好友申请
+                            </ToastDescription>
+                        </Toast>
+                    )
+                }
+            })    
+            setShowmtk(false);
+            setFriend(false);
+        }
+    }
+
     const onChangeTextInput = (text: string) => {
-        setText(text);
+        setNumber(text);
+        setText('查找‘'+text+'’相关用户');
         setIsVisible(text.length > 0);
     }
 
-    console.log(onText, '输入的文字');
+    const onAddChangeText = (text:string) =>{
+        setConText(text);
+    }
+
     return (
         <View>
             <View style={styles.searchGrid}>
@@ -126,111 +104,88 @@ const AddPeople = () => {
                     <InputField
                         placeholder="账号/手机号"
                         onChangeText={onChangeTextInput}
+                        keyboardType="numeric"
                     />
                 </Input>
             </View>
-            <TouchableOpacity style={isVisible ? {} : { display: 'none' }} onPress={() => setShowmtk(true)}>
+            <TouchableOpacity style={isVisible ? {} : { display: 'none' }} onPress={addFindFriends}>
                 <View style={styles.searchContent}>
                     <Text style={styles.searchText}>
-                        查找‘{onText}’相关用户
+                        {onText}
                     </Text>
                 </View>
             </TouchableOpacity>
 
-
-            {/* 模态框显示 */}
-            <View style={showmtk ? { position: 'absolute' } : { display: 'none' }}>
-                <TouchableOpacity style={{ width: windowWidth, height: windowHeight, backgroundColor: '#000', opacity: 0.3, position: 'absolute' }} onPress={() => { setShowmtk(false) }}></TouchableOpacity>
-                <View style={{ width: windowWidth * 0.9, marginLeft: windowWidth * 0.05, position: 'absolute', zIndex: 99999, marginTop: (windowHeight - 680) / 2 }}>
-                    <Image source={require('../../../assets/images/tup/891713317829_.pic.jpg')} style={{ width: '100%', height: 160, borderTopLeftRadius: 12, borderTopRightRadius: 12 }}></Image>
-                    <View style={{ backgroundColor: '#fff', width: '100%', height: 420, borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }}>
-                        <View style={{ flexDirection: 'row', marginTop: -30 }}>
-                            <View >
-                                <Image source={personInfo.ava} style={{ width: 80, height: 80, marginHorizontal: 12 }}></Image>
-                            </View>
-                            <View style={{ marginLeft: 8 }}>
-                                <Text style={{ color: '#fff', fontSize: 23 }}>{personInfo.name}</Text>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 6 }}>
-                                    <Text style={{ fontSize: 16 }}>{personInfo.tel}</Text>
-                                    <Image source={require('../../../assets/images/tup/shenfen.png')} style={{ width: 20, height: 20, marginLeft: 8 }}></Image>
-                                </View>
-                            </View>
-                        </View>
-
-                        <View style={{ padding: 12 }}>
-                            <Text style={{ fontSize: 17, fontWeight: 'bold', paddingVertical: 8 }}>个人信息</Text>
-                            <ScrollView style={{ height: 260 }}>
-                                <View style={{ borderBottomWidth: 0.4 }}>
-                                    <View style={{ flexDirection: 'row', paddingVertical: 2, height: 25 }}>
-                                        <Text style={{ fontSize: 14, lineHeight: 24 }}>昵称</Text>
-                                        <View style={{ paddingLeft: 30 }}>
-                                            <Text style={{ color: '#000', fontSize: 17 }}>{personInfo.name}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', paddingVertical: 2, height: 25 }}>
-                                        <Text style={{ fontSize: 14, lineHeight: 24 }}>备注</Text>
-                                        <View>
-                                            <TouchableOpacity style={{ paddingLeft: 30, position: 'relative' }} onPress={() => { setWritremark(false) }} >
-                                                <Image source={require('../../../assets/images/tup/tianxie.png')} style={writremark ? { width: 18, height: 18 } : { display: 'none' }}></Image>
-                                            </TouchableOpacity>
-                                            <View style={writremark ? { display: 'none' } : { flexDirection: 'row', justifyContent: 'space-between' }}>
-                                                <TextInput
-                                                    placeholder="请输入备注"
-                                                    onChangeText={text => onChangeText1(text)}
-                                                    value={remain}
-                                                    maxLength={12}
-                                                    style={{ backgroundColor: '#eee', height: 30, padding: 6, lineHeight: 10, marginLeft: '10%' }}
-                                                />
-                                                <TouchableOpacity onPress={() => { setWritremark(true) }}>
-                                                    <Image source={require('../../../assets/images/tup/tuanduicankaoxian-.png')} style={{ width: 20, height: 20 }}></Image>
-                                                </TouchableOpacity>
-                                            </View>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', paddingVertical: 2, height: 25 }}>
-                                        <Text style={{ fontSize: 14, lineHeight: 24 }}>性别</Text>
-                                        <TouchableOpacity style={{ paddingLeft: 30 }} onPress={() => { onChangeText1('qefnwka.') }}>
-                                            <Text style={personInfo.isboy ? { color: '#000', fontSize: 15 } : { display: 'none' }}>男</Text>
-                                            <Text style={personInfo.isboy ? { display: 'none' } : { color: '#000', fontSize: 15 }}>女</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', paddingVertical: 2, height: 25 }}>
-                                        <Text style={{ fontSize: 14, lineHeight: 24 }}>生日</Text>
-                                        <View style={{ paddingLeft: 30 }}>
-                                            <Text style={personInfo.birthday ? { color: '#000', fontSize: 15 } : { display: 'none' }}>{personInfo.birthday}</Text>
-                                            <Text style={personInfo.birthday ? { display: 'none' } : { color: '#000', fontSize: 15 }}> - </Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', paddingVertical: 2, height: 25 }}>
-                                        <Text style={{ fontSize: 14, lineHeight: 24 }}>手机号</Text>
-                                        <View style={{ paddingLeft: 30 }}>
-                                            <Text style={{ color: '#000', fontSize: 15 }}>{personInfo.tel}</Text>
-                                        </View>
-                                    </View>
-
-                                </View>
-                                <View style={{marginBottom:8}}>
-                                    <TextInput
-                                        autoCapitalize='none'
-                                        placeholder="请输入申请语"
-                                        onChangeText={text => onChangeText(text)}
-                                        value={value}
-                                        enablesReturnKeyAutomatically={true}
-                                        multiline={true}
-                                        numberOfLines={4}
-                                        style={{ height: 120, borderColor: 'gray', borderWidth: 0.4, backgroundColor: '#eee', marginTop: 20, width: '80%', marginLeft: '10%', textAlignVertical: 'top' }}
-                                    />
-                                </View>
-                            </ScrollView>
-                        </View>
-                        <View style={{ position: 'absolute', bottom: 16, width: '100%', left: 0, alignItems: 'center' }}>
-                            <TouchableOpacity style={{ backgroundColor: '#0089FF', width: '60%', padding: 6, borderRadius: 90 }} onPress={() => { setShowmtk(false);tipBox() }}>
-                                <Text style={{ color: '#fff', fontSize: 15, textAlign: 'center', fontWeight: 'bold' }}>添加好友</Text>
-                            </TouchableOpacity>
-                        </View>
+            <Modal 
+            isOpen={showmtk}
+            onClose={() => {
+                setShowmtk(false);
+                setFriend(false);
+            }}
+            finalFocusRef={ref}>
+                <ModalBackdrop />
+                <ModalContent>
+                    <ModalHeader>
+                    <Heading size="sm">{onFriend?'发送好友申请':'用户详情信息'}</Heading>
+                        <ModalCloseButton>
+                            <Icon as={CloseIcon} />
+                        </ModalCloseButton>
+                    </ModalHeader>
+                <ModalBody>
+                    {onFriend?<View style={styles.addContent}>
+                    <View>
+                        <Text style={context.length>0?styles.contentFonta:styles.contentFont}>{context.length>0?context:'请输入好友申请内容'}</Text>
                     </View>
-                </View>
-            </View>
+                    <TextInput
+                        allowFontScaling={false}
+                        onChangeText={onAddChangeText}
+                        autoFocus={true}
+                        caretHidden={true}
+                        maxLength={20}
+                        style={{opacity:0}}
+                        />
+                    <Text style={styles.contentLen}>{context.length}/20</Text>
+                </View>:<View style={styles.addUsrInfo}>
+                        <View style={[styles.usrIcon]}>
+                            <Image style={styles.imgHead} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%281%29.jpg'}} />
+                        </View>
+                        <View style={[styles.headName]}>
+                            <Text style={styles.textFont}>
+                                小学牛
+                            </Text>
+                            <Text style={styles.addNum}>
+                                {addNumber}
+                            </Text>
+                        </View>
+                        <View style={styles.addBut}>
+                            <Button
+                            size="md"
+                            variant="solid"
+                            action="primary"
+                            isDisabled={false}
+                            isFocusVisible={false}
+                            onPress={()=>setFriend(true)}
+                            >
+                                <ButtonText>添加</ButtonText>
+                                <ButtonIcon as={AddIcon} />
+                            </Button>
+                        </View>
+                    </View>}
+                </ModalBody>
+                <ModalFooter>
+                {onFriend?<Button
+                        size="md"
+                        variant="solid"
+                        action="primary"
+                        isDisabled={false}
+                        isFocusVisible={false}
+                        onPress={addFriends}
+                        >
+                    <ButtonText>发送申请</ButtonText>
+                    </Button>:''}
+                </ModalFooter>
+                </ModalContent>
+            </Modal>
         </View>
     )
 };
@@ -255,6 +210,54 @@ const styles = StyleSheet.create({
     },
     hideContent: {
         display: 'none'
+    },
+    addUsrInfo:{
+        width:'100%',
+        position: 'relative',
+        flexDirection:'row',
+    },
+    usrIcon:{
+        width: 60,
+        height: 60,
+        borderWidth: 1,
+        // borderColor: 'red'
+    },
+    imgHead:{
+        width:60,
+        height: 60
+    },
+    headName:{
+        marginLeft: 10,
+        paddingTop: 10
+    },
+    textFont:{
+        color: '#000',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    addNum:{
+        color:'#666'
+    },
+    addBut:{
+        marginLeft: 30,
+        marginTop: 10
+    },
+    contentFont:{
+        color:'#999'
+    },
+    contentFonta:{
+        color:'#000'
+    }
+    ,
+    addContent:{
+        height:100,
+        position:'relative'
+    },
+    contentLen:{
+        color:'#000',
+        position:'absolute',
+        bottom:0,
+        right:10
     }
 })
 export default AddPeople;

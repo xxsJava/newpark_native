@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-24 17:48:22
- * @LastEditTime: 2024-04-12 10:49:26
+ * @LastEditTime: 2024-04-25 09:25:23
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
  * @Description: 登录控制器
  */
@@ -37,8 +37,10 @@ const loginVal = async () => {
     console.log(loginTokenAPI.data);
   
     //更新用户token
-    Storage.set('usr-token', loginTokenAPI.data);
-    const uId:any = await Storage.get('usr-uId');
+    Storage.set('usr-token', loginTokenAPI.data.usrToken);
+    const uId:any = loginTokenAPI.data.uId;
+    Storage.set('usr-uId',uId);
+    console.log('获取登录UID----------->',uId);
     OpenIMConfig.userID = uId;
     //OpenIM 连接
     console.log('------------------->连接OpenIm');

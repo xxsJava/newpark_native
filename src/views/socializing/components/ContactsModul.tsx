@@ -1,24 +1,36 @@
-// import {useToast} from 'native-base';
+/*
+ * @Author: zhn
+ * @Date: 2024-4-20 17:44:34
+ * @FilePath: \newpark_native\src\views\socializing\components\ContactsModul.tsx
+ * @Description: 社交的联系人页面
+ */
 import { Toast, useToast } from '@gluestack-ui/themed';
 import React, { useRef, useState } from 'react';
 import {
   Dimensions,
+  Image,
   PanResponderInstance,
   Platform,
+  ScrollView,
   SectionList,
   StyleSheet,
   Text,
   TouchableOpacity,
   View
 } from 'react-native';
+import { getFriendList, getUseList } from '../../../api/imApi/index';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import { getUseList } from '../../../api/imApi/index';
-// import { pinyin } from 'pinyin';
+// 出现冲突地方一
+// import { getUseList } from '../../../api/imApi/index';
+import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
+// 出现冲突地方二
+// import { contextListJson } from '../../../api/imApi/type';
 
 
 
+import Feather from 'react-native-vector-icons/Feather';
 import { contextListJson } from '../../../api/imApi/type';
-import { log } from 'console';
+import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
 type DataSection = { title: string; data: DataItem[] };
@@ -34,41 +46,29 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
+
   // 联系人列表
   const [ListData1, setListData] = React.useState();
-  const listData = async () => {
 
-  // const pinyinArray = pinyin('张', { style: pinyin.STYLE_NORMAL });
-    console.log(pinyinArray);
-    
-    const contentsJson = contextListJson;
-    const ListDataAPI = await getUseList(contentsJson);
-    const list = ListDataAPI.data.users;
-    console.log('ListDataAPI 在这里', list);
-
-    let groupArray = list.reduce((result, currentValue) => {
-      console.log(result,'这个是结果');
-      
-      let firstLetter = currentValue.nickname.charAt(0);
-      console.log(currentValue.nickname,firstLetter,'firstLetter');
-      
-      if (!result[firstLetter]) {
-        result[firstLetter] = {
-          title: firstLetter,
-          data: []
-        };
+  const friendList = async () => {
+    const uId = await Storage.get('usr-uId');
+    const params = {
+      "userID": uId,
+      "pagination": {
+        "pageNumber": 1,
+        "showNumber": 50
       }
-      result[firstLetter].data.push(currentValue);
-      return result;
-    }, {});
-    // 转换结果为数组形式
-    let resultArray:DataSection[] = Object.values(groupArray);
-    console.log('这是转化后的值', resultArray);
-    // setListData(resultArray);
+    };
+    const friendLists = await getFriendList(params);
+
+    console.log('参数--------->',uId);
+    console.log('好友数据----------->',friendLists)
   }
+
   React.useEffect(() => {
-    listData()
-  }, []); // 只在组件挂载时调用一次
+    // listData();
+    friendList();
+  }); // 只在组件挂载时调用一次
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -90,506 +90,6 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   );
 };
 
-
-const data: DataSection[] = [
-  // {
-  //   title: 'A',
-  //   data: [
-  //     {
-  //       name: '牛友名称11',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'B',
-  //   data: [
-  //     {
-  //       name: '聊天室名称',
-  //       labelText: '123',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: true,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'C',
-  //   data: [
-  //     {
-  //       name: '社区频道名称',
-  //       labelText: '#打卡',
-  //       color: 3,
-  //       lableType: 2,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '社区频道名称',
-  //       labelText: '#打卡',
-  //       color: 3,
-  //       lableType: 2,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'D',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'E',
-  //   data: [
-  //     {
-  //       name: '聊天室名称',
-  //       labelText: '123',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: true,
-  //     },
-  //     {
-  //       name: '聊天室名称',
-  //       labelText: '123',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: true,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'F',
-  //   data: [
-  //     {
-  //       name: '社区频道名称',
-  //       labelText: '#打卡',
-  //       color: 3,
-  //       lableType: 2,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '社区频道名称',
-  //       labelText: '#打卡',
-  //       color: 3,
-  //       lableType: 2,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'G',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'H',
-  //   data: [
-  //     {
-  //       name: '聊天室名称',
-  //       labelText: '123',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: true,
-  //     },
-  //     {
-  //       name: '聊天室名称',
-  //       labelText: '123',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: true,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'I',
-  //   data: [
-  //     {
-  //       name: '社区频道名称',
-  //       labelText: '#打卡',
-  //       color: 3,
-  //       lableType: 2,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '社区频道名称',
-  //       labelText: '#打卡',
-  //       color: 3,
-  //       lableType: 2,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'J',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 1,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'K',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'L',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'M',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'N',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'O',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'P',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'Q',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'R',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'S',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'T',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'U',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'V',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'W',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'X',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'Y',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'Z',
-  //   data: [
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //     {
-  //       name: '牛友名称',
-  //       labelText: '牛友',
-  //       color: 2,
-  //       lableType: 1,
-  //       icon: false,
-  //     },
-  //   ],
-  // },
-
-  // 更多的数据...
-];
-
 const ListIndex: React.FC = () => {
   const toast = useToast();
   //选中的索引值
@@ -600,6 +100,7 @@ const ListIndex: React.FC = () => {
   );
 
   const renderItem = ({ item }: { item: DataItem }) => (
+  
     <TouchableOpacity
       onPress={() => navigate('ObjCard')}
       style={[
@@ -613,12 +114,13 @@ const ListIndex: React.FC = () => {
                 : '#26C78C',
         },
       ]}>
+
       <View style={styles.itemLeft}>
         <View style={styles.avatarStyle} />
       </View>
       <View style={styles.itemRight}>
         <Text style={styles.itemName}>
-          {item.name}
+          {item.nickname}
         </Text>
         <View style={styles.itemLabelStyle} />
       </View>
@@ -638,7 +140,7 @@ const ListIndex: React.FC = () => {
   const pre = (num: number) => {
     let pre = 0;
     for (let i = 0; i < num; i++) {
-      pre += data[i].data.length;
+      pre += peopData[i].data.length;
     }
     return pre;
   };
@@ -647,8 +149,8 @@ const ListIndex: React.FC = () => {
   const _getHigth = () => {
     let nodeNum = 0;
     // console.log('计算高度', data.length);
-    for (let i = data.length - 1; i >= 0; i--) {
-      nodeNum += data[i].data.length * ITEM_HEIGHT + (32 + 8 * (data[i].data.length - 1));
+    for (let i = peopData.length - 1; i >= 0; i--) {
+      nodeNum += peopData[i].data.length * ITEM_HEIGHT + (32 + 8 * (peopData[i].data.length - 1));
       // console.log(data[i].title+'------>',data[i].data.length)
     }
     return nodeNum;
@@ -677,12 +179,11 @@ const ListIndex: React.FC = () => {
       render: () => {
         return (
           <Toast action="attention" variant="solid">
-            <Text allowFontScaling={false}>{data[index].title}</Text>
+            <Text allowFontScaling={false}>{peopData[index].title}</Text>
           </Toast>
         )
       },
     });
-
     if (sectionListRef.current) {
       sectionListRef.current.scrollToLocation({
         animated: true,
@@ -713,38 +214,265 @@ const ListIndex: React.FC = () => {
   // 这里是获取子元素的数量
   const num = (str: string) => {
     // 遍历排好序的数据，获取每一个字母的位置
-    for (var i = 0; i < data.length; i++) {
-      if (str == data[i].title) {
-        console.log(str + ':' + data[i].data.length);
+    for (var i = 0; i < peopData.length; i++) {
+      if (str == peopData[i].title) {
+        console.log(str + ':' + peopData[i].peopData.length);
       }
     }
     // console.log(sum() , '一共有这些子元素');
     console.log(pre(1)); //13
   };
+// 
+  const [peopData,setPeopleData] = React.useState([
+    {
+        title: 'A',
+        data: [
+          {
+            nickname: '牛友名称11',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },
+          {
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },
+          {
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },{
+            nickname: '牛友名称',
+            labelText: '牛友',
+            color: 1,
+            lableType: 1,
+            icon: false,
+          },
+        ],
+      },
+  ]);
+
+// 展示列表
+const listData = async () => {
+
+    const contentsJson = contextListJson;
+    const ListDataAPI = await getUseList(contentsJson);
+    const list = ListDataAPI.data.users;
+    console.log('ListDataAPI 在这里', list);
+  
+    let groupArray = list.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
+      console.log(result, '这个是结果');
+      // toUpperCase()
+      currentValue.nickname = currentValue.nickname.toUpperCase();
+      const firstLetter = PinyinUtil.getFirstLetter(currentValue.nickname.charAt(0));
+  
+      console.log(currentValue.nickname, firstLetter, 'firstLetter');
+  
+      if (!result[firstLetter]) {
+        result[firstLetter] = {
+          title: firstLetter,
+          data: []
+        };
+      }
+      
+      result[firstLetter].data.push(currentValue);
+      console.log(result[firstLetter].data,'-----------');
+      return result;
+    }, {});
+   
+    // 转换结果为数组形式
+    let resultArray: DataSection[] = Object.values(groupArray);
+    // 根据对象的name属性进行升序排序
+    resultArray.sort((a, b) => (a.title > b.title) ? 1 : -1);
+    setPeopleData(resultArray)
+    console.log('这是转化后的值', resultArray);
+    // for (let i = 0; i < resultArray.length; i++) {
+    //   resultArray[i].title.sort();
+    //   console.log(resultArray[i].title.sort(),'---------');
+      
+    // }
+  
+  }
+  React.useEffect(() => {
+    // listData();
+  }, []); // 只在组件挂载时调用一次
+
   return (
-    <View style={{ flex: 1, marginTop: 10 }}>
-      <AlphabetIndex sections={data} onSectionSelect={handleSectionSelect} />
+    <>
+    {/* 这个是索引条 */}
+    <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
+    <ScrollView style={{ flex: 1, marginTop: 10 }}>
+    <TouchableOpacity activeOpacity={0.9}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            我的群组
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
+
+    <TouchableOpacity activeOpacity={0.9}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            我的社区
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
+
+    <TouchableOpacity activeOpacity={0.9}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            新的群聊
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
+    
+    <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('Apply')}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdhy.png'}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            新的好友
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
       <SectionList
         ref={sectionListRef}
-        sections={data}
-
+        sections={peopData}
         // 这里
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
         getItemLayout={_ItemLayout}
         keyExtractor={(item, index) => {
-          // console.log(item)
           return index.toString();
-        }}
-        stickySectionHeadersEnabled={true}
-      />
-    </View>
+        } }
+        stickySectionHeadersEnabled={true} />
+    </ScrollView></>
   );
 };
 
 export default ListIndex;
 
 const styles = StyleSheet.create({
+  headGroup:{
+    width:'100%',
+    height:60,
+    backgroundColor:'#fff',
+    flexDirection:'row',
+    paddingLeft:10,
+    paddingTop:3,
+    position:'relative'
+  },
+  iconHead:{
+    width:50,
+    height:50
+  },
+  headImg:{
+    width:50,
+    height:50
+  },
+  bodyContent:{
+    marginLeft:20
+  },
+  conText:{
+    color:'#000',
+    fontSize:18,
+    lineHeight:50
+  },
+  rightIcon:{
+    position:'absolute',
+    right:20,
+    top: 20
+  },
   indexBarStyle: {
     position: 'absolute',
     bottom: 0,

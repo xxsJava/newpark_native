@@ -29,9 +29,6 @@ import ClausePopup from '../../views/login/components/ClausePopup';
 import { forgetPass } from './controller';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-
-
 const LoginView: React.FC<LoginScreenProps> = () => {
   const [visible, setVisible] = useState(false);
   const toast = useToast();
@@ -296,26 +293,6 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               <Text style={{ color: 'blue' }}>服务条款</Text>
             </TouchableOpacity>
           </View>
-         {/* <View>
-            <Button icon="camera" mode="contained" onPress={() => navigate('Verification')}>
-              查看页面Verification
-            </Button>
-            <Button icon="camera" mode="contained" onPress={() => navigate('GenderRoute')}>
-              查看页面GenderRoute
-            </Button>
-            <Button icon="camera" mode="contained" onPress={() => navigate('InterestsHobbies')}>
-              查看页面InterestsHobbies
-            </Button>
-            <Button icon="camera" mode="contained" onPress={() => navigate('SchoolRoute')}>
-              查看页面SchoolRoute
-            </Button>
-            <Button icon="camera" mode="contained" onPress={() => navigate('Registered')}>
-              查看页面Registered
-            </Button>
-            <Button icon="camera" mode="contained" onPress={() => navigate('ForgetPass')}>
-              查看页面ForgetPass
-            </Button>
-          </View>  */}
         </KeyboardAwareScrollView>
       </ImageBackground>
       <ClausePopup visible={visible} onClose={() => setVisible(false)}></ClausePopup>
@@ -356,11 +333,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     backgroundColor: '',
   },
-  arrows: {
-    marginLeft: 10,
-    marginRight: 10,
-    transform: [{ rotate: '-90deg' }],
-  },
   num: {
     width: '100%',
     height: 50,
@@ -370,9 +342,6 @@ const styles = StyleSheet.create({
     height: 80,
     flexDirection: 'row',
     alignItems: 'flex-end',
-  },
-  eyes: {
-    marginBottom: 12,
   },
   login: {
     width: '100%',
@@ -420,21 +389,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#F0BA38',
-    lineHeight: 25
-  },
-  buttonStyle: {
-    width: 120,
-    height: 48,
-    marginTop: 10,
-    marginHorizontal: '16%',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#bbb',
-    borderRadius: 24
   },
   heng: {
     flexDirection: 'row',
