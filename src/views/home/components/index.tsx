@@ -1,21 +1,18 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-24 16:21:42
+ * @LastEditTime: 2024-04-26 17:14:44
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
 import { Menu, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
 import React from 'react';
-import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Avatar, Button, Card, IconButton, Text } from 'react-native-paper';
-import WebView from 'react-native-webview';
 import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
-import WebViews from '../../../components/WebView/WebViewCompent';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import webview from '../../../config/webview';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -98,9 +95,39 @@ const windowHeight = Dimensions.get('window').height;
         <Card.Content style={styles.backColor}>
           {/* <Text allowFontScaling={false} style={styles.context}>{item.ttitle}</Text> */}
           <View style={{ width: windowWidth }}>
-            { item.ttype == 0?<WebView style={{height:200}} source={{ html: item.tcontext }}></WebView>:''}
+            {/* { item.ttype == 0?<WebView style={{height:200}} source={{ html: item.tcontext }}></WebView>:''}
             { item.ttype == 1?<WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={150}/>:''}
-            { item.ttype == 2?<WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} />:''}
+            { item.ttype == 2?<WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} />:''} */}
+
+            <View>
+              <Text>看我靓照</Text>
+            </View>
+            <View style={styles.postImg}>
+                <View style={styles.postImgs}>
+                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                </View>
+
+                <View style={styles.postImgs}>
+                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                </View>
+
+                <View style={styles.postImgs}>
+                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                </View>
+                
+                <View style={styles.postImgs}>
+                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                </View>
+
+                <View style={styles.postImgs}>
+                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                </View>
+
+                <View style={styles.postImgs}>
+                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                </View>
+            </View>
+
           </View>
         </Card.Content>
       </TouchableOpacity>
@@ -180,17 +207,14 @@ const windowHeight = Dimensions.get('window').height;
           );
         })}
       </View>
-      {/* <View style={styles.leaveWordView}>
-        <Avatar.Image size={32} source={require('../../../assets/images/avatar-nv.png')} accessibilityLabel='图片'/>
-        <TextInput placeholder='喜欢就告诉她' allowFontScaling={false} style={styles.leaveWordInput}></TextInput>
-      </View> */}
     </Card>
   );
 };
 export default postsOrdinary;
 const styles = StyleSheet.create({
   backColor: {
-    shadowOpacity: 0
+    shadowOpacity: 0,
+    marginTop:10
   },
   cardSty: {
     marginBottom: -3, 
@@ -384,5 +408,19 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'stretch',
     justifyContent:'flex-start'
+  },
+  postImg:{
+    // borderWidth:1,
+    flexDirection:'row',
+    flexWrap: 'wrap',
+  },
+  postImgs:{
+    borderWidth:1,
+    width:100,
+    height:100
+  },
+  postImgSty:{
+    width:'100%',
+    height:'100%'
   }
 });
