@@ -95,10 +95,20 @@ const JiaoyiData = () => {
             fetchData();
         }
     };
-    const handleStart = () => {
+    const handleStart = async() => {
         setRefreshing(true);
         setPage(1);
-        fetchData();
+       
+        const params1 = {
+            pageNo: page,
+            pageSize: 6,
+            priceSort: cx2 ? 'DESC' : 'ASC',
+            PStatus: 'FORSALE',
+            timeSort: cx3 ? 'DESC' : 'ASC',
+        }
+        const data1 = await productApi(params1);
+        setData(data1.data)
+
         setRefreshing(false);
     };
     // 价格按钮的
