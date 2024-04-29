@@ -117,3 +117,14 @@ export const accountCheck = (params:any): Promise<IResponse> =>{
         data:params
     })
 }
+/**
+ * 获取已加入的群组
+ * @param params 
+ * @returns 
+ */
+export const joinedGroup = (params:any): Promise<IResponse> =>{
+    return request.post({
+        url:'/api/group/get_joined_group_list',
+        data:params
+    })
+}

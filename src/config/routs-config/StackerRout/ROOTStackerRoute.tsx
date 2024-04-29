@@ -6,6 +6,8 @@
  * @Description: desc
  */
 // 测试选择学校
+import MyqunzuSeach from '../../../views/socializing/components/contact/MyqunzuSeach';
+import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
 import MainMess from '../../../components/Bell/MainMess';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
@@ -98,6 +100,22 @@ export default {
     options: {
       headerShown: true,
       title:'学校选择'
+    },
+  },
+  Myqunzu:{
+    component:Myqunzu,
+    options: {
+      headerShown: true,
+      title:'我的群组',
+      headerTitleAlign: 'center',
+
+    },
+  },
+  MyqunzuSeach:{
+    component:MyqunzuSeach,
+    options: {
+      headerShown: false,
+      title:'我的群组搜索的'
     },
   },
   JiaoyiData:{

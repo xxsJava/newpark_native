@@ -27,22 +27,7 @@ const Item = ({title}:any) => (
       title: 'Third Item',
     },
   ];
-  const xr = async() => {
-    const uId = await Storage.get('usr-uId');
-    const params = {
-      "userID": uId,
-      "pagination": {
-        "pageNumber": 1,
-        "showNumber": 50
-      }
-    };
-    // 获取好友的列表
-    const friLList = await getFriendList(params)
-    console.log('---->获取的朋友数据',friLList.data.friendsInfo);
-   return friLList.data.friendsInfo;
-  }
-
- 
+  
 const ChatRoom = () => {
     const [friendData,setFriendData] = useState([]);
     const xr = async() => {

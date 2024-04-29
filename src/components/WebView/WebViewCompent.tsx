@@ -14,7 +14,7 @@ const windowWidth = Dimensions.get('window').width;
 const WebViews = (props:any) => {
     return (
         <WebView
-                style={{ height: props.h, width: windowWidth,zIndex:10 }}
+                style={{ height: props.h, width: props.w,zIndex:10 }}
                 originWhitelist={ ['*'] }
                 // 布尔值,指定WebView中是否启用JavaScript。只在Android上使用，因为在iOS上默认启用了JavaScript。
                 javaScriptEnabled={ true }
