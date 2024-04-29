@@ -2,6 +2,10 @@ import * as React from 'react';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { View } from 'react-native-animatable';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import {getNewFriendList} from '../../../api/imApi';
+import Storage from '../../../utils/AsyncStorageUtils';
+
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const ReqApp = (item:any) => {
@@ -9,11 +13,28 @@ const ReqApp = (item:any) => {
     const res = item.route.params;
     console.log(res,'新的好友请求传过来的');
 
-    if(item){
+    // if(item){
         // setStatus('通过')
+    // }
+    const xr = async() => {
+        const uId = await Storage.get('usr-uId');
+        const params = {
+            "userID": uId,
+            "pagination": {
+              "pageNumber": 1,
+              "showNumber": 50
+            }
+          };
+        const getData = await getNewFriendList(params);
+        console.log('获得的新的好友---->',getData.data.FriendRequests);
+        setNewData(getData.data.FriendRequests);
     }
-
+    // xr()
+    React.useEffect(()=>{
+        xr()
+    },[])
     const [searchQuery, setSearchQuery] = React.useState('');
+    const [newData,setNewData] = React.useState([]);
     const listPeople = [
         {
             avatar: require('../../../assets/images/tup/l1.png'),
@@ -47,7 +68,7 @@ const ReqApp = (item:any) => {
                 </View>
                 <View>
                     {
-                        listPeople.map(item => {
+                        newData.map(item => {
                             // const [res,setRes] = React.useState(undefined);
                             return (
                                 <TouchableOpacity key={item.index} style={{ backgroundColor: '#fff', padding: 7, borderBottomWidth: 1, borderColor: '#ccc', }}>
@@ -55,15 +76,15 @@ const ReqApp = (item:any) => {
                                         <View >
                                             <Image
                                                 style={styles.tinyLogo}
-                                                source={item.avatar}
+                                                source={{uri:item.toFaceURL}}
                                                 accessibilityLabel='图片'
                                                 alt="头像"
                                             />
                                         </View>
                                         <View style={[styles.heng, { width: windowWidth * 0.67, justifyContent: 'space-between', marginHorizontal: 20, alignItems: 'center' }]}>
                                             <View>
-                                                <Text style={styles.name}>{item.name}</Text>
-                                                <Text style={{ color: '#000',fontSize:12 }}> {item.validation}</Text>
+                                                <Text style={styles.name}>{item.toNickname}</Text>
+                                                <Text style={{ color: '#000',fontSize:12 }}> {item.reqMsg}</Text>
                                             </View>
                                             <View style={styles.heng}>
                                                 {/*  */}
@@ -133,8 +154,8 @@ const styles = StyleSheet.create({
     name: {
         color: 'black',
         lineHeight: 20,
-        fontSize: 13,
-        marginBottom:3
+        fontSize: 16,
+        marginBottom:4
     },
     tinyLogo: {
         width:windowWidth * 0.16,

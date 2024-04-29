@@ -1,154 +1,121 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, ScrollView, } from 'react-native';
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { Switch, Button } from 'react-native-paper';
-import { TextInput } from 'react-native';
-import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
+import React, { useState, useEffect } from "react";
+import { View, Text, Dimensions, StyleSheet, TextInput, Image,FlatList } from 'react-native';
+import { getFriendList } from '../../../api/imApi/index';
+import Storage from '../../../utils/AsyncStorageUtils';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ChatRoom = () => {
-    const [roomDesc, setroomDesc] = React.useState(null);
-    const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-    const onToggleSwitch = () => {
-        setIsSwitchOn(!isSwitchOn)
-        console.log(isSwitchOn, '开关');
 
+const Item = ({title}:any) => (
+    <View >
+        {/* <Image source={{uri:}}></Image> */}
+      <Text>{title.friendUser.nickname}</Text>
+    </View>
+  );
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+  const xr = async() => {
+    const uId = await Storage.get('usr-uId');
+    const params = {
+      "userID": uId,
+      "pagination": {
+        "pageNumber": 1,
+        "showNumber": 50
+      }
     };
+    // 获取好友的列表
+    const friLList = await getFriendList(params)
+    console.log('---->获取的朋友数据',friLList.data.friendsInfo);
+   return friLList.data.friendsInfo;
+  }
 
-    const [chat, setChat] = React.useState('');
-    const [imghead, setImghead] = useState(null)
-    // 如果没有选择就默认给这个图片
-    var upath = 'https://new-by-video.oss-cn-beijing.aliyuncs.com/2024/01/29/416adedc-ea1f-4ce4-b87d-7f8875208b4f.jpg'
-
-    const changeHeader = () => {
-        launchImageLibrary({
-            mediaType: "mixed",
-            selectionLimit: 0,// 1为一张，0不限制数量
-            includeBase64: true
-        }, res => {
-            setImghead(res.assets)
-            if (!res.didCancel) {
-                if (res.assets[0].uri) {
-                    upath = res.assets[0].uri
-                }
-
-            }
-            console.log(upath, 'upath');
-        });
-    }
+ 
+const ChatRoom = () => {
+    const [friendData,setFriendData] = useState([]);
+    const xr = async() => {
+        const uId = await Storage.get('usr-uId');
+        const params = {
+          "userID": uId,
+          "pagination": {
+            "pageNumber": 1,
+            "showNumber": 50
+          }
+        };
+        // 获取好友的列表
+        const friLList = await getFriendList(params)
+        console.log('---->获取的朋友数据',friLList.data.friendsInfo);
+       setFriendData(friLList.data.friendsInfo);
+      }
+     
+   
+    React.useEffect(()=>{xr();},[])
+    const [valuesele, onChangeTextsele] = React.useState('');
+    console.log(valuesele,'---->获取到的输入框的值');
+    
     return (
-        <View style={styles.content}>
-            <TouchableOpacity onPress={() => changeHeader()}>
-                {imghead ? (
-                    imghead && imghead.map((item: any, index: any) => {
-                        return (
-                            <View key={index}>
-                                <Image
-                                    source={{ uri: item.uri }}
-                                    style={styles.ava}
-                                    accessibilityLabel='图片'
-                                    alt="头像"
-                                />
-                            </View>
-                        )
-                    })
-                ) : (
-                    <Image source={require('../../../assets/images/3.0x/chat_takephoto.png')} style={styles.ava} accessibilityLabel='图片' alt="头像"/>
-                )
-                }
-            </TouchableOpacity>
-            <Text style={styles.avatext}>请选择聊天室头像</Text>
-            <ScrollView style={styles.card}>
-                <View style={styles.heng}>
-                    <Text>聊天室名称</Text>
-                    <TextInput
-                        style={{ height: 40, borderColor: 'gray', borderBottomWidth: 1, minWidth: 90 }}
-                        onChangeText={text => setChat(text)}
-                        value={chat}
-                        maxLength={12}
-                        placeholder="请输入"
-                        autoComplete='name'
-                        enablesReturnKeyAutomatically={true}
-                    />
-                </View>
+        <View style={styles.contain}>
+            <View style={{backgroundColor:'#E9EAED',flexDirection:'row',alignItems:'center',justifyContent:'center',paddingHorizontal:12,borderRadius:3,margin:8}}>
+                <Image source={require('../../../assets/images/search.png')}></Image>
+                <TextInput onChangeText={text => onChangeTextsele(text)} value={valuesele} style={styles.select} placeholder="搜索" />
+            </View>
+            <View style={{backgroundColor:'#F8F8F8',height:12,width:windowWidth}}></View>
+            <View style={styles.div}>
+                <Text style={styles.h3}>我的好友</Text>
+                <Image source={require('../../../assets/images/chevron-right.png')} style={{width:20,height:20}}></Image>
+            </View>
+            <View style={{backgroundColor:'#F9FAFC',padding:5}}>
+                <Text style={{fontSize:12}}>最近会话</Text>
+            </View>
+            <FlatList
+                 data={friendData}
+                 renderItem={({item}) => <Item title={item} />}
+                 keyExtractor={item => item.operatorUserID.toString()}
+            >
 
-                <View style={styles.heng}>
-                    <Text>私密/公开设置</Text>
-                    <View style={styles.switchs}>
-                        <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color='#ECB32C' />
-                        {
-                            isSwitchOn ?
-                                <Text style={{ fontSize: 12 }}>私密</Text> :
-                                <Text style={{ fontSize: 12 }}>公开</Text>
-                        }
-                    </View>
-                </View>
-                <View style={[styles.heng, { alignItems: 'flex-start', flexDirection: 'column' }]}>
-                    <Text>描述 : </Text>
-                    <TextInput
-                        style={{ height: 200, borderColor: 'gray', borderWidth: 1, width: '74%', marginLeft: '20%' }}
-                        onChangeText={text => setChat(text)}
-                        value={roomDesc}
-                        placeholder="请输入聊天室的描述"
-                        multiline={true}
-                        textAlignVertical='top'
-                    />
-                </View>
-              <View style={[styles.heng,{width:'80%',marginLeft:'10%',marginTop:12}]}>
-              <Button  mode="contained" onPress={() => console.log('点击了创建按钮')}  buttonColor='red'>
-                    创建
-                </Button>
-                <Button  mode="contained" onPress={() => console.log('点击了取消按钮')} buttonColor='green' >
-                    取消
-                </Button>
-              </View>
-            </ScrollView>
-
+            </FlatList>
         </View>
     )
-}
+};
+
 export default ChatRoom;
+
 const styles = StyleSheet.create({
-    content: {
-        flex: 1,
+    contain: {
         width: windowWidth,
-        height: windowHeight
+        height: windowHeight,
+        padding:12,
+        backgroundColor:'#fff'
     },
-    ava: {
-        width: 100,
-        height: 100,
-        borderRadius: 20,
-        zIndex: 8,
-        marginLeft: windowWidth * 0.5 - 50,
-        marginTop: 30,
+    select: {
+        backgroundColor: '#E9EAED',
+        color: '#000',
+        fontSize: 14,
+        paddingHorizontal:11,
+        paddingVertical:3
     },
-    card: {
-        backgroundColor: '#fff',
-        width: '80%',
-        borderRadius: 30,
-        marginTop: -50,
-        marginLeft: '10%',
-        zIndex: -1,
-        marginBottom: 30,
-        paddingTop: 60
+    h3:{
+        fontSize:17,
+        color:'#000'
     },
-    avatext: {
-        textAlign: 'center',
-        fontSize: 12
-    },
-    heng: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 8,
-        paddingHorizontal: 12,
-        alignItems: 'flex-end'
-    },
-    switchs: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: 20
+    div:{
+        height:46,
+        backgroundColor:'#fff',
+        alignItems:'center',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        paddingHorizontal:8
     }
 })

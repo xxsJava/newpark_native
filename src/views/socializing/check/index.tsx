@@ -83,7 +83,7 @@ function MessageList(props: { items: any; receiver: any }) {
                   item.sendID === receiver ? styles.messageReceiver : null,
                   // item.textElem.content ? null : { display: 'none' },
                 ]}>
-                {item.textElem.content}
+                {/* {item.textElem.content} */}
               </Text>
               {/* <Image
                 style={[
