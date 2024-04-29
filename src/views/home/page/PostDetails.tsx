@@ -238,9 +238,9 @@ const PostDetails = ({ route }: any) => {
               </Text>
 
               {/* 音乐 */}
-              <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={120} />
+              <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={90} w={90}/>
               {/* 视频 */}
-              <WebViews uri={webview.ROOT_URL + webview.API.VIDEO} h={300} />
+              <WebViews uri={webview.ROOT_URL + webview.API.VIDEO} h={360} w={360}/>
 
               {/* 图片开始 */}
               <View style={{ width: windowWidth, height: 200, }}>

@@ -25,9 +25,6 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
 // 出现冲突地方二
 // import { contextListJson } from '../../../api/imApi/type';
-
-
-
 import Feather from 'react-native-vector-icons/Feather';
 import { contextListJson } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
@@ -46,10 +43,8 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
-
   // 联系人列表
   const [ListData1, setListData] = React.useState();
-
   const friendList = async () => {
     const uId = await Storage.get('usr-uId');
     const params = {
@@ -62,13 +57,14 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
     const friendLists = await getFriendList(params);
 
     console.log('参数--------->',uId);
-    console.log('好友数据----------->',friendLists)
+    console.log('好友数据----------->',friendLists.data.friendsInfo);
+    setListData(friendLists.data.friendsInfo)
   }
 
   React.useEffect(() => {
     // listData();
     friendList();
-  }); // 只在组件挂载时调用一次
+  },[]); // 只在组件挂载时调用一次
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -114,7 +110,6 @@ const ListIndex: React.FC = () => {
                 : '#26C78C',
         },
       ]}>
-
       <View style={styles.itemLeft}>
         <View style={styles.avatarStyle} />
       </View>

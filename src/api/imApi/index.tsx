@@ -81,6 +81,19 @@ export const getFriendList = (params:any): Promise<IResponse> =>{
     })
 }
 
+/** 
+ * 获取收到的好友申请
+ * @param params
+ * @returns
+ * */ 
+export const getNewFriendList = (params:any):Promise<IResponse> => {
+    return request.post({
+        url:'/api/friend/get_friend_apply_list',
+        data:params
+    })
+}
+
+
 /**
  * 发送好友申请
  * @param params 
@@ -101,6 +114,17 @@ export const addFriend = (params:any): Promise<IResponse> =>{
 export const accountCheck = (params:any): Promise<IResponse> =>{
     return request.post({
         url:'/api/user/account_check',
+        data:params
+    })
+}
+/**
+ * 获取已加入的群组
+ * @param params 
+ * @returns 
+ */
+export const joinedGroup = (params:any): Promise<IResponse> =>{
+    return request.post({
+        url:'/api/group/get_joined_group_list',
         data:params
     })
 }

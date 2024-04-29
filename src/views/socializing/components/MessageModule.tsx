@@ -75,8 +75,9 @@ const ListIndex: React.FC = () => {
   };
 
   const renderItem = ({item}: {item: DataItem}) => 
-    (
-    
+  // console.log(item,'------>zheli');
+  
+  (
     <TouchableOpacity
       onPress={() =>
         navigate('CheckRoute', {
@@ -101,6 +102,7 @@ const ListIndex: React.FC = () => {
           <Text style={styles.cornerText}>
             1
           </Text>
+          {/* <Text style={{width:300}}>{typeof item.textElem}11</Text> */}
         </View>
           <Image
             style={styles.avatar}
@@ -120,7 +122,8 @@ const ListIndex: React.FC = () => {
         <View style={styles.itemLabelStyle}>
           <Text allowFontScaling={false} style={styles.labelText}>
             {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
-            {item.stateMsg === 2?'':item.textElem.content}
+            {/* {item.stateMsg === 2?'':item.textElem.content} */}
+            {item.textElem}
           </Text>
         </View>
         

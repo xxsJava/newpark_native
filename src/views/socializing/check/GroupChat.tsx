@@ -75,15 +75,15 @@ function MessageList(props: { items: any; receiver: any }) {
                                 ]}>
                                 {item.senderNickname}
                             </Text>
-                            <Text
+                            {/* <Text
                                 allowFontScaling={false}
                                 style={[
                                     styles.messageText,
                                     item.sendID === receiver ? styles.messageReceiver : null,
                                     // item.textElem.content ? null : { display: 'none' },
-                                ]}>
-                                {item.textElem.content}
-                            </Text>
+                                ]}> */}
+                                {/* {item.textElem.content} */}
+                            {/* </Text> */}
                         </View>
                         <Avatar.Image
                             style={[
@@ -172,7 +172,7 @@ const GroupChat = () => {
         let newItems = JSON.parse(JSON.stringify(items));
         const usrInFo = (await usrInfo()).data;
         const msgJsonData = MsgInfoSendJson;
-        msgJsonData.content.content = value;
+        // msgJsonData.content.content = value;
         msgJsonData.recvID = msgId;
         msgJsonData.sendID = receiver;
         msgJsonData.senderFaceURL = usrInFo.uPath;

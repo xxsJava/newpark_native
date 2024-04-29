@@ -7,6 +7,7 @@ const windowHeight = Dimensions.get('window').height;
 const ReqApp = () => {
     
     const [searchQuery, setSearchQuery] = React.useState('');
+    const [newData,setNewData] = React.useState([]);
     const listPeople = [
         {
             avatar: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/55093421-871c-43c7-803f-1fe23fced837.jpg',
