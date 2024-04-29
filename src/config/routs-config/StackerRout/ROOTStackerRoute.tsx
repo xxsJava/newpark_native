@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2024-04-25 17:07:48
+ * @LastEditTime: 2024-04-29 09:51:03
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
@@ -78,6 +78,8 @@ import CheckView from '../../../views/socializing/check/index';
 import ObjCard from '../../../views/socializing/components/ObjCard';
 import SearchView from '../../../views/socializing/components/SearchView';
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity';
+import MyGoroup from '../../../views/socializing/components/myGroup';
+import MyCommunity from '../../../views/socializing/components/page/MyCommunity';
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -585,6 +587,26 @@ export default {
     options:{
       title:'没有伙伴',
       headerShown:false
+    }
+  },
+  MyGroup:{
+    component: MyGoroup,
+    options:{
+      title: '我的群组',
+      headerShown: true,
+      headerStyle: {
+        backgroundColor: '#FFFFFF',
+      },
+    }
+  },
+  MyCommunity:{
+    component: MyCommunity,
+    options:{
+      title: '我的社区',
+      headerShown: true,
+      headerStyle: {
+        backgroundColor: '#FFFFFF',
+      },
     }
   }
 };

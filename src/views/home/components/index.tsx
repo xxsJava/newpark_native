@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-26 17:14:44
+ * @LastEditTime: 2024-04-26 18:26:45
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   postImgs:{
-    borderWidth:1,
+    // borderWidth:1,
     width:100,
     height:100
   },

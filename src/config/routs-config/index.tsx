@@ -14,7 +14,6 @@
 import HomeStacker from '../../routes/stacker/HomeStacker';
 import MineStacker from '../../routes/stacker/MineStacker';
 import NewPatkStacker from '../../routes/stacker/NewPatkStacker';
-import PublishStacker from '../../routes/stacker/PublishStacker';
 import SocializingStacker from '../../routes/stacker/SocializingStacker';
 import LoginView from '../../views/login';
 import { LoginInterceptor } from '../routs/lib/filter/LoginFilter';
@@ -43,7 +42,7 @@ export default {
     },
     //发布
     Publish: {
-      component: PublishStacker,
+      component: 'none',
       label: '',
       SelectedIcon: '',
       UnSelectedIcon: '',

@@ -362,7 +362,7 @@ const listData = async () => {
     {/* 这个是索引条 */}
     <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
     <ScrollView style={{ flex: 1, marginTop: 10 }}>
-    <TouchableOpacity activeOpacity={0.9}>
+    <TouchableOpacity activeOpacity={0.9} onPress={()=>navigate("MyGroup")}>
       <View style={styles.headGroup}>
         <View style={styles.iconHead}>
           <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png'}}/>
@@ -378,7 +378,7 @@ const listData = async () => {
       </View>
     </TouchableOpacity>
 
-    <TouchableOpacity activeOpacity={0.9}>
+    <TouchableOpacity activeOpacity={0.9} onPress={()=>{navigate('MyCommunity')}}>
       <View style={styles.headGroup}>
         <View style={styles.iconHead}>
           <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png'}}/>
