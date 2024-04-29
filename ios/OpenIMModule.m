@@ -165,7 +165,7 @@ RCT_EXPORT_METHOD(logout){
   
   //用户信息监听
 //  [OIMManager.callbacker setSelfUserInfoUpdateListener:^(OIMUserInfo * _Nullable userInfo) {
-//
+//          
 //  }];
 //  //会话相关监听
 //  [OIMManager.callbacker setConversationListenerWithOnSyncServerStart:^{

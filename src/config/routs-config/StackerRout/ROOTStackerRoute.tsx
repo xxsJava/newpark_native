@@ -1,11 +1,13 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2024-04-29 16:54:05
+ * @LastEditTime: 2024-04-29 09:51:03
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
 // 测试选择学校
+import MyqunzuSeach from '../../../views/socializing/components/contact/MyqunzuSeach';
+import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
 import MainMess from '../../../components/Bell/MainMess';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
@@ -77,12 +79,9 @@ import GroupMessage from '../../../views/socializing/check/GroupMessage';
 import CheckView from '../../../views/socializing/check/index';
 import ObjCard from '../../../views/socializing/components/ObjCard';
 import SearchView from '../../../views/socializing/components/SearchView';
-import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
-import MyqunzuSeach from '../../../views/socializing/components/contact/MyqunzuSeach';
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity';
 import MyGoroup from '../../../views/socializing/components/myGroup';
 import MyCommunity from '../../../views/socializing/components/page/MyCommunity';
-import NewGroup from '../../../views/socializing/components/page/NewGroup';
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -622,16 +621,6 @@ export default {
     component: MyCommunity,
     options:{
       title: '我的社区',
-      headerShown: true,
-      headerStyle: {
-        backgroundColor: '#FFFFFF',
-      },
-    }
-  },
-  NewGroup:{
-    component: NewGroup,
-    options:{
-      title: '新的群聊',
       headerShown: true,
       headerStyle: {
         backgroundColor: '#FFFFFF',
