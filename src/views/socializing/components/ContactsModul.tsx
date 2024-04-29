@@ -373,7 +373,7 @@ const listData = async () => {
       </View>
     </TouchableOpacity>
 
-    <TouchableOpacity activeOpacity={0.9} onPress={()=>{navigate('MyCommunity')}}>
+    <TouchableOpacity activeOpacity={0.9} onPress={()=>navigate('MyCommunity')}>
       <View style={styles.headGroup}>
         <View style={styles.iconHead}>
           <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png'}}/>
@@ -389,7 +389,7 @@ const listData = async () => {
       </View>
     </TouchableOpacity>
 
-    <TouchableOpacity activeOpacity={0.9}>
+    <TouchableOpacity activeOpacity={0.9} onPress={()=>navigate('NewGroup')}>
       <View style={styles.headGroup}>
         <View style={styles.iconHead}>
           <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png'}}/>
