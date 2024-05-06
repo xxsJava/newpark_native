@@ -4,7 +4,6 @@
 //
 //  Created by 新园建业集团 on 2023/12/29.
 //
-
 #import <Foundation/Foundation.h>
 #import <React/RCTLog.h> 
 #import <React/RCTBridge.h>
@@ -165,7 +164,7 @@ RCT_EXPORT_METHOD(logout){
   
   //用户信息监听
 //  [OIMManager.callbacker setSelfUserInfoUpdateListener:^(OIMUserInfo * _Nullable userInfo) {
-//
+//          
 //  }];
 //  //会话相关监听
 //  [OIMManager.callbacker setConversationListenerWithOnSyncServerStart:^{

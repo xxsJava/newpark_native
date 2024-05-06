@@ -1,13 +1,16 @@
 import { Button, ButtonText } from '@gluestack-ui/themed';
 import * as React from 'react';
-import { Dimensions, FlatList, Image, StyleSheet, Text } from 'react-native';
+import { Dimensions, FlatList, Image, StyleSheet, Text,TouchableOpacity } from 'react-native';
 import { View } from 'react-native-animatable';
+import { navigate } from '../../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const ReqApp = () => {
-    
+
+const ReqApp = (item:any) => {
+    // const [status,setStatus] = React.useState('无')
+    const res = item.route.params;
+    console.log(res,'新的好友请求传过来的');
     const [searchQuery, setSearchQuery] = React.useState('');
-    const [newData,setNewData] = React.useState([]);
     const listPeople = [
         {
             avatar: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/55093421-871c-43c7-803f-1fe23fced837.jpg',
@@ -41,6 +44,48 @@ const ReqApp = () => {
                     // keyExtractor={item => item.index}
                     ItemSeparatorComponent={Separator}
                 />
+                <View style={{ marginVertical: 20, backgroundColor: '#F8F8F8', padding: 10 }}>
+                    <Text>新的好友请求</Text>
+                </View>
+                <View>
+                    {
+                        listPeople.map(item => {
+                            // const [res,setRes] = React.useState(undefined);
+                            return (
+                                <TouchableOpacity key={item.index} style={{ backgroundColor: '#fff', padding: 7, borderBottomWidth: 1, borderColor: '#ccc', }}>
+                                    <View style={styles.heng}>
+                                        <View >
+                                            <Image
+                                                style={styles.tinyLogo}
+                                                source={{uri:item.avatar}}
+                                                accessibilityLabel='图片'
+                                                alt="头像"
+                                            />
+                                        </View>
+                                        <View style={[styles.heng, { width: windowWidth * 0.67, justifyContent: 'space-between', marginHorizontal: 20, alignItems: 'center' }]}>
+                                            <View>
+                                                <Text style={styles.name}>{item.name}</Text>
+                                                <Text style={{ color: '#000',fontSize:12 }}> {item.validation}</Text>
+                                            </View>
+                                            <View style={styles.heng}>
+                                                {/*  */}
+                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}}  style={res != '通过' && res != '拒绝' ? [styles.boxAgg,{borderWidth:1,borderColor:'#4C8ACD',borderRadius:3}]:{display:'none'}}>
+                                                    <Text style={[styles.textAgg,{color:'#4C8ACD'}]}>接受</Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}}  style={res == '通过'? [styles.boxAgg,{borderWidth:0}] : {display:'none'}}>
+                                                    <Text style={styles.textAgg}>打招呼</Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}} style={res == '拒绝'? [styles.boxAgg,{borderWidth:0}] : {display:'none'}}>
+                                                    <Text style={[styles.textAgg,{color:'#999'}]}>未通过</Text>
+                                                </TouchableOpacity>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </View>
             </View>
         </View>
     );
@@ -111,7 +156,8 @@ const styles = StyleSheet.create({
     },
     headImg:{
         width:60,
-        height:60
+        height:60,
+        marginBottom:3
     },
     tinyLogo: {
         width:'100%',
@@ -136,6 +182,9 @@ const styles = StyleSheet.create({
         right:20,
         top:15,
         flexDirection: 'row'
+    },
+    textAgg:{
+        fontSize:17
     }
 })
 export default ReqApp;

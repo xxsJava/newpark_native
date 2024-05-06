@@ -12,7 +12,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import ListView from './ListView';
 import DropDownPicker from 'react-native-dropdown-picker'
-import { set } from '@gluestack-style/react';
+// import { set } from '@gluestack-style/react';
 
 
 const windowWidth = Dimensions.get('window').width;

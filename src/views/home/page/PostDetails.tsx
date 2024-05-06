@@ -28,6 +28,8 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 import CommentDetails from './CommentDetails';
 import WebViews from '../../../components/WebView/WebViewCompent';
 import webview from '../../../config/webview';
+import {delPosts} from '../../../api/sys/post/index';
+import { delPostType } from '../../../api/sys/post/types';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -79,9 +81,14 @@ const PostDetails = ({ route }: any) => {
   const [editable, setEditable] = React.useState(false);
   const [inputVal, setInputVal] = React.useState('');
   const textInputRef: any = React.useRef(null);
-
+  const [pid,setPid] = React.useState();
   const [showActionsheet, setShowActionsheet] = React.useState(false)
-  const handleClose = () => setShowActionsheet(!showActionsheet)
+  const handleClose = () => setShowActionsheet(!showActionsheet);
+  // 删除帖子
+  const handleDel = async() => {
+    
+    const data = await delPosts(param)
+  };
   const [isVisible, setIsVisible] = useState(false)
   const data = route.params.item;
 
@@ -105,6 +112,7 @@ const PostDetails = ({ route }: any) => {
       textInputRef.current.blur();
     }
   };
+
 
   const postLikePress = async () => {
 
@@ -170,7 +178,7 @@ const PostDetails = ({ route }: any) => {
             <ActionsheetDragIndicatorWrapper>
               <ActionsheetDragIndicator />
             </ActionsheetDragIndicatorWrapper>
-            <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItem onPress={handleDel}>
               <ActionsheetIcon>
                 <ICON as={TrashIcon} size="sm" />
               </ActionsheetIcon>

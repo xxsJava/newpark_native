@@ -29,3 +29,14 @@ export const postApi = (data: PostsType): Promise<IResponse> => {
       url:'/posts/postsOneApi',data
     })
   }
+
+  /**
+   * 帖子删除API
+   * query请求
+   * 
+   */
+  export const delPosts = (tId:number): Promise<IResponse> => {
+      return request.delete({
+        url:'/posts/postsApi/{'+tId+'}'
+      })
+  }
