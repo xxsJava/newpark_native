@@ -6,7 +6,7 @@
 //
 
 @interface CallManager : RCTEventEmitter<RCTBridgeModule>
- 
+
  NSDictionary *dic = @{@"peerNumber":peerNumber};
   [self sendEventWithName:@"CallIncoming" body:dic];
 
