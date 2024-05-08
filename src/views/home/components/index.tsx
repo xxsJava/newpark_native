@@ -80,7 +80,7 @@ const windowHeight = Dimensions.get('window').height;
               )
             }}
           >
-            <MenuItem key="Report" textValue="Report" onPress={() => {console.log('举报');}}>
+            <MenuItem key="Report" textValue="Report" onPress={() => {navigate('Complain')}}>
               <MenuItemLabel size="sm">举报</MenuItemLabel>
             </MenuItem>
             <MenuItem key="Blacklist" textValue="Community" onPress={() => {console.log('拉入黑名单');}}>

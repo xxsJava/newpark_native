@@ -37,6 +37,6 @@ export const postApi = (data: PostsType): Promise<IResponse> => {
    */
   export const delPosts = (tId:number): Promise<IResponse> => {
       return request.delete({
-        url:'/posts/postsApi/{'+tId+'}'
+        url:'/posts/postsApi/'+ tId
       })
   }

@@ -8,6 +8,7 @@ import { Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIn
 import React, { useState } from 'react';
 import { Trans } from 'react-i18next';
 import {
+  Alert,
   Dimensions,
   Image,
   Modal,
@@ -28,8 +29,8 @@ import { navigate } from '../../../config/routs/NavigationContainer';
 import CommentDetails from './CommentDetails';
 import WebViews from '../../../components/WebView/WebViewCompent';
 import webview from '../../../config/webview';
-import {delPosts} from '../../../api/sys/post/index';
-import { delPostType } from '../../../api/sys/post/types';
+import { delPosts } from '../../../api/sys/post/index';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -56,7 +57,7 @@ const windowHeight = Dimensions.get('window').height;
 // }]
 
 const PostDetails = ({ route }: any) => {
-  console.log('postsId', route.params.item.tid);
+ 
 
   const commentsData: postCommentsData = {
     pageNo: 1,
@@ -81,13 +82,25 @@ const PostDetails = ({ route }: any) => {
   const [editable, setEditable] = React.useState(false);
   const [inputVal, setInputVal] = React.useState('');
   const textInputRef: any = React.useRef(null);
-  const [pid,setPid] = React.useState();
+//  帖子id
+  const [pid, setPid] = React.useState(0);
+  console.log('postsId', route.params.item.tid);
+ 
+    React.useEffect(() => {
+      setPid(route.params.item.tid);
+    },[]);
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(!showActionsheet);
   // 删除帖子
-  const handleDel = async() => {
+  const handleDel = async () => {
+    const data = await delPosts(pid);
+    console.log(data,'点击了删除按钮,删除了pid为'+pid);
+    if(data.code == 200) {
+      Alert.alert('删除成功');
+     navigate('HomeStacker')
+    }
     
-    const data = await delPosts(param)
+    setShowActionsheet(!showActionsheet);
   };
   const [isVisible, setIsVisible] = useState(false)
   const data = route.params.item;
@@ -246,9 +259,9 @@ const PostDetails = ({ route }: any) => {
               </Text>
 
               {/* 音乐 */}
-              <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={90} w={90}/>
+              <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={90} w={90} />
               {/* 视频 */}
-              <WebViews uri={webview.ROOT_URL + webview.API.VIDEO} h={360} w={360}/>
+              <WebViews uri={webview.ROOT_URL + webview.API.VIDEO} h={360} w={360} />
 
               {/* 图片开始 */}
               <View style={{ width: windowWidth, height: 200, }}>
