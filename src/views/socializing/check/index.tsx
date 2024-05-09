@@ -8,6 +8,7 @@ import { useRoute } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Dimensions,
+  Image,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -15,9 +16,8 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View,
   TouchableOpacity,
-  Image
+  View
 } from 'react-native';
 import { Appbar, Avatar, IconButton } from 'react-native-paper';
 import { sendMsg } from '../../../api/imApi';
@@ -83,17 +83,8 @@ function MessageList(props: { items: any; receiver: any }) {
                   item.sendID === receiver ? styles.messageReceiver : null,
                   // item.textElem.content ? null : { display: 'none' },
                 ]}>
-                {/* {item.textElem.content} */}
+                {item.textElem.content}
               </Text>
-              {/* <Image
-                style={[
-                  styles.messageImage,
-                  item.messageImage ? null : {display: 'none'},
-                ]}
-                source={item.messageImage}
-                accessibilityLabel='图片'
-                alt="头像"
-              /> */}
             </View>
             <Avatar.Image
               style={[
@@ -105,16 +96,6 @@ function MessageList(props: { items: any; receiver: any }) {
               accessibilityLabel='头像'
             />
           </View>
-          {/* <Avatar.Image
-            style={[
-              styles.avatarImage2,
-              receiver != item.sendID ? {display: 'none'} : null,
-            ]}
-            size={34}
-            source={item.avatar}
-            accessibilityLabel='图片'
-          /> */}
-
         </View>
       );
     },
