@@ -81,19 +81,6 @@ export const getFriendList = (params:any): Promise<IResponse> =>{
     })
 }
 
-/** 
- * 获取收到的好友申请
- * @param params
- * @returns
- * */ 
-export const getNewFriendList = (params:any):Promise<IResponse> => {
-    return request.post({
-        url:'/api/friend/get_friend_apply_list',
-        data:params
-    })
-}
-
-
 /**
  * 发送好友申请
  * @param params 

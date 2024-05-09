@@ -6,6 +6,7 @@
  * @Description: desc
  */
 // 测试选择学校
+import Complain from '../../../views/home/components/Complain';
 import MyqunzuSeach from '../../../views/socializing/components/contact/MyqunzuSeach';
 import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
 import MainMess from '../../../components/Bell/MainMess';
@@ -125,6 +126,14 @@ export default {
     options:{
       headerShown: false,
       title:'交易圈的数据列表'
+    }
+  },
+  Complain:{
+    component:Complain,
+    options:{
+      headerShown:true,
+      title:'举报',
+      headerTitleAlign: 'center'
     }
   },
   NewApply:{

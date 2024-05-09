@@ -17,3 +17,7 @@ export type postsOneApiType = {
     pageNo:number,
     pageSize:number
 }
+// 删除帖子
+export type delPostType = {
+    tId:number
+}

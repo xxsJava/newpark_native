@@ -14,141 +14,195 @@ const ranking = [
     {
         index: 1,
         name: '奇奇',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1009,
+        pid:321
     },
     {
         index: 2,
         name: '怪怪',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1010,
+        pid:1
     },
     {
         index: 3,
         name: '可乐',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3
     },
     {
         index: 4,
         name: '玛卡巴卡',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1012,
+        pid:322
     },
     {
         index: 5,
         name: '格林屠夫',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1013,
+        pid:320
     },
     {
         index: 6,
         name: '用户昵称七个字',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1014,
+        pid:3212
     },
     {
         index: 7,
         name: '苹果',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1015,
+        pid:3219
     },
     {
         index: 8,
         name: '西瓜',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:327
     },
     {
         index: 9,
         name: '菠萝',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3210
     },
 ];
 const ranking2 = [
     {
         index: 1,
         name: '奇奇',
-        img: require('../../../../assets/images/tup/erji2.png')
+        img: require('../../../../assets/images/tup/erji2.png'),
+        uid:1011,
+        pid:3215
     },
     {
         index: 2,
         name: '怪怪',
-        img: require('../../../../assets/images/tup/erji2.png')
+        img: require('../../../../assets/images/tup/erji2.png'),
+        uid:1011,
+        pid:3214
     },
     {
         index: 3,
         name: '可乐',
-        img: require('../../../../assets/images/tup/erji2.png')
+        img: require('../../../../assets/images/tup/erji2.png'),
+        uid:1011,
+        pid:3213
     },
     {
         index: 4,
         name: '玛卡巴卡',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3210
     },
     {
         index: 5,
         name: '格林屠夫',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:32143
     },
     {
         index: 6,
         name: '用户昵称七个字',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:32149
     },
     {
         index: 7,
         name: '苹果',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:32148
     },
     {
         index: 8,
         name: '西瓜',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3219
     },
     {
         index: 9,
         name: '菠萝',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3216
     },
 ];
 const ranking3 = [
     {
         index: 1,
         name: '奇奇',
-        img: require('../../../../assets/images/tup/jia.png')
+        img: require('../../../../assets/images/tup/jia.png'),
+        uid:1011,
+        pid:3214
     },
     {
         index: 2,
         name: '怪怪',
-        img: require('../../../../assets/images/tup/bgt.jpg')
+        img: require('../../../../assets/images/tup/bgt.jpg'),
+        uid:1011,
+        pid:3214
     },
     {
         index: 3,
         name: '可乐',
-        img: require('../../../../assets/images/tup/hua.png')
+        img: require('../../../../assets/images/tup/hua.png'),
+        uid:1011,
+        pid:3214
     },
     {
         index: 4,
         name: '玛卡巴卡',
-        img: require('../../../../assets/images/tup/dn.png')
+        img: require('../../../../assets/images/tup/dn.png'),
+        uid:1011,
+        pid:3219
     },
     {
         index: 5,
         name: '格林屠夫',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3218
     },
     {
         index: 6,
         name: '用户昵称七个字',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3217
     },
     {
         index: 7,
         name: '苹果',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3215
     },
     {
         index: 8,
         name: '西瓜',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1011,
+        pid:3218
     },
     {
         index: 9,
         name: '菠萝',
-        img: require('../../../../assets/images/tup/luo.png')
+        img: require('../../../../assets/images/tup/luo.png'),
+        uid:1010,
+        pid:32124
     },
 ];
 
@@ -209,7 +263,7 @@ const LeaderBoard = () => {
                         {
                             ranking2.map(item => {
                                 return (
-                                    <View style={[styles.div, item.index == 1 ? { backgroundColor: '#FEFA83' } : {}, item.index == 2 ? { backgroundColor: '#D1FAFB' } : {}, item.index == 3 ? { backgroundColor: '#F5C6B8' } : {},]} key={item.index}>
+                                    <View style={[styles.div, item.index == 1 ? { backgroundColor: '#FEFA83' } : {}, item.index == 2 ? { backgroundColor: '#D1FAFB' } : {}, item.index == 3 ? { backgroundColor: '#F5C6B8' } : {},{}]} key={item.index}>
                                         <View>
                                             <Image source={require('../../../../assets/images/tup/NO.1(1).png')} style={item.index == 1 ? styles.medals : { display: 'none' }}></Image>
                                             <Image source={require('../../../../assets/images/tup/NO.2(1).png')} style={item.index == 2 ? styles.medals : { display: 'none' }}></Image>
@@ -221,7 +275,13 @@ const LeaderBoard = () => {
                                         <View style={{ borderWidth: 1, borderRadius: 920, justifyContent: 'center', alignItems: 'center', height: 60, width: 60, marginHorizontal: 80 }}>
                                             <Image source={item.img} style={{ width: 40, height: 40 }}></Image>
                                         </View>
-                                        <Text style={{ fontSize: 17, color: '#000', lineHeight: 70 }}>{item.name}</Text>
+                                        <View>
+                                        <Text style={{ fontSize: 17, color: '#000', lineHeight: 30 }}>{item.name}</Text>
+                                        <Text style={{ fontSize: 17, color: '#000', lineHeight: 20 }}>{item.uid}</Text>
+                                        </View>
+                                        <View>
+                                        <Text style={{ fontSize: 17, color: '#000', lineHeight: 70 }}>{item.pid}</Text>
+                                        </View>
                                     </View>
                                 )
                             })
