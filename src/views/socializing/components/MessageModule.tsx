@@ -53,6 +53,7 @@ const ListIndex: React.FC = () => {
               if (Number(uId) === Number(res1[i].sendID)) {
                 continue;
               }
+              console.log('消息数据---------->',res1[i]);
               newArr.push(res1[i]);
               setData(newArr);
               return;
@@ -120,7 +121,7 @@ const ListIndex: React.FC = () => {
         <View style={styles.itemLabelStyle}>
           <Text allowFontScaling={false} style={styles.labelText}>
             {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
-            {item.stateMsg === 2?'':item.textElem.content}
+            {item.textElem.content}
           </Text>
         </View>
         
