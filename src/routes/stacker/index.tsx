@@ -17,6 +17,7 @@ import BellView from '../../components/Bell';
 import { DeviceEvent } from '../../config/listener';
 import routsConfig from '../../config/routs-config';
 import { useCounter } from '../../hooks/state';
+import { navigate } from '../../config/routs/NavigationContainer';
 const windowWidth = Dimensions.get('window').width;
 // import { Stagger, useDisclose} from 'native-base';
 /*
@@ -144,30 +145,30 @@ export const BommonTab = () => {
               </View>
             </View>
             <View style={styles.contentB}>
-              <View style={styles.funs}>
+              <TouchableOpacity style={styles.funs} onPress={() => navigate('RewardRoute')}>
                   <Image style={styles.conIcon} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/fbxs.png'}} alt="网络异常" />
                   <Text style={styles.conFont}>
                     发布悬赏
                   </Text>
-              </View>
-              <View style={styles.funs}>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.funs} onPress={() => navigate('PublishProductsRoute')}>
                   <Image style={styles.conIcon} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/fbsp.png'}} alt="网络异常" />
                   <Text style={styles.conFont}>
                     发布商品
                   </Text>
-              </View>
-              <View style={styles.funs}>
+              </TouchableOpacity>
+              <TouchableOpacity  style={styles.funs} onPress={() => navigate('ReleasePost')}>
                   <Image style={styles.conIcon} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/fbtz.png'}} alt="网络异常" />
                   <Text style={styles.conFont}>
                     发布帖子
                   </Text>
-              </View>
-              <View style={styles.funs}>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.funs} onPress={() => navigate('ClockInViewRoute')}>
                   <Image style={styles.conIcon} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/dk.png'}} alt="网络异常" />
                   <Text style={styles.conFont}>
                     打卡
                   </Text>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
         </Animated.View>

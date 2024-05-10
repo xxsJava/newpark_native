@@ -160,7 +160,7 @@ const CommunityChannel = ({ navigation }:any) => {
                         </View>
                     </View>
                 </ScrollView>
-                <TouchableOpacity style={styles.extendView} activeOpacity={0.5}>
+                <TouchableOpacity style={styles.extendView} activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
                     <Image style={styles.extenImage} source={require('../../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片' alt="头像"></Image>
                 </TouchableOpacity>
             </View>

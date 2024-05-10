@@ -96,7 +96,7 @@ const Module = ({ item }) => (
         查看详情
       </Button>
     </View> */}
-    <View style={{width:'100% - 8',padding:12,marginHorizontal:4,backgroundColor:'#fff',borderTopLeftRadius:16,borderTopRightRadius:16}}>
+    <View style={{width:'98%',padding:12,marginHorizontal:4,backgroundColor:'#fff',borderTopLeftRadius:16,borderTopRightRadius:16}}>
       <View style={{ width:'100%',flexDirection:'row',justifyContent:'space-between',marginBottom:10}}>
         <Text style={{color:'red',fontSize:17}}>¥<Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>3.2</Text></Text>
         <Text style={{color:'red',fontSize:16}}>12:30前送达</Text>

@@ -21,44 +21,44 @@ const windowHeight = Dimensions.get('window').height
 
 const species = [
     {
-        index:1,
-        sort:'精选推荐'
+        index: 1,
+        sort: '精选推荐'
     },
     {
-        index:2,
-        sort:'图书文创'
+        index: 2,
+        sort: '图书文创'
     },
     {
-        index:3,
-        sort:'家居百货'
+        index: 3,
+        sort: '家居百货'
     },
     {
-        index:4,
-        sort:'视频饮料'
+        index: 4,
+        sort: '视频饮料'
     },
     {
-        index:5,
-        sort:'安心变美'
+        index: 5,
+        sort: '安心变美'
     },
     {
-        index:6,
-        sort:'美妆护肤'
+        index: 6,
+        sort: '美妆护肤'
     },
     {
-        index:7,
-        sort:'个护家清'
+        index: 7,
+        sort: '个护家清'
     },
     {
-        index:8,
-        sort:'时尚穿搭'
+        index: 8,
+        sort: '时尚穿搭'
     },
     {
-        index:9,
-        sort:'数码家电'
+        index: 9,
+        sort: '数码家电'
     },
     {
-        index:10,
-        sort:'珠宝玉石'
+        index: 10,
+        sort: '珠宝玉石'
     },
 ]
 const data1 = [
@@ -317,11 +317,11 @@ const List = ({ data }: { data: listType }) => {
         <View style={styles.cards} >
             <Image source={data.img} style={styles.icon} accessibilityLabel='图片' alt="头像" />
             <View style={styles.rightList}>
-                <Text style={[styles.h5,{maxWidth:150}]} ellipsizeMode={'tail'} numberOfLines={1}>名称 : {data.name}</Text>
+                <Text style={[styles.h5, { maxWidth: 190 }]} ellipsizeMode={'tail'} numberOfLines={1}>名称 : {data.name}</Text>
                 <View style={styles.desc}>
                     <Text style={styles.h6}>描述 : </Text>
                     <View style={{ marginLeft: 30 }}>
-                        <Text style={[styles.h6,{maxWidth:150}]} ellipsizeMode={'tail'} numberOfLines={3}>{data.desc}</Text>
+                        <Text style={[styles.h6, { maxWidth: 150 }]} ellipsizeMode={'tail'} numberOfLines={3}>{data.desc}</Text>
                     </View>
                 </View>
             </View>
@@ -338,14 +338,13 @@ const List = ({ data }: { data: listType }) => {
 }
 const MyOrderView = ({ route }: any) => {
     // 点击侧边栏
-    const [sideSel,setSideSel] = React.useState(1);
-    const Sort = ({item}) => (
+    const [sideSel, setSideSel] = React.useState(1);
+    const Sort = ({ item }: { item: any }) => (
         <TouchableOpacity style={styles.celan} onPress={() => setSideSel(item.index)}>
-          <Text style={[{fontSize:16,color:'#000'},sideSel==item.index ? {fontWeight:'bold'}:{}]}>{item.sort}</Text>
-          <View style={sideSel==item.index ? {borderBottomWidth:4,borderColor:'#FFB300',width:60,marginTop:5}:{}}></View>
+            <Text style={[{ fontSize: 16, color: '#000' }, sideSel == item.index ? { fontWeight: 'bold' } : {}]}>{item.sort}</Text>
+            <View style={sideSel == item.index ? { borderBottomWidth: 4, borderColor: '#FFB300', width: 60, marginTop: 5 } : {}}></View>
         </TouchableOpacity>
-      );
-
+    );
     const [typeVal, onTypePress] = React.useState('type1')
     // const {route}:any = this.props
     const { type } = route.params
@@ -381,54 +380,54 @@ const MyOrderView = ({ route }: any) => {
                     <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type5' ? styles.typeTextSelected : null]}>售后</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{flexDirection:'row'}}>
-                <ScrollView style={{height:windowHeight,padding:12}}>
-                        <FlatList
-                            data={species}
-                            renderItem={({item}) => <Sort item={item} />}
-                            keyExtractor={(item) => item.index.toString()}
-                        />
+            <View style={{ flexDirection: 'row'}}>
+                <ScrollView style={{ height: windowHeight, paddingLeft: 12,backgroundColor:'aqua' }} stickyHeaderHiddenOnScroll={true}>
+                    <FlatList
+                        data={species}
+                        renderItem={({ item }) => <Sort item={item} />}
+                        keyExtractor={(item) => item.index.toString()}
+                        style={{width:'20%'}}
+                    />
                 </ScrollView>
-                <View style={{width:windowWidth-120}}>
-                <View style={typeVal == 'type1' ? {marginBottom:120 } : { display: 'none'}}>
-                  
-                    <FlatList data={data1}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.index}>
+                <View style={{ width: windowWidth - 120 }}>
+                    <View style={typeVal == 'type1' ? { marginBottom: 120 } : { display: 'none' }}>
+                        <FlatList data={data1}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.index}>
 
-                    </FlatList>
-                </View>
-                <View style={typeVal == 'type2' ? {marginBottom:120} : { display: 'none' }}>
-                    <FlatList data={data2}
-                        renderItem={renderItem}
-                    // keyExtractor={(item) => item.index}
-                    >
-                    </FlatList>
-                </View>
-                <View style={typeVal == 'type3' ? {marginBottom:120} : { display: 'none' }}>
-                    <FlatList data={data3}
-                        renderItem={renderItem}
-                    // keyExtractor={(item) => item.index}
-                    >
-                    </FlatList>
-                </View>
-                <ScrollView style={typeVal == 'type4' ? {marginBottom:120} : { display: 'none' }}>
-                    <FlatList data={data4}
-                        renderItem={renderItem}
-                    // keyExtractor={(item) => item.index}
-                    >
-                    </FlatList>
-                </ScrollView>
-                <ScrollView style={typeVal == 'type5' ? {marginBottom:120} : { display: 'none' }}>
-               
-                        <FlatList 
+                        </FlatList>
+                    </View>
+                    <View style={typeVal == 'type2' ? { marginBottom: 120 } : { display: 'none' }}>
+                        <FlatList data={data2}
+                            renderItem={renderItem}
+                        // keyExtractor={(item) => item.index}
+                        >
+                        </FlatList>
+                    </View>
+                    <View style={typeVal == 'type3' ? { marginBottom: 120 } : { display: 'none' }}>
+                        <FlatList data={data3}
+                            renderItem={renderItem}
+                        // keyExtractor={(item) => item.index}
+                        >
+                        </FlatList>
+                    </View>
+                    <ScrollView style={typeVal == 'type4' ? { marginBottom: 120 } : { display: 'none' }}>
+                        <FlatList data={data4}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.index.toString()}
+                        >
+                        </FlatList>
+                    </ScrollView>
+                    <ScrollView style={typeVal == 'type5' ? { marginBottom: 120 } : { display: 'none' }}>
+
+                        <FlatList
                             data={data5}
                             renderItem={renderItem}
                             keyExtractor={(item) => item.index.toString()}
                         >
                         </FlatList>
-                  
-                </ScrollView>
+
+                    </ScrollView>
                 </View>
             </View>
         </View>
@@ -493,10 +492,10 @@ const styles = StyleSheet.create({
         padding: 6
     },
     cards: {
-        width: '95%',
+        width: '90%',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        paddingHorizontal: 12,
+        paddingHorizontal: 0,
         paddingVertical: 12,
         alignItems: 'center',
         ...Platform.select({
@@ -523,19 +522,19 @@ const styles = StyleSheet.create({
     },
     desc: {
         marginTop: 8,
-        width: 160,
-        flexWrap: 'nowrap'
+        width: 190,
+        flexWrap: 'wrap'
     },
     rightList: {
         width: '60%',
         justifyContent: 'center',
-        alignItems:'center'
-    
+        alignItems: 'center'
+
     },
-    celan:{
-        marginVertical:10,
-        textAlign:'center',
-        justifyContent:'center'
+    celan: {
+        marginVertical: 10,
+        textAlign: 'center',
+        justifyContent: 'center'
     }
 }
 )

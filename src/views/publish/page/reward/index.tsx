@@ -22,13 +22,16 @@ const RewardView = () => {
     return (
         <SafeAreaView style={styles.parentView}>
             <View style={styles.headView}>
-                <IconButton size={22} iconColor='#fff' icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')}></IconButton>
+                 <IconButton size={22} iconColor='#000' icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('HomeStacker')} style={{width:30,height:30}}></IconButton>
+               <View style={{width:'80%' ,alignItems:'center'}}>
+               <Text style={{lineHeight:50,color:'#000',fontSize:18}}>发布悬赏</Text>
+               </View>
             </View>
-           
-                <View style={styles.reheight}>
+
+            <View style={styles.reheight}>
                 <KeyboardAvoidingView behavior='position'>
-                        <View style={styles.contentView}>
-                        <ScrollView  keyboardShouldPersistTaps='never'>
+                    <View style={styles.contentView}>
+                        <ScrollView keyboardShouldPersistTaps='never'>
                             <View style={styles.contenStyle}>
                                 <Avatar.Image size={80} style={styles.avatarStyle} source={require('../../../../assets/images/defaultheader.png')} accessibilityLabel='头像'></Avatar.Image>
                                 <View style={styles.cardView}>
@@ -61,10 +64,10 @@ const RewardView = () => {
                                     </View>
                                 </View>
                             </View>
-                            </ScrollView>
-                        </View>
-                    </KeyboardAvoidingView>
-                </View>
+                        </ScrollView>
+                    </View>
+                </KeyboardAvoidingView>
+            </View>
         </SafeAreaView>
     )
 }
@@ -73,19 +76,22 @@ const styles = StyleSheet.create({
     reheight: {
         width: windowWidth,
         height: windowHeight,
-        zIndex: -19
+        zIndex: -19,
+        
     },
     parentView: {
         width: windowWidth,
         height: windowHeight,
-        backgroundColor: '#B5B5B5'
+        backgroundColor: '#fff'
     },
     headView: {
         height: 50,
-        paddingLeft: 10
+        paddingLeft: 10,
+        flexDirection:'row',
+        width:windowWidth,
+        alignItems:'center'
     },
     contentView: {
-        marginTop:180,
         width: windowWidth - 4,
         marginHorizontal: 2,
         borderTopLeftRadius: 25,
@@ -93,10 +99,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#FABA3C',
         ...Platform.select({
             android: {
-                height: 620,
+                height: '100%',
             },
             ios: {
-                height: '80%',
+                height: '100%',
             }
         })
     },
@@ -104,13 +110,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: windowHeight,
         position: 'relative',
-        marginTop:40
+        marginTop: 40
     },
     avatarStyle: {
         position: 'absolute',
         top: -20,
         left: '40%',
-        zIndex:2
+        zIndex: 2
     },
     cardView: {
         width: '94%',
