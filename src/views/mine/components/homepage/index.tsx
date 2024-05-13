@@ -88,12 +88,18 @@ const orderData = [
       text: 'minService.serviceOption7',
       icon: require('../../../../assets/images/alimom/fk.png'),
     },
+    // {
+    //   index: 4,
+    //   route: 'CallCustom',
+    //   text: 'minService.serviceOption8',
+    //   icon: require('../../../../assets/images/alimom/kf.png'),
+    // },
     {
       index: 4,
-      route: 'CallCustom',
-      text: 'minService.serviceOption8',
-      icon: require('../../../../assets/images/alimom/kf.png'),
-    },
+      route: 'LeaderBoards',
+      text: 'minService.serviceOption10',
+      icon: require('../../../../assets/images/tup/paihangbang.png'),
+  },
   ];
   const communitData=[{
     index:1,

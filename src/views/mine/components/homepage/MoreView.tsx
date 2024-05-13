@@ -55,14 +55,14 @@ const serviceData1 = [
         text: 'minService.serviceOption7',
         icon: require('../../../../assets/images/alimom/fk.png'),
     },
+    // {
+    //     index: 8,
+    //     route: 'CallCustom',
+    //     text: 'minService.serviceOption8',
+    //     icon: require('../../../../assets/images/alimom/kf.png'),
+    // },
     {
         index: 8,
-        route: 'CallCustom',
-        text: 'minService.serviceOption8',
-        icon: require('../../../../assets/images/alimom/kf.png'),
-    },
-    {
-        index: 9,
         route: 'LeaderBoards',
         text: 'minService.serviceOption10',
         icon: require('../../../../assets/images/tup/paihangbang.png'),

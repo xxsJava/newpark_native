@@ -9,6 +9,7 @@ import { Trans } from 'react-i18next';
 import { Dimensions, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Appbar, IconButton } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
+// import Voice from 'react-native-voice';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

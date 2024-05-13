@@ -53,7 +53,7 @@ const windowHeight = Dimensions.get('window').height;
 const Module = ({ item }) => (
   <View style={styles.itemStyle} key={item.index}>
     
-    <View style={{width:'100% - 8',padding:12,marginHorizontal:4,backgroundColor:'#fff',borderTopLeftRadius:16,borderTopRightRadius:16}}>
+    <View style={{width:'100%',padding:12,marginHorizontal:4,backgroundColor:'#fff',borderTopLeftRadius:16,borderTopRightRadius:16}}>
       <View style={{ width:'100%',flexDirection:'row',justifyContent:'space-between',marginBottom:10}}>
         <Text style={{color:'red',fontSize:17}}>¥<Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>{item.rmoney}</Text></Text>
         <Text style={{color:'red',fontSize:16}}>{DateTimeUtils.formattedDateTime(item.endTime,'HH:MM') }前送达</Text>

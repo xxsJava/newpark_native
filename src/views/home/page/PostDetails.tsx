@@ -327,7 +327,7 @@ const PostDetails = ({ route }: any) => {
           <View style={styles.postComment}>
             <View style={styles.scrollView}>
               <Text allowFontScaling={false} style={styles.commentTitle}>
-                全部评论({postCommentsList.length})
+                全部评论({postCommentsList})
               </Text>
               <CommentDetails commenData={postCommentsList} />
               {/* <View style={styles.listStyle}>

@@ -44,6 +44,9 @@ const MyCreScreen = () => {
 
     return(
         <SafeAreaView  style={styles.parentView}>
+            {/* <View>
+                <Text>1111</Text>
+            </View> */}
             <FlatList
                 data={itemData}
                 renderItem={items}
@@ -64,17 +67,19 @@ const styles = StyleSheet.create({
         // borderWidth:1,
         position:'relative',
         flexDirection:"row",
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
+        alignItems:'center'
     },
     imgView:{
-        width: 60,
-        height: 60,
+        width: 46,
+        height: 46,
         marginTop: 10,
         marginLeft: 20
     },
     groupImg:{
         width:'100%',
-        height:'100%'
+        height:'100%',
+        borderRadius:12
     },
     groupTitle:{
         paddingTop:20,
