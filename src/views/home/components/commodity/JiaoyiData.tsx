@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, FlatList, ActivityIndicator, Image, TouchableOpacity, Text, StyleSheet, Platform, Dimensions } from 'react-native';
-import { Avatar, Icon, Appbar } from 'react-native-paper';
-import { navigate } from '../../../../config/routs/NavigationContainer';
-import { productApi } from '../../../../api/sys/Recommended/index';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Dimensions, FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Appbar, Avatar, Icon } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { set } from '@gluestack-style/react';
-import { fileUp } from '../../../../api/sys/upload/index';
+import { productApi } from '../../../../api/sys/Recommended/index';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -18,9 +16,12 @@ const List = ({ item }: any) => (
         <TouchableOpacity
             style={styles.commodityItem}
             onPress={() => {
-                navigate('DetailsRoute', { data: item }); console.log('item在这里----', item);
+                navigate('DetailsRoute', { id: item.pid }); console.log('item在这里----', item);
             }}>
-            <Image style={item.pimgs ? styles.commodityImage : {}} source={{ uri: item.pimgs.split(',')[0].split('[')[1] }} accessibilityLabel='图片' alt="头像" />
+                <View style={styles.pcoverImg}>
+                <Image style={styles.commodityImage} source={{ uri: item.pcover}} accessibilityLabel='图片' alt="网络不佳" />
+                </View>
+            
             <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
             <View style={styles.priceView}>
                 <View style={styles.priceStyle}>
@@ -39,7 +40,7 @@ const List = ({ item }: any) => (
                     size={32}
                     source={{ uri: item.upath }}
                 />
-                <Text allowFontScaling={false} style={styles.publisherText}>{item.name}</Text>
+                <Text allowFontScaling={false} style={styles.publisherText}>{item.unikname}</Text>
             </View>
         </TouchableOpacity>
     </View>
@@ -252,10 +253,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: '2%',
     },
     commodityImage: {
-        width: '94%',
-        height: 155,
+        width: '100%',
+        height: '100%',
         marginHorizontal: '3%',
         borderRadius: 15,
+    },pcoverImg:{
+        width: '94%',
+        height: 180,
     },
     commodityText: {
         width: '84%',
@@ -312,6 +316,7 @@ const styles = StyleSheet.create({
         color: '#000',
         lineHeight: 32,
         paddingLeft: 10,
+        fontWeight:'bold'
     },
     typeText: {
         color: '#000',

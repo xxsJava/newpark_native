@@ -5,8 +5,7 @@
  */
 
 
-import React, { useState } from 'react';
-import { Trans } from 'react-i18next';
+import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   Image,
@@ -15,20 +14,19 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-  TouchableWithoutFeedback
+  View
 } from 'react-native';
-import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
+import { Avatar, Button } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { productInfoApi } from '../../../api/sys/product';
 import { navigate } from '../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const DetailsView = (item) => {
-  console.log(item.route.params.item);
-  const datass = item.route.params.item;
+const DetailsView = (item: any) => {
+  console.log('获取到商品-------->',item.route.params.id);
   // console.log(data, '我是跳转过来的item');
   const [tabVal, setTab] = useState('tab1');
   const setTabPress = (tab: string) => {
@@ -36,9 +34,27 @@ const DetailsView = (item) => {
     console.log('点击切换', tab);
   };
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedVal, onSelectedPress] = React.useState('selected1');
-  const [paymethWx, setPaymethWx] = React.useState(true);
-  const [showmt, setShowmt] = React.useState(false);
+  const [selectedVal, onSelectedPress] = useState('selected1');
+  const [paymethWx, setPaymethWx] = useState(true);
+  const [showmt, setShowmt] = useState(false);
+  const [productInfoData,setProductInfo]:any = useState({});
+  const [imgs,setImgs] = useState([]);
+  
+  const pid = item.route.params.id;
+  const productInfo = async () => {
+    const productInfoApis = await productInfoApi(pid);
+    // console.log(productInfoApis);
+
+    const imgArr = productInfoApis.data.pimgs.split(",");
+    setImgs(imgArr);
+    console.log('图片---------->',imgArr);
+    setProductInfo(productInfoApis.data);
+  }
+
+  useEffect(()=>{
+    productInfo();
+  },[])
+
   return (
     <View style={styles.parentView}>
       <TouchableOpacity style={showmt ? { width: windowWidth, height: windowHeight, position: 'absolute', top: 0, left: 0, backgroundColor: '#000', zIndex: 99, opacity: 0.1 } : { display: 'none' }} onPress={() => { setShowmt(false) }}></TouchableOpacity>
@@ -57,7 +73,6 @@ const DetailsView = (item) => {
         <ScrollView alwaysBounceVertical={true}>
           <View style={styles.swiperView}>
             <Swiper
-              height={300}
               loop={true}
               horizontal={true}
               autoplay={true}
@@ -65,43 +80,34 @@ const DetailsView = (item) => {
               paginationStyle={styles.paginationStyle}
               dot={<View style={styles.dotStyle} />}
               activeDot={<View style={styles.activeDotStyle} />}>
-              <Image
-                source={require('../../../assets/images/banner1.jpg')}
-                style={styles.bannerImage}
-                accessibilityLabel='图片'
-                alt="轮播图"
-              />
-              <Image
-                source={require('../../../assets/images/banner2.jpg')}
-                style={styles.bannerImage}
-                accessibilityLabel='图片'
-                alt="轮播图"
-              />
-              <Image
-                source={require('../../../assets/images/banner3.jpg')}
-                style={styles.bannerImage}
-                accessibilityLabel='图片'
-                alt="轮播图"
-              />
-              <Image
-                source={require('../../../assets/images/banner4.jpg')}
-                style={styles.bannerImage}
-                accessibilityLabel='图片'
-                alt="轮播图"
-              />
+              
+              {
+                
+                imgs.map((item: any) => {
+                  return(
+                    <View style={styles.imgsView}>
+                          <Image
+                      source={{uri:item}}
+                      style={styles.bannerImage}
+                      accessibilityLabel='图片'
+                      alt="轮播图"
+                    /></View>
+                  )
+                })
+              }
             </Swiper>
           </View>
           <View style={styles.informationView}>
-            <Text allowFontScaling={false} style={styles.moneyText}>¥ 888</Text>
-            <Text allowFontScaling={false} style={styles.commodityName}>商品名称</Text>
+            <Text allowFontScaling={false} style={styles.moneyText}>¥ {productInfoData.pprice}</Text>
+            <Text allowFontScaling={false} style={styles.commodityName}>{productInfoData.pname}</Text>
             <View style={styles.personalView}>
               <View style={styles.personalLeft}>
                 <Avatar.Image
                   size={56}
-                  source={require('../../../assets/images/defaultheader.png')}
+                  source={{uri:productInfoData.upath}}
                   accessibilityLabel='图片'
                 />
-                <Text allowFontScaling={false} style={styles.personalName}>o泡果奶</Text>
+                <Text allowFontScaling={false} style={styles.personalName}>{productInfoData.unikname}</Text>
               </View>
               <View style={styles.personalRight}>
                 <Button
@@ -117,7 +123,7 @@ const DetailsView = (item) => {
           </View>
           <View style={styles.introduceView}>
             <Text allowFontScaling={false} style={styles.introduceTitle}>商品介绍</Text>
-            <Text allowFontScaling={false} style={styles.introduceText}>描述</Text>
+            <Text allowFontScaling={false} style={styles.introduceText}>{productInfoData.pdesc}</Text>
           </View>
           <View style={styles.commentView}>
             <View style={styles.commentTitel}>
@@ -207,105 +213,80 @@ const DetailsView = (item) => {
       </View>
       {/*  这个是模态框*/}
       <TouchableOpacity onPress={() => setModalVisible(false)} style={modalVisible ? { position: 'absolute', top: 0, left: 0, width: windowWidth, height: windowHeight, backgroundColor: '#000', opacity: 0.3 } : { display: 'none' }}></TouchableOpacity>
-      <View style={modalVisible ? { width: windowWidth, height: windowHeight * 0.74, backgroundColor: '#E5E5E5', position: 'absolute', bottom: 0, borderTopLeftRadius: 16, borderTopRightRadius: 16, padding: 12 } : { display: 'none' }}>
+      <View style={modalVisible ? { width: windowWidth, height: windowHeight * 0.74, backgroundColor: '#F7F7F7', position: 'absolute', bottom: 0, borderTopLeftRadius: 16, borderTopRightRadius: 16, padding: 12 } : { display: 'none' }}>
         <View style={{ width: '100%' }}>
-          <Text style={{ fontSize: 16, color: '#000', textAlign: 'center', fontWeight: 'bold' }}>确认订单</Text>
+          <Text style={styles.orderTitle}>确认购买</Text>
         </View>
-        <TouchableOpacity  style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fff', padding: 12, borderRadius: 12, marginBottom: 12 }} onPress={()=>navigate('AddressManagementRoute')}>
-          <Image source={require('../../../assets/images/tup/dizhi.png')} style={{ width: 30, height: 30 }}></Image>
+        <TouchableOpacity  style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fff', padding: 12, borderRadius: 12, marginBottom: 12 ,marginTop:10}} onPress={()=>navigate('AddressManagementRoute')}>
+          <View style={styles.iconAddr}>
+            <Image source={require('../../../assets/images/tup/dizhi.png')} style={{ width: '100%', height: '100%' }}></Image>
+          </View>
+          
           <View>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={{ backgroundColor: '#F8B032', padding: 2, paddingHorizontal: 5 }}>
-                <Text style={{ color: '#fff', fontSize: 10 }}>默认</Text>
-              </View>
-              <Text style={{ fontSize: 11, marginLeft: 8 }}>北京市北京市海淀区紫竹院街道</Text>
-            </View>
-            <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold' }}>龙锦苑四区西门23号楼4单元102左</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={{ color: '#000', fontSize: 15 }}>张大大</Text>
-              <Text style={{ color: '#000', fontSize: 14, marginLeft: 5 }}>1319385890</Text>
-            </View>
+            <Text style={styles.contenText}>
+              山东省滨州市博兴县致泰广场1807
+            </Text>
+            <Text style={styles.contenTextA}>
+              小学牛 12345678901
+            </Text>
           </View>
-          <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 23, height: 23 }}></Image>
+          <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 15, height: 15 ,tintColor:'#999'}}></Image>
         </TouchableOpacity>
-        <View style={{ paddingBottom: 90, marginBottom: 60 }}>
-          <View style={{ backgroundColor: "#fff", padding: 16 }}>
-            <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
-              <Text style={{ color: '#333', fontSize: 12 }}>春天怎么还不来</Text>
-              <View style={{ backgroundColor: '#cfffe2', padding: 2, paddingHorizontal: 9 }}>
-                <Text style={{ color: 'green', fontWeight: 'bold', fontSize: 12 }}>待支付</Text>
-              </View>
-            </View>
-            <View style={{ flexDirection: 'row', padding: '2%', width: '70%', justifyContent: 'space-between' }}>
-              <View style={{ padding: 9, borderWidth: 1, borderColor: '#ccc', marginRight: 8 }}>
-                <Image source={require('../../../assets/images/tup/57c35c612fb4bf9ae2922aa0d88688b.jpg')} style={{ width: 80, height: 80 }} />
-              </View>
+
+
+        <View style={styles.productCon}>
               <View>
-                <Text numberOfLines={3}>
-                  医用口罩。四层加厚版，预防新型冠状病毒，家人必备，给家里人一份心安!医用口罩。四层加厚版，预防新型冠状病毒，家人必备，给家里人一份心安!
-                </Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Text style={{ color: 'red', fontSize: 14 }}>¥</Text>
-                  <View style={{ marginLeft: 6 }}>
-                    <Text style={{ color: 'red', fontSize: 16, fontWeight: 'bold' }}>88.00</Text>
-                  </View>
+                <Text style={styles.productContent}>商品信息</Text>
+              </View>
+
+              <View style={styles.productBody}>
+                <View style={styles.productImg}>
+                  <Image style={styles.productImgwh} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ipad1.jpg'}} />
+                </View>  
+
+                <View style={styles.productTitle}>
+                  <Text style={styles.productTitleFont}>
+                    99新低价出售
+                  </Text>
+                </View>
+
+                <View style={styles.productTitle}>
+                  <Text style={styles.productPriceFont}>
+                    $<Text style={{fontSize:18}}>199</Text>.<Text style={{fontSize:13}}>00</Text>
+                  </Text>
+                </View>
+
+                <View style={styles.productCount}>
+                  <Text style={styles.productCountFont}>
+                    1
+                  </Text>
                 </View>
               </View>
-            </View>
-            <View style={styles.xian}></View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text>价格</Text>
-              <Text style={{ color: '#000', fontSize: 14 }}>¥ <Text>500</Text></Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 12 }}>
-              <Text>运费</Text>
-              <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 14 }}>¥ <Text>20</Text></Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text>共计</Text>
-              <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 16 }}>¥ <Text>520</Text></Text>
-            </View>
-            <View style={{ marginTop: 20, backgroundColor: '#fff' }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text>支付方式</Text>
-                <TouchableOpacity onPress={() => setShowmt(true)}>
-                  <View style={paymethWx ? { flexDirection: 'row', alignItems: 'center' } : { display: 'none' }}>
-                    <Image source={require('../../../assets/images/tup/weixin.png')} style={{ width: 23, height: 20 }}></Image>
-                    <Text>微信</Text>
-                    <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 16, height: 16 }}></Image>
-                  </View>
-                  <View style={paymethWx ? { display: 'none' } : { flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={require('../../../assets/images/tup/zhifubaozhifu.png')} style={{ width: 23, height: 20 }}></Image>
-                    <Text>支付宝</Text>
-                    <Image source={require('../../../assets/images/chevron-right.png')} style={{ width: 16, height: 16 }}></Image>
-                  </View>
-                </TouchableOpacity>
+
+              <View style={styles.productFoot}>
+              <View style={{flexDirection:'row',position:'absolute',width:'100%',top:10}}>
+                <Text style={styles.footFont}>运费</Text>
+                <Text style={styles.footFontA}>$<Text style={{fontSize:18}}>0</Text>.00</Text>
               </View>
-              <View style={{ backgroundColor: '#fff', width: '100%', height: 60,marginTop:12}}>
-                <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 8, justifyContent:'space-between' }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={{ color: '#000', fontSize: 14 }}>共计:</Text>
-                    <Text style={{ color: '#000' }}> ¥ <Text style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>520.00</Text></Text>
-                  </View>
-                  <TouchableOpacity style={{ backgroundColor: '#E20416', padding: 10, paddingHorizontal: 35, borderRadius: 90 }}>
-                    <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>立即支付</Text>
-                  </TouchableOpacity>
-                </View>
+
+              <View style={{flexDirection:'row',position:'absolute',width:'100%',top:50}}>
+                <Text style={[styles.footFont,{fontWeight:'900'}]}>小计</Text>
+                <Text style={styles.footFontB}>$<Text style={{fontSize:18}}>199</Text>.00</Text>
               </View>
-            </View>
+        </View>
+        </View>
+
+        <View style={styles.footBut}>
+          <View>
+            <Text style={styles.footText}>合计:<Text style={styles.countYe}><Text style={{fontSize:14}}>$</Text><Text style={{fontSize:20}}>199</Text>.<Text style={{fontSize:14}}>00</Text></Text></Text>
+          </View>
+
+          <View style={styles.buttFot}>
+              <Button onPress={()=>{}} buttonColor='#FE6600'>
+              <Text style={styles.ordBut} allowFontScaling={false}>立即购买</Text>
+              </Button>
           </View>
         </View>
-        {/* <View style={{ backgroundColor: '#ccc', position: 'absolute', bottom: 0, width: windowWidth, height: 60 }}>
-          <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 8, justifyContent: 'space-between' }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={{ color: '#000', fontSize: 14 }}>共计:</Text>
-              <Text style={{ color: '#000' }}> ¥ <Text style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>520.00</Text></Text>
-            </View>
-            <TouchableOpacity style={{ backgroundColor: '#E20416', padding: 10, paddingHorizontal: 35, borderRadius: 90 }}>
-              <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>立即支付</Text>
-            </TouchableOpacity>
-          </View>
-        </View> */}
       </View>
     </View>
   );
@@ -347,11 +328,14 @@ const styles = StyleSheet.create({
   paginationStyle: {
     bottom: 0,
     left: -280
+  },imgsView:{
+    width: '100%',
+    height: 380
   },
   bannerImage: {
-    width: windowWidth,
-    height: 300,
-  },
+    width:'100%',
+    height:'100%'
+  },orderTitle:{ fontSize: 18, color: '#000', textAlign: 'center', fontWeight: 'bold' },
   dotStyle: {
     width: 10,
     height: 10,
@@ -386,6 +370,7 @@ const styles = StyleSheet.create({
     color: '#000',
     lineHeight: 30,
     paddingLeft: 15,
+    fontWeight:'bold'
   },
   personalView: {
     flexDirection: 'row',
@@ -435,10 +420,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 95,
     padding: 5,
+    color:'#000'
   },
   commentView: {
     height: 180,
-    marginBottom: 10,
+    marginBottom: 10
   },
   commentTitel: {
     height: 40,
@@ -539,5 +525,117 @@ const styles = StyleSheet.create({
     backgroundColor: '#333',
     width: '100%',
     marginVertical: 6
+  },
+  iconAddr:{
+    width:30,
+    height:30
+  },
+  contenText:{
+    color:'#000',
+    fontSize:17,
+    fontWeight:'bold'
+  },
+  contenTextA:{
+    color:'#999',
+    fontSize:14,
+  },
+  productCon:{
+   width:'100%',
+   height: '40%',
+   backgroundColor:'#fff',
+   borderRadius:10,
+  },
+  productContent:{
+    color:'#000',
+    fontSize:18,
+    fontWeight:'600',
+    lineHeight:40,
+    paddingLeft:10
+  },
+  productBody:{
+    flexDirection:'row'
+  },
+  productImg:{
+    width:100,
+    height:100,
+    // backgroundColor:'red',
+    marginLeft:10
+  },
+  productImgwh:{
+    width:'100%',
+    height:'100%'
+  },productTitle:{
+    marginLeft:10
+  },
+  productTitleFont:{
+    color:'#999',
+    fontSize:17,
+  },
+  productPriceFont:{
+    color:'#000',
+    fontSize:12,
+    fontWeight:'bold',
+    marginLeft:30
+  },
+  productCount:{
+    width:50,height:25,position:'relative',top:'20%',right:'35%',backgroundColor:'#FAFAFA',borderRadius:20
+  },
+  productCountFont:{
+    color:'#000',
+    textAlign:'center',
+    lineHeight:25,
+    fontWeight:'900'
+  },
+  productFoot:{
+    marginTop:10
+  },
+  footFont:{
+    color:'#000',
+    fontSize:18,
+    paddingLeft:10,
+  },
+  footFontA:{
+    fontSize:14,
+    color:'#000',
+    position:'relative',
+    right:-250,
+    fontWeight:'900'
+  },
+  footFontB:{
+    color:'#FF6027',fontSize:14,
+    position:'relative',
+    right:-230,
+    fontWeight:'900'
+  },
+  footBut:{
+    width:'100%',
+    height:110,
+    // borderWidth:1,
+    position:'absolute',
+    bottom:0,
+    left:'3%',
+    flexDirection:'row',
+    backgroundColor:'#fff',
+    borderRadius:10
+  },
+  footText:{
+    color:'#000',
+    lineHeight:70,
+    fontSize:18,
+    fontWeight:'bold',
+    paddingLeft:10
+  },
+  countYe:{
+    color:'#FF4D0D',
+    fontWeight:'bold'
+  },
+  buttFot:{
+    position:'absolute',
+    right:30,
+    top:15
+  },
+  ordBut:{
+    color:'#fff',
+    fontWeight:'900'
   }
 });

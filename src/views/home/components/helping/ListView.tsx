@@ -33,7 +33,6 @@ import { FlatList } from 'react-native';
 import { rewardListApi } from '../../../../api/sys/reward';
 import { rewardListType } from '../../../../api/sys/reward/types';
 import { navigate } from '../../../../config/routs/NavigationContainer';
-import DateTimeUtils from '../../../../utils/DateTimeUtils';
 // 模态框引入的文件
 import React, { useEffect, useState } from 'react';
 import {
@@ -43,63 +42,21 @@ import {
   TouchableOpacity
 } from 'react-native';
 import LinearGradinet from 'react-native-linear-gradient';
-import { Avatar, Button, Icon } from 'react-native-paper';
+import { Avatar, Button } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { rewardPublishApi } from '../../../../api/sys/reward/index';
 import { rewardPublishType } from '../../../../api/sys/reward/types';
+import DateTimeUtils from "../../../../utils/DateTimeUtils";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Module = ({ item }) => (
   <View style={styles.itemStyle} key={item.index}>
-    {/* <View style={styles.avatarView}>
-      <Image
-        style={styles.avatarStyle}
-        source={{
-          uri: item.upath,
-        }}
-        accessibilityLabel='头像'
-        alt="头像"
-      />
-      <View style={styles.stateStyle} />
-      <Text allowFontScaling={false} style={styles.timeStyle}>
-        {DateTimeUtils.formattedDateTime(item.endTime).split(' ')[0]}
-      </Text>
-    </View>
-    <View style={styles.textView}>
-      <Text
-        allowFontScaling={false}
-        style={styles.textStyle1}
-        numberOfLines={1}
-        ellipsizeMode="tail">
-        {item.rtitle}
-      </Text>
-    </View>
-    <View style={styles.detailsView}>
-      <View style={styles.moneyView}>
-        <View style={styles.moneyIcon}>
-          <Icon
-            color="#FABA3C"
-            size={34}
-            source={require('../../../../assets/images/coins-icon.png')}
-          />
-        </View>
-        <Text allowFontScaling={false} style={styles.moneySum}>
-          {item.rmoney}
-        </Text>
-      </View>
-      <Button
-        style={styles.buttonStyle}
-        labelStyle={styles.buttonText}
-        // 页面传参的方法
-        onPress={() => navigate('RewardDetailsRoute', { item })}>
-        查看详情
-      </Button>
-    </View> */}
+    
     <View style={{width:'100% - 8',padding:12,marginHorizontal:4,backgroundColor:'#fff',borderTopLeftRadius:16,borderTopRightRadius:16}}>
       <View style={{ width:'100%',flexDirection:'row',justifyContent:'space-between',marginBottom:10}}>
-        <Text style={{color:'red',fontSize:17}}>¥<Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>3.2</Text></Text>
-        <Text style={{color:'red',fontSize:16}}>12:30前送达</Text>
+        <Text style={{color:'red',fontSize:17}}>¥<Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>{item.rmoney}</Text></Text>
+        <Text style={{color:'red',fontSize:16}}>{DateTimeUtils.formattedDateTime(item.endTime,'HH:MM') }前送达</Text>
       </View>
       <View>
         <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
@@ -108,8 +65,8 @@ const Module = ({ item }) => (
               <Text style={{color:'#fff',lineHeight:20}}>取</Text>
             </View>
             <View>
-              <Text style={{color:'#000',fontSize:20,fontWeight:'bold'}}>黄焖鸡米饭</Text>
-              <Text style={{color:'#000',fontSize:14}}>(第三饭堂)</Text>
+              <Text style={{color:'#000',fontSize:20,fontWeight:'bold'}}>{item.rtitle}</Text>
+              <Text style={{color:'#000',fontSize:14}}>({item.rdeparture})</Text>
             </View>
           </View>
           <View>
@@ -125,7 +82,7 @@ const Module = ({ item }) => (
               <Text style={{color:'#fff',lineHeight:20}}>送</Text>
             </View>
             <View>
-              <Text style={{color:'#000',fontSize:20,fontWeight:'bold'}}>广州工商学院北三A606</Text>
+              <Text style={{color:'#000',fontSize:20,fontWeight:'bold'}}>{item.rdestination}</Text>
             </View>
           </View>
           <View>
