@@ -16,7 +16,6 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { getFriendList, getUseList } from '../../../../api/imApi/index';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import {PinyinUtil} from '../../../../config/routs-config/StackerRout/pinyin';
 import {selSchoolApi} from '../../../../api/sys/reg/index';

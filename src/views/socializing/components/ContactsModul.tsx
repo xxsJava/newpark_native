@@ -56,11 +56,13 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
     };
     const friendLists = await getFriendList(params);
 
-    console.log('参数--------->',uId);
+    console.log('参数--------->',uId,params);
     console.log('好友数据----------->',friendLists.data.friendsInfo);
-    setListData(friendLists.data.friendsInfo)
+    
+    setListData(friendLists.data.friendsInfo);
+    
   }
-
+ 
   React.useEffect(() => {
     // listData();
     friendList();
@@ -98,7 +100,7 @@ const ListIndex: React.FC = () => {
   const renderItem = ({ item }: { item: DataItem }) => (
   
     <TouchableOpacity
-      onPress={() => navigate('ObjCard')}
+      onPress={() => navigate('FriProfile')}
       style={[
         styles.listItem,
         {
@@ -223,7 +225,7 @@ const ListIndex: React.FC = () => {
         title: 'A',
         data: [
           {
-            nickname: '牛友名称11',
+            nickname: '牛友名称1122',
             labelText: '牛友',
             color: 1,
             lableType: 1,
@@ -480,7 +482,7 @@ const styles = StyleSheet.create({
       android: {
         top: 10,
       },
-    }),
+    })
   },
   itemBar: {
     ...Platform.select({

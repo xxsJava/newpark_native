@@ -20,7 +20,7 @@ const List = ({ item }: any) => (
             onPress={() => {
                 navigate('DetailsRoute', { data: item }); console.log('item在这里----', item);
             }}>
-            <Image style={item.pimgs ? styles.commodityImage : {}} source={{ uri: item.pimgs.split(',')[0].split('[')[1] }} accessibilityLabel='图片' alt="头像" />
+            <Image style={item.pcover ? styles.commodityImage : {display:'none'}} source={{ uri: item.pcover }} accessibilityLabel='图片' alt="头像" />
             <Text allowFontScaling={false} style={styles.commodityText}>{item.pname}</Text>
             <View style={styles.priceView}>
                 <View style={styles.priceStyle}>
@@ -39,7 +39,7 @@ const List = ({ item }: any) => (
                     size={32}
                     source={{ uri: item.upath }}
                 />
-                <Text allowFontScaling={false} style={styles.publisherText}>{item.name}</Text>
+                <Text allowFontScaling={false} style={styles.publisherText}>{item.unikname}</Text>
             </View>
         </TouchableOpacity>
     </View>
@@ -206,7 +206,7 @@ const JiaoyiData = () => {
             </View>
             <View style={styles.scrollView}>
                 <FlatList
-                    style={{ zIndex: -2 }}
+                    style={{ zIndex: -2}}
                     numColumns={2}
                     data={data}
                     keyExtractor={(item, index) => index.toString()}
@@ -240,10 +240,10 @@ const styles = StyleSheet.create({
     },
     commoditylist: {
         flexDirection: 'row',
-        // flexWrap: 'wrap',
-        // justifyContent: 'flex-start',
         alignItems: 'center',
-        width: '50%'
+        width: '50%',
+        backgroundColor:'#fff',
+        // borderWidth:0.4
     },
     commodityItem: {
         width: '100%',

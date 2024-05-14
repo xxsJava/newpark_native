@@ -5,13 +5,16 @@
  */
 import React from "react";
 import { Trans } from 'react-i18next';
-import { Alert, Dimensions, Image, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { Alert, Dimensions, Image, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View,ScrollView } from "react-native";
 import { launchImageLibrary } from 'react-native-image-picker';
 import { Appbar, Button } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 import {productApip} from '../../../../api/sys/Recommended/index';
-import {productpType} from '../../../../api/sys/Recommended/types'
+import {productpType} from '../../../../api/sys/Recommended/types';
+import {fileUp} from '../../../../api/sys/upload/index';
+// import { ScrollView } from "react-native-gesture-handler";
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -48,7 +51,15 @@ const Photo = () => {
            
             }
         )
-        console.log('imgList11',imgList)
+        console.log('imgList11',imgList);
+            const up = async () => {
+                const params = {
+                    file:imgList[0].uri
+                }
+                const imgData = await fileUp (params);
+                console.log(imgData,'这个是上传的文件---',params);
+            }
+            up();
         sendImg()
     }
     console.log('imgList22',imgList);
@@ -58,13 +69,16 @@ const Photo = () => {
         
     }
     return (
-        <View style={styles.imageListView}>
+        <View style={styles.imageListView} >
+            <ScrollView horizontal={true}>
             {imgList.map((item:any) =>{
                 return(
                     <Image key={item.uri} style={styles.photoListStyle} source={{uri:item.uri}} accessibilityLabel='图片' alt="头像"/>
                 )
                 })
             }
+            </ScrollView>
+           
             <TouchableHighlight style={[styles.photoView,imgList.length > 3?{display:'none'}:null]} underlayColor="#ddd" onPress={() => handleClick()}>
                 <Image style={styles.photoImage} source={require('../../../../assets/images/takepicforheader.png')} accessibilityLabel='图片' alt="头像"></Image>
             </TouchableHighlight>
@@ -144,6 +158,7 @@ const PublishProducts = () => {
                     }}></TextInput>
                 </View>
                 <View>
+                {/* <ScrollView horizontal={true}> */}
                     <Photo onSendData={handleDataFromChild}></Photo>
                 </View>
                 <View style={styles.priceView}>
@@ -157,7 +172,7 @@ const PublishProducts = () => {
                         return(
                             <TouchableOpacity style={styles.itemStyle} key={item.index} onPress={() => {modeSelect(item.index); setOther(item.text);
                             }}>
-                                <Text style={styles.itemText}>{item.text}</Text>
+                                <Text style={[styles.itemText,modeVal === item.index? {color:'green'} : {color:'black'}]}>{item.text}</Text>
                                 <Image style={[styles.itemIcon,modeVal === item.index?null:{display:'none'}]} source={require('../../../../assets/images/alimom/correct_icon.png')} accessibilityLabel='图片' alt="头像"></Image>
                             </TouchableOpacity>
                         )

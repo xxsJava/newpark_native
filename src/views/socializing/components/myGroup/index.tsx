@@ -2,6 +2,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import React from "react";
 import MyCreScreen from "../page/MyCreScreen";
 import MyJoinScreen from "../page/MyJoinScreen";
+import { Text } from 'react-native';
 
 
 const Tab = createMaterialTopTabNavigator();

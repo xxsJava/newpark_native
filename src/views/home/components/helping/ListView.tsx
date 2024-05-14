@@ -96,46 +96,46 @@ const Module = ({ item }) => (
         查看详情
       </Button>
     </View> */}
-    <View style={{width:'98%',padding:12,marginHorizontal:4,backgroundColor:'#fff',borderTopLeftRadius:16,borderTopRightRadius:16}}>
-      <View style={{ width:'100%',flexDirection:'row',justifyContent:'space-between',marginBottom:10}}>
-        <Text style={{color:'red',fontSize:17}}>¥<Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>3.2</Text></Text>
-        <Text style={{color:'red',fontSize:16}}>12:30前送达</Text>
+    <View style={{ width: '98%', padding: 12, marginHorizontal: 4, backgroundColor: '#fff', borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
+      <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+        <Text style={{ color: 'red', fontSize: 17 }}>¥<Text style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>{item.rmoney}</Text></Text>
+        <Text style={{ color: 'red', fontSize: 16 }}>12:30前送达</Text>
       </View>
       <View>
-        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-          <View style={{flexDirection:'row'}}>
-            <View style={{backgroundColor:'#2A86FA',borderRadius:20,padding:8,width:34,height:34,alignItems:'center',justifyContent:'center'}}>
-              <Text style={{color:'#fff',lineHeight:20}}>取</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ backgroundColor: '#2A86FA', borderRadius: 20, padding: 8, width: 34, height: 34, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: '#fff', lineHeight: 20 }}>取</Text>
             </View>
             <View>
-              <Text style={{color:'#000',fontSize:20,fontWeight:'bold'}}>黄焖鸡米饭</Text>
-              <Text style={{color:'#000',fontSize:14}}>(第三饭堂)</Text>
+              <Text style={{ color: '#000', fontSize: 20, fontWeight: 'bold' }}>黄焖鸡米饭</Text>
+              <Text style={{ color: '#000', fontSize: 14 }}>(第三饭堂)</Text>
             </View>
           </View>
           <View>
-            <Text style={{color:'#000',fontSize:16,fontWeight:'bold'}}>1.2KM</Text>
+            <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold' }}>1.2KM</Text>
           </View>
         </View>
         <View>
-          <Image source={require('../../../../assets/images/tup/xiangxia.png')} style={{width:30,height:30,marginVertical:8}}></Image>
+          <Image source={require('../../../../assets/images/tup/xiangxia.png')} style={{ width: 30, height: 30, marginVertical: 8 }}></Image>
         </View>
-        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-          <View style={{flexDirection:'row'}}>
-            <View style={{backgroundColor:'#F58243',borderRadius:20,padding:8,width:34,height:34,alignItems:'center',justifyContent:'center'}}>
-              <Text style={{color:'#fff',lineHeight:20}}>送</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ backgroundColor: '#F58243', borderRadius: 20, padding: 8, width: 34, height: 34, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: '#fff', lineHeight: 20 }}>送</Text>
             </View>
             <View>
-              <Text style={{color:'#000',fontSize:20,fontWeight:'bold'}}>广州工商学院北三A606</Text>
+              <Text style={{ color: '#000', fontSize: 20, fontWeight: 'bold' }}>广州工商学院北三A606</Text>
             </View>
           </View>
           <View>
-            <Text style={{color:'#000',fontSize:16,fontWeight:'bold'}}>856m</Text>
+            <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold' }}>856m</Text>
           </View>
         </View>
       </View>
     </View>
-    <TouchableOpacity style={{backgroundColor:'#F58243',width:windowWidth-8,marginHorizontal:4,borderBottomLeftRadius:16,borderBottomRightRadius:16}} onPress={()=>navigate('RewardDetailsRoute', { item })}>
-      <Text style={{color:'#fff',fontSize:20,textAlign:'center',padding:12}}>接单</Text>
+    <TouchableOpacity style={{ backgroundColor: '#F58243', width: windowWidth - 8, marginHorizontal: 4, borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }} onPress={() => navigate('RewardDetailsRoute', { item })}>
+      <Text style={{ color: '#fff', fontSize: 20, textAlign: 'center', padding: 12 }}>接单</Text>
     </TouchableOpacity>
   </View>
 );
@@ -171,6 +171,13 @@ const ListView = (data: any) => {
     const rePublish = await rewardPublishApi(rewardPublishData)
     console.log(rePublish, '这里是我发布的悬赏');
   }
+  // 检查传过来的数据是否是数字
+  const hangleNum  = (text: number) => {
+      const regex = /^[0-9]*$/;
+      if(regex.test(text)) {
+        setMonrew(text)
+      }
+  };
   // 悬赏预览
   const [rewardData, rewardDataChange] = React.useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -178,8 +185,8 @@ const ListView = (data: any) => {
   const RewardApi = async (arr: rewardListType) => {
     const rewardList = await rewardListApi(arr);
     setAllData(rewardList.data);
-    console.log(allData,'这个是获取到的悬赏列表');
-    
+    console.log(allData, '这个是获取到的悬赏列表');
+
   };
 
   const rewardInitData = () => {
@@ -333,7 +340,8 @@ const ListView = (data: any) => {
               </Text>
             </View>
             <Input size="md" bgColor="#FAE6CE" variant="underlined" alignItems="center" style={{ height: 50 }}>
-              <InputField placeholder="请输入赏金" value={monrew} onChangeText={(e: any) => { setMonrew(e) }} textAlign="center" />
+              {/* (e: any) => { setMonrew(e) } */}
+              <InputField placeholder="请输入赏金" value={monrew} onChangeText={hangleNum} textAlign="center" />
               <Text style={{ fontSize: 19, fontWeight: 'bold', marginRight: 8 }}>元</Text>
               <Image source={require('../../../../assets/images/moneyBag.png')} style={{ width: 32, height: 32, marginRight: 4 }} accessibilityLabel='赏金' alt="头像" />
             </Input>

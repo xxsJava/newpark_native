@@ -193,27 +193,35 @@ const PostDetails = ({ route }: any) => {
             </ActionsheetDragIndicatorWrapper>
             <ActionsheetItem onPress={handleDel}>
               <ActionsheetIcon>
-                <ICON as={TrashIcon} size="sm" />
+                {/*  size="sm"  */}
+                <ICON as={TrashIcon}/>
               </ActionsheetIcon>
-              <ActionsheetItemText size='sm'>删除</ActionsheetItemText>
+              {/* size='sm' */}
+              <ActionsheetItemText >删除</ActionsheetItemText>
             </ActionsheetItem>
             <ActionsheetItem onPress={handleClose}>
               <ActionsheetIcon>
-                <ICON as={ShareIcon} size="sm" />
+                {/* size="sm" */}
+                <ICON as={ShareIcon}  />
               </ActionsheetIcon>
-              <ActionsheetItemText size='sm'>分享</ActionsheetItemText>
+              {/* size='sm' */}
+              <ActionsheetItemText >分享</ActionsheetItemText>
             </ActionsheetItem>
             <ActionsheetItem onPress={handleClose}>
               <ActionsheetIcon>
-                <ICON as={FavouriteIcon} size="sm" />
+                {/* size="sm" */}
+                <ICON as={FavouriteIcon}  />
               </ActionsheetIcon>
-              <ActionsheetItemText size='sm'>喜欢</ActionsheetItemText>
+              {/* size='sm' */}
+              <ActionsheetItemText >喜欢</ActionsheetItemText>
             </ActionsheetItem>
             <ActionsheetItem onPress={handleClose}>
               <ActionsheetIcon>
-                <ICON as={CloseIcon} size="sm" />
+                {/* size="sm" */}
+                <ICON as={CloseIcon}  />
               </ActionsheetIcon>
-              <ActionsheetItemText size='sm'>取消</ActionsheetItemText>
+              {/* size='sm' */}
+              <ActionsheetItemText >取消</ActionsheetItemText>
             </ActionsheetItem>
           </ActionsheetContent>
         </Actionsheet>

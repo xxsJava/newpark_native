@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Trans } from 'react-i18next';
 import { Dimensions, Modal, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
-import { Appbar } from 'react-native-paper';
+import { Appbar,Switch} from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { loginOutApi } from "../../../../api/sys/lgoin";
 import { navigate } from '../../../../config/routs/NavigationContainer';
@@ -12,7 +12,6 @@ const windowHeight = Dimensions.get('window').height
 // 个人资料
 const personData = () => {
     navigate('PersonalData')
-
 };
 // 通知设置
 const notiSett = () => {
@@ -99,7 +98,10 @@ export default class SetUp extends Component {
                                 </Modal>
                             </View>
 
-
+                            <View>
+                                <Text>勿扰模式</Text>
+                                {/* <Switch value={this.state.switchControlList['yhjf']} onValueChange={(value) => { this.setIsSwitchOn('yhjf', value); }} color='#ECB32C' /> */}
+                            </View>
                             <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => personData()}>
                                 <Text allowFontScaling={false} style={styles.itemText}>个人资料</Text>
                                 <View style={styles.itemIconView}>
@@ -247,5 +249,6 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         width:windowWidth *0.4
-    }
+    },
+
 })

@@ -381,12 +381,12 @@ const MyOrderView = ({ route }: any) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flexDirection: 'row'}}>
-                <ScrollView style={{ height: windowHeight, paddingLeft: 12,backgroundColor:'aqua' }} stickyHeaderHiddenOnScroll={true}>
+                <ScrollView style={{ height: windowHeight, paddingLeft: 12 }} stickyHeaderHiddenOnScroll={true}>
                     <FlatList
                         data={species}
                         renderItem={({ item }) => <Sort item={item} />}
                         keyExtractor={(item) => item.index.toString()}
-                        style={{width:'20%'}}
+                        style={{width:windowWidth}}
                     />
                 </ScrollView>
                 <View style={{ width: windowWidth - 120 }}>

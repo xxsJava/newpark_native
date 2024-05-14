@@ -6,6 +6,7 @@
  * @Description: desc
  */
 // 测试选择学校
+import FriProfile from '../../../views/socializing/components/Fripiofile';
 import Complain from '../../../views/home/components/Complain';
 import MyqunzuSeach from '../../../views/socializing/components/contact/MyqunzuSeach';
 import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
@@ -104,6 +105,13 @@ export default {
       headerShown: true,
       title:'学校选择'
     },
+  },
+  FriProfile:{
+    component:FriProfile,
+    options:{
+      headerShow:true,
+      title:''
+    }
   },
   Myqunzu:{
     component:Myqunzu,

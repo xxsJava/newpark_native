@@ -227,15 +227,6 @@ const styles = StyleSheet.create({
         height: 10,
         width: windowwidth
     },
-    appbarStyle: {
-        borderWidth: 0,
-        backgroundColor: '#FFF',
-        zIndex: 999
-    },
-    h4: {
-        fontSize: 19,
-        color: '#000'
-    },
     h2: {
         color: '#000',
         fontSize: 21,
@@ -318,11 +309,6 @@ const styles = StyleSheet.create({
         padding: 18,
         borderBottomWidth: 1,
         borderColor: '#BBBBBB'
-    },
-    boxStylemin2: {
-        justifyContent: 'center',
-        flexDirection: 'row',
-        padding: 12
     },
     mainMtk: {
         backgroundColor: '#fff',
