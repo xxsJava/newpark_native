@@ -1,16 +1,34 @@
 import { Button, ButtonText } from '@gluestack-ui/themed';
 import * as React from 'react';
-import { Dimensions, FlatList, Image, StyleSheet, Text,TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import { Dimensions, FlatList, Image, StyleSheet, Text } from 'react-native';
 import { View } from 'react-native-animatable';
-import { navigate } from '../../../config/routs/NavigationContainer';
+import { applyList } from '../../../api/imApi';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ReqApp = (item:any) => {
-    // const [status,setStatus] = React.useState('无')
-    const res = item.route.params;
-    console.log(res,'新的好友请求传过来的');
-    const [searchQuery, setSearchQuery] = React.useState('');
+    
+    const [listApplys,setListApplys] = useState([]);
+
+    const applyListss = async () => {
+
+        const params = {
+            "userID": "1742430171993788416",
+            "pagination": {
+              "pageNumber": 1,
+              "showNumber": 10
+            }
+          };
+        const applys = await applyList(params);
+        console.log('获取--------->',applys);
+        setListApplys(applys.data.FriendRequests);  
+    }
+
+    React.useEffect(()=>{
+        applyListss();
+    },[])
+
     const listPeople = [
         {
             avatar: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/55093421-871c-43c7-803f-1fe23fced837.jpg',
@@ -39,53 +57,11 @@ const ReqApp = (item:any) => {
         <View style={{ width: windowWidth, height: windowHeight,marginTop:10 }}>
             <View style={{ backgroundColor: '#fff' }}>
                 <FlatList
-                    data={listPeople}
+                    data={listApplys}
                     renderItem={items}
                     // keyExtractor={item => item.index}
                     ItemSeparatorComponent={Separator}
                 />
-                <View style={{ marginVertical: 20, backgroundColor: '#F8F8F8', padding: 10 }}>
-                    <Text>新的好友请求</Text>
-                </View>
-                <View>
-                    {
-                        listPeople.map(item => {
-                            // const [res,setRes] = React.useState(undefined);
-                            return (
-                                <TouchableOpacity key={item.index} style={{ backgroundColor: '#fff', padding: 7, borderBottomWidth: 1, borderColor: '#ccc', }}>
-                                    <View style={styles.heng}>
-                                        <View >
-                                            <Image
-                                                style={styles.tinyLogo}
-                                                source={{uri:item.avatar}}
-                                                accessibilityLabel='图片'
-                                                alt="头像"
-                                            />
-                                        </View>
-                                        <View style={[styles.heng, { width: windowWidth * 0.67, justifyContent: 'space-between', marginHorizontal: 20, alignItems: 'center' }]}>
-                                            <View>
-                                                <Text style={styles.name}>{item.name}</Text>
-                                                <Text style={{ color: '#000',fontSize:12 }}> {item.validation}</Text>
-                                            </View>
-                                            <View style={styles.heng}>
-                                                {/*  */}
-                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}}  style={res != '通过' && res != '拒绝' ? [styles.boxAgg,{borderWidth:1,borderColor:'#4C8ACD',borderRadius:3}]:{display:'none'}}>
-                                                    <Text style={[styles.textAgg,{color:'#4C8ACD'}]}>接受</Text>
-                                                </TouchableOpacity>
-                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}}  style={res == '通过'? [styles.boxAgg,{borderWidth:0}] : {display:'none'}}>
-                                                    <Text style={styles.textAgg}>打招呼</Text>
-                                                </TouchableOpacity>
-                                                <TouchableOpacity  onPress={() => {navigate('NewApply',item)}} style={res == '拒绝'? [styles.boxAgg,{borderWidth:0}] : {display:'none'}}>
-                                                    <Text style={[styles.textAgg,{color:'#999'}]}>未通过</Text>
-                                                </TouchableOpacity>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            )
-                        })
-                    }
-                </View>
             </View>
         </View>
     );
@@ -101,19 +77,20 @@ const items = ({item}:any) =>{
                 <View style={styles.headImg}>
                     <Image
                         style={styles.tinyLogo}
-                        source={{uri:item.avatar}}
+                        source={{uri:item.toFaceURL}}
                         accessibilityLabel='图片'
-                        alt="头像"
+                        alt="网络不佳"
                     />
                 </View>
                 <View style={[styles.heng,styles.bodyText]}>
                     <View>
-                        <Text style={styles.name}>{item.name}</Text>
-                        <Text style={styles.descFont} numberOfLines={1}> {item.validation}</Text>
+                        <Text style={styles.name}>{item.toNickname}</Text>
+                        <Text style={styles.descFont} numberOfLines={1}> {item.reqMsg}</Text>
                     </View>
                 </View>
                 <View style={styles.rgStart}>
-                    <Button
+                    
+                    <View style={{marginRight:5}}><Button
                         size="sm"
                         variant="solid"
                         action="negative"
@@ -121,8 +98,9 @@ const items = ({item}:any) =>{
                         isFocusVisible={false}
                         >
                         <ButtonText>拒绝</ButtonText>
-                    </Button>
-                    <Button
+                    </Button></View>
+                    
+                    <View><Button
                         size="sm"
                         variant="solid"
                         action="primary"
@@ -130,7 +108,8 @@ const items = ({item}:any) =>{
                         isFocusVisible={false}
                         >
                         <ButtonText>同意</ButtonText>
-                    </Button>
+                    </Button></View>
+                    
                 </View>
             </View>
     )

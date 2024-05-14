@@ -451,7 +451,7 @@ const styles = StyleSheet.create({
       },
     }),
     position:'absolute',
-    bottom:0,
+    bottom:-10,
     left:0,
     width:windowWidth,
     

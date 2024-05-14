@@ -1,12 +1,12 @@
 /*
  * @Author: zhn
  * @Date: 2024-05-10 16:21:09
- * @LastEditTime: 2024-05-10 16:21:09
- * @FilePath:newpark_native/src/views/socializing/components/page/MyJoinScreen.tsx
+ * @LastEditTime: 2024-05-13 10:09:57
+ * @FilePath: \newpark_native\src\views\socializing\components\page\MyJoinScreen.tsx
  * @Description: 我加入的群组列表
  */
-import React, { useState, useEffect } from "react";
-import { Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -57,11 +57,10 @@ const MyJoinScreen = () => {
             value={selsct}
             onChangeText={text => setSelect(text)}
           /> */}
-            <TouchableOpacity style={{flexDirection:'row',alignItems:'center',paddingVertical:6,justifyContent:'flex-start',width:'90%',backgroundColor:'#E9EAED',paddingHorizontal:12,borderRadius:6,marginTop:3}}>
-                {/* sousuo-2.png */}
-                <Image  style={{ width: 24, height: 24,marginRight:6 }} source={require('../../../../assets/images/tup/sousuo-2.png')}></Image>
-                <Text style={{color:'#000',fontSize:16}}>搜索：群组</Text>
-            </TouchableOpacity>
+            {/* <TouchableOpacity style={{}}>
+                <Image  style={{ width: 30, height: 30 }} source={require('../../../../assets/mp4/')}></Image>
+                <Text>搜索：群组</Text>
+            </TouchableOpacity> */}
             <FlatList
                 data={itemData}
                 renderItem={items}

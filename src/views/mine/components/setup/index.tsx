@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Trans } from 'react-i18next';
-import { Dimensions, Modal, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
-import { Appbar,Switch} from 'react-native-paper';
-import Entypo from 'react-native-vector-icons/Entypo';
+import { Dimensions, SectionList, StyleSheet, Text, View } from "react-native";
+import { Appbar } from 'react-native-paper';
+import Feather from "react-native-vector-icons/Feather";
 import { loginOutApi } from "../../../../api/sys/lgoin";
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
@@ -40,6 +40,34 @@ const logOut = async () => {
     navigate("LoginStacker");
 };
 
+const DATA = [
+    {
+      title: '个人',
+      data: ['个人资料', '地址管理', '账号与安全'],
+    },
+    {
+      title: '交易',
+      data: ['支付方式', '收款方式', '微信收款提现'],
+    },
+    {
+      title: '通用',
+      data: ['消息通知', '图片视频', '清除缓存'],
+    },
+    {
+      title: '隐私',
+      data: ['隐私设置', '黑名单'],
+    },{
+        title: '关于',
+        data: ['关于New Park']
+      },{
+        title: '',
+        data: ['退出登录'],
+      },{
+        title: '',
+        data: [''],
+      }
+  ];
+
 export default class SetUp extends Component {
     state = {
         modalVisible: false
@@ -59,11 +87,11 @@ export default class SetUp extends Component {
                     </Text>
                 </Appbar.Header>
                 <View style={styles.contentStyle}>
-                    <ScrollView style={styles.scorllStyle}>
-                        <View style={styles.listStyle}>
+                    {/* <ScrollView style={styles.scorllStyle}>
+                        <View style={styles.listStyle}> */}
 
                             {/* 测试清除缓存的模态框 */}
-                            <View style={styles.centeredView}>
+                            {/* <View style={styles.centeredView}>
                                 <Modal
                                     animationType="slide"
                                     transparent={true}
@@ -71,8 +99,8 @@ export default class SetUp extends Component {
                                     onRequestClose={() => {
                                         this.setModalVisible(!modalVisible);
                                     }}
-                                >
-                                    <View style={styles.centeredView}>
+                                > */}
+                                    {/* <View style={styles.centeredView}>
                                         <View style={styles.modalView}>
                                             <Text style={styles.modalText}>确定清除本地缓存？</Text>
                                             <View style={styles.heng}>
@@ -96,12 +124,9 @@ export default class SetUp extends Component {
                                         </View>
                                     </View>
                                 </Modal>
-                            </View>
+                            </View> */}
 
-                            <View>
-                                <Text>勿扰模式</Text>
-                                {/* <Switch value={this.state.switchControlList['yhjf']} onValueChange={(value) => { this.setIsSwitchOn('yhjf', value); }} color='#ECB32C' /> */}
-                            </View>
+{/* 
                             <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => personData()}>
                                 <Text allowFontScaling={false} style={styles.itemText}>个人资料</Text>
                                 <View style={styles.itemIconView}>
@@ -128,29 +153,43 @@ export default class SetUp extends Component {
                                 <View style={styles.itemIconView}>
                                     <Entypo style={styles.itemIcon} color='#000' size={16} name="chevron-thin-right"></Entypo>
                                 </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => navigate('About')}>
+                            </TouchableOpacity> */}
+                            {/* <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => navigate('About')}>
                                 <Text allowFontScaling={false} style={styles.itemText}>关于我们</Text>
                                 <View style={styles.itemIconView}>
                                     <Entypo style={styles.itemIcon} color='#000' size={16} name="chevron-thin-right"></Entypo>
                                 </View>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                             {/* <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => reguser()}>
                                 <Text allowFontScaling={false} style={styles.itemText}>注册用户</Text>
                                 <View style={styles.itemIconView}>
                                     <Entypo style={styles.itemIcon} color='#000' size={16} name="chevron-thin-right"></Entypo>
                                 </View>
                             </TouchableOpacity> */}
-                            <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => logOut()}>
+                            {/* <TouchableOpacity style={styles.itemStyle} activeOpacity={0.4} onPress={() => logOut()}>
                                 <Text allowFontScaling={false} style={[styles.itemText, { color: 'red' }]}>退出登录</Text>
                                 <View style={styles.itemIconView}>
                                     <Entypo style={styles.itemIcon} color='#000' size={16} name="chevron-thin-right"></Entypo>
                                 </View>
                             </TouchableOpacity>
                         </View>
-                    </ScrollView>
-                </View>
+                    </ScrollView> */}
 
+
+                    <SectionList
+                        sections={DATA}
+                        keyExtractor={(item, index) => item + index}
+                        renderItem={({item}) => (
+                            <View style={styles.item}>
+                                <Text style={styles.title}>{item}</Text>
+                                <Feather style={styles.icon} name="chevron-right" size={18} color="#dbdbdb" />
+                            </View>
+                        )}
+                        renderSectionHeader={({section: {title}}) => (
+                            <Text style={styles.header}>{title}</Text>
+                        )}
+                    />
+                </View>
             </View>
         )
     }
@@ -170,85 +209,30 @@ const styles = StyleSheet.create({
     },
     contentStyle: {
         width: windowWidth,
-        height: windowHeight - 60
+        height: windowHeight,
+        paddingLeft:10,
+        marginRight:10,
+        backgroundColor:'#FAFAFA'
     },
-    scorllStyle: {
-        flex: 1
-    },
-    listStyle: {
-        width: windowWidth,
-        height: 'auto'
-    },
-    itemStyle: {
-        height: 60,
-        paddingHorizontal: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        backgroundColor: '#FFF'
-    },
-    itemText: {
-        fontSize: 18,
-        color: '#444',
-        lineHeight: 60,
-    },
-    itemIconView: {
-        flexDirection: 'row',
-        justifyContent: "flex-end"
-    },
-    itemIconText: {
-        fontSize: 14,
-        color: '#9E9E9E',
-        lineHeight: 60,
-        marginRight: 5
-    },
-    itemIcon: {
-        lineHeight: 60,
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
-    },
-    openButton: {
-        backgroundColor: "#F194FF",
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-        paddingHorizontal:20
-    },
-    textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: "center",
-        color: 'black',
-        fontWeight: 'bold',
-        fontSize: 16
-    },
-    heng:{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-between',
-        width:windowWidth *0.4
-    },
-
+  item: {
+    backgroundColor: '#fff',
+    padding: 15,
+    // marginVertical: 8,
+    flexDirection:'row'
+  },
+  header: {
+    fontSize: 14,
+    // backgroundColor: '#fff',
+    color:'#999',
+    padding:10
+  },
+  title: {
+    fontSize: 16,
+    color:'#000'
+  },
+  icon:{
+    position:'absolute',
+    right:20,
+    top:15
+  }
 })

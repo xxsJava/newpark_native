@@ -366,7 +366,7 @@ const listData = async () => {
         </View>
         <View style={styles.bodyContent}>
           <Text style={styles.conText}>
-            我的群组
+            我的聊天室
           </Text>
         </View>
         <View style={styles.rightIcon}>
@@ -398,7 +398,7 @@ const listData = async () => {
         </View>
         <View style={styles.bodyContent}>
           <Text style={styles.conText}>
-            新的群聊
+            新的聊天室
           </Text>
         </View>
         <View style={styles.rightIcon}>

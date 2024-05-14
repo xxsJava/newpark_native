@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2024-04-20 09:00:27
- * @LastEditTime: 2024-04-25 11:38:24
+ * @LastEditTime: 2024-05-13 16:10:14
  * @FilePath: \newpark_native\src\api\imApi\index.tsx
  * @Description: desc
  */
@@ -112,6 +112,18 @@ export const accountCheck = (params:any): Promise<IResponse> =>{
 export const joinedGroup = (params:any): Promise<IResponse> =>{
     return request.post({
         url:'/api/group/get_joined_group_list',
+        data:params
+    })
+}
+
+/**
+ * 获取收到的好友申请
+ * @param params 
+ * @returns 
+ */
+export const applyList = (params:any): Promise<IResponse> =>{
+    return request.post({
+        url:'/api/friend/get_friend_apply_list',
         data:params
     })
 }

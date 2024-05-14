@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Dimensions,
+  FlatList,
   Platform,
   ScrollView,
   StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Text
+  Text,
+  TouchableOpacity
 } from 'react-native';
+import { Image, View } from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
-import { navigate } from '../../../config/routs/NavigationContainer';
 import { recommLook } from '../../../api/sys/Recommended/index';
 import { recommLookType } from '../../../api/sys/Recommended/types';
-import { Image, View } from 'react-native-animatable';
+import { navigate } from '../../../config/routs/NavigationContainer';
 
 // import Text from '../../socializing/text';
-import DateTimeUtils from '../../../utils/DateTimeUtils'
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -100,7 +99,7 @@ export default CommunityModule;
 const styles = StyleSheet.create({
   scrollStyle: {
     width: windowWidth,
-    height: windowHeight - 80,
+    height: windowHeight,
     ...Platform.select({
       ios: {
         paddingHorizontal: 17,

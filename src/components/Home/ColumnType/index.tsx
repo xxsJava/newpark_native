@@ -5,18 +5,16 @@
  */
 import React from 'react';
 import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
   Dimensions,
   Image,
-  Platform
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
-import {Text} from 'react-native-animatable';
+import { navigate } from '../../../config/routs/NavigationContainer';
 import MenusComponents from '../Menu';
-import {useTranslation, Trans} from 'react-i18next';
-import {navigate} from '../../../config/routs/NavigationContainer';
 // import { Image } from 'react-native-paper/lib/typescript/components/Avatar/Avatar';
 
 const windowWidth = Dimensions.get('window').width;
@@ -60,27 +58,6 @@ const ColumnType = () => {
   const [selectedVal, onSelected] = React.useState(1);
   return (
     <View style={styles.typeStyle}>
-      <View style={styles.navigationStyle}>
-        {navigateData.map(item => {
-          return (
-            <View key={item.index}>
-              <TouchableOpacity
-                style={[
-                  styles.navigationItem,
-                  selectedVal === item.index
-                    ? styles.onSelectedBorder
-                    : styles.selectedBorder,
-                ]}
-                onPress={() => onSelected(item.index)}>
-                <Image style={styles.navigationItemImage} source={item.icon} accessibilityLabel='图片' alt="头像"/>
-                <Text allowFontScaling={false} style={styles.navigationItemText}>
-                  <Trans>{item.text}</Trans>
-                </Text>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </View>
       <View style={styles.modalAll}>
         <TouchableOpacity
         key={menusData[0].index}
@@ -100,13 +77,49 @@ const ColumnType = () => {
           </View>
         </TouchableOpacity>
       </View>
+
+      <View style={styles.typesView}>
+        <View style={styles.typeItem}>
+          <View style={styles.imgView}>
+            <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon01.png'}} />
+          </View>
+          <View>
+            <Text style={styles.typeTitle}>快速交友</Text>
+          </View>
+        </View>
+        <View style={styles.typeItem}>
+          <View style={styles.imgView}>
+            <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon04.png'}} />
+          </View>
+          <View>
+            <Text style={styles.typeTitle}>热门聊天室</Text>
+          </View>
+        </View>
+        <View style={styles.typeItem}>
+          <View style={styles.imgView}>
+            <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon02.png'}} />
+          </View>
+          <View>
+            <Text style={styles.typeTitle}>快速接单</Text>
+          </View>
+        </View>
+        <View style={styles.typeItem}>
+          <View style={styles.imgView}>
+            <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon03.png'}} />
+          </View>
+          <View>
+            <Text style={styles.typeTitle}>排行榜</Text>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   typeStyle: {
-    width: windowWidth
+    // width: windowWidth,
+    backgroundColor:'#FAFAFA'
   },
   modalAll:{
     marginTop:5,
@@ -139,41 +152,31 @@ const styles = StyleSheet.create({
   back1: {
     backgroundColor: '#008ACC',
   },
-  navigationStyle: {
-    width: windowWidth - 30,
-    height: 50,
-    marginTop: 15,
-    marginHorizontal: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  typesView:{
+    // borderWidth:1,
+    flexDirection:'row',
+    marginBottom:15,
+    backgroundColor:'#fff',
+    borderRadius:10
   },
-  navigationItem: {
-    width: 88,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 2,
-    flexDirection: 'row',
-    justifyContent: 'center',
+  typeItem:{
+    height: 100,
+    width: '25%',
+    // borderWidth:1,
+    justifyContent:'center',
+    alignItems:'center'
+  },imgView:{
+    width:60,
+    height:60
   },
-  navigationItemImage: {
-    width: 26,
-    height: 26,
-    marginTop: 5,
-    marginRight: 5
+  img:{
+    width:'100%',
+    height:'100%'
   },
-  navigationItemText: {
-    fontSize: 16,
-    color: '#000',
-    fontWeight: '600',
-    letterSpacing: 1,
-    lineHeight: 35,
-  },
-  selectedBorder: {
-    borderColor: '#6a1b9a',
-  },
-  onSelectedBorder: {
-    borderColor: '#faba3c',
-  },
+  typeTitle:{
+    color:'#000',
+    fontWeight:'600'
+  }
 });
 
 export default ColumnType;

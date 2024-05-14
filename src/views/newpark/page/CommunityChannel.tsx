@@ -95,14 +95,19 @@ const CommunityChannel = ({ navigation }:any) => {
                 <ScrollView style={styles.scrollStyle}>
                     <View style={styles.contentView}>
                         <View style={styles.topView}>
+                            
                             <View style={styles.topContent}>
-                                <View style={styles.topImage}></View>
+                                <View style={styles.topImage}>
+                                    <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%2810%29.jpg'}} />
+                                </View>
                                 <View style={styles.topRight}>
-                                    <Text allowFontScaling={false} style={styles.nameText}>社区频道名称</Text>
+                                    <Text allowFontScaling={false} style={styles.nameText}>神兽国</Text>
                                     <Text allowFontScaling={false} style={styles.topText1}>热度:2w | 话题:20w</Text>
                                     <Text allowFontScaling={false} style={styles.topText2}>社区管理人员:小学牛、o泡果奶</Text>
                                 </View>
+                                
                             </View>
+                            <Image style={[styles.img,{zIndex:-10,position:'absolute'}]} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2024/05/11/8253bf7f-eeb5-4ef1-849d-c5951e64f949.jpg'}} />
                         </View>
                         <View style={styles.bottomView}>
                             {listData.map(item => {
@@ -406,5 +411,9 @@ const styles = StyleSheet.create({
     extenImage:{
         width:60,
         height:60
+    },
+    img:{
+        width:'100%',
+        height:'100%'
     }
 })

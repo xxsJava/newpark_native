@@ -7,7 +7,7 @@
  */
 import React, { useEffect } from 'react';
 import { Trans } from 'react-i18next';
-import { Dimensions, FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import { Dimensions, FlatList, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
@@ -381,14 +381,7 @@ const MyOrderView = ({ route }: any) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flexDirection: 'row'}}>
-                <ScrollView style={{ height: windowHeight, paddingLeft: 12 }} stickyHeaderHiddenOnScroll={true}>
-                    <FlatList
-                        data={species}
-                        renderItem={({ item }) => <Sort item={item} />}
-                        keyExtractor={(item) => item.index.toString()}
-                        style={{width:windowWidth}}
-                    />
-                </ScrollView>
+                
                 <View style={{ width: windowWidth - 120 }}>
                     <View style={typeVal == 'type1' ? { marginBottom: 120 } : { display: 'none' }}>
                         <FlatList data={data1}

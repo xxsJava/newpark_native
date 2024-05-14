@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2024-04-15 10:40:46
+ * @LastEditTime: 2024-05-14 11:03:56
  * @FilePath: \newpark_native\src\views\mine\MineVIew.tsx
  * @Description: Home 页菜单
  */
@@ -9,8 +9,8 @@ import React, { Component } from 'react';
 import { Trans } from 'react-i18next';
 import LinearGradinet from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { navigate } from '../../config/routs/NavigationContainer';
 import { personInfoStat } from '../../api/sys/usr';
+import { navigate } from '../../config/routs/NavigationContainer';
 
 // 1
 import {
@@ -24,7 +24,6 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import BellView from '../../components/Bell';
 import HomePageView from './components/homepage';
 // import { personInfoStat } from '../../api/sys/usr';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -131,7 +130,7 @@ export default class MineVIew extends Component {
                         start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 0 }}
                         style={styles.uidBgJb}>
-                        <Text allowFontScaling={false} style={styles.uidText} selectable={true}>UID:0996241</Text>
+                        <Text allowFontScaling={false} style={styles.uidText} >UID:1742430171993788416</Text>
                       </LinearGradinet>
                     </View>
                   </View>
