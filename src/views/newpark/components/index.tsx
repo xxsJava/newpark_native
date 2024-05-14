@@ -74,9 +74,9 @@ const TabNav = () => {
       <View style={tabVal === 'tab2' ? null : styles.scrollShow}>
         <ChatModule />
       </View>
-      <View style={styles.bell}>
+      {/* <View style={styles.bell}> */}
         {/* <BellView /> */}
-      </View>
+      {/* </View> */}
     </SafeAreaView>
   )
 }
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   safeStyle: {
     width: windowWidth,
-    height: windowHeight - 60,
+    height: windowHeight,
     backgroundColor: '#FFFFFF',
     zIndex: -10
   },

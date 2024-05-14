@@ -151,7 +151,7 @@ const HomePageView = () => {
                 <View style={styles.titleFlex}>
                   <Text allowFontScaling={false} style={styles.titleText2}>
                     <Trans>minCommunity.communityMore</Trans>
-                    <Feather name="chevron-right" size={18} color="red" />
+                    <Feather name="chevron-right" size={18} color="#dbdbdb" />
                   </Text>
                 </View>
               </View>

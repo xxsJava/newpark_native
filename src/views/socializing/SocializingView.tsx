@@ -112,9 +112,9 @@ const SocializingView = () => {
       </View>
       <View style={tabVal === 'tab1' ? styles.tabContent : styles.tabContentShow}>
         <MessageModule></MessageModule>
-        <TouchableOpacity style={{ backgroundColor: 'aqua' }} onPress={()=>navigate('schoolData')}>
+        {/* <TouchableOpacity style={{ backgroundColor: 'aqua' }} onPress={()=>navigate('schoolData')}>
           <Text>333fjor</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={tabVal === 'tab2' ? styles.tabContent : styles.tabContentShow}>
         <ContactsModul></ContactsModul>
@@ -167,7 +167,7 @@ export default SocializingView;
 const styles = StyleSheet.create({
   tabContent: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F7F7F7',
     // paddingBottom: 20,
   },
   tabContentShow: {

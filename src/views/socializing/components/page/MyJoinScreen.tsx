@@ -1,12 +1,12 @@
 /*
  * @Author: zhn
  * @Date: 2024-05-10 16:21:09
- * @LastEditTime: 2024-05-10 16:21:09
- * @FilePath:newpark_native/src/views/socializing/components/page/MyJoinScreen.tsx
+ * @LastEditTime: 2024-05-13 10:09:57
+ * @FilePath: \newpark_native\src\views\socializing\components\page\MyJoinScreen.tsx
  * @Description: 我加入的群组列表
  */
-import React, { useState, useEffect } from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 const itemData = [{
     groupID: '',
@@ -55,10 +55,10 @@ const MyJoinScreen = () => {
             value={selsct}
             onChangeText={text => setSelect(text)}
           /> */}
-            <TouchableOpacity style={{}}>
+            {/* <TouchableOpacity style={{}}>
                 <Image  style={{ width: 30, height: 30 }} source={require('../../../../assets/mp4/')}></Image>
                 <Text>搜索：群组</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <FlatList
                 data={itemData}
                 renderItem={items}

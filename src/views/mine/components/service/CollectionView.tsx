@@ -2,7 +2,7 @@ import { CircleIcon, HStack, Radio, RadioGroup, RadioIcon, RadioIndicator, Radio
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Trans } from 'react-i18next';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, Platform, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
 import { Appbar } from 'react-native-paper';
@@ -14,24 +14,24 @@ let value = '1';
 const itemData = [
   {
     index: 1,
-    title: '帖子标题',
+    title: 'ipad ari5',
     time: '2023-12-01',
     from: 'o泡果奶',
-    type: '消息',
+    type: '商品',
   },
   {
     index: 2,
-    title: '帖子标题',
+    title: 'ipad ari5',
     time: '2023-12-01',
     from: 'o泡果奶',
-    type: '消息',
+    type: '商品',
   },
   {
     index: 3,
-    title: '帖子标题',
+    title: 'ipad ari5',
     time: '2023-12-01',
     from: 'o泡果奶',
-    type: '消息',
+    type: '商品',
   },
 ];
 const CollectionView = () => {
@@ -85,7 +85,9 @@ const CollectionView = () => {
                   start={{x: 1, y: 0}}
                   end={{x: 0, y: 0}}
                   style={styles.itemBg}>
-                  <View style={styles.itemLeft} />
+                  <View style={styles.itemLeft} >
+                    <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ipad.jpg'}} />
+                  </View>
                   <View style={styles.itemRight}>
                     <View style={styles.itemTitle}>
                       <Text allowFontScaling={false} style={styles.itemTitleText}>{item.title}</Text>
@@ -164,7 +166,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderRightWidth: 0.5,
     borderRightColor: '#ddd',
-    backgroundColor: '#fd6e82',
+    // backgroundColor: '#fd6e82',
   },
   itemRight: {
     width: windowWidth - 140,
@@ -210,5 +212,9 @@ const styles = StyleSheet.create({
   readioGroups:{
     marginLeft: windowWidth/6 + 15,
     marginTop: 10
+  },
+  img:{
+    width:'100%',
+    height:'100%'
   }
 });
