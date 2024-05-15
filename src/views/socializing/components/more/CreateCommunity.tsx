@@ -17,14 +17,13 @@ const CreateCommunity = () => {
     const [commTip, setCommTip] = useState('');
     const [commDesc, setCommDesc] = useState('');
     const [authority, setAuthority] = useState('');
-    const [showAuth, setShowAuth] = useState(true);
+    const [showAuth, setShowAuth] = useState(false);
     // 加入方式   
     const [join, setJoin] = useState('')
     // 是否显示加入方式
     const [joinStyle, setJoinStyle] = useState(false);
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
+        <View
             style={styles.parentLevel}>
             <Appbar.Header style={styles.headerStyle}>
                 <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('SocializingStacker')}></Appbar.Action>
@@ -35,8 +34,9 @@ const CreateCommunity = () => {
             </Appbar.Header>
             {/*  behavior={Platform.OS == "ios" ? "padding" : "height"}
                            style={styles.contentView} */}
-            <KeyboardAvoidingView
-                behavior={Platform.OS == "ios" ? "padding" : "height"}
+            <View
+                // keyboardVerticalOffset={10}
+                // behavior={Platform.OS == "ios" ? "padding" : "height"}
                 // behavior={Platform.OS == "ios" ? "padding" : "height"}
                 style={styles.contentView}>
                 {/* <ScrollView style={styles.scrollStyle}>
@@ -85,11 +85,12 @@ const CreateCommunity = () => {
                 </ScrollView> */}
                 <ImageBackground source={require('../../../../assets/images/tup/community.jpg')} style={styles.imgbg}></ImageBackground>
                 <KeyboardAvoidingView
+                    keyboardVerticalOffset={-380}
                     behavior={Platform.OS == "ios" ? "padding" : "position"}
                     style={styles.weiz}
-                    keyboardVerticalOffset={-120}
+                    // keyboardVerticalOffset={-120}
                 >
-                    <ScrollView style={{ width: '100%', marginBottom: 100, paddingBottom: 60, height: '120%' }}>
+                    <ScrollView style={{ width: '100%', paddingBottom: 200 ,height:'63%',marginBottom:20}}>
                         <View style={styles.ying} />
                         <View
                             style={{
@@ -99,7 +100,10 @@ const CreateCommunity = () => {
                                 left: 0,
                                 zIndex: 190,
                                 width: windowWidth,
-                                height: '100%'
+                                // height: '100%',
+                               marginBottom:920,
+                                paddingVertical:12,
+                                paddingBottom:300
                             }}>
                             <Image source={require('../../../../assets/images/tup/community.jpg')} style={{ width: 90, height: 90, borderWidth: 2, borderColor: '#ECB32C' }}></Image>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 60, height: 46 }}>
@@ -128,17 +132,21 @@ const CreateCommunity = () => {
                                <View style={{paddingVertical:12}}>
                                <Text style={{color:'#000',fontSize:16}}>社区简介</Text>
                                </View>
-                                <View style={{ width: '100%' }}>
+                              <View style={{maxHeight:200,width:'100%'}}>
+                              {/* <ScrollView> */}
                                     <TextInput
+                                    // 这个可以上下滑动显示
+                                        numberOfLines={6}
                                         placeholder="(选填)"
                                         value={commDesc}
                                         onChangeText={text => { setCommDesc(text), console.log('这是输入的社区标签', commTip, text); }}
                                         multiline={true}
                                         style={{ width: '100%', paddingVertical: 20, backgroundColor: '#ccc', marginBottom: 20 }}
                                     />
-                                </View>
+                                {/* </ScrollView> */}
+                              </View>
                             </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 10, height: 46, zindex: -2 }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 10, height: 46 }}>
                                 <Text>社区权限</Text>
                                 <TouchableOpacity style={{ width: 80, backgroundColor: '#fff', flexDirection: 'row', marginRight: 16, position: 'relative',alignItems:'center'}} onPress={() => { setShowAuth(!showAuth) }}>
                                     <Text style={authority.length == 0 ? { display: 'none' } : { textAlign: "center" }}>{authority}</Text>
@@ -164,7 +172,7 @@ const CreateCommunity = () => {
                                         </TouchableOpacity>
                                     </View>
                             </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 10, height: 46,zIndex:-20 }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 10, height: 46,zIndex:-20,marginBottom:120 }}>
                                 <Text>加入方式</Text>
                                 <TouchableOpacity style={{ width: 80, backgroundColor: '#fff', flexDirection: 'row', marginRight: 16, position: 'relative',alignItems:'center' }} onPress={() => { setJoinStyle(!joinStyle) }}>
                                     <Text style={join.length == 0 ? { display: 'none' } : { textAlign: "center" }}>{join}</Text>
@@ -187,13 +195,18 @@ const CreateCommunity = () => {
                                                 管理员审核
                                             </Text>
                                         </TouchableOpacity>
-                                    </View>
+                                </View>
                             </View>
                         </View>
                     </ScrollView>
+                    <View style={{height:60,width:windowWidth,alignItems:'center',justifyContent:'center'}}>
+                            <TouchableOpacity style={{backgroundColor:'#EE8C19',paddingHorizontal:36,paddingVertical:12,borderRadius:8}}>
+                                <Text style={{color:'#fff',fontSize:17,fontWeight:'bold'}}>创建</Text>
+                            </TouchableOpacity>
+                    </View>
                 </KeyboardAvoidingView>
-            </KeyboardAvoidingView>
-        </KeyboardAvoidingView>
+            </View>
+        </View>
     )
 }
 
@@ -203,7 +216,8 @@ const styles = StyleSheet.create({
     parentLevel: {
         width: windowWidth,
         height: windowHeight,
-        backgroundColor: '#EFEBFA'
+        backgroundColor: '#EFEBFA',
+       
     },
     headerStyle: {
         height: 55,
@@ -228,7 +242,7 @@ const styles = StyleSheet.create({
                 height: windowHeight - 55,
             },
             android: {
-                height: windowHeight - 55,
+                height: windowHeight,
             }
         }),
         position: 'relative'
@@ -310,13 +324,17 @@ const styles = StyleSheet.create({
         top: 130,
         left: 0,
         width: windowWidth,
-        height: 570,
-        zIndex: 30
+        // height: 570,
+        zIndex: 30,
+        height:'100%',
+        // backgroundColor:'#ccc'
+        // paddingBottom:130,
+        // marginBottom:130
     },
     ying: {
         backgroundColor: '#fff',
         width: windowWidth,
-        height: 570,
+        height: 720,
         position: 'relative',
         top: 60,
         left: 0,

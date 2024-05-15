@@ -11,7 +11,6 @@ const windowHeight = Dimensions.get('window').height
 // 个人资料
 const personData = () => {
     navigate('PersonalData')
-
 };
 // 通知设置
 const notiSett = () => {

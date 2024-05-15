@@ -33,6 +33,7 @@ import {
 import { navigate } from '../../../config/routs/NavigationContainer';
 import Storage from '../../../utils/AsyncStorageUtils';
 import { readFileData } from '../../../utils/FilesUtiles';
+import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -235,7 +236,12 @@ function MessageList(props: { items: any; receiver: any }) {
           }}
         />
       </Appbar.Header>
-      <KeyboardAvoidingView behavior="position" enabled>
+      <KeyboardAvoidingView 
+        behavior="position" 
+        enabled={true}
+        keyboardVerticalOffset={90}
+        contentContainerStyle={{width:90,height:90,backgroundColor:'red'}}
+      >
         <SafeAreaView style={styles.mainContent}>
                 <ScrollView  
                     ref={scrollViewRef}

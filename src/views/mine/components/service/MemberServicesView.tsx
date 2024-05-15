@@ -128,7 +128,7 @@ const MemberServicesView = () => {
                         </View>
                     </View>
                     <View style={styles.main}>
-                        <ScrollView style={{ marginTop: 100, width: '84%' }}>
+                        <ScrollView style={{ marginTop: 100, width: '84%' }} showsVerticalScrollIndicator={false}>
                             <Image source={require('../../../../assets/images/tup/viphy.jpg')} style={{ height: 98, width: '100%' }}></Image>
                             <ScrollView horizontal={true} style={{height:160}}>
                                 {price.map(item => {

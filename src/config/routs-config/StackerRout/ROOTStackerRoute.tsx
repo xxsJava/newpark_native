@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2024-05-15 11:53:45
+ * @LastEditTime: 2024-05-15 18:03:14
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
@@ -77,6 +77,7 @@ import AddPeople from '../../../views/socializing/add/people';
 import GroupChat from '../../../views/socializing/check/GroupChat';
 import GroupMessage from '../../../views/socializing/check/GroupMessage';
 import CheckView from '../../../views/socializing/check/index';
+import FriProfile from '../../../views/socializing/components/Fripiofile';
 import ObjCard from '../../../views/socializing/components/ObjCard';
 import SearchView from '../../../views/socializing/components/SearchView';
 import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
@@ -105,6 +106,13 @@ export default {
       headerShown: true,
       title:'学校选择'
     },
+  },
+  FriProfile:{
+    component:FriProfile,
+    options:{
+      headerShow:true,
+      title:''
+    }
   },
   Myqunzu:{
     component:Myqunzu,

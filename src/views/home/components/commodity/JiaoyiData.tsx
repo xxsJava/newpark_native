@@ -207,7 +207,7 @@ const JiaoyiData = () => {
             </View>
             <View style={styles.scrollView}>
                 <FlatList
-                    style={{ zIndex: -2 }}
+                    style={{ zIndex: -2}}
                     numColumns={2}
                     data={data}
                     keyExtractor={(item, index) => index.toString()}
@@ -241,10 +241,10 @@ const styles = StyleSheet.create({
     },
     commoditylist: {
         flexDirection: 'row',
-        // flexWrap: 'wrap',
-        // justifyContent: 'flex-start',
         alignItems: 'center',
-        width: '50%'
+        width: '50%',
+        backgroundColor:'#fff',
+        // borderWidth:0.4
     },
     commodityItem: {
         width: '100%',

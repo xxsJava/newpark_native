@@ -6,7 +6,9 @@
  * @Description: 我加入的群组列表
  */
 import React from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const itemData = [{
     groupID: '',
@@ -72,10 +74,11 @@ const MyJoinScreen = () => {
 const styles = StyleSheet.create({
     parentView: {
         flex: 1,
-        
+        alignItems:'center',
+        backgroundColor:'#fff'
     },
     viewItem: {
-        width: '100%',
+        width:windowWidth,
         height: 80,
         // borderWidth:1,
         position: 'relative',

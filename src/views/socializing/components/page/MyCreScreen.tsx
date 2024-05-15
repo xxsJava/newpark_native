@@ -1,6 +1,6 @@
 import React from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
-
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, View,TouchableOpacity, Dimensions } from "react-native";
+const windowWidth = Dimensions.get('window').width;
 const itemData =[{
     groupID:'',
     faceURL:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%281%29.jpg',
@@ -21,6 +21,7 @@ const itemData =[{
 const items = ({item}:any) => {
     return(
         <View style={styles.viewItem}>
+            
             <View style={styles.imgView}>
                 <Image style={styles.groupImg} source={{uri:item.faceURL}}/>
             </View>
@@ -47,6 +48,11 @@ const MyCreScreen = () => {
             {/* <View>
                 <Text>1111</Text>
             </View> */}
+            <TouchableOpacity style={{flexDirection:'row',alignItems:'center',paddingVertical:6,justifyContent:'flex-start',width:'90%',backgroundColor:'#E9EAED',paddingHorizontal:12,borderRadius:6,marginTop:3}}>
+                {/* sousuo-2.png */}
+                <Image  style={{ width: 24, height: 24,marginRight:6 }} source={require('../../../../assets/images/tup/sousuo-2.png')}></Image>
+                <Text style={{color:'#000',fontSize:16}}>搜索：群组</Text>
+            </TouchableOpacity>
             <FlatList
                 data={itemData}
                 renderItem={items}
@@ -59,10 +65,12 @@ const MyCreScreen = () => {
 
 const styles = StyleSheet.create({
     parentView:{
-        flex:1
+        flex:1,
+        alignItems:'center',
+        backgroundColor:'#fff'
     },
     viewItem:{
-        width:'100%',
+        width:windowWidth,
         height: 80,
         // borderWidth:1,
         position:'relative',
