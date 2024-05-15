@@ -1,12 +1,11 @@
-import * as React from 'react'
+import * as React from 'react';
 import { View } from 'react-native-animatable';
 // import { Card , Text} from '@rneui/themed';
 import {
     Dimensions,
     StyleSheet,
-   
-} from 'react-native'
-import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
+} from 'react-native';
+import HeadNav from '../Nav/HeadNav';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const Message = [
@@ -35,7 +34,7 @@ const Message = [
 const MainMess = () => {
     return (
         <View>
-           
+           <HeadNav props={{title:'待处理消息',navPath:''}} />
                 {/* {Message.map(item => {
                     return(
                         <Card>

@@ -1,14 +1,11 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2024-04-29 09:51:03
+ * @LastEditTime: 2024-05-15 11:53:45
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
 // 测试选择学校
-import Complain from '../../../views/home/components/Complain';
-import MyqunzuSeach from '../../../views/socializing/components/contact/MyqunzuSeach';
-import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
 import MainMess from '../../../components/Bell/MainMess';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
@@ -20,6 +17,8 @@ import ReviceCode from '../../../components/ReviceCode';
 import Uplode from '../../../components/post/uplode';
 import { BommonTab } from '../../../routes/stacker';
 import StylesALL from '../../../styles';
+import Colors from '../../../styles/Color';
+import Complain from '../../../views/home/components/Complain';
 import JiaoyiData from '../../../views/home/components/commodity/JiaoyiData';
 import RewardDetails from '../../../views/home/components/helping/RewardDetails';
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart';
@@ -80,6 +79,8 @@ import GroupMessage from '../../../views/socializing/check/GroupMessage';
 import CheckView from '../../../views/socializing/check/index';
 import ObjCard from '../../../views/socializing/components/ObjCard';
 import SearchView from '../../../views/socializing/components/SearchView';
+import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
+import MyqunzuSeach from '../../../views/socializing/components/contact/MyqunzuSeach';
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity';
 import MyGoroup from '../../../views/socializing/components/myGroup';
 import MyCommunity from '../../../views/socializing/components/page/MyCommunity';
@@ -152,7 +153,8 @@ export default {
   LeaderBoards:{
     component:LeaderBoard,
     options:{
-      title:'排行榜'
+      title:'排行榜',
+      headerShown: false
     }
   },
   PeopleList:{
@@ -197,7 +199,7 @@ export default {
   MainMess:{
     component: MainMess,
     options: {
-      headerTitleAlign: 'center',
+      headerShown: false,
       title: '待处理消息'
     },
   },
@@ -272,7 +274,7 @@ export default {
     options: {
       title: '短信验证',
       headerTitleStyle: StylesALL.navText,
-      headerStyle: StylesALL.BGCOLOR,
+      headerStyle: Colors.bMainColor,
     },
   },
   Registered: {
@@ -281,7 +283,7 @@ export default {
       title: '注册信息填写',
       // headerTitleAlign: 'center',
       headerTitleStyle: StylesALL.navText,
-      headerStyle: StylesALL.BGCOLOR,
+      headerStyle: Colors.bMainColor,
       headerShown:false
     },
   },
@@ -424,7 +426,7 @@ export default {
     component: InviteFriends,
     options: {
       title: '邀请好友',
-      headerShown: true,
+      headerShown: false,
     },
   },
   MineThree:{

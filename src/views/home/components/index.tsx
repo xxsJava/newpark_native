@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 11:09:44
- * @LastEditTime: 2024-04-26 18:26:45
+ * @LastEditTime: 2024-05-15 15:03:03
  * @FilePath: \newpark_native\src\views\home\components\index.tsx
  * @Description: desc
  */
@@ -13,6 +13,9 @@ import { postLike } from '../../../api/sys/home';
 import { postLikeParam } from '../../../api/sys/home/types';
 import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import StylesALL from '../../../styles';
+import Colors from '../../../styles/Color';
+import FontSize from '../../../styles/FontSize';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -47,7 +50,7 @@ const windowHeight = Dimensions.get('window').height;
   }
 
   return (
-    <Card style={styles.cardSty}>
+    <Card style={[styles.cardSty,Colors.bWhite]}>
       <Card.Content style={styles.cardTitle}>
         <View style={styles.titleLeft}>
           <View>
@@ -62,8 +65,8 @@ const windowHeight = Dimensions.get('window').height;
             </TouchableOpacity>
           </View>
           <View style={styles.titleView}>
-            <Text allowFontScaling={false} style={styles.titleStyle}>{item.unikname}</Text>
-            <Text allowFontScaling={false} style={styles.timeStyle}>{dateToMsgTime(item.tlastTime)}</Text>
+            <Text allowFontScaling={false} style={[styles.titleStyle,Colors.fBlack,StylesALL.fWeBold,FontSize.f16]}>{item.unikname}</Text>
+            <Text allowFontScaling={false} style={[FontSize.f12,Colors.fbbb]}>{dateToMsgTime(item.tlastTime)}</Text>
           </View>
         </View>
         <View style={styles.rightSty}>
@@ -104,27 +107,27 @@ const windowHeight = Dimensions.get('window').height;
             </View>
             <View style={styles.postImg}>
                 <View style={styles.postImgs}>
-                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                  <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
                 </View>
 
                 <View style={styles.postImgs}>
-                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                  <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
                 </View>
 
                 <View style={styles.postImgs}>
-                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                  <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
                 </View>
                 
                 <View style={styles.postImgs}>
-                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                  <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
                 </View>
 
                 <View style={styles.postImgs}>
-                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                  <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
                 </View>
 
                 <View style={styles.postImgs}>
-                  <Image style={styles.postImgSty} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
+                  <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'}}/>
                 </View>
             </View>
 
@@ -139,8 +142,8 @@ const windowHeight = Dimensions.get('window').height;
             return (
               <TouchableOpacity activeOpacity={0.6} style={styles.labelStyle} key={emit.lableId}>
                 <View></View>
-                <View style={styles.labelIcon}>
-                  <Text allowFontScaling={false} style={styles.labelIconText}>#</Text>
+                <View style={[styles.labelIcon,Colors.b7c]}>
+                  <Text allowFontScaling={false} style={[styles.labelIconText,FontSize.f16]}>#</Text>
                 </View>
                 <Text allowFontScaling={false} style={styles.labelText}>{emit.lableText}</Text>
               </TouchableOpacity>
@@ -162,12 +165,7 @@ const windowHeight = Dimensions.get('window').height;
           </TouchableOpacity>
         </View>
         <View style={styles.interactionRight}>
-          {/* <Button
-            icon={upvoteVal ? require('../../../assets/images/3.0x/like_block.png') : require('../../../assets/images/3.0x/like.png')}
-            style={styles.buttonDz}
-            onPress={() => postLikePress(1)}>
-            {item.tlikeCount}
-          </Button> */}
+          
           <TouchableOpacity
             onPress={() => {
               console.log('评论');
@@ -181,15 +179,15 @@ const windowHeight = Dimensions.get('window').height;
         </View>
       </View>
       <View style={styles.commentAreaView}>
-        <Text allowFontScaling={false} style={styles.commentAreaTitle}>精选评论</Text>
+        <Text allowFontScaling={false} style={[styles.commentAreaTitle,FontSize.f16,Colors.fd9]}>精选评论</Text>
         {item.postsComments.map((porp: any) => {
           return (
             <View style={styles.commentArea}>
               <View style={styles.commentAreaItem}>
                 <Avatar.Image size={32} source={{ uri: porp.upath }} />
                 <View style={styles.commentAreaName}>
-                  <Text allowFontScaling={false} style={styles.commentAreaNameLeft}>{porp.unikname}:</Text>
-                  <Text allowFontScaling={false} style={styles.commentAreaNameRight}>{porp.comContent}</Text>
+                  <Text allowFontScaling={false} style={[styles.commentAreaNameLeft,FontSize.f16,Colors.fBlack]}>{porp.unikname}:</Text>
+                  <Text allowFontScaling={false} style={[styles.commentAreaNameRight,FontSize.f14,Colors.fBlack]}>{porp.comContent}</Text>
                 </View>
                 <TouchableOpacity
                   style={styles.commentAreaIcon}
@@ -218,7 +216,6 @@ const styles = StyleSheet.create({
   },
   cardSty: {
     marginBottom: -3, 
-    backgroundColor: '#FFF',
     paddingTop:8,
     borderRadius:0
   },
@@ -237,24 +234,15 @@ const styles = StyleSheet.create({
     paddingLeft:10
   },
   titleStyle:{
-    fontSize:15,
-    color:'#000',
-    fontWeight:'bold',
     paddingBottom:2
-  },
-  timeStyle:{
-    fontSize:11,
-    color:'#bbb'
   },
   avatarIcon:{
     width:20,
     height:20,
-    
   },
   rightSty: {
     marginTop:-15,
     marginRight:-15,
-  
   },
   titleSty: {
     fontWeight: 'bold',
@@ -271,7 +259,6 @@ const styles = StyleSheet.create({
   contentImg:{
     paddingLeft: '3%',
     paddingRight: '3%',
-    backgroundColor: '#fff',
     borderRadius:0,
     marginTop:5,
     marginBottom:10
@@ -286,7 +273,6 @@ const styles = StyleSheet.create({
     height:24,
     paddingHorizontal:10,
     marginBottom:5,
-    backgroundColor:'#efebfa',
     borderRadius:12,
     marginRight:3,
     flexDirection:'row',
@@ -295,7 +281,6 @@ const styles = StyleSheet.create({
   labelIcon:{
     width:18,
     height:17,
-    backgroundColor:'#7c52d0',
     borderRadius:9,
     marginTop:3.5,
     marginRight:5
@@ -303,7 +288,6 @@ const styles = StyleSheet.create({
   labelIconText:{
     width:18,
     height:17,
-    fontSize:15,
     color:'#FFF',
     textAlign:'center',
     lineHeight:18,
@@ -332,9 +316,7 @@ const styles = StyleSheet.create({
     paddingHorizontal:10
   },
   commentAreaTitle:{
-    fontSize:16,
-    marginBottom:10,
-    color:'#d9d9d9'
+    marginBottom:10
   },
   commentArea:{
     paddingHorizontal:10
@@ -353,14 +335,10 @@ const styles = StyleSheet.create({
     width:'30%'
   },
   commentAreaNameLeft:{
-    fontSize:15,
     fontWeight:'600',
-    color:'#000',
     lineHeight:32
   },
   commentAreaNameRight:{
-    fontSize:14,
-    color:'#000',
     lineHeight:32
   },
   leaveWordView:{
@@ -418,9 +396,5 @@ const styles = StyleSheet.create({
     // borderWidth:1,
     width:100,
     height:100
-  },
-  postImgSty:{
-    width:'100%',
-    height:'100%'
   }
 });

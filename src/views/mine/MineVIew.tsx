@@ -1,13 +1,12 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2024-05-14 11:03:56
+ * @LastEditTime: 2024-05-15 17:15:52
  * @FilePath: \newpark_native\src\views\mine\MineVIew.tsx
  * @Description: Home 页菜单
  */
 import React, { Component } from 'react';
 import { Trans } from 'react-i18next';
-import LinearGradinet from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { personInfoStat } from '../../api/sys/usr';
 import { navigate } from '../../config/routs/NavigationContainer';
@@ -119,21 +118,7 @@ export default class MineVIew extends Component {
                       alt="头像"
                     />
                   </View>
-                  <View style={styles.uidFrame}
-                  >
-                    <View style={styles.uidBg}>
-                      <LinearGradinet
-                        colors={[
-                          'rgba(247, 27, 147,0.90)',
-                          'rgba(247, 27, 147,0.20)',
-                        ]}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                        style={styles.uidBgJb}>
-                        <Text allowFontScaling={false} style={styles.uidText} >UID:1742430171993788416</Text>
-                      </LinearGradinet>
-                    </View>
-                  </View>
+                  
                 </View>
               </View>
 
@@ -273,22 +258,6 @@ const styles = StyleSheet.create({
     top: -57,
     right: windowWidth / 4.5,
     zIndex: 99,
-  },
-  uidBg: {
-    width: 120,
-    position: 'absolute',
-    top: 50,
-    paddingLeft: 2,
-  },
-  uidBgJb: {
-    height: 30,
-    borderRadius: 8,
-  },
-  uidText: {
-    color: '#FFFFFF',
-    fontSize: 17,
-    lineHeight: 30,
-    paddingLeft: 6,
   },
   bell: {
     position: 'absolute',

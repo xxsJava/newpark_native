@@ -1,9 +1,6 @@
 import React from 'react';
-import { Trans } from 'react-i18next';
 import { Dimensions, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Appbar } from 'react-native-paper';
-import { navigate } from '../../../../config/routs/NavigationContainer';
-import {postsOneApi} from '../../../../api/sys/post';
+import HeadNav from '../../../../components/Nav/HeadNav';
 
 const listData = [{
     index: 1,
@@ -56,12 +53,8 @@ const MyPostView = () => {
     const [typeVal, onTypePress] = React.useState('type1')
     return (
         <View style={styles.parentView}>
-            <Appbar.Header style={styles.headerStyle}>
-                <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')} />
-                <Text allowFontScaling={false} style={styles.headerText}>
-                    <Trans>navigationBar.title8</Trans>
-                </Text>
-            </Appbar.Header>
+            <HeadNav props={{title:'我的帖子',navPath:''}} />
+
             <View style={styles.typeView}>
                 <TouchableOpacity style={typeVal == 'type1' ? styles.typeItem : null} onPress={() => onTypePress('type1')}>
                     <Text allowFontScaling={false} style={[styles.typeText, typeVal == 'type1' ? styles.typeTextSelected : null]}>已通过</Text>
@@ -102,18 +95,6 @@ const styles = StyleSheet.create({
         width: windowWidth,
         height: windowHeight,
         backgroundColor: '#FFF'
-    },
-    headerStyle: {
-        width: windowWidth,
-        height: 45,
-        backgroundColor: '#ffb700',
-    },
-    headerText: {
-        width: '80%',
-        fontSize: 17,
-        color: '#FFF',
-        lineHeight: 45,
-        textAlign: 'center',
     },
     typeView: {
         width: '100%',

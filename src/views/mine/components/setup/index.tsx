@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Trans } from 'react-i18next';
 import { Dimensions, SectionList, StyleSheet, Text, View } from "react-native";
-import { Appbar } from 'react-native-paper';
 import Feather from "react-native-vector-icons/Feather";
 import { loginOutApi } from "../../../../api/sys/lgoin";
+import HeadNav from "../../../../components/Nav/HeadNav";
 import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width
@@ -81,12 +80,7 @@ export default class SetUp extends Component {
         const { modalVisible } = this.state;
         return (
             <View style={styles.parentView}>
-                <Appbar.Header>
-                    <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')} />
-                    <Text allowFontScaling={false} style={styles.derTexthea}>
-                        <Trans>navigationBar.title19</Trans>
-                    </Text>
-                </Appbar.Header>
+                <HeadNav props={{title:'设置',navPath:''}} />
                 <View style={styles.contentStyle}>
                     {/* <ScrollView style={styles.scorllStyle}>
                         <View style={styles.listStyle}> */}

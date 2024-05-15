@@ -4,9 +4,9 @@
  * 修改时间:2024/4/15 16:10:11
  */
 
-import React, { useState } from "react";
-import { Dimensions, View, StyleSheet, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { navigate } from "../../../../config/routs/NavigationContainer";
+import React from "react";
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import HeadNav from "../../../../components/Nav/HeadNav";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -210,6 +210,7 @@ const LeaderBoard = () => {
     const [order, setOrder] = React.useState(1);
     return (
         <View style={styles.container}>
+            <HeadNav props={{title:'我的发布',navPath:''}} />
             <View style={[styles.zhong, styles.heng, { alignItems: 'flex-start', borderWidth: 1, borderRadius: 20, width: '60%', marginLeft: '20%', marginTop: 8, justifyContent: 'space-between', height: 40 }]}>
                 <TouchableOpacity style={order == 1 ? styles.select : styles.selk} onPress={() => { setOrder(1) }}>
                     <Text style={order == 1 ? styles.text : styles.textk}>日榜</Text>

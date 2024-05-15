@@ -6,24 +6,25 @@
  * @Description: 聊天室列表
  */
 
+import { useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
+    Alert,
+    Dimensions,
     FlatList,
+    Image,
+    Modal,
     SafeAreaView,
     StatusBar,
     StyleSheet,
     Text,
-    TouchableOpacity,
-    Image,
-    View,
-    Modal,
     TouchableHighlight,
-    Alert,
-    Dimensions,
-    TouchableWithoutFeedback
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View
 } from 'react-native';
-import { useRoute } from '@react-navigation/native';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import FontSize from '../../../styles/FontSize';
 // import { Item } from 'react-native-picker-select';
 const DATA = [
     {
@@ -54,7 +55,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }: any) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, { backgroundColor }]}>
         <Image source={{ uri: item.pic }} style={{ width: 70, height: 70, borderRadius: 12, marginRight: 8 }}></Image>
         <View>
-            <Text style={[styles.title, { color: textColor }]}>{item.title}的房间</Text>
+            <Text style={[FontSize.f18, { color: textColor }]}>{item.title}的房间</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', marginTop: 3 }}>
                 {item.tip.map((val: any) => {
                     return (
@@ -203,9 +204,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
-    },
-    title: {
-        fontSize: 18,
     },
     centeredView: {
         width:windowWidth,

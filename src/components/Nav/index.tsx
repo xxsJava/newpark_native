@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 09:29:33
- * @LastEditTime: 2024-04-15 10:24:54
+ * @LastEditTime: 2024-05-15 14:30:36
  * @FilePath: \newpark_native\src\components\Nav\index.tsx
  * @Description: 顶部tab 导航文件
  */
@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { navigate } from '../../config/routs/NavigationContainer';
+import Colors from '../../styles/Color';
 
 const HomeNav = () => {
   const [activeTab, setActiveTab] = useState(true);
@@ -72,8 +73,8 @@ const HomeNav = () => {
           onChangeText={text => onChangeText(text)}
           value={inputValue}
         /> */}
-        <TouchableOpacity activeOpacity={0.6} style={styles.searchNavInput} onPress={() => navigate('SearchView')}>
-          <Text allowFontScaling={false} style={styles.searchNavInputText}>输入关键字搜索</Text>
+        <TouchableOpacity activeOpacity={0.6} style={[styles.searchNavInput,Colors.bF5]} onPress={() => navigate('SearchView')}>
+          <Text allowFontScaling={false} style={[styles.searchNavInputText,Colors.f888]}>输入关键字搜索</Text>
         </TouchableOpacity>
       </View>
 
@@ -86,7 +87,7 @@ const HomeNav = () => {
           style={styles.tinyLogo}
           source={require('../../assets/images/3.0x/goods_collect.png')}
           accessibilityLabel='图片'
-          alt="头像"
+          alt="网络不佳"
         />
       </TouchableOpacity>
     </Appbar.Header>
@@ -147,7 +148,6 @@ const styles = StyleSheet.create({
     height: 40,
     // borderWidth: 0,
     paddingLeft:8,
-    backgroundColor: '#F5F5F5',
     borderRadius: 20,
     paddingVertical:0,
     alignItems:'center'
@@ -155,7 +155,6 @@ const styles = StyleSheet.create({
   searchNavInputText:{
     width: Dimensions.get('window').width * 0.65,
     fontSize:11,
-    color: '#888',
     lineHeight:40,
     textAlign: 'center',
   },

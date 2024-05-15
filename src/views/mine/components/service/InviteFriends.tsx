@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Modal, PaperProvider, Portal, Text } from 'react-native-paper';
+import HeadNav from '../../../../components/Nav/HeadNav';
 
 
 const windowHeight = Dimensions.get('window').height;
@@ -53,6 +54,7 @@ const MyComponent = () => {
     ]
     return (
         <PaperProvider>
+            <HeadNav props={{title:'邀请好友',navPath:''}} />
             <Portal>
                 {/* animationType={slide}  */}
                 <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={styles.modelType} >
