@@ -23,7 +23,7 @@ const itemData = [{
 }, {
     groupID: '',
     faceURL: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%281%29.jpg',
-    groupName: '三剑客',
+    groupName: '三剑客11',
     count: 3
 }]
 

@@ -285,9 +285,7 @@ const ListIndex: React.FC = () => {
     return (
         <>
             {/* 测试的数据 */}
-            <TouchableOpacity onPress={() => friendList()} style={{ width: windowWidth, height: 60, backgroundColor: 'aqua' }}>
-                <Text>测试一下数据</Text>
-            </TouchableOpacity>
+            
             {/* 这个是索引条 */}
             <AlphabetIndex sections={ListData1} onSectionSelect={handleSectionSelect} />
             <ScrollView style={{ flex: 1, marginTop: 10 }}>
