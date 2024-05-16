@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 10:25:45
- * @LastEditTime: 2024-02-22 17:03:46
+ * @LastEditTime: 2024-05-15 14:33:00
  * @FilePath: \newpark_native\src\views\system\Splash\SplashScreens.tsx
  * @Description: desc
  */
@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import StatusBar from '../../../components/StatusBar';
-import StylesALL from '../../../styles';
+import FontSize from '../../../styles/FontSize';
 import IsLogin from '../../login/controller';
 
 const Splashs= () => {
@@ -77,7 +77,7 @@ const Splashs= () => {
                   style={[
                     styles.bodyTexta,
                     styles.navText,
-                    StylesALL.FONT_SIZE,
+                    FontSize.f18,
                   ]}>
                   走进校园 发现美好
                 </Text>
@@ -89,7 +89,7 @@ const Splashs= () => {
                   style={[
                     styles.bodyTextb,
                     styles.navText,
-                    StylesALL.FONT_SIZE,
+                    FontSize.f18,
                   ]}>
                   打开NewPark 发现新世界
                 </Text>

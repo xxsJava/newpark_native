@@ -14,6 +14,8 @@ import {
   View
 } from 'react-native';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import StylesALL from '../../../styles';
+import Colors from '../../../styles/Color';
 import MenusComponents from '../Menu';
 // import { Image } from 'react-native-paper/lib/typescript/components/Avatar/Avatar';
 
@@ -57,11 +59,11 @@ const menusData = [
 const ColumnType = () => {
   const [selectedVal, onSelected] = React.useState(1);
   return (
-    <View style={styles.typeStyle}>
+    <View style={Colors.bGrey}>
       <View style={styles.modalAll}>
         <TouchableOpacity
         key={menusData[0].index}
-          style={[styles.wd, styles.back]}
+          style={[styles.wd, Colors.b24c]}
           onPress={() => navigate('HelpCircleRoute')}>
           <View>
             <MenusComponents props={menusData[0]} />
@@ -69,7 +71,7 @@ const ColumnType = () => {
         </TouchableOpacity>
         <TouchableOpacity
           key={menusData[1].index}
-          style={[styles.wd, styles.back1]}
+          style={[styles.wd, Colors.b008]}
 
           onPress={() => navigate('JiaoyiData')}>
           <View>
@@ -81,35 +83,35 @@ const ColumnType = () => {
       <View style={styles.typesView}>
         <View style={styles.typeItem}>
           <View style={styles.imgView}>
-            <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon01.png'}} />
+            <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ksjy.png'}} />
           </View>
           <View>
-            <Text style={styles.typeTitle}>快速交友</Text>
+            <Text style={[styles.typeTitle,Colors.fBlack]}>快速交友</Text>
           </View>
         </View>
         <View style={styles.typeItem}>
           <View style={styles.imgView}>
-            <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon04.png'}} />
+            <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/rmlts.png'}} />
           </View>
           <View>
-            <Text style={styles.typeTitle}>热门聊天室</Text>
+            <Text style={[styles.typeTitle,Colors.fBlack]}>热门聊天室</Text>
           </View>
         </View>
         <View style={styles.typeItem}>
           <View style={styles.imgView}>
-            <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon02.png'}} />
+            <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ksjd.png'}} />
           </View>
           <View>
-            <Text style={styles.typeTitle}>快速接单</Text>
+            <Text style={[styles.typeTitle,Colors.fBlack]}>快速接单</Text>
           </View>
         </View>
         <TouchableOpacity style={styles.typeItem} onPress={() => {navigate('LeaderBoards'); console.log('排行榜');
         }}>
           <View style={styles.imgView}>
-            <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon03.png'}} />
+            <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/phb.png'}} />
           </View>
           <View>
-            <Text style={styles.typeTitle}>排行榜</Text>
+            <Text style={[styles.typeTitle,Colors.fBlack]}>排行榜</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -118,10 +120,6 @@ const ColumnType = () => {
 };
 
 const styles = StyleSheet.create({
-  typeStyle: {
-    // width: windowWidth,
-    backgroundColor:'#FAFAFA'
-  },
   modalAll:{
     marginTop:5,
     flexDirection: 'row',
@@ -147,12 +145,6 @@ const styles = StyleSheet.create({
         },
     }),
   },
-  back: {
-    backgroundColor: '#24C78C',
-  },
-  back1: {
-    backgroundColor: '#008ACC',
-  },
   typesView:{
     // borderWidth:1,
     flexDirection:'row',
@@ -170,12 +162,7 @@ const styles = StyleSheet.create({
     width:60,
     height:60
   },
-  img:{
-    width:'100%',
-    height:'100%'
-  },
   typeTitle:{
-    color:'#000',
     fontWeight:'600'
   }
 });

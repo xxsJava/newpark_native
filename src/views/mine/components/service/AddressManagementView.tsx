@@ -12,11 +12,9 @@
  */
 import { Button, ButtonText } from '@gluestack-ui/themed';
 import React, { Component } from 'react';
-import { Trans } from 'react-i18next';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
-import { Appbar } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather';
-import { navigate } from '../../../../config/routs/NavigationContainer';
+import HeadNav from '../../../../components/Nav/HeadNav';
 
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
@@ -67,12 +65,8 @@ export default class AddressManagementView extends Component {
     render () {
         return (
             <View style={styles.parentView}>
-                <Appbar.Header style={styles.headerStyle}>
-                    <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')} />
-                    <Text allowFontScaling={false} style={styles.headerText}>
-                        <Trans>navigationBar.title11</Trans>
-                    </Text>
-                </Appbar.Header>
+                <HeadNav props={{title:'地址管理',navPath:''}} />
+
                 <View style={styles.parentBody}>
                     <View style={styles.itemList}>
                         <View style={styles.headImg}>
@@ -153,18 +147,6 @@ const styles = StyleSheet.create({
         width:windowWidth,
         height:windowHeight,
         backgroundColor:'#F7F7F7'
-    },
-    headerStyle:{
-        width: windowWidth,
-        height: 45,
-        backgroundColor: '#ffb700',
-    },
-    headerText:{
-        width: '80%',
-        fontSize: 17,
-        color: '#FFF',
-        lineHeight: 45,
-        textAlign: 'center',
     },
     parentBody:{
         

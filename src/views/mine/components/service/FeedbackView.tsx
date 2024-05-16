@@ -1,12 +1,10 @@
 import React, { Component, useState } from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-animatable';
-import { Appbar } from 'react-native-paper';
 // import { Input,TextArea,Divider } from "native-base";
 import { CheckIcon, Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '@gluestack-ui/themed';
-import { Trans } from 'react-i18next';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { navigate } from '../../../../config/routs/NavigationContainer';
+import HeadNav from '../../../../components/Nav/HeadNav';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -107,12 +105,7 @@ export default class FeedbackView extends Component {
     render () {
         return (
             <View style={styles.parentLevel}>
-                <Appbar.Header style={styles.headerStyle}>
-                    <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text allowFontScaling={false} style={styles.headerText}>
-                        <Trans>navigationBar.title12</Trans>
-                    </Text>
-                </Appbar.Header>
+                <HeadNav props={{title:'意见反馈',navPath:''}} />
                 <View style={styles.titleView}>
                     <Text allowFontScaling={false} style={styles.titleText}>请选择发生的问题类型</Text>
                 </View>
@@ -164,18 +157,6 @@ const styles = StyleSheet.create({
     parentLevel:{
         width:windowWidth,
         height:windowHeight,
-    },
-    headerStyle:{
-        width: windowWidth,
-        height: 45,
-        backgroundColor: '#ffb700',
-    },
-    headerText:{
-        width: '80%',
-        fontSize: 17,
-        color: '#FFF',
-        lineHeight: 45,
-        textAlign: 'center',
     },
     titleView:{
         width:windowWidth-20,

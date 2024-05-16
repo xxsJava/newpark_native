@@ -1,11 +1,13 @@
 import { CircleIcon, HStack, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Trans } from 'react-i18next';
 import { Dimensions, Image, Platform, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
-import { Appbar } from 'react-native-paper';
+import HeadNav from '../../../../components/Nav/HeadNav';
+import StylesALL from '../../../../styles';
+import Colors from '../../../../styles/Color';
+import FontSize from '../../../../styles/FontSize';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -40,15 +42,7 @@ const CollectionView = () => {
 
   return (
     <View style={styles.parentLevel}>
-      <Appbar.Header style={styles.headerStyle}>
-        <Appbar.Action
-          icon={require('../../../../assets/images/chevron-left.png')}
-          onPress={() => {navigatetions.goBack()}}
-        />
-        <Text allowFontScaling={false} style={styles.headerText}>
-          <Trans>navigationBar.title10</Trans>
-        </Text>
-      </Appbar.Header>
+      <HeadNav props={{title:'我的收藏',navPath:''}} />
       <View style={styles.readioGroups}>
         <RadioGroup value={radioValue} onChange={setRadioValue}>
         <HStack space="2xl">
@@ -85,24 +79,24 @@ const CollectionView = () => {
                   start={{x: 1, y: 0}}
                   end={{x: 0, y: 0}}
                   style={styles.itemBg}>
-                  <View style={styles.itemLeft} >
-                    <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ipad.jpg'}} />
+                  <View style={[styles.itemLeft,Colors.bdd]} >
+                    <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ipad.jpg'}} />
                   </View>
                   <View style={styles.itemRight}>
                     <View style={styles.itemTitle}>
-                      <Text allowFontScaling={false} style={styles.itemTitleText}>{item.title}</Text>
+                      <Text allowFontScaling={false} style={[styles.itemTitleText,Colors.fBlack,FontSize.f20]}>{item.title}</Text>
                     </View>
                     <View style={styles.itemTextView}>
-                      <Text allowFontScaling={false} style={styles.itemText}>收藏时间：</Text>
-                      <Text allowFontScaling={false} style={styles.timeText}>{item.time}</Text>
+                      <Text allowFontScaling={false} style={[styles.itemText,FontSize.f14]}>收藏时间：</Text>
+                      <Text allowFontScaling={false} style={[styles.timeText,FontSize.f14]}>{item.time}</Text>
                     </View>
                     <View style={styles.itemTextView}>
-                      <Text allowFontScaling={false} style={styles.itemText}>来自：</Text>
-                      <Text allowFontScaling={false} style={styles.itemText}>{item.from}</Text>
+                      <Text allowFontScaling={false} style={[styles.itemText,FontSize.f14]}>来自：</Text>
+                      <Text allowFontScaling={false} style={[styles.itemText,FontSize.f14]}>{item.from}</Text>
                     </View>
                     <View style={styles.itemTextView}>
-                      <Text allowFontScaling={false} style={styles.itemText}>类型：</Text>
-                      <Text allowFontScaling={false} style={styles.itemText}>{item.type}</Text>
+                      <Text allowFontScaling={false} style={[styles.itemText,FontSize.f14]}>类型：</Text>
+                      <Text allowFontScaling={false} style={[styles.itemText,FontSize.f14]}>{item.type}</Text>
                     </View>
                   </View>
                 </LinearGradinet>
@@ -122,18 +116,6 @@ const styles = StyleSheet.create({
     width: windowWidth,
     height: windowHeight,
     backgroundColor: '#FFF',
-  },
-  headerStyle: {
-    width: windowWidth,
-    height: 45,
-    backgroundColor: '#ffb700',
-  },
-  headerText: {
-    width: '80%',
-    fontSize: 17,
-    color: '#FFF',
-    lineHeight: 45,
-    textAlign: 'center',
   },
   listView: {
     width: windowWidth,
@@ -165,8 +147,6 @@ const styles = StyleSheet.create({
     height: 119,
     borderRadius: 12,
     borderRightWidth: 0.5,
-    borderRightColor: '#ddd',
-    // backgroundColor: '#fd6e82',
   },
   itemRight: {
     width: windowWidth - 140,
@@ -187,9 +167,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   itemTitleText: {
-    fontSize: 19,
     fontWeight: '600',
-    color: '#000',
     lineHeight: 30,
   },
   itemTextView: {
@@ -198,7 +176,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   itemText: {
-    fontSize: 13,
     color: '#000',
     ...Platform.select({
       ios: {
@@ -212,9 +189,5 @@ const styles = StyleSheet.create({
   readioGroups:{
     marginLeft: windowWidth/6 + 15,
     marginTop: 10
-  },
-  img:{
-    width:'100%',
-    height:'100%'
   }
 });

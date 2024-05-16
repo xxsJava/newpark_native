@@ -24,12 +24,14 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
 import { postComments, postLike } from '../../../api/sys/home';
 import { postCommentsData, postLikeParam } from '../../../api/sys/home/types';
-import { dateToMsgTime } from '../../../components/Rests/TconTime';
-import { navigate } from '../../../config/routs/NavigationContainer';
-import CommentDetails from './CommentDetails';
-import WebViews from '../../../components/WebView/WebViewCompent';
-import webview from '../../../config/webview';
 import { delPosts } from '../../../api/sys/post/index';
+import { dateToMsgTime } from '../../../components/Rests/TconTime';
+import WebViews from '../../../components/WebView/WebViewCompent';
+import { navigate } from '../../../config/routs/NavigationContainer';
+import webview from '../../../config/webview';
+import Colors from '../../../styles/Color';
+import FontSize from '../../../styles/FontSize';
+import CommentDetails from './CommentDetails';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -175,11 +177,11 @@ const PostDetails = ({ route }: any) => {
   }, []); // 只在组件挂载时调用一次
   return (
     <><View style={styles.parentView}>
-      <Appbar.Header style={styles.headerStyle}>
+      <Appbar.Header style={[styles.headerStyle,Colors.bfab]}>
         <Appbar.Action
           icon={require('../../../assets/images/chevron-left.png')}
           onPress={() => navigate('HomeStacker')} />
-        <Text allowFontScaling={false} style={styles.headerText}>
+        <Text allowFontScaling={false} style={[styles.headerText,FontSize.f18,Colors.fWhite]}>
           <Trans>navigationBar.title18</Trans>
         </Text>
         <Appbar.Action
@@ -228,14 +230,14 @@ const PostDetails = ({ route }: any) => {
       </Appbar.Header>
       <View style={styles.contentView}>
         <ScrollView style={styles.contentScroll}>
-          <View style={styles.postView}>
+          <View style={[styles.postView,Colors.bWhite]}>
             <View style={styles.postStyle}>
               <View style={styles.avatarView}>
                 <Avatar.Image size={65} source={{ uri: data.upath }} accessibilityLabel='图片' />
               </View>
               <View style={styles.avatarConent}>
                 <View style={styles.nameView}>
-                  <Text allowFontScaling={false} style={styles.nameText}>
+                  <Text allowFontScaling={false} style={[styles.nameText,Colors.fBlack,FontSize.f16]}>
                     {data.unikname}
                   </Text>
                   <View style={styles.tabStyle}>
@@ -243,31 +245,31 @@ const PostDetails = ({ route }: any) => {
                       size={15}
                       color="#FFF"
                       source={require('../../../assets/images/alimom/sex_icon1.png')} />
-                    <Text allowFontScaling={false} style={styles.tabText}>
+                    <Text allowFontScaling={false} style={[styles.tabText,Colors.fWhite]}>
                       20
                     </Text>
                   </View>
                 </View>
-                <Text allowFontScaling={false} style={styles.timeText}>
+                <Text allowFontScaling={false} style={[styles.timeText,FontSize.f14,Colors.fbbb]}>
                   {dateToMsgTime(data.tlastTime)}
                 </Text>
               </View>
               <View style={styles.avatarButton}>
                 <Button
-                  style={styles.avatarButtonStyle}
-                  labelStyle={styles.avatarButtonText}
+                  style={[styles.avatarButtonStyle,Colors.bfab]}
+                  labelStyle={[styles.avatarButtonText,Colors.fWhite,FontSize.f16]}
                   onPress={() => console.log('点击关注')}>
                   关注
                 </Button>
               </View>
             </View>
             <View style={styles.postImage}>
-              <Text allowFontScaling={false} style={styles.postText}>
+              <Text allowFontScaling={false} style={[styles.postText,FontSize.f16,Colors.fBlack]}>
                 {data.ttitle}
               </Text>
 
               {/* 音乐 */}
-              <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={90} w={90} />
+              <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={150} w={400} />
               {/* 视频 */}
               <WebViews uri={webview.ROOT_URL + webview.API.VIDEO} h={360} w={360} />
 
@@ -288,7 +290,7 @@ const PostDetails = ({ route }: any) => {
               {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
             </View>
             <View style={styles.postBottom}>
-              <Text allowFontScaling={false} style={styles.postBottomText}>
+              <Text allowFontScaling={false} style={[styles.postBottomText,FontSize.f16,Colors.f99]}>
                 浏览记录 502
               </Text>
               <View style={styles.heartView}>
@@ -299,7 +301,7 @@ const PostDetails = ({ route }: any) => {
                     color={collectionSelect == '1' ? '#FC073B' : '#ddd'}
                     source={require('../../../assets/images/Favorite.png')} />
                 </TouchableOpacity>
-                <Text allowFontScaling={false} style={styles.heartText}>
+                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
                   {' '}
                   2000
                 </Text>
@@ -312,7 +314,7 @@ const PostDetails = ({ route }: any) => {
                     color={transmitSelect == '1' ? '#6A1B9A' : '#ddd'}
                     source={require('../../../assets/images/transmit_icon.png')} />
                 </TouchableOpacity>
-                <Text allowFontScaling={false} style={styles.heartText}>
+                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
                   {' '}
                   {data.tforwardCount}
                 </Text>
@@ -325,55 +327,20 @@ const PostDetails = ({ route }: any) => {
                     color={likeSelect == '1' ? '#FABA3C' : '#ddd'}
                     source={require('../../../assets/images/Like-copy.png')} />
                 </TouchableOpacity>
-                <Text allowFontScaling={false} style={styles.heartText}>
+                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
                   {' '}
                   {tlikeCount}
                 </Text>
               </View>
             </View>
           </View>
-          <View style={styles.postComment}>
+          <View style={[styles.postComment,Colors.bWhite]}>
             <View style={styles.scrollView}>
-              <Text allowFontScaling={false} style={styles.commentTitle}>
+              <Text allowFontScaling={false} style={[styles.commentTitle,FontSize.f18,Colors.fBlack]}>
                 全部评论({postCommentsList})
               </Text>
               <CommentDetails commenData={postCommentsList} />
-              {/* <View style={styles.listStyle}>
-                      {postCommentsList.map(item => {
-                          return(
-                              <View style={styles.itemStyle} key={item.comId}>
-                                  <View style={styles.commentAvatarView}>
-                                      <View style={styles.itemAvatar}>
-                                          <Avatar.Image size={56} source={{uri:item.upath}}></Avatar.Image>
-                                      </View>
-                                      <View style={styles.itemNameView}>
-                                          <Text allowFontScaling={false} style={styles.itemName}>{item.unikname}</Text>
-                                          <Text allowFontScaling={false} style={styles.itemTime}>{dateToMsgTime(item.startTime)}</Text>
-                                      </View>
-                                      <View style={styles.itemIconView}>
-                                          <TouchableOpacity onPress={() => ComLikePress(item.comSupport,item.comId)}>
-                                              <Icon size={22} color={likeSelect1 == '0'?'#ddd':'#FABA3C'}  source={require('../../../assets/images/Like-copy.png')}></Icon>
-                                          </TouchableOpacity>
-                                          <Text allowFontScaling={false} style={styles.itemIconText}>  {item.comSupport}</Text>
-                                      </View>
-                                  </View>
-                                  <View style={styles.itemContent}>
-                                      <Text allowFontScaling={false} style={styles.itemContentText}>{item.comContent}</Text>
-                                      <View style={[styles.itemComment,item.coms.length == 0?{display:'none'}:null]}>
-                                          {item.coms.map((emeit:any) => {
-                                              return(
-                                                  <Text allowFontScaling={false} style={styles.commentArea} key={emeit.comId}>
-                                                      {emeit.unikname}:
-                                                      <Text allowFontScaling={false} style={styles.commentAreaText}>  {emeit.comContent}</Text>
-                                                  </Text>
-                                              )
-                                          })}
-                                      </View>
-                                  </View>
-                              </View>
-                          )
-                      })}
-                  </View> */}
+              
             </View>
           </View>
         </ScrollView>
@@ -383,9 +350,9 @@ const PostDetails = ({ route }: any) => {
         style={styles.commentBottom}>
         <TouchableOpacity
           activeOpacity={1}
-          style={[styles.commentInput, editable ? { display: 'none' } : null]}
+          style={[styles.commentInput,Colors.bf7f7, editable ? { display: 'none' } : null]}
           onPress={() => inputPress(1)}>
-          <Text style={styles.commentInputText}>
+          <Text style={[styles.commentInputText,Colors.f77,FontSize.f14]}>
             {inputVal != '' ? inputVal : '说两句'}
           </Text>
         </TouchableOpacity>
@@ -398,14 +365,14 @@ const PostDetails = ({ route }: any) => {
           cursorColor="#FABA3C"
           onChangeText={text => setInputVal(text)}
           onSubmitEditing={() => inputPress(0)}
-          style={[styles.bottomTextInput, editable ? null : { display: 'none' }]} />
+          style={[styles.bottomTextInput,Colors.bf7f7, editable ? null : { display: 'none' }]} />
         <IconButton
           style={styles.commentInputImage}
           icon={require('../../../assets/images/send-icon.png')}
           onPress={() => console.log('点击发送')} />
       </View>
       <TouchableOpacity
-        style={[styles.CommentBox, editable ? null : { display: 'none' }]}
+        style={[styles.CommentBox,Colors.bBlack, editable ? null : { display: 'none' }]}
         onPress={() => inputPress(0)} />
     </>
   );
@@ -415,28 +382,25 @@ export default PostDetails;
 
 const styles = StyleSheet.create({
   parentView: {
-    width: windowWidth,
-    height: windowHeight,
+    // width: windowWidth,
+    // height: windowHeight,
     position: 'relative',
   },
   headerStyle: {
     height: 45,
-    backgroundColor: '#faba3c',
   },
   headerText: {
     width: '75%',
-    fontSize: 18,
-    color: '#FFF',
     textAlign: 'center',
   },
   contentView: {
     width: windowWidth,
     ...Platform.select({
       ios: {
-        height: windowHeight - 145,
+        height: windowHeight -100,
       },
       android: {
-        height: windowHeight - 110,
+        height: windowHeight - 90,
       },
     }),
   },
@@ -447,7 +411,6 @@ const styles = StyleSheet.create({
     width: windowWidth,
     height: 'auto',
     borderRadius: 20,
-    backgroundColor: '#FFF',
   },
   postStyle: {
     width: windowWidth,
@@ -473,8 +436,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   nameText: {
-    fontSize: 16,
-    color: '#000',
     lineHeight: 40,
   },
   tabStyle: {
@@ -505,15 +466,12 @@ const styles = StyleSheet.create({
     }),
   },
   tabText: {
-    color: '#FFF',
     fontWeight: '600',
     lineHeight: 24,
     marginLeft: 2,
   },
   timeText: {
-    fontSize: 13,
     height: 30,
-    color: '#bbb',
   },
   avatarButton: {
     width: '20%',
@@ -523,11 +481,8 @@ const styles = StyleSheet.create({
     width: 80,
     height: 32,
     borderRadius: 6,
-    backgroundColor: '#FABA3C',
   },
   avatarButtonText: {
-    color: '#FFF',
-    fontSize: 15,
     fontWeight: '600',
     lineHeight: 16,
   },
@@ -538,10 +493,7 @@ const styles = StyleSheet.create({
   },
   postText: {
     height: 30,
-    fontSize: 15,
-    color: '#000',
     textAlign: 'center',
-    // paddingHorizontal:30,
     lineHeight: 20,
   },
   postImageStyle: {
@@ -559,8 +511,6 @@ const styles = StyleSheet.create({
   },
   postBottomText: {
     width: '48%',
-    fontSize: 15,
-    color: '#999',
     lineHeight: 50,
     paddingLeft: 20,
   },
@@ -570,16 +520,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  heartText: {
-    fontSize: 15,
-    color: '#ddd'
-  },
   postComment: {
     width: windowWidth,
     height: 'auto',
     marginTop: 20,
     paddingBottom: 20,
-    backgroundColor: '#FFF',
   },
   scrollView: {
     width: windowWidth,
@@ -588,8 +533,6 @@ const styles = StyleSheet.create({
   },
   commentTitle: {
     height: 40,
-    fontSize: 17,
-    color: '#000',
     fontWeight: '600',
     lineHeight: 40,
     paddingLeft: 20,
@@ -617,58 +560,7 @@ const styles = StyleSheet.create({
   itemNameView: {
     width: '55%',
   },
-  itemName: {
-    fontSize: 16,
-    color: '#000',
-    lineHeight: 35,
-  },
-  itemTime: {
-    fontSize: 13,
-    color: '#aaa',
-  },
-  itemIconView: {
-    width: '25%',
-    paddingTop: 15,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  itemIconText: {
-    fontSize: 15,
-    color: '#ddd',
-    lineHeight: 25,
-  },
-  itemContent: {
-    marginLeft: '20%',
-    marginRight: 15,
-    paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderColor: '#aaa'
-  },
-  itemContentText: {
-    fontSize: 15,
-    color: '#000',
-    marginTop: 5,
-    marginBottom: 5,
-  },
-  itemComment: {
-    width: '100%',
-    height: 'auto',
-    marginTop: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 8,
-    backgroundColor: '#F7F7FA',
-  },
-  commentArea: {
-    fontSize: 16,
-    color: '#999',
-    fontWeight: '600',
-  },
-  commentAreaText: {
-    fontSize: 14,
-    color: '#000',
-    fontWeight: '500',
-  },
+
   commentBottom: {
     width: windowWidth,
     backgroundColor: '#FFF',
@@ -696,12 +588,9 @@ const styles = StyleSheet.create({
     height: 42,
     borderRadius: 20,
     marginVertical: 9,
-    paddingHorizontal: 25,
-    backgroundColor: '#F7F7FA',
+    paddingHorizontal: 25
   },
   commentInputText: {
-    fontSize: 14,
-    color: '#777',
     lineHeight: 42,
   },
   commentInputImage: {
@@ -716,14 +605,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginVertical: 9,
     paddingHorizontal: 25,
-    backgroundColor: '#F7F7FA',
     ...Platform.select({}),
   },
   CommentBox: {
     position: 'absolute',
     width: windowWidth,
     height: windowHeight,
-    backgroundColor: '#000',
     zIndex: 20,
     opacity: 0.3,
   }

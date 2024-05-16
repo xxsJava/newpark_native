@@ -1,12 +1,10 @@
-import React, { Component,useState } from 'react';
-import { Trans } from 'react-i18next';
+import React, { Component } from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
-import { Appbar } from 'react-native-paper';
 // import { Button } from 'react-native-paper';
-import { navigate } from '../../../../config/routs/NavigationContainer';
 import DisplayAnImage from '../../../../components/Error/empty';
+import HeadNav from '../../../../components/Nav/HeadNav';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -30,12 +28,8 @@ export default class WalletView extends Component {
       // const [income,setIncome] = React.useState(true);
         return (
             <View style={styles.parentView}>
-              <Appbar.Header style={styles.headerStyle}>
-                    <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('MineStacker')}/>
-                    <Text allowFontScaling={false} style={styles.headerText}>
-                      <Trans>navigationBar.title9</Trans>
-                    </Text>
-                </Appbar.Header>
+                <HeadNav props={{title:'我的钱包',navPath:''}} />
+                
                 <View style={styles.walletView}>
                     <View style={styles.titleView}>
                         {/* <Text allowFontScaling={false} style={styles.titleStyle}>我的钱包</Text> */}
@@ -95,18 +89,6 @@ const styles = StyleSheet.create({
     height:windowHeight,
     backgroundColor:'#FFF'
   },
-  headerStyle:{
-    width: windowWidth,
-    height: 45,
-    backgroundColor: '#ffb700',
-  },
-  headerText:{
-    width: '80%',
-    fontSize: 17,
-    color: '#FFF',
-    lineHeight: 45,
-    textAlign: 'center',
-},
   walletView:{
     width:windowWidth,
     height:280,
