@@ -18,7 +18,7 @@ import {
 import { Image, Text, View } from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
 import { navigate } from '../../config/routs/NavigationContainer';
-import ContactsModul from './components/ContactsModul';
+import ContactsModul from './components/ContactsModule';
 import MessageModule from './components/MessageModule';
 const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;

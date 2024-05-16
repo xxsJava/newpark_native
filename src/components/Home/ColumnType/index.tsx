@@ -103,14 +103,15 @@ const ColumnType = () => {
             <Text style={styles.typeTitle}>快速接单</Text>
           </View>
         </View>
-        <View style={styles.typeItem}>
+        <TouchableOpacity style={styles.typeItem} onPress={() => {navigate('LeaderBoards'); console.log('排行榜');
+        }}>
           <View style={styles.imgView}>
             <Image style={styles.img} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/chatroomicon03.png'}} />
           </View>
           <View>
             <Text style={styles.typeTitle}>排行榜</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

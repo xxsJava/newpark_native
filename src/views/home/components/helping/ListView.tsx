@@ -47,6 +47,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { rewardPublishApi } from '../../../../api/sys/reward/index';
 import { rewardPublishType } from '../../../../api/sys/reward/types';
 import DateTimeUtils from "../../../../utils/DateTimeUtils";
+import { log } from "console";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -125,6 +126,7 @@ const ListView = (data: any) => {
   console.log(rewardPublishData, '发布悬赏输入的数据');
 
   const getPubRew = async () => {
+    console.log('发布悬赏获得的参数----->',rewardPublishData);
     const rePublish = await rewardPublishApi(rewardPublishData)
     console.log(rePublish, '这里是我发布的悬赏');
   }
@@ -347,10 +349,10 @@ const ListView = (data: any) => {
                 //   // setShowModal2(true);
                 //   getPubRew()
                 // }}
-                onPress={() => { getPubRew() }}
+                onPress={() =>  getPubRew() }
                 style={{ backgroundColor: '#FDAA00', borderRadius: 10, marginTop: 20, height: 46, justifyContent: 'center' }}
               >
-                <ButtonText>发布悬赏</ButtonText>
+                <ButtonText>发布悬赏22</ButtonText>
               </Button>
               <HStack>
               </HStack>
