@@ -275,7 +275,7 @@ const ListIndex: React.FC = () => {
 
         // }
     }
-    console.log(ListData1, '最终结果99---',ListData1[0].data);
+    console.log(ListData1, '最终结果99---',ListData1[0]);
     console.log(peopData,'这个是对比',peopData[0].data);
     
     React.useEffect(() => {
