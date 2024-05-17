@@ -12,7 +12,7 @@
 * 创建时间:2024/01/04 16:06:58
 */
 import request from '../../config/axios';
-// import {dataList} from './type';
+import {handleFriendType} from './type';
 /**
  * 获取OpenIm配置
  */
@@ -124,6 +124,18 @@ export const joinedGroup = (params:any): Promise<IResponse> =>{
 export const applyList = (params:any): Promise<IResponse> =>{
     return request.post({
         url:'/api/friend/get_friend_apply_list',
+        data:params
+    })
+}
+
+/**
+ * 处理好友申请
+ * @param params
+ * @returns
+ */
+export const handleFriend = (params:handleFriendType):Promise<IResponse> => {
+    return request.post({
+        url:'/api/friend/add_friend_response',
         data:params
     })
 }

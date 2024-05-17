@@ -79,3 +79,10 @@ export const contextListJson:ContextList = {
     showNumber:100
   }
 }
+
+export type handleFriendType = {
+  fromUserID:string,
+  toUserID:string,
+  handleResult:number,
+  handleMsg:string
+}
