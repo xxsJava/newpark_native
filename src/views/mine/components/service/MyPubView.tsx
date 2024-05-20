@@ -1,20 +1,23 @@
 /*
  * @Author: xxs
  * @Date: 2023-12-20 17:44:35
- * @LastEditTime: 2024-05-15 11:30:48
- * @FilePath: \newpark_native\src\views\mine\components\service\MyOrderView.tsx
+ * @LastEditTime: 2024-05-17 14:04:31
+ * @FilePath: \newpark_native\src\views\mine\components\service\MyPubView.tsx
  * @Description: desc
  */
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { useEffect } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import HeadNav from '../../../../components/Nav/HeadNav';
+import PubScreen from '../screen/PubScreen';
+import RfcScreen from '../screen/RfcScreen';
+import SellScreen from '../screen/SellScreen';
 
 const windowWidth = Dimensions.get('window').width
 
 const Tab = createMaterialTopTabNavigator();
 
-const MyOrderView = ({ route }: any) => {
+const MyPubView = ({ route }: any) => {
     
     const [typeVal, onTypePress] = React.useState('type1')
     // const {route}:any = this.props
@@ -49,32 +52,15 @@ const MyOrderView = ({ route }: any) => {
             }}>
                 <Tab.Screen name="在出售" component={PubScreen} />
                 <Tab.Screen name="未提交" component={SellScreen} />
-                <Tab.Screen name="已下架" component={PubScreen} />
+                <Tab.Screen name="已下架" component={RfcScreen} />
             </Tab.Navigator></>
     )
 }
 
-const PubScreen = () => {
-    return(
-        <View style={{backgroundColor:'#fff',flex:1}}>
-            <Text style={{color:'#000'}}>1</Text>
-        </View>
-    )
-}
-
-const SellScreen = () => {
-    return(
-        <View></View>
-    )
-}
-
-
-export default MyOrderView;
+export default MyPubView;
 
 const styles = StyleSheet.create({
     parentView: {
-        // width: windowWidth,
-        // height: windowHeight,
         backgroundColor: '#FAFAFA',
     },
     tabParent:{

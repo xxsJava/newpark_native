@@ -88,6 +88,9 @@ const Colors = StyleSheet.create({
     },
     bf19:{
         backgroundColor:'#F194FF'
+    },
+    ff66:{
+        color:'#FF6666'
     }
 })
 

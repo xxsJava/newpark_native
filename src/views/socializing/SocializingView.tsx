@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-04-25 16:13:01
+ * @LastEditTime: 2024-05-17 17:34:06
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -18,6 +18,7 @@ import {
 import { Image, Text, View } from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
 import { navigate } from '../../config/routs/NavigationContainer';
+import Colors from '../../styles/Color';
 import ContactsModul from './components/ContactsModul';
 import MessageModule from './components/MessageModule';
 const Stack = createNativeStackNavigator();
@@ -116,7 +117,7 @@ const SocializingView = () => {
           <Text>333fjor</Text>
         </TouchableOpacity> */}
       </View>
-      <View style={tabVal === 'tab2' ? styles.tabContent : styles.tabContentShow}>
+      <View style={[Colors.bGrey,tabVal === 'tab2' ? styles.tabContent : styles.tabContentShow]}>
         <ContactsModul></ContactsModul>
       </View>
       
@@ -166,9 +167,7 @@ export default SocializingView;
 
 const styles = StyleSheet.create({
   tabContent: {
-    flex: 1,
-    backgroundColor: '#F7F7F7',
-    // paddingBottom: 20,
+    flex: 1
   },
   tabContentShow: {
     display: 'none'

@@ -16,14 +16,14 @@ const windowHeight = Dimensions.get('window').height;
 const orderData = [
     {
       index: 1,
-      route: 'PaymentRoute',
+      route: 'MyPubRoute',
       type:'type2',
       text: 'minOrder.orderOption1',
       icon: require('../../../../assets/images/alimom/dpay.png'),
     },
     {
       index: 2,
-      route: 'ReceiptRoute',
+      route: 'MyPurRoute',
       type:'type3',
       text: 'minOrder.orderOption2',
       icon: require('../../../../assets/images/alimom/dsh.png'),
@@ -197,7 +197,7 @@ const HomePageView = () => {
                     <Trans>minOrder.orderName</Trans>
                   </Text>
                 </View>
-                <TouchableOpacity style={styles.titleFlex} onPress={() =>navigate('MyOrderRoute',{type:'type1'})}>
+                <TouchableOpacity style={styles.titleFlex} onPress={() =>navigate('MyPurRoute',{type:'type1'})}>
                   <Text allowFontScaling={false} style={styles.titleText2}>
                     <Trans>minOrder.orderMore</Trans>
                     <Feather name="chevron-right" size={18} color="#dbdbdb" />
@@ -209,7 +209,7 @@ const HomePageView = () => {
                   return (
                     <View style={styles.orderItem} key={item.index}>
                       <TouchableOpacity
-                        onPress={() => navigate('MyOrderRoute',{type:item.type})}
+                        onPress={() => navigate(item.route,{type:item.type})}
                         style={styles.orderRoute}>
                         <Image style={styles.itemImage} source={item.icon} accessibilityLabel='图片' alt="头像"/>
                         <Text allowFontScaling={false} style={styles.itemText}>

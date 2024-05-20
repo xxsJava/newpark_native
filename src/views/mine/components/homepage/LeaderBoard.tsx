@@ -210,7 +210,7 @@ const LeaderBoard = () => {
     const [order, setOrder] = React.useState(1);
     return (
         <View style={styles.container}>
-            <HeadNav props={{title:'我的发布',navPath:''}} />
+            <HeadNav props={{title:'排行榜',navPath:''}} />
             <View style={[styles.zhong, styles.heng, { alignItems: 'flex-start', borderWidth: 1, borderRadius: 20, width: '60%', marginLeft: '20%', marginTop: 8, justifyContent: 'space-between', height: 40 }]}>
                 <TouchableOpacity style={order == 1 ? styles.select : styles.selk} onPress={() => { setOrder(1) }}>
                     <Text style={order == 1 ? styles.text : styles.textk}>日榜</Text>
