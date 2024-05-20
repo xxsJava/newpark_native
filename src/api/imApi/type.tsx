@@ -86,3 +86,17 @@ export type handleFriendType = {
   handleResult:number,
   handleMsg:string
 }
+
+export type friAddBlackType = {
+  ownerUserID:string,
+  blackUserID:string,
+  ex:string
+}
+export type friRemoveBlackType = {
+  ownerUserID:string,
+  blackUserID:string
+}
+export type delFriendType = {
+  ownerUserID:string,
+  friendUserID:string
+}

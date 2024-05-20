@@ -77,7 +77,9 @@ const ListIndex: React.FC = () => {
             onPress={() => navigate('FriProfile',item)}
             style={styles.listItem }>
             <View style={styles.itemLeft}>
-                <View style={styles.avatarStyle} />
+                <View style={styles.avatarStyle} >
+                    <Image source={{uri:item.friendUser.faceURL.length == 0 ? 'http://xxs18-test.oss-accelerate.aliyuncs.com/2024/05/17/1d4ae439-1444-4fe7-8889-7ac9b4f2c5fc.png' : item.friendUser.faceURL}} style={{width:'100%',height:'100%'}}></Image>
+                </View>
             </View>
             <View style={styles.itemRight}>
                 <Text style={styles.itemName}>
@@ -101,7 +103,7 @@ const ListIndex: React.FC = () => {
     const pre = (num: number) => {
         let pre = 0;
         for (let i = 0; i < num; i++) {
-            pre += peopData[i].data.length;
+            pre += ListData1[i].data.length;
         }
         return pre;
     };
@@ -110,8 +112,8 @@ const ListIndex: React.FC = () => {
     const _getHigth = () => {
         let nodeNum = 0;
         // console.log('计算高度', data.length);
-        for (let i = peopData.length - 1; i >= 0; i--) {
-            nodeNum += peopData[i].data.length * ITEM_HEIGHT + (32 + 8 * (peopData[i].data.length - 1));
+        for (let i = ListData1.length - 1; i >= 0; i--) {
+            nodeNum += ListData1[i].data.length * ITEM_HEIGHT + (32 + 8 * (ListData1[i].data.length - 1));
             // console.log(data[i].title+'------>',data[i].data.length)
         }
         return nodeNum;
@@ -140,7 +142,7 @@ const ListIndex: React.FC = () => {
             render: () => {
                 return (
                     <Toast action="attention" variant="solid">
-                        <Text allowFontScaling={false}>{peopData[index].title}</Text>
+                        <Text allowFontScaling={false}>{ListData1[index].title}</Text>
                     </Toast>
                 )
             },
@@ -178,9 +180,9 @@ const ListIndex: React.FC = () => {
     const num = (str: string) => {
 
         // 遍历排好序的数据，获取每一个字母的位置
-        for (var i = 0; i < peopData.length; i++) {
-            if (str == peopData[i].title) {
-                console.log(str + ':' + peopData[i].peopData.length);
+        for (var i = 0; i < ListData1.length; i++) {
+            if (str == ListData1[i].title) {
+                console.log(str + ':' + ListData1[i].ListData1.length);
             }
         }
         // console.log(sum() , '一共有这些子元素');
@@ -188,27 +190,7 @@ const ListIndex: React.FC = () => {
     };
     // [{"addSource": 2, "createTime": 1714120075, "ex": "", "friendUser": {"appMangerLevel": 0, "createTime": 0, "ex": "", "faceURL": "", "globalRecvMsgOpt": 0, "nickname": "娜娜", "userID": "1548714649"}, "operatorUserID": "10000", "ownerUserID": "10000", "remark": ""}]
     const [peopData, setPeopleData] = React.useState(
-        [{
-            title: 'N',
-            data: [{
-                "addSource": 2,
-                "createTime": 1714120075,
-                "ex": "",
-                "friendUser":
-                {
-                    "appMangerLevel": 0,
-                    "createTime": 0,
-                    "ex": "",
-                    "faceURL": "",
-                    "globalRecvMsgOpt": 0,
-                    "nickname": "娜娜",
-                    "userID": "1548714649"
-                },
-                "operatorUserID": "10000",
-                "ownerUserID": "10000",
-                "remark": ""
-            }]
-        }]
+        []
     );
 
 
@@ -276,7 +258,7 @@ const ListIndex: React.FC = () => {
         // }
     }
     console.log(ListData1, '最终结果99---',ListData1[0]);
-    console.log(peopData,'这个是对比',peopData[0].data);
+    // console.log(peopData,'这个是对比',peopData[0].data);
     
     React.useEffect(() => {
         friendList();
@@ -284,11 +266,6 @@ const ListIndex: React.FC = () => {
 
     return (
         <>
-            {/* 测试的数据 */}
-            <TouchableOpacity onPress={() => friendList()} style={{ width: windowWidth, height: 60, backgroundColor: 'aqua' }}>
-                <Text>测试一下数据</Text>
-            </TouchableOpacity>
-            
             {/* 这个是索引条 */}
             <AlphabetIndex sections={ListData1} onSectionSelect={handleSectionSelect} />
             <ScrollView style={{ flex: 1, marginTop: 10 }}>
@@ -358,7 +335,7 @@ const ListIndex: React.FC = () => {
                 <ScrollView>
                     <SectionList
                         ref={sectionListRef}
-                        sections={peopData}
+                        sections={ListData1}
                         // 这里
                         renderItem={renderItem}
                         renderSectionHeader={renderSectionHeader}

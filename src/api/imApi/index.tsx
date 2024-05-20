@@ -12,7 +12,7 @@
 * 创建时间:2024/01/04 16:06:58
 */
 import request from '../../config/axios';
-import {handleFriendType} from './type';
+import {handleFriendType,friAddBlackType,friRemoveBlackType,delFriendType } from './type';
 /**
  * 获取OpenIm配置
  */
@@ -136,6 +136,40 @@ export const applyList = (params:any): Promise<IResponse> =>{
 export const handleFriend = (params:handleFriendType):Promise<IResponse> => {
     return request.post({
         url:'/api/friend/add_friend_response',
+        data:params
+    })
+}
+/**
+ * 添加黑名单
+ * @param params
+ * @returns
+ */
+export const friAddBlack = (params:friAddBlackType):Promise<IResponse> => {
+    return request.post({
+        url:'/api/friend/add_black',
+        data:params
+    })
+}
+
+/**
+ * 移除黑名单
+ * @param params
+ * @returns
+ */
+export const friRemoveBlack = (params:friRemoveBlackType):Promise<IResponse> => {
+    return request.post ({
+        url:'/api/friend/remove_black',
+        data:params
+    })
+}
+/**
+ * 删除好友
+ * @param params
+ * @returns
+ */
+export const delFriend = (params:delFriendType):Promise<IResponse> => {
+    return request.post({
+        url:'/api/friend/delete_friend',
         data:params
     })
 }
