@@ -7,6 +7,8 @@
  */
 import React from "react";
 import { Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {joinedGroup} from '../../../../api/imApi/index';
+import Storage from '../../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -23,11 +25,25 @@ const itemData = [{
 }, {
     groupID: '',
     faceURL: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%281%29.jpg',
-    groupName: '三剑客',
+    groupName: '三剑客11',
     count: 3
 }]
 
 const items = ({ item }: any) => {
+    const xr = async () => {
+        const uId = await Storage.get('usr-uId');
+        const params = {
+            "fromUserID": uId,
+            "pagination": {
+                "pageNumber": 1,
+                "showNumber": 50
+            }
+        };
+        const data1 = await joinedGroup (params);
+        console.log(data1,'获得数据====>');
+        
+    }
+xr()
     return (
         <View style={styles.viewItem}>
             <View style={styles.imgView}>

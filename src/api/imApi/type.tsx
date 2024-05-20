@@ -79,3 +79,24 @@ export const contextListJson:ContextList = {
     showNumber:100
   }
 }
+
+export type handleFriendType = {
+  fromUserID:string,
+  toUserID:string,
+  handleResult:number,
+  handleMsg:string
+}
+
+export type friAddBlackType = {
+  ownerUserID:string,
+  blackUserID:string,
+  ex:string
+}
+export type friRemoveBlackType = {
+  ownerUserID:string,
+  blackUserID:string
+}
+export type delFriendType = {
+  ownerUserID:string,
+  friendUserID:string
+}

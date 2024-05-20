@@ -14,11 +14,6 @@ import IndexTable from './IndexTableView';
 // 打印各个大学的接口
 import { selSchoolApi, regApi } from '../../../../api/sys/reg'
 import { selectSchoolType, UserRegType } from '../../../../api/sys/reg/types'
-// import { log } from 'console';
-// 转化为拼音
-// import pinyin from 'pinyin';
-// import { convertToPinyin } from 'chinese-to-pinyin';
-// import {chineseToPinyin} from 'chinese-to-pinyin';
 import { pinyin } from 'pinyin-pro'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
