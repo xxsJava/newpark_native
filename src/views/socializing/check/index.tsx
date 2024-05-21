@@ -33,7 +33,6 @@ import {
 import { navigate } from '../../../config/routs/NavigationContainer';
 import Storage from '../../../utils/AsyncStorageUtils';
 import { readFileData } from '../../../utils/FilesUtiles';
-import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 

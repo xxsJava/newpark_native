@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { View, Dimensions, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React from "react";
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { navigate } from "../../../config/routs/NavigationContainer";
 
-import { useToast, Toast,VStack,ToastTitle,ToastDescription} from '@gluestack-ui/themed';
+import { Toast, ToastDescription, ToastTitle, VStack, useToast } from '@gluestack-ui/themed';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const FriProfile = (item:any) => {
-    console.log(item.route.params, '前面接口返回的数据');
+    console.log(item.route, '前面接口返回的数据');
     const peopInfo = item.route.params;
     const toast = useToast();
     // 点击音视频通话显示的

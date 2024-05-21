@@ -1,19 +1,18 @@
-import React, { Component, useEffect, useState } from 'react';
+import { Toast, ToastDescription, ToastTitle, VStack, useToast } from '@gluestack-ui/themed';
+import React, { useState } from 'react';
 import {
     Dimensions,
     Image,
+    SafeAreaView,
     StyleSheet,
     Text,
     TouchableOpacity,
-    View,
-    SafeAreaView
+    View
 } from 'react-native';
 import { Avatar, Switch } from 'react-native-paper';
-import { navigate } from '../../../config/routs/NavigationContainer';
-import { friAddBlack, friRemoveBlack,delFriend } from '../../../api/imApi/index';
+import { delFriend, friAddBlack, friRemoveBlack } from '../../../api/imApi/index';
+import { friAddBlackType, friRemoveBlackType } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
-import { friAddBlackType, friRemoveBlackType,delFriendType} from '../../../api/imApi/type';
-import { useToast, Toast, VStack, ToastTitle, ToastDescription } from '@gluestack-ui/themed';
 
 const windowwidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

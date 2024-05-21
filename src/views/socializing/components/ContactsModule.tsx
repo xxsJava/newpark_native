@@ -1,7 +1,7 @@
 /*
  * @Author: zhn
  * @Date: 2024-4-20 17:44:34
- * @FilePath: \newpark_native\src\views\socializing\components\ContactsModul.tsx
+ * @FilePath: \newpark_native\src\views\socializing\components\ContactsModule.tsx
  * @Description: 社交的联系人页面
  */
 import { Toast, useToast } from '@gluestack-ui/themed';
@@ -19,12 +19,10 @@ import {
     View
 } from 'react-native';
 import { getFriendList } from '../../../api/imApi/index';
-import { navigate } from '../../../config/routs/NavigationContainer';
 import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
-// 出现冲突地方二
-// import { contextListJson } from '../../../api/imApi/type';
+import { navigate } from '../../../config/routs/NavigationContainer';
+
 import Feather from 'react-native-vector-icons/Feather';
-import { contextListJson } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -71,8 +69,11 @@ const ListIndex: React.FC = () => {
         null,
     );
 
-    const renderItem = ({ item }: { item: DataItem }) => (
+    const renderItem = ({ item }: { item: DataItem }) => {
+        console.log('渲染数据-------->',item);
 
+        return (
+        
         <TouchableOpacity
             onPress={() => navigate('FriProfile',item)}
             style={styles.listItem }>
@@ -88,11 +89,11 @@ const ListIndex: React.FC = () => {
                 <View style={styles.itemLabelStyle} />
             </View>
         </TouchableOpacity>
-    );
+    )};
 
     const renderSectionHeader = ({ section }: { section: DataSection }) => (
         <View style={{ backgroundColor: '#f4f4f4', padding: 4, height: 32 }}>
-            <Text style={{ fontWeight: 'bold' }}>{section.title}</Text>
+            <Text style={{ fontWeight: 'bold',color:'#000' }}>{section.title}</Text>
         </View>
     );
 
@@ -210,8 +211,8 @@ const ListIndex: React.FC = () => {
         // console.log('参数--------->', uId, params);
         console.log('好友数据----------->', friendLists.data.friendsInfo);
 
-        // setListData(friendLists.data.friendsInfo);
-        // console.log('hahhah',ListData1);
+        setListData(friendLists.data.friendsInfo);
+        console.log('hahhah',ListData1);
         
         let groupArray = friendLists.data.friendsInfo.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
             // console.log(result, '这个是结果', currentValue);
@@ -245,7 +246,7 @@ const ListIndex: React.FC = () => {
         
         // 根据对象的name属性进行升序排序
         resultArray.sort((a, b) => (a.title > b.title) ? 1 : -1);
-        setListData(resultArray)
+        // setListData(resultArray)
         console.log(resultArray, 'zhe1===');
         // console.log(resultArray[0].data.length, 'zhe===');
         // console.log(ListData1, '最终结果---');

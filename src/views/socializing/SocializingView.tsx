@@ -1,10 +1,11 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-05-20 14:02:14
+ * @LastEditTime: 2024-05-20 15:46:07
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import {
@@ -12,13 +13,11 @@ import {
   Platform,
   SafeAreaView,
   StyleSheet,
-  TextInput,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 import { Image, Text, View } from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
 import { navigate } from '../../config/routs/NavigationContainer';
-import Colors from '../../styles/Color';
 import ContactsModul from './components/ContactsModul';
 import MessageModule from './components/MessageModule';
 const Stack = createNativeStackNavigator();
@@ -48,79 +47,50 @@ const moreList = [{
   path: 'CreateCommunityRoute'
 }
 ]
+const Tab = createMaterialTopTabNavigator();
 
 const SocializingView = () => {
 
-  const [tabVal, setTab] = useState('tab1');
   const [more, setMore] = useState(false)
 
-  const handleTabPress = (tab: string) => {
-    console.log('Tab状态' + tab);
-    setTab(tab);
-  };
-
   const handleMorePress = (more: boolean) => {
-    more ? setMore(false) : setMore(true)
+    setMore(!more)
   }
 
   return (
     <SafeAreaView style={styles.safeStyle}>
-      <View style={styles.headView}>
-        <View style={styles.headGrid}>
-          <View style={styles.tabGrid}>
-            <View style={styles.tabItem}>
-              <View style={tabVal === 'tab1' ? styles.tabBg1 : null} />
-              <TouchableOpacity onPress={() => handleTabPress('tab1')}>
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    tabVal === 'tab1'
-                      ? styles.selectedText
-                      : styles.selectedText1
-                  }>
-                  消息
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.tabItem}>
-              <View style={tabVal === 'tab2' ? styles.tabBg2 : null}></View>
-              <TouchableOpacity onPress={() => handleTabPress('tab2')}>
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    tabVal === 'tab2'
-                      ? styles.selectedText
-                      : styles.selectedText1
-                  }>
-                  联系人
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+      <>
+          <Tab.Navigator
+            screenOptions={{
+              lazy: true,
+              tabBarPressColor: '#000',
+              tabBarStyle: styles.tabParent,
+              animationEnabled: true,
+              tabBarIndicatorStyle: {
+                width: 0
+              },
+              tabBarLabelStyle: { fontSize: 15, fontWeight: '600' }
+            }}>
+            <Tab.Screen  name="msg" component={MessageModule} options={{
+              tabBarLabel: ({ focused }) => (
+                <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>消息</Text></>
+              )
+            }} />
+            <Tab.Screen name="lsr" component={ContactsModul} options={{
+              tabBarLabel: ({ focused }) => (
+                <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>联系人</Text></>
+              )
+            }}/>
+
+          </Tab.Navigator>
           <View style={styles.tabMore}>
-            <TouchableOpacity onPress={() => handleMorePress(more)}>
-              <Feather name="plus" size={32} color="#000000" />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity onPress={() => handleMorePress(more)}>
+            <Feather name="plus" size={32} color="#000000" />
+          </TouchableOpacity>
         </View>
-        <View style={styles.searchGrid}>
-          {/* <TouchableOpacity onPress={() => navigate('SearchView')}> */}
-            <View style={styles.searchBox}>
-              <TextInput placeholder='搜索' placeholderTextColor={'#999'}  style={styles.searchText}></TextInput>
-            </View>
-          {/* </TouchableOpacity> */}
-        </View>
-      </View>
-      <View style={tabVal === 'tab1' ? styles.tabContent : styles.tabContentShow}>
-        <MessageModule></MessageModule>
-        {/* <TouchableOpacity style={{ backgroundColor: 'aqua' }} onPress={()=>navigate('schoolData')}>
-          <Text>333fjor</Text>
-        </TouchableOpacity> */}
-      </View>
-      <View style={[Colors.bGrey,tabVal === 'tab2' ? styles.tabContent : styles.tabContentShow]}>
-        <ContactsModul></ContactsModul>
-      </View>
-      
+          </>
+    
+
       <View style={[styles.moreModule, more ? null : { display: 'none' }]}>
         <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
           <View style={styles.itemImageView}>
@@ -155,58 +125,28 @@ const SocializingView = () => {
             <Text allowFontScaling={false} style={styles.itemText}>好友申请</Text>
           </View>
         </TouchableOpacity>
-      </View>
-      <TouchableOpacity style={[styles.maskLayer, more ? {} : { display: 'none' }]} onPress={() => handleMorePress(more)}>
-
+      </View><TouchableOpacity style={[styles.maskLayer, more ? {} : { display: 'none' }]} onPress={() => handleMorePress(more)}>
       </TouchableOpacity>
+
     </SafeAreaView>
+    
   )
 }
 export default SocializingView;
 
 
 const styles = StyleSheet.create({
-  tabContent: {
-    flex: 1
-  },
-  tabContentShow: {
-    display: 'none'
-  },
+
   safeStyle: {
     width: windowWidth,
     height: windowHeight - 40,
     position: 'relative',
     backgroundColor: '#FFFFFF',
   },
-  headView: {
-    width: windowWidth,
-    height: 140,
-    backgroundColor: '#FFFFFF',
-  },
-  headGrid: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  tabGrid: {
-    flex: 1,
-    width: windowWidth,
-    height: 68,
-    marginTop: 20,
-    position: 'relative',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  tabItem: {
-    width: 100,
-    height: 50,
-    alignItems: 'center',
-    zIndex: 10,
-  },
   tabMore: {
-    flex: 1,
     marginTop: 16,
-    paddingRight: 10,
-    alignItems: 'flex-end',
+    position:'absolute',
+    right:20
   },
   moreModule: {
     top: Platform.OS === 'ios' ? 110 : 50,
@@ -256,53 +196,17 @@ const styles = StyleSheet.create({
     textAlign: 'center'
 
   },
-  tabBg1: {
-    width: 18,
-    height: 18,
-    top: -3,
-    right: 28,
-    borderRadius: 9,
-    position: 'absolute',
-    borderColor: '#DCDCDC',
-    backgroundColor: '#FABA3C',
-    zIndex: -10,
-  },
   tabBg2: {
     width: 18,
     height: 18,
     top: -4,
-    right: 20,
+    left:-5,
     borderRadius: 9,
     position: 'absolute',
     borderColor: '#DCDCDC',
     backgroundColor: '#FABA3C',
     zIndex: -10,
-  },
-  selectedText: {
-    fontSize: 19,
-    fontWeight: '600',
-    color: '#000000',
-  },
-  selectedText1: {
-    color: '#808080',
-  },
-  searchGrid: {
-    width: windowWidth,
-    height: 40,
-    paddingHorizontal: 10,
-  },
-  searchBox: {
-    width: windowWidth - 20,
-    height: 40,
-    borderRadius: 40,
-    alignItems: 'center',
-    marginBottom: 20,
-    backgroundColor: '#F5F5F5',
-  },
-  searchText: {
-    lineHeight: 40,
-    fontSize: 16,
-    color: '#000000',
+    opacity:0.7
   },
   maskLayer: {
     width: windowWidth,
@@ -324,6 +228,17 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 1
+  },
+  tabParent:{
+      backgroundColor: '',
+      width:'60%',
+      height:60
+  },
+  fontTrue:{
+    fontSize: 19 ,color:'#000',width:100,fontWeight:'600',lineHeight:21
+  },
+  fontFalse:{
+    fontSize: 15 ,color:'#999',fontWeight:'600'
   }
 });
 function tabClick(porps: any, string: any) {

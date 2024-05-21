@@ -13,6 +13,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import { recommLook } from '../../../api/sys/Recommended/index';
 import { recommLookType } from '../../../api/sys/Recommended/types';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import Colors from '../../../styles/Color';
+
 
 // import Text from '../../socializing/text';
 
@@ -73,7 +75,7 @@ const CommunityModule = () => {
     </TouchableOpacity>
   )
   const commItem = ({ item }: any) => {
-    const backgroundColor = item.comId === selectedId ? '#e8ecff' : '#F9FAFF';
+    const backgroundColor = item.comId === selectedId ? '#fff' : '#fff';
     const color = item.comId === selectedId ? 'green' : 'blue';
     return (
       <Item
@@ -85,7 +87,7 @@ const CommunityModule = () => {
     )
   }
   return (
-    <ScrollView style={styles.scrollStyle}>
+    <ScrollView style={[styles.scrollStyle,Colors.bGrey]}>
       <FlatList
         data={recommList}
         renderItem={commItem}
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
       android: {
         paddingHorizontal: 16,
       },
-    }),
+    })
   },
   itemStyle: {
     height: 102,
