@@ -1,4 +1,3 @@
-import { number, object } from "prop-types";
 import { Platform } from "react-native";
 
 /*

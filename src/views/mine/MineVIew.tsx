@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-13 10:09:01
- * @LastEditTime: 2024-05-15 17:15:52
+ * @LastEditTime: 2024-05-17 16:36:57
  * @FilePath: \newpark_native\src\views\mine\MineVIew.tsx
  * @Description: Home 页菜单
  */
@@ -23,6 +23,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import Colors from '../../styles/Color';
 import HomePageView from './components/homepage';
 // import { personInfoStat } from '../../api/sys/usr';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -59,10 +60,10 @@ export default class MineVIew extends Component {
     return (
       <SafeAreaView style={styles.safeStyle}>
         <View style={styles.parentLevel}>
-          <ScrollView style={styles.scrollStyle} alwaysBounceVertical={true}>
+          <ScrollView style={[styles.scrollStyle,Colors.bGrey]} alwaysBounceVertical={true}>
             <View>
               <View style={styles.bgBox}>
-                <TouchableOpacity onPress={() => navigate('SetUpRoute')}>
+                <TouchableOpacity style={{zIndex:20}}  onPress={() => navigate('SetUpRoute')}>
                   <Icon
                     name="cog"
                     size={30}
@@ -120,6 +121,8 @@ export default class MineVIew extends Component {
                   </View>
                   
                 </View>
+
+                <Image blurRadius={2} style={{position:'absolute'}} source={require('../../assets/images/csBj.jpg')}/>
               </View>
 
             </View>
@@ -139,12 +142,6 @@ const styles = StyleSheet.create({
   safeStyle: {
     width: windowWidth,
     height: windowHeight,
-    // backgroundColor: '#F8B032',
-    // ...Platform.select({
-    //   ios: {
-    //     height: 180,
-    //   },
-    // }),
     backgroundColor: '#F8B032',
   },
   parentLevel: {
@@ -160,7 +157,6 @@ const styles = StyleSheet.create({
   },
   scrollStyle: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
   },
   bgBox: {
     width: windowWidth,
@@ -168,7 +164,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingTop: 15,
     backgroundColor: '#F8B032',
-    zIndex: -10,
+    zIndex: -100,
     position: 'relative',
   },
   boxIcon: {

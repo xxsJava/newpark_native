@@ -12,6 +12,8 @@ import {
 import { DeviceEvent } from '../../../config/listener';
 import { FILE_PATH, FROMA_DATE_DIR, INDEX_MSG_DIR } from '../../../config/paramStatic';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import StylesALL from '../../../styles';
+import Colors from '../../../styles/Color';
 import Storage from '../../../utils/AsyncStorageUtils';
 import { isFile, readFileData } from '../../../utils/FilesUtiles';
 
@@ -81,10 +83,10 @@ const ListIndex: React.FC = () => {
     <TouchableOpacity
       onPress={() =>
        navigate('CheckRoute', 
-         // {
-        //   id: item.stateMsg === 2 ? item.groupID : item.sendID,
-        //   type: item.stateMsg,
-        // }
+         {
+          id: item.stateMsg === 2 ? item.groupID : item.sendID,
+          type: item.stateMsg,
+        }
         )
       }
       style={[
@@ -117,18 +119,18 @@ const ListIndex: React.FC = () => {
         </View>
       </View>
       <View style={styles.itemRight}>
-        <Text allowFontScaling={false} style={styles.itemName}>
+        <Text allowFontScaling={false} style={[Colors.fBlack,StylesALL.fWeBold]}>
           {item.stateMsg === 2 ? item.groupName : item.senderNickname}
         </Text>
         <View style={styles.itemLabelStyle}>
           <Text allowFontScaling={false} style={styles.labelText}>
             {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
-            {/* {item.textElem.content} */}
+            {item.textElem.content}
           </Text>
         </View>
         
         <View style={styles.timeFormer}>
-          <Text>
+          <Text style={Colors.f99}>
             1分钟前
           </Text>
         </View>
@@ -173,16 +175,13 @@ const styles = StyleSheet.create({
     width: windowWidth - 90,
     height: 90,
     paddingLeft: 5,
-    paddingTop: 25,
+    paddingTop: 20,
   },
   avatarStyle: {
     width: 60,
     height: 60,
     borderColor: '#999',
     borderRadius: 30,
-  },
-  itemName: {
-    color: '#000',
   },
   itemLabelStyle: {
     height: 40,

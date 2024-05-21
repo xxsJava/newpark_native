@@ -16,8 +16,7 @@ import {
 import { getChatRoomFindALL } from '../../../api/sys/newpark';
 import { Pages } from '../../../api/sys/newpark/types';
 import { navigate } from '../../../config/routs/NavigationContainer';
-import {chatRoom} from '../../../api/sys/team/index';
-import {chatRoomType} from '../../../api/sys/team/type';
+import Colors from '../../../styles/Color';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -64,7 +63,7 @@ const ChatModule = () => {
   };
   const [listRes,setlistRes] = React.useState([]);
   return (
-    <View style={styles.scrollStyle}>
+    <View style={[styles.scrollStyle,Colors.bGrey]}>
       <View style={styles.topStyle}>
         <Image style={styles.topImg} source={require('../../../assets/images/search.png')} accessibilityLabel='图片' alt="头像"></Image>
         <TextInput allowFontScaling={false} style={styles.inputStyle} value={'搜索您感兴趣的聊天室'}>
@@ -72,7 +71,7 @@ const ChatModule = () => {
       </View>
       <View style={styles.optionStyle}>
         <View style={styles.optionList}>
-          {chatRoomData.map(item => {
+          {chatRoomData.map((item:any) => {
             return (
               <TouchableOpacity style={styles.optionItem} key={item.chatId} onPress={()=>navigate('ChatHome',item)} >
                 <Image source={{uri:item.chatImg}} style={styles.iconList} accessibilityLabel='图片' alt="网络问题"></Image>
@@ -198,16 +197,12 @@ const styles = StyleSheet.create({
     flexWrap:'wrap'
   },
   optionItem: {
-    flexWrap: 'wrap',
-  },
-  optionItem: {
     width:'25%',
     // flex: 1,
     height: 60,
     color: '#000',
     alignItems: 'center',
-    marginBottom: 20,
-    width:'25%'
+    marginBottom: 20
   },
   iconList: {
     width: 35,

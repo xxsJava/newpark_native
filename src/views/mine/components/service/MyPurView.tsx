@@ -1,15 +1,17 @@
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import HeadNav from '../../../../components/Nav/HeadNav';
-import PubScreen from '../screen/PubScreen';
-import RfcScreen from '../screen/RfcScreen';
-import SellScreen from '../screen/SellScreen';
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import React from "react";
+import { StyleSheet } from "react-native";
+import { View } from "react-native-animatable";
+import HeadNav from "../../../../components/Nav/HeadNav";
+import PubScreen from "../screen/PubScreen";
+import RfcScreen from "../screen/RfcScreen";
+import SellScreen from "../screen/SellScreen";
 const Tab = createMaterialTopTabNavigator();
- const EvaluateView = () => {
+
+const MyPurView = () => {
     return(
         <><View style={styles.parentView}>
-            <HeadNav props={{ title: '我出售的', navPath: '' }} />
+            <HeadNav props={{ title: '我购买的', navPath: '' }} />
         </View><Tab.Navigator
             style={{ backgroundColor: '#fff' }}
             screenOptions={{
@@ -34,7 +36,6 @@ const Tab = createMaterialTopTabNavigator();
                 <Tab.Screen name="退款中" component={RfcScreen} />
             </Tab.Navigator></>
     )
-  
 }
 
 const styles = StyleSheet.create({
@@ -48,4 +49,4 @@ const styles = StyleSheet.create({
 }
 )
 
-export default EvaluateView;
+export default MyPurView;

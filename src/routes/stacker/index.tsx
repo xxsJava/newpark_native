@@ -16,8 +16,8 @@ import { Animated, Dimensions, Easing, Platform, StyleSheet, Text, TouchableOpac
 import BellView from '../../components/Bell';
 import { DeviceEvent } from '../../config/listener';
 import routsConfig from '../../config/routs-config';
-import { useCounter } from '../../hooks/state';
 import { navigate } from '../../config/routs/NavigationContainer';
+import { useCounter } from '../../hooks/state';
 const windowWidth = Dimensions.get('window').width;
 // import { Stagger, useDisclose} from 'native-base';
 /*
@@ -79,7 +79,8 @@ export const BommonTab = () => {
           },
           tabBarStyle: {
             height: Platform.OS == 'ios' ? 80 : 60
-          }
+          },
+          lazy:true
         })}>
         {Object.entries(routsConfig).map(([key, value]) => {
           if (key === 'Routes') {

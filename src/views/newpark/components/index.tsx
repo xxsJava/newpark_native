@@ -1,13 +1,11 @@
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import * as React from 'react';
 import { useState } from 'react';
-import { Trans } from 'react-i18next';
 import {
   Dimensions,
-  Image,
   SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View
 } from 'react-native';
 import ChatModule from './ChatModule';
@@ -15,7 +13,7 @@ import CommunityModule from './CommunityModule';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
+const Tab = createMaterialTopTabNavigator();
 const TabNav = () => {
   const [tabVal, setTab] = useState('tab1');
   const handleTabPress = (tab: string) => {
@@ -29,7 +27,34 @@ const TabNav = () => {
 
   return (
     <SafeAreaView style={styles.safeStyle}>
-      <View style={styles.headView}>
+
+<>
+          <Tab.Navigator
+            screenOptions={{
+              lazy: true,
+              tabBarPressColor: '#000',
+              tabBarStyle: styles.tabParent,
+              animationEnabled: true,
+              tabBarIndicatorStyle: {
+                width: 0
+              },
+              tabBarLabelStyle: { fontSize: 15, fontWeight: '600' }
+            }}>
+            <Tab.Screen  name="msg" component={CommunityModule} options={{
+              tabBarLabel: ({ focused }) => (
+                <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>社区</Text></>
+              )
+            }} />
+            <Tab.Screen name="lsr" component={ChatModule} options={{
+              tabBarLabel: ({ focused }) => (
+                <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>聊天室</Text></>
+              )
+            }}/>
+
+          </Tab.Navigator>
+          
+          </>
+      {/* <View style={styles.headView}>
         <View style={styles.headGrid}>
           <View style={styles.tabGrid}>
             <View style={styles.tabItem}>
@@ -73,7 +98,7 @@ const TabNav = () => {
       </View>
       <View style={tabVal === 'tab2' ? null : styles.scrollShow}>
         <ChatModule />
-      </View>
+      </View> */}
       {/* <View style={styles.bell}> */}
         {/* <BellView /> */}
       {/* </View> */}
@@ -159,5 +184,27 @@ const styles = StyleSheet.create({
   scrollShow: {
     display: 'none'
   },
-  
+  tabParent:{
+      backgroundColor: '',
+      width:'60%',
+      height:60
+  },
+  fontTrue:{
+    fontSize: 19 ,color:'#000',width:100,fontWeight:'600',lineHeight:21
+  },
+  fontFalse:{
+    fontSize: 15 ,color:'#999',fontWeight:'600'
+  },
+  tabBg2: {
+    width: 18,
+    height: 18,
+    top: -4,
+    left:-5,
+    borderRadius: 9,
+    position: 'absolute',
+    borderColor: '#DCDCDC',
+    backgroundColor: '#FABA3C',
+    zIndex: -10,
+    opacity:0.7
+  }
 })

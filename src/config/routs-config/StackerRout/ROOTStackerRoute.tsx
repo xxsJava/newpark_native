@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2024-05-15 18:03:14
+ * @LastEditTime: 2024-05-17 10:32:50
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
@@ -47,7 +47,6 @@ import About from '../../../views/mine/components/manage/About';
 import Black from '../../../views/mine/components/manage/Black';
 import AfterSalesView from '../../../views/mine/components/oder/AfterSalesView';
 import EvaluateView from '../../../views/mine/components/oder/EvaluateView';
-import PaymentView from '../../../views/mine/components/oder/PaymentView';
 import ReceiptView from '../../../views/mine/components/oder/ReceiptView';
 import AddNewAddress from '../../../views/mine/components/service/AddNewAddress';
 import AddressManagementView from '../../../views/mine/components/service/AddressManagementView';
@@ -57,8 +56,9 @@ import CustomerServiceView from '../../../views/mine/components/service/Customer
 import FeedbackView from '../../../views/mine/components/service/FeedbackView';
 import InviteFriends from '../../../views/mine/components/service/InviteFriends';
 import MemberServicesView from '../../../views/mine/components/service/MemberServicesView';
-import MyOrderView from '../../../views/mine/components/service/MyOrderView';
 import MyPostView from '../../../views/mine/components/service/MyPostView';
+import MyPubView from '../../../views/mine/components/service/MyPubView';
+import MyPurView from '../../../views/mine/components/service/MyPurView';
 import OrderDetails from '../../../views/mine/components/service/OrderDetails';
 import SanJiLiand from '../../../views/mine/components/service/SanJiLiand';
 import WalletView from '../../../views/mine/components/service/WalletView';
@@ -367,28 +367,25 @@ export default {
       headerShown: false,
     }
   },
-  PaymentRoute: {
-    component: PaymentView,
-    options: {
-      title: '我的订单',
-    },
-  },
   ReceiptRoute: {
     component: ReceiptView,
     options: {
       title: '我的订单',
+      headerShown: false,
     },
   },
   EvaluateRoute: {
     component: EvaluateView,
     options: {
-      title: '我的订单',
+      title: '我的出售',
+      headerShown: false,
     },
   },
   AfterSalesRoute: {
     component: AfterSalesView,
     options: {
-      title: '我的订单'
+      title: '售后',
+      headerShown: false,
     },
   },
   CustomerServiceRoute: {
@@ -405,10 +402,17 @@ export default {
       headerShown: false,
     },
   },
-  MyOrderRoute: {
-    component: MyOrderView,
+  MyPubRoute: {
+    component: MyPubView,
     options: {
-      title: '我的订单',
+      title: '我的发布',
+      headerShown: false,
+    },
+  },
+  MyPurRoute:{
+    component: MyPurView,
+    options: {
+      title: '我的购买',
       headerShown: false,
     },
   },
