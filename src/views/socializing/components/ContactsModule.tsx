@@ -64,6 +64,10 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
 
 const ListIndex: React.FC = () => {
     const toast = useToast();
+   
+    const componentDidMount = () => {
+        console.log('ceshi-------');
+    }
     //选中的索引值
     const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
 
@@ -83,7 +87,7 @@ const ListIndex: React.FC = () => {
             </View>
             <View style={styles.itemRight}>
                 <Text style={styles.itemName}>
-                    {item.friendUser.nickname}
+                    {item.friendUser.remark != '' ?  item.remark : item.friendUser.nickname}
                 </Text>
                 <View style={styles.itemLabelStyle} />
             </View>
@@ -197,6 +201,8 @@ const ListIndex: React.FC = () => {
     // 联系人列表
     const [ListData1, setListData] = React.useState([]);
     const friendList = async () => {
+        console.log('你来到这个页面我加载了一次=================ß');
+        
         const uId = await Storage.get('usr-uId');
         const params = {
             "userID": uId,
@@ -245,7 +251,9 @@ const ListIndex: React.FC = () => {
         
         // 根据对象的name属性进行升序排序
         resultArray.sort((a, b) => (a.title > b.title) ? 1 : -1);
-        setListData(resultArray)
+        setListData(resultArray);
+        console.log('给联系人的列表赋予数据============》');
+        
         console.log(resultArray, 'zhe1===');
         // console.log(resultArray[0].data.length, 'zhe===');
         // console.log(ListData1, '最终结果---');
@@ -262,7 +270,9 @@ const ListIndex: React.FC = () => {
     
     React.useEffect(() => {
         friendList();
-    }, []); // 只在组件挂载时调用一次
+        console.log('又来啦==========');
+        
+    },[]); // 只在组件挂载时调用一次
 
     return (
         <>
@@ -301,14 +311,14 @@ const ListIndex: React.FC = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={0.9}>
+                <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('startGroup')}>
                     <View style={styles.headGroup}>
                         <View style={styles.iconHead}>
                             <Image style={styles.headImg} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png' }} />
                         </View>
                         <View style={styles.bodyContent}>
                             <Text style={styles.conText}>
-                                新的聊天室
+                                发起群聊
                             </Text>
                         </View>
                         <View style={styles.rightIcon}>

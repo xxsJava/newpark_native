@@ -28,8 +28,7 @@ const agreeAct = async (item) => {
 
     } else if (data1.errCode == 1001) {
         // Alert.alert('已经在处理' + item.fromNickname + '的好友申请，请稍后查看！！！');
-        // Toast.Title()
-
+        // Toast.
     }
 };
 

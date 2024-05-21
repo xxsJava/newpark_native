@@ -6,6 +6,9 @@
  * @Description: desc
  */
 // 测试选择学校
+import SelectFriend from '../../../views/socializing/components/selectFriend';
+import StartGroup from '../../../views/socializing/components/startGroup';
+import Remark from '../../../views/socializing/components/remark';
 import MainMess from '../../../components/Bell/MainMess';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
@@ -114,6 +117,13 @@ export default {
       title:''
     }
   },
+  // 这个是创建群聊
+  startGroup:{
+    component:StartGroup,
+    options:{
+      title:''
+    }
+  },
   Myqunzu:{
     component:Myqunzu,
     options: {
@@ -122,6 +132,13 @@ export default {
       headerTitleAlign: 'center',
 
     },
+  },
+  remark:{
+    component:Remark,
+    options:{
+      title:'备注',
+      headerTitleAlign: 'center'
+    }
   },
   MyqunzuSeach:{
     component:MyqunzuSeach,
@@ -176,6 +193,13 @@ export default {
     component:MoreView,
     options:{
       title:'更多'
+    }
+  },
+  SelectFriend:{
+    component:SelectFriend,
+    options:{
+      title:'我的好友',
+      headerTitleAlign: 'center'
     }
   },
   GroupMessage:{

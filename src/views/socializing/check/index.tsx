@@ -20,8 +20,8 @@ import {
   View
 } from 'react-native';
 import { Appbar, Avatar, IconButton } from 'react-native-paper';
-import { sendMsg } from '../../../api/imApi';
-import { MsgInfoSendJson } from '../../../api/imApi/type';
+import { sendMsg,getOnlineStat} from '../../../api/imApi';
+import { MsgInfoSendJson,getOnlineStatType} from '../../../api/imApi/type';
 import { usrInfo } from '../../../api/sys/usr';
 import { DeviceEvent } from '../../../config/listener';
 import {
@@ -33,7 +33,6 @@ import {
 import { navigate } from '../../../config/routs/NavigationContainer';
 import Storage from '../../../utils/AsyncStorageUtils';
 import { readFileData } from '../../../utils/FilesUtiles';
-import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -45,8 +44,8 @@ function MessageList(props: { items: any; receiver: any }) {
   const listItems = items.map(
     (item: any, index: React.Key | null | undefined) => {
 
-      console.log('receiver-------->',receiver);
-      console.log('data----->', item.sendID +'-'+receiver);
+      console.log('receiver-------->', receiver);
+      console.log('data----->', item.sendID + '-' + receiver);
       return (
         <View>
           <View
@@ -64,6 +63,7 @@ function MessageList(props: { items: any; receiver: any }) {
               accessibilityLabel='图片'
               alt="头像"
             />
+
             <View
               style={[
                 styles.textStyle,
@@ -106,7 +106,19 @@ function MessageList(props: { items: any; receiver: any }) {
 
 // const URL_SERVER = 'http://192.168.199.133:8080';
 
- const CheckView = () => {
+const CheckView = (item:any) => {
+  // console.log(item.route.params.friendUser,'发信息跳转过来的数据');
+  const data = item.route.params;
+  const [onlineStat,setOnlineStat] = useState('')
+  const inline = async() =>{
+    console.log(data.friendUser.userID);
+    const params:getOnlineStatType = {
+      userIDs:[data.friendUser.userID]
+    }
+    const data1 = await getOnlineStat(params);
+    console.log('获取用户在线状态----->',data1.data[0].status);
+    setOnlineStat(data1.data[0].status);
+  }
   const route = useRoute();
   const [items, setItems]: any = useState([
     // {name: '小学牛', message: '今天晚上吃点啥？',avatar:require('../../../assets/images/avatar-nan.png'),messageImage:null},
@@ -121,14 +133,15 @@ function MessageList(props: { items: any; receiver: any }) {
   // const [data,setData]:any = useState([]);
   const [headName, setHeadName] = useState('');
   const [headImg, setHeadImg] = useState('');
-  const [msgId,setMsgId] = useState('');
+  const [msgId, setMsgId] = useState('');
   let timer; //计时器
   useEffect(() => {
     // loadMessage();
-    
-    //获取历史记录
-    initMsg();
 
+    //获取历史记录
+      initMsg();
+    // 获取用户在线状态
+      inline()
     const listener = DeviceEvent.addListener(
       'onRecvNewMessage',
       resp => {
@@ -137,7 +150,6 @@ function MessageList(props: { items: any; receiver: any }) {
           initMsg();
           //清除
           clearTimeout(timeoutID);
-          
         }, 1);
         return () => {
           // 在组件卸载时移除监听
@@ -154,21 +166,21 @@ function MessageList(props: { items: any; receiver: any }) {
     //1秒后执行callback, 只会执行一次
     const usrId = await Storage.get('uid');
     setReceiver(usrId + '');
-    
+
   };
 
   const msgFind = async () => {
     let uId = await Storage.get('uid');
     const param: any = route.params;
     setMsgId(param.id);
-    console.log('id--------------------->',param.id);
+    console.log('id--------------------->', param.id);
     if (param.type === 2) {
       console.log('群聊');
-      msgGet(FILE_PATH + uId+ GROUP_MSG_DIR + '/' + param.id + FILE_SUFFIX);
+      msgGet(FILE_PATH + uId + GROUP_MSG_DIR + '/' + param.id + FILE_SUFFIX);
       return;
     }
     console.log('单聊');
-    msgGet(FILE_PATH + uId+PRITIVE_MSG_DIR + '/' + param.id + FILE_SUFFIX);
+    msgGet(FILE_PATH + uId + PRITIVE_MSG_DIR + '/' + param.id + FILE_SUFFIX);
   };
 
   const msgGet = (filePath: string) => {
@@ -195,11 +207,11 @@ function MessageList(props: { items: any; receiver: any }) {
     msgJsonData.senderFaceURL = usrInFo.uPath;
     msgJsonData.senderNickname = usrInFo.uNikname;
     msgJsonData.textElem.content = value;
-    console.log('userINFO ------->',msgJsonData);
+    console.log('userINFO ------->', msgJsonData);
     newItems.push(msgJsonData);
     setItems(newItems);
     const snedMsgJson = await sendMsg(msgJsonData);
-    console.log('sendMsg-------------->',snedMsgJson);
+    console.log('sendMsg-------------->', snedMsgJson);
     onChangeText('');
     handleContentSizeChange();
   };
@@ -214,17 +226,27 @@ function MessageList(props: { items: any; receiver: any }) {
       scrollViewRef.current.scrollToEnd({ animated: false });
     }
   };
-    const [show,setShow] = React.useState(false);
-// 到这里结束
+  const [show, setShow] = React.useState(false);
+  // 到这里结束
 
   return (
     <>
       <Appbar.Header style={styles.appbarStyle}>
-        <Appbar.BackAction onPress={() => navigate('SocializingStacker')} />
+        <Appbar.BackAction onPress={() => navigate('SocializingStacker')} size={28} />
         <View style={styles.avatarView}>
           <View style={styles.avatarStyle}>
-            <Avatar.Image size={34} source={{ uri: headImg }} accessibilityLabel='图片'/>
+            <Avatar.Image size={38} source={{ uri: headImg }} accessibilityLabel='图片' />
             <View style={styles.stateStyle} />
+          </View>
+          <View style={{ height:'100%',alignItems:'center',justifyContent:'center'}}>
+            {/* 这个是在线的状态 */}
+            <View style={onlineStat == 'online' ? styles.onlineDiv:{display:'none'}}>
+              <Text style={styles.onlineText}>在线</Text>
+            </View>
+            {/* 这个是离线的状态 */}
+            <View style={onlineStat == 'offline' ? styles.unUnlineDiv : {display:'none'}}>
+              <Text style={styles.onlineText}>离线</Text>
+            </View>
           </View>
           <Text style={styles.avatarText}>{headName}</Text>
         </View>
@@ -232,83 +254,83 @@ function MessageList(props: { items: any; receiver: any }) {
           icon="dots-vertical"
           onPress={() => {
             console.log('三点');
-            navigate('ObjCard')
+            navigate('ObjCard',data)
           }}
         />
       </Appbar.Header>
-      <KeyboardAvoidingView 
-        behavior="position" 
+      <KeyboardAvoidingView
+        behavior="position"
         enabled={true}
         keyboardVerticalOffset={90}
-        contentContainerStyle={{width:90,height:90,backgroundColor:'red'}}
+        contentContainerStyle={{ width: 90, height: 90 }}
       >
         <SafeAreaView style={styles.mainContent}>
-                <ScrollView  
-                    ref={scrollViewRef}
-                    onContentSizeChange={handleContentSizeChange}
-                    onLayout={handleContentSizeChange} 
-                    style={styles.chatBody}>
-                    <View style={{ height: 10 }}></View>
-                    <MessageList items={items} receiver={receiver} />
-                </ScrollView>
-                <View style={styles.sendColumn}>
-                 <View style={{flexDirection:'row',marginBottom:10,alignItems:'center'}}>
-                 <TouchableOpacity>
-                    <Image source={require('../../../assets/images/tup/yuyin.png')} style={{width:34,height:34,marginRight:10}}></Image>
-                  </TouchableOpacity>
-                    <View style={styles.inputBox}>
-                        <TextInput
-                            style={value == '' ? styles.sendColumnInputnull : styles.sendColumnInput}
-                            multiline={true}
-                            numberOfLines={1}
-                            allowFontScaling={true}
-                            onChangeText={text => onChangeText(text)}
-                            placeholder={'开始聊天吧'}
-                            value={value}
-                            onSubmitEditing={sendDo}
-                            onFocus={() =>{setShow(false)}}
-                        />
-                        {/* <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => sendMessage()}></IconButton> */}
-                    </View>
-                    <Image source={require('../../../assets/images/tup/biaoqing-2.png')} style={{width:34,height:34,marginLeft:6}}></Image>
-                    <TouchableOpacity style={value ? {backgroundColor:'green',padding:8,borderRadius:8,paddingHorizontal:12,marginLeft:5} : {display:'none'}} onPress={() => sendMessage()}>
-                      <Text style={{color:'#fff',fontWeight:'bold',textAlign:'center'}}>发送</Text>
-                   </TouchableOpacity>
-                   <TouchableOpacity onPress={() => {setShow(!show)}} style={value ? {display:'none'} : {display:'flex'}}>
-                      <Image source={require('../../../assets/images/tup/tianjia.png')} style={{width:34,height:34,marginLeft:6}}></Image>
-                   </TouchableOpacity>
-                 </View>
-                   <View style={show? {display:'flex'} : {display:'none'}}>
-                   <View style={styles.controlStrip}>
-                       <TouchableOpacity onPress={() => console.log('点击相册')} style={styles.zhong}>
-                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/xiangce.png')} size={35}></IconButton>
-                          <Text>相册</Text>
-                       </TouchableOpacity>
-                       <TouchableOpacity onPress={() => console.log('点击拍摄')} style={styles.zhong}>
-                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/paishe.png')} size={35}></IconButton>
-                          <Text>拍摄</Text>
-                       </TouchableOpacity>
-                       <TouchableOpacity onPress={() => console.log('点击文件')} style={styles.zhong}>
-                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/wenjian.png')} size={35}></IconButton>
-                          <Text>文件</Text>
-                       </TouchableOpacity>
-                       <TouchableOpacity onPress={() => console.log('点击名片')} style={styles.zhong}>
-                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/mp.png')} size={35}></IconButton>
-                          <Text>名片</Text>
-                       </TouchableOpacity>
-                    </View>
-                    <View style={{padding:20,justifyContent:'center',alignItems:'flex-start',paddingBottom:0}}>
-                      <TouchableOpacity onPress={() => console.log('点击位置')} style={{justifyContent:'flex-start',alignItems:'center'}}>
-                          <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/weizhi.png')} size={35}></IconButton>
-                          <Text style={{textAlign:'center'}}>位置</Text>
-                       </TouchableOpacity>
-                    </View>
-                   </View>
-                </View>
-            </SafeAreaView>
-        </ KeyboardAvoidingView>
-        </>
-    )
+          <ScrollView
+            ref={scrollViewRef}
+            onContentSizeChange={handleContentSizeChange}
+            onLayout={handleContentSizeChange}
+            style={styles.chatBody}>
+            <View style={{ height: 10 }}></View>
+            <MessageList items={items} receiver={receiver} />
+          </ScrollView>
+          <View style={styles.sendColumn}>
+            <View style={{ flexDirection: 'row', marginBottom: 10, alignItems: 'center' }}>
+              <TouchableOpacity>
+                <Image source={require('../../../assets/images/tup/yuyin.png')} style={{ width: 34, height: 34, marginRight: 10 }} ></Image>
+              </TouchableOpacity>
+              <View style={styles.inputBox}>
+                <TextInput
+                  style={value == '' ? styles.sendColumnInputnull : styles.sendColumnInput}
+                  multiline={true}
+                  numberOfLines={1}
+                  allowFontScaling={true}
+                  onChangeText={text => onChangeText(text)}
+                  placeholder={'开始聊天吧'}
+                  value={value}
+                  onSubmitEditing={sendDo}
+                  onFocus={() => { setShow(false) }}
+                />
+                {/* <IconButton style={styles.inputBoxIcon} icon={require('../../../assets/images/send-icon.png')} onPress={() => sendMessage()}></IconButton> */}
+              </View>
+              <Image source={require('../../../assets/images/tup/biaoqing-2.png')} style={{ width: 34, height: 34, marginLeft: 6 }}></Image>
+              <TouchableOpacity style={value ? { backgroundColor: 'green', padding: 8, borderRadius: 8, paddingHorizontal: 12, marginLeft: 5 } : { display: 'none' }} onPress={() => sendMessage()}>
+                <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>发送</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => { setShow(!show) }} style={value ? { display: 'none' } : { display: 'flex' }}>
+                <Image source={require('../../../assets/images/tup/tianjia.png')} style={{ width: 34, height: 34, marginLeft: 6 }}></Image>
+              </TouchableOpacity>
+            </View>
+            <View style={show ? { display: 'flex' } : { display: 'none' }}>
+              <View style={styles.controlStrip}>
+                <TouchableOpacity onPress={() => console.log('点击相册')} style={styles.zhong}>
+                  <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/xiangce.png')} size={35}></IconButton>
+                  <Text>相册</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => console.log('点击拍摄')} style={styles.zhong}>
+                  <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/paishe.png')} size={35}></IconButton>
+                  <Text>拍摄</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => console.log('点击文件')} style={styles.zhong}>
+                  <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/wenjian.png')} size={35}></IconButton>
+                  <Text>文件</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => console.log('点击名片')} style={styles.zhong}>
+                  <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/mp.png')} size={35}></IconButton>
+                  <Text>名片</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={{ padding: 20, justifyContent: 'center', alignItems: 'flex-start', paddingBottom: 0 }}>
+                <TouchableOpacity onPress={() => console.log('点击位置')} style={{ justifyContent: 'flex-start', alignItems: 'center' }}>
+                  <IconButton style={styles.controlIcon} icon={require('../../../assets/images/tup/weizhi.png')} size={35}></IconButton>
+                  <Text style={{ textAlign: 'center' }}>位置</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </SafeAreaView>
+      </ KeyboardAvoidingView>
+    </>
+  )
 }
 export default CheckView;
 
@@ -322,17 +344,17 @@ const styles = StyleSheet.create({
         height: windowHeight - 80,
       },
       android: {
-        height: windowHeight * 0.93,
+        height: windowHeight * 0.95,
       },
     }),
-    
+
   },
   chatBody: {
     flex: 1,
     padding: 10,
     backgroundColor: '#d8e4e8',
     marginTop: 10,
-    position:'relative'
+    position: 'relative'
   },
   chatMessage: {
     marginVertical: 10,
@@ -396,6 +418,7 @@ const styles = StyleSheet.create({
     top: -15,
     fontWeight: 'bold',
   },
+
   chatNameReceiver: {
     fontSize: 12,
     width: 100,
@@ -408,9 +431,11 @@ const styles = StyleSheet.create({
     width: '70%',
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    height: '100%',
+    alignItems: 'center'
   },
   avatarStyle: {
-    position: 'relative',
+    position: 'relative'
   },
   stateStyle: {
     width: 12,
@@ -423,8 +448,10 @@ const styles = StyleSheet.create({
   },
   appbarStyle: {
     borderWidth: 0,
-    backgroundColor: '#FFF',
+    backgroundColor: '#fff',
     zIndex: 999,
+    height: 43,
+    marginTop:6
   },
   avatarText: {
     color: '#000',
@@ -435,7 +462,7 @@ const styles = StyleSheet.create({
     // height: 230,
     // flexDirection:'row',
     marginTop: 13,
-    paddingBottom:15,
+    paddingBottom: 15,
     paddingTop: 15,
     paddingHorizontal: 15,
     backgroundColor: '#F1F2F6',
@@ -450,15 +477,15 @@ const styles = StyleSheet.create({
         elevation: 10,
       },
     }),
-    position:'absolute',
-    bottom:-10,
-    left:0,
-    width:windowWidth,
-    
+    position: 'absolute',
+    bottom: -10,
+    left: 0,
+    width: windowWidth,
+
   },
   inputBox: {
     position: 'relative',
-    flex:3
+    flex: 3
   },
   sendColumnInput: {
     width: '100%',
@@ -484,18 +511,41 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    flexWrap:'wrap',
-    backgroundColor:'#F1F2F6'
+    flexWrap: 'wrap',
+    backgroundColor: '#F1F2F6'
   },
   controlIcon: {
-    width:60,
-    height:60,
-    backgroundColor:'#fff',
+    width: 60,
+    height: 60,
+    backgroundColor: '#fff',
 
   },
-  zhong:{
-    alignItems:'center',
-    justifyContent:'center'
+  zhong: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  onlineText: {
+    textAlign: 'center',
+    lineHeight: 24,
+    fontSize: 11,
+    color: '#fff',
+    fontWeight: 'bold'
+  },
+  onlineDiv: {
+    height: 23,
+    width: 38,
+    backgroundColor: 'green',
+    marginLeft: 8,
+    borderRadius:3,
+    marginTop:15
+  },
+  unUnlineDiv:{
+    height: 23,
+    width: 38,
+    backgroundColor: 'red',
+    marginLeft: 8,
+    borderRadius:3,
+    marginTop:15
   }
 });
 

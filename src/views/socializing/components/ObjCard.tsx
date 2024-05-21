@@ -26,6 +26,8 @@ const ObjCard = (peopInfo:any) => {
     const [timeSelect, setTimeSele] = useState('30s');
     const [switchControlList, setSwitchControlList] = useState({});
     const [peopInfo1, setPeopInfo] = useState(peopInfo.route.params);
+    // console.log(peopInfo.route.params);
+    
     const [zdhhVal, setzdhhVal] = useState(false);
     const [xxmdrVal, setxxmdrVal] = useState(false);
     const [jrhmdVal, setjrhmdVal] = useState(false);
@@ -147,7 +149,7 @@ const ObjCard = (peopInfo:any) => {
                     <View style={styles.info}>
 
                         <Avatar.Image size={46} source={{ uri: (peopInfo1.friendUser.faceURL.length == 0? 'http://xxs18-test.oss-accelerate.aliyuncs.com/2024/05/17/1d4ae439-1444-4fe7-8889-7ac9b4f2c5fc.png': peopInfo1.friendUser.faceURL )}} accessibilityLabel='头像'></Avatar.Image>
-                        <Text style={styles.h2}>{peopInfo1.friendUser.nickname}</Text>
+                        <Text style={styles.h2}>{peopInfo1.remark != '' ? peopInfo1.remark : peopInfo1.friendUser.nickname}</Text>
                     </View>
                     <Image source={require('../../../assets/images/chevron-right.png')} style={styles.rightIcon} accessibilityLabel='图片' alt="头像" />
                 </TouchableOpacity>
