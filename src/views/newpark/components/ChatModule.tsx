@@ -9,7 +9,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
@@ -64,11 +63,7 @@ const ChatModule = () => {
   const [listRes,setlistRes] = React.useState([]);
   return (
     <View style={[styles.scrollStyle,Colors.bGrey]}>
-      <View style={styles.topStyle}>
-        <Image style={styles.topImg} source={require('../../../assets/images/search.png')} accessibilityLabel='图片' alt="头像"></Image>
-        <TextInput allowFontScaling={false} style={styles.inputStyle} value={'搜索您感兴趣的聊天室'}>
-        </TextInput>
-      </View>
+      
       <View style={styles.optionStyle}>
         <View style={styles.optionList}>
           {chatRoomData.map((item:any) => {
@@ -190,11 +185,15 @@ const styles = StyleSheet.create({
   optionStyle: {
     width:'100%',
     height: 160,
+
   },
   optionList: {
     flexDirection: 'row',
     justifyContent: 'center',
-    flexWrap:'wrap'
+    flexWrap:'wrap',
+    marginTop:20,
+    backgroundColor:'#fff',
+    paddingTop:15
   },
   optionItem: {
     width:'25%',
@@ -226,9 +225,10 @@ const styles = StyleSheet.create({
   },
   glideHead: {
     width: '100%',
-    height: 50,
+    height: 40,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop:10
   },
   glideHeadList: {
     flex: 1,
@@ -251,8 +251,8 @@ const styles = StyleSheet.create({
     color: '#FABA3C'
   },
   glideScroll: {
-    width: windowWidth,
-    height: windowHeight - 385,
+    height: windowHeight,
+    backgroundColor:'#FFF'
   },
   glideScrollItem: {
     height: 90,

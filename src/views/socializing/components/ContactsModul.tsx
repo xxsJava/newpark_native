@@ -309,6 +309,29 @@ const ListIndex: React.FC = () => {
       },
   ]);
 
+  const headList = [
+    {
+      title:'我的聊天室',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png',
+      rout:'MyGroup'
+    },
+    {
+      title:'我的社区',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png',
+      rout:'MyCommunity'
+    },
+    {
+      title:'新的聊天室',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png',
+      rout:''
+    },
+    {
+      title:'新的好友',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdhy.png',
+      rout:'Apply'
+    }
+  ]
+
 // 展示列表
 const listData = async () => {
 
@@ -359,14 +382,17 @@ const listData = async () => {
     {/* 这个是索引条 */}
     <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
     <ScrollView style={{ flex: 1, marginTop: 10 }}>
-    <TouchableOpacity activeOpacity={0.9} onPress={()=>navigate("MyGroup")}>
+      {
+        headList.map(item=>{
+          return(
+            <TouchableOpacity activeOpacity={0.9} onPress={()=>navigate(item.rout)}>
       <View style={styles.headGroup}>
         <View style={styles.iconHead}>
-          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png'}}/>
+          <Image style={styles.headImg} source={{uri:item.path}}/>
         </View>
         <View style={styles.bodyContent}>
           <Text style={styles.conText}>
-            我的聊天室
+            {item.title}
           </Text>
         </View>
         <View style={styles.rightIcon}>
@@ -374,54 +400,9 @@ const listData = async () => {
         </View>
       </View>
     </TouchableOpacity>
-
-    <TouchableOpacity activeOpacity={0.9} onPress={()=>{navigate('MyCommunity')}}>
-      <View style={styles.headGroup}>
-        <View style={styles.iconHead}>
-          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png'}}/>
-        </View>
-        <View style={styles.bodyContent}>
-          <Text style={styles.conText}>
-            我的社区
-          </Text>
-        </View>
-        <View style={styles.rightIcon}>
-          <Feather name="chevron-right" size={20} color="#999" />
-        </View>
-      </View>
-    </TouchableOpacity>
-
-    <TouchableOpacity activeOpacity={0.9}>
-      <View style={styles.headGroup}>
-        <View style={styles.iconHead}>
-          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png'}}/>
-        </View>
-        <View style={styles.bodyContent}>
-          <Text style={styles.conText}>
-            新的聊天室
-          </Text>
-        </View>
-        <View style={styles.rightIcon}>
-          <Feather name="chevron-right" size={20} color="#999" />
-        </View>
-      </View>
-    </TouchableOpacity>
-    
-    <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('Apply')}>
-      <View style={styles.headGroup}>
-        <View style={styles.iconHead}>
-          <Image style={styles.headImg} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdhy.png'}}/>
-        </View>
-        <View style={styles.bodyContent}>
-          <Text style={styles.conText}>
-            新的好友
-          </Text>
-        </View>
-        <View style={styles.rightIcon}>
-          <Feather name="chevron-right" size={20} color="#999" />
-        </View>
-      </View>
-    </TouchableOpacity>
+          )
+        })
+      }
       <SectionList
         ref={sectionListRef}
         sections={peopData}

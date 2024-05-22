@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import {
   Dimensions,
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -52,56 +53,10 @@ const TabNav = () => {
             }}/>
 
           </Tab.Navigator>
-          
+          <View style={styles.tabMore}>
+            <Image source={require('../../../assets/images/search_in_circle.png')} accessibilityLabel='图片' alt="网络不佳"></Image>
+          </View>
           </>
-      {/* <View style={styles.headView}>
-        <View style={styles.headGrid}>
-          <View style={styles.tabGrid}>
-            <View style={styles.tabItem}>
-              <View style={tabVal === 'tab1' ? styles.tabBg : null} />
-              <TouchableOpacity onPress={() => handleTabPress('tab1')}>
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    tabVal === 'tab1'
-                      ? styles.selectedText
-                      : styles.selectedText1
-                  }
-                >
-                  <Trans>newPatkTab.tab1</Trans>
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.tabItem}>
-              <View style={tabVal === 'tab2' ? styles.tabBg1 : null}></View>
-              <TouchableOpacity onPress={() => handleTabPress('tab2')}>
-                <Text
-                  allowFontScaling={false}
-                  style={
-                    tabVal === 'tab2'
-                      ? styles.selectedText
-                      : styles.selectedText1
-                  }
-                >
-                  <Trans>newPatkTab.tab2</Trans>
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={tabVal === 'tab1' ? styles.tabMore : styles.scrollShow}>
-            <Image source={require('../../../assets/images/search_in_circle.png')} accessibilityLabel='图片' alt="头像"></Image>
-          </View>
-        </View>
-      </View>
-      <View style={tabVal === 'tab1' ? null : styles.scrollShow}>
-        <CommunityModule />
-      </View>
-      <View style={tabVal === 'tab2' ? null : styles.scrollShow}>
-        <ChatModule />
-      </View> */}
-      {/* <View style={styles.bell}> */}
-        {/* <BellView /> */}
-      {/* </View> */}
     </SafeAreaView>
   )
 }
@@ -146,9 +101,9 @@ const styles = StyleSheet.create({
   },
   tabMore: {
     flex: 1,
-    marginTop: 26,
-    paddingRight: 25,
-    alignItems: 'flex-end',
+    marginTop: 20,
+    position:'absolute',
+    right:20
   },
   tabBg: {
     width: 18,

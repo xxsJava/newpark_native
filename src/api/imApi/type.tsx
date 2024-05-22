@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 /*
  * @Author: xxs
  * @Date: 2024-01-23 10:27:13
- * @LastEditTime: 2024-01-25 17:14:24
+ * @LastEditTime: 2024-05-21 11:13:21
  * @FilePath: \newpark_native\src\api\imApi\type.tsx
  * @Description: desc
  */
@@ -87,9 +87,9 @@ export type handleFriendType = {
 }
 
 export type friAddBlackType = {
-  ownerUserID:string,
-  blackUserID:string,
-  ex:string
+  ownerUserID:any,
+  blackUserID:any,
+  ex?:string
 }
 export type friRemoveBlackType = {
   ownerUserID:string,

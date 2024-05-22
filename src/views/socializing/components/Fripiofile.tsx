@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2024-05-20 14:02:01
+ * @LastEditTime: 2024-05-21 14:37:18
+ * @FilePath: \newpark_native\src\views\socializing\components\Fripiofile.tsx
+ * @Description: desc
+ */
 import React from "react";
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { navigate } from "../../../config/routs/NavigationContainer";
@@ -29,10 +36,9 @@ const FriProfile = (item:any) => {
                 )
               },
             })
-
     };
 
-    return (
+    return ( 
         <View style={styles.contain}>
             <View style={{ width: windowWidth, height: 90, backgroundColor: '#fff', padding: 12, flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
                 <Image source={{uri:peopInfo.friendUser.faceURL.length == 0 ? 'http://xxs18-test.oss-accelerate.aliyuncs.com/2024/05/17/1d4ae439-1444-4fe7-8889-7ac9b4f2c5fc.png': peopInfo.friendUser.faceURL}} style={{ width: 60, height: 60, borderRadius: 5}}></Image>

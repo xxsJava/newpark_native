@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-05-20 15:46:07
+ * @LastEditTime: 2024-05-21 17:40:33
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -47,6 +47,30 @@ const moreList = [{
   path: 'CreateCommunityRoute'
 }
 ]
+
+const headList = [
+  {
+    title:'添加好友',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tianjiahaoyou.png',
+    rout:'AddPeople'
+  },
+  {
+    title:'加入社区',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xieshangyizheng.png',
+    rout:'Addcomm'
+  },
+  {
+    title:'创建社区',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wanle.png',
+    rout:'CreateCommunityRoute'
+  },
+  {
+    title:'好友申请',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/saoyisao.png',
+    rout:'Apply'
+  }
+]
+
 const Tab = createMaterialTopTabNavigator();
 
 const SocializingView = () => {
@@ -92,7 +116,23 @@ const SocializingView = () => {
     
 
       <View style={[styles.moreModule, more ? null : { display: 'none' }]}>
-        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
+
+        {
+          headList.map(item=>{
+            return(
+              <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate(item.rout)}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={{uri:item.path}} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            <Text allowFontScaling={false} style={styles.itemText}>{item.title}</Text>
+          </View>
+        </TouchableOpacity>
+            )
+          })
+        }
+
+        {/* <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
           <View style={styles.itemImageView}>
             <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片' alt="头像"></Image>
           </View>
@@ -124,7 +164,7 @@ const SocializingView = () => {
             <Text style={styles.hytb}>1</Text>
             <Text allowFontScaling={false} style={styles.itemText}>好友申请</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View><TouchableOpacity style={[styles.maskLayer, more ? {} : { display: 'none' }]} onPress={() => handleMorePress(more)}>
       </TouchableOpacity>
 
