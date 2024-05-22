@@ -1,7 +1,7 @@
 /*
  * @Author: zhn
  * @Date: 2024-4-20 17:44:34
- * @FilePath: \newpark_native\src\views\socializing\components\ContactsModule.tsx
+ * @FilePath: \newpark_native\src\views\socializing\components\ContactsModul.tsx
  * @Description: 社交的联系人页面
  */
 import { Toast, useToast } from '@gluestack-ui/themed';
@@ -19,10 +19,12 @@ import {
     View
 } from 'react-native';
 import { getFriendList } from '../../../api/imApi/index';
-import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
 import { navigate } from '../../../config/routs/NavigationContainer';
-
+import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
+// 出现冲突地方二
+// import { contextListJson } from '../../../api/imApi/type';
 import Feather from 'react-native-vector-icons/Feather';
+import { contextListJson } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -62,6 +64,10 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
 
 const ListIndex: React.FC = () => {
     const toast = useToast();
+   
+    const componentDidMount = () => {
+        console.log('ceshi-------');
+    }
     //选中的索引值
     const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
 
@@ -69,11 +75,8 @@ const ListIndex: React.FC = () => {
         null,
     );
 
-    const renderItem = ({ item }: { item: DataItem }) => {
-        console.log('渲染数据-------->',item);
+    const renderItem = ({ item }: { item: DataItem }) => (
 
-        return (
-        
         <TouchableOpacity
             onPress={() => navigate('FriProfile',item)}
             style={styles.listItem }>
@@ -84,16 +87,16 @@ const ListIndex: React.FC = () => {
             </View>
             <View style={styles.itemRight}>
                 <Text style={styles.itemName}>
-                    {item.friendUser.nickname}
+                    {item.friendUser.remark != '' ?  item.remark : item.friendUser.nickname}
                 </Text>
                 <View style={styles.itemLabelStyle} />
             </View>
         </TouchableOpacity>
-    )};
+    );
 
     const renderSectionHeader = ({ section }: { section: DataSection }) => (
         <View style={{ backgroundColor: '#f4f4f4', padding: 4, height: 32 }}>
-            <Text style={{ fontWeight: 'bold',color:'#000' }}>{section.title}</Text>
+            <Text style={{ fontWeight: 'bold' }}>{section.title}</Text>
         </View>
     );
 
@@ -198,6 +201,8 @@ const ListIndex: React.FC = () => {
     // 联系人列表
     const [ListData1, setListData] = React.useState([]);
     const friendList = async () => {
+        console.log('你来到这个页面我加载了一次=================ß');
+        
         const uId = await Storage.get('usr-uId');
         const params = {
             "userID": uId,
@@ -211,8 +216,8 @@ const ListIndex: React.FC = () => {
         // console.log('参数--------->', uId, params);
         console.log('好友数据----------->', friendLists.data.friendsInfo);
 
-        setListData(friendLists.data.friendsInfo);
-        console.log('hahhah',ListData1);
+        // setListData(friendLists.data.friendsInfo);
+        // console.log('hahhah',ListData1);
         
         let groupArray = friendLists.data.friendsInfo.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
             // console.log(result, '这个是结果', currentValue);
@@ -246,7 +251,9 @@ const ListIndex: React.FC = () => {
         
         // 根据对象的name属性进行升序排序
         resultArray.sort((a, b) => (a.title > b.title) ? 1 : -1);
-        // setListData(resultArray)
+        setListData(resultArray);
+        console.log('给联系人的列表赋予数据============》');
+        
         console.log(resultArray, 'zhe1===');
         // console.log(resultArray[0].data.length, 'zhe===');
         // console.log(ListData1, '最终结果---');
@@ -263,7 +270,9 @@ const ListIndex: React.FC = () => {
     
     React.useEffect(() => {
         friendList();
-    }, []); // 只在组件挂载时调用一次
+        console.log('又来啦==========');
+        
+    },[]); // 只在组件挂载时调用一次
 
     return (
         <>
@@ -302,14 +311,14 @@ const ListIndex: React.FC = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={0.9}>
+                <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('startGroup')}>
                     <View style={styles.headGroup}>
                         <View style={styles.iconHead}>
                             <Image style={styles.headImg} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png' }} />
                         </View>
                         <View style={styles.bodyContent}>
                             <Text style={styles.conText}>
-                                新的聊天室
+                                发起群聊
                             </Text>
                         </View>
                         <View style={styles.rightIcon}>

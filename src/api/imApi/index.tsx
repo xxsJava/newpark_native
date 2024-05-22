@@ -12,7 +12,7 @@
 * 创建时间:2024/01/04 16:06:58
 */
 import request from '../../config/axios';
-import {handleFriendType,friAddBlackType,friRemoveBlackType,delFriendType } from './type';
+import {handleFriendType,friAddBlackType,friRemoveBlackType,delFriendType,getOnlineStatType,modifyFriRemarkType,createGroupType,listSessionType,getFriendListType} from './type';
 /**
  * 获取OpenIm配置
  */
@@ -74,7 +74,7 @@ export const getUseList = (params:any): Promise<IResponse> =>{
  * @param params 
  * @returns 
  */
-export const getFriendList = (params:any): Promise<IResponse> =>{
+export const getFriendList = (params:getFriendListType): Promise<IResponse> =>{
     return request.post({
         url:'/api/friend/get_friend_list',
         data:params
@@ -170,6 +170,55 @@ export const friRemoveBlack = (params:friRemoveBlackType):Promise<IResponse> => 
 export const delFriend = (params:delFriendType):Promise<IResponse> => {
     return request.post({
         url:'/api/friend/delete_friend',
+        data:params
+    })
+}
+/**
+ * 获取指定用户在线状态
+ * user/get_users_online_status
+ * @param params
+ * @returns
+ */
+export const getOnlineStat = (params:getOnlineStatType):Promise<IResponse> => {
+        return request.post({
+            url:'/api/user/get_users_online_status',
+            data:params
+        })
+}
+
+/**
+ * 修改好友备注
+ * friend/set_friend_remark
+ * @param params
+ * @returns
+ */
+export const modifyFriRemark = (params:modifyFriRemarkType):Promise<IResponse> =>{
+    return request.post({
+        url:'/api/friend/set_friend_remark',
+        data:params
+    })
+}
+/**
+ * 创建群组
+ * group/create_group
+ * @param params
+ * @returns
+ */
+export const createGroup = (params:createGroupType):Promise<IResponse> =>{
+    return request.post({
+        url:'/api/group/create_group',
+        data:params
+    })
+}
+/**
+ * 获取排序后的会话列表
+ * conversation/get_sorted_conversation_list
+ * @param params
+ * @returns
+ */
+export const listSession = (params:listSessionType):Promise<IResponse> => {
+    return request.post({
+        url:'/api/conversation/get_sorted_conversation_list',
         data:params
     })
 }

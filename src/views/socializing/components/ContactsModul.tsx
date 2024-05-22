@@ -18,10 +18,8 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { getFriendList, getUseList } from '../../../api/imApi/index';
+import { getFriendList } from '../../../api/imApi/index';
 import { navigate } from '../../../config/routs/NavigationContainer';
-// 出现冲突地方一
-// import { getUseList } from '../../../api/imApi/index';
 import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
 // 出现冲突地方二
 // import { contextListJson } from '../../../api/imApi/type';
@@ -43,30 +41,6 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   const [panResponder, setPanResponder] = useState<PanResponderInstance | null>(
     null,
   );
-  // 联系人列表
-  const [ListData1, setListData] = React.useState();
-  const friendList = async () => {
-    const uId = await Storage.get('usr-uId');
-    const params = {
-      "userID": uId,
-      "pagination": {
-        "pageNumber": 1,
-        "showNumber": 50
-      }
-    };
-    const friendLists = await getFriendList(params);
-
-    console.log('参数--------->',uId,params);
-    console.log('好友数据----------->',friendLists.data.friendsInfo);
-    
-    setListData(friendLists.data.friendsInfo);
-    
-  }
- 
-  React.useEffect(() => {
-    // listData();
-    friendList();
-  },[]); // 只在组件挂载时调用一次
   //索引条
   return (
     <View style={styles.indexBarStyle}>
@@ -90,6 +64,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
 
 const ListIndex: React.FC = () => {
   const toast = useToast();
+
   //选中的索引值
   const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
 
@@ -98,26 +73,18 @@ const ListIndex: React.FC = () => {
   );
 
   const renderItem = ({ item }: { item: DataItem }) => (
-  
+
     <TouchableOpacity
-      onPress={() => navigate('FriProfile')}
-      style={[
-        styles.listItem,
-        {
-          borderLeftColor:
-            item.color === 1
-              ? '#FABA3C'
-              : item.color === 2
-                ? '#6A1B9A'
-                : '#26C78C',
-        },
-      ]}>
+      onPress={() => navigate('FriProfile', item)}
+      style={styles.listItem}>
       <View style={styles.itemLeft}>
-        <View style={styles.avatarStyle} />
+        <View style={styles.avatarStyle} >
+          <Image source={{ uri: item.friendUser.faceURL.length == 0 ? 'http://xxs18-test.oss-accelerate.aliyuncs.com/2024/05/17/1d4ae439-1444-4fe7-8889-7ac9b4f2c5fc.png' : item.friendUser.faceURL }} style={{ width: '100%', height: '100%' }}></Image>
+        </View>
       </View>
       <View style={styles.itemRight}>
         <Text style={styles.itemName}>
-          {item.nickname}
+          {item.friendUser.remark != '' ? item.remark : item.friendUser.nickname}
         </Text>
         <View style={styles.itemLabelStyle} />
       </View>
@@ -137,7 +104,7 @@ const ListIndex: React.FC = () => {
   const pre = (num: number) => {
     let pre = 0;
     for (let i = 0; i < num; i++) {
-      pre += peopData[i].data.length;
+      pre += ListData1[i].data.length;
     }
     return pre;
   };
@@ -146,8 +113,8 @@ const ListIndex: React.FC = () => {
   const _getHigth = () => {
     let nodeNum = 0;
     // console.log('计算高度', data.length);
-    for (let i = peopData.length - 1; i >= 0; i--) {
-      nodeNum += peopData[i].data.length * ITEM_HEIGHT + (32 + 8 * (peopData[i].data.length - 1));
+    for (let i = ListData1.length - 1; i >= 0; i--) {
+      nodeNum += ListData1[i].data.length * ITEM_HEIGHT + (32 + 8 * (ListData1[i].data.length - 1));
       // console.log(data[i].title+'------>',data[i].data.length)
     }
     return nodeNum;
@@ -176,7 +143,7 @@ const ListIndex: React.FC = () => {
       render: () => {
         return (
           <Toast action="attention" variant="solid">
-            <Text allowFontScaling={false}>{peopData[index].title}</Text>
+            <Text allowFontScaling={false}>{ListData1[index].title}</Text>
           </Toast>
         )
       },
@@ -195,10 +162,12 @@ const ListIndex: React.FC = () => {
 
   //这里是渲染的总高度
   const _ItemLayout = (data: any, index: number) => {
+    // console.log(data, '获取高的方法');
+
     //总高度 (item * item^n  + 标题 + 间隙) * 子元素的数量 = 分组的高度
-    // const dataHight =
-    //   (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40)* data.length;
-    const dataHight = _getHigth();
+    const dataHight =
+      (ITEM_HEIGHT * data[selectedSectionIndex].data.length + 40) * data.length;
+    // const dataHight = _getHigth();
     // console.log(data.length);
     // console.log('总高度-->', _getHigth());
     return {
@@ -210,104 +179,16 @@ const ListIndex: React.FC = () => {
 
   // 这里是获取子元素的数量
   const num = (str: string) => {
+
     // 遍历排好序的数据，获取每一个字母的位置
-    for (var i = 0; i < peopData.length; i++) {
-      if (str == peopData[i].title) {
-        console.log(str + ':' + peopData[i].peopData.length);
+    for (var i = 0; i < ListData1.length; i++) {
+      if (str == ListData1[i].title) {
+        console.log(str + ':' + ListData1[i].ListData1.length);
       }
     }
     // console.log(sum() , '一共有这些子元素');
     console.log(pre(1)); //13
   };
-// 
-  const [peopData,setPeopleData] = React.useState([
-    {
-        title: 'A',
-        data: [
-          {
-            nickname: '牛友名称1122',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },
-          {
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },
-          {
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },{
-            nickname: '牛友名称',
-            labelText: '牛友',
-            color: 1,
-            lableType: 1,
-            icon: false,
-          },
-        ],
-      },
-  ]);
 
   const headList = [
     {
@@ -335,46 +216,73 @@ const ListIndex: React.FC = () => {
 // 展示列表
 const listData = async () => {
 
-    const contentsJson = contextListJson;
-    const ListDataAPI = await getUseList(contentsJson);
-    const list = ListDataAPI.data.users;
-    console.log('ListDataAPI 在这里', list);
-  
-    let groupArray = list.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
-      console.log(result, '这个是结果');
+
+  // 联系人列表
+  const [ListData1, setListData] = React.useState([]);
+  const friendList = async () => {
+    console.log('你来到这个页面我加载了一次=================ß');
+
+    const uId = await Storage.get('usr-uId');
+    const params = {
+      "userID": uId,
+      "pagination": {
+        "pageNumber": 1,
+        "showNumber": 50
+      }
+    };
+    const friendLists = await getFriendList(params);
+
+    // console.log('参数--------->', uId, params);
+    console.log('好友数据----------->', friendLists.data.friendsInfo);
+
+    // setListData(friendLists.data.friendsInfo);
+    // console.log('hahhah',ListData1);
+
+    let groupArray = friendLists.data.friendsInfo.reduce((result: { [x: string]: { data: any[]; }; }, currentValue: { nickname: string; }) => {
+      // console.log(result, '这个是结果', currentValue);
       // toUpperCase()
-      currentValue.nickname = currentValue.nickname.toUpperCase();
-      const firstLetter = PinyinUtil.getFirstLetter(currentValue.nickname.charAt(0));
-  
-      console.log(currentValue.nickname, firstLetter, 'firstLetter');
-  
+      currentValue.friendUser.nickname = currentValue.friendUser.nickname.toUpperCase();
+      const firstLetter = PinyinUtil.getFirstLetter(currentValue.friendUser.nickname.charAt(0));
+
+      // console.log(currentValue.friendUser.nickname, firstLetter, 'firstLetter');
+      // console.log('result[firstLetter]---->',result[firstLetter]);
+
+      // console.log(result[firstLetter],'一跳跳',firstLetter);
+      // 当首字母没有的时候创建一个新的数组
       if (!result[firstLetter]) {
         result[firstLetter] = {
           title: firstLetter,
           data: []
         };
       }
-      
+
+
       result[firstLetter].data.push(currentValue);
-      console.log(result[firstLetter].data,'-----------');
+      // console.log(result[firstLetter].data, '-----------');
+      // console.log(result, '这个是结果',currentValue);
       return result;
     }, {});
-   
+    // console.log(groupArray,'------===========');
+
     // 转换结果为数组形式
     let resultArray: DataSection[] = Object.values(groupArray);
+    // console.log(resultArray,'====');
+
     // 根据对象的name属性进行升序排序
     resultArray.sort((a, b) => (a.title > b.title) ? 1 : -1);
-    setPeopleData(resultArray)
-    console.log('这是转化后的值', resultArray);
-    // for (let i = 0; i < resultArray.length; i++) {
-    //   resultArray[i].title.sort();
-    //   console.log(resultArray[i].title.sort(),'---------');
-      
-    // }
-  
+    setListData(resultArray);
+    console.log('给联系人的列表赋予数据============》');
+
+    console.log(resultArray, 'zhe1===');
+
   }
+  console.log(ListData1, '最终结果99---', ListData1[0]);
+  // console.log(peopData,'这个是对比',peopData[0].data);
+
   React.useEffect(() => {
-    // listData();
+    friendList();
+    console.log('又来啦==========');
+
   }, []); // 只在组件挂载时调用一次
 
   return (
@@ -421,34 +329,34 @@ const listData = async () => {
 export default ListIndex;
 
 const styles = StyleSheet.create({
-  headGroup:{
-    width:'100%',
-    height:60,
-    backgroundColor:'#fff',
-    flexDirection:'row',
-    paddingLeft:10,
-    paddingTop:3,
-    position:'relative'
+  headGroup: {
+    width: '100%',
+    height: 60,
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingTop: 3,
+    position: 'relative'
   },
-  iconHead:{
-    width:50,
-    height:50
+  iconHead: {
+    width: 50,
+    height: 50
   },
-  headImg:{
-    width:50,
-    height:50
+  headImg: {
+    width: 50,
+    height: 50
   },
-  bodyContent:{
-    marginLeft:20
+  bodyContent: {
+    marginLeft: 20
   },
-  conText:{
-    color:'#000',
-    fontSize:18,
-    lineHeight:50
+  conText: {
+    color: '#000',
+    fontSize: 18,
+    lineHeight: 50
   },
-  rightIcon:{
-    position:'absolute',
-    right:20,
+  rightIcon: {
+    position: 'absolute',
+    right: 20,
     top: 20
   },
   indexBarStyle: {
@@ -483,6 +391,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    borderLeftColor: '#FABA3C'
   },
   itemLeft: {
     width: 90,

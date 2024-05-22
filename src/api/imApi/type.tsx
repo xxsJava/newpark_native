@@ -99,3 +99,43 @@ export type delFriendType = {
   ownerUserID:string,
   friendUserID:string
 }
+export type getOnlineStatType = {
+    userIDs:string | any[]
+}
+export type modifyFriRemarkType = {
+  ownerUserID:string,
+  friendUserID:string,
+  remark:string
+}
+export type createGroupType = {
+  memberUserIDs:Array<string>,
+  adminUserIDs:Array<string>,
+  ownerUserID:string,
+  groupInfo:{
+    groupID:string,
+    groupName:string,
+    notification:string,
+    introduction:string,
+    faceURL:string,
+    ex:string,
+    groupType:number,
+    needVerification:number,
+    lookMemberInfo:number,
+    applyMemberFriend:number
+  }
+}
+export type listSessionType = {
+  userID:string,
+  conversationIDs:string,
+  pagination:{
+    pageNumber:string,
+    showNumber:string
+  }
+}
+export type getFriendListType = {
+  "userID": string,
+  "pagination": {
+    "pageNumber": number,
+    "showNumber": number
+  }
+}
