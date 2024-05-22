@@ -19,12 +19,11 @@ import {
   View
 } from 'react-native';
 import { getFriendList } from '../../../api/imApi/index';
-import { navigate } from '../../../config/routs/NavigationContainer';
 import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
+import { navigate } from '../../../config/routs/NavigationContainer';
 // 出现冲突地方二
 // import { contextListJson } from '../../../api/imApi/type';
 import Feather from 'react-native-vector-icons/Feather';
-import { contextListJson } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -62,7 +61,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   );
 };
 
-const ListIndex: React.FC = () => {
+const ListIndex = () => {
   const toast = useToast();
 
   //选中的索引值
@@ -324,7 +323,7 @@ const listData = async () => {
         stickySectionHeadersEnabled={true} />
     </ScrollView></>
   );
-};
+}};
 
 export default ListIndex;
 
