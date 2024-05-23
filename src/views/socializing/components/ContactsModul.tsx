@@ -19,12 +19,11 @@ import {
   View
 } from 'react-native';
 import { getFriendList } from '../../../api/imApi/index';
-import { navigate } from '../../../config/routs/NavigationContainer';
 import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
+import { navigate } from '../../../config/routs/NavigationContainer';
 // 出现冲突地方二
 // import { contextListJson } from '../../../api/imApi/type';
 import Feather from 'react-native-vector-icons/Feather';
-import { contextListJson } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -62,7 +61,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
   );
 };
 
-const ListIndex: React.FC = () => {
+const ListIndex = () => {
   const toast = useToast();
 
   //选中的索引值
@@ -190,6 +189,31 @@ const ListIndex: React.FC = () => {
     console.log(pre(1)); //13
   };
 
+  const headList = [
+    {
+      title:'我的聊天室',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png',
+      rout:'MyGroup'
+    },
+    {
+      title:'我的社区',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png',
+      rout:'MyCommunity'
+    },
+    {
+      title:'新的聊天室',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png',
+      rout:''
+    },
+    {
+      title:'新的好友',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdhy.png',
+      rout:'Apply'
+    }
+  ]
+
+// 展示列表
+const listData = async () => {
 
 
   // 联系人列表
@@ -262,27 +286,44 @@ const ListIndex: React.FC = () => {
 
   return (
     <>
-      {/* 这个是索引条 */}
-      <AlphabetIndex sections={ListData1} onSectionSelect={handleSectionSelect} />
-      <ScrollView style={{ flex: 1, marginTop: 10 }}>
-
-        <ScrollView>
-          <SectionList
-            ref={sectionListRef}
-            sections={ListData1}
-            // 这里
-            renderItem={renderItem}
-            renderSectionHeader={renderSectionHeader}
-            getItemLayout={_ItemLayout}
-            keyExtractor={(item, index) => {
-              return index.toString();
-            }}
-            stickySectionHeadersEnabled={true} />
-        </ScrollView>
-      </ScrollView>
-    </>
+    {/* 这个是索引条 */}
+    <AlphabetIndex sections={peopData} onSectionSelect={handleSectionSelect} />
+    <ScrollView style={{ flex: 1, marginTop: 10 }}>
+      {
+        headList.map(item=>{
+          return(
+            <TouchableOpacity activeOpacity={0.9} onPress={()=>navigate(item.rout)}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:item.path}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            {item.title}
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
+          )
+        })
+      }
+      <SectionList
+        ref={sectionListRef}
+        sections={peopData}
+        // 这里
+        renderItem={renderItem}
+        renderSectionHeader={renderSectionHeader}
+        getItemLayout={_ItemLayout}
+        keyExtractor={(item, index) => {
+          return index.toString();
+        } }
+        stickySectionHeadersEnabled={true} />
+    </ScrollView></>
   );
-};
+}};
 
 export default ListIndex;
 

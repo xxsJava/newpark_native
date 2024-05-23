@@ -5,7 +5,6 @@
  */
 import React from 'react';
 import {
-  Dimensions,
   Image,
   Platform,
   StyleSheet,
@@ -18,28 +17,6 @@ import StylesALL from '../../../styles';
 import Colors from '../../../styles/Color';
 import MenusComponents from '../Menu';
 // import { Image } from 'react-native-paper/lib/typescript/components/Avatar/Avatar';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
-const navigateData = [
-  {
-    index: 1,
-    text: 'sort.sortType',
-    icon: require('../../../assets/images/Like-copy.png'),
-  },
-  {
-    index: 2,
-    text: 'sort.sortType1',
-    icon: require('../../../assets/images/Favorite.png'),
-  },
-  {
-    index: 3,
-    text: 'sort.sortType4',
-    icon: require('../../../assets/images/Refresh.png'),
-  },
-];
-
 //菜单组件数据
 const menusData = [
     {
@@ -55,6 +32,29 @@ const menusData = [
       type: false,
     },
 ];
+
+const typeMenu = [
+  {
+    title:'快速交友',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ksjy.png',
+    rout:''
+  },
+  {
+    title:'热门聊天室',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/rmlts.png',
+    rout:''
+  },
+  {
+    title:'快速接单',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ksjd.png',
+    rout:''
+  },
+  {
+    title:'排行榜',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/phb.png',
+    rout:'LeaderBoards'
+  }
+]
 
 const ColumnType = () => {
   const [selectedVal, onSelected] = React.useState(1);
@@ -72,7 +72,6 @@ const ColumnType = () => {
         <TouchableOpacity
           key={menusData[1].index}
           style={[styles.wd, Colors.b008]}
-
           onPress={() => navigate('JiaoyiData')}>
           <View>
             <MenusComponents props={menusData[1]} />
@@ -81,39 +80,23 @@ const ColumnType = () => {
       </View>
 
       <View style={styles.typesView}>
-        <View style={styles.typeItem}>
+
+{
+  typeMenu.map(item=>{
+    return(
+<TouchableOpacity style={styles.typeItem} onPress={()=>{navigate(item.rout)}}>
+        <View >
           <View style={styles.imgView}>
-            <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ksjy.png'}} />
+            <Image style={StylesALL.imgSize} source={{uri:item.path}} />
           </View>
           <View>
-            <Text style={[styles.typeTitle,Colors.fBlack]}>快速交友</Text>
+            <Text style={[styles.typeTitle,Colors.fBlack]}>{item.title}</Text>
           </View>
         </View>
-        <View style={styles.typeItem}>
-          <View style={styles.imgView}>
-            <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/rmlts.png'}} />
-          </View>
-          <View>
-            <Text style={[styles.typeTitle,Colors.fBlack]}>热门聊天室</Text>
-          </View>
-        </View>
-        <View style={styles.typeItem}>
-          <View style={styles.imgView}>
-            <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ksjd.png'}} />
-          </View>
-          <View>
-            <Text style={[styles.typeTitle,Colors.fBlack]}>快速接单</Text>
-          </View>
-        </View>
-        <TouchableOpacity style={styles.typeItem} onPress={() => {navigate('LeaderBoards'); console.log('排行榜');
-        }}>
-          <View style={styles.imgView}>
-            <Image style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/phb.png'}} />
-          </View>
-          <View>
-            <Text style={[styles.typeTitle,Colors.fBlack]}>排行榜</Text>
-          </View>
-        </TouchableOpacity>
+      </TouchableOpacity>
+    )
+  })
+}
       </View>
     </View>
   );
@@ -163,7 +146,8 @@ const styles = StyleSheet.create({
     height:60
   },
   typeTitle:{
-    fontWeight:'600'
+    fontWeight:'600',
+    textAlign:'center'
   }
 });
 

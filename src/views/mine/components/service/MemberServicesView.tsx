@@ -1,322 +1,237 @@
+/*
+ * @Author: xxs
+ * @Date: 2024-05-15 18:02:59
+ * @LastEditTime: 2024-05-22 18:35:42
+ * @FilePath: \newpark_native\src\views\mine\components\service\MemberServicesView.tsx
+ * @Description: desc
+ */
 import React from 'react';
-import { Dimensions, Image, ImageBackground, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-// import { Checkbox } from "native-base";
-
+import { Dimensions, Image, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
+import Feather from 'react-native-vector-icons/Feather';
+import StylesALL from '../../../../styles';
+import Colors from '../../../../styles/Color';
+import FontSize from '../../../../styles/FontSize';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
+const renderItem = ({item, index}: any) => {
+   return (
+         <View style={styles.item}>
+            <Image
+               source={item.image}
+               style={[styles.image,styles.imageContainer]}
+            />
+            <View style={styles.titleView}>
+                  <Text numberOfLines={2} style={[FontSize.f18,Colors.fWhite]}>
+                     V{item.title}享
+                     <Text style={{color:item.color}}>{item.title+3}
+                     项
+                     </Text>
+                        特权,升级V{item.title<7?item.title+1:item.title}
+                        <Text style={{color:item.color}}>
+                        {item.title==7?"解锁所有权益":"可加1项"}
+                        </Text>
+                  </Text>
+            </View>
+         </View>
+   );
+}
+
 const MemberServicesView = () => {
     const [select, setSelect] = React.useState(1)
-    const price = [
+  
+    const cardData = [
         {
-            index: 1,
-            tit: '限时8.3折',
-            main: '连续包月',
-            amount: 10,
-            befamount: 12,
-            description: ''
+          image: require('../../../../assets/images/vip/v1.png'),
+          title: 1,
+          content: '这是第一张卡片的内容',
+          color:'#93A5BB'
         },
         {
-            index: 2,
-            tit: '限时4.7折',
-            main: '连续包年',
-            amount: 68,
-            befamount: 129
+          image: require('../../../../assets/images/vip/v2.png'),
+          title: 2,
+          content: '这是第二张卡片的内容',
+          color:'#A9A4BA'
         },
         {
-            index: 3,
-            tit: '限时9.6折',
-            main: '12个月',
-            amount: 125,
-            befamount: 138
+          image: require('../../../../assets/images/vip/v3.png'),
+          title: 3,
+          content: '这是第三张卡片的内容',
+          color:'#8CD3CF'
         },
         {
-            index: 4,
-            tit: '限时6.3折',
-            main: '限时一周',
-            amount: 6,
-            befamount: 20
-        },
-    ];
-    const privilege = [
-        {
-            index:1,
-            img:require('../../../../assets/images/tup/privil1.png'),
-            text:'身份勋章'
+          image: require('../../../../assets/images/vip/v4.png'),
+          title: 4,
+          content: '这是第三张卡片的内容',
+          color:'#F2A6A4'
         },
         {
-            index:2,
-            img:require('../../../../assets/images/tup/privil2.png'),
-            text:'优先发帖'
+          image: require('../../../../assets/images/vip/v5.png'),
+          title: 5,
+          content: '这是第三张卡片的内容',
+          color:'#EAB08A'
         },
         {
-            index:3,
-            img:require('../../../../assets/images/tup/privil3.png'),
-            text:'修改昵称'
+          image: require('../../../../assets/images/vip/v6.png'),
+          title: 6,
+          content: '这是第三张卡片的内容',
+          color:'#F3C370'
         },
         {
-            index:4,
-            img:require('../../../../assets/images/tup/privil4.png'),
-            text:'私信聊天'
-        },
-        {
-            index:5,
-            img:require('../../../../assets/images/tup/privil5.png'),
-            text:'二次编辑'
-        },
-    ];
-    const privilege2 = [
-        {
-            index:1,
-            img:require('../../../../assets/images/tup/privil6.png'),
-            text:'退货免运费'
-        },
-        {
-            index:2,
-            img:require('../../../../assets/images/tup/privil7.png'),
-            text:'专属客服'
-        },
-        {
-            index:3,
-            img:require('../../../../assets/images/tup/privil8.png'),
-            text:'折上95折'
-        },
-        {
-            index:4,
-            img:require('../../../../assets/images/tup/privil9.png'),
-            text:'运费券'
-        },
-        {
-            index:5,
-            img:require('../../../../assets/images/tup/privil10.png'),
-            text:'优先推荐'
-        },
-    ]
+          image: require('../../../../assets/images/vip/v7.png'),
+          title: 7,
+          content: '这是第三张卡片的内容',
+          color:'#E8C165'
+        }
+      ];
+     
+     
     return (
-        <ImageBackground style={styles.imageBgStyle} source={require('../../../../assets/images/tup/rc1.png')}>
-            <SafeAreaView style={styles.safeView}>
-                <View style={styles.orient}>
-                    <View style={styles.cardposi}>
-                        <View style={styles.opc} />
-                        <View style={{ position: 'absolute', top: 0, left: 0, padding: 8, width: '82%', height: '100%', marginLeft: '8%', borderRadius: 30, flexDirection: 'row' }} >
-                            <View style={{ width: '100%', height: '100%' }}>
-                                <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
-                                    <Image source={require('../../../../assets/images/tup/VIPS.png')} style={{ width: 80, height: 40 }}></Image>
-                                    <Image source={require('../../../../assets/images/tup/VIP-4.png')} style={{ width: 100, height: 45 }}></Image>
-                                </View>
-                                <View style={{ marginTop: 0, marginLeft: 5 }}>
-                                    <Text style={{ color: '#FFBF6B', fontSize: 12 }}>共19项会员特权 | 3项年VIP专属特权</Text>
-                                </View>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                                    <View>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <View style={{ justifyContent: 'center', alignItems: 'center', width: 70, height: 90 }}>
-                                                <Image source={require('../../../../assets/images/tup/huangguan.png')} style={{ width: 50, height: 40, marginBottom: -20, zIndex: 60 }}></Image>
-                                                <Image source={require('../../../../assets/images/tup/dg.jpg')} style={{ width: 60, height: 60, borderRadius: 100, borderWidth: 1, borderColor: '#FABA3C' }}></Image>
-                                            </View>
-                                            <View style={{ marginLeft: 4 }}>
-                                                <Text style={{ color: '#000', fontSize: 16 }}>暂未开通</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-                                    <TouchableOpacity style={{ backgroundColor: '#FABA3C', width: 96, height: 38, borderRadius: 5, marginTop: 16 }}>
-                                        <Text style={{ color: '#fff', fontSize: 14, lineHeight: 38, textAlign: 'center' }}>立即开通</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.main}>
-                        <ScrollView style={{ marginTop: 100, width: '84%' }} showsVerticalScrollIndicator={false}>
-                            <Image source={require('../../../../assets/images/tup/viphy.jpg')} style={{ height: 98, width: '100%' }}></Image>
-                            <ScrollView horizontal={true} style={{height:160}}>
-                                {price.map(item => {
-                                    return (
-                                            <TouchableOpacity style={[styles.hez, item.index == select ? styles.selhez : {}]} key={item.index} onPress={() => setSelect(item.index)}>
-                                                <View style={styles.titdiv}>
-                                                    <Text style={styles.tit}>{item.tit}</Text>
-                                                </View>
-                                                <Text style={styles.maintext}>{item.main}</Text>
-                                                <View>
-                                                    <Text style={styles.amount}>¥ {item.amount}</Text>
-                                                </View>
-                                                <Text style={styles.befamount}>¥{item.befamount} / 月</Text>
-                                            </TouchableOpacity>
-                                    )
-                                })}
-                            </ScrollView>
-                            <View style={{ width:'98%', justifyContent: 'center', height: 70, alignItems: 'center'}}>
-                                    <Text style={{fontSize:12,lineHeight:18}}>到期 {price[select-1].amount}元/月自动续费，随时取消</Text>
-                                    <Text style={{fontSize:11,lineHeight:19}}>点击开通即表示同意《新园会员协议》及《连续订阅协议》</Text>
-                            </View>
-                            <View>
-                                <View style={{flexDirection:'row',alignItems:'center'}}>
-                                    <View style={styles.xian}/>
-                                    <Image source={require('../../../../assets/images/tup/viptq.png')} style={{width:'40%',height:33,marginHorizontal:12}}></Image>
-                                    <View style={styles.xian}/>
-                                </View>
-                            </View>
-                            <View style={{paddingVertical:20}}>
-                                <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',marginVertical:20}}>
-                                   {
-                                    privilege.map(item =>{
-                                        return(
-                                            <View key={item.index}>
-                                                <Image source={item.img} style={{width:40,height:40}}></Image>
-                                                <Text>{item.text}</Text>
-                                            </View>
-                                        )
-                                    })
-                                   }
-                                </View>
-                                <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',marginVertical:20}}>
-                                   {
-                                    privilege2.map(item =>{
-                                        return(
-                                            <View key={item.index} style={{width:64,justifyContent:'center',alignItems:'center'}}>
-                                                <Image source={item.img} style={{width:41,height:40}}></Image>
-                                                <Text style={{color:'#000',fontSize:11,marginVertical:8}}>{item.text}</Text>
-                                            </View>
-                                        )
-                                    })
-                                   }
-                                </View>
-                            </View>
-                        </ScrollView>
-                    </View>
+            <SafeAreaView style={styles.carousel_container}>
+               <View style={styles.headNav}>
+                  <View style={styles.iconHead}>
+                  <Feather name="chevron-left" size={28} color="#FFF" />
+                  </View>
+                  <View style={styles.textHead}>
+                     <Text style={[styles.textHeada,FontSize.f18,Colors.f949]}>NewPark 会员</Text>
+                  </View>
+               </View>
+                <Carousel
+                    sliderWidth={windowWidth}
+                    sliderHeight={windowHeight}
+                    itemWidth={windowWidth -70}
+                    data={cardData}
+                    renderItem={renderItem}
+                    hasParallaxImages={true}
+                />
+                <View style={[Colors.b282,styles.memBody]}>
+                  <View>
+                     <View style={styles.headImgBg}>
+                        <Image style={StylesALL.imgSize} source={require('../../../../assets/images/head/head1.png')}/>
+                     </View>
+                     <View style={styles.headImg}>
+                           <Image borderRadius={30} style={StylesALL.imgSize} source={{uri:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%281%29.jpg'}} />
+                     </View>
+                     <View style={styles.headTitle}>
+                        <Text style={[FontSize.f18,Colors.fWhite,StylesALL.fWeBold]}>
+                           守这云间所爱
+                        </Text>
+                     </View>
+                  </View>
+                  
+                  <View style={styles.bodyText}>
+                     <View style={styles.bodyTextView}>
+                        <Text style={[FontSize.f18,Colors.fWhite,StylesALL.fWeBold]}>
+                        注册日期:
+                        </Text>
+                        <Text style={[FontSize.f14,Colors.f99,styles.flhe]}> 2024.5.22</Text>
+                     </View>
+                     <View style={styles.bodyTextView}>
+                        <Text style={[FontSize.f18,Colors.fWhite,StylesALL.fWeBold]}>
+                        学校:
+                        </Text>
+                        <Text style={[FontSize.f14,Colors.f99,styles.flhe]}> 
+                           湖南长沙理工大学
+                        </Text>
+                     </View>
+                  </View>
                 </View>
+                
             </SafeAreaView>
-        </ImageBackground>
     )
 }
 
 export default MemberServicesView;
 const styles = StyleSheet.create({
     safeView: {
-        width: windowWidth,
-        height: windowHeight,
-        position: 'relative',
-        zIndex: 20
+      
     },
-    imageBgStyle: {
-        width: windowWidth,
-        ...Platform.select({
-            ios: {
-                height: windowHeight - 400,
-            },
-            android: {
-                height: 500,
-            }
-        }),
-        // opacity:0.1,
-        position: 'relative',
-        zindex: -2
-    }
-    ,
-    orient: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        height: windowHeight * 0.8,
-        width: windowWidth
-    },
-    opc: {
-        opacity: 0.2,
-        backgroundColor: '#fff',
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.8,
-                shadowRadius: 2,
-            },
-            android: {
-                elevation: 5,
-            },
-        }),
-        width: '84%',
-        height: '100%',
-        borderRadius: 30
-    },
-    cardposi: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: windowWidth,
-        height: 160,
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 60
-    },
-    main: {
-        position: 'absolute',
-        backgroundColor: '#fff',
-        width: windowWidth,
-        height: '88%',
-        zIndex: 50,
-        bottom: 0,
-        left: 0,
-        borderTopLeftRadius: 60,
-        borderTopRightRadius: 60,
-        alignItems: 'center'
-    },
-    hez: {
-        height: 135,
-        width: 100,
-        backgroundColor: '#fff',
-        borderRadius: 12,
-        marginHorizontal: 6,
-        alignItems: 'center',
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.8,
-                shadowRadius: 2,
-            },
-            android: {
-                elevation: 6
-            },
-        })
-    },
-    tit: {
-        color: '#fff',
-        fontSize: 11,
-        textAlign: 'center',
-        lineHeight: 26
-    },
-    titdiv: {
-        backgroundColor: '#F5A30B',
-        width: '80%',
-        height: 26,
-        borderBottomRightRadius: 12,
-        borderBottomLeftRadius: 12
-    },
-    maintext: {
-        color: '#000',
-        marginVertical: 6,
-        fontSize: 15
-
-    },
-    amount: {
-        color: '#ECB32C',
-        fontSize: 26,
-        fontWeight: 'bold'
-    },
-    befamount: {
-        textDecorationLine: 'line-through',
-        marginTop: 12
-    },
-    selhez: {
-        backgroundColor: '#FAF5E7',
-        borderWidth: 3,
-        borderColor: '#ECB32C'
-    },
-    xian:{
-        height:0.5,
-        width:'28%',
-        backgroundColor:"#ccc",
-
-    }
+    carousel_container: {
+      backgroundColor:'#23232F',
+      paddingTop:'20%',
+      flex:1
+  },
+  item: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      // height: '30%',
+  },
+  imageContainer: {
+      // flex: 1,
+      marginBottom: Platform.select({ ios: 0, android: 1 }),
+      backgroundColor: 'white',
+      borderRadius: 8,
+  },
+  image: {
+      // ...StyleSheet.absoluteFillObject,
+      // resizeMode: 'cover'
+  },
+  headNav:{
+   width:'100%',
+   height: 40,
+   backgroundColor:'',
+   position:'absolute',
+   flexDirection:'row'
+  },
+  iconHead:{
+   position:'absolute',
+   top:5,
+   left:10
+  },
+  textHead:{
+    width:'100%'
+  },
+  textHeada:{
+   textAlign:'center',
+   lineHeight:40
+  },
+  titleView: {
+      position: 'absolute',
+      width: '100%',
+      bottom: -50,
+      left:30
+  },
+  memBody:{
+   position:'absolute',
+   // borderWidth:1,
+   height:150,
+   width:'90%',
+   left:'5%',
+   top:'43%',
+   borderRadius:10,
+   opacity:0.9
+  },
+  headImg:{
+   width:60,
+   height:60,
+   position:'absolute',
+   top:-30,
+   left:20
+  },
+  headImgBg:{
+   width:100,
+   height:100,
+   position:'absolute',
+   top:-55,
+   left:2,
+   zIndex:10
+  },
+  headTitle:{
+   position:'absolute',
+   left:'30%',
+   top:10
+  },
+  bodyText:{
+   position:'absolute',
+   top:'40%',
+   left:'15%'
+  },
+  bodyTextView:{
+   flexDirection:'row'
+  },
+  flhe:{
+   lineHeight:25
+  }
 })
