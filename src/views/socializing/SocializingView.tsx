@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-05-27 09:24:03
+ * @LastEditTime: 2024-05-27 09:30:38
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -20,7 +20,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import { navigate } from '../../config/routs/NavigationContainer';
 import ContactsModul from './components/ContactsModul';
 import MessageModule from './components/MessageModule';
-import ListIndex from './components/ContactsModul';
 const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -77,10 +76,11 @@ const SocializingView = () => {
                 <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>消息</Text></>
               )
             }} />
-            <Tab.Screen name="lsr" component={ListIndex} options={{
+            <Tab.Screen name="lsr" component={ContactsModul} options={{
               tabBarLabel: ({ focused }) => (
                 <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>联系人</Text></>
               )
+
             }}/>
 
           </Tab.Navigator>
@@ -93,27 +93,58 @@ const SocializingView = () => {
     
 
       <View style={[styles.moreModule, more ? null : { display: 'none' }]}>
-
-        {
-          headList.map(item=>{
-            return(
-              <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate(item.rout)}>
+        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
           <View style={styles.itemImageView}>
-            <Image style={styles.itemImage} source={{uri:item.path}} accessibilityLabel='图片' alt="头像"></Image>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片' alt="头像"></Image>
           </View>
           <View style={styles.itemTextView}>
-            <Text allowFontScaling={false} style={styles.itemText}>{item.title}</Text>
+            <Text allowFontScaling={false} style={styles.itemText}>添加好友</Text>
           </View>
         </TouchableOpacity>
-            )
-          })
-        }
-      </View><TouchableOpacity style={[styles.maskLayer, more ? {} : { display: 'none' }]} onPress={() => handleMorePress(more)}>
+        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('Addcomm')}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            <Text allowFontScaling={false} style={styles.itemText}>加入社区</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/wanle.png')} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            <Text allowFontScaling={false} style={styles.itemText}>创建社区</Text>
+          </View>
+        </TouchableOpacity>
+        {/* <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('Apply')}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            <Text style={styles.hytb}>1</Text>
+            <Text allowFontScaling={false} style={styles.itemText}>好友申请</Text>
+          </View>
+        </TouchableOpacity> */}
+        {/* 好友申请的页面跳转 */}
+        {/* onPress={() => navigate('Apply')} */}
+        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('startGroup')}>
+          <View style={styles.itemImageView}>
+            <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片' alt="头像"></Image>
+          </View>
+          <View style={styles.itemTextView}>
+            {/* <Text style={styles.hytb}>1</Text> */}
+            <Text allowFontScaling={false} style={styles.itemText}>创建聊天室</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <TouchableOpacity style={[styles.maskLayer, more ? {} : { display: 'none' }]} onPress={() => handleMorePress(more)}>
       </TouchableOpacity>
 
     </SafeAreaView>
     
   )
+
 }
 export default SocializingView;
 

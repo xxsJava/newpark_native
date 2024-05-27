@@ -6,6 +6,7 @@ import {modifyFriRemark} from '../../../api/imApi/index';
 import {modifyFriRemarkType} from '../../../api/imApi/type';
 import React, { useState, useEffect } from "react";
 import { View, Text, Dimensions, StyleSheet, TextInput,TouchableOpacity } from "react-native";
+import { navigate } from '../../../config/routs/NavigationContainer';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -26,6 +27,13 @@ const Remark = (item:any) => {
         
         const data1 = await modifyFriRemark(params);
         console.log('修改的备注------>',data1);
+        if(data1.errCode == 0) {
+            
+           
+             navigate('FriProfile',data);
+             console.log('我要退出啦-----------------------');
+            
+        }
         
     }
     return <View style={styles.constain}>

@@ -16,7 +16,7 @@ export default {
       title: '消息',
       headerShown: false,
       headerStyle: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'red',
       },
     },
   }

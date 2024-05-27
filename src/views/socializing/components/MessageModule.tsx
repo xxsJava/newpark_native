@@ -125,7 +125,7 @@ const ListIndex: React.FC = () => {
         <View style={styles.itemLabelStyle}>
           <Text allowFontScaling={false} style={styles.labelText}>
             {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
-            {item.textElem.content}
+            {/* {item.textElem.content} */}
           </Text>
         </View>
         

@@ -43,7 +43,7 @@ const FriProfile = (item:any) => {
             <View style={{ width: windowWidth, height: 90, backgroundColor: '#fff', padding: 12, flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
                 <Image source={{uri:peopInfo.friendUser.faceURL.length == 0 ? 'http://xxs18-test.oss-accelerate.aliyuncs.com/2024/05/17/1d4ae439-1444-4fe7-8889-7ac9b4f2c5fc.png': peopInfo.friendUser.faceURL}} style={{ width: 60, height: 60, borderRadius: 5}}></Image>
                 <View style={{ marginLeft: 20 }}>
-                    <Text style={{ color: '#000', fontSize: 17, fontWeight: 'bold', marginBottom: 8 }}>{peopInfo.friendUser.nickname + '(' + peopInfo.remark + ')'}</Text>
+                    <Text style={{ color: '#000', fontSize: 17, fontWeight: 'bold', marginBottom: 8 }}>{ peopInfo.remark ?  peopInfo.friendUser.nickname + '(' + peopInfo.remark + ')' : peopInfo.friendUser.nickname}</Text>
                     <Text style={{}}>{peopInfo.friendUser.userID}</Text>
                 </View>
             </View>

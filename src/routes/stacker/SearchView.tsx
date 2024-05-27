@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View,Text } from 'react-native';
 import MyComponent from '../../views/login/components/ForgetPass/listIndex';
 
 const ForgetPass: React.FC = () => {

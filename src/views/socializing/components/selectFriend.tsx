@@ -5,6 +5,7 @@ import { getFriendListType } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
 import { Toast, useToast } from '@gluestack-ui/themed';
 import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
+import { navigate } from "../../../config/routs/NavigationContainer";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -15,7 +16,10 @@ const SelectFriend = () => {
     // 一个选择框的高度
     const ITEM_HEIGHT = 90;
     const toast = useToast();
-
+    const [select, setSelect] = useState([]);
+    const [selectNum, setSelectNum] = useState([]);
+    const [totals,setTotals] = useState([]);
+  
     type DataItem = any;
     type DataSection = { title: string; data: DataItem[] };
     type AlphabetIndexProps = {
@@ -155,7 +159,7 @@ const SelectFriend = () => {
                 "faceURL": "",
                 "globalRecvMsgOpt": 0,
                 "nickname": "弟弟",
-                "userID": "1548714649"
+                "userID": "15487146491"
             },
             "operatorUserID": "10000",
             "ownerUserID": "10000",
@@ -173,7 +177,7 @@ const SelectFriend = () => {
                 "faceURL": "",
                 "globalRecvMsgOpt": 0,
                 "nickname": "娜娜",
-                "userID": "1548714649"
+                "userID": "15487146492"
             },
             "operatorUserID": "10000",
             "ownerUserID": "10000",
@@ -191,7 +195,7 @@ const SelectFriend = () => {
                 "faceURL": "",
                 "globalRecvMsgOpt": 0,
                 "nickname": "嗷嗷",
-                "userID": "1548714649"
+                "userID": "15487146493"
             },
             "operatorUserID": "10000",
             "ownerUserID": "10000",
@@ -209,7 +213,7 @@ const SelectFriend = () => {
                 "faceURL": "",
                 "globalRecvMsgOpt": 0,
                 "nickname": "大门",
-                "userID": "1548714649"
+                "userID": "15487146494"
             },
             "operatorUserID": "10000",
             "ownerUserID": "10000",
@@ -227,7 +231,7 @@ const SelectFriend = () => {
                 "faceURL": "",
                 "globalRecvMsgOpt": 0,
                 "nickname": "啊奶粉",
-                "userID": "1548714649"
+                "userID": "15487146495"
             },
             "operatorUserID": "10000",
             "ownerUserID": "10000",
@@ -245,7 +249,7 @@ const SelectFriend = () => {
                 "faceURL": "",
                 "globalRecvMsgOpt": 0,
                 "nickname": "安抚",
-                "userID": "1548714649"
+                "userID": "15487146496"
             },
             "operatorUserID": "10000",
             "ownerUserID": "10000",
@@ -263,7 +267,7 @@ const SelectFriend = () => {
                 "faceURL": "",
                 "globalRecvMsgOpt": 0,
                 "nickname": "短裤",
-                "userID": "1548714649"
+                "userID": "15487146497"
             },
             "operatorUserID": "10000",
             "ownerUserID": "10000",
@@ -301,18 +305,65 @@ const SelectFriend = () => {
         setVirtual(getData);
         console.log(virtual, '这个是获得的数据------->', getData[0].data[0].friendUser.nickname);
     }
-    const focus = () => {
-        item.item.select = !item.item.select 
+    const handlePress = (item, userID,total) => {
+        // 在这里处理参数
+        console.log(userID, '请看=================');
+        //加入数组里面没有该元素就加入数组,有的话就从数组里面移除
+        if (select.indexOf(item) == -1) {
+            // push会改变原数组，返回数组长度
+            select.push(item);
+            console.log('我添加了一个元素,现在是', select);
+        } else {
+            // filter不会改变原数组会返回一个新数组
+            // const delVal = select.filter(function (val) {
+            //     return val != item
+            // });
+            // setSelect(delVal);
+            const indexnum = select.indexOf(item);
+            select.splice(indexnum, 1);
+            // select.remove(item);
+            console.log('我删除了一个元素,现在是', select);
+        }
+
+        // selectNum  setSelectNum
+        console.log(item);
+        if (selectNum.indexOf(userID) == -1) {
+            selectNum.push(userID);
+            console.log('我添加了一个元素2,现在是', selectNum);
+        } else {
+            const indexnum2 = selectNum.indexOf(userID);
+            selectNum.splice(indexnum2, 1);
+            console.log('我删除了一个元素2,现在是', selectNum);
+        }
+
+        if(totals.indexOf(total) == -1) {
+            totals.push(total)
+        } else {
+            const totalNum = totals.indexOf(total);
+            totals.splice(totalNum,1);
+        }
+        console.log(totals,'总共的选中数据');
+        
+    };
+   
+    const test2 = () => {
+        console.log(selectNum, '------------------');
+        console.log(select, '=======================');
+        console.log(select.length > 0 , '列表里是否有数据==========',select);
     }
     const template = (item: any) => {
         console.log('传过去的数据----》', item.item);
-
+        // const [img1,setImg1] = useState(true);
+        // const [img2,setImg2] = useState(false)
         return (
-            // <View>
-            <TouchableOpacity style={{ flexDirection: 'row', height: 80, backgroundColor: '#fff', alignItems: 'center', paddingHorizontal: 6, borderBottomWidth: 0.3 }} onPress={focus}>
+            //  onPress={() => handlePress(item.item.friendUser.nickname,item.item.friendUser.userID)}
+            <TouchableOpacity style={{ flexDirection: 'row', height: 80, backgroundColor: '#fff', alignItems: 'center', paddingHorizontal: 6, borderBottomWidth: 0.3 }} onPress={() =>  {handlePress(item.item.friendUser.nickname, item.item.friendUser.userID,item.item); test() } }>
                 <View style={{ marginHorizontal: 8 }}>
-                    <Image source={require('../../../assets/images/tup/dui-2.png')} style={styles.dui}></Image>
-                    <Image source={require('../../../assets/images/tup/dui.png')} style={styles.dui}></Image>
+                    {/* {width:50,height:50} */}
+                    <Image source={require('../../../assets/images/tup/dui-2.png')} style={selectNum.indexOf(item.item.friendUser.userID)==-1 ?styles.dui : {display:'none'}}></Image>
+                    <Image source={require('../../../assets/images/tup/dui.png')} style={selectNum.indexOf(item.item.friendUser.userID)==-1 ? {display:'none'}:styles.dui} ></Image>
+                    {/* {img1 && <Image source={require('../../../assets/images/tup/dui-2.png')} style={styles.dui}></Image>}
+                    {img2 &&  <Image source={require('../../../assets/images/tup/dui.png')} style={styles.dui} ></Image>} */}
                 </View>
                 <View style={{ marginHorizontal: 12 }}>
                     <Image source={{ uri: item.item.friendUser.faceURL.length == 0 ? 'http://xxs18-test.oss-accelerate.aliyuncs.com/2024/05/17/1d4ae439-1444-4fe7-8889-7ac9b4f2c5fc.png' : item.item.friendUser.faceURL }} style={styles.ava}></Image>
@@ -321,7 +372,6 @@ const SelectFriend = () => {
                     <Text style={styles.nicknamezi}>{item.item.remark ? item.item.remark : item.item.friendUser.nickname}</Text>
                 </View>
             </TouchableOpacity>
-            // </View>
         )
     }
     // 头部
@@ -331,19 +381,25 @@ const SelectFriend = () => {
         </View>
 
     );
+        
+    useEffect(() => {
+        test ();
+        test ();
+        test ();
+        console.log('1111');
+    },[])
+    
     return <View style={styles.container}>
         {/* xr */}
-        <TouchableOpacity onPress={test} style={{ width: 90, height: 90, backgroundColor: 'aqua' }}>
-            <Text>我的好友列表</Text>
-        </TouchableOpacity>
         <View style={styles.topDiv}>
             <View style={styles.seachDiv}>
                 <Image source={require('../../../assets/images/tup/sousuo-2.png')} style={{ width: 26, height: 26 }}></Image>
                 <Text style={{ marginLeft: 6, fontSize: 16, color: '#000' }}>搜索好友</Text>
             </View>
         </View>
+      
         {/* <AlphabetIndex sections={listData} onSectionSelect={handleSectionSelect} /> */}
-        <ScrollView style={{ flex: 1, marginTop: 0, marginBottom: 160 }}>
+        <ScrollView style={{ marginTop: 0, marginBottom: 10 }}>
             {/* <ScrollView> */}
             <SectionList
                 // ref={sectionListRef}
@@ -356,10 +412,34 @@ const SelectFriend = () => {
                     return index.toString();
                 }}
                 stickySectionHeadersEnabled={true} />
-
+                
         </ScrollView>
         {/* </ScrollView> */}
-
+        <View style={{ width: windowWidth, backgroundColor: '#fff', minHeight: 60, flexDirection: 'row', alignItems: 'center', marginBottom: 60, justifyContent: 'space-between', paddingHorizontal: 20 }}>
+            <TouchableOpacity>
+                <Text style={{ color:'#3372C3' }}>已选择 ({select.length})</Text>
+                    <View style={select.length > 0 ? {maxHeight:400,flexDirection:'row',width:190,flexWrap:'wrap'}:{display:'none'}}>
+                        {
+                            select.map((val) => {
+                            return(
+                                <View style={{margin:3}}>
+                                    <Text style={{color:'#000'}}>{val}、</Text>
+                                </View>
+                            )
+                            })
+                        }
+                    </View>
+            </TouchableOpacity>
+            <View style={select.length > 0 ? {display:'none'} : [{ width: '40%', height: 40, borderRadius: 6 }, styles.popNull]}>
+                {/* */}
+                <Text style={[{lineHeight: 40, textAlign:'center', fontSize: 15 },select.length > 0 ? {color: '#fff'} : {color: '#8B8B8B'}]}>确定 ( {select.length} / 999 ) </Text>
+            </View>
+            <TouchableOpacity style={ select.length > 0 ? [{ width: '40%', height: 40, borderRadius: 6 }, select.length > 0 ? styles.poples :styles.popNull] : {display:'none'}}  onPress={() =>navigate('CreateGroup',totals)}>
+                {/* */}
+                <Text style={[{ lineHeight: 40, textAlign: 'center', fontSize: 15 },select.length > 0 ? {color: '#fff'} : {color: '#8B8B8B'}]}>确定 ( {select.length} / 999 ) </Text>
+            </TouchableOpacity>
+           
+        </View>
     </View>
 };
 
@@ -384,7 +464,8 @@ const styles = StyleSheet.create({
         height: 60,
         backgroundColor: '#fff',
         paddingHorizontal: 20,
-        marginBottom: 20
+        marginBottom:0,
+        marginTop:6
     },
     indexBarStyle: {
         position: 'absolute',
@@ -429,5 +510,11 @@ const styles = StyleSheet.create({
     nicknamezi: {
         fontSize: 17,
         color: '#000'
+    },
+    popNull: {
+        backgroundColor: '#E0E0E0'
+    },
+    poples:{
+        backgroundColor:'#0088FE'
     }
 });

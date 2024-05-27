@@ -6,6 +6,8 @@
  * @Description: desc
  */
 // 测试选择学校
+import CreateGroup from '../../../views/socializing/components/CreateGroup';
+import NewChatRoom from '../../../views/socializing/components/NewChatRoom';
 import SelectFriend from '../../../views/socializing/components/selectFriend';
 import StartGroup from '../../../views/socializing/components/startGroup';
 import Remark from '../../../views/socializing/components/remark';
@@ -110,6 +112,15 @@ export default {
       title:'学校选择'
     },
   },
+  //  headerTitleAlign: 'center'
+  CreateGroup:{
+    component:CreateGroup,
+    options:{
+      headerTitleAlign:'center',
+      title:'发起群聊',
+      headerShown:true
+    }
+  },
   FriProfile:{
     component:FriProfile,
     options:{
@@ -122,6 +133,13 @@ export default {
     component:StartGroup,
     options:{
       title:''
+    }
+  },
+  NewChatRoom:{
+    component:NewChatRoom,
+    options:{
+      title:'新的聊天室',
+      headerTitleAlign: 'center'
     }
   },
   Myqunzu:{

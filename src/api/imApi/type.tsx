@@ -121,7 +121,13 @@ export type createGroupType = {
     groupType:number,
     needVerification:number,
     lookMemberInfo:number,
-    applyMemberFriend:number
+    applyMemberFriend:number,
+    notificationUserID:string,
+    notificationUpdateTime:number,
+    creatorUserID:string,
+    status:number,
+    memberCount:number,
+    createTime:number
   }
 }
 export type listSessionType = {

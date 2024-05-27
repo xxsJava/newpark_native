@@ -87,10 +87,11 @@ const ListIndex: React.FC = () => {
             </View>
             <View style={styles.itemRight}>
                 <Text style={styles.itemName}>
-                    {item.friendUser.remark != '' ?  item.remark : item.friendUser.nickname}
+                    {item.friendUser.remark ?  item.remark : item.friendUser.nickname}
                 </Text>
                 <View style={styles.itemLabelStyle} />
             </View>
+
         </TouchableOpacity>
     );
 
@@ -273,7 +274,7 @@ const ListIndex: React.FC = () => {
         console.log('又来啦==========');
         
     },[]); // 只在组件挂载时调用一次
-
+    
     return (
         <>
             {/* 这个是索引条 */}
@@ -311,14 +312,14 @@ const ListIndex: React.FC = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('startGroup')}>
+                <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('NewChatRoom')}>
                     <View style={styles.headGroup}>
                         <View style={styles.iconHead}>
                             <Image style={styles.headImg} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png' }} />
                         </View>
                         <View style={styles.bodyContent}>
                             <Text style={styles.conText}>
-                                发起群聊
+                                新的聊天室
                             </Text>
                         </View>
                         <View style={styles.rightIcon}>
