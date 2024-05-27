@@ -5,6 +5,7 @@ import { getFriendListType } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
 import { Toast, useToast } from '@gluestack-ui/themed';
 import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
+import { navigate } from "../../../config/routs/NavigationContainer";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -17,6 +18,7 @@ const SelectFriend = () => {
     const toast = useToast();
     const [select, setSelect] = useState([]);
     const [selectNum, setSelectNum] = useState([]);
+    const [totals,setTotals] = useState([]);
   
     type DataItem = any;
     type DataSection = { title: string; data: DataItem[] };
@@ -303,7 +305,7 @@ const SelectFriend = () => {
         setVirtual(getData);
         console.log(virtual, '这个是获得的数据------->', getData[0].data[0].friendUser.nickname);
     }
-    const handlePress = (item, userID) => {
+    const handlePress = (item, userID,total) => {
         // 在这里处理参数
         console.log(userID, '请看=================');
         //加入数组里面没有该元素就加入数组,有的话就从数组里面移除
@@ -334,9 +336,16 @@ const SelectFriend = () => {
             console.log('我删除了一个元素2,现在是', selectNum);
         }
 
-        console.log(selectNum.indexOf(userID) !== -1);
-
+        if(totals.indexOf(total) == -1) {
+            totals.push(total)
+        } else {
+            const totalNum = totals.indexOf(total);
+            totals.splice(totalNum,1);
+        }
+        console.log(totals,'总共的选中数据');
+        
     };
+   
     const test2 = () => {
         console.log(selectNum, '------------------');
         console.log(select, '=======================');
@@ -344,15 +353,17 @@ const SelectFriend = () => {
     }
     const template = (item: any) => {
         console.log('传过去的数据----》', item.item);
-        const [img1,setImg1] = useState(true);
-        const [img2,setImg2] = useState(false)
+        // const [img1,setImg1] = useState(true);
+        // const [img2,setImg2] = useState(false)
         return (
             //  onPress={() => handlePress(item.item.friendUser.nickname,item.item.friendUser.userID)}
-            <TouchableOpacity style={{ flexDirection: 'row', height: 80, backgroundColor: '#fff', alignItems: 'center', paddingHorizontal: 6, borderBottomWidth: 0.3 }} onPress={() =>  {handlePress(item.item.friendUser.nickname, item.item.friendUser.userID);setImg1(!img1);setImg2(!img2)  } }>
+            <TouchableOpacity style={{ flexDirection: 'row', height: 80, backgroundColor: '#fff', alignItems: 'center', paddingHorizontal: 6, borderBottomWidth: 0.3 }} onPress={() =>  {handlePress(item.item.friendUser.nickname, item.item.friendUser.userID,item.item); test() } }>
                 <View style={{ marginHorizontal: 8 }}>
                     {/* {width:50,height:50} */}
-                    {img1 && <Image source={require('../../../assets/images/tup/dui-2.png')} style={styles.dui}></Image>}
-                    {img2 &&  <Image source={require('../../../assets/images/tup/dui.png')} style={styles.dui} ></Image>}
+                    <Image source={require('../../../assets/images/tup/dui-2.png')} style={selectNum.indexOf(item.item.friendUser.userID)==-1 ?styles.dui : {display:'none'}}></Image>
+                    <Image source={require('../../../assets/images/tup/dui.png')} style={selectNum.indexOf(item.item.friendUser.userID)==-1 ? {display:'none'}:styles.dui} ></Image>
+                    {/* {img1 && <Image source={require('../../../assets/images/tup/dui-2.png')} style={styles.dui}></Image>}
+                    {img2 &&  <Image source={require('../../../assets/images/tup/dui.png')} style={styles.dui} ></Image>} */}
                 </View>
                 <View style={{ marginHorizontal: 12 }}>
                     <Image source={{ uri: item.item.friendUser.faceURL.length == 0 ? 'http://xxs18-test.oss-accelerate.aliyuncs.com/2024/05/17/1d4ae439-1444-4fe7-8889-7ac9b4f2c5fc.png' : item.item.friendUser.faceURL }} style={styles.ava}></Image>
@@ -370,22 +381,23 @@ const SelectFriend = () => {
         </View>
 
     );
-   
+        
+    useEffect(() => {
+        test ();
+        test ();
+        test ();
+        console.log('1111');
+    },[])
     
     return <View style={styles.container}>
         {/* xr */}
-        <TouchableOpacity onPress={test} style={{ width: 90, height: 30, backgroundColor: 'aqua' }} >
-            <Text>展示好友列表</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={test2} style={{ width: 200, height: 30, backgroundColor: 'green' }}>
-            <Text>看选择的数据。。。。。。。</Text>
-        </TouchableOpacity>
         <View style={styles.topDiv}>
             <View style={styles.seachDiv}>
                 <Image source={require('../../../assets/images/tup/sousuo-2.png')} style={{ width: 26, height: 26 }}></Image>
                 <Text style={{ marginLeft: 6, fontSize: 16, color: '#000' }}>搜索好友</Text>
             </View>
         </View>
+      
         {/* <AlphabetIndex sections={listData} onSectionSelect={handleSectionSelect} /> */}
         <ScrollView style={{ marginTop: 0, marginBottom: 10 }}>
             {/* <ScrollView> */}
@@ -400,15 +412,31 @@ const SelectFriend = () => {
                     return index.toString();
                 }}
                 stickySectionHeadersEnabled={true} />
+                
         </ScrollView>
         {/* </ScrollView> */}
         <View style={{ width: windowWidth, backgroundColor: '#fff', minHeight: 60, flexDirection: 'row', alignItems: 'center', marginBottom: 60, justifyContent: 'space-between', paddingHorizontal: 20 }}>
             <TouchableOpacity>
-                <Text style={{ color:'#3372C3' }}>已选择 (0)</Text>
-
+                <Text style={{ color:'#3372C3' }}>已选择 ({select.length})</Text>
+                    <View style={select.length > 0 ? {maxHeight:400,flexDirection:'row',width:190,flexWrap:'wrap'}:{display:'none'}}>
+                        {
+                            select.map((val) => {
+                            return(
+                                <View style={{margin:3}}>
+                                    <Text style={{color:'#000'}}>{val}、</Text>
+                                </View>
+                            )
+                            })
+                        }
+                    </View>
             </TouchableOpacity>
-            <TouchableOpacity style={[{ width: '40%', height: 40, borderRadius: 6 }, select.length > 0 ? styles.poples :styles.popNull]}>
-                <Text style={{ color: '#8B8B8B', lineHeight: 40, textAlign: 'center', fontSize: 15 }}>确定 ( 0 / 999 )</Text>
+            <View style={select.length > 0 ? {display:'none'} : [{ width: '40%', height: 40, borderRadius: 6 }, styles.popNull]}>
+                {/* */}
+                <Text style={[{lineHeight: 40, textAlign:'center', fontSize: 15 },select.length > 0 ? {color: '#fff'} : {color: '#8B8B8B'}]}>确定 ( {select.length} / 999 ) </Text>
+            </View>
+            <TouchableOpacity style={ select.length > 0 ? [{ width: '40%', height: 40, borderRadius: 6 }, select.length > 0 ? styles.poples :styles.popNull] : {display:'none'}}  onPress={() =>navigate('CreateGroup',totals)}>
+                {/* */}
+                <Text style={[{ lineHeight: 40, textAlign: 'center', fontSize: 15 },select.length > 0 ? {color: '#fff'} : {color: '#8B8B8B'}]}>确定 ( {select.length} / 999 ) </Text>
             </TouchableOpacity>
            
         </View>
@@ -436,7 +464,8 @@ const styles = StyleSheet.create({
         height: 60,
         backgroundColor: '#fff',
         paddingHorizontal: 20,
-        marginBottom: 10
+        marginBottom:0,
+        marginTop:6
     },
     indexBarStyle: {
         position: 'absolute',
