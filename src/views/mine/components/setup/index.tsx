@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, SectionList, StyleSheet, Text, View } from "react-native";
+import { Dimensions, SectionList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import { loginOutApi } from "../../../../api/sys/lgoin";
 import HeadNav from "../../../../components/Nav/HeadNav";
@@ -42,28 +42,28 @@ const logOut = async () => {
 const DATA = [
     {
       title: '个人',
-      data: ['个人资料', '地址管理', '账号与安全'],
+      data: [{title:'个人资料',id:'1'},{title: '地址管理',id:'2'}, {title:'账号与安全',id:'3'}],
     },
     {
       title: '交易',
-      data: ['支付方式', '收款方式', '微信收款提现'],
+      data: [{title:'支付方式',id:'4'}, {title:'收款方式',id:'5'}, {title:'微信收款提现',id:'6'}],
     },
     {
       title: '通用',
-      data: ['消息通知', '图片视频', '清除缓存'],
+      data: [{title:'消息通知',id:'7'}, {title:'图片视频',id:'8'}, {title:'清除缓存',id:'9'}],
     },
     {
       title: '隐私',
-      data: ['隐私设置', '黑名单'],
+      data: [{title:'隐私设置',id:'10'}, {title:'黑名单',id:'11'}],
     },{
         title: '关于',
-        data: ['关于New Park']
+        data: [{title:'关于New Park',id:'12'}]
       },{
         title: '',
-        data: ['退出登录'],
+        data: [{title:'退出登录',id:'13',fun:logOut}],
       },{
         title: '',
-        data: [''],
+        data: [{title:''}],
       }
   ];
 
@@ -172,13 +172,8 @@ export default class SetUp extends Component {
 
                     <SectionList
                         sections={DATA}
-                        keyExtractor={(item, index) => item + index}
-                        renderItem={({item}) => (
-                            <View style={styles.item}>
-                                <Text style={styles.title}>{item}</Text>
-                                <Feather style={styles.icon} name="chevron-right" size={18} color="#dbdbdb" />
-                            </View>
-                        )}
+                        keyExtractor={(item, index) => item.title}
+                        renderItem={renderItem}
                         renderSectionHeader={({section: {title}}) => (
                             <Text style={styles.header}>{title}</Text>
                         )}
@@ -187,6 +182,17 @@ export default class SetUp extends Component {
             </View>
         )
     }
+}
+
+const renderItem = ({item}:any) => {
+    return(
+        <TouchableOpacity  activeOpacity={0.4} onPress={item.fun}>
+            <View style={styles.item}>
+                <Text style={styles.title}>{item.title}</Text>
+                <Feather style={styles.icon} name="chevron-right" size={18} color="#dbdbdb" />
+            </View>
+        </TouchableOpacity>
+    )
 }
 
 const styles = StyleSheet.create({

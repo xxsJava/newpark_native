@@ -37,17 +37,17 @@ const typeMenu = [
   {
     title:'快速交友',
     path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ksjy.png',
-    rout:''
+    rout:'FastDating'
   },
   {
-    title:'热门聊天室',
-    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/rmlts.png',
-    rout:''
+    title:'活动',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/hd.png',
+    rout:'HotChatRoom'
   },
   {
     title:'快速接单',
     path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/ksjd.png',
-    rout:''
+    rout:'FastTakeOrders'
   },
   {
     title:'排行榜',

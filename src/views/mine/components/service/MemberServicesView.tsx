@@ -1,10 +1,11 @@
 /*
  * @Author: xxs
  * @Date: 2024-05-15 18:02:59
- * @LastEditTime: 2024-05-22 18:35:42
+ * @LastEditTime: 2024-05-27 10:20:34
  * @FilePath: \newpark_native\src\views\mine\components\service\MemberServicesView.tsx
  * @Description: desc
  */
+import { Button, ButtonText } from '@gluestack-ui/themed';
 import React from 'react';
 import { Dimensions, Image, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
@@ -139,6 +140,11 @@ const MemberServicesView = () => {
                   </View>
                 </View>
                 
+                <View style={styles.vipSty}>
+                  <Button size="md" variant="solid" borderRadius={50} action="primary" isDisabled={false} isFocusVisible={false} >
+                     <ButtonText>立即开通 9.9/月</ButtonText>
+                  </Button>
+                </View>
             </SafeAreaView>
     )
 }
@@ -233,5 +239,11 @@ const styles = StyleSheet.create({
   },
   flhe:{
    lineHeight:25
+  },
+  vipSty:{
+   width:'80%',
+   position:'absolute',
+   left:'10%',
+   bottom:'5%'
   }
 })

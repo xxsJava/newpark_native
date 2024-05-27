@@ -110,7 +110,6 @@ const ListIndex: React.FC = () => {
           <Image
             style={styles.avatar}
             source={{
-              //https://new-by-video.oss-cn-beijing.aliyuncs.com/static/group.png
               uri: item.stateMsg === 2 ? item.faceURL==''?'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP-C.jpg':item.faceURL : item.senderFaceUrl,
             }}
             accessibilityLabel='图片'
@@ -125,7 +124,7 @@ const ListIndex: React.FC = () => {
         <View style={styles.itemLabelStyle}>
           <Text allowFontScaling={false} style={styles.labelText}>
             {item.stateMsg === 2 ? item.senderNickname + ':' : ''}
-            {/* {item.textElem.content} */}
+            {item.textElem.content}
           </Text>
         </View>
         

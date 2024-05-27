@@ -4,428 +4,310 @@
  * 修改时间:2024/4/15 16:10:11
  */
 
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import React from "react";
-import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import HeadNav from "../../../../components/Nav/HeadNav";
+import { Dimensions, FlatList, Image, ImageBackground, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import Feather from "react-native-vector-icons/Feather";
+import StylesALL from "../../../../styles";
+import Colors from "../../../../styles/Color";
+import FontSize from "../../../../styles/FontSize";
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const Tab = createMaterialTopTabNavigator();
+const batingData = [
+    {
+        nikeName:'咖啡牛',
+        money:'599',
+        pmA:32,
+        uid:'10001',
+        path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%2810%29.jpg'
+    },
+    {
+        nikeName:'野猪亨利',
+        money:'400',
+        pmA:31,
+        uid:'10002',
+        path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%2811%29.jpg'
+    },
+    {
+        nikeName:'小牛',
+        money:'399',
+        pmA:29,
+        uid:'10003',
+        path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%283%29.jpg'
+    },
+    {
+        nikeName:'亨利',
+        money:'398',
+        pmA:28,
+        uid:'10004',
+        path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%284%29.jpg'
+    },
+    {
+        nikeName:'杰克',
+        money:'300',
+        pmA:26,
+        uid:'10005',
+        path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%285%29.jpg'
+    },
+    {
+        nikeName:'小王',
+        money:'299',
+        pmA:20,
+        uid:'10006',
+        path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%287%29.jpg'
+    },
+    {
+        nikeName:'小Fly',
+        money:'298',
+        pmA:10,
+        uid:'10007',
+        path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%286%29.jpg'
+    },
+    {
+        nikeName:'呆瓜',
+        money:'199',
+        pmA:1,
+        uid:'10008',
+        path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%289%29.jpg'
+    }
+]
 
-const ranking = [
-    {
-        index: 1,
-        name: '奇奇',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1009,
-        orderTaknum: 321
-    },
-    {
-        index: 2,
-        name: '怪怪',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1010,
-        orderTaknum: 1
-    },
-    {
-        index: 3,
-        name: '可乐',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3
-    },
-    {
-        index: 4,
-        name: '玛卡巴卡',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1012,
-        orderTaknum: 322
-    },
-    {
-        index: 5,
-        name: '格林屠夫',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1013,
-        orderTaknum: 320
-    },
-    {
-        index: 6,
-        name: '用户昵称七个字',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1014,
-        orderTaknum: 3212
-    },
-    {
-        index: 7,
-        name: '苹果',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1015,
-        orderTaknum: 3219
-    },
-    {
-        index: 8,
-        name: '西瓜',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 327
-    },
-    {
-        index: 9,
-        name: '菠萝',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3210
-    },
-];
-const ranking2 = [
-    {
-        index: 1,
-        name: '奇奇',
-        img: require('../../../../assets/images/tup/erji2.png'),
-        uid: 1011,
-        orderTaknum: 3215
-    },
-    {
-        index: 2,
-        name: '怪怪',
-        img: require('../../../../assets/images/tup/erji2.png'),
-        uid: 1011,
-        orderTaknum: 3214
-    },
-    {
-        index: 3,
-        name: '可乐',
-        img: require('../../../../assets/images/tup/erji2.png'),
-        uid: 1011,
-        orderTaknum: 3213
-    },
-    {
-        index: 4,
-        name: '玛卡巴卡',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3210
-    },
-    {
-        index: 5,
-        name: '格林屠夫',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 32143
-    },
-    {
-        index: 6,
-        name: '用户昵称七个字',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 32149
-    },
-    {
-        index: 7,
-        name: '苹果',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 32148
-    },
-    {
-        index: 8,
-        name: '西瓜',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3219
-    },
-    {
-        index: 9,
-        name: '菠萝',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3216
-    },
-];
-const ranking3 = [
-    {
-        index: 1,
-        name: '奇奇',
-        img: require('../../../../assets/images/tup/jia.png'),
-        uid: 1011,
-        orderTaknum: 3214
-    },
-    {
-        index: 2,
-        name: '怪怪',
-        img: require('../../../../assets/images/tup/bgt.jpg'),
-        uid: 1011,
-        orderTaknum: 3214
-    },
-    {
-        index: 3,
-        name: '可乐',
-        img: require('../../../../assets/images/tup/hua.png'),
-        uid: 1011,
-        orderTaknum: 3214
-    },
-    {
-        index: 4,
-        name: '玛卡巴卡',
-        img: require('../../../../assets/images/tup/dn.png'),
-        uid: 1011,
-        orderTaknum: 3219
-    },
-    {
-        index: 5,
-        name: '格林屠夫',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3218
-    },
-    {
-        index: 6,
-        name: '用户昵称七个字',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3217
-    },
-    {
-        index: 7,
-        name: '苹果',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3215
-    },
-    {
-        index: 8,
-        name: '西瓜',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1011,
-        orderTaknum: 3218
-    },
-    {
-        index: 9,
-        name: '菠萝',
-        img: require('../../../../assets/images/tup/luo.png'),
-        uid: 1010,
-        orderTaknum: 32124
-    },
-];
+const batingItem = ({item}:any) =>{
+    return(
+<View style={styles.bodyListView}>
+                    <View style={styles.headImg}>
+                        <Image style={[StylesALL.imgSize,styles.headImgR]} source={{uri:item.path}} />
+                    </View>
+                    <View style={styles.headTitle}>
+                        <Text style={[Colors.fWhite,FontSize.f16]}>{item.nikeName}</Text>
+                        <Text style={[Colors.f99,FontSize.f14]}>${item.money}</Text>
+                    </View>
+
+                    <View style={styles.iconView}>
+                        <View style={styles.imgIcon}>
+                            <Image style={StylesALL.imgSize} source={require('../../../../assets/images/bg/ss.png')}/>
+                        </View>
+                        <View style={styles.rTopTitle}>
+                            <Text style={[styles.rTitleText,Colors.fWhite,FontSize.f14]}>{item.pmA}</Text>
+                        </View>
+                    </View>
+                </View>
+    )
+}
 
 const LeaderBoard = () => {
     const [order, setOrder] = React.useState(1);
     return (
-        <View style={styles.container}>
-            <HeadNav props={{title:'排行榜',navPath:''}} />
-            <View style={[styles.zhong, styles.heng, { alignItems: 'flex-start', borderWidth: 1, borderRadius: 20, width: '60%', marginLeft: '20%', marginTop: 8, justifyContent: 'space-between', height: 40 }]}>
-                <TouchableOpacity style={order == 1 ? styles.select : styles.selk} onPress={() => { setOrder(1) }}>
-                    <Text style={order == 1 ? styles.text : styles.textk}>日榜</Text>
-                </TouchableOpacity >
-                <TouchableOpacity style={order == 2 ? styles.select : styles.selk} onPress={() => { setOrder(2) }}>
-                    <Text style={order == 2 ? styles.text : styles.textk}>周榜</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={order == 3 ? styles.select : styles.selk} onPress={() => { setOrder(3) }
-                }>
-                    <Text style={order == 3 ? styles.text : styles.textk}>月榜</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.zhong}>
-                <View style={styles.tx}>
-                    <Image source={require('../../../../assets/images/tup/ppy.png')} style={styles.ava}></Image>
-                    <Image source={require('../../../../assets/images/Favorite.png')} style={styles.aixin}></Image>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.headView}>
+                <View style={styles.headStyIcon}>
+                    <Feather name="chevron-left" size={28} color="#fff" />
                 </View>
-                <Text style={{ color: '#000', fontSize: 17 }}>奇奇</Text>
+                <View><Text style={[FontSize.f18,Colors.fWhite,styles.fLineH]}>排行榜</Text></View>
             </View>
-            <View style={styles.wmkt}>
-                <View style={styles.mtk}>
-                    <View style={{ marginLeft: 12, marginVertical: 8 }}>
-                        <Text style={{ fontSize: 18, color: '#000' }}>接单大王</Text>
-                    </View>
-                    {/* 日榜 */}
-                    <ScrollView style={order == 1 ? styles.smmtk : { display: 'none' }}>
-                        {
-                            ranking.map(item => {
-                                return (
-                                    <View style={[styles.div, item.index == 1 ? { backgroundColor: '#FEFA83' } : {}, item.index == 2 ? { backgroundColor: '#D1FAFB' } : {}, item.index == 3 ? { backgroundColor: '#F5C6B8' } : {},]} key={item.index}>
-                                        <View>
-                                            <Image source={require('../../../../assets/images/tup/NO.1(1).png')} style={item.index == 1 ? styles.medals : { display: 'none' }}></Image>
-                                            <Image source={require('../../../../assets/images/tup/NO.2(1).png')} style={item.index == 2 ? styles.medals : { display: 'none' }}></Image>
-                                            <Image source={require('../../../../assets/images/tup/NO.3(1).png')} style={item.index == 3 ? styles.medals : { display: 'none' }}></Image>
-                                            <View style={(item.index != 1 && item.index != 2 && item.index != 3) ? styles.medalsd : { display: 'none' }}>
-                                                <Text style={{ fontSize: 27, fontWeight: 'bold', textAlign: 'center', lineHeight: 35 }}>{item.index}</Text>
-                                            </View>
-                                        </View>
-                                        <View style={{ borderWidth: 1, borderRadius: 920, justifyContent: 'center', alignItems: 'center', height: 60, width: 60, marginHorizontal: 80 }}>
-                                            <Image source={item.img} style={{ width: 40, height: 40 }}></Image>
-                                        </View>
-                                        <Text style={{ fontSize: 17, color: '#000', lineHeight: 60 }}>{item.name}</Text>
-                                    </View>
-                                )
-                            })
-                        }
-                    </ScrollView>
-
-                    {/* 周榜 */}
-                    <ScrollView style={order == 2 ? styles.smmtk : { display: 'none' }}>
-                        {
-                            ranking2.map(item => {
-                                return (
-                                    <View style={[styles.div, item.index == 1 ? { backgroundColor: '#FEFA83' } : {}, item.index == 2 ? { backgroundColor: '#D1FAFB' } : {}, item.index == 3 ? { backgroundColor: '#F5C6B8' } : {}, {}]} key={item.index}>
-                                        <View>
-                                            <Image source={require('../../../../assets/images/tup/NO.1(1).png')} style={item.index == 1 ? styles.medals : { display: 'none' }}></Image>
-                                            <Image source={require('../../../../assets/images/tup/NO.2(1).png')} style={item.index == 2 ? styles.medals : { display: 'none' }}></Image>
-                                            <Image source={require('../../../../assets/images/tup/NO.3(1).png')} style={item.index == 3 ? styles.medals : { display: 'none' }}></Image>
-                                            <View style={(item.index != 1 && item.index != 2 && item.index != 3) ? styles.medalsd : { display: 'none' }}>
-                                                <Text style={{ fontSize: 27, fontWeight: 'bold', textAlign: 'center', lineHeight: 35 }}>{item.index}</Text>
-                                            </View>
-                                        </View>
-                                        <View style={{ borderWidth: 1, borderRadius: 920, justifyContent: 'center', alignItems: 'center', height: 60, width: 60, marginHorizontal: 40 }}>
-                                            <Image source={item.img} style={{ width: 40, height: 40 }}></Image>
-                                        </View>
-                                        <View style={{ width: 90 }}>
-                                            <Text style={{ fontSize: 15, color: '#000', lineHeight: 30 }} ellipsizeMode={"tail"} numberOfLines={1}>{item.name}</Text>
-                                            {/* <Text style={{ fontSize: 17, color: '#000', lineHeight: 20 }}>{item.uid}</Text> */}
-                                        </View>
-                                        <View style={{ justifyContent: 'center' }}>
-                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                <Image source={require('../../../../assets/images/tup/jifen.png')} style={item.index == 1 ? { display: 'none' } : { width: 30, height: 26, marginRight: 6 }}></Image>
-                                                <Text style={item.index == 1 ? { display: 'none' } : { color: '#000', lineHeight: 60 }}>{item.orderTaknum}</Text>
-                                            </View>
-                                            {/* 当榜单是第一的时候就会不显示接单的数量 */}
-                                            <View>
-                                                <Image source={require('../../../../assets/images/tup/dashenrenzheng_iconx.png')} style={item.index == 1 ? { width: 86, height: 31 } : { display: 'none' }} />
-                                                <Text style={item.index == 1 ? { color: '#000', lineHeight: 60 } : { display: 'none' }}>{item.orderTaknum}</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-                                )
-                            })
-                        }
-                    </ScrollView>
-                    {/* 月榜 */}
-                    <ScrollView style={order == 3 ? styles.smmtk : { display: 'none' }}>
-                        {
-                            ranking3.map(item => {
-                                return (
-                                    <View style={[styles.div, item.index == 1 ? { backgroundColor: '#FEFA83' } : {}, item.index == 2 ? { backgroundColor: '#D1FAFB' } : {}, item.index == 3 ? { backgroundColor: '#F5C6B8' } : {},]} key={item.index}>
-                                        <View>
-                                            <Image source={require('../../../../assets/images/tup/NO.1(1).png')} style={item.index == 1 ? styles.medals : { display: 'none' }}></Image>
-                                            <Image source={require('../../../../assets/images/tup/NO.2(1).png')} style={item.index == 2 ? styles.medals : { display: 'none' }}></Image>
-                                            <Image source={require('../../../../assets/images/tup/NO.3(1).png')} style={item.index == 3 ? styles.medals : { display: 'none' }}></Image>
-                                            <View style={(item.index != 1 && item.index != 2 && item.index != 3) ? styles.medalsd : { display: 'none' }}>
-                                                <Text style={{ fontSize: 27, fontWeight: 'bold', textAlign: 'center', lineHeight: 35 }}>{item.index}</Text>
-                                            </View>
-                                        </View>
-                                        <View style={{ borderWidth: 1, borderRadius: 920, justifyContent: 'center', alignItems: 'center', height: 60, width: 60, marginHorizontal: 80 }}>
-                                            <Image source={item.img} style={{ width: 40, height: 40 }}></Image>
-                                        </View>
-                                        <View>
-                                            <Text style={{ fontSize: 17, color: '#000', lineHeight: 60 }}>{item.name}</Text>
-                                        </View>
-
-                                    </View>
-                                )
-                            })
-                        }
-                    </ScrollView>
-                </View>
-
-            </View>
-        </View>
+            <Tab.Navigator
+            style={{ backgroundColor: '#191B1F' }}
+            screenOptions={{
+                lazy: true,
+                tabBarPressColor: '#000',
+                tabBarStyle: styles.tabParent,
+                animationEnabled: true,
+                tabBarIndicatorStyle: {
+                    width: 0,
+                },
+                tabBarLabelStyle: { fontSize: 12, fontWeight: '600' ,color:'#fff'}
+            }}>
+                <Tab.Screen name="周" component={batingView} />
+                <Tab.Screen name="月" component={batingView} />
+                <Tab.Screen name="季" component={batingView} />
+            </Tab.Navigator>
+        </SafeAreaView>
     )
 
 };
+
+const batingView = () => {
+    return(
+        <><View style={styles.bodyLeader}>
+            <ImageBackground style={StylesALL.imgSize} source={require('../../../../assets/images/bg/phb.png')}>
+
+                <View style={styles.top1}>
+                    <View style={[styles.topImgSize]}>
+                        <Image style={[StylesALL.imgSize, styles.top1Img, styles.topImgR]} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%281%29.jpg' }} />
+                    </View>
+                    <View>
+                        <Text style={[FontSize.f16, Colors.fWhite, styles.topText]}>Mike</Text>
+                    </View>
+                    <View>
+                        <Text style={[FontSize.f14, Colors.fBF, styles.topText]}>$1200</Text>
+                    </View>
+                </View>
+
+                <View style={styles.top2}>
+                    <View style={[styles.topImgSizeA]}>
+                        <Image style={[StylesALL.imgSize, styles.top2Img, styles.topImgR]} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/55093421-871c-43c7-803f-1fe23fced837.jpg' }} />
+                    </View>
+                    <View>
+                        <Text style={[FontSize.f16, Colors.fWhite, styles.topText]}>小学牛</Text>
+                    </View>
+                    <View>
+                        <Text style={[FontSize.f14, Colors.fC44, styles.topText]}>$1100</Text>
+                    </View>
+                </View>
+
+                <View style={styles.top3}>
+                    <View style={[styles.topImgSizeA]}>
+                        <Image style={[StylesALL.imgSize, styles.top3Img, styles.topImgR]} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/2023/11/29/OIP%20%282%29.jpg' }} />
+                    </View>
+                    <View>
+                        <Text style={[FontSize.f16, Colors.fWhite, styles.topText]}>咖啡</Text>
+                    </View>
+                    <View>
+                        <Text style={[FontSize.f14, Colors.fEC, styles.topText]}>$900</Text>
+                    </View>
+                </View>
+            </ImageBackground>
+        </View><View style={styles.bodyList}>
+                <View style={styles.bodyTitle}>
+                    <Text style={[FontSize.f18, Colors.fWhite]}>校园新星</Text>
+                </View>
+
+                <FlatList
+                    data={batingData}
+                    renderItem={batingItem}
+                    keyExtractor={item => item.uid} />
+            </View>
+        </>
+    )
+}
+
 export default LeaderBoard;
 
 const styles = StyleSheet.create({
     container: {
-        width: windowWidth,
-        height: windowHeight,
-        backgroundColor: '#FEFA83',
-
+        flex:1,
+        backgroundColor: '#191B1F',
     },
-    zhong: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 30
+    headView:{
+        height: 40,
+        // borderWidth:1,
+        flexDirection:'row'
     },
-    heng: {
-        flexDirection: 'row'
+    headStyIcon:{
+        width:40,
+        justifyContent:'center',
+        marginLeft:20
     },
-    ava: {
-        width: 70,
-        height: 70
+    fLineH:{
+        lineHeight:35
     },
-    aixin: {
-        position: 'absolute',
-        width: 20,
-        height: 20,
-        bottom: 0,
-        right: 0
+    bodyHeadView:{
+        borderWidth:1,
+        // height:80
     },
-    tx: {
-        position: 'relative',
-        borderRadius: 90,
-        backgroundColor: '#fff',
-        width: 80,
+    bodyLeader:{
+        height:200,
+        backgroundColor: '#191B1F'
+    },
+    topImgSize:{
+        width:90,
+        height:90,
+    },
+    topImgSizeA:{
+        width:70,
+        height:70,
+    },
+    topImgR:{
+        borderRadius:50,
+        borderWidth:2
+    },
+    top1:{
+        position:'absolute',
+        left:'38.5%'
+    },
+    top1Img:{
+        borderColor:'#A57EEF',
+        
+    },
+    top2:{
+        position:'absolute',
+        top:60,
+        left:40
+    },
+    top2Img:{
+        borderColor:'#D56770',
+    },
+    top3:{
+        position:'absolute',
+        top:60,
+        right:40
+    },
+    top3Img:{
+        borderColor:'#EE803A',
+    },
+    topText:{
+        textAlign:'center',
+        marginTop:10
+    },
+    bodyList:{
+        flex:1,
+        backgroundColor: '#191B1F',
+        paddingTop:20
+    },
+    bodyListView:{
+        width:'90%',
         height: 80,
-        alignItems: 'center',
-        justifyContent: 'center'
+        marginLeft:'5%',
+        backgroundColor:'#2E3034',
+        borderRadius:15,
+        flexDirection:'row',
+        marginBottom: 20
     },
-    wmkt: {
-        position: 'absolute',
-        height: windowHeight * 0.6,
-        width: windowWidth,
-        bottom: 0
+    bodyTitle:{
+        marginLeft:20,
+        marginBottom:10
     },
-    mtk: {
-        backgroundColor: '#FAF5E7',
-        paddingVertical: 20,
-        borderRadius: 30,
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        width: '100%',
-        paddingBottom: 80
-
+    headImg:{
+        width: 50,
+        height: 50,
+        marginLeft:20,
+        marginTop:15
     },
-    div: {
-        padding: 8,
-        flexDirection: 'row',
-        height: 70,
-        alignItems: 'center'
+    headImgR:{
+        borderRadius:50
     },
-    smmtk: {
-        height: 340
+    headTitle:{
+        marginTop:15,
+        marginLeft:15
     },
-    medals: {
-        width: 35,
-        height: 35
+    imgIcon:{
+        width:16,
+        height:10
     },
-    medalsd: {
-        width: 35,
-        height: 35
+    iconView:{
+        position:'absolute',
+        right:30,
+        top:35,
+        flexDirection:'row'
     },
-    select: {
-        backgroundColor: '#FAF5E7',
-        borderWidth: 0.6,
-        height: '100%',
-        flex: 1,
-        borderRadius: 90,
-        borderEndWidth: 0.6
+    rTopTitle:{
+        width:30,
+        height:30,
+        borderRadius:40,
+        borderWidth:1,
+        borderColor:'#fff',
+        position:'relative',
+        top:-10,
+        left: 10
     },
-    selk: {
-        flex: 1,
-
+    rTitleText:{
+        lineHeight:25,
+        textAlign:'center'
     },
-    textk: {
-        textAlign: 'center',
-        fontSize: 16,
-        color: '#000',
-        // fontWeight:'bold',
-        lineHeight: 40
-    },
-    text: {
-        textAlign: 'center',
-        fontSize: 16,
-        color: '#FFBF6B',
-        // fontWeight:'bold',
-        lineHeight: 40
+    tabParent:{
+        backgroundColor: '',
+        // width:'15%'
     }
-
-
 })

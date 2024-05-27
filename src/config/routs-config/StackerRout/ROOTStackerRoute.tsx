@@ -1,16 +1,11 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
- * @LastEditTime: 2024-05-17 10:32:50
+ * @LastEditTime: 2024-05-27 10:24:30
  * @FilePath: \newpark_native\src\config\routs-config\StackerRout\ROOTStackerRoute.tsx
  * @Description: desc
  */
 // 测试选择学校
-import CreateGroup from '../../../views/socializing/components/CreateGroup';
-import NewChatRoom from '../../../views/socializing/components/NewChatRoom';
-import SelectFriend from '../../../views/socializing/components/selectFriend';
-import StartGroup from '../../../views/socializing/components/startGroup';
-import Remark from '../../../views/socializing/components/remark';
 import MainMess from '../../../components/Bell/MainMess';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
@@ -28,6 +23,9 @@ import JiaoyiData from '../../../views/home/components/commodity/JiaoyiData';
 import RewardDetails from '../../../views/home/components/helping/RewardDetails';
 import TakeOrderPart from '../../../views/home/components/helping/TakeOrderPart';
 import HelpCircleView from '../../../views/home/components/helping/index';
+import FastDating from '../../../views/home/components/typeComponents/FastDating';
+import FastTakeOrders from '../../../views/home/components/typeComponents/FastTakeOrders';
+import HotChatRoom from '../../../views/home/components/typeComponents/HotChatRoom';
 import DetailsView from '../../../views/home/page/DetailsView';
 import PostDetails from '../../../views/home/page/PostDetails';
 import ProductChat from '../../../views/home/page/ProductChat';
@@ -82,7 +80,9 @@ import AddPeople from '../../../views/socializing/add/people';
 import GroupChat from '../../../views/socializing/check/GroupChat';
 import GroupMessage from '../../../views/socializing/check/GroupMessage';
 import CheckView from '../../../views/socializing/check/index';
+import CreateGroup from '../../../views/socializing/components/CreateGroup';
 import FriProfile from '../../../views/socializing/components/Fripiofile';
+import NewChatRoom from '../../../views/socializing/components/NewChatRoom';
 import ObjCard from '../../../views/socializing/components/ObjCard';
 import SearchView from '../../../views/socializing/components/SearchView';
 import Myqunzu from '../../../views/socializing/components/contact/Myqunzu';
@@ -90,6 +90,9 @@ import MyqunzuSeach from '../../../views/socializing/components/contact/MyqunzuS
 import CreateCommunity from '../../../views/socializing/components/more/CreateCommunity';
 import MyGoroup from '../../../views/socializing/components/myGroup';
 import MyCommunity from '../../../views/socializing/components/page/MyCommunity';
+import Remark from '../../../views/socializing/components/remark';
+import SelectFriend from '../../../views/socializing/components/selectFriend';
+import StartGroup from '../../../views/socializing/components/startGroup';
 /*
  * @Author: xxs
  * @Date: 2023-10-31 14:48:55
@@ -690,6 +693,27 @@ export default {
       headerStyle: {
         backgroundColor: '#FFFFFF',
       },
+    }
+  },
+  FastDating:{
+    component: FastDating,
+    options:{
+      title: '快速交友',
+      headerShown: false
+    }
+  },
+  FastTakeOrders:{
+    component: FastTakeOrders,
+    options:{
+      title: '快速接单',
+      headerShown: false
+    }
+  },
+  HotChatRoom:{
+    component: HotChatRoom,
+    options:{
+      title: '快速接单',
+      headerShown: false
     }
   }
 };
