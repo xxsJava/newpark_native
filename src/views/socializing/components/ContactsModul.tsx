@@ -62,6 +62,7 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
 };
 
 const ListIndex = () => {
+  
   const toast = useToast();
 
   //选中的索引值
@@ -323,7 +324,9 @@ const listData = async () => {
         stickySectionHeadersEnabled={true} />
     </ScrollView></>
   );
-}};
+}
+
+};
 
 export default ListIndex;
 

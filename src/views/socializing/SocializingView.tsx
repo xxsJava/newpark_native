@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-05-22 13:56:06
+ * @LastEditTime: 2024-05-27 09:24:03
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -20,33 +20,10 @@ import Feather from 'react-native-vector-icons/Feather';
 import { navigate } from '../../config/routs/NavigationContainer';
 import ContactsModul from './components/ContactsModul';
 import MessageModule from './components/MessageModule';
+import ListIndex from './components/ContactsModul';
 const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-const moreList = [{
-  index: 1,
-  image: require('../../assets/images/tup/tianjiahaoyou.png'),
-  text: '添加好友',
-  path: null
-}, {
-  index: 2,
-  image: require('../../assets/images/tup/xieshangyizheng.png'),
-  text: '加入社区',
-  path: null
-}, {
-  index: 3,
-  image: require('../../assets/images/tup/wanle.png'),
-  text: '创建社区',
-  path: 'CreateCommunityRoute'
-},
-{
-  index: 4,
-  image: require('../../assets/images/tup/saoyisao.png'),
-  text: '好友申请',
-  path: 'CreateCommunityRoute'
-}
-]
 
 const headList = [
   {
@@ -100,7 +77,7 @@ const SocializingView = () => {
                 <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>消息</Text></>
               )
             }} />
-            <Tab.Screen name="lsr" component={ContactsModul} options={{
+            <Tab.Screen name="lsr" component={ListIndex} options={{
               tabBarLabel: ({ focused }) => (
                 <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>联系人</Text></>
               )
