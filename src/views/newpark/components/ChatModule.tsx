@@ -15,6 +15,7 @@ import {
 import { getChatRoomFindALL } from '../../../api/sys/newpark';
 import { Pages } from '../../../api/sys/newpark/types';
 import { navigate } from '../../../config/routs/NavigationContainer';
+import StylesALL from '../../../styles';
 import Colors from '../../../styles/Color';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -22,12 +23,14 @@ const windowHeight = Dimensions.get('window').height;
 const glideData = [{
   index: 1,
   title: '某秘密聊天室1',
-  num: '123'
+  num: '123',
+  path: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/mr.jpg'
 },
 {
   index: 2,
   title: '某秘密聊天室2',
-  num: '1234'
+  num: '1234',
+  path: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/mr.jpg'
 }
 ]
 
@@ -116,7 +119,9 @@ const ChatModule = () => {
             return (
               <View style={styles.glideScrollItem} key={item.index}>
                 <View style={styles.glideItemLeft}>
-                  <View style={styles.glidePortrait}></View>
+                  <View style={styles.glidePortrait}>
+                    <Image style={StylesALL.imgSize} borderRadius={50} source={{uri:item.path}} />
+                  </View>
                 </View>
                 <View style={styles.glideItemMiddle}>
                   <Text allowFontScaling={false} style={styles.glideItemText1}>{item.title}</Text>
@@ -288,8 +293,6 @@ const styles = StyleSheet.create({
   glidePortrait: {
     width: 60,
     height: 60,
-    borderWidth: 1,
-    borderColor: '#999',
     borderRadius: 30,
   },
   glideButton: {

@@ -1,3 +1,10 @@
+/*
+ * @Author: xxs
+ * @Date: 2023-11-01 17:00:26
+ * @LastEditTime: 2024-05-28 14:21:52
+ * @FilePath: \newpark_native\src\views\mine\components\oder\EvaluateView.tsx
+ * @Description: desc
+ */
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -19,12 +26,12 @@ const Tab = createMaterialTopTabNavigator();
                 animationEnabled: true,
                 tabBarIndicatorStyle: {
                     width: '5%',
-                    left: '5.5%',
-                    height: 5,
+                    left: '6%',
+                    height: 3,
                     borderRadius: 5,
                     backgroundColor: '#FFE723'
                 },
-                tabBarLabelStyle: { fontSize: 12, fontWeight: '600' }
+                tabBarLabelStyle: { fontSize: 12, fontWeight: '600',width:50 }
             }}>
                 <Tab.Screen name="全部" component={PubScreen} />
                 <Tab.Screen name="待付款" component={SellScreen} />

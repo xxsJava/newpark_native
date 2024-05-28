@@ -4,15 +4,12 @@
  * 创建时间:2023/12/11 14:54:11
  */
 
-import React,{useEffect, useState} from "react";
+import React, { useState } from "react";
 import { Trans } from 'react-i18next';
-import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View,TextInput } from "react-native";
+import { Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Appbar, Button, Icon } from 'react-native-paper';
-import { dateToMsgTime } from "../../../../components/Rests/TconTime";
 import { navigate } from '../../../../config/routs/NavigationContainer';
-import StepBar from '../StepBar';
 import DateTimeUtils from '../../../../utils/DateTimeUtils';
-import { red } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -47,7 +44,7 @@ const RewardDetails = ({route}:any) => {
                             </View>
                             <View style={styles.nameView}>
                                 <Text allowFontScaling={false} style={styles.nameText}>小学牛</Text>
-                                <Text allowFontScaling={false} style={styles.timeText}>{dateToMsgTime(data.startTime - data.endTime)}</Text>
+                                <Text allowFontScaling={false} style={styles.timeText}>{DateTimeUtils.formattedDateTime(data.startTime - data.endTime,'HH:mm')}</Text>
                             </View>
                             <View style={styles.statusView}>
                                 <View style={[styles.statusStyle,styles.statusColor1]}>

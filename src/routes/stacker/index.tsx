@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2024-04-26 18:45:28
+ * @LastEditTime: 2024-05-28 18:31:17
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
@@ -82,6 +82,7 @@ export const BommonTab = () => {
           },
           lazy:true
         })}>
+          
         {Object.entries(routsConfig).map(([key, value]) => {
           if (key === 'Routes') {
             const subArray = Object.entries(value);
@@ -116,7 +117,7 @@ export const BommonTab = () => {
           }
         })}
       </Tab.Navigator>
-<Animated.View
+      <Animated.View
           style={[
             styles.container,
             isVisible?{
@@ -124,7 +125,7 @@ export const BommonTab = () => {
                 {
                   translateY: animatedValue.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [200, -100], // 垂直方向上移动 100 个单位
+                    outputRange: [100, -100], // 垂直方向上移动 100 个单位
                   }),
                 },
                 {
@@ -175,7 +176,7 @@ export const BommonTab = () => {
         </Animated.View>
 
         {/* 遮掩罩 */}
-        <TouchableOpacity style={[styles.bottomMain,isVisible?{}:{display:'none'}]} onPress={()=>setIsVisible(!isVisible)} activeOpacity={0.9}>
+        <TouchableOpacity style={[styles.bottomMain,isVisible?{}:{display:'none'}]} onPress={()=>setIsVisible(!isVisible)} activeOpacity={0}>
           <View style={styles.bottomMain}></View>
         </TouchableOpacity>
 
@@ -226,25 +227,25 @@ const styles = StyleSheet.create({
     height:'100%',
     backgroundColor:'#000',
     position:'absolute',
-    zIndex: 10,
+    zIndex: 100,
     bottom:0,
     flex:1,
     opacity:0.5
   },container: {
-    zIndex: 11,
+    zIndex: 101,
     position:'absolute',
-    bottom: 0,
+    bottom: -80,
     width:'100%',
-    height: '100%'
+    height: '20%'
   },
   content: {
     backgroundColor: 'white',
     width:'100%',
-    height: '20%',
+    height: '100%',
     position: 'absolute',
-    bottom:-10,
+    bottom:0,
     borderTopLeftRadius:100,
-    borderTopRightRadius:100
+    borderTopRightRadius:100,
   },
   contentA:{
     // borderWidth:1,
