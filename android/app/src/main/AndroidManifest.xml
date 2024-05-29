@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- Android11新增 -->
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+  <!-- 支付宝支付 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERENT" />
+
 
     <application
       android:name=".MainApplication"

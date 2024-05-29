@@ -1,22 +1,23 @@
 import React,{useEffect,useState} from "react";
-import { View,Text, Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
+import { View,Text } from "react-native";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-const NewChatRoom = () => {
+const WithDrawal = () => {
     return (
         <View style={styles.container}>
-            <Text>创建新的聊天室</Text>
+            <Text>微信收款提现</Text>
         </View>
     )
-};
-export default NewChatRoom;
+}
+
+export default WithDrawal;
 
 const styles = StyleSheet.create({
     container:{
         width:windowWidth,
-        height:windowHeight,
-        backgroundColor:'#fff'
+        height:windowHeight
     }
 })

@@ -12,7 +12,7 @@
 * 创建时间:2024/01/04 16:06:58
 */
 import request from '../../config/axios';
-import {handleFriendType,friAddBlackType,friRemoveBlackType,delFriendType,getOnlineStatType,modifyFriRemarkType,createGroupType,listSessionType,getFriendListType} from './type';
+import {handleFriendType,friAddBlackType,friRemoveBlackType,delFriendType,getOnlineStatType,modifyFriRemarkType,createGroupType,listSessionType,getFriendListType,noDisturbingType} from './type';
 /**
  * 获取OpenIm配置
  */
@@ -219,6 +219,19 @@ export const createGroup = (params:createGroupType):Promise<IResponse> =>{
 export const listSession = (params:listSessionType):Promise<IResponse> => {
     return request.post({
         url:'/api/conversation/get_sorted_conversation_list',
+        data:params
+    })
+}
+/**
+ * 修改指定用户全局免打扰状态
+ * user/set_global_msg_recv_opt
+ * @param params
+ * @returns
+ */
+
+export const noDisturbing1 = (params:noDisturbingType):Promise<IResponse> => {
+    return request.post({
+        url:'/api/user/set_global_msg_recv_opt',
         data:params
     })
 }

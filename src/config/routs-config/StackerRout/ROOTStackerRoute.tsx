@@ -6,6 +6,11 @@
  * @Description: desc
  */
 // 测试选择学校
+import WithDrawal from '../../../views/mine/components/setup/WithDrawal';
+import PaymentMethod from '../../../views/mine/components/setup/PaymentMethod';
+import MessageNotifi from '../../../views/mine/components/setup/MessageNotifi';
+import PricacySetting from '../../../views/mine/components/setup/pricacySetting';
+import AccountSecurity from '../../../views/mine/components/setup/AccountSecurity';
 import CreateGroup from '../../../views/socializing/components/CreateGroup';
 import NewChatRoom from '../../../views/socializing/components/NewChatRoom';
 import SelectFriend from '../../../views/socializing/components/selectFriend';
@@ -121,11 +126,47 @@ export default {
       headerShown:true
     }
   },
+  PricacySetting:{
+    component:PricacySetting,
+    options:{
+      headerTitleAlign:'center',
+      title:'隐私设置',
+    }
+  },
+  WithDrawal:{
+    component:WithDrawal,
+    options:{
+      headerTitleAlign:'center',
+      title:'微信收款提现',
+    }
+  },
   FriProfile:{
     component:FriProfile,
     options:{
       headerShow:true,
       title:''
+    }
+  },
+  MessageNotifi:{
+    component:MessageNotifi,
+    options:{
+      headerTitleAlign:'center',
+      title:'消息通知'
+    }
+  },
+  PaymentMethod:{
+    component:PaymentMethod,
+    options:{
+      headerTitleAlign:'center',
+      title:'支付方式'
+    }
+  },
+  AccountSecurity:{
+    component:AccountSecurity,
+    options:{
+      headerShow:true,
+      title:'账号与安全',
+      headerTitleAlign: 'center'
     }
   },
   // 这个是创建群聊

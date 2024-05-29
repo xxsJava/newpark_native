@@ -145,3 +145,7 @@ export type getFriendListType = {
     "showNumber": number
   }
 }
+export type noDisturbingType = {
+  "userID":string,
+  "globalRecvMsgOpt":number
+}
