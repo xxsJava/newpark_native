@@ -1,23 +1,23 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2024-05-28 18:31:17
+ * @LastEditTime: 2024-05-29 10:44:43
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
 import { useTranslation } from 'react-i18next';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { Image } from '@gluestack-ui/themed';
-import { Animated, Dimensions, Easing, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Dimensions, Easing, ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import BellView from '../../components/Bell';
 import { DeviceEvent } from '../../config/listener';
 import routsConfig from '../../config/routs-config';
 import { navigate } from '../../config/routs/NavigationContainer';
 import { useCounter } from '../../hooks/state';
+import StylesALL from '../../styles';
 const windowWidth = Dimensions.get('window').width;
 // import { Stagger, useDisclose} from 'native-base';
 /*
@@ -59,29 +59,33 @@ export const BommonTab = () => {
   const pubAnm = () =>{
     console.log('点击加号');
     setIsVisible(!isVisible);
-    Animated.timing(animatedValue, {
-      toValue: 1,
-      duration: 2000,
-      easing: Easing.bezier(0.42, 0, 0.58, 1), // 使用贝塞尔曲线
-      useNativeDriver: true,
-    }).start();
+
   }
   return (
     <>
-      <Tab.Navigator
+   <Tab.Navigator
+        
         screenOptions={({ route }) => ({
           // screenOptions={() => ({
           tabBarActiveTintColor: '#F8B032',
-          tabBarInactiveTintColor: 'gray',
+          tabBarInactiveTintColor: '#85A3BB',
           headerShown: false,
           tabBarLabelStyle: {
-            fontSize: 16
+            fontSize: 12,
+            bottom:10
           },
           tabBarStyle: {
-            height: Platform.OS == 'ios' ? 80 : 60
+            height: 80,
           },
           lazy:true
-        })}>
+          ,
+          tabBarBackground:()=>{
+            return (
+              <ImageBackground style={{height:80,width:'100%',position:'absolute',zIndex:10,bottom:0}} source={require('../../assets/images/tab/tabBg.png')}></ImageBackground>
+            )
+          }
+        })}
+        >
           
         {Object.entries(routsConfig).map(([key, value]) => {
           if (key === 'Routes') {
@@ -93,8 +97,13 @@ export const BommonTab = () => {
                   let iconName = focused
                     ? routeValue.SelectedIcon
                     : routeValue.UnSelectedIcon;
+                  
+                    console.log('iconName--------->',iconName);
                   return (
-                    <Ionicons name={iconName} size={size} color={color} />
+                    // <Ionicons name={iconName} size={30} color={color} />
+                    <View style={{width:35,height:30}}>
+                        <Image style={StylesALL.imgSize} source={iconName}/>
+                    </View>
                   );
                 },
               };
@@ -111,12 +120,14 @@ export const BommonTab = () => {
                   key={routeKey}
                   component={routeValue.component}
                   options={option}
+                  
                 />
               );
             });
           }
         })}
       </Tab.Navigator>
+      
       <Animated.View
           style={[
             styles.container,
@@ -142,7 +153,7 @@ export const BommonTab = () => {
             <View style={styles.contentA}>
               <View style={styles.closeIcon}>
                 <TouchableOpacity onPress={() => { setIsVisible(!isVisible) }}>
-                  <Image style={{width:'100%',height:'100%'}} source={require('../../assets/images/alimom/close_icon.png')} alt="网络异常"/>
+                  <Image style={StylesALL.imgSize} source={require('../../assets/images/alimom/close_icon.png')} alt="网络异常"/>
                 </TouchableOpacity>
               </View>
             </View>
@@ -182,7 +193,7 @@ export const BommonTab = () => {
 
       <View style={styles.tabPub}>
         <TouchableOpacity onPress={pubAnm}>
-          <Image style={styles.bthImg} source={require('../../assets/images/3.0x/add_btn.png')} accessibilityLabel='图片' alt="网络异常" />
+          <Image style={styles.bthImg} source={require('../../assets/images/tab/main.png')} accessibilityLabel='图片' alt="网络异常" />
         </TouchableOpacity>
       </View>
 
@@ -196,19 +207,16 @@ export const BommonTab = () => {
 const styles = StyleSheet.create({
   tabPub: {
     position: 'absolute',
-    bottom: Platform.OS === 'ios' ? 50 : 18,
+    bottom: Platform.OS === 'ios' ? 50 : 48,
     left: windowWidth / 2 - 32,
-    borderWidth: 2,
-    borderColor: '#F8B032',
     width: 64,
     height: 64,
     borderRadius: 50
   },
   bthImg: {
-    marginLeft: 8,
-    marginTop: 8,
-    width: 44,
-    height: 44
+    width: 64,
+    height: 64,
+    borderRadius:50
   },
   ld: {
     position: 'relative',
