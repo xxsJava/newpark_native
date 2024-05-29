@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-07 17:44:34
- * @LastEditTime: 2024-05-20 15:46:07
+ * @LastEditTime: 2024-05-27 09:59:12
  * @FilePath: \newpark_native\src\views\socializing\SocializingView.tsx
  * @Description: desc
  */
@@ -18,13 +18,34 @@ import {
 import { Image, Text, View } from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
 import { navigate } from '../../config/routs/NavigationContainer';
-import ContactsModul from './components/ContactsModul';
-import ContactsModule from './components/ContactsModule'
+import ContactsModule from './components/ContactsModule';
 import MessageModule from './components/MessageModule';
 const Stack = createNativeStackNavigator();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+const headList = [
+  {
+    title:'添加好友',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tianjiahaoyou.png',
+    rout:'AddPeople'
+  },
+  {
+    title:'加入社区',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xieshangyizheng.png',
+    rout:'Addcomm'
+  },
+  {
+    title:'创建社区',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wanle.png',
+    rout:'CreateCommunityRoute'
+  },
+  {
+    title:'好友申请',
+    path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/saoyisao.png',
+    rout:'Apply'
+  }
+]
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -50,7 +71,7 @@ const SocializingView = () => {
               },
               tabBarLabelStyle: { fontSize: 15, fontWeight: '600' }
             }}>
-            <Tab.Screen  name="msg" component={MessageModule} options={{
+            <Tab.Screen  name="sq" component={MessageModule} options={{
               tabBarLabel: ({ focused }) => (
                 <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>消息</Text></>
               )
@@ -59,7 +80,6 @@ const SocializingView = () => {
               tabBarLabel: ({ focused }) => (
                 <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>联系人</Text></>
               )
-
             }}/>
 
           </Tab.Navigator>
@@ -72,30 +92,23 @@ const SocializingView = () => {
     
 
       <View style={[styles.moreModule, more ? null : { display: 'none' }]}>
-        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('AddPeople')}>
+
+        {
+          headList.map(item => {
+            return(
+              <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate(item.rout)}>
           <View style={styles.itemImageView}>
-            <Image style={styles.itemImage} source={require('../../assets/images/tup/tianjiahaoyou.png')} accessibilityLabel='图片' alt="头像"></Image>
+            <Image style={styles.itemImage} source={{uri:item.path}} accessibilityLabel='图片' alt="网络不佳"></Image>
           </View>
           <View style={styles.itemTextView}>
-            <Text allowFontScaling={false} style={styles.itemText}>添加好友</Text>
+            <Text allowFontScaling={false} style={styles.itemText}>{item.title}</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('Addcomm')}>
-          <View style={styles.itemImageView}>
-            <Image style={styles.itemImage} source={require('../../assets/images/tup/xieshangyizheng.png')} accessibilityLabel='图片' alt="头像"></Image>
-          </View>
-          <View style={styles.itemTextView}>
-            <Text allowFontScaling={false} style={styles.itemText}>加入社区</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('CreateCommunityRoute')}>
-          <View style={styles.itemImageView}>
-            <Image style={styles.itemImage} source={require('../../assets/images/tup/wanle.png')} accessibilityLabel='图片' alt="头像"></Image>
-          </View>
-          <View style={styles.itemTextView}>
-            <Text allowFontScaling={false} style={styles.itemText}>创建社区</Text>
-          </View>
-        </TouchableOpacity>
+            )
+          })
+        }
+        
+        
         {/* <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('Apply')}>
           <View style={styles.itemImageView}>
             <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片' alt="头像"></Image>
@@ -105,17 +118,7 @@ const SocializingView = () => {
             <Text allowFontScaling={false} style={styles.itemText}>好友申请</Text>
           </View>
         </TouchableOpacity> */}
-        {/* 好友申请的页面跳转 */}
-        {/* onPress={() => navigate('Apply')} */}
-        <TouchableOpacity style={styles.itemMore} activeOpacity={0.5} onPress={() => navigate('startGroup')}>
-          <View style={styles.itemImageView}>
-            <Image style={styles.itemImage} source={require('../../assets/images/tup/saoyisao.png')} accessibilityLabel='图片' alt="头像"></Image>
-          </View>
-          <View style={styles.itemTextView}>
-            {/* <Text style={styles.hytb}>1</Text> */}
-            <Text allowFontScaling={false} style={styles.itemText}>创建聊天室</Text>
-          </View>
-        </TouchableOpacity>
+
       </View>
       <TouchableOpacity style={[styles.maskLayer, more ? {} : { display: 'none' }]} onPress={() => handleMorePress(more)}>
       </TouchableOpacity>

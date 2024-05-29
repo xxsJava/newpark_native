@@ -25,12 +25,12 @@ import { Appbar, Avatar, Button, Icon, IconButton } from 'react-native-paper';
 import { postComments, postLike } from '../../../api/sys/home';
 import { postCommentsData, postLikeParam } from '../../../api/sys/home/types';
 import { delPosts } from '../../../api/sys/post/index';
-import { dateToMsgTime } from '../../../components/Rests/TconTime';
 import WebViews from '../../../components/WebView/WebViewCompent';
 import { navigate } from '../../../config/routs/NavigationContainer';
 import webview from '../../../config/webview';
 import Colors from '../../../styles/Color';
 import FontSize from '../../../styles/FontSize';
+import DateTimeUtils from '../../../utils/DateTimeUtils';
 import CommentDetails from './CommentDetails';
 
 const windowWidth = Dimensions.get('window').width;
@@ -251,7 +251,7 @@ const PostDetails = ({ route }: any) => {
                   </View>
                 </View>
                 <Text allowFontScaling={false} style={[styles.timeText,FontSize.f14,Colors.fbbb]}>
-                  {dateToMsgTime(data.tlastTime)}
+                  {DateTimeUtils.formattedDateTime(data.tlastTime,'HH:mm')}
                 </Text>
               </View>
               <View style={styles.avatarButton}>

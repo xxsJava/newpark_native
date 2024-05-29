@@ -46,7 +46,7 @@ const TabNav = () => {
                 <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>社区</Text></>
               )
             }} />
-            <Tab.Screen name="lsr" component={ChatModule} options={{
+            <Tab.Screen name="lts" component={ChatModule} options={{
               tabBarLabel: ({ focused }) => (
                 <><View style={focused ? styles.tabBg2 : null} /><Text style={focused ? styles.fontTrue : styles.fontFalse}>聊天室</Text></>
               )

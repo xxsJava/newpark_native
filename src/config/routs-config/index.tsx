@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-29 20:43:34
- * @LastEditTime: 2024-04-08 17:22:09
+ * @LastEditTime: 2024-05-29 10:22:10
  * @FilePath: \newpark_native\src\config\routs-config\index.tsx
  * @Description: 路由表
  *  component 组件
@@ -30,15 +30,15 @@ export default {
     Home: {
       component: HomeStacker,
       label: 'homeTab.recommend',
-      SelectedIcon: 'storefront',
-      UnSelectedIcon: 'storefront-outline',
+      SelectedIcon: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tab/home.png',
+      UnSelectedIcon: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tab/home-un.png',
     },
     //新园
     NewPark: {
       component: NewPatkStacker,
       label: 'homeTab.newPark',
-      SelectedIcon: 'disc-outline',
-      UnSelectedIcon: 'radio-button-on',
+      SelectedIcon: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tab/newpark.png',
+      UnSelectedIcon: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tab/newpark-un.png',
     },
     //发布
     Publish: {
@@ -51,16 +51,16 @@ export default {
     Socializing: {
       component: SocializingStacker,
       label: 'homeTab.socializing',
-      SelectedIcon: 'chatbubbles',
-      UnSelectedIcon: 'chatbubbles-outline',
+      SelectedIcon: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tab/msg.png',
+      UnSelectedIcon: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tab/msg-un.png',
     },
     //我的
     Mine: {
       component: MineStacker,
       label: 'homeTab.mine',
-      SelectedIcon: 'person',
-      UnSelectedIcon: 'person-outline',
-    },
+      SelectedIcon: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tab/my.png',
+      UnSelectedIcon: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/tab/my-un.png'
+    }
   },
   //默认路由
   InitRoute: 'Home',

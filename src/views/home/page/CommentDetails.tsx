@@ -9,8 +9,8 @@ import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 import { Avatar, Icon } from 'react-native-paper';
 import { postLike } from "../../../api/sys/home";
 import { postLikeParam } from "../../../api/sys/home/types";
-import { dateToMsgTime } from "../../../components/Rests/TconTime";
 import Storage from "../../../utils/AsyncStorageUtils";
+import DateTimeUtils from "../../../utils/DateTimeUtils";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -55,7 +55,7 @@ const CommentDetails = ({commenData}: any) => {
                             </View>
                             <View style={styles.itemNameView}>
                                 <Text allowFontScaling={false} style={styles.itemName}>{item.unikname}</Text>
-                                <Text allowFontScaling={false} style={styles.itemTime}>{dateToMsgTime(item.startTime)}</Text>
+                                <Text allowFontScaling={false} style={styles.itemTime}>{DateTimeUtils.formattedDateTime(item.startTime,'HH:mm')}</Text>
                             </View>
                         <View style={styles.itemIconView}>
                             <TouchableOpacity onPress={() => ComLikePress(item.comSupport,item.comId)}>

@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-12-20 17:44:35
- * @LastEditTime: 2024-05-20 15:23:48
+ * @LastEditTime: 2024-05-28 14:20:17
  * @FilePath: \newpark_native\src\views\mine\components\service\MyPubView.tsx
  * @Description: desc
  */
@@ -43,12 +43,12 @@ const MyPubView = ({ route }: any) => {
                 animationEnabled:true,
                 tabBarIndicatorStyle:{
                     width:'15%',
-                    left:'10%',
+                    left:21,
                     height:5,
                     borderRadius:5,
                     backgroundColor:'#FFE723'
                 },
-                tabBarLabelStyle:{fontSize:15,fontWeight:'600'}
+                tabBarLabelStyle:{fontSize:15,fontWeight:'600',width:60}
             }}>
                 <Tab.Screen name="在出售" component={PubScreen} />
                 <Tab.Screen name="未提交" component={SellScreen} />

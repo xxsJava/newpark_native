@@ -1,7 +1,7 @@
 /*
  * @Author: zhn
  * @Date: 2024-4-20 17:44:34
- * @FilePath: \newpark_native\src\views\socializing\components\ContactsModul.tsx
+ * @FilePath: \newpark_native\src\views\socializing\components\ContactsModule.tsx
  * @Description: 社交的联系人页面
  */
 import { Toast, useToast } from '@gluestack-ui/themed';
@@ -19,12 +19,11 @@ import {
     View
 } from 'react-native';
 import { getFriendList } from '../../../api/imApi/index';
-import { navigate } from '../../../config/routs/NavigationContainer';
 import { PinyinUtil } from '../../../config/routs-config/StackerRout/pinyin';
+import { navigate } from '../../../config/routs/NavigationContainer';
 // 出现冲突地方二
 // import { contextListJson } from '../../../api/imApi/type';
 import Feather from 'react-native-vector-icons/Feather';
-import { contextListJson } from '../../../api/imApi/type';
 import Storage from '../../../utils/AsyncStorageUtils';
 const windowWidth = Dimensions.get('window').width;
 type DataItem = any;
@@ -61,6 +60,30 @@ const AlphabetIndex: React.FC<AlphabetIndexProps> = ({
         </View>
     );
 };
+
+const headList = [
+    {
+      title:'我的聊天室',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png',
+      rout:'MyGroup'
+    },
+    {
+      title:'我的社区',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png',
+      rout:'MyCommunity'
+    },
+    {
+      title:'新的聊天室',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png',
+      rout:''
+    },
+    {
+      title:'新的好友',
+      path:'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdhy.png',
+      rout:'Apply'
+    }
+  ]
+
 
 const ListIndex: React.FC = () => {
     const toast = useToast();
@@ -280,69 +303,27 @@ const ListIndex: React.FC = () => {
             {/* 这个是索引条 */}
             <AlphabetIndex sections={ListData1} onSectionSelect={handleSectionSelect} />
             <ScrollView style={{ flex: 1, marginTop: 10 }}>
-                <TouchableOpacity activeOpacity={0.9} onPress={() => navigate("MyGroup")}>
-                    <View style={styles.headGroup}>
-                        <View style={styles.iconHead}>
-                            <Image style={styles.headImg} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdqz.png' }} />
-                        </View>
-                        <View style={styles.bodyContent}>
-                            <Text style={styles.conText}>
-                                我的聊天室
-                            </Text>
-                        </View>
-                        <View style={styles.rightIcon}>
-                            <Feather name="chevron-right" size={20} color="#999" />
-                        </View>
-                    </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity activeOpacity={0.9} onPress={() => { navigate('MyCommunity') }}>
-                    <View style={styles.headGroup}>
-                        <View style={styles.iconHead}>
-                            <Image style={styles.headImg} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/wdsq.png' }} />
-                        </View>
-                        <View style={styles.bodyContent}>
-                            <Text style={styles.conText}>
-                                我的社区
-                            </Text>
-                        </View>
-                        <View style={styles.rightIcon}>
-                            <Feather name="chevron-right" size={20} color="#999" />
-                        </View>
-                    </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('NewChatRoom')}>
-                    <View style={styles.headGroup}>
-                        <View style={styles.iconHead}>
-                            <Image style={styles.headImg} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdql.png' }} />
-                        </View>
-                        <View style={styles.bodyContent}>
-                            <Text style={styles.conText}>
-                                新的聊天室
-                            </Text>
-                        </View>
-                        <View style={styles.rightIcon}>
-                            <Feather name="chevron-right" size={20} color="#999" />
-                        </View>
-                    </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity activeOpacity={0.9} onPress={() => navigate('Apply')}>
-                    <View style={styles.headGroup}>
-                        <View style={styles.iconHead}>
-                            <Image style={styles.headImg} source={{ uri: 'https://xxs18-test.oss-cn-shanghai.aliyuncs.com/image/xdhy.png' }} />
-                        </View>
-                        <View style={styles.bodyContent}>
-                            <Text style={styles.conText}>
-                                新的好友
-                            </Text>
-                        </View>
-                        <View style={styles.rightIcon}>
-                            <Feather name="chevron-right" size={20} color="#999" />
-                        </View>
-                    </View>
-                </TouchableOpacity>
+            {
+        headList.map(item=>{
+          return(
+            <TouchableOpacity activeOpacity={0.9} onPress={()=>navigate(item.rout)}>
+      <View style={styles.headGroup}>
+        <View style={styles.iconHead}>
+          <Image style={styles.headImg} source={{uri:item.path}}/>
+        </View>
+        <View style={styles.bodyContent}>
+          <Text style={styles.conText}>
+            {item.title}
+          </Text>
+        </View>
+        <View style={styles.rightIcon}>
+          <Feather name="chevron-right" size={20} color="#999" />
+        </View>
+      </View>
+    </TouchableOpacity>
+          )
+        })
+      }
                 <ScrollView>
                     <SectionList
                         ref={sectionListRef}
@@ -458,10 +439,4 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
     },
-    labelText: {
-        fontSize: 12,
-        color: '#000',
-        lineHeight: 15,
-        marginLeft: 4,
-    }
 });
