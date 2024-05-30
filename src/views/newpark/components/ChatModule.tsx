@@ -139,9 +139,9 @@ const ChatModule = () => {
               </View>
             )
           })}
-            修改登录页面跳转的密码
-           <TouchableOpacity style={{width:120,height:120,backgroundColor:'pink'}} onPress={() =>navigate('LoginStacker')}>
-        </TouchableOpacity>
+            {/* 修改登录页面跳转的密码 */}
+           {/* <TouchableOpacity style={{width:120,height:120,backgroundColor:'pink'}} onPress={() =>navigate('LoginStacker')}>
+          </TouchableOpacity> */}
         </ScrollView>
        
       </View>
