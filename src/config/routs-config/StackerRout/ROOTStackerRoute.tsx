@@ -41,7 +41,6 @@ import ForgetPass from '../../../views/login/components/ForgetPass';
 import Gender from '../../../views/login/components/Gender/index';
 import InterestsHobbies from '../../../views/login/components/InterestsHobbies';
 import Registered from '../../../views/login/components/Registered';
-import Test1 from '../../../views/login/components/Registered/test';
 import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
 import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
 import Verification from '../../../views/login/components/Verification';
@@ -344,12 +343,6 @@ export default {
     options: {
    title: '加入社区',
     },
-  },
-  Test1:{
-    component: Test1,
-     options: {
-    title: '测试头像',
-     },
   },
   SanJiLiand:{
     component: SanJiLiand,
@@ -663,7 +656,7 @@ export default {
     component:CreateCommunity,
     options:{
       title:'创建社区',
-      headerShown:false
+      headerTitleAlign: 'center'
     }
   },
   ObjCard:{

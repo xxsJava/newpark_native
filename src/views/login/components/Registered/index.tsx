@@ -61,19 +61,13 @@ const Registered = () => {
           upath = res.assets[0].uri
         }
         // console.log(res.assets[0].uri,'res.assets[0].uri');
-
       }
       // else {
       //   const selectedImageUri = '../../../../assets/images/tup/defaultheader.png'
       // }
-
-
-
       console.log(upath, 'upath222');
       setAva(upath)
       // console.log(imghead,'imghead');
-
-
     });
 
   }
@@ -106,7 +100,6 @@ const Registered = () => {
     navigate('SchoolRoute')
     // var describe = await AsyncStorage.getItem('description');
     // console.log(describe,'描述!!!!!!!!');
-
   }
   return (
     <View style={styles.parentView}>

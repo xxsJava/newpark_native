@@ -15,9 +15,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const DisplayAnImage = () => {
+const DisplayAnImage = (style1) => {
+  console.log(style1);
+  
   return (
-    <View style={styles.container}>
+    <View style={[styles.containe,style1.style]}>
       <Image
         style={styles.logo}
         source={require('../../assets/images/static/空空如也.png')}

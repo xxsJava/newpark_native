@@ -17,12 +17,12 @@ const PaymentMethod = () => {
                 <View style={{ height: 120 }}>
                     <ScrollView showsHorizontalScrollIndicator={true} horizontal={true} pinchGestureEnabled={true}>
                         <View style={{ padding: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <View style={{ alignItems: 'center' }}>
+                            {/* <View style={{ alignItems: 'center' }}>
                                 <TouchableOpacity style={[{ backgroundColor: '#fff', width: 80, height: 80, alignItems: 'center', justifyContent: 'center', borderRadius: 12, marginBottom: 8 }, selectMethod == 0 ? { borderWidth: 0.8, borderColor: '#1296DB' } : styles.shadow]} onPress={() => setSelectMethod(0)}>
                                     <Image source={require('../../../../assets/images/tup/applepay.png')} style={{ width: 60, height: 60 }} />
                                 </TouchableOpacity>
                                 <Text style={[styles.payText, selectMethod == 0 ? { fontSize: 18, fontWeight: 'bold' } : {}]}>pay支付</Text>
-                            </View>
+                            </View> */}
                             <View style={{ alignItems: 'center' }}>
                                 <TouchableOpacity style={[{ backgroundColor: '#fff', width: 80, height: 80, alignItems: 'center', justifyContent: 'center', borderRadius: 12, marginLeft: 12, marginBottom: 8 }, selectMethod == 1 ? { borderWidth: 0.8, borderColor: '#1296DB' } : styles.shadow]} onPress={() => setSelectMethod(1)}>
                                     <Image source={require('../../../../assets/images/tup/WaChat.png')} style={{ width: 60, height: 60 }} />
@@ -52,12 +52,12 @@ const PaymentMethod = () => {
                 <View style={{ height: 120 }}>
                     <ScrollView showsHorizontalScrollIndicator={true} horizontal={true} pinchGestureEnabled={true}>
                         <View style={{ padding: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <View style={{ alignItems: 'center' }}>
+                            {/* <View style={{ alignItems: 'center' }}>
                                 <TouchableOpacity style={[{ backgroundColor: '#fff', width: 80, height: 80, alignItems: 'center', justifyContent: 'center', borderRadius: 12, marginBottom: 8 }, selectMethod2 == 0 ? { borderWidth: 0.8, borderColor: '#1296DB' } : styles.shadow]} onPress={() => setSelectMethod2(0)}>
                                     <Image source={require('../../../../assets/images/tup/applepay.png')} style={{ width: 60, height: 60 }} />
                                 </TouchableOpacity>
                                 <Text style={[styles.payText, selectMethod2 == 0 ? { fontSize: 18, fontWeight: 'bold' } : {}]}>pay收款</Text>
-                            </View>
+                            </View> */}
                             <View style={{ alignItems: 'center' }}>
                                 <TouchableOpacity style={[{ backgroundColor: '#fff', width: 80, height: 80, alignItems: 'center', justifyContent: 'center', borderRadius: 12, marginLeft: 12, marginBottom: 8 }, selectMethod2 == 1 ? { borderWidth: 0.8, borderColor: '#1296DB' } : styles.shadow]} onPress={() => setSelectMethod2(1)}>
                                     <Image source={require('../../../../assets/images/tup/WaChat.png')} style={{ width: 60, height: 60 }} />

@@ -24,6 +24,7 @@ const MessageNotifi = () => {
                         onValueChange={setSwitch1}
                         value={switch1}
                     />
+                     
                 </View>
             </View>
             <View >
@@ -34,10 +35,10 @@ const MessageNotifi = () => {
                     </View>
                     <Switch
                         trackColor={{ false: "#767577", true: "orange" }}
-                        thumbColor={switch1 ? "#f5dd4b" : "#f4f3f4"}
+                        thumbColor={switch2 ? "#f5dd4b" : "#f4f3f4"}
                         ios_backgroundColor="#3e3e3e"
-                        onValueChange={setSwitch1}
-                        value={switch1}
+                        onValueChange={setSwitch2}
+                        value={switch2}
                     />
                 </View>
             </View>
