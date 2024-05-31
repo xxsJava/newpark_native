@@ -36,7 +36,7 @@ import PostDetails from '../../../views/home/page/PostDetails';
 import ProductChat from '../../../views/home/page/ProductChat';
 import PurchasePage from '../../../views/home/page/PurchasePage';
 import ViewOrders from '../../../views/home/page/ViewOrders';
-import LoginView from '../../../views/login';
+import LoginView from '../../../views/login/index';
 import ForgetPass from '../../../views/login/components/ForgetPass';
 import Gender from '../../../views/login/components/Gender/index';
 import InterestsHobbies from '../../../views/login/components/InterestsHobbies';

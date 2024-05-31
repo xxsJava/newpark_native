@@ -1,64 +1,39 @@
-import { useToast } from '@gluestack-ui/themed';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import NetInfo from '@react-native-community/netinfo';
-import React, { useState } from 'react';
-import { Trans } from 'react-i18next';
-import {
-  Dimensions,
-  Image,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
-import * as Animatable from 'react-native-animatable';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, { useEffect, useState } from "react";
+import { Dimensions, StyleSheet, TouchableOpacity, View, Text, ImageBackground, ScrollView, Image } from "react-native";
+import { navigate } from '../../config/routs/NavigationContainer';
 import { Button, TextInput } from 'react-native-paper';
-import { getClientConfig, getOpenIMConfig } from '../../api/imApi';
+import { forgetPass } from './controller';
+import NetInfo from '@react-native-community/netinfo';
+import { useToast } from '@gluestack-ui/themed';
+import ToastCompent from '../../components/Toast';
 import { loginApi, smsLoginApi } from '../../api/sys/lgoin';
 import { SmsLoginType, UserLoginType } from '../../api/sys/lgoin/types';
-import ToastCompent from '../../components/Toast';
 import OpenIMConfig from '../../config/im/OpenIMConfig';
-import { LoginScreenProps } from '../../config/routs';
-import { navigate } from '../../config/routs/NavigationContainer';
-import { initDataDir } from '../../config/storagePermissionStatus';
-import IMSDKRN from '../../plugins/IMSDKRN';
 import Storage from '../../utils/AsyncStorageUtils';
-import ClausePopup from '../../views/login/components/ClausePopup';
-import { forgetPass } from './controller';
+import { getClientConfig, getOpenIMConfig } from '../../api/imApi';
+import IMSDKRN from '../../plugins/IMSDKRN';
+import { initDataDir } from '../../config/storagePermissionStatus';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const LoginView: React.FC<LoginScreenProps> = () => {
-  const [visible, setVisible] = useState(false);
-  const toast = useToast();
-  // 改正
-  //获取输入框的手机号
-  const [phone, setPhone] = useState('18206571241');
-  //获取输入框的密码
-  const [pass, setPass] = useState('Ee123456');
-  const [securePass, setSecurePass] = useState(true);
-  // 这是密码登录的地方
-  const [recode, setrecode] = useState(true);
-  const [load, setLoad] = useState(false);
 
+
+const LoginView = () => {
+ 
+  const toast = useToast();
+  const [visible, setVisible] = useState(false);
+  const [isPhoneReg,setIsPhoneReg] = useState(true);
+  const [securePass, setSecurePass] = useState(true);
+  const [pass, setPass] = useState('Ee123456');
+  const [phone, setPhone] = useState('18206571241');
+  const [load, setLoad] = useState(false);
   const toasts = (directional:any,text:string) => {
     toast.show({
       placement: directional,
       render: () => ToastCompent(text),
     });
   }
-
-  const usrData: UserLoginType = {
-    uPhone: phone,
-    uEmail: '',
-    password: pass,
-  };
-
-  const smsLogin: SmsLoginType = {
-    phone: phone,
-    code: 'phone',
-  };
 
   const onLogin = async () => {
     setLoad(true);
@@ -111,6 +86,15 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     navigate('LoginHome')
   };
 
+  const usrData: UserLoginType = {
+    uPhone: phone,
+    uEmail: '',
+    password: pass,
+  };
+  const smsLogin: SmsLoginType = {
+    phone: phone,
+    code: 'phone',
+  };
   const smsVerIf = async () => {
     if (phone.length != 11) {
       toasts('top','请输入手机号');
@@ -124,92 +108,35 @@ const LoginView: React.FC<LoginScreenProps> = () => {
    //发送验证码
     navigate('Verification');
   };
-
-  //输入验证码
-  const changePhoneText = (text: string) => {
-    setPhone(text);
-    //确保存入手机号进行下步验证码发送
-    if (text.length == 11) {
-      Storage.set('usr-phone', text);
-    }
-  };
   return (
-    <Animatable.View animation="fadeIn">
-      <ImageBackground
-        style={styles.imgbgc}
-        source={require('../../assets/images/loginBG.png')}>
-        {/* style={{flex: 1}} */}
-        <KeyboardAwareScrollView enableOnAndroid={true}>
-          <View style={styles.top}>
-            <Image
-              style={styles.img}
-              source={require('../../assets/images/logo.png')}
-              accessibilityLabel='图片'
-              alt="头像"
-            />
-          </View>
-          {/* 手机号登录 */}
-          <View style={styles.box}>
-            <View style={recode ? null : { display: 'none' }}>
-              <Text allowFontScaling={false} style={styles.text}>
-                请手机号登录
-              </Text>
-              <View style={styles.num}>
-                <TextInput
-                  allowFontScaling={false}
-                  placeholder="请输入手机号"
-                  placeholderTextColor="#fff"
-                  underlineColor="#fff"
-                  activeUnderlineColor="#fff"
-                  textColor="#fff"
-                  maxLength={11}
-                  keyboardType="number-pad"
-                  onChangeText={changePhoneText}
-                  style={[styles.inp]}
-                  value={phone}                />
-              </View>
-              <View style={styles.login}>
-                <Button
-                  contentStyle={styles.loginBox}
-                  loading={load}
-                  disabled={load}
-                  mode="contained"
-                  buttonColor="#fff"
-                  textColor="#E8AE0E"
-                  onPress={() => smsVerIf()}>
-                  <Trans>loginText.text1</Trans>
-                </Button>
-              </View>
-              <View style={styles.center}>
-                <TouchableOpacity onPress={() => setrecode(!recode)}>
-                  <Text allowFontScaling={false} style={styles.underline}>
-                    <Text>密码登录</Text>
-                  </Text>
-                </TouchableOpacity>
-              </View>
+    <View style={styles.container}>
+      <ScrollView>
+        <ImageBackground
+          source={require('../../assets/images/loginBG.png')}
+          style={{ width: windowWidth, height: windowHeight,position:'relative'}}
+        >
+          <View style={{ alignItems: 'center', marginTop: 12 }}>
+            <Image source={require('../../assets/images/logo.png')} style={{ width: 180, height: 180 }}></Image>
+            <Text style={{ fontSize: 26, color: '#fff', fontWeight: 'bold' }}>手机号登录或注册</Text>
+            <Text style={{ color: '#fff', marginTop: 6, fontWeight: 'bold',marginBottom:12,fontSize:13}}>快速找到好友，一站式记录你的运动</Text>
 
-            </View>
-            <View style={!recode ? null : { display: 'none' }}>
-            <Text allowFontScaling={false} style={styles.text}>
-                请密码登录
-            </Text>
-            <View style={styles.num}>
-              <TextInput
-                allowFontScaling={false}
-                placeholder="请输入手机号"
+            <View style={{flexDirection:'row',backgroundColor:'#F6D99D',width:'80%',borderRadius:0,paddingHorizontal:20,alignItems:'center',height:43,marginVertical:20}}>
+              <Text style={{color:'#fff',fontSize:17}}>+86</Text>
+              <TextInput 
+                placeholder="输入手机号码"
+                style={{color:'#fff',fontSize:17,marginLeft:6,width:'80%',backgroundColor:'#F6D99D',height:'70%',lineHeight:43,alignItems:'center',marginTop:8}}
                 placeholderTextColor="#fff"
                 underlineColor="#fff"
-                activeUnderlineColor="#fff"
+                underlineStyle={{width:0}}
                 textColor="#fff"
-                maxLength={11}
-                keyboardType="number-pad"
-                onChangeText={changePhoneText}
-                style={[styles.inp, { paddingLeft: 18 }]}
+                maxLength={16}
+                activeUnderlineColor="#fff"
+                onChangeText={text => setPhone(text)}
                 value={phone}
               />
             </View>
-            <View style={styles.pawoed} >
-              <TextInput
+           <View style={!isPhoneReg ? {width:'80%',borderRadius:0,marginVertical:12,backgroundColor:'#F6D99D',height:43,}:{display:'none'}}>
+           <TextInput
                 allowFontScaling={false}
                 style={[styles.inp, { paddingLeft: 18 }]}
                 secureTextEntry={securePass}
@@ -226,173 +153,58 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 underlineColor="#fff"
                 textColor="#fff"
                 maxLength={16}
+                underlineStyle={{width:0}}
                 activeUnderlineColor="#fff"
                 onChangeText={text => setPass(text)}
                 value={pass}
               />
+           </View>
+            <TouchableOpacity style={isPhoneReg ?{backgroundColor:'#F6D99D',width:'80%',borderRadius:23,paddingHorizontal:20,height:43}:{display:'none'}}  onPress={smsVerIf}>
+              <Text style={{color:'#eb883d',fontSize:15,textAlign:'center',lineHeight:43,fontWeight:'bold'}}>获取验证码</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={!isPhoneReg ?{backgroundColor:'#F6D99D',width:'80%',borderRadius:23,paddingHorizontal:20,height:43}:{display:'none'}} onPress={onLogin}>
+              <Text style={{color:'#eb883d',fontSize:15,textAlign:'center',lineHeight:43,fontWeight:'bold'}}>登录</Text>
+            </TouchableOpacity>
+            <View style={{flexDirection:'row',height:60,alignItems:'center',justifyContent:'space-between',width:'60%'}}>
+            
+             <TouchableOpacity onPress={() => setIsPhoneReg(true)} style={!isPhoneReg ?{}:{display:'none'}}>
+             <Text style={isPhoneReg ? {display:'none'}:{color:'#fff',fontSize:15,fontWeight:'bold'} }>免密登录</Text>
+             </TouchableOpacity>
+             <TouchableOpacity onPress={() => setIsPhoneReg(false)} style={isPhoneReg ?{}:{display:'none'}}>
+             <Text style={{color:'#fff',fontSize:15,fontWeight:'bold'}}>密码登录</Text>
+             </TouchableOpacity>
+              <View style={{width:1,backgroundColor:'#eee',height:14}}></View>
+              <View>
+              {/* <Text style={isPhoneReg ? {color:'#fff',fontSize:15,fontWeight:'bold'}:{display:'none'}}>找回账号</Text> */}
+             <TouchableOpacity  onPress={forgetPass}>
+             <Text style={{color:'#fff',fontSize:15,fontWeight:'bold'}}>找回密码</Text>
+             </TouchableOpacity>
+              </View>
             </View>
-            <View style={[styles.login, recode ? { display: 'none' } : null]}>
-              <Button
-                contentStyle={styles.loginBox}
-                loading={load}
-                // disabled={load}
-                mode="contained"
-                buttonColor="#fff"
-                textColor="#E8AE0E"
-                // onPress={onLogin}
-                onPress={() => onLogin()}
-              >
-                <Trans>确认登录</Trans>
-                {/* passWord */}
-              </Button>
-            </View>
-            <View style={[styles.center, recode ? { display: 'none' } : null]}>
-              <TouchableOpacity onPress={() => setrecode(!recode)} >
-                <Text allowFontScaling={false} style={styles.underline}>
-                  <Text>手机号登录</Text>
-                </Text>
-              </TouchableOpacity>
-            </View>
-            </View>
-          
-            <View style={styles.verify}>
-              <TouchableOpacity onPress={smsVerIf}>
-                <Text allowFontScaling={false} style={styles.underline}>
-                  <Trans>loginText.text2</Trans>
-                </Text>
-              </TouchableOpacity>
-              {/* <TouchableOpacity onPress={() =>{}}>
-                <Text allowFontScaling={false} style={styles.underline}>
-                  注册
-                </Text>
-              </TouchableOpacity> */}
-              <TouchableOpacity onPress={forgetPass}>
-                <Text allowFontScaling={false} style={styles.underline}>
-                  <Trans>loginText.text3</Trans>
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.bottom}>
-              <View style={styles.line} />
-              <Text allowFontScaling={false} style={styles.san}>
-                <Trans>loginText.text4</Trans>
-              </Text>
-              <View style={styles.line} />
-            </View>
-            <View style={styles.wx}>
-              <Image
-                source={require('../../assets/images/2.0x/weixin_icon.png')}
-                accessibilityLabel='图片'
-                alt="头像"
-              />
-              <Text style={{ color: '#fff' }}>微信登录</Text>
-            </View>
-            <TouchableOpacity onPress={() => setVisible(true)} style={styles.heng1}>
+          </View>
+          <View style={{position:'absolute',bottom:30,width:windowWidth,alignItems:'center'}}>
+           <View style={{width:50,height:50,backgroundColor:'#F9E3B8',borderRadius:70,alignItems:'center',justifyContent:'center'}}>
+            <Image source={require('../../assets/images/tup/weixin-2.png')} style={{width:30,height:30}} />
+           </View>
+           <TouchableOpacity onPress={() => setVisible(true)} style={styles.heng1}>
               <Image source={require('../../assets/images/tup/tongyi.png')} style={styles.icon} accessibilityLabel='图片' alt="头像"></Image>
-              <Text>我已同意并阅读</Text>
-              <Text style={{ color: 'blue' }}>服务条款</Text>
+              <Text style={{color:'#fff',fontSize:13}}>我已同意并阅读</Text>
+              <Text style={{ color: 'blue',fontSize:13,textDecorationLine:'underline' }}>《服务条款》</Text>
             </TouchableOpacity>
           </View>
-        </KeyboardAwareScrollView>
-      </ImageBackground>
-      <ClausePopup visible={visible} onClose={() => setVisible(false)}></ClausePopup>
-    </Animatable.View>
-  );
+        </ImageBackground>
+      </ScrollView>
+
+
+    </View>
+  )
 };
 export default LoginView;
+
 const styles = StyleSheet.create({
-  top: {
+  container: {
     width: windowWidth,
-    height: 250,
-  },
-  imgbgc: {
-    width: windowWidth,
-    height: '100%',
-  },
-  img: {
-    position: 'absolute',
-    top: 40,
-    left: windowWidth / 2 - 95,
-    width: 190,
-    height: 190,
-  },
-  text: {
-    color: '#fff',
-    fontSize: 29,
-    marginBottom: 30,
-    fontWeight: 'bold'
-  },
-  box: {
-    width: windowWidth,
-    height: 600,
-    padding: 20,
-  },
-  inp: {
-    flex: 1,
-    justifyContent: 'space-between',
-    color: '#fff',
-    backgroundColor: '',
-  },
-  num: {
-    width: '100%',
-    height: 50,
-  },
-  pawoed: {
-    width: '100%',
-    height: 80,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-  },
-  login: {
-    width: '100%',
-    height: 100,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    marginBottom: 20
-  },
-  loginBox: {
-    paddingTop: '1%',
-    paddingBottom: '1%',
-    paddingLeft: '25%',
-    paddingRight: '25%',
-    fontSize: 30
-  },
-  loginText: {
-    color: '#000',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  underline: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-  },
-  verify: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
-  },
-  line: {
-    width: 90,
-    borderBottomWidth: 1,
-    borderColor: '#fff',
-  },
-  bottom: {
-    marginTop: 50,
-    bottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  wx: {
-    marginTop: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  heng: {
-    flexDirection: 'row',
-    width: '60%'
+    height: windowHeight
   },
   heng1: {
     flexDirection: 'row',
@@ -400,19 +212,16 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginTop: 20
   },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-
-  },
-  san: {
-    color: '#fff',
-    fontSize: 16
-  },
   icon: {
     width: 15,
     height: 15,
     margin: 3
-  }
-
-});
+  },
+  inp: {
+    flex: 1,
+    justifyContent: 'space-between',
+    color: '#fff',
+    backgroundColor:'#F6D99D',
+    borderRadius:0
+  },
+})
