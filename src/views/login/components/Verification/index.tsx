@@ -166,8 +166,12 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.contion}>
       <View style={styles.body}>
+     
         <View style={styles.bodyText}>
-          <Text allowFontScaling={false} style={styles.bodyTexta}>输入验证码</Text>
+        <View style={{height:40}}>
+              <Text allowFontScaling={false} style={styles.bodyTexta}>输入验证码</Text>
+          </View>
+        
           <Text allowFontScaling={false} style={styles.bodyTextb}>
             已向您的手机 {localPhone} 发送验证码
           </Text>
@@ -230,6 +234,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#000',
     paddingBottom: '3%',
+
   },
   bodyTextb: {
     fontSize: 16,

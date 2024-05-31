@@ -38,7 +38,6 @@ import PurchasePage from '../../../views/home/page/PurchasePage';
 import ViewOrders from '../../../views/home/page/ViewOrders';
 import LoginView from '../../../views/login/index';
 import ForgetPass from '../../../views/login/components/ForgetPass';
-import Gender from '../../../views/login/components/Gender/index';
 import InterestsHobbies from '../../../views/login/components/InterestsHobbies';
 import Registered from '../../../views/login/components/Registered';
 import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
@@ -405,13 +404,6 @@ export default {
     component:SchoolIndex,
     options:{
       title:'学校索引',
-      headerShown: false,
-    }
-  },
-  GenderRoute:{
-    component:Gender,
-    options:{
-      title:'性别选择',
       headerShown: false,
     }
   },

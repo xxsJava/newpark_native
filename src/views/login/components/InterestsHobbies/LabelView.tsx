@@ -13,35 +13,72 @@ const windowHeight = Dimensions.get('window').height;
 
 const labelData = [{
     index:1,
-    text:'颜值'
+    text:'颜究生'
 },{
     index:2,
-    text:'中二少年'
+    text:'室外高人'
 },{
     index:3,
-    text:'看书'
+    text:'野生运动员'
 },{
     index:4,
-    text:'cosplay'
+    text:'暴汗星人'
 },{
     index:5,
-    text:'篮球'
+    text:'数码宝贝'
 },{
     index:6,
-    text:'剑来'
+    text:'追光人'
 },{
     index:7,
-    text:'剑来十三之争'
+    text:'十级追剧家'
 },{
     index:8,
-    text:'追剧'
+    text:'人生体验官'
 },{
     index:9,
-    text:'明星'
+    text:'天生乐子人'
 },{
     index:10,
-    text:'游戏'
-}]
+    text:'头号玩家'
+},
+{
+    index:11,
+    text:'三好学生'
+},
+{
+    index:12,
+    text:'狗狗教'
+},
+{
+    index:13,
+    text:'猫猫教'
+},
+{
+    index:14,
+    text:'哈基米星人'
+},
+{
+    index:15,
+    text:'四驱玩家'
+},
+{
+    index:16,
+    text:'知食分子'
+},
+{
+    index:17,
+    text:'养生行动派'
+},
+{
+    index:18,
+    text:'磕学家'
+},
+{
+    index:19,
+    text:'满分干饭人'
+}
+]
 
 const LabelViwe = () => {
     const [labelVal,labelOnPrass] = React.useState(0)
