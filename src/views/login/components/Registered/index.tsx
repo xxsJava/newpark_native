@@ -1,38 +1,37 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-27 14:27:03
- * @LastEditTime: 2023-10-29 00:04:25
+ * @LastEditTime: 2024-06-03 15:42:05
  * @FilePath: \newpark_native\src\views\login\components\Registered\index.tsx
  * @Description: 注册信息
  */
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  Alert,
   Dimensions,
   Image,
+  KeyboardAvoidingView,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
-  View,
-  KeyboardAvoidingView,
-  Alert,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 import {
   Appbar,
   Button,
   TextInput
 } from 'react-native-paper';
-import { RegisteredScreenProps } from '../../../../config/routs';
 import { navigate } from '../../../../config/routs/NavigationContainer';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { launchImageLibrary } from 'react-native-image-picker';
+import Colors from '../../../../styles/Color';
 // import * as ImagePicker from 'expo-image-picker';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-import ImagePicker from 'react-native-image-crop-picker';
 
 const Registered = () => {
   var upath = ''
@@ -109,7 +108,7 @@ const Registered = () => {
 
   }
   return (
-    <View style={styles.parentView}>
+    <View style={[styles.parentView,Colors.bGrey]}>
       <Appbar.Header style={styles.headerStyle}>
         <Text allowFontScaling={false} style={styles.headerText}>填写基本信息</Text>
       </Appbar.Header>
@@ -236,10 +235,6 @@ const Registered = () => {
 };
 export default Registered;
 const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
   camera: {
     paddingTop: '5%',
   },
@@ -257,22 +252,9 @@ const styles = StyleSheet.create({
   radioView: {
     flexDirection: 'row',
   },
-  radioT: {
-    marginLeft: '20%',
-    marginRight: '20%',
-    marginTop: '10%',
-  },
-  test: {
-    height: '100%',
-    width: '100%',
-    borderWidth: 1,
-    position: 'absolute',
-    zIndex: -1,
-  },
   parentView: {
     width: windowWidth,
-    height: windowHeight,
-    backgroundColor: '#FFF',
+    flex:1
   },
   headerStyle: {
     height: 45,

@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Avatar, Button } from "react-native-paper";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+
+import Colors from "../../../../../styles/Color";
 import FontSize from "../../../../../styles/FontSize";
 
 
@@ -34,7 +35,7 @@ const CommentsContent = (item:any) => {
                 </TouchableOpacity>
             </View>
         </View><View style={styles.commentAreaView}>
-                <Text allowFontScaling={false} style={[styles.commentAreaTitle, FontSize.f16, Colors.fd9]}>精选评论</Text>
+                <Text allowFontScaling={false} style={[styles.commentAreaTitle, FontSize.f16, Colors.f85]}>精选评论</Text>
                 {item.props.postsComments.map((porp: any) => {
                     return (
                         <View style={styles.commentArea}>

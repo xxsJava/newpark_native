@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-25 10:53:48
- * @LastEditTime: 2024-04-08 16:05:55
+ * @LastEditTime: 2024-05-29 14:53:19
  * @FilePath: \newpark_native\src\views\home\controller\index.tsx
  * @Description: Home页面业务逻辑控制器
  */
@@ -17,7 +17,7 @@ export const postsList = ({item, index, separators}:any) => {
   return (
     <GestureHandlerRootView>
       {
-        //普通帖子
+        //帖子
         postsOrdinary(item,index, separators)
       }
     </GestureHandlerRootView>

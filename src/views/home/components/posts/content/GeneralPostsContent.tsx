@@ -7,7 +7,7 @@ import Colors from "../../../../../styles/Color";
 /*
  * @Author: xxs
  * @Date: 2024-05-28 10:26:06
- * @LastEditTime: 2024-05-28 18:18:24
+ * @LastEditTime: 2024-05-29 17:18:41
  * @FilePath: \newpark_native\src\views\home\components\posts\content\GeneralPostsContent.tsx
  * @Description: desc
  */
@@ -22,10 +22,6 @@ const GeneralPostsContent = (item:any) => {
     case '0':
       return(
         <View style={{ width: windowWidth}}>
-          {/* { item.ttype == 0?<WebView style={{height:200}} source={{ html: item.tcontext }}></WebView>:''}
-          { item.ttype == 1?<WebViews uri={webview.ROOT_URL+webview.API.MUSIC} h={150}/>:''}
-          { item.ttype == 2?<WebViews uri={webview.ROOT_URL+webview.API.VIDEO} h={300} />:''} */}
-          
           <GraphicPosts props={item.props} />
         </View>
       );
@@ -64,7 +60,7 @@ const GraphicPosts = (item:any) => {
               {item.props.imgs.map((prop:any) => {
                 return(
                   <View style={styles.postImgs}>
-                    <Image style={StylesALL.imgSize} source={{uri:prop}}/>
+                    <Image style={StylesALL.imgSize} source={{uri:prop.url}}/>
                   </View>
                 )
               })}

@@ -106,6 +106,9 @@ const Colors = StyleSheet.create({
     },
     fC44:{
         color:'#C44C68'
+    },
+    f85:{
+        color:'#85A3BB'
     }
 })
 

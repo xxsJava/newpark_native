@@ -1,4 +1,4 @@
-import { useToast } from '@gluestack-ui/themed';
+import { CheckIcon, Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator, CheckboxLabel, Link, LinkText, useToast } from '@gluestack-ui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import React, { useState } from 'react';
@@ -24,9 +24,11 @@ import { LoginScreenProps } from '../../config/routs';
 import { navigate } from '../../config/routs/NavigationContainer';
 import { initDataDir } from '../../config/storagePermissionStatus';
 import IMSDKRN from '../../plugins/IMSDKRN';
+import FontSize from '../../styles/FontSize';
 import Storage from '../../utils/AsyncStorageUtils';
 import ClausePopup from '../../views/login/components/ClausePopup';
 import { forgetPass } from './controller';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const LoginView: React.FC<LoginScreenProps> = () => {
@@ -39,8 +41,11 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   const [pass, setPass] = useState('Ee123456');
   const [securePass, setSecurePass] = useState(true);
   // 这是密码登录的地方
-  const [recode, setrecode] = useState(true);
+  const [recode, setrecode] = useState(false);
   const [load, setLoad] = useState(false);
+
+  const [checkVal, setChckVal] = useState([])
+  const [servicefFlag,setServiceFlag] = useState(false);
 
   const toasts = (directional:any,text:string) => {
     toast.show({
@@ -61,9 +66,16 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   };
 
   const onLogin = async () => {
-    setLoad(true);
     const networkState = await NetInfo.fetch();
     console.log('当前网络状态--------------->'+ networkState.isConnected);
+
+    if(!servicefFlag){
+      toasts('top','请同意服务协议');
+      return;
+    }
+
+    setLoad(true);
+    
 
     if (phone.length != 11) {
       if (phone.length == 0) {
@@ -112,10 +124,17 @@ const LoginView: React.FC<LoginScreenProps> = () => {
   };
 
   const smsVerIf = async () => {
+
     if (phone.length != 11) {
       toasts('top','请输入手机号');
       return;
     }
+
+    if(!servicefFlag){
+      toasts('top','请同意服务协议,在进行登录/注册');
+      return;
+    }
+
     Storage.set('usr-phone', phone);
     const smsLoginAPI = await smsLoginApi(smsLogin);
     console.log(smsLoginAPI);
@@ -133,65 +152,30 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       Storage.set('usr-phone', text);
     }
   };
+
+  const onChageService = (bol:boolean) => {
+    setServiceFlag(bol);
+  }
+
   return (
     <Animatable.View animation="fadeIn">
       <ImageBackground
         style={styles.imgbgc}
         source={require('../../assets/images/loginBG.png')}>
-        {/* style={{flex: 1}} */}
         <KeyboardAwareScrollView enableOnAndroid={true}>
           <View style={styles.top}>
             <Image
               style={styles.img}
               source={require('../../assets/images/logo.png')}
-              accessibilityLabel='图片'
+              accessibilityLabel='应用程序标志'
               alt="头像"
             />
           </View>
           {/* 手机号登录 */}
           <View style={styles.box}>
-            <View style={recode ? null : { display: 'none' }}>
-              <Text allowFontScaling={false} style={styles.text}>
-                请手机号登录
-              </Text>
-              <View style={styles.num}>
-                <TextInput
-                  allowFontScaling={false}
-                  placeholder="请输入手机号"
-                  placeholderTextColor="#fff"
-                  underlineColor="#fff"
-                  activeUnderlineColor="#fff"
-                  textColor="#fff"
-                  maxLength={11}
-                  keyboardType="number-pad"
-                  onChangeText={changePhoneText}
-                  style={[styles.inp]}
-                  value={phone}                />
-              </View>
-              <View style={styles.login}>
-                <Button
-                  contentStyle={styles.loginBox}
-                  loading={load}
-                  disabled={load}
-                  mode="contained"
-                  buttonColor="#fff"
-                  textColor="#E8AE0E"
-                  onPress={() => smsVerIf()}>
-                  <Trans>loginText.text1</Trans>
-                </Button>
-              </View>
-              <View style={styles.center}>
-                <TouchableOpacity onPress={() => setrecode(!recode)}>
-                  <Text allowFontScaling={false} style={styles.underline}>
-                    <Text>密码登录</Text>
-                  </Text>
-                </TouchableOpacity>
-              </View>
-
-            </View>
-            <View style={!recode ? null : { display: 'none' }}>
+            <View>
             <Text allowFontScaling={false} style={styles.text}>
-                请密码登录
+                {recode?"验证码登录/注册":"账号密码登录"}
             </Text>
             <View style={styles.num}>
               <TextInput
@@ -202,17 +186,32 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 activeUnderlineColor="#fff"
                 textColor="#fff"
                 maxLength={11}
+                left={
+                  <TextInput.Icon
+                    icon="cellphone"
+                    color={"#FFF"}
+                  />
+                }
                 keyboardType="number-pad"
                 onChangeText={changePhoneText}
-                style={[styles.inp, { paddingLeft: 18 }]}
+                style={[styles.inp]}
                 value={phone}
               />
             </View>
-            <View style={styles.pawoed} >
+
+            {recode?'':(
+              <>
+              <View style={styles.pawoed} >
               <TextInput
                 allowFontScaling={false}
-                style={[styles.inp, { paddingLeft: 18 }]}
+                style={[styles.inp]}
                 secureTextEntry={securePass}
+                left={
+                  <TextInput.Icon
+                    icon="shield-lock"
+                    color={"#FFF"}
+                  />
+                }
                 right={
                   <TextInput.Icon
                     icon="eye"
@@ -231,67 +230,75 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 value={pass}
               />
             </View>
-            <View style={[styles.login, recode ? { display: 'none' } : null]}>
-              <Button
-                contentStyle={styles.loginBox}
-                loading={load}
-                // disabled={load}
-                mode="contained"
-                buttonColor="#fff"
-                textColor="#E8AE0E"
-                // onPress={onLogin}
-                onPress={() => onLogin()}
-              >
-                <Trans>确认登录</Trans>
-                {/* passWord */}
-              </Button>
-            </View>
-            <View style={[styles.center, recode ? { display: 'none' } : null]}>
-              <TouchableOpacity onPress={() => setrecode(!recode)} >
-                <Text allowFontScaling={false} style={styles.underline}>
-                  <Text>手机号登录</Text>
-                </Text>
-              </TouchableOpacity>
-            </View>
-            </View>
-          
             <View style={styles.verify}>
-              <TouchableOpacity onPress={smsVerIf}>
                 <Text allowFontScaling={false} style={styles.underline}>
-                  <Trans>loginText.text2</Trans>
+                  记住密码
                 </Text>
-              </TouchableOpacity>
-              {/* <TouchableOpacity onPress={() =>{}}>
-                <Text allowFontScaling={false} style={styles.underline}>
-                  注册
-                </Text>
-              </TouchableOpacity> */}
-              <TouchableOpacity onPress={forgetPass}>
+              <TouchableOpacity onPress={forgetPass} accessibilityLabel="忘记密码">
                 <Text allowFontScaling={false} style={styles.underline}>
                   <Trans>loginText.text3</Trans>
                 </Text>
               </TouchableOpacity>
             </View>
+            </>
+            )}
+            
+            <View style={[styles.login]}>
+              <Button
+                contentStyle={styles.loginBox}
+                loading={load}
+                disabled={load}
+                mode="contained"
+                buttonColor="#fff"
+                textColor="#E8AE0E"
+                onPress={recode?smsVerIf:onLogin}
+              >
+                <Trans>{recode?'loginText.text1':'确认登录'}</Trans>
+              </Button>
+            </View>
+            <View style={[styles.center]}>
+              <TouchableOpacity onPress={() => setrecode(!recode)} accessibilityLabel={recode?'账号密码登录':'使用验证码登录/注册'} >
+                <Text allowFontScaling={false} style={styles.underline}>
+                  <Text>{recode?'账号密码登录':'使用验证码登录/注册'}</Text>
+                </Text>
+              </TouchableOpacity>
+            </View>
+            </View>
             <View style={styles.bottom}>
-              <View style={styles.line} />
               <Text allowFontScaling={false} style={styles.san}>
                 <Trans>loginText.text4</Trans>
               </Text>
-              <View style={styles.line} />
             </View>
             <View style={styles.wx}>
               <Image
                 source={require('../../assets/images/2.0x/weixin_icon.png')}
-                accessibilityLabel='图片'
-                alt="头像"
+                alt="网络错误"
+                accessibilityLabel="微信图标"
               />
-              <Text style={{ color: '#fff' }}>微信登录</Text>
             </View>
-            <TouchableOpacity onPress={() => setVisible(true)} style={styles.heng1}>
-              <Image source={require('../../assets/images/tup/tongyi.png')} style={styles.icon} accessibilityLabel='图片' alt="头像"></Image>
-              <Text>我已同意并阅读</Text>
-              <Text style={{ color: 'blue' }}>服务条款</Text>
-            </TouchableOpacity>
+            
+            <View style={styles.heng1}>
+
+              <CheckboxGroup onChange={(keys) => {setChckVal(keys)}} value={checkVal} accessible={true} accessibilityLabel="同意服务协议组">
+                <Checkbox size="sm" isInvalid={false} isDisabled={false} value='services' onChange={onChageService} accessible={true} accessibilityLabel="同意服务协议" >
+                  <CheckboxIndicator mr="$2" accessible={true} accessibilityLabel="同意服务协议图标">
+                    <CheckboxIcon accessible={true} accessibilityLabel="同意服务协议图标" as={CheckIcon}/>
+                  </CheckboxIndicator >
+                  <CheckboxLabel accessible={true} accessibilityLabel="同意服务协议标题" />
+                </Checkbox>
+              </CheckboxGroup>
+              <Text style={FontSize.f12}>同意</Text>
+              <Link href="#" accessibilityLabel="平台服务协议">
+                  <LinkText style={FontSize.f12} accessibilityLabel="平台服务协议文本">《平台服务协议》</LinkText>
+              </Link>
+              <Text style={FontSize.f12}>和</Text>
+              <Link href="#" accessibilityLabel="隐私政策">
+                  <LinkText style={FontSize.f12} accessibilityLabel="隐私政策文本">《隐私政策》</LinkText>
+              </Link>
+              <Link href="#" accessibilityLabel="用户协议">
+                  <LinkText style={FontSize.f12} accessibilityLabel="用户协议文本">《用户协议》</LinkText>
+              </Link>
+            </View>
           </View>
         </KeyboardAwareScrollView>
       </ImageBackground>
@@ -373,11 +380,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 10,
   },
-  line: {
-    width: 90,
-    borderBottomWidth: 1,
-    borderColor: '#fff',
-  },
   bottom: {
     marginTop: 50,
     bottom: 10,
@@ -389,10 +391,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  heng: {
-    flexDirection: 'row',
-    width: '60%'
   },
   heng1: {
     flexDirection: 'row',

@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-24 17:48:22
- * @LastEditTime: 2024-04-25 09:25:23
+ * @LastEditTime: 2024-06-03 15:46:33
  * @FilePath: \newpark_native\src\views\login\controller\index.tsx
  * @Description: 登录控制器
  */
@@ -95,5 +95,6 @@ export default Islogin;
 
 //忘记密码
 export const forgetPass = () => {
-  navigate('ForgetPass');
+  // navigate('ForgetPass');
+  navigate('Registered');
 };

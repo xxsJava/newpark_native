@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-26 09:38:45
- * @LastEditTime: 2024-05-29 10:44:43
+ * @LastEditTime: 2024-05-29 14:55:13
  * @FilePath: \newpark_native\src\routes\stacker\index.tsx
  * @Description: desc
  */
@@ -94,25 +94,23 @@ export const BommonTab = () => {
               const option: any = {
                 tabBarLabel: t(routeValue.label),
                 tabBarIcon: ({ focused, size, color }: any) => {
-                  let iconName = focused
-                    ? routeValue.SelectedIcon
-                    : routeValue.UnSelectedIcon;
-                  
-                    console.log('iconName--------->',iconName);
                   return (
                     // <Ionicons name={iconName} size={30} color={color} />
                     <View style={{width:35,height:30}}>
-                        <Image style={StylesALL.imgSize} source={iconName}/>
+                        <Image style={StylesALL.imgSize} source={focused
+                    ? routeValue.SelectedIcon
+                    : routeValue.UnSelectedIcon}/>
                     </View>
                   );
                 },
+                
               };
 
               //添加角标
               if (routeKey === 'Socializing') {
                 option['tabBarBadge'] = corner;
               }
-
+              
               // 路由遍历
               return (
                 <Tab.Screen
@@ -120,12 +118,12 @@ export const BommonTab = () => {
                   key={routeKey}
                   component={routeValue.component}
                   options={option}
-                  
                 />
               );
             });
           }
         })}
+
       </Tab.Navigator>
       
       <Animated.View
@@ -192,7 +190,7 @@ export const BommonTab = () => {
         </TouchableOpacity>
 
       <View style={styles.tabPub}>
-        <TouchableOpacity onPress={pubAnm}>
+        <TouchableOpacity onPress={pubAnm} activeOpacity={0.9}>
           <Image style={styles.bthImg} source={require('../../assets/images/tab/main.png')} accessibilityLabel='图片' alt="网络异常" />
         </TouchableOpacity>
       </View>

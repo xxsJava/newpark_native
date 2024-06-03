@@ -42,7 +42,7 @@ export default {
     },
     //发布
     Publish: {
-      component: 'none',
+      component: ()=>null,
       label: '',
       SelectedIcon: '',
       UnSelectedIcon: '',

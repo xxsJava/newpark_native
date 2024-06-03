@@ -11,7 +11,6 @@ import {
   Alert,
   Dimensions,
   Image,
-  Modal,
   Platform,
   ScrollView,
   StyleSheet,
@@ -28,6 +27,7 @@ import { delPosts } from '../../../api/sys/post/index';
 import WebViews from '../../../components/WebView/WebViewCompent';
 import { navigate } from '../../../config/routs/NavigationContainer';
 import webview from '../../../config/webview';
+import StylesALL from '../../../styles';
 import Colors from '../../../styles/Color';
 import FontSize from '../../../styles/FontSize';
 import DateTimeUtils from '../../../utils/DateTimeUtils';
@@ -36,50 +36,20 @@ import CommentDetails from './CommentDetails';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-// const listData = [{
-//     index:1,
-//     name:'佩奇',
-//     time:'刚刚',
-//     num:'2.0w',
-//     image:require('../../../assets/images/avatar-nan.png'),
-//     text:'抬头和你分享一个月亮就很美好',
-//     itemData:[]
-// },{
-//     index:2,
-//     name:'佩奇',
-//     time:'刚刚',
-//     num:'2.0w',
-//     image:require('../../../assets/images/avatar-nan.png'),
-//     text:'抬头和你分享一个月亮就很美好',
-//     itemData:[{
-//         index:1,
-//         name:'咕子',
-//         text:6
-//     }]
-// }]
-
 const PostDetails = ({ route }: any) => {
- 
-
+  
   const commentsData: postCommentsData = {
     pageNo: 1,
     pageSize: 5,
     postsId: route.params.item.tid,
   };
 
-  const postLikeParam: postLikeParam = {
-    likeTime: new Date().valueOf(),
-    comId: 0,
-    postsId: route.params.item.tid,
-    likeType: 1,
-  };
-  const [collectionSelect, setSelectCollection] = React.useState('0');
-  const [likeSelect, setSelectLike] = React.useState('0');
-  const [transmitSelect, setSelectTransmit] = React.useState('0');
+  
+
+
+
   const [likeSelect1, setSelectLike1] = React.useState('0');
-  const [tlikeCount, setTlikeCount] = React.useState(
-    route.params.item.tlikeCount,
-  );
+  
   const [inputUp, setInputUp] = React.useState(false);
   const [editable, setEditable] = React.useState(false);
   const [inputVal, setInputVal] = React.useState('');
@@ -91,33 +61,13 @@ const PostDetails = ({ route }: any) => {
     React.useEffect(() => {
       setPid(route.params.item.tid);
     },[]);
-  const [showActionsheet, setShowActionsheet] = React.useState(false)
-  const handleClose = () => setShowActionsheet(!showActionsheet);
-  // 删除帖子
-  const handleDel = async () => {
-    const data = await delPosts(pid);
-    console.log(data,'点击了删除按钮,删除了pid为'+pid);
-    if(data.code == 200) {
-      Alert.alert('删除成功');
-     navigate('HomeStacker')
-    }
-    
-    setShowActionsheet(!showActionsheet);
-  };
-  const [isVisible, setIsVisible] = useState(false)
+  
+  
+  
   const data = route.params.item;
 
-  console.log('单条帖子数据', route.params);
-  const onSelectPress = (prop: number) => {
-    if (prop == 1) {
-      collectionSelect == '0'
-        ? setSelectCollection('1')
-        : setSelectCollection('0');
-      console.log('返回值：', collectionSelect);
-    } else if (prop == 3) {
-      transmitSelect == '0' ? setSelectTransmit('1') : setSelectTransmit('0');
-    }
-  };
+  console.log('当前帖子数据-------->', route.params);
+  
   const inputPress = (porp: number) => {
     if (porp == 1) {
       setEditable(true);
@@ -129,21 +79,7 @@ const PostDetails = ({ route }: any) => {
   };
 
 
-  const postLikePress = async () => {
-
-    if (likeSelect == '0') {
-      const postLikeUp = await postLike(postLikeParam);
-      if (postLikeUp.data) {
-        setSelectLike('1');
-        setTlikeCount(tlikeCount + 1);
-      }
-      console.log('点赞返回', postLikeUp);
-
-    } else {
-      setSelectLike('0');
-      setTlikeCount(tlikeCount - 1);
-    }
-  };
+  
   const [postCommentsList, setPostCommentsList] = React.useState([]);
   const PostsCommentsData = async () => {
     const postCommentsAPI = await postComments(commentsData);
@@ -177,170 +113,21 @@ const PostDetails = ({ route }: any) => {
   }, []); // 只在组件挂载时调用一次
   return (
     <><View style={styles.parentView}>
-      <Appbar.Header style={[styles.headerStyle,Colors.bfab]}>
-        <Appbar.Action
-          icon={require('../../../assets/images/chevron-left.png')}
-          onPress={() => navigate('HomeStacker')} />
-        <Text allowFontScaling={false} style={[styles.headerText,FontSize.f18,Colors.fWhite]}>
-          <Trans>navigationBar.title18</Trans>
-        </Text>
-        <Appbar.Action
-          icon={require('../../../assets/images/ellipsis_v.png')}
-          onPress={handleClose} />
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
-          <ActionsheetBackdrop />
-          <ActionsheetContent maxHeight="$56" zIndex={999}>
-            <ActionsheetDragIndicatorWrapper>
-              <ActionsheetDragIndicator />
-            </ActionsheetDragIndicatorWrapper>
-            <ActionsheetItem onPress={handleDel}>
-              <ActionsheetIcon>
-                {/*  size="sm"  */}
-                <ICON as={TrashIcon}/>
-              </ActionsheetIcon>
-              {/* size='sm' */}
-              <ActionsheetItemText >删除</ActionsheetItemText>
-            </ActionsheetItem>
-            <ActionsheetItem onPress={handleClose}>
-              <ActionsheetIcon>
-                {/* size="sm" */}
-                <ICON as={ShareIcon}  />
-              </ActionsheetIcon>
-              {/* size='sm' */}
-              <ActionsheetItemText >分享</ActionsheetItemText>
-            </ActionsheetItem>
-            <ActionsheetItem onPress={handleClose}>
-              <ActionsheetIcon>
-                {/* size="sm" */}
-                <ICON as={FavouriteIcon}  />
-              </ActionsheetIcon>
-              {/* size='sm' */}
-              <ActionsheetItemText >喜欢</ActionsheetItemText>
-            </ActionsheetItem>
-            <ActionsheetItem onPress={handleClose}>
-              <ActionsheetIcon>
-                {/* size="sm" */}
-                <ICON as={CloseIcon}  />
-              </ActionsheetIcon>
-              {/* size='sm' */}
-              <ActionsheetItemText >取消</ActionsheetItemText>
-            </ActionsheetItem>
-          </ActionsheetContent>
-        </Actionsheet>
-      </Appbar.Header>
+      <AppHeadView />
       <View style={styles.contentView}>
         <ScrollView style={styles.contentScroll}>
           <View style={[styles.postView,Colors.bWhite]}>
-            <View style={styles.postStyle}>
-              <View style={styles.avatarView}>
-                <Avatar.Image size={65} source={{ uri: data.upath }} accessibilityLabel='图片' />
-              </View>
-              <View style={styles.avatarConent}>
-                <View style={styles.nameView}>
-                  <Text allowFontScaling={false} style={[styles.nameText,Colors.fBlack,FontSize.f16]}>
-                    {data.unikname}
-                  </Text>
-                  <View style={styles.tabStyle}>
-                    <Icon
-                      size={15}
-                      color="#FFF"
-                      source={require('../../../assets/images/alimom/sex_icon1.png')} />
-                    <Text allowFontScaling={false} style={[styles.tabText,Colors.fWhite]}>
-                      20
-                    </Text>
-                  </View>
-                </View>
-                <Text allowFontScaling={false} style={[styles.timeText,FontSize.f14,Colors.fbbb]}>
-                  {DateTimeUtils.formattedDateTime(data.tlastTime,'HH:mm')}
-                </Text>
-              </View>
-              <View style={styles.avatarButton}>
-                <Button
-                  style={[styles.avatarButtonStyle,Colors.bfab]}
-                  labelStyle={[styles.avatarButtonText,Colors.fWhite,FontSize.f16]}
-                  onPress={() => console.log('点击关注')}>
-                  关注
-                </Button>
-              </View>
-            </View>
-            <View style={styles.postImage}>
-              <Text allowFontScaling={false} style={[styles.postText,FontSize.f16,Colors.fBlack]}>
-                {data.ttitle}
-              </Text>
-
-              {/* 音乐 */}
-              <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={150} w={400} />
-              {/* 视频 */}
-              <WebViews uri={webview.ROOT_URL + webview.API.VIDEO} h={360} w={360} />
-
-              {/* 图片开始 */}
-              <View style={{ width: windowWidth, height: 200, }}>
-                <TouchableOpacity onPress={() => {
-                  setIsVisible(true);
-                }}>
-                  <Image style={{ width: 200, height: '100%', resizeMode: 'stretch' }} source={{ uri: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png' }} accessibilityLabel='图片' alt="头像" />
-                </TouchableOpacity>
-              </View>
-              <Modal visible={isVisible} transparent={true}>
-                <ImageViewer enableSwipeDown imageUrls={[{ url: 'https://new-by-video.oss-cn-beijing.aliyuncs.com/userImage/1632420911131600.png' }]} onClick={() => {
-                  setIsVisible(false);
-                }}></ImageViewer>
-              </Modal>
-              {/* 图片介绍 */}
-              {/* <Image style={styles.postImageStyle} source={require('../../../assets/images/alimom/R-C.jpg')}></Image> */}
-            </View>
-            <View style={styles.postBottom}>
-              <Text allowFontScaling={false} style={[styles.postBottomText,FontSize.f16,Colors.f99]}>
-                浏览记录 502
-              </Text>
-              <View style={styles.heartView}>
-                <TouchableOpacity
-                  onPress={() => onSelectPress(1)}>
-                  <Icon
-                    size={24}
-                    color={collectionSelect == '1' ? '#FC073B' : '#ddd'}
-                    source={require('../../../assets/images/Favorite.png')} />
-                </TouchableOpacity>
-                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
-                  {' '}
-                  2000
-                </Text>
-              </View>
-              <View style={styles.heartView}>
-                <TouchableOpacity
-                  onPress={() => onSelectPress(3)}>
-                  <Icon
-                    size={24}
-                    color={transmitSelect == '1' ? '#6A1B9A' : '#ddd'}
-                    source={require('../../../assets/images/transmit_icon.png')} />
-                </TouchableOpacity>
-                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
-                  {' '}
-                  {data.tforwardCount}
-                </Text>
-              </View>
-              <View style={styles.heartView}>
-                <TouchableOpacity
-                  onPress={() => postLikePress()}>
-                  <Icon
-                    size={24}
-                    color={likeSelect == '1' ? '#FABA3C' : '#ddd'}
-                    source={require('../../../assets/images/Like-copy.png')} />
-                </TouchableOpacity>
-                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
-                  {' '}
-                  {tlikeCount}
-                </Text>
-              </View>
-            </View>
+            <PostsHead props={data} />
+            <PostsContent props={data} />
+            <PostsContentFoot props={data} />
           </View>
+          
           <View style={[styles.postComment,Colors.bWhite]}>
             <View style={styles.scrollView}>
-              <Text allowFontScaling={false} style={[styles.commentTitle,FontSize.f18,Colors.fBlack]}>
+              <Text allowFontScaling={false} style={[styles.commentTitle,FontSize.f18,Colors.f99]}>
                 全部评论({postCommentsList})
               </Text>
               <CommentDetails commenData={postCommentsList} />
-              
             </View>
           </View>
         </ScrollView>
@@ -377,6 +164,298 @@ const PostDetails = ({ route }: any) => {
     </>
   );
 };
+
+//导航栏
+const AppHeadView = () => {
+  const [showActionsheet, setShowActionsheet] = React.useState(false)
+  const handleClose = () => setShowActionsheet(!showActionsheet);
+
+  // 删除帖子
+  const handleDel = async () => {
+    const data = await delPosts(pid);
+    console.log(data,'点击了删除按钮,删除了pid为'+pid);
+    if(data.code == 200) {
+      Alert.alert('删除成功');
+     navigate('HomeStacker')
+    }
+    
+    setShowActionsheet(!showActionsheet);
+  };
+
+  const tabFeatureData = [
+    {
+      id: 0,
+      title:'删除',
+      func: handleDel,
+      icon: TrashIcon
+    },
+    {
+      id: 1,
+      title:'分享',
+      func: handleClose,
+      icon: ShareIcon
+    },
+    {
+      id: 2,
+      title:'喜欢',
+      func: handleClose,
+      icon: FavouriteIcon
+    },
+    {
+      id: 3,
+      title:'取消',
+      func: handleClose,
+      icon: CloseIcon
+    }
+  ]
+
+  return (
+    <Appbar.Header style={[styles.headerStyle,Colors.bfab]}>
+        <Appbar.Action
+          icon={require('../../../assets/images/chevron-left.png')}
+          onPress={() => navigate('HomeStacker')} />
+        <Text allowFontScaling={false} style={[styles.headerText,FontSize.f18,Colors.fWhite]}>
+          <Trans>navigationBar.title18</Trans>
+        </Text>
+        <Appbar.Action
+          icon={require('../../../assets/images/ellipsis_v.png')}
+          onPress={handleClose} />
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+          <ActionsheetBackdrop />
+          <ActionsheetContent maxHeight="$56" zIndex={999}>
+            <ActionsheetDragIndicatorWrapper>
+              <ActionsheetDragIndicator />
+            </ActionsheetDragIndicatorWrapper>
+            {
+              tabFeatureData.map(item => {
+                return (
+                  <ActionsheetItem onPress={item.func}>
+                    <ActionsheetIcon>
+                      <ICON size='sm' as={item.icon}/>
+                    </ActionsheetIcon>
+                    <ActionsheetItemText >{item.title}</ActionsheetItemText>
+                  </ActionsheetItem>
+                )
+              })
+            }
+          </ActionsheetContent>
+        </Actionsheet>
+      </Appbar.Header>
+  )
+}
+
+//布局head
+const PostsHead = (item:any) =>{
+    return(
+      <View style={styles.postStyle}>
+              <View style={styles.avatarView}>
+                <Avatar.Image size={65} source={{ uri: item.props.upath }} accessibilityLabel='图片' />
+              </View>
+              <View style={styles.avatarConent}>
+                <View style={styles.nameView}>
+                  <Text allowFontScaling={false} style={[styles.nameText,Colors.fBlack,FontSize.f16]}>
+                    {item.props.unikname}
+                  </Text>
+                  <View style={styles.tabStyle}>
+                    <Icon
+                      size={15}
+                      color="#FFF"
+                      source={require('../../../assets/images/alimom/sex_icon1.png')} />
+                    <Text allowFontScaling={false} style={[styles.tabText,Colors.fWhite]}>
+                      20
+                    </Text>
+                  </View>
+                </View>
+                <Text allowFontScaling={false} style={[styles.timeText,FontSize.f14,Colors.fbbb]}>
+                  {DateTimeUtils.formattedDateTime(item.props.tlastTime,'HH:mm')}
+                </Text>
+              </View>
+              <View style={styles.avatarButton}>
+                <Button
+                  style={[styles.avatarButtonStyle,Colors.bfab]}
+                  labelStyle={[styles.avatarButtonText,Colors.fWhite,FontSize.f16]}
+                  onPress={() => console.log('点击关注')}>
+                  关注
+                </Button>
+              </View>
+            </View>
+    )
+}
+
+//内容
+const PostsContent = (item:any) => {
+  return(
+    <View style={styles.postImage}>
+        <PostsInfo props={item.props} />
+    </View>
+  )
+}
+
+
+const PostsInfo = (item:any) => {
+
+  console.log(item.props)
+  {/* 图片 + 文案 0 */}
+  {/* 文案 1 */}
+  {/* 视频 + 文案 2 */}
+  {/* 音乐 + 文案 3  */}
+  
+  switch(item.props.ttype){
+    case '0':{
+      const [imgIndex,setImgIndex] = useState(0);
+      const [imgFlag,setImgFlag] = useState(false);
+
+      return(
+        <>
+          <Text allowFontScaling={false} style={[styles.postText,FontSize.f16,Colors.fBlack]}>
+                {item.props.tcontext}
+          </Text>
+          <View style={{flexDirection:'row',flexWrap: 'wrap',marginLeft:20,marginTop:10,marginBottom:10}}>
+            {
+              item.props.imgs.map((items:any,index:any) => {
+                return(
+                  <TouchableOpacity style={{width:'30%',height:120,padding:2}} onPress={()=>{
+                    setImgIndex(index);
+                    setImgFlag(true);
+                  }}>
+                    <Image style={StylesALL.imgSize} source={{uri:items.url}} />
+                  </TouchableOpacity>
+                )
+              })
+            }
+          </View>
+          {
+            imgFlag && (<View style={{position:'absolute',flex:1,width:'100%',height:'100%'}}>
+            <ImageViewer style={StylesALL.imgSize} imageUrls={item.props.imgs}/>
+            </View>)
+          }
+          {/* <View style={{width:'100%', height:400}}>
+            <ImageViewer style={StylesALL.imgSize} imageUrls={item.props.imgs}/>
+          </View> */}
+        </>
+      )}
+    case '1':
+      return(
+        <>
+          <Text allowFontScaling={false} style={[styles.postText,FontSize.f16,Colors.fBlack]}>
+                {item.props.tcontext}
+          </Text>
+        </>
+      )
+    case '2':
+      return(
+        <>
+          <Text allowFontScaling={false} style={[styles.postText,FontSize.f16,Colors.fBlack]}>
+                {item.props.tcontext}
+          </Text>
+          <View style={{marginLeft:20,marginTop:10}}>
+            <WebViews uri={webview.ROOT_URL+webview.API.VIDEO} w={'90%'} h={200} />
+          </View>
+        </>
+      )
+    case '3':
+      return(
+        <>
+          <Text allowFontScaling={false} style={[styles.postText,FontSize.f16,Colors.fBlack]}>
+                {item.props.tcontext}
+          </Text>
+          <View style={{marginLeft:20,marginTop:10}}>
+            <WebViews uri={webview.ROOT_URL + webview.API.MUSIC} h={80} w={'90%'} />
+          </View>
+        </>
+      )
+  }
+}
+
+//内容foot
+const PostsContentFoot = (item:any) => {
+
+  const [collectionSelect, setSelectCollection] = React.useState('0');
+  const [transmitSelect, setSelectTransmit] = React.useState('0');
+  const [likeSelect, setSelectLike] = React.useState('0');
+  const [tlikeCount, setTlikeCount] = React.useState(
+    item.props.tlikeCount,
+  );
+
+  const postLikeParam: postLikeParam = {
+    likeTime: new Date().valueOf(),
+    comId: 0,
+    postsId: item.props.tid,
+    likeType: 1,
+  };
+  
+  const onSelectPress = (prop: number) => {
+    if (prop == 1) {
+      collectionSelect == '0'
+        ? setSelectCollection('1')
+        : setSelectCollection('0');
+      console.log('返回值：', collectionSelect);
+    } else if (prop == 3) {
+      transmitSelect == '0' ? setSelectTransmit('1') : setSelectTransmit('0');
+    }
+  };
+
+  const postLikePress = async () => {
+
+    if (likeSelect == '0') {
+      const postLikeUp = await postLike(postLikeParam);
+      if (postLikeUp.data) {
+        setSelectLike('1');
+        setTlikeCount(tlikeCount + 1);
+      }
+      console.log('点赞返回', postLikeUp);
+
+    } else {
+      setSelectLike('0');
+      setTlikeCount(tlikeCount - 1);
+    }
+  };
+
+  return (
+    <View style={styles.postBottom}>
+              <Text allowFontScaling={false} style={[styles.postBottomText,FontSize.f16,Colors.f99]}>
+                浏览记录 502
+              </Text>
+              <View style={styles.heartView}>
+                <TouchableOpacity
+                  onPress={() => onSelectPress(1)}>
+                  <Icon
+                    size={24}
+                    color={collectionSelect == '1' ? '#FC073B' : '#ddd'}
+                    source={require('../../../assets/images/Favorite.png')} />
+                </TouchableOpacity>
+                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
+                  2000
+                </Text>
+              </View>
+              <View style={styles.heartView}>
+                <TouchableOpacity
+                  onPress={() => onSelectPress(3)}>
+                  <Icon
+                    size={24}
+                    color={transmitSelect == '1' ? '#6A1B9A' : '#ddd'}
+                    source={require('../../../assets/images/transmit_icon.png')} />
+                </TouchableOpacity>
+                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
+                  {' '}
+                  {item.props.tforwardCount}
+                </Text>
+              </View>
+              <View style={styles.heartView}>
+                <TouchableOpacity
+                  onPress={() => postLikePress()}>
+                  <Icon
+                    size={24}
+                    color={likeSelect == '1' ? '#FABA3C' : '#ddd'}
+                    source={require('../../../assets/images/Like-copy.png')} />
+                </TouchableOpacity>
+                <Text allowFontScaling={false} style={[Colors.fdd,FontSize.f16]}>
+                  {tlikeCount}
+                </Text>
+              </View>
+            </View>
+  )
+}
 
 export default PostDetails;
 
@@ -492,9 +571,9 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   postText: {
-    height: 30,
-    textAlign: 'center',
     lineHeight: 20,
+    paddingLeft: 20,
+    width:'95%'
   },
   postImageStyle: {
     width: '84%',

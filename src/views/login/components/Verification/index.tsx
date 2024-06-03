@@ -1,7 +1,7 @@
 /*
  * @Author: xxs
  * @Date: 2023-10-27 09:19:31
- * @LastEditTime: 2024-01-23 18:30:34
+ * @LastEditTime: 2024-06-03 15:32:10
  * @FilePath: \newpark_native\src\views\login\components\Verification\index.tsx
  * @Description: desc
  */
@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { VerificationScreenProps } from '../../../../config/routs';
 // import {Button, useToast} from 'native-base';
-import { Button, ButtonSpinner, ButtonText, Toast, useToast } from '@gluestack-ui/themed';
+import { Button, ButtonText, Toast, useToast } from '@gluestack-ui/themed';
 import { smsLoginApi } from '../../../../api/sys/lgoin';
 import { SmsLoginType } from '../../../../api/sys/lgoin/types';
 import { navigate } from '../../../../config/routs/NavigationContainer';
@@ -99,8 +99,7 @@ const Verification: React.FC<VerificationScreenProps> = ({ navigation }) => {
       // 记得改过来
       // verIfcode(); 
       navigate('Registered');
-      // console.log('下一步。。。。。。。。。。');
-      
+
     }
   };
 
