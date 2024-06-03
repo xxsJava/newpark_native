@@ -352,7 +352,7 @@ const ListView = (data: any) => {
                 onPress={() =>  getPubRew() }
                 style={{ backgroundColor: '#FDAA00', borderRadius: 10, marginTop: 20, height: 46, justifyContent: 'center' }}
               >
-                <ButtonText>发布悬赏22</ButtonText>
+                <ButtonText>发布悬赏</ButtonText>
               </Button>
               <HStack>
               </HStack>

@@ -18,6 +18,8 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height
 
 const renderItem = ({item, index}: any) => {
+   console.log(item,'item');
+   console.log(index,'index');
    return (
          <View style={styles.item}>
             <Image
@@ -102,7 +104,7 @@ const MemberServicesView = () => {
                 <Carousel
                     sliderWidth={windowWidth}
                     sliderHeight={windowHeight}
-                    itemWidth={windowWidth -70}
+                    itemWidth={windowWidth - 70}
                     data={cardData}
                     renderItem={renderItem}
                     hasParallaxImages={true}

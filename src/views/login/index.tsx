@@ -26,8 +26,6 @@ import { initDataDir } from '../../config/storagePermissionStatus';
 import IMSDKRN from '../../plugins/IMSDKRN';
 import FontSize from '../../styles/FontSize';
 import Storage from '../../utils/AsyncStorageUtils';
-import ClausePopup from '../../views/login/components/ClausePopup';
-import { forgetPass } from './controller';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -53,17 +51,6 @@ const LoginView: React.FC<LoginScreenProps> = () => {
       render: () => ToastCompent(text),
     });
   }
-
-  const usrData: UserLoginType = {
-    uPhone: phone,
-    uEmail: '',
-    password: pass,
-  };
-
-  const smsLogin: SmsLoginType = {
-    phone: phone,
-    code: 'phone',
-  };
 
   const onLogin = async () => {
     const networkState = await NetInfo.fetch();
@@ -123,6 +110,15 @@ const LoginView: React.FC<LoginScreenProps> = () => {
     navigate('LoginHome')
   };
 
+  const usrData: UserLoginType = {
+    uPhone: phone,
+    uEmail: '',
+    password: pass,
+  };
+  const smsLogin: SmsLoginType = {
+    phone: phone,
+    code: 'phone',
+  };
   const smsVerIf = async () => {
 
     if (phone.length != 11) {
@@ -183,7 +179,7 @@ const LoginView: React.FC<LoginScreenProps> = () => {
                 placeholder="请输入手机号"
                 placeholderTextColor="#fff"
                 underlineColor="#fff"
-                activeUnderlineColor="#fff"
+                underlineStyle={{width:0}}
                 textColor="#fff"
                 maxLength={11}
                 left={
@@ -199,49 +195,6 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               />
             </View>
 
-            {recode?'':(
-              <>
-              <View style={styles.pawoed} >
-              <TextInput
-                allowFontScaling={false}
-                style={[styles.inp]}
-                secureTextEntry={securePass}
-                left={
-                  <TextInput.Icon
-                    icon="shield-lock"
-                    color={"#FFF"}
-                  />
-                }
-                right={
-                  <TextInput.Icon
-                    icon="eye"
-                    color={"#FFF"}
-                    onLongPress={() => setSecurePass(false)}
-                    onPressOut={() => setSecurePass(true)}
-                  />
-                }
-                placeholder="请输入密码"
-                placeholderTextColor="#fff"
-                underlineColor="#fff"
-                textColor="#fff"
-                maxLength={16}
-                activeUnderlineColor="#fff"
-                onChangeText={text => setPass(text)}
-                value={pass}
-              />
-            </View>
-            <View style={styles.verify}>
-                <Text allowFontScaling={false} style={styles.underline}>
-                  记住密码
-                </Text>
-              <TouchableOpacity onPress={forgetPass} accessibilityLabel="忘记密码">
-                <Text allowFontScaling={false} style={styles.underline}>
-                  <Trans>loginText.text3</Trans>
-                </Text>
-              </TouchableOpacity>
-            </View>
-            </>
-            )}
             
             <View style={[styles.login]}>
               <Button
@@ -300,15 +253,15 @@ const LoginView: React.FC<LoginScreenProps> = () => {
               </Link>
             </View>
           </View>
-        </KeyboardAwareScrollView>
-      </ImageBackground>
-      <ClausePopup visible={visible} onClose={() => setVisible(false)}></ClausePopup>
+          </KeyboardAwareScrollView>
+        </ImageBackground>
     </Animatable.View>
-  );
+  )
 };
 export default LoginView;
+
 const styles = StyleSheet.create({
-  top: {
+  container: {
     width: windowWidth,
     height: 250,
   },
@@ -398,19 +351,16 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginTop: 20
   },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-
-  },
-  san: {
-    color: '#fff',
-    fontSize: 16
-  },
   icon: {
     width: 15,
     height: 15,
     margin: 3
-  }
-
-});
+  },
+  inp: {
+    flex: 1,
+    justifyContent: 'space-between',
+    color: '#fff',
+    backgroundColor:'#F6D99D',
+    borderRadius:0
+  },
+})

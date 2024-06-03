@@ -80,7 +80,7 @@ const SchoolIndex: React.FC<RegisteredScreenProps> = () => {
           <IndexTable></IndexTable>
         </View>
         <View style={styles.buttonView}>
-          <Button buttonColor="#ffb700" textColor="#FFF" style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('GenderRoute')}>下一步</Button>
+          <Button buttonColor="#ffb700" textColor="#FFF" style={styles.buttonStyle} labelStyle={styles.buttonText} onPress={() => navigate('InterestsHobbies')}>下一步</Button>
           <Button onPress={() => dayin()}> 打印各个大学数据</Button>
         </View>
       </View>

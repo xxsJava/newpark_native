@@ -13,7 +13,7 @@ const NewChatRoom = () => {
 };
 export default NewChatRoom;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container:{
         width:windowWidth,
         height:windowHeight,

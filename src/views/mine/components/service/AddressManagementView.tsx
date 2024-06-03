@@ -15,6 +15,7 @@ import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import HeadNav from '../../../../components/Nav/HeadNav';
+import { navigate } from '../../../../config/routs/NavigationContainer';
 
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
@@ -132,7 +133,7 @@ export default class AddressManagementView extends Component {
                     isDisabled={false}
                     isFocusVisible={false}
                     borderRadius={20}
-                    onPress={()=>{}}
+                    onPress={() => navigate('AddNewAddress')}
                     >
                         <ButtonText style={{color:'#000'}}>添加收货地址</ButtonText>
                     </Button></View>

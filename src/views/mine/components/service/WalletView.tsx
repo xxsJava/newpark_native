@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Dimensions, Image, Platform, StyleSheet, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-animatable';
 import LinearGradinet from 'react-native-linear-gradient';
-// import { Button } from 'react-native-paper';
 import DisplayAnImage from '../../../../components/Error/empty';
 import HeadNav from '../../../../components/Nav/HeadNav';
 
@@ -62,6 +61,7 @@ export default class WalletView extends Component {
                           })
                         }}>
                             <Text allowFontScaling={false} style={this.state.income ? styles.tabTextSelected:styles.tabItemText}>收入</Text>
+                           
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.tabItem} onPress={()=>{
                            this.setState({
@@ -75,6 +75,7 @@ export default class WalletView extends Component {
                 </View>
                 <View style={{alignItems:'center'}}>
                     {/* <Text allowFontScaling={false}>暂无收入</Text> */}
+                    {/* <DisplayAnImage style={{display:'none'}}/> */}
                     <DisplayAnImage/>
                 </View>
             </View>
