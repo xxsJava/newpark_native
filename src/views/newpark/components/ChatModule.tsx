@@ -139,7 +139,11 @@ const ChatModule = () => {
               </View>
             )
           })}
+             <TouchableOpacity style={{width:90,height:90,backgroundColor:'pink'}} onPress={() => navigate('LoginStacker')}>
+            
+            </TouchableOpacity>
         </ScrollView>
+         
       </View>
     </View>
   )

@@ -30,6 +30,7 @@
     "@uiw/react-native-alipay": "^5.0.2",
     "axios": "^1.6.8",
     "babel-plugin-inline-import": "^3.0.0",
+    "deprecated-react-native-prop-types": "^5.0.0",
     "expo-constants": "^15.4.5",
     "gm-crypto": "^0.1.12",
     "i18next": "^23.5.1",

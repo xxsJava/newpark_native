@@ -6,6 +6,11 @@
  * @Description: desc
  */
 // 测试选择学校
+import WithDrawal from '../../../views/mine/components/setup/WithDrawal';
+import PaymentMethod from '../../../views/mine/components/setup/PaymentMethod';
+import MessageNotifi from '../../../views/mine/components/setup/MessageNotifi';
+import PricacySetting from '../../../views/mine/components/setup/pricacySetting';
+import AccountSecurity from '../../../views/mine/components/setup/AccountSecurity';
 import MainMess from '../../../components/Bell/MainMess';
 import Collect from '../../../components/Error/Collect';
 import Comment from '../../../components/Error/Comment';
@@ -31,12 +36,10 @@ import PostDetails from '../../../views/home/page/PostDetails';
 import ProductChat from '../../../views/home/page/ProductChat';
 import PurchasePage from '../../../views/home/page/PurchasePage';
 import ViewOrders from '../../../views/home/page/ViewOrders';
-import LoginView from '../../../views/login';
+import LoginView from '../../../views/login/index';
 import ForgetPass from '../../../views/login/components/ForgetPass';
-import Gender from '../../../views/login/components/Gender/index';
 import InterestsHobbies from '../../../views/login/components/InterestsHobbies';
 import Registered from '../../../views/login/components/Registered';
-import Test1 from '../../../views/login/components/Registered/test';
 import schoolData from '../../../views/login/components/SchoolIndex/IndexTableView';
 import SchoolIndex from '../../../views/login/components/SchoolIndex/index';
 import Verification from '../../../views/login/components/Verification';
@@ -124,11 +127,47 @@ export default {
       headerShown:true
     }
   },
+  PricacySetting:{
+    component:PricacySetting,
+    options:{
+      headerTitleAlign:'center',
+      title:'隐私设置',
+    }
+  },
+  WithDrawal:{
+    component:WithDrawal,
+    options:{
+      headerTitleAlign:'center',
+      title:'微信收款提现',
+    }
+  },
   FriProfile:{
     component:FriProfile,
     options:{
       headerShow:true,
       title:''
+    }
+  },
+  MessageNotifi:{
+    component:MessageNotifi,
+    options:{
+      headerTitleAlign:'center',
+      title:'消息通知'
+    }
+  },
+  PaymentMethod:{
+    component:PaymentMethod,
+    options:{
+      headerTitleAlign:'center',
+      title:'支付方式'
+    }
+  },
+  AccountSecurity:{
+    component:AccountSecurity,
+    options:{
+      headerShow:true,
+      title:'账号与安全',
+      headerTitleAlign: 'center'
     }
   },
   // 这个是创建群聊
@@ -304,12 +343,6 @@ export default {
    title: '加入社区',
     },
   },
-  Test1:{
-    component: Test1,
-     options: {
-    title: '测试头像',
-     },
-  },
   SanJiLiand:{
     component: SanJiLiand,
      options: {
@@ -371,13 +404,6 @@ export default {
     component:SchoolIndex,
     options:{
       title:'学校索引',
-      headerShown: false,
-    }
-  },
-  GenderRoute:{
-    component:Gender,
-    options:{
-      title:'性别选择',
       headerShown: false,
     }
   },
@@ -622,7 +648,7 @@ export default {
     component:CreateCommunity,
     options:{
       title:'创建社区',
-      headerShown:false
+      headerTitleAlign: 'center'
     }
   },
   ObjCard:{

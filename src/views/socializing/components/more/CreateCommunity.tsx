@@ -1,347 +1,222 @@
-/**
- * 代码描述: 创建社区 社交更多模块
- * 作者:cxr
- * 创建时间:2023/12/13 11:54:11
- */
-
-import React, { useState } from "react";
-import { View, Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, KeyboardAvoidingView } from "react-native";
-import { Appbar } from 'react-native-paper';
+import React, { useState, useEffect } from "react";
+import { View, Dimensions, Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground, TouchableHighlight, Switch } from "react-native";
 import { navigate } from '../../../../config/routs/NavigationContainer';
-
+import { launchImageLibrary } from 'react-native-image-picker';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const CreateCommunity = () => {
-    const [commName, setCommName] = useState('');
-    const [commTip, setCommTip] = useState('');
-    const [commDesc, setCommDesc] = useState('');
-    const [authority, setAuthority] = useState('');
-    const [showAuth, setShowAuth] = useState(false);
-    // 加入方式   
-    const [join, setJoin] = useState('')
-    // 是否显示加入方式
-    const [joinStyle, setJoinStyle] = useState(false);
+
+const Photo = () => {
+    const [imgList, setimgList]: any = useState([]);
+    const handleClick = async () => {
+        launchImageLibrary(
+            {
+                mediaType: 'photo',
+                selectionLimit: 1,
+                includeBase64: false,
+                maxWidth: 1000,
+                maxHeight: 1000,
+            },
+            async res => {
+
+                let curFiles: any = res.assets;
+                let result
+                for (var i = 0; i < curFiles.length; i++) {
+                    console.log(curFiles[i]);
+                    result = curFiles[i]
+                    setimgList(curFiles[i])
+                }
+            }
+        )
+    }
+
     return (
-        <View
-            style={styles.parentLevel}>
-            <Appbar.Header style={styles.headerStyle}>
-                <Appbar.Action icon={require('../../../../assets/images/chevron-left.png')} onPress={() => navigate('SocializingStacker')}></Appbar.Action>
-                <Text allowFontScaling={false} style={styles.headerText}>创建社区</Text>
-                {/* <TouchableOpacity activeOpacity={0.6}>
-                    <Text allowFontScaling={false} style={styles.headerIcon}>创建</Text>
-                </TouchableOpacity> */}
-            </Appbar.Header>
-            {/*  behavior={Platform.OS == "ios" ? "padding" : "height"}
-                           style={styles.contentView} */}
-            <View
-                // keyboardVerticalOffset={10}
-                // behavior={Platform.OS == "ios" ? "padding" : "height"}
-                // behavior={Platform.OS == "ios" ? "padding" : "height"}
-                style={styles.contentView}>
-                {/* <ScrollView style={styles.scrollStyle}>
-                    <View style={styles.avatarView}>
-                        <View style={styles.avatarStyle}>
-                            <Image style={styles.avatarImage} source={require('../../../../assets/images/takepicforheader.png')} accessibilityLabel='图片' alt="头像"></Image>
-                        </View>
-                        <Text allowFontScaling={false} style={styles.avatarText}>设置社区头像</Text>
-                    </View>
-                    <View style={styles.itemView}>
-                        <Text allowFontScaling={false} style={styles.itemName}>社区名称:</Text>
-                        <TextInput  allowFontScaling={false} textAlign='center' selectionColor='#FABA3C' placeholder='请输入社区名称' maxLength={10} autoCorrect={false} style={styles.itemInput}></TextInput>
-                        <Text allowFontScaling={false} style={styles.itemRightText}>0/10</Text>
-                    </View>
-                    <View style={styles.itemView}>
-                        <Text allowFontScaling={false} style={styles.itemName}>社区背景图:</Text>
-                        <View style={styles.itemRight}>
-                            <TouchableOpacity activeOpacity={0.6} style={styles.itemBgImage}>
-                            </TouchableOpacity>
-                            <TouchableOpacity activeOpacity={0.6}>
-                                <Entypo style={styles.itemIcon} color='#bbb' size={20} name="chevron-thin-right"></Entypo>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={[styles.itemView,{height:160}]}>
-                        <Text allowFontScaling={false} style={styles.itemName}>社区功能:</Text>
-                    </View>
-                    <View style={styles.itemView}>
-                        <Text allowFontScaling={false} style={styles.itemName}>社区权限:</Text>
-                        <View style={styles.itemRight}>
-                            <Text allowFontScaling={false} style={styles.itemText}>公开</Text>
-                            <TouchableOpacity activeOpacity={0.6}>
-                                <Entypo style={styles.itemIcon} color='#000' size={20} name="chevron-small-down"></Entypo>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={styles.itemView}>
-                        <Text allowFontScaling={false} style={styles.itemName}>社区加入方式:</Text>
-                        <View style={styles.itemRight}>
-                            <Text allowFontScaling={false} style={styles.itemText}>不需要批准</Text>
-                            <TouchableOpacity activeOpacity={0.6}>
-                                <Entypo style={styles.itemIcon} color='#000' size={20} name="chevron-small-down"></Entypo>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </ScrollView> */}
-                <ImageBackground source={require('../../../../assets/images/tup/community.jpg')} style={styles.imgbg}></ImageBackground>
-                <KeyboardAvoidingView
-                    keyboardVerticalOffset={-380}
-                    behavior={Platform.OS == "ios" ? "padding" : "position"}
-                    style={styles.weiz}
-                    // keyboardVerticalOffset={-120}
-                >
-                    <ScrollView style={{ width: '100%', paddingBottom: 200 ,height:'63%',marginBottom:20}}>
-                        <View style={styles.ying} />
-                        <View
-                            style={{
-                                alignItems: 'center',
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                zIndex: 190,
-                                width: windowWidth,
-                                // height: '100%',
-                               marginBottom:920,
-                                paddingVertical:12,
-                                paddingBottom:300
-                            }}>
-                            <Image source={require('../../../../assets/images/tup/community.jpg')} style={{ width: 90, height: 90, borderWidth: 2, borderColor: '#ECB32C' }}></Image>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 60, height: 46 }}>
-                                <Text>社区名称</Text>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <TextInput
-                                        placeholder="请输入社区名称"
-                                        value={commName}
-                                        onChangeText={text => { setCommName(text), console.log('这是输入的社区名称', commName, text); }}
-                                        maxLength={12}
-                                    />
-                                    <Text style={{ fontSize: 12, color: '#000' }}>{commName.length}/12</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 10, height: 46 }}>
-                                <Text>社区标签</Text>
-                                <View>
-                                    <TextInput
-                                        placeholder="请描述一下吧...."
-                                        value={commTip}
-                                        onChangeText={text => { setCommTip(text), console.log('这是输入的社区标签', commTip, text); }}
-                                    />
-                                </View>
-                            </View>
-                            <View style={{ width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 10 }}>
-                               <View style={{paddingVertical:12}}>
-                               <Text style={{color:'#000',fontSize:16}}>社区简介</Text>
-                               </View>
-                              <View style={{maxHeight:200,width:'100%'}}>
-                              {/* <ScrollView> */}
-                                    <TextInput
-                                    // 这个可以上下滑动显示
-                                        numberOfLines={6}
-                                        placeholder="(选填)"
-                                        value={commDesc}
-                                        onChangeText={text => { setCommDesc(text), console.log('这是输入的社区标签', commTip, text); }}
-                                        multiline={true}
-                                        style={{ width: '100%', paddingVertical: 20, backgroundColor: '#ccc', marginBottom: 20 }}
-                                    />
-                                {/* </ScrollView> */}
-                              </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 10, height: 46 }}>
-                                <Text>社区权限</Text>
-                                <TouchableOpacity style={{ width: 80, backgroundColor: '#fff', flexDirection: 'row', marginRight: 16, position: 'relative',alignItems:'center'}} onPress={() => { setShowAuth(!showAuth) }}>
-                                    <Text style={authority.length == 0 ? { display: 'none' } : { textAlign: "center" }}>{authority}</Text>
-                                    <Text style={authority.length == 0 ? { color: '#ccc', textAlign: 'center' } : { display: 'none' }}>请选择权限</Text>
-                                    <Image source={require('../../../../assets/images/tup/xia.png')} style={{ width: 16, height: 16, marginLeft: 6 }}></Image>
-                                   
-                                </TouchableOpacity>
-                                <View style={showAuth ? { position: 'absolute', top: 36, right: 20, zIndex: 99999 } : { display: 'none' }}>
-                                        <TouchableOpacity onPress={() => { setShowAuth(false) }} style={{ width: 100, height: 30, backgroundColor: '#fff' }}>
-                                            <Text style={{ lineHeight: 30, textAlign: 'center',borderBottomWidth:0.4,borderColor:'#ccc' }}>
-                                                请选择权限
-                                            </Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => { setAuthority('公开'), setShowAuth(false) }} style={{ width: 100, height: 30, backgroundColor: '#fff', borderBottomWidth: 1, borderColor: '#ccc' }}>
-                                            <Text style={{ lineHeight: 30, textAlign: 'center' }}>
-                                                公开
-                                            </Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => { setAuthority('私有'), setShowAuth(false) }} style={{ width: 100, height: 30, backgroundColor: '#fff' }}>
-                                            <Text style={{ lineHeight: 30, textAlign: 'center' }}>
-                                                私有
-                                            </Text>
-                                        </TouchableOpacity>
-                                    </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 12, alignItems: 'center', backgroundColor: '#fff', marginTop: 10, height: 46,zIndex:-20,marginBottom:120 }}>
-                                <Text>加入方式</Text>
-                                <TouchableOpacity style={{ width: 80, backgroundColor: '#fff', flexDirection: 'row', marginRight: 16, position: 'relative',alignItems:'center' }} onPress={() => { setJoinStyle(!joinStyle) }}>
-                                    <Text style={join.length == 0 ? { display: 'none' } : { textAlign: "center" }}>{join}</Text>
-                                    <Text style={join.length == 0 ? { color: '#ccc', textAlign: 'center' } : { display: 'none' }}>请选择方式</Text>
-                                    <Image source={require('../../../../assets/images/tup/xia.png')} style={{ width: 16, height: 16, marginLeft: 6 }}></Image>
-                                </TouchableOpacity>
-                                <View style={joinStyle ? { position: 'absolute', top: 36, right: 26, zIndex: 999 } : { display: 'none' }}>
-                                        <TouchableOpacity onPress={() => { setJoinStyle(false) }} style={{ width: 100, height: 30, backgroundColor: '#fff' }}>
-                                            <Text style={{ lineHeight: 30, textAlign: 'center' }}>
-                                                请选择方式
-                                            </Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => { setJoin('不需要批准'), setJoinStyle(false) }} style={{ width: 100, height: 30, backgroundColor: '#fff', borderBottomWidth: 1, borderColor: '#ccc' }}>
-                                            <Text style={{ lineHeight: 30, textAlign: 'center' }}>
-                                                不需要批准
-                                            </Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => { setJoin('管理员审核'), setJoinStyle(false) }} style={{ width: 100, height: 30, backgroundColor: '#fff' }}>
-                                            <Text style={{ lineHeight: 30, textAlign: 'center' }}>
-                                                管理员审核
-                                            </Text>
-                                        </TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
-                    </ScrollView>
-                    <View style={{height:60,width:windowWidth,alignItems:'center',justifyContent:'center'}}>
-                            <TouchableOpacity style={{backgroundColor:'#EE8C19',paddingHorizontal:36,paddingVertical:12,borderRadius:8}}>
-                                <Text style={{color:'#fff',fontSize:17,fontWeight:'bold'}}>创建</Text>
-                            </TouchableOpacity>
-                    </View>
-                </KeyboardAvoidingView>
+        <View style={styles.imageListView}>
+            <Image key={imgList.url} style={styles.photoListStyle} source={{ uri: imgList.uri }} accessibilityLabel='图片' alt="头像" />
+            <TouchableHighlight style={imgList.length == 0 ? styles.photoViewnull : styles.photoView} underlayColor="#ddd" onPress={() => handleClick()}>
+                <Image style={styles.photoImage} source={require('../../../../assets/images/chat_page_photo.png')} accessibilityLabel='图片' alt="头像"></Image>
+            </TouchableHighlight>
+        </View>
+    );
+}
+const CreateCommunity = () => {
+    const [groupName, setGroupName] = useState('');
+    const [showAny, setShowAny] = useState(true);
+    const [commIntroduction, setCommIntroduction] = useState('');
+    const [gType,setGType] = useState('')
+    const typeList = [
+        '同城生活','学习交流','自律打卡','求职互助','购物拼单','游戏开黑','兴趣交流','闲聊唠嗑','其他'
+    ]
+    return (
+        <View style={styles.container}>
+            <View style={{ flexDirection: 'row', backgroundColor: '#fff', paddingHorizontal: '5%', width: windowWidth, justifyContent: 'space-between', height: 50 }}>
+                <View>
+                    <Text style={{ lineHeight: 25, color: '#000', fontSize: 16 }}>公开展示</Text>
+                    <Text style={{ fontSize: 11, lineHeight: 25 }}>关闭后,将不在社区广场和个人主页面展示群聊</Text>
+                </View>
+                <Switch
+                    trackColor={{ false: "#767577", true: "orange" }}
+                    thumbColor={showAny ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={setShowAny}
+                    value={showAny}
+                />
             </View>
+            
+            <ImageBackground style={{ width: windowWidth, height: 200, backgroundColor: '#fff', zIndex: -3 }} source={require('../../../../assets/images/tup/community.jpg')} resizeMode='contain'>
+                <View style={styles.main}>
+                    <Photo></Photo>
+                    <View style={styles.list}>
+                        <View style={styles.ying}>
+                        </View>
+                        <ScrollView style={{ width: windowWidth, zIndex: 12, flex: 1}}>
+                            <View style={{ marginTop: 40, paddingHorizontal: 20,marginBottom:20 }}>
+                                <Text style={styles.titext}>群名称 <Text style={{ color: 'red' }}>*</Text></Text>
+                                <View style={{ backgroundColor: '#fff', borderRadius: 12, }}>
+                                    <View style={{ borderColor: 'gray', borderBottomWidth: 0.3, borderRadius: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 3, height: 46, marginBottom: 3, width: 320 }}>
+                                        <TextInput
+                                            style={{ height: 45, backgroundColor: '#fff', borderRadius: 12, color: '#000', width: 230, fontSize: 16 }}
+                                            onChangeText={text => setGroupName(text)}
+                                            value={groupName}
+                                            placeholder="输入群名称"
+                                            maxLength={24}
+                                            placeholderTextColor="#999"
+                                        />
+
+                                        <Text> {groupName.length} / 24</Text>
+                                    </View>
+                                    <View style={showAny ? { width: 320, backgroundColor: '#fff', paddingHorizontal: 12, height: 180, position: 'relative', borderBottomLeftRadius: 12, borderBottomRightRadius: 12 } : {display:'none'}}>
+                                        <TextInput
+                                            style={{ lineHeight: 28, marginBottom: 20 }}
+                                            multiline
+                                            maxLength={100}
+                                            placeholder="用一段话介绍你的社区,例: 欢迎想提高游戏段位的朋友们进群! 群里可以找游戏搭子相互帮助提升段位～注意只能不能聊不相关的话题哦"
+                                            placeholderTextColor="#999"
+                                            textAlign="left"
+                                            textAlignVertical='top'
+                                            value={commIntroduction}
+                                            onChangeText={text => setCommIntroduction(text)}
+                                        />
+                                        <View style={{ height: 20, position: 'absolute', bottom: 5, right: 20 }}>
+                                            <Text>{commIntroduction.length} / 100</Text>
+                                        </View>
+                                    </View>
+                                </View>
+
+                                <View style={showAny ? { marginTop: 20, paddingHorizontal: 20 } : {display:'none'}}>
+                                    <Text style={styles.titext}>群聊类型</Text>
+                                    <View style={{ backgroundColor: '#fff', borderRadius: 12,width:'100%',height:128,flexDirection:'row',flexWrap:'wrap',padding:6}}>
+                                        {
+                                            typeList.map((item) => {
+                                                return(
+                                                    <TouchableOpacity style={[{width:'30%',height:30,backgroundColor:'#F4F3F5',margin:'1.5%',borderRadius:6},gType == item ? {backgroundColor:'#FFEDEF'} : {}]} onPress={() => {setGType(item)}}>
+                                                        <Text style={[{lineHeight:30,textAlign:'center',fontSize:12,color:'#000'},gType == item ? {color:'#FC2F4B'} : {}]}>{item}</Text>
+                                                    </TouchableOpacity>
+                                                )
+                                            })
+                                        }
+                                    </View>
+                                </View>
+                             
+                            </View>
+                        </ScrollView>
+
+                        {/* #F5F5F5 */}
+                        <View style={{ height: 120, width: windowWidth, zIndex: 12, alignItems: 'center' }}>
+                            <TouchableOpacity style={{ backgroundColor: '#FF2542', width: '80%', height: 40, borderRadius: 20, marginBottom: 12 }}>
+                                <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold', textAlign: 'center', lineHeight: 40 }}>立即创建</Text>
+                            </TouchableOpacity>
+                            <Text style={{ fontSize: 12 }}>为维护社区内信息生态健康,请遵守<Text style={{ color: '#5796F2', fontSize: 12 }}>《群聊公约》</Text></Text>
+                        </View>
+                    </View>
+                </View>
+            </ImageBackground>
         </View>
     )
 }
-
 export default CreateCommunity;
 
 const styles = StyleSheet.create({
-    parentLevel: {
+    container: {
         width: windowWidth,
         height: windowHeight,
-        backgroundColor: '#EFEBFA',
-       
+        backgroundColor: '#F5F5F5'
     },
-    headerStyle: {
-        height: 55,
-        backgroundColor: '#FABA3C',
-        width: '100%'
+    imageListView: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 95,
+        height: 95,
+        zIndex: 99
     },
-    headerText: {
-        width: '75%',
-        fontSize: 17,
-        color: '#fff',
-        fontWeight: 'bold',
-        textAlign: 'center'
+    photoListStyle: {
+        width: 95,
+        height: 95,
+        borderRadius: 8,
+        position: 'absolute'
     },
-    headerIcon: {
-        fontSize: 14,
-        color: '#fff'
+    photoView: {
+        width: 35,
+        height: 35,
+        borderWidth: 1,
+        borderColor: '#e1e1e1',
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+        position: 'absolute',
+        right: -20,
+        bottom: -20
     },
-    contentView: {
-        width: windowWidth,
-        ...Platform.select({
-            ios: {
-                height: windowHeight - 55,
-            },
-            android: {
-                height: windowHeight,
-            }
-        }),
-        position: 'relative'
+    photoViewnull: {
+        width: 95,
+        height: 95,
+        borderWidth: 1,
+        borderColor: '#e1e1e1',
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#fff'
     },
-    scrollStyle: {
-        flex: 1
+    photoImage: {
+        width: 20,
+        height: 20
     },
-    avatarView: {
-        width: windowWidth,
-        height: 160,
-        paddingTop: 35,
+    main: {
+        marginTop: 55,
         alignItems: 'center'
     },
-    avatarStyle: {
-        width: 80,
-        height: 80,
-        alignItems: 'center',
-        backgroundColor: '#72D2AE'
-    },
-    avatarText: {
-        fontSize: 14,
-        color: '#000',
-        lineHeight: 40
-    },
-    avatarImage: {
-        width: 25,
-        height: 25,
-        marginTop: 27
-    },
-    itemView: {
+    list: {
+        // backgroundColor:'#F5F5F5',
+        // backgroundColor:'green',
         width: windowWidth,
-        height: 55,
-        paddingHorizontal: 20,
-        marginBottom: 10,
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    itemName: {
-        fontSize: 15,
-        color: '#000',
-        fontWeight: 'bold',
-        lineHeight: 55
-    },
-    itemRightText: {
-        fontSize: 14,
-        color: '#bbb',
-        lineHeight: 55
-    },
-    itemInput: {
-        width: '70%',
-        textAlignVertical: 'center'
-    },
-    itemRight: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    itemBgImage: {
-        width: 120,
-        height: 40,
-        marginVertical: 8,
-        backgroundColor: '#FABA3C'
-    },
-    itemIcon: {
-        lineHeight: 55,
-        marginLeft: 10
-    },
-    itemText: {
-        fontSize: 15,
-        color: '#000',
-        lineHeight: 55
-    },
-    imgbg: {
-        width: '100%',
-        height: 260
-    },
-    weiz: {
-        position: 'absolute',
-        top: 130,
-        left: 0,
-        width: windowWidth,
-        // height: 570,
-        zIndex: 30,
-        height:'100%',
-        // backgroundColor:'#ccc'
-        // paddingBottom:130,
-        // marginBottom:130
+        height: windowHeight - 173,
+        marginTop: -30,
+        // zIndex: -2,
     },
     ying: {
+        // backgroundColor: '#000',
+        backgroundColor: '#F5F5F5',
+        opacity: 0.8,
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        zIndex: 9,
+    },
+    div: {
         backgroundColor: '#fff',
         width: windowWidth,
-        height: 720,
-        position: 'relative',
-        top: 60,
-        left: 0,
-        zIndex: 40,
-        opacity: 0.6,
-        borderTopLeftRadius: 60,
-        borderTopRightRadius: 60
+        height: windowHeight
+    },
+    test: {
+        width: windowWidth,
+        height: 800,
+        backgroundColor: 'green',
+        position: 'relative'
+    },
+    titext: {
+        fontSize: 15,
+        marginBottom: 12
     }
 })
-
